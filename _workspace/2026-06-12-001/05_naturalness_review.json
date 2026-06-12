@@ -1,0 +1,29 @@
+{
+  "score_before": 92.5,
+  "score_after": 4.0,
+  "improvement_rate": 0.957,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 1
+  },
+  "residual_detail": [
+    {
+      "category": "B-2",
+      "severity": "S2",
+      "text_span": "データドリブン",
+      "note": "原 finding クラスタ（ドライブ/シームレス/インサイト）は解消。データドリブンのみ残存。周辺密度が閾値以下に落ちたため単独では S3 寄りだが、保守的に S2 として計上"
+    },
+    {
+      "category": "C-1",
+      "severity": "S3",
+      "text_span": "まず重要になるのは",
+      "note": "「まず・次に・最後に」3段公式は崩壊（次に/最後に は叙述へ溶解）。孤立した「まず」のみ残るが機械的列挙ではなくなったため S1→S3 へ降格"
+    }
+  ],
+  "change_rate": 0.224,
+  "over_polish_signals": [],
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "26 findings 中 24 を完全解消。S1 18 件すべて除去（における/において×6・となっています×2・ことができる×2・婉曲断定×4・が求められます・まず次に最後に×3 を含む）。残存は B-2 データドリブン 1 件と孤立「まず」1 件のみ。文体は終始 desu_masu で敬体/常体の混入なし、過推敲シグナルゼロ。変更率 22.4% で 30% 閾値内、意味の希薄化・ぶつ切りなし。箇条書き 4 項は line 11 に全項目保持のまま散文へ自然に溶解。注記: 02_detection.json の実 score_before は 92.5（スキーマ例の 71.5 ではない）。score_after はオーケストレーター側で ai-tell-detector を実走査して確定すること（本値は同一重み付けでの推定）。"
+}
