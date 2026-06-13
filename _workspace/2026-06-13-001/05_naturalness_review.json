@@ -1,0 +1,57 @@
+{
+  "run_id": "2026-06-13-001",
+  "round": 2,
+  "genre": "技術解説記事",
+  "style": "desu_masu",
+  "score_before": 85.0,
+  "score_after": 4.5,
+  "improvement_rate": 0.947,
+  "detector_method": "ai-tell-detector を round2 修正後の 03_rewrite.md に同一基準で再呼び出し（実呼び）。最終段の常体言い切り『最適化していく。』を敬体『欠かせません。』へ復元した版を再走査。推敲前 detected_count=20/score=85.0 に対し round2 推敲後 detected_count=2/score=4.5（round1=3/16.5 から S1 常体混入が解消し改善）。文末文体は全17文すべて敬体で統一。残存・過推敲はこの再走査結果を根拠とする。",
+  "style_consistency_check": {
+    "mixed_style_detected": "FALSE",
+    "dominant_style": "desu_masu",
+    "total_sentence_endings": 17,
+    "desu_masu_count": 17,
+    "da_dearu_count": 0,
+    "offending_spans": [],
+    "note": "round1 のブロッカーだった常体言い切り『ポリシーを最適化していく。』（pos781-789）は round2 で『継続的なモニタリングをおこない、ポリシーを最適化していくことも欠かせません。』へ復元され、敬体『欠かせません』で着地。全17文の文末が敬体（です/ます/ました/ありません/でしょう/欠かせません）で統一され、敬体/常体の混入は0件。鉄則3（文体維持）を回復。"
+  },
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 2
+  },
+  "residual_detail": [
+    {
+      "ref": "r001",
+      "category": "C-1",
+      "severity_after": "S3",
+      "note": "第1段の自己言及型イントロ『本記事では、その基本的なアーキテクチャと導入のポイントについて、わかりやすく解説していきます。』。AIブログ定型だが単発で他パターンと重ならず S3 据え置き。修正不要（過推敲回避のため触らない）。"
+    },
+    {
+      "ref": "r002",
+      "category": "E-2",
+      "severity_after": "S3",
+      "note": "第4段（P4）の3文がいずれも『〜ます』系で着地（挙げられます／できるようになります／なくなりつつあります）。受動・進行・状態の変奏はあり敬体統一の範囲内で密度は閾値ぎりぎり。S3、他パターンと重なる場合のみ問題のため軽微。修正不要。"
+    }
+  ],
+  "over_polish_signals": [],
+  "over_polish_other_checks": {
+    "style_break_desu_masu_mixing": false,
+    "style_break_binary": "FALSE（混入なし・0件）",
+    "unnatural_colloquialization": false,
+    "meaning_thinning_or_choppiness": false,
+    "change_rate": 0.169,
+    "change_rate_status": "under_30pct（過推敲しきい値内）"
+  },
+  "grade": "A",
+  "verdict": "accept",
+  "recommendation": "accept",
+  "round1_blocker_resolution": {
+    "blocker": "最終段の敬体本文に常体言い切り『最適化していく。』が単発混入（過推敲シグナル1件・S1扱い・文体崩れ＝鉄則3違反）",
+    "fix_applied": "オーケストレーターが該当文を『継続的なモニタリングをおこない、ポリシーを最適化していくことも欠かせません。』へ修正。敬体『欠かせません』へ復元。",
+    "post_fix_state": "常体混入=0件。over_polish_signals=空。style_consistency_check.mixed_style_detected=FALSE。S1=0達成。",
+    "verified": true
+  },
+  "notes": "【最終状態：round2 再レビュー】round1 で grade C / rewrite_round_2 とした唯一のブロッカー＝最終段の常体言い切り『最適化していく。』（敬体本文への常体混入・過推敲シグナル1件・S1扱い）は、round2 修正で『…ことも欠かせません。』へ敬体復元され、完全に解消した。\n\n【常体混入が0になったことの明記】検出器を round2 推敲文へ再適用した結果、文末文体は全17文すべて敬体で統一され、敬体/常体の混入は二値判定で FALSE（0件）。over_polish_signals も空配列。これにより round1 の過推敲シグナル（style_break）は消失した。\n\n【再判定】残存は S1=0 / S2=0 / S3=2（r001=C-1自己言及イントロ単発, r002=P4のます3連）。改善率は score 85.0→4.5 で約94.7%（A級水準70%+を大幅超過）。S1 0件・S2 2件以下・改善70%+の A 等級基準をすべて満たすため、grade=A / verdict=accept と再判定する。\n\n【残差の取り扱い】r001・r002 はいずれも S3 で単独許容範囲。これ以上潰すと過推敲リスク（不自然な口語化・意味の薄まり）が上がるため修正しない。変更率は0.169で30%しきい値内、過推敲シグナルなし。\n\n【絶対残存数の併記】絶対残存は S3×2 の計2件のみ。短文（input 917字）ながら改善率94.7%・残存2件・決定的シグネチャ（A-1/A-5/A-6/A-10/I-4/C-1裸3段/G-1/B-2無併記カタカナ）全消去・文体統一回復で、accept 条件を満たす。fidelity-auditor 側の意味等価確認と併せ、最終的に accept を推奨する。"
+}
