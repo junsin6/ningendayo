@@ -1,9 +1,9 @@
 {
   "meta": {
     "input_length": 750,
-    "detected_count": 26,
-    "ai_tell_density": 0.319,
-    "severity_weighted_score": 73.3,
+    "detected_count": 29,
+    "ai_tell_density": 0.335,
+    "severity_weighted_score": 78.3,
     "style": "desu_masu"
   },
   "findings": [
@@ -328,13 +328,13 @@
     }
   ],
   "category_summary": {
-    "A": 8,
+    "A": 9,
     "B": 13,
     "C": 3,
-    "D": 1,
+    "D": 2,
     "E": 1,
     "F": 0,
-    "G": 0,
+    "G": 1,
     "H": 0,
     "I": 0,
     "J": 0
