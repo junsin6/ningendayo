@@ -406,8 +406,12 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: 0〜100。**正規化式を SSOT として固定**（IMP-002, 適用 2026-06-14-001/002）:
+  1. `raw = ΣS1×5 + ΣS2×2 + ΣS3×0.5`（**ユニーク finding** で集計。同一 span が複数カテゴリに該当する重複・文書レベル所見は 1 回だけ数える）。
+  2. `severity_weighted_score = round( 100 × (1 − exp(−raw / 45)), 1 )`。
+  - 飽和定数 `K=45` は固定（既存アンカー raw56→71.5 を再現する値）。input_length には依存させない（長さ正規化は `ai_tell_density` が担う）。
+  - この飽和形により高密度短文でも 100 に張り付かず深刻度の解像度が残る（例: raw94→87.6, raw33→52.0）。検出器・naturalness-reviewer は同一式で算出すること。
+* `ai_tell_density`: 検出 span の**ユニーク文字集合**（重複・文書レベル locator を除く）/ 全体文字数。重なる finding の素朴な加算で過大化させない。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
