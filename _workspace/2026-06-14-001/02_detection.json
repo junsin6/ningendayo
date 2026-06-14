@@ -1,0 +1,309 @@
+{
+  "meta": {
+    "input_length": 750,
+    "detected_count": 26,
+    "ai_tell_density": 0.319,
+    "severity_weighted_score": 73.3,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 可能の冗長形の濫用",
+      "severity": "S1",
+      "text_span": "処理することができる",
+      "start": 264,
+      "end": 274,
+      "reason": "「〜することができる/できます/できるのです」が本文で4回反復。可能の冗長形が機械的（can/be able to 直訳）",
+      "suggested_fix": "処理できる"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 可能の冗長形の濫用",
+      "severity": "S1",
+      "text_span": "活用することができます",
+      "start": 370,
+      "end": 381,
+      "reason": "「することができる」系の4回反復の2例目。可能の主張が不要な箇所で冗長",
+      "suggested_fix": "活用できます"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 可能の冗長形の濫用",
+      "severity": "S1",
+      "text_span": "低減することができるのです",
+      "start": 472,
+      "end": 485,
+      "reason": "「することができる」系の4回反復の3例目。さらに「のです」の説明調が重なり冗長度が高い",
+      "suggested_fix": "低減できます"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 可能の冗長形の濫用",
+      "severity": "S1",
+      "text_span": "提供することができます",
+      "start": 631,
+      "end": 642,
+      "reason": "「することができる」系の4回反復の4例目。「提供する」万能動詞とも重複（A-10）",
+      "suggested_fix": "提供できます"
+    },
+    {
+      "id": "f005",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（示す/提供する/もたらす）",
+      "severity": "S1",
+      "text_span": "この技術は、従来のクラウドコンピューティングが抱えていた課題に対する有力なソリューションをもたらします",
+      "start": 161,
+      "end": 212,
+      "reason": "抽象主語「この技術は」+万能動詞「もたらします」。The X brings Y の直訳構文",
+      "suggested_fix": "この仕組みなら、クラウドが抱えていた課題を解決できます"
+    },
+    {
+      "id": "f006",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（示す/提供する/もたらす）",
+      "severity": "S1",
+      "text_span": "大きな価値を提供します",
+      "start": 413,
+      "end": 424,
+      "reason": "「このアプローチは〜大きな価値を提供します」。抽象主語+万能動詞「提供する」の直訳。同型反復",
+      "suggested_fix": "大きく役立ちます"
+    },
+    {
+      "id": "f007",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（示す/提供する/もたらす）",
+      "severity": "S1",
+      "text_span": "実現することを可能にします",
+      "start": 572,
+      "end": 585,
+      "reason": "抽象主語「ハイブリッドなインフラは」+「〜を実現することを可能にします」。可能化の二重構文で万能動詞型",
+      "suggested_fix": "実現できます"
+    },
+    {
+      "id": "f008",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "において",
+      "start": 315,
+      "end": 319,
+      "reason": "「ユースケースにおいて」。状況を抽象的に枠づける in/at の直訳",
+      "suggested_fix": "では"
+    },
+    {
+      "id": "f009",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "テクノロジー",
+      "start": 55,
+      "end": 61,
+      "reason": "カタカナ語が文書全体で12語以上と高密度。「技術」で書ける語のカタカナ化",
+      "suggested_fix": "技術"
+    },
+    {
+      "id": "f010",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 198,
+      "end": 205,
+      "reason": "カタカナ語高密度の一例。「解決策」で書ける",
+      "suggested_fix": "解決策"
+    },
+    {
+      "id": "f011",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "リアルタイム",
+      "start": 257,
+      "end": 263,
+      "reason": "カタカナ語高密度の一例。「即時に/その場で」で書ける",
+      "suggested_fix": "即時に"
+    },
+    {
+      "id": "f012",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ユースケース",
+      "start": 309,
+      "end": 315,
+      "reason": "カタカナ語高密度の一例。「場面/用途」で書ける",
+      "suggested_fix": "場面"
+    },
+    {
+      "id": "f013",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "パフォーマンス",
+      "start": 321,
+      "end": 328,
+      "reason": "カタカナ語高密度の一例。「性能」で書ける",
+      "suggested_fix": "性能"
+    },
+    {
+      "id": "f014",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "センシティブ",
+      "start": 425,
+      "end": 431,
+      "reason": "カタカナ語高密度の一例。「機密性の高い」で書ける",
+      "suggested_fix": "機密性の高い"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ローカル",
+      "start": 436,
+      "end": 440,
+      "reason": "カタカナ語高密度の一例。「手元の/現場の」で書ける",
+      "suggested_fix": "手元の"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ハイブリッド",
+      "start": 540,
+      "end": 546,
+      "reason": "カタカナ語高密度の一例。「組み合わせた」で書ける（直後に同義の説明あり）",
+      "suggested_fix": "組み合わせた"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "スケーラブル",
+      "start": 553,
+      "end": 559,
+      "reason": "カタカナ語高密度の一例。「拡張しやすく」で書ける",
+      "suggested_fix": "拡張しやすく"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "レジリエント",
+      "start": 560,
+      "end": 566,
+      "reason": "カタカナ語高密度の一例。「障害に強い」で書ける",
+      "suggested_fix": "障害に強い"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "オフロード",
+      "start": 599,
+      "end": 604,
+      "reason": "カタカナ語高密度の一例。「肩代わりさせる/移す」で書ける",
+      "suggested_fix": "移す"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "シームレス",
+      "start": 612,
+      "end": 617,
+      "reason": "カタカナ語高密度の一例。taxonomy 例示の代表語。「滑らかな/途切れない」で書ける",
+      "suggested_fix": "滑らかな"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ユーザーエクスペリエンス",
+      "start": 618,
+      "end": 630,
+      "reason": "カタカナ語高密度の一例。「使い心地/利用体験」で書ける長尺カタカナ複合語",
+      "suggested_fix": "使い心地"
+    },
+    {
+      "id": "f022",
+      "category": "C-1",
+      "category_label": "構造: 機械的並列『まず・次に・最後に』",
+      "severity": "S1",
+      "text_span": "まず、",
+      "start": 215,
+      "end": 218,
+      "reason": "「まず、」「次に、」「さらに、」が各段落冒頭を支配し列挙構文が機械的（3連以上）",
+      "suggested_fix": "（削除し叙述に溶かす）"
+    },
+    {
+      "id": "f023",
+      "category": "C-1",
+      "category_label": "構造: 機械的並列『まず・次に・最後に』",
+      "severity": "S1",
+      "text_span": "次に、",
+      "start": 384,
+      "end": 387,
+      "reason": "段落冒頭の機械的並列の2例目",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f024",
+      "category": "C-1",
+      "category_label": "構造: 機械的並列『まず・次に・最後に』",
+      "severity": "S1",
+      "text_span": "さらに、",
+      "start": 521,
+      "end": 525,
+      "reason": "段落冒頭の機械的並列の3例目。3連続で AI 特有",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f025",
+      "category": "D-1",
+      "category_label": "AI慣用句: 結び『〜と言えるでしょう』",
+      "severity": "S1",
+      "text_span": "と言えるでしょう",
+      "start": 697,
+      "end": 705,
+      "reason": "結びの定型「重要な基盤技術であると言えるでしょう」。D-1 の決定的シグネチャ",
+      "suggested_fix": "重要な基盤技術です"
+    },
+    {
+      "id": "f026",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "高まっていくことが予想されます",
+      "start": 733,
+      "end": 748,
+      "reason": "本文13文すべてが「〜ます。」で終止し文末が一本調子（体言止め・断定・推量の変奏が皆無）。代表例として末文を記録。文末反復率100%",
+      "suggested_fix": "高まっていくでしょう"
+    }
+  ],
+  "category_summary": {
+    "A": 8,
+    "B": 13,
+    "C": 3,
+    "D": 1,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 0,
+    "J": 0
+  }
+}
