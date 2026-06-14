@@ -1,0 +1,188 @@
+{
+  "meta": {
+    "input_length": 781,
+    "detected_count": 15,
+    "ai_tell_density": 0.229,
+    "severity_weighted_score": 67.6,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "議決されたことによって",
+      "start": 92,
+      "end": 103,
+      "reason": "「によって」受動が本文で4回反復(idx 97/213/289/536)。行為主体を後置した直訳受動。公的文書の慣用を超え密度過多",
+      "suggested_fix": "議決され、令和8年10月の検針分より"
+    },
+    {
+      "id": "f002",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "上昇によって",
+      "start": 210,
+      "end": 216,
+      "reason": "「によって」受動4回反復の2例目。原因を後置する直訳構文",
+      "suggested_fix": "上昇により"
+    },
+    {
+      "id": "f003",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "有識者によって構成される",
+      "start": 286,
+      "end": 298,
+      "reason": "「によって」受動4回反復の3例目。行為者後置の直訳受動。「有識者で構成する」へ",
+      "suggested_fix": "有識者で構成する"
+    },
+    {
+      "id": "f004",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "新しい納付書が市によって送付されます",
+      "start": 532,
+      "end": 550,
+      "reason": "「によって」受動4回反復の4例目。行為者(市)を主語に戻せる典型的by-passive",
+      "suggested_fix": "市が新しい納付書を送付しますので"
+    },
+    {
+      "id": "f005",
+      "category": "A-4",
+      "category_label": "翻訳調: 〜に基づいて/〜をもとに 濫用",
+      "severity": "S2",
+      "text_span": "申請に基づいて",
+      "start": 612,
+      "end": 619,
+      "reason": "根拠提示 based on の直訳。「申請により」「申請があれば」で足りる。受動「適用される」と連結し直訳調を強める",
+      "suggested_fix": "申請があれば"
+    },
+    {
+      "id": "f006",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "改定されることとなりました",
+      "start": 124,
+      "end": 137,
+      "reason": "「改定されることとなりました」は has come to be 的な状態化＋受動の二重迂言。「改定します」で足りる典型A-6",
+      "suggested_fix": "改定します"
+    },
+    {
+      "id": "f007",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご理解いただく必要がございます",
+      "start": 157,
+      "end": 172,
+      "reason": "「必要がございます／必要があります」が本文で5回反復(idx157/322/390/560/656)。should/need toの敬語直訳。依頼文では命令を避けた婉曲だが密度過多",
+      "suggested_fix": "ご理解ください"
+    },
+    {
+      "id": "f008",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご納付いただく必要があります",
+      "start": 390,
+      "end": 404,
+      "reason": "「必要がある」反復の2例目。ご確認のうえ納付を依頼する文。「ご納付ください」で足りる",
+      "suggested_fix": "ご納付ください"
+    },
+    {
+      "id": "f009",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "破棄していただく必要がございます",
+      "start": 560,
+      "end": 576,
+      "reason": "「必要がある」反復の3例目。「破棄してください」で足りる",
+      "suggested_fix": "破棄してください"
+    },
+    {
+      "id": "f010",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご提出いただく必要がございます",
+      "start": 656,
+      "end": 671,
+      "reason": "「必要がある」反復の4例目。「ご提出ください」で足りる",
+      "suggested_fix": "ご提出ください"
+    },
+    {
+      "id": "f011",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる/〜が必要だ(行為者曖昧)",
+      "severity": "S2",
+      "text_span": "図られる必要があると結論づけられました",
+      "start": 326,
+      "end": 345,
+      "reason": "「適正化が図られる必要があると結論づけられました」は要請(必要)＋受動(図られる/結論づけられ)の三重迂言で行為者が消失。誰が何をするか不明瞭",
+      "suggested_fix": "適正化すべきだと結論づけました"
+    },
+    {
+      "id": "f012",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/〜に関して/〜に対して 濫用",
+      "severity": "S2",
+      "text_span": "改定の趣旨につきまして",
+      "start": 146,
+      "end": 157,
+      "reason": "「につきまして」が本文で5回反復(idx151/411/475/512/676)。about/regardingの硬い主題提示の機械的多用。1〜2回は定型として許容だが5回は過多",
+      "suggested_fix": "改定の趣旨を"
+    },
+    {
+      "id": "f013",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文/行為者欠落の受動判断",
+      "severity": "S2",
+      "text_span": "判断されたことを踏まえて",
+      "start": 247,
+      "end": 259,
+      "reason": "「困難であると判断された」は判断主体を欠いた受動。誰が判断したか不明。能動「と判断し」へ。受動連発(される系5回)の一部",
+      "suggested_fix": "と判断したことを踏まえて"
+    },
+    {
+      "id": "f014",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "ご理解いただく必要がございます",
+      "start": 157,
+      "end": 172,
+      "reason": "文末が「〜ございます/〜申し上げます/〜ございません」の最上級敬体で一本調子。文書全体で文末変奏がほぼ無い(段落末が申し上げます×3)。※同一span をI-3と共有(リズム観点の別カテゴリ計上)",
+      "suggested_fix": "文末に断定・依頼形を混ぜ変奏"
+    },
+    {
+      "id": "f015",
+      "category": "F-2",
+      "category_label": "過度な修飾・重複: 過剰な定型敬語の累積",
+      "severity": "S2",
+      "text_span": "ご確認いただいた上で",
+      "start": 379,
+      "end": 389,
+      "reason": "「ご〜いただいた上で」「賜りますよう」「申し上げます」等の最上級敬語が高密度で累積。公的文書として一定は正当だが、二重敬語的迂言(ご納付いただく必要がございます等)が重なり冗長",
+      "suggested_fix": "ご確認のうえ"
+    }
+  ],
+  "category_summary": {
+    "A": 8,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 1,
+    "G": 0,
+    "H": 0,
+    "I": 5,
+    "J": 0
+  }
+}

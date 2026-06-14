@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（IMP-001 改訂）: 判定は `edit_change_rate`（reorder・装飾純削除を除いた語句改変率）で行う。30% 超で警告。50% 超でも **fidelity=pass かつ自然度 A/B かつ S1 残存 0** なら `hold_and_report` せず override accept（理由を `summary.md` に明記）。difflib の gross 値だけで中断しない。
 
 ### 4. 並列検証
 
@@ -78,6 +78,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
+
+> 過推敲シグナルが**ピンポイント修正で消える単発**（例: 敬体文書内に常体終止が1箇所混入し B 据え置き）の場合は、round_2 の全面再推敲ではなく**当該 span のみオーケストレーターが後修正**して A 化してよい（全面再推敲は新規 S1 流入リスクが高い）。後修正は `03_rewrite_diff.json` と `05` に記録する（実例 2026-06-14-001 f003）。
 
 ## 深刻度と品質等級
 
