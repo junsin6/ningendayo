@@ -57,7 +57,7 @@ ningendayo/
 [japanese-style-rewriter] — 推敲 (finding ベースの手術的修正)
     ↓
 [並列チーム]
-    ├─ [content-fidelity-auditor] — 意味等価性監査（13 項）
+    ├─ [content-fidelity-auditor] — 意味等価性監査（14 項）
     └─ [naturalness-reviewer]     — 残存 + 過推敲の判定
     ↓
 [オーケストレーター総合判定]
@@ -72,7 +72,7 @@ ningendayo/
 1. **japanese-ai-tell-taxonomist** — 分類体系 SSOT 管理。実戦で見つかった未分類パターンを審査し v1→v1.1 へ昇格。
 2. **ai-tell-detector** — 検出器。span 単位 JSON レポート生成。文書レベルパターン（リズム・構造）も含む。
 3. **japanese-style-rewriter** — 推敲役。finding ベースの手術的再作成。変更率を監視。
-4. **content-fidelity-auditor** — 内容監査官。13 項チェックリストで意味毀損を検出 → ロールバック指示。
+4. **content-fidelity-auditor** — 内容監査官。14 項チェックリストで意味毀損を検出 → ロールバック指示。
 5. **naturalness-reviewer** — 自然度レビュアー。検出器を再実行し残存・過推敲を計測。品質等級判定。
 6. **humanize-web-architect**（拡張用）— Web サービス要求時に Next.js 15 + Vercel アーキテクチャを設計。
 

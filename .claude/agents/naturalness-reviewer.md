@@ -15,8 +15,10 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える（手動照合でなく検出基準の実走査。中間結果は `05_redetect.json` に残してよい）。
+2. **改善率の算出**: `(score_before − score_after) / score_before`。
+   * **score_before の契約（IMP-003）**: 必ず `02_detection.json` の `meta.severity_weighted_score` をそのまま用いる。レビュアーが独自に再算出しない。
+   * **score_after の契約**: 手順1の再走査で得た同一正規化方式の severity_weighted_score を用いる。score_before と同じ加重・正規化で算出する。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
    * 文体崩れ（敬体／常体の混入）
@@ -31,6 +33,7 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 ```json
 {
   "score_before": 71.5,
+  "score_basis": "score_before = 02_detection.json の meta.severity_weighted_score（IMP-003）。score_after は推敲文を同基準で再走査して確定（IMP-006）。",
   "score_after": 18.0,
   "improvement_rate": 0.748,
   "residual_findings": { "S1": 0, "S2": 2, "S3": 3 },
@@ -51,5 +54,6 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 ## 原則
 
 * 残存と過推敲の**両方**を見る。AI クセを消しすぎて不自然になっても減点。
+* **score_before は必ず `02_detection.json` の `meta.severity_weighted_score`（IMP-003）**。独自再算出は禁止。低 score_before（例 35）では分母が小さく改善率が finding 1 件の増減に敏感になる点を `score_basis` に明記する。
 * 改善率だけでなく絶対残存数も見る（短文で改善率が出にくいケースに注意）。
 * 文体崩れは過推敲シグナルとして必ず報告。
