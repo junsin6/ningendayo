@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "run_id": "2026-06-15-001",
+    "genre": "technical_explainer_kubernetes",
+    "style": "desu_masu",
+    "score_before": 65.0,
+    "score_after": 8.0,
+    "improvement_rate": 0.877,
+    "score_method": "taxonomy 規定の同一加重和（S1=5, S2=2, S3=0.5）を推敲文へ再適用。残存内訳: S1 0件×5=0 + S2 2件×2=4 + S3 2件×0.5=1 = 5.0。さらに後述の E-2 接近（文末『ます』偏り）を S3 相当 +1.0、A-10 弱化残り 1件を S3 として +1.0 の保守加算で 8.0。score_before=65.0 は 02_detection.json meta.severity_weighted_score（raw 加重和、未正規化）と同一スケールで比較。IMP-002 の正規化未定義に従い両値とも raw のまま扱う。"
+  },
+  "rescan_basis": "ai-tell-taxonomy.md v1.0 の検出基準を 03_rewrite.md へ span 単位で再適用（IMP-006: 手動印象照合でなく検出器と同基準の厳密適用）。原 19 findings の解消可否を 1 件ずつ突き合わせ、加えて推敲後に新規露見しうる E-2 / A-10 弱化残り / B-2 残存カタカナ密度を独立に再走査した。",
+  "original_findings_resolution": {
+    "total": 19,
+    "resolved": 16,
+    "kept_by_rewriter_judgment": 2,
+    "weakened_but_residual": 1,
+    "detail": [
+      {"id": "f001", "category": "A-6", "severity": "S1", "status": "resolved", "before": "デファクトスタンダードとなっています", "after": "事実上の標準として定着しています"},
+      {"id": "f002", "category": "A-5", "severity": "S1", "status": "resolved", "before": "管理することができる", "after": "統合的に管理できる"},
+      {"id": "f003", "category": "A-5", "severity": "S1", "status": "resolved", "before": "向上させることができます", "after": "飛躍的に高まります"},
+      {"id": "f004", "category": "B-2", "severity": "S2", "status": "resolved", "before": "シームレスに", "after": "滑らかに"},
+      {"id": "f005", "category": "A-10", "severity": "S1", "status": "weakened_residual", "before": "柔軟性とレジリエンスをもたらします", "after": "インフラに柔軟性と復元力を与えます", "note": "万能動詞『もたらす』除去・カタカナ解消で S1 シグネチャは消滅。ただし抽象主語 Kubernetes + 授与動詞『与えます』の構文が残り A-10 の痕跡が弱く残存。単独・1回・周辺の万能動詞反復消滅により S3 へ降格して計上"},
+      {"id": "f006", "category": "A-10", "severity": "S1", "status": "resolved", "before": "環境を提供します", "after": "コンテナが実際に動く場所です"},
+      {"id": "f007", "category": "A-5", "severity": "S1", "status": "resolved", "before": "最適化することができます", "after": "最適化します"},
+      {"id": "f008", "category": "A-5", "severity": "S1", "status": "resolved", "before": "構築することができるようになります", "after": "構築できるようになります"},
+      {"id": "f009", "category": "A-10", "severity": "S1", "status": "resolved", "before": "アドバンテージをもたらす", "after": "大きな強みになります"},
+      {"id": "f010", "category": "D-1", "severity": "S1", "status": "resolved", "before": "と言えるでしょう", "after": "（削除）大きな強みになります", "note": "LLM 結句シグネチャを断定形へ。最も決定的な S1 を完全除去"},
+      {"id": "f011", "category": "B-2", "severity": "S2", "status": "kept_by_judgment", "before": "クラウドネイティブ", "after": "クラウドネイティブ", "note": "業界標準語寄り。検出の suggested_fix も推敲役判断へ委譲。維持を妥当と判断するが密度カウントには残存 1 として保守計上"},
+      {"id": "f012", "category": "B-2", "severity": "S2", "status": "resolved", "before": "スケーラビリティ", "after": "拡張性"},
+      {"id": "f013", "category": "B-2", "severity": "S2", "status": "resolved", "before": "ワークロード", "after": "処理"},
+      {"id": "f014", "category": "B-2", "severity": "S2", "status": "kept_by_judgment", "before": "マニフェスト", "after": "マニフェスト", "note": "Kubernetes 文脈の準専門語。検出も維持可否を推敲役判断とした。B-2 例外（業界標準語）寄りで維持妥当だが密度カウントには残存 1 として保守計上"},
+      {"id": "f015", "category": "B-2", "severity": "S2", "status": "resolved", "before": "アロケーション", "after": "割り当て"},
+      {"id": "f016", "category": "B-2", "severity": "S2", "status": "resolved", "before": "インフラストラクチャ", "after": "インフラ"},
+      {"id": "f017", "category": "B-2", "severity": "S2", "status": "resolved", "before": "レジリエンス", "after": "復元力"},
+      {"id": "f018", "category": "B-2", "severity": "S2", "status": "resolved", "before": "アドバンテージ", "after": "強み"},
+      {"id": "f019", "category": "B-2", "severity": "S2", "status": "resolved", "before": "スケーラブル", "after": "拡張しやすい"}
+    ]
+  },
+  "residual_findings": [
+    {
+      "category": "B-2",
+      "severity": "S2",
+      "text_span": "クラウドネイティブ",
+      "line": 3,
+      "note": "原 B-2 高密度クラスタ（シームレス/ワークロード/アロケーション/レジリエンス/アドバンテージ/スケーラブル/スケーラビリティ/インフラストラクチャ 計8件）は解消し、周辺カタカナ密度が閾値以下へ低下。残るは業界標準語寄りの本語のみ。クラスタ崩壊により本来は S3 相当だが、IMP（残存数ガード）に従い B-2 を保守的に S2 で計上"
+    },
+    {
+      "category": "B-2",
+      "severity": "S2",
+      "text_span": "マニフェスト",
+      "line": 5,
+      "note": "Kubernetes 準専門語。B-2 例外（業界標準語）に該当し維持は妥当。クラスタ崩壊済みのため単独では S3 寄りだが保守的に S2 計上。なお残存する他カタカナ（コンテナ・デプロイ・クラスタ・コントロールプレーン・ワーカーノード・API・スケジューラ等）はいずれも B-2 例外の固有名詞/業界標準語のため非計上"
+    },
+    {
+      "category": "A-10",
+      "severity": "S3",
+      "text_span": "Kubernetesは現代的なインフラに柔軟性と復元力を与えます",
+      "line": 9,
+      "note": "f005 弱化残り。万能動詞『もたらす』は除去済みで S1 シグネチャ消滅、文書内の万能動詞反復（もたらす×2・提供する）も解消。抽象主語+授与動詞の構文痕跡のみ S3 として残存。単独・低密度のため強制是正対象外"
+    },
+    {
+      "category": "E-2",
+      "severity": "S3",
+      "text_span": "文末『〜ます／です』の連続（高まります→デプロイされます→構成されています→最適化します→場所です→与えます→なります→なります）",
+      "line": "3-9",
+      "note": "敬体内の文末変奏が乏しく E-2（です・ます単調）の到達ラインに接近。ただし『定着しています／場所です／なります』など語尾自体は数種に分散し、体言止め・『でしょう』等の変奏ゼロではあるが S2 反復閾値（3回以上の完全同型連続）には未達。技術解説の敬体トーンとして許容範囲、S3 リズム調整レベルで計上"
+    }
+  ],
+  "residual_summary": {
+    "S1": 0,
+    "S2": 2,
+    "S3": 2,
+    "note": "S2 2件はいずれも B-2 で、原クラスタ崩壊により実効 S3 寄りだが残存数ガードに従い保守計上。S1 はゼロ（原 9件すべて除去）"
+  },
+  "over_polish_signals": [
+    {
+      "type": "style_consistency",
+      "label": "敬体/常体混入（文末形態の二値カウント）",
+      "desu_masu_count": 8,
+      "da_dearu_count": 0,
+      "mixed": false,
+      "verdict": "clean",
+      "note": "推敲後の全終止が敬体（ます/です/しています/なります）。常体混入ゼロ。文体維持（鉄則3）遵守。f003『高まります』f005『与えます』など断定化は敬体のまま行われ常体落ちなし"
+    },
+    {
+      "type": "meaning_dilution",
+      "label": "意味の薄れ",
+      "verdict": "none",
+      "note": "事実・主張・数値・固有名詞は不変。『飛躍的に高まります』は原『飛躍的に向上させることができます』の可能主張を断定化したのみで意味同等。『コンテナが実際に動く場所です』は『稼働する環境を提供します』と等価。希薄化なし（fidelity-auditor の最終判定に委ねる）"
+    },
+    {
+      "type": "rhythm_destruction",
+      "label": "リズム破壊（ぶつ切り/不自然短縮）",
+      "verdict": "none",
+      "note": "文長分布は原文を概ね保持。短縮は冗長可能形の圧縮に限られ、ぶつ切り・断片化は発生せず。段落構造（4段）も保持"
+    },
+    {
+      "type": "tone_loss",
+      "label": "原文トーンの喪失",
+      "verdict": "none",
+      "note": "技術解説の説明的・教科書的トーンを維持。コラム化/エッセイ化なし。鉤括弧内『Kubernetes』引用も不変"
+    }
+  ],
+  "over_polish_count": 0,
+  "change_rate_estimate": 0.20,
+  "change_rate_note": "全 727 字中、置換 span はおおむね f001-f019 の解消区間（『となっています』『ことができる』×4・カタカナ7語・万能動詞2・婉曲断定1）。union 文字数ベースで約 20%。30% 警告閾値・50% 中断閾値ともに内。過推敲なし",
+  "grade": "A",
+  "grade_basis": "SKILL.md 基準: A = S1 0件 かつ S2 2件以下 かつ 改善70%+。実測 S1=0・S2=2・改善87.7% で全条件充足。過推敲シグナル 0 個（C 降格条件の『過推敲2個』に非該当）。残存 S2 2件は B-2 のみで原クラスタ崩壊済み、実害は S3 相当",
+  "decision": "accept",
+  "decision_note": "rewrite_round_2 不要。S1 全除去・過推敲ゼロ・文体維持・変更率 20%。残存はいずれも業界標準語寄り B-2 と弱い A-10/E-2 痕跡のみで、再推敲はカタカナ専門語の過剰開きを招き fidelity リスクの方が高い。accept で final.md / summary.md へ。score_after=8.0 はオーケストレーター側で ai-tell-detector を実走査して確定推奨（本値は同一重みでの保守推定）"
+}
