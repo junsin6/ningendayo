@@ -1,0 +1,36 @@
+{
+  "run_id": "2026-06-16-002",
+  "genre": "public_notice",
+  "style": "desu_masu",
+  "score_before": 62.0,
+  "score_after": 1.4,
+  "improvement_rate": 0.977,
+  "score_source": {
+    "before": "02_detection.json meta.severity_weighted_score",
+    "after": "ai-tell-detector 再走査 (IMP-006準拠・手動照合なし) meta.severity_weighted_score"
+  },
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 2,
+    "detail": [
+      { "id": "f001", "category": "F-2", "severity": "S3", "span": "実施することになりました", "note": "第1段落で『実施』が近接2回。密度閾値未満・任意磨き込み。" },
+      { "id": "f002", "category": "E-2", "severity": "S3", "span": "休止します", "note": "第2段落で『休止』述語が近接反復。文書全体の文末は十分変奏済み・任意。" }
+    ]
+  },
+  "absolute_residual_count": 2,
+  "over_polish_signals": [
+    {
+      "type": "change_rate_warning",
+      "severity": "info",
+      "detail": "変更率 0.307 が 30% 警告閾値を超過（50% 強制中断閾値未満で続行）。ただし敬体維持・ジャンル不変・事務情報の欠落なしを diff/auditor 前提で確認しており、文体崩れ・能動化での不自然さ・事務情報欠落は検出されず、品質ペナルティとしての過推敲には該当しない。高密度クセ（ai_tell_density 0.404・受動6回）解消の必然的帰結。"
+    }
+  ],
+  "over_polish_penalty_count": 0,
+  "genre_keigo_note": "冒頭挨拶・『つきましては』(1回)・『賜りますようお願い申し上げます』・お詫び表現など自治体定型敬語は人間の公的文書でも常用するため残存・過推敲いずれにも数えない。AI 的な無変奏反復のみを残存として計上。",
+  "grade": "A",
+  "grade_basis": "S1 0件・S2 0件(≤2)・改善率 97.7%(≥70%)。残存は S3×2 のみで密度閾値未満。S1 残存ゼロのため C 以下落ちなし。",
+  "recommendation": "accept",
+  "rewrite_round_2_required": false,
+  "notes": "推敲前 score 62.0 → 推敲後 1.4（改善 97.7%）。決定的シグネチャ（A-6 状態叙述・I-4 求められる・A-8 by受動・A-5 することができる）は完全消失、S1/S2 残存ゼロ。残る2件は F-2/E-2 の軽微なリズム反復(S3)で除去必須ではない。過推敲シグナル（不自然な口語化・敬体常体混入・能動化での不自然・事務情報欠落）は0。変更率0.307が30%警告線を超えるが、ジャンル維持・情報保存下での高密度クセ解消によるもので品質ペナルティ非該当。accept 推奨。"
+}
