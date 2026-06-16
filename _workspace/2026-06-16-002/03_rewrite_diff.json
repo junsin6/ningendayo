@@ -1,0 +1,34 @@
+{
+  "edits": [
+    { "finding_id": "f001", "category": "A-8", "before": "専門の業者によって実施されます", "after": "専門の業者が実施します", "rationale": "by-passive を能動化。行為者「専門の業者」は原文に明示済みのため情報追加なし。受動反復6回のうちピーク要素を1つ解消。", "insert_chars": 2, "delete_chars": 6 },
+    { "finding_id": "f002", "category": "A-8", "before": "貸出および返却業務が停止されます", "after": "貸出と返却の業務を休止します", "rationale": "無生物主語受動を能動（他動詞「休止します」）へ。「停止＝休止」で意味等価、貸出停止・返却停止の事実保存。「および」を「と」に開いて事務調を緩和。", "insert_chars": 5, "delete_chars": 7 },
+    { "finding_id": "f003", "category": "A-8/A-6", "before": "一時的に停止される予定となっております", "after": "一時的に休止する予定です", "rationale": "受動「停止される」＋状態叙述「となっております」の二重クセを能動＋平叙へ。予約サービス一時停止の事実・「一時的」条件を保存。", "insert_chars": 3, "delete_chars": 10 },
+    { "finding_id": "f004", "category": "A-8", "before": "延長される措置が講じられます", "after": "返却期限を自動で延長します", "rationale": "受動二重「延長される／講じられます」を能動化。「自動的に」を「自動で」に縮約しつつ自動延長の事実を保存。直前の重複表現「返却期限を迎える資料につきましては、返却期限」のうち主語を本句で受け、延長対象は原文通り。", "insert_chars": 9, "delete_chars": 10 },
+    { "finding_id": "f005", "category": "A-6", "before": "予定となっております", "after": "予定です", "rationale": "状態叙述 A-6 を素直な平叙へ。f003 の修正に内包され実質一体で処理。", "insert_chars": 1, "delete_chars": 7 },
+    { "finding_id": "f006", "category": "A-6", "before": "実施する運びとなりました", "after": "実施することになりました", "rationale": "形式名詞「運び」＋状態叙述を「ことになりました」へ。決定の経緯という意味は保持しつつ状態叙述の反復を解消。公的定型としても自然。", "insert_chars": 2, "delete_chars": 2 },
+    { "finding_id": "f007", "category": "I-4", "before": "ご来館いただくことが求められます", "after": "ご来館ください", "rationale": "行為者を曖昧にした要請 I-4 を、利用者への直接依頼形へ。直前の「時間に余裕をもって」は原文のまま本文に残存し、依頼内容（余裕を持った来館）を保存。", "insert_chars": 3, "delete_chars": 12 },
+    { "finding_id": "f008", "category": "I-3", "before": "ご利用いただく必要がございます", "after": "ご利用ください", "rationale": "「必要がございます」直訳調を依頼形へ。返却ポスト利用という案内事実を保存。2回反復の1つ目を解消。", "insert_chars": 3, "delete_chars": 11 },
+    { "finding_id": "f009", "category": "I-3", "before": "受取を済ませていただく必要がございます", "after": "受取をお済ませください", "rationale": "「必要がございます」2回目を依頼形へ。事前受取の依頼事実を保存。", "insert_chars": 4, "delete_chars": 12 },
+    { "finding_id": "f010", "category": "I-1", "before": "発生することはございません", "after": "発生しません", "rationale": "形式名詞「こと」＋冗長丁寧否定を簡潔化。延滞金なしの事実を保存、敬体維持。", "insert_chars": 1, "delete_chars": 8 },
+    { "finding_id": "f011", "category": "D-6", "before": "努めてまいる所存でございます", "after": "努めてまいります", "rationale": "結句公式「所存でございます」を「まいります」へ。誓約の意味は保持。「賜りますよう／お願い申し上げます」等の公的定型は最終文に残し、お知らせの格を維持。", "insert_chars": 1, "delete_chars": 7 },
+    { "finding_id": "f012", "category": "A-10", "before": "より良いサービスを提供できるよう", "after": "より良い図書館にできるよう", "rationale": "万能動詞「サービスを提供する」を当館に即した具体表現へ。意味（よりよくする努力）は等価。新たな主張は追加せず。", "insert_chars": 4, "delete_chars": 7 },
+    { "finding_id": "f013", "category": "I-2", "before": "返却を希望される場合には", "after": "返却したいときは", "rationale": "受動「希望される」＋形式的「場合には」を口語条件へ。返却希望時という条件を保存。過度の口語化は避け案内文の格は維持。", "insert_chars": 5, "delete_chars": 9 },
+    { "finding_id": "f014", "category": "H-1", "before": "なお、インターネットによる予約サービスにつきましても", "after": "インターネットによる予約サービスも", "rationale": "事務的接続「なお」と「につきましても」を整理。予約サービスも対象という情報は保存。「つきましては」は冒頭に1回残し定型を確保。", "insert_chars": 0, "delete_chars": 9 },
+    { "finding_id": "f015", "category": "A-8", "before": "混雑が予想されるため", "after": "窓口が混み合うため", "rationale": "受動「予想される」を自動詞へ。再開後の混雑という事実を保存。直前「窓口の混雑」と語の重複を避けるため主語を「窓口」に寄せた。", "insert_chars": 6, "delete_chars": 7 },
+    { "finding_id": "f016", "category": "E-2", "before": "ご理解とご協力を賜りますようお願い申し上げます", "after": "ご理解とご協力をお願いいたします", "rationale": "「賜りますよう／お願い申し上げます／ございます」の単調反復を緩和するため、第1段落の結びを「お願いいたします」へ変奏。最終段落の「賜りますようお願い申し上げます」は1回残し、文末リズムを変化させた。敬体は維持。", "insert_chars": 2, "delete_chars": 9 }
+  ],
+  "total_insert_chars": 51,
+  "total_delete_chars": 130,
+  "change_rate": 0.307,
+  "change_rate_denominator": 619,
+  "change_rate_method": "difflib opcode (insert+delete) / meta.input_length",
+  "style_preserved": "desu_masu",
+  "warnings": [
+    "change_rate 0.307 が 30% 警告閾値を超過（50% 未満のため続行）。受動6回・必要がございます2回・状態叙述・I-4 など高密度クセ（ai_tell_density 0.404）を span 単位で解消した結果で、ジャンル移動や情報改変はない。"
+  ],
+  "fidelity_notes": [
+    "保存した事実: 蔵書点検による臨時休館、業者による実施、貸出・返却業務の停止、返却ポスト利用、ネット予約の一時停止、予約受取期限が休館と重複する場合の事前受取、返却期限の自動延長、延滞金なし、再開後の混雑・余裕を持った来館、お詫び・改善の意。",
+    "公的定型の下限維持: 冒頭挨拶・『つきましては』(1回)・『賜りますようお願い申し上げます』(最終段落1回)・お詫び表現は人間の自治体文書でも常用のため残置。",
+    "情報追加リスク回避: A-8 能動化の行為者『専門の業者』は原文に明示済みを使用し、新たな主体・事実は補っていない。"
+  ]
+}
