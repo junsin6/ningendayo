@@ -1,0 +1,54 @@
+{
+  "score_before": 100.0,
+  "score_after": 5.13,
+  "improvement_rate": 0.949,
+  "rescan": {
+    "method": "ai-tell-detector re-run on 03_rewrite.md with taxonomy v1.0, same scoring logic (S1=5, S2=2, S3=0.5)",
+    "normalization_constant_k": 1.28205,
+    "k_derivation": "原文 detected_count=24 の生加重和 = S1×5 + S2×2 = 10×5 + 14×2 = 78。原文 score=100.0 → k = 100/78 = 1.28205。同一 k を推敲後に適用。",
+    "rewrite_raw_weighted_sum": 4.0,
+    "rewrite_score_calc": "0×5 + 2×2 + 0×0.5 = 4.0 → 4.0 × 1.28205 = 5.13",
+    "detected_count_after": 2,
+    "ai_tell_density_after": 0.063,
+    "input_length_after": 639
+  },
+  "residual_findings": {
+    "S1": 0,
+    "S2": 2,
+    "S3": 0,
+    "detail": [
+      {
+        "id": "r001",
+        "category": "E-2",
+        "severity": "S2",
+        "text_span": "デバイスにより近いエッジ側へと分散させる。",
+        "reason": "敬体文書内への常体終止形混入（文体崩れ）。同時に過推敲シグナルとしても計上。"
+      },
+      {
+        "id": "r002",
+        "category": "A-6",
+        "severity": "S2",
+        "text_span": "競争優位を確立する核心となります",
+        "reason": "結びの状態叙述「となります」が残存。「核心です」で足りる。"
+      }
+    ]
+  },
+  "over_polish_signals": [
+    {
+      "type": "文体崩れ",
+      "severity": "moderate",
+      "span": "分散させる。",
+      "detail": "敬体（です・ます）文書内に常体終止形「分散させる。」が1箇所混入。これは『体言止め』ではなく動詞の終止形による文末。taxonomy E-2 の注記『文体そのものは原文維持／同一文体内での変奏』が許容する範囲（体言止め・〜でしょう・〜のです 等の敬体両立形）を外れ、常体による敬体崩しに該当する。崩壊度は限定的（直後の「それによって…実現できます」と倒置連結し全体の敬体基調は維持）だが、原則『文体崩れは必ず報告』に従い過推敲シグナルとして計上。"
+    },
+    {
+      "type": "変更率30%超",
+      "severity": "low",
+      "detail": "03_rewrite_diff.json の char_change_rate=0.38 が 30% 閾値を超過（鉄則#4 警告レベル）。ただし span 積算では約0.23 で、超過分は f008 の強調構文化（節の語順入替）が replace として過大計上された影響。50% 強制中断閾値には未達。実質的な過推敲ではないが、警告閾値超過のためシグナルとして記録。"
+    }
+  ],
+  "over_polish_signal_count": 2,
+  "grade": "C",
+  "recommendation": "rewrite_round_2",
+  "verdict": "rewrite_round_2",
+  "notes": "数値だけ見れば S1=0・S2=2・改善94.9% で A 相当だが、過推敲シグナルが 2 個（文体崩れ『分散させる。』の常体混入＋diff変更率0.38>0.30）あり、品質等級基準の C（過推敲シグナル2個→2次推敲）に該当。残存・過推敲の両面評価の原則および『文体崩れは必ず報告』に従い C 判定とした。S1 系（A-5×5, A-10×4, C-1×1）は全除去、E-2 単調も大幅改善で humanize の主目的はほぼ達成済み。2次推敲は r001/r002 の2点のみの軽微な手当てで足りる：(1)『分散させる。』→『分散させます。これによって、…実現できます』で敬体統一、(2)『核心となります』→『核心です』で残存A-6解消。この2点修正後は A 相当（accept）に到達見込み。短文（639字）で残存絶対数2件は十分小さく、改善率の高さは信頼できる。"
+}

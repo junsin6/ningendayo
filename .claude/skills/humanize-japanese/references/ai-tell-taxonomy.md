@@ -1,4 +1,4 @@
-# AI 日本語クセ分類体系 v1.0 (Japanese AI-Tell Taxonomy)
+# AI 日本語クセ分類体系 v1.1 (Japanese AI-Tell Taxonomy)
 
 LLM（ChatGPT・Claude・Gemini など）が生成した日本語の文章に繰り返し現れる「AIっぽさ（AIクセ）」を、10 大分類 × サブパターンに整理する。検出器・推敲役・レビュアーが共有する唯一の信頼源（SSOT）。各パターンに (1) 定義、(2) シグネチャ例文、(3) 深刻度（S1 決定的 / S2 強い / S3 弱い）、(4) 推敲処方を付す。
 
@@ -383,7 +383,7 @@ J. 視覚装飾の濫用
     "input_length": 1820,
     "detected_count": 37,
     "ai_tell_density": 0.203,
-    "severity_weighted_score": 71.5,
+    "severity_weighted_score": 72.0,
     "style": "desu_masu"
   },
   "findings": [
@@ -392,11 +392,24 @@ J. 視覚装飾の濫用
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "point",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
       "suggested_fix": "課題だ"
+    },
+    {
+      "id": "f037",
+      "category": "E-2",
+      "category_label": "リズム: です・ます単調反復",
+      "severity": "S2",
+      "scope": "document",
+      "text_span": "（文書全体: 文末が「〜ます。」に収束）",
+      "start": 0,
+      "end": 0,
+      "reason": "敬体文末がほぼ全文で「〜ます。」一本調子",
+      "suggested_fix": "体言止め・〜でしょう・〜のです を散らす"
     }
   ],
   "category_summary": {
@@ -406,14 +419,32 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+### フィールド契約（v1.1 で確定）
+
+* `scope`（v1.1 追加 / 省略時 `"point"`）: finding の空間種別。
+  * `"point"`: 連続した単一 span。`text[start:end] == text_span` を満たすこと（自己検証必須）。
+  * `"scattered"`: 同種クセが分散。`occurrences: [[s1,e1],[s2,e2],...]` を併記し、`start/end` は先頭出現を指す。
+  * `"document"`: 文書レベル所見（E-1/E-3 リズム、C 系構造支配 等）。`start=end=0` を許容し、自己検証（text[start:end]==text_span）を**免除**する。`text_span` は所見の説明文でよい。
+* `secondary_categories`（v1.1 追加 / 任意）: 同一 span が複数カテゴリに重畳する場合の従カテゴリ配列（例 `["A-5"]`）。**主カテゴリは `category` の1つのみ**。
+* `category`: 「**1 span = 主分類 1 finding**」を原則とする。重畳は `secondary_categories` で表現し、density・category_summary では二重計上しない。
+* `detected_count`: `len(findings)` と必ず一致させる（契約・assert 対象）。
+* `severity_weighted_score`: **正規化式を確定**（IMP-002）。
+  * `raw = 5×(#S1) + 2×(#S2) + 0.5×(#S3)`（全 finding の加重和。document スコープも raw には算入する）。
+  * `severity_weighted_score = min(100, round(raw / input_length × 1000, 1))`。
+  * 例: input_length=1820・detected_count=37（S1=19・S2=18・S3=0）→ raw = 5×19 + 2×18 = 131.0 → `round(131.0/1820×1000, 1)` = **72.0**（上のスキーマ例と一致）。100 到達は**飽和（cap）**であり、高密度短文では解像度が失われる既知の上限。文書間比較には `ai_tell_density` を併用すること。
+  * naturalness-reviewer の `score_before` は本値（`meta.severity_weighted_score`）を用い、`score_after` は推敲文へ**同一式で再走査して実測**する（手動推定禁止）。
+  * **後方互換の注意（v1.0 成果物）**: v1.1 より前の `02_detection.json`（例 `2026-06-12-001`／`2026-06-18-001`）の `severity_weighted_score` は、入力を常に 100 へ正規化する旧 per-document 定数法（`k = 100 / raw_input`、05 レビューの `normalization_constant_k` 参照）または旧アドホック値で記録されており、**本式とは一致しない**。v1.1 式で文書間比較する場合は旧成果物を本式で再計算すること（再計算例: 06-12 は raw=106・L=784 → 飽和 100、06-18 は raw=78・L=765 → 飽和 100）。旧ファイルの値はその run 内の相対指標としてのみ有効。
+* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。**point/scattered の実 AI クセ文字数のみ**を分子とし、`document` スコープと重畳区間（secondary）は分子に算入しない（分母汚染・二重計上の防止）。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
 
 * **v1.0** (2026-05): 日本語 AIクセ分類体系の初版。10 大分類（A〜J）× 40+ サブパターンを定義。
   + 日本語固有として重点配置: `A-6`（〜となっている）, `B-2`（カタカナ語濫用）, `E-2`（です・ます単調）, `I-4`（〜が求められる）, `J-3`（ダッシュ濫用）, D-1 の「いかがでしたでしょうか」。
+* **v1.1** (2026-06-18): 検出出力スキーマの契約を強化（実 run 06-12 / 06-18 で 2 回再現した P0/P1 を適用）。分類カテゴリ（A〜J）は不変。
+  + **IMP-002**: `severity_weighted_score` の正規化式を `min(100, round(raw/input_length×1000, 1))`（raw = 5·#S1+2·#S2+0.5·#S3）に確定。100 到達を飽和と明記。
+  + **IMP-004**: finding に `scope: point|scattered|document`（＋scattered 用 `occurrences`）を追加。document スコープは `start=end=0` 許容・自己検証免除。density は point/scattered のみで算出。
+  + **IMP-005**: `secondary_categories`（任意）を追加。「1 span=主分類1 finding」を契約化し `detected_count==len(findings)` を明記。重畳は density・category_summary で二重計上しない。
 * 拡張原則: 実戦入力で再現 2 回以上 + 日本語の人間の書き手がほぼ使わないパターンのみサブ項目として追加。新パターンは末尾の候補欄に実例 2 件以上を添えて提案する。
 
 ## 拡張候補欄（taxonomist が審査して昇格）

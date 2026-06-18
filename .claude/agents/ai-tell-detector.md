@@ -30,6 +30,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "point",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
@@ -50,9 +51,13 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（taxonomy v1.1 で確定した式に厳密準拠）:
+   * `raw = 5×(#S1) + 2×(#S2) + 0.5×(#S3)`（document スコープも raw に算入）。
+   * `severity_weighted_score = min(100, round(raw / input_length × 1000, 1))`。100 到達は飽和（cap）で解像度が失われる既知の上限。裁量で係数を変えない。
+   * `ai_tell_density` = point/scattered の実 AI クセ文字数 / 全体文字数（document スコープ・secondary 重畳は分子に算入しない）。
+6. **scope と重畳の表記**（v1.1）:
+   * 連続 span は `scope:"point"`（`text[start:end]==text_span` を自己検証）。分散は `scope:"scattered"` ＋ `occurrences:[[s,e],...]`。文書レベル所見（E リズム・C 構造支配）は `scope:"document"`・`start=end=0`・自己検証免除。
+   * 同一 span が複数カテゴリに該当する場合は**主カテゴリ1つを `category`**、従は `secondary_categories:[...]`。`detected_count == len(findings)` を必ず満たす。
 
 ## 重要な原則
 
