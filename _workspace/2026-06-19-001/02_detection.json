@@ -1,0 +1,299 @@
+{
+  "meta": {
+    "input_length": 724,
+    "detected_count": 25,
+    "ai_tell_density": 0.337,
+    "severity_weighted_score": 87.3,
+    "style": "da_dearu",
+    "note": "raw_weighted=83.0 (S1=12×5, S2=11×2, S3=2×0.5); per100chars=11.464; 正規化=飽和関数 score=100×(1−exp(−k×per100chars)), k=0.18 を採用。校正: per100=3→~42, per100=8→~76, per100=12→~88(本稿), 上限100に漸近するが到達しない。IMP-002の線形クリップ min(raw,100) は(1)短文ほど容易に100へ飽和(2)文長で正規化されず長文を過小評価、という二重欠陥があるため、文長正規化(per100chars)＋指数飽和に置換しスケール非依存かつ非飽和化した。span_chars=244/724(重複マージ後)。"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "A-5: 翻訳調 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "負荷を分散することができる",
+      "start": 214,
+      "end": 227,
+      "reason": "可能の冗長形『〜することができる』が本文で5回反復（A-5最頻出シグネチャ）",
+      "suggested_fix": "負荷を分散できる"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "A-5: 翻訳調 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "再起動することができる",
+      "start": 251,
+      "end": 262,
+      "reason": "同上、『することができる』5回反復の2例目",
+      "suggested_fix": "再起動できる"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "A-5: 翻訳調 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "高めることができる",
+      "start": 274,
+      "end": 283,
+      "reason": "同上3例目。可用性は事実なので断定可",
+      "suggested_fix": "可用性が高まる"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "A-5: 翻訳調 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "維持することができる",
+      "start": 403,
+      "end": 413,
+      "reason": "同上4例目",
+      "suggested_fix": "状態を保てる"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "A-5: 翻訳調 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "実現することができる",
+      "start": 584,
+      "end": 594,
+      "reason": "同上5例目。断定で足りる",
+      "suggested_fix": "実現できる"
+    },
+    {
+      "id": "f006",
+      "category": "A-6",
+      "category_label": "A-6: 翻訳調 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "親和性が高い技術となっている",
+      "start": 514,
+      "end": 528,
+      "reason": "状態叙述『となっている』が本文で2回。単なる断定で足りる箇所を状態化",
+      "suggested_fix": "親和性が高い技術だ"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "A-6: 翻訳調 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "重要な基盤技術となっている",
+      "start": 679,
+      "end": 692,
+      "reason": "『となっている』2例目。結びを状態化し機械的",
+      "suggested_fix": "重要な基盤技術だ"
+    },
+    {
+      "id": "f008",
+      "category": "A-10",
+      "category_label": "A-10: 翻訳調 抽象主語＋万能動詞（提供する/もたらす/向上させる）",
+      "severity": "S1",
+      "text_span": "とレジリエンスを提供する",
+      "start": 147,
+      "end": 159,
+      "reason": "抽象主語『この技術は』＋万能動詞『提供する』(英 provides 直訳)。提供/もたらす/向上系が計4回",
+      "suggested_fix": "レジリエンスをもたらす→具体行為者へ。例:可用性と拡張性を確保できる"
+    },
+    {
+      "id": "f009",
+      "category": "A-10",
+      "category_label": "A-10: 翻訳調 抽象主語＋万能動詞（提供する/もたらす/向上させる）",
+      "severity": "S1",
+      "text_span": "集中できる環境を提供する",
+      "start": 462,
+      "end": 474,
+      "reason": "抽象主語『このアーキテクチャは』＋『提供する』2例目",
+      "suggested_fix": "開発者はロジックに集中できる"
+    },
+    {
+      "id": "f010",
+      "category": "A-10",
+      "category_label": "A-10: 翻訳調 抽象主語＋万能動詞（提供する/もたらす/向上させる）",
+      "severity": "S1",
+      "text_span": "高速化をもたらし",
+      "start": 611,
+      "end": 619,
+      "reason": "抽象主語『このアプローチは』＋『もたらす』(英 brings 直訳)",
+      "suggested_fix": "開発サイクルが速まり"
+    },
+    {
+      "id": "f011",
+      "category": "A-10",
+      "category_label": "A-10: 翻訳調 抽象主語＋万能動詞（提供する/もたらす/向上させる）",
+      "severity": "S1",
+      "text_span": "大きく向上させる",
+      "start": 631,
+      "end": 639,
+      "reason": "抽象主語＋使役万能動詞『向上させる』。ハイプ副詞『大きく』も付帯",
+      "suggested_fix": "アジリティが上がる"
+    },
+    {
+      "id": "f012",
+      "category": "A-1",
+      "category_label": "A-1: 翻訳調 〜においては 濫用",
+      "severity": "S1",
+      "text_span": "においては",
+      "start": 26,
+      "end": 31,
+      "reason": "場所/状況を抽象的に枠づける英 in/at 直訳。冒頭の硬い枠づけ",
+      "suggested_fix": "現場では / の現場で"
+    },
+    {
+      "id": "f013",
+      "category": "A-13",
+      "category_label": "A-13: 翻訳調 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "という技術",
+      "start": 46,
+      "end": 51,
+      "reason": "概念を『という』で連結(英 so-called)。本文で『という』が計4回",
+      "suggested_fix": "削除可:コンテナオーケストレーションが"
+    },
+    {
+      "id": "f014",
+      "category": "A-13",
+      "category_label": "A-13: 翻訳調 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "というアプローチ",
+      "start": 357,
+      "end": 365,
+      "reason": "『という』連結2例目",
+      "suggested_fix": "宣言的な構成管理を採用しており"
+    },
+    {
+      "id": "f015",
+      "category": "A-8",
+      "category_label": "A-8: 翻訳調 〜によって受動文／受動表現",
+      "severity": "S2",
+      "text_span": "コンテナ化された",
+      "start": 84,
+      "end": 92,
+      "reason": "英 containerized の受動直訳。能動・名詞化で開ける",
+      "suggested_fix": "コンテナにした"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "B-2: カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "シームレス",
+      "start": 559,
+      "end": 564,
+      "reason": "和語化可能なカタカナ語が高密度(レジリエンス/シームレス/アジリティ/プレゼンス/プロビジョニング/ロジック/アプローチ等)。B-2例文の典型 seamless",
+      "suggested_fix": "滑らかに"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "B-2: カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "レジリエンス",
+      "start": 148,
+      "end": 154,
+      "reason": "resilience。日本語で『耐障害性/回復力』と書ける",
+      "suggested_fix": "耐障害性"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "B-2: カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "アジリティ",
+      "start": 625,
+      "end": 630,
+      "reason": "agility。『俊敏さ/機動力』と書ける",
+      "suggested_fix": "俊敏さ"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "B-2: カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "プレゼンス",
+      "start": 698,
+      "end": 703,
+      "reason": "presence。『存在感』と書ける。結びで使用",
+      "suggested_fix": "存在感"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "B-2: カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "ロジック",
+      "start": 457,
+      "end": 461,
+      "reason": "logic。『処理/論理』と書ける",
+      "suggested_fix": "処理"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "B-2: カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "プロビジョニング",
+      "start": 204,
+      "end": 212,
+      "reason": "provisioning。文脈により『割り当て/用意』と開ける",
+      "suggested_fix": "割り当て"
+    },
+    {
+      "id": "f022",
+      "category": "G-1",
+      "category_label": "G-1: 過度なヘッジング 推測・観測型の文末",
+      "severity": "S2",
+      "text_span": "予想される",
+      "start": 717,
+      "end": 722,
+      "reason": "行為者不在の観測型受動文末『予想される』。結びの婉曲。断定または具体根拠へ",
+      "suggested_fix": "増えていくだろう"
+    },
+    {
+      "id": "f023",
+      "category": "E-2",
+      "category_label": "E-2: です・ます／だ・である体の単調反復 ★日本語固有",
+      "severity": "S2",
+      "text_span": "重要な基盤技術となっている。今後、そのプレゼンスはますます増大していくことが予想される",
+      "start": 679,
+      "end": 722,
+      "reason": "全9文の文末が『〜である/〜ている/〜することができる/〜する』に集中し常体現在形が一本調子。標準偏差が低く体言止め・『〜た/〜だろう』等の変奏がゼロ",
+      "suggested_fix": "体言止め・『〜できる』短縮・『〜だろう』等で文末を変奏（同一文体内）"
+    },
+    {
+      "id": "f024",
+      "category": "E-1",
+      "category_label": "E-1: 文長の標準偏差が低い",
+      "severity": "S3",
+      "text_span": "たとえば、トラフィックの急増が発生した場合であっても、システムは自動的に新しいコンテナをプロビジョニングし、負荷を分散することができる",
+      "start": 160,
+      "end": 227,
+      "reason": "大半の文が50〜70字帯に集中し短文(10〜20字)・極端な長文の挟み込みがない。リズムが均一",
+      "suggested_fix": "段落ごとに短文を1〜2個挟む"
+    },
+    {
+      "id": "f025",
+      "category": "F-1",
+      "category_label": "F-1: 程度副詞中毒",
+      "severity": "S3",
+      "text_span": "大きく",
+      "start": 631,
+      "end": 634,
+      "reason": "『大きく向上させる』『大きな注目』等の程度修飾。具体性なしの強調",
+      "suggested_fix": "削除または数値・事例で代替"
+    }
+  ],
+  "category_summary": {
+    "A": 15,
+    "B": 6,
+    "C": 0,
+    "D": 0,
+    "E": 2,
+    "F": 1,
+    "G": 1,
+    "H": 0,
+    "I": 0,
+    "J": 0
+  }
+}
