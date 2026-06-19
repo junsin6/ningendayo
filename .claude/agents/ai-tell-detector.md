@@ -20,6 +20,9 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
   "meta": {
     "input_length": 0,
     "detected_count": 0,
+    "s1_count": 0,
+    "s2_count": 0,
+    "s3_count": 0,
     "ai_tell_density": 0.0,
     "severity_weighted_score": 0.0,
     "style": "desu_masu | da_dearu | mixed"
@@ -30,6 +33,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "span",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
@@ -41,6 +45,9 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
 }
 ```
 
+* `scope`: `"span"`（既定・start/end）/ `"scattered"`（`occurrences:[[s,e],...]`）/ `"document"`（start/end/occurrences は null、ai_tell_density 分子に算入しない）。taxonomy v1.1 §スキーマ準拠。
+* `meta.s1_count/s2_count/s3_count`: 品質等級ゲート用。score とは独立に保持。`detected_count = s1+s2+s3`。
+
 ## 検出手順
 
 1. **文体判定**: 文末を見て敬体／常体／混在を `meta.style` に記録。
@@ -50,9 +57,10 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出（taxonomy v1.1 §検出出力スキーマの唯一の式を使う。検出器ごとの独自式は禁止）**:
+   * `per100 = (s1_count×5 + s2_count×2 + s3_count×0.5) / input_length × 100`（100字あたり加重 AIクセ量）。
+   * `severity_weighted_score = 100 × (1 − exp(−per100 / K))`、**K = 8 固定**。飽和を避け短い高密度文でも解像度を保つ。
+   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数（scattered は重複区間を一度のみ、document は分子に算入しない）。
 
 ## 重要な原則
 
