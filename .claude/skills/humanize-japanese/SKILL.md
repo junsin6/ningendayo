@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率は del/ins 分離で監視（playbook §変更率の数え方）。中断判定は `insert_rate`（挿入主導＝意味改変）を主指標とし、削除主導（`insert_rate` ≤ 0.20）の高 change_rate は冗長剥がしとして許容。`change_rate` 50% 超かつ `insert_rate` 25% 超のみ `hold_and_report`。
 
 ### 4. 並列検証
 
@@ -76,6 +76,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
+| change_rate 30〜50% だが削除主導（`insert_rate` ≤ 0.20）かつ fidelity=pass かつ自然度 A/B | `accept`（override） | 冗長剥がしによる膨張のため受理。`summary.md` に理由（del 主導／ins=○○%）を明記（IMP-001 既知欠陥への対処） |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 

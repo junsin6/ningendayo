@@ -23,10 +23,14 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
     { "finding_id": "f001", "category": "A-6", "before": "課題となっている", "after": "課題だ", "rationale": "状態叙述を断定へ" }
   ],
   "change_rate": 0.18,
+  "delete_rate": 0.13,
+  "insert_rate": 0.05,
   "style_preserved": "desu_masu",
   "warnings": []
 }
 ```
+
+* `change_rate` は参考値。中断判定は `insert_rate`（挿入主導＝意味改変リスク）を主指標にする。`delete_rate`（冗長剥がし）は単独では中断トリガーにしない。
 
 ## 推敲手順
 
@@ -34,9 +38,11 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
 2. **finding 順処理**: 各 finding の span を playbook レシピで修正。検出のない区間は一切触らない。
 3. **連鎖調整**: 同カテゴリの反復（例 A-1「における」5 回）は、全部を同じ形に直さず複数の自然形に分散させる（機械的均一を避ける）。
 4. **リズム（E）**: 文末の単調反復を、同一文体内で変奏。短文・長文を意図的に混ぜる。
-5. **変更率監視**: 挿入＋削除文字数 / 原文文字数を計算。
-   * 30% 超 → `warnings` に記録して続行。
-   * 50% 超 → 中断し、オーケストレーターへ `hold_and_report` を返す。
+5. **変更率監視（del/ins 分離 — playbook §変更率の数え方）**: `change_rate`・`delete_rate`・`insert_rate` を計算。
+   * `insert_rate` ≤ 0.20 → 削除主導（冗長剥がし）。change_rate が 30〜50% でも `warnings` に主因（del 主導／ins=○○%）を記録して続行。
+   * `insert_rate` > 0.20 → 挿入主導。新規情報混入を疑い fidelity 重点監査を申し送り。
+   * `change_rate` 50% 超 **かつ** `insert_rate` 25% 超 → 中断し `hold_and_report`。削除主導（ins ≤ 0.20）なら中断せず override 候補として理由を warnings に明記。
+   * 複数ラウンド時は最終 `03_rewrite.md` 対 `01_input.txt` で全体再計算（差分の累積加算をしない）。
 
 ## 厳守事項
 
