@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "input_length": 611,
+    "detected_count": 12,
+    "ai_tell_density": 0.2046,
+    "severity_weighted_score": 46.6,
+    "style": "desu_masu",
+    "score_normalization": "severity_weighted_score = min(100, (S1*5 + S2*2 + S3*0.5) / input_length * 1000)。IMP-002 未確定のため暫定式を採用。本文では raw=28.5, input_length=611 で 46.6。公的文書ジャンルのため適度な敬語は許容し、機械的反復・翻訳調受動のみを finding 化。"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "日程によって実施されることとなりました",
+      "start": 84,
+      "end": 103,
+      "reason": "「日程によって実施される」は英語 by-passive の直訳調。本文で「によって」受動が4回反復（84,234,246,494）し機械的。末尾の「こととなりました」も A-6 的状態叙述が重畳。",
+      "suggested_fix": "下記の日程で実施します"
+    },
+    {
+      "id": "f002",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "見込みとなっております",
+      "start": 127,
+      "end": 138,
+      "reason": "「断水が発生する見込みです」で足りる箇所を「見込みとなっております」と状態化。日本語固有の最強クセ A-6。S1 単発でも露見。",
+      "suggested_fix": "発生する見込みです"
+    },
+    {
+      "id": "f003",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "一部の地域においては",
+      "start": 110,
+      "end": 120,
+      "reason": "英語 in/at の枠づけ。「一部の地域では」で足りるのを「においては」で硬く知的に見せる A-1。",
+      "suggested_fix": "一部の地域では"
+    },
+    {
+      "id": "f004",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために 目的節の濫用",
+      "severity": "S2",
+      "text_span": "確保するために",
+      "start": 191,
+      "end": 198,
+      "reason": "英語 in order to の直訳調。「安全で安定的な給水を確保するために行われるものであり」は目的節 + 受動「行われる」+ 形式名詞「ものであり」が連鎖し翻訳調。",
+      "suggested_fix": "確保するため"
+    },
+    {
+      "id": "f005",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（位置づけられる）",
+      "severity": "S2",
+      "text_span": "位置づけられております",
+      "start": 234,
+      "end": 245,
+      "reason": "行為者を消した受動「位置づけられる」+ 丁寧補助「ております」。「必要不可欠な事業です」で足りる。受動の機械的反復の一つ。",
+      "suggested_fix": "必要不可欠な事業です"
+    },
+    {
+      "id": "f006",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "断水の実施によって",
+      "start": 246,
+      "end": 255,
+      "reason": "「断水によって支障が生じる」は英語 by の直訳。行為者でない名詞を「によって」で原因提示。f001/f005/f010 と合わせ「によって」が文書内で頻出。",
+      "suggested_fix": "断水により"
+    },
+    {
+      "id": "f007",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご承知いただく必要がございます",
+      "start": 158,
+      "end": 173,
+      "reason": "英語 need to の直訳系「いただく必要がございます」が文書内で3回反復（158,292,419）。公的文書でも同一構文の機械反復は AI クセ。",
+      "suggested_fix": "あらかじめご承知おきください"
+    },
+    {
+      "id": "f008",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "努めていただく必要があります",
+      "start": 292,
+      "end": 306,
+      "reason": "「必要がある／ございます」構文の3反復のうち2つ目。要請を「必要がある」で一律処理しており単調。",
+      "suggested_fix": "十分な水の確保に努めてください"
+    },
+    {
+      "id": "f009",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご注意いただく必要がございます",
+      "start": 419,
+      "end": 434,
+      "reason": "「必要がある／ございます」構文の3反復のうち3つ目。3回以上の反復で I-3 を finding 化（密度基準）。",
+      "suggested_fix": "ご注意ください"
+    },
+    {
+      "id": "f010",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "広報車によって",
+      "start": 494,
+      "end": 501,
+      "reason": "「広報車でお知らせします」で足りるところを手段を「によって」で後置。文書内「によって」反復の4つ目で密度が閾値超過。",
+      "suggested_fix": "広報車で"
+    },
+    {
+      "id": "f011",
+      "category": "F-2",
+      "category_label": "過度な修飾: 同義語の二重修飾／誇張修飾",
+      "severity": "S3",
+      "text_span": "多大なるご不便",
+      "start": 566,
+      "end": 573,
+      "reason": "「多大なる」は誇張修飾。公的文書の定型ではあるが、他の翻訳調・反復と重なるとき AI 印象を強める S3。単独なら許容範囲。",
+      "suggested_fix": "ご不便"
+    },
+    {
+      "id": "f012",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復（文末一本調子）",
+      "severity": "S2",
+      "text_span": "申し上げます。…ございます。…いたします。",
+      "start": 0,
+      "end": 611,
+      "reason": "文書レベル検出。文末が「申し上げます」3回・「ございます」4回・「いたします」3回・「ます。」11回で一本調子。文長も100〜120字付近に集中し標準偏差が低い。敬体は維持しつつ体言止め・「お願いします」等で変奏が必要。span は文書全体を指す。",
+      "suggested_fix": "文末表現を変奏（例: ございます→ください／お願いします、体言止めの併用）。文体は敬体のまま維持。"
+    }
+  ],
+  "category_summary": {
+    "A": 5,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 1,
+    "G": 0,
+    "H": 0,
+    "I": 3,
+    "J": 0
+  }
+}

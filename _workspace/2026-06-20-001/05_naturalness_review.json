@@ -1,0 +1,60 @@
+{
+  "run_id": "2026-06-20-001",
+  "reviewer": "naturalness-reviewer",
+  "method": "ai-tell-detector サブエージェント再走査（推敲前と同一の正規化式・深刻度重み S1=5/S2=2/S3=0.5 を厳守）。score_before は 02_detection.json の meta.severity_weighted_score=76.8 を参照。IMP-006（同一基準再走査）に留意。",
+  "score_before": 76.8,
+  "score_after": 13.4,
+  "score_after_detail": {
+    "input_length": 581,
+    "raw_weighted": 4.5,
+    "K": 29.05,
+    "formula": "round(100*4.5/(4.5+29.05),1)=13.4"
+  },
+  "improvement_rate": 0.826,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 2,
+    "S3": 1,
+    "detail": [
+      {
+        "id": "f001",
+        "category": "A-8",
+        "severity": "S2",
+        "text_span": "エンベディングモデルによって高次元のベクトルへと変換されます",
+        "note": "唯一残存する by 受動。技術記述では処理主体の前置受動が許容寄りのため単発 S2 にとどまる。能動化は任意改善。"
+      },
+      {
+        "id": "f002",
+        "category": "E-2",
+        "severity": "S2",
+        "text_span": "メカニズムです／存在です／利点です／必要です（抽象名詞＋です止め4回）",
+        "note": "敬体内のリズム変奏が『はずです』1回のみで軽度残存。文体崩れはなし。1〜2か所の体言止め/でしょう変奏で解消可能。"
+      },
+      {
+        "id": "f003",
+        "category": "B-2",
+        "severity": "S3",
+        "text_span": "アーキテクチャ／メカニズム／コンテキスト／リアルタイム",
+        "note": "大半は技術記事の定着語・業界標準語（RAG/LLM/ベクトル/エンベディング等）でB-2例外として維持が妥当。残差はS3単発、除去非推奨。"
+      }
+    ]
+  },
+  "over_polish_signals": [],
+  "over_polish_assessment": {
+    "change_rate": 0.327,
+    "change_rate_status": "warning（30%超だが50%未満で強制中断域外）",
+    "verdict": "過推敲ではない",
+    "rationale": "変更率32.7%は『〜することができる』冗長可能形・『〜となっている』状態叙述・『〜と言えるでしょう』結び・言い換え可能カタカナ語など純装飾的クセの削除が主導。事実・数値・固有名詞・モデル名（RAG/LLM/エンベディングモデル/コサイン類似度）は完全保存、敬体一貫（常体混入なし）、ぶつ切り・トーン逸脱なし。意味改変ゼロ。IMP-001（変更率が装飾削除で嵩む既知欠陥）に該当し、率の高さは過推敲を意味しない。"
+  },
+  "style_consistency": {
+    "expected_style": "desu_masu",
+    "observed_style": "desu_masu",
+    "mixed_style_detected": false,
+    "tech_tone_preserved": true
+  },
+  "grade": "A",
+  "grade_rationale": "S1 0件・S2 2件（≤2）・改善率82.6%（≥70%）で A 基準を全て充足。過推敲シグナル0。",
+  "recommendation": "accept",
+  "verdict": "accept",
+  "notes": "短文（581字）で改善率が出にくいケースだが、絶対残存数（S1=0, S2=2, S3=1）も A 圏で良好。残る2件のS2（A-8単発受動・E-2敬体変奏弱）はいずれも技術記事ジャンルでは許容寄りの軽微残差で、2次推敲は不要。任意改善として E-2 の文末変奏を1〜2か所足せば完成度がさらに上がる。"
+}
