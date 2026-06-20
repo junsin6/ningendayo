@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視: `replace_rate`（語句改変率）30% 超で警告、50% 超で中断し `hold_and_report`。削除主導の純装飾削除（`delete_rate` のみ高い）は中断対象外（IMP-001。詳細は playbook §変更率の数え方）。
 
 ### 4. 並列検証
 
@@ -78,6 +78,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
+
+> **変更率の override（IMP-001）**: 旧 `change_rate`（挿入＋削除）が 50% を超えても、`replace_rate`（語句改変率）が閾値内で fidelity=pass かつ自然度 A/B なら `accept` してよい。装飾過多な AI 文では削除主導で率が膨らむのは正常。override したときは `summary.md` に `delete_rate`/`replace_rate` と理由を明記する。
 
 ## 深刻度と品質等級
 

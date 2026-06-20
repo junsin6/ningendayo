@@ -22,7 +22,11 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
   "edits": [
     { "finding_id": "f001", "category": "A-6", "before": "課題となっている", "after": "課題だ", "rationale": "状態叙述を断定へ" }
   ],
+  "delete_rate": 0.14,
+  "replace_rate": 0.05,
+  "insert_rate": 0.03,
   "change_rate": 0.18,
+  "verdict": "accept",
   "style_preserved": "desu_masu",
   "warnings": []
 }
@@ -34,9 +38,11 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
 2. **finding 順処理**: 各 finding の span を playbook レシピで修正。検出のない区間は一切触らない。
 3. **連鎖調整**: 同カテゴリの反復（例 A-1「における」5 回）は、全部を同じ形に直さず複数の自然形に分散させる（機械的均一を避ける）。
 4. **リズム（E）**: 文末の単調反復を、同一文体内で変奏。短文・長文を意図的に混ぜる。
-5. **変更率監視**: 挿入＋削除文字数 / 原文文字数を計算。
-   * 30% 超 → `warnings` に記録して続行。
-   * 50% 超 → 中断し、オーケストレーターへ `hold_and_report` を返す。
+5. **変更率監視**（IMP-001: 削除主導と意味改変を分離）: `delete_rate`／`replace_rate`／`insert_rate` を別建てで計算し `03_rewrite_diff.json.meta` に記録。
+   * **中断判定は `replace_rate`（語句改変率）を基準**にする。
+   * `replace_rate` 30% 超 → `warnings` に記録して続行。
+   * `replace_rate` 50% 超 → 中断し `hold_and_report` を返す。
+   * `delete_rate` が高くても（純装飾の削除主導）`replace_rate` が閾値内なら中断しない。判定に使った指標を `verdict` に明記。
 
 ## 厳守事項
 

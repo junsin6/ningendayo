@@ -1,0 +1,36 @@
+{
+  "run_id": "2026-06-20-002",
+  "genre": "public_document",
+  "style": "desu_masu",
+  "detector_rerun": {
+    "method": "ai-tell-detector サブエージェント再実行（IMP-006 経路）。推敲前 02_detection.json と同一基準・同一正規化式を適用。",
+    "input_length_after": 517,
+    "score_normalization": "severity_weighted_score = min(100, (S1*5 + S2*2 + S3*0.5) / input_length * 1000)。推敲後 raw = (0*5 + 0*2 + 3*0.5) = 1.5。1.5/517*1000 = 2.9。"
+  },
+  "score_before": 46.6,
+  "score_after": 2.9,
+  "improvement_rate": 0.938,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 3,
+    "detail": [
+      { "id": "f001", "category": "A-8", "text_span": "濁り水の発生によって", "severity": "S3", "note": "by-passive が単発残存。4回反復→単発で密度閾値未達につき S2→S3 降格。公的文書の許容域に近い。" },
+      { "id": "f002", "category": "F-2", "text_span": "多大なるご不便", "severity": "S3", "note": "誇張修飾。公的文書の定型句で許容範囲内。他の翻訳調・反復が解消されたため単独影響は低い。" },
+      { "id": "f003", "category": "E-2", "text_span": "文末（申し上げます/ございます/ください/いたします）", "severity": "S3", "note": "文書レベル。ございます4→2回・いたします3→2回・ます。11→7回に減少し『ください』『です。』で変奏。軽度の一本調子のみ残存し S2→S3 降格。" }
+    ]
+  },
+  "over_polish_signals": [],
+  "over_polish_checks": {
+    "style_consistency": "pass — 全文末が敬体。常体（だ・である）の混入なし。desu_masu 維持。",
+    "meaning_preservation": "pass — 事実・依頼・周知手段（HP/広報車）・窓口・固有表現（飲料水および生活用水/給湯器や浄水器等/多大なる）すべて保存。追加・欠落なし。",
+    "tone_match": "pass — 『ご承知おきください』『努めてください』『お問い合わせください』は公的お知らせの標準表現。過度な口語化なし。",
+    "public_document_formality": "pass — 格式・お詫び定型を保持。箇条書き・絵文字の濫用混入なし。",
+    "change_rate": "pass — 手術的・局所修正のみ。文数・段落構成不変。推定変更率 30% 未満（警告閾値内）。"
+  },
+  "grade": "A",
+  "grade_basis": "S1 0 件・S2 2 件以下（0 件）・改善 70%+（93.8%）。過推敲シグナル 0。SKILL.md / SSOT A 等級基準を満たす。",
+  "recommendation": "accept",
+  "verdict": "accept",
+  "notes": "公的文書ジャンルとして、翻訳調受動の反復・A-1/A-6・I-3『必要がございます』3反復・A-9 目的節が解消され、敬体・格式を保ったまま自然化。残存はすべて S3 で公的文書の許容域。短文ではないため改善率と絶対残存数（S3 のみ3件）の双方で A 等級が安定。2次推敲は不要。"
+}
