@@ -1,0 +1,38 @@
+{
+  "run_id": "2026-06-21-001",
+  "genre": "技術解説記事（Kubernetes入門・敬体）",
+  "score_before": 85.9,
+  "score_after": 5.6,
+  "improvement_rate": 0.935,
+  "normalization": {
+    "method": "S1=5, S2=2, S3=0.5 の加重和を固定線形係数で0-100へ正規化",
+    "factor": 1.23597,
+    "before_raw_weighted_sum": 69.5,
+    "after_raw_weighted_sum": 4.5,
+    "note": "推敲前(02_detection.json: S1=10,S2=9,S3=3 → 生和69.5 → 85.9)から逆算した同一係数を推敲後に適用。同基準で再走査済み"
+  },
+  "residual_findings": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 5
+  },
+  "residual_detail": [
+    {"id": "f001", "category": "D-4", "severity": "S3", "text_span": "欠かせない技術です", "note": "冒頭ハイプ語彙が未修正で残存。単発のためS3"},
+    {"id": "f002", "category": "B-2", "severity": "S2", "text_span": "ソリューション/ステータス/メリット", "note": "回避可能カタカナ3語が残存し濫用群を形成。3語反復でB-2をS2集約"},
+    {"id": "f005", "category": "E-2", "severity": "S3", "note": "です/ます単調はS2→S3へ降格。変奏は入ったが体言止め・〜でしょうが皆無"},
+    {"id": "f006", "category": "E-1", "severity": "S3", "note": "文長均一性は緩和。残る軽微な均質性のみ"}
+  ],
+  "over_polish_signals": [],
+  "over_polish_analysis": {
+    "style_consistency": "敬体維持。常体（だ/である/のだ。）の混入は0件。敬体/常体混在なし",
+    "unnatural_colloquialism": "なし。「〜してくれます」「〜のです」「〜としましょう」は自然な敬体内変奏で過度な砕けではない",
+    "meaning_thinning": "なし。コントロールプレーン/ワーカーノードの役割、自動再スケジュール、Helm/オペレーター、エコシステム充実など全主張・固有名詞を保存",
+    "choppiness": "なし。短文挿入はリズム改善の範囲でぶつ切り感なし",
+    "change_rate": 0.484,
+    "char_shrink_rate": 0.169,
+    "change_rate_verdict": "正当な縮約。change_rate 48.4%は削除主導（IMP-001既知欠陥でdiffが削除を過大計上）。実際の純縮小は16.9%(717→596字)に留まり、削除対象はA-5二重可能形・A-6状態叙述・by-passive・冗長カタカナ等のAI冗長部のみ。情報欠落・過推敲は認められず"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "検出器を同基準で再走査(detector再実行済み)。S1=10→0で翻訳調A群12件とD-1いかがでしたでしょうかを全消去。改善率93.5%。残存はカタカナ3語と冒頭欠かせない・リズムS3のみで全て軽微。過推敲シグナルなし、文体崩れなし。A等級の全条件(S1=0,S2≤2,改善70%+)を満たしaccept。任意の微修正余地: ソリューション/ステータス/メリットの和語化と冒頭D-4の解消で更にB-2を消せるが必須ではない"
+}

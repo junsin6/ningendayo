@@ -79,6 +79,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
+**変更率の override（IMP-001）**: `change_rate` が 50% を超えても、**削除主導（`net_shrink_rate` が `insert_ratio` を大きく上回り、純縮小が穏当）かつ fidelity=pass かつ自然度 A/B** なら `hold_and_report` にせず **override accept** とする。difflib の change_rate は冗長部の正当な削除を過大計上するため（既知欠陥）。override 時は `summary.md` に change_rate / net_shrink_rate / insert_ratio の内訳と理由を必ず明記する。逆に `insert_ratio` が高い（挿入主導）の高変更率は捏造リスクとして従来どおり厳格に扱う。
+
 ## 深刻度と品質等級
 
 **深刻度**

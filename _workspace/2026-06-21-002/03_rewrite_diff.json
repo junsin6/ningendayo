@@ -1,0 +1,136 @@
+{
+  "run_id": "2026-06-21-002",
+  "genre": "public_document",
+  "edits": [
+    {
+      "finding_id": "f002",
+      "category": "A-8",
+      "change_type": "passive_to_active",
+      "before": "新たにオンライン申請システムが導入されることとなりました",
+      "after": "新たにオンライン申請システムを導入する運びとなりました",
+      "rationale": "受動述語『導入される』を当市を主体とした能動へ。公的文書の格を保つため『運びとなりました』で丁寧さを維持。受動反復(5回)の起点を解消"
+    },
+    {
+      "finding_id": "f013",
+      "category": "E-1",
+      "change_type": "rhythm_shorten",
+      "before": "本システムの運用開始により、これまで窓口で行われていた各種申請手続きが",
+      "after": "運用を始めますと、これまで窓口で受け付けていた各種申請手続きが",
+      "rationale": "硬い名詞句『運用開始により』を述語化し文をやや短く。文長分散を上げ機械的均一を緩和（f003と連動）"
+    },
+    {
+      "finding_id": "f003",
+      "category": "A-8",
+      "change_type": "passive_to_active",
+      "before": "窓口で行われていた",
+      "after": "窓口で受け付けていた",
+      "rationale": "受動述語『行われていた』を行為者(窓口)が主体の能動へ。受動反復の一部を解消"
+    },
+    {
+      "finding_id": "f007",
+      "category": "I-3",
+      "change_type": "redundant_request_simplify",
+      "before": "事前に利用者登録を行っていただく必要があります",
+      "after": "事前の利用者登録をお願いします",
+      "rationale": "『必要があります』冗長要請を依頼形へ。反復(4回)の1例目を『お願いします』に分散"
+    },
+    {
+      "finding_id": "f006",
+      "category": "I-4",
+      "change_type": "agentless_request_to_explicit",
+      "before": "マイナンバーカードによる本人確認が求められます",
+      "after": "マイナンバーカードによる本人確認をお願いします",
+      "rationale": "S1。行為者を曖昧にした『求められます』を、当市から市民への依頼として明示化。制度的に妥当"
+    },
+    {
+      "finding_id": "f008",
+      "category": "I-3",
+      "change_type": "redundant_request_simplify",
+      "before": "別途、本人確認書類をご提出いただく必要がございます",
+      "after": "別途、本人確認書類をご提出ください",
+      "rationale": "『必要がございます』反復(4回)の2例目を『ご提出ください』に分散。情報(別途/本人確認書類)は保存"
+    },
+    {
+      "finding_id": "f011",
+      "category": "B-2",
+      "change_type": "katakana_open",
+      "before": "セキュアなサーバー",
+      "after": "安全なサーバー",
+      "rationale": "S3。公的文書で浮くカタカナ語『セキュア』を『安全な』に開く"
+    },
+    {
+      "finding_id": "f001",
+      "category": "A-8",
+      "change_type": "passive_to_active",
+      "before": "サーバーによって厳重に管理されます",
+      "after": "サーバーで厳重に管理します",
+      "rationale": "『によって』後置受動を『で』+能動『管理します』へ。当市が管理主体。f014と連動し副詞『厳重に』は信頼性表現として保持"
+    },
+    {
+      "finding_id": "f004",
+      "category": "A-6",
+      "change_type": "state_description_to_assertion",
+      "before": "関連法令に基づき、適切に処理されることとなっております",
+      "after": "関連法令に基づき適切に処理します",
+      "rationale": "S1。日本語LLM最強クセ。受動+となる+敬語の二重状態化を断定の能動敬体へ。『関連法令に基づき』は制度語として保存"
+    },
+    {
+      "finding_id": "f005",
+      "category": "A-8",
+      "change_type": "passive_to_active",
+      "before": "サービスが一時的に停止される場合がございます",
+      "after": "サービスを一時的に停止する場合がございます",
+      "rationale": "受動『停止される』を能動へ。保守点検の主体(当市)が文脈で明示済み。受動反復を解消"
+    },
+    {
+      "finding_id": "f009",
+      "category": "I-3",
+      "change_type": "redundant_request_simplify",
+      "before": "あらかじめご了承いただく必要がございます",
+      "after": "あらかじめご了承ください",
+      "rationale": "『必要がございます』反復(4回)の3例目を『ご了承ください』に分散。短文として独立させリズム改善(E系)にも寄与"
+    },
+    {
+      "finding_id": "f010",
+      "category": "I-3",
+      "change_type": "redundant_request_simplify",
+      "before": "あらかじめご承知おきいただく必要がございます",
+      "after": "あらかじめご承知おきください",
+      "rationale": "『必要がございます』反復(4回)の4例目(最終)を『ご承知おきください』に分散。4例を機械的に同形にせず依頼の語尾を変奏"
+    },
+    {
+      "finding_id": "f012",
+      "category": "E-2",
+      "change_type": "sentence_end_variation",
+      "before": "提供してまいる所存でございます",
+      "after": "提供してまいります",
+      "rationale": "過剰な『所存でございます』を自然な敬体『まいります』へ。文末の単調を緩和しつつ結びの丁寧さは保持"
+    }
+  ],
+  "secondary_adjustments": [
+    {
+      "linked_finding": "f009/f010",
+      "category": "E-1/E-2",
+      "note": "『〜場合がございます。あらかじめご了承ください。』のように一文を二文へ分割し、長文連続の中に短い依頼文を挿入。文長分散を上げた（過推敲を避け既存findingのspan内に限定）"
+    },
+    {
+      "linked_finding": "f002",
+      "category": "A-1/redundancy",
+      "note": "『当市では、』の読点1つを整理（『このたび当市では』）。意味不変の微整形"
+    }
+  ],
+  "untouched_findings": [
+    {
+      "finding_id": "f014",
+      "category": "F-1",
+      "reason": "様態副詞『厳重に』は公的文書で個人情報管理の信頼性を伝える機能語。削除すると安心感の情報がやや減るため保持。f001の能動化のみ適用し過推敲を回避（部分対応）"
+    }
+  ],
+  "preserved_terms": [
+    "マイナンバーカード", "当市", "関連法令", "本人確認書類", "利用者登録",
+    "オンライン申請システム", "保守点検", "個人情報", "窓口"
+  ],
+  "change_rate": 0.285,
+  "style_preserved": "desu_masu",
+  "warnings": []
+}

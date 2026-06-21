@@ -21,7 +21,9 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "input_length": 0,
     "detected_count": 0,
     "ai_tell_density": 0.0,
+    "raw_weighted_sum": 0.0,
     "severity_weighted_score": 0.0,
+    "normalization": "100*(1-exp(-raw/40))",
     "style": "desu_masu | da_dearu | mixed"
   },
   "findings": [
@@ -30,6 +32,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "span",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
@@ -50,9 +53,12 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
+5. **スコア算出**（正規化式は SSOT 固定。検出器が勝手な係数を使わない）:
+   * `raw_weighted_sum` = S1×5 + S2×2 + S3×0.5（生の加重和）。
+   * `severity_weighted_score` = `100 * (1 - exp(-raw / 40))`。飽和関数なので短文でも 100 に張り付かない。入力長で割らない。
+   * `meta.raw_weighted_sum` と `meta.normalization` を必ず出力し、自然度レビュアーが同一式を残存 raw に適用できるようにする（逆算禁止・IMP-002/003）。
    * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+6. **文書レベル finding の scope**: E-1/E-2 のような文書全体の性質は `scope:"document"` とし、start/end は代表アンカー（推敲役が 0〜N を一括置換しないため）。span 単位の finding は `scope:"span"`（既定）。IMP-004。
 
 ## 重要な原則
 

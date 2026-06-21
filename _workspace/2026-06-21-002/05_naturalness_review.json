@@ -1,0 +1,39 @@
+{
+  "score_before": 79.2,
+  "score_after": 4.7,
+  "improvement_rate": 0.94,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 1
+  },
+  "residual_detail": [
+    {
+      "id": "f001",
+      "category": "E-2",
+      "severity": "S2",
+      "text_span": "お願いします",
+      "note": "依頼形『お願いします』が近接2文で反復し、文末が依頼・丁寧形に集中。文末変奏の不足。ただし硬い公的文書の定型として一定は許容範囲。"
+    },
+    {
+      "id": "f002",
+      "category": "A-6",
+      "severity": "S3",
+      "text_span": "導入する運びとなりました",
+      "note": "『運びとなりました』は公的文書の定着定型でDo-NOT寄り。単独では除去不要の弱シグナル。"
+    }
+  ],
+  "over_polish_signals": [],
+  "over_polish_detail": {
+    "unnatural_colloquialization": false,
+    "style_break_keitai_jotai_mix": false,
+    "meaning_thinned_or_choppy": false,
+    "keigo_grade_preserved": true,
+    "change_rate_over_30pct": false,
+    "change_rate": 0.18,
+    "comment": "硬い敬体（desu_masu）の格を完全保持。砕けすぎ・常体混入・意味の希薄化なし。第7・9段落の1文→2文分割はリズム改善で読みやすさ向上。変更率は手術的で30%未満。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1=0・S2=1（≤2）・改善率94%でA等級の全条件を満たす。残存S2のE-2文末変奏不足は公的文書ジャンルの定型に内在する性質で、依頼形の連続1箇所を叙述形（例:『本人確認が必要です』）へ分散すれば緩和可能だが、現状でも失礼・不自然ではなく受理水準。score_after=4.7は短文寄りの文書としても絶対残存数が小さく良好。過推敲シグナルゼロ。"
+}
