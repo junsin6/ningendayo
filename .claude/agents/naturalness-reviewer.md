@@ -15,14 +15,17 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
-3. **過推敲シグナルの検出**:
+1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。**手動照合のみで済ませない**（IMP-006）。
+2. **スコア契約（IMP-002/003）**:
+   * `score_before` = `02_detection.json` の `meta.severity_weighted_score`（そのまま採用。再計算しない）。
+   * `score_after` = 残存 finding の `raw = S1×5 + S2×2 + S3×0.5` に **SSOT 固定式** `100*(1-exp(-raw/40))` を適用。逆算・推定をしない（taxonomy と同一式）。
+3. **改善率の算出**: `(score_before − score_after) / score_before`。
+4. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
-   * 文体崩れ（敬体／常体の混入）
+   * 文体崩れ（敬体／常体の混入。常体混入は文末形態の二値カウントで機械検出）
    * 意味が薄くなった・ぶつ切りで読みにくい
-   * 変更率 30% 超
-4. **品質等級の判定**。
+   * **変更率は二軸で判定（IMP-001）**: `insert_ratio` 30% 超は過推敲シグナル。`change_rate` だけが高くても削除主導（`net_shrink_rate` ≫ `insert_ratio` かつ純縮小が穏当）なら過推敲としない。
+5. **品質等級の判定**。
 
 ## 出力
 
