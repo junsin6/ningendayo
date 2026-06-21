@@ -1,0 +1,265 @@
+{
+  "meta": {
+    "input_length": 728,
+    "detected_count": 22,
+    "ai_tell_density": 0.416,
+    "severity_weighted_score": 85.9,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "となっています",
+      "start": 50,
+      "end": 57,
+      "reason": "「欠かせない技術となっています」。単に「です」で足りる状態を has become 的に状態化。末尾の「可能となります」と合わせ状態叙述が反復",
+      "suggested_fix": "欠かせない技術です"
+    },
+    {
+      "id": "f002",
+      "category": "D-4",
+      "category_label": "AI慣用句: ハイプ語彙「〜は欠かせない」",
+      "severity": "S3",
+      "text_span": "欠かせない",
+      "start": 43,
+      "end": 48,
+      "reason": "D-4ハイプ語彙。必須性を誇張する常套句。単発だが直後のA-6状態叙述と重なり冒頭からAI印象を強める",
+      "suggested_fix": "重要な技術です／（削除）"
+    },
+    {
+      "id": "f003",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "シームレスに",
+      "start": 139,
+      "end": 145,
+      "reason": "seamlessを不要にカタカナ化。本文でレバレッジ・ハンドリング・スケーラビリティ等と合わせカタカナ濫用が多発。知的偽装の典型",
+      "suggested_fix": "滑らかに／一元的に"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "管理することができる",
+      "start": 145,
+      "end": 155,
+      "reason": "可能の冗長形 be able to の直訳。本文で「することができる(ようになる)」系が計5回反復しA-5最頻出シグネチャ",
+      "suggested_fix": "管理できる"
+    },
+    {
+      "id": "f005",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞「提供する」",
+      "severity": "S1",
+      "text_span": "この技術は、アプリケーションのデプロイやスケーリングを自動化する機能を提供します",
+      "start": 166,
+      "end": 206,
+      "reason": "The X provides Y の直訳。主語「この技術」+万能動詞「提供する」。本文で提供する2回+もたらす1回と反復し抽象主語+万能動詞が機械的",
+      "suggested_fix": "Kubernetesはデプロイやスケーリングを自動化できます"
+    },
+    {
+      "id": "f006",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S3",
+      "text_span": "オペレーション",
+      "start": 225,
+      "end": 232,
+      "reason": "operationを安易にカタカナ化。「作業／運用」で足りる。カタカナ濫用群の一部",
+      "suggested_fix": "運用作業"
+    },
+    {
+      "id": "f007",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)+冗長可能形",
+      "severity": "S2",
+      "text_span": "マニフェストによって効率化することができるようになります",
+      "start": 238,
+      "end": 266,
+      "reason": "by-passive直訳「マニフェストによって…効率化することができるようになります」。手段のによって+A-5二重可能形が結合した重い述語",
+      "suggested_fix": "宣言的なマニフェストで効率化できます"
+    },
+    {
+      "id": "f008",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができるようになります 濫用",
+      "severity": "S1",
+      "text_span": "効率化することができるようになります",
+      "start": 248,
+      "end": 266,
+      "reason": "「することができるようになります」= can + become able to の二重直訳。本文で2回(ここと末尾)出現する最も冗長な可能形",
+      "suggested_fix": "効率化できます"
+    },
+    {
+      "id": "f009",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 構成されている",
+      "severity": "S2",
+      "text_span": "コントロールプレーンとワーカーノードによって構成されています",
+      "start": 289,
+      "end": 319,
+      "reason": "by-passive「〜によって構成されています」。構成要素をによってで後置した英語受動直訳。A-6状態叙述も兼ねる",
+      "suggested_fix": "コントロールプレーンとワーカーノードで構成されます／から成ります"
+    },
+    {
+      "id": "f010",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞「提供する」",
+      "severity": "S1",
+      "text_span": "リソースを提供します",
+      "start": 392,
+      "end": 402,
+      "reason": "「ワーカーノードは…リソースを提供します」。抽象主語+万能動詞provide。f005と同型が反復し機械的",
+      "suggested_fix": "ワーカーノードで実際のコンテナを動かします"
+    },
+    {
+      "id": "f011",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞「もたらす」",
+      "severity": "S1",
+      "text_span": "このようなアーキテクチャは、高い可用性とスケーラビリティをもたらします",
+      "start": 405,
+      "end": 440,
+      "reason": "The X brings Y の直訳。主語「アーキテクチャ」+万能動詞「もたらす」。提供する2回と合わせ抽象主語+万能動詞が計3回",
+      "suggested_fix": "この構成なら可用性が高く、よく拡張できます"
+    },
+    {
+      "id": "f012",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "スケーラビリティ",
+      "start": 425,
+      "end": 433,
+      "reason": "scalabilityのカタカナ化。「拡張性／よく拡張できる」で開ける。カタカナ濫用群",
+      "suggested_fix": "拡張のしやすさ"
+    },
+    {
+      "id": "f013",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができます 濫用",
+      "severity": "S1",
+      "text_span": "再スケジュールすることができます",
+      "start": 490,
+      "end": 506,
+      "reason": "可能の冗長形「別のノードへ再スケジュールすることができます」。A-5反復5回の一つ",
+      "suggested_fix": "別のノードへ組み直せます"
+    },
+    {
+      "id": "f014",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜可能となります 状態叙述+冗長可能",
+      "severity": "S1",
+      "text_span": "抑えることが可能となります",
+      "start": 530,
+      "end": 543,
+      "reason": "「最小限に抑えることが可能となります」=「抑えられます」で足りる。可能+状態化の二重冗長。冒頭となっていますと反復",
+      "suggested_fix": "最小限に抑えられます"
+    },
+    {
+      "id": "f015",
+      "category": "A-7",
+      "category_label": "翻訳調: 〜を有している",
+      "severity": "S2",
+      "text_span": "エコシステムを有している",
+      "start": 563,
+      "end": 575,
+      "reason": "have/possessの直訳「豊富なエコシステムを有している」。「エコシステムが充実している」と形容詞化できる",
+      "suggested_fix": "エコシステムが充実している"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "レバレッジ",
+      "start": 608,
+      "end": 613,
+      "reason": "leverageを直カタカナ化。taxonomy明記の頻出例(leverage→活用)。シームレス・ハンドリングと連続し濫用が決定的",
+      "suggested_fix": "活用"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ハンドリング",
+      "start": 632,
+      "end": 638,
+      "reason": "handlingを直カタカナ化。「扱う／さばく」で足りる。同一文にレバレッジ+ハンドリング+デプロイメントが密集",
+      "suggested_fix": "扱える"
+    },
+    {
+      "id": "f018",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができるようになります 濫用",
+      "severity": "S1",
+      "text_span": "ハンドリングすることができるようになります",
+      "start": 632,
+      "end": 653,
+      "reason": "最も冗長な可能形「することができるようになります」が末尾で再出現。A-5の反復が文書全体を支配",
+      "suggested_fix": "扱えるようになります／扱えます"
+    },
+    {
+      "id": "f019",
+      "category": "D-1",
+      "category_label": "AI慣用句: ブログAIの決定的シグネチャ「いかがでしたでしょうか」",
+      "severity": "S1",
+      "text_span": "いかがでしたでしょうか",
+      "start": 656,
+      "end": 667,
+      "reason": "D-1の決定的シグネチャ。日本語の人間の書き手はまず使わないブログAI常套句。単発でAI確定",
+      "suggested_fix": "今回はここまでです／（削除して本題へ）"
+    },
+    {
+      "id": "f020",
+      "category": "D-1",
+      "category_label": "AI慣用句: 結び「〜してみてはいかがでしょうか」",
+      "severity": "S2",
+      "text_span": "活用してみてはいかがでしょうか",
+      "start": 711,
+      "end": 726,
+      "reason": "勧誘の常套結び。いかがでしたでしょうかと同一段落で「いかが」が2回反復し結びがテンプレ化",
+      "suggested_fix": "ぜひご自身のプロジェクトで試してみてください"
+    },
+    {
+      "id": "f021",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "（文末全体）",
+      "start": 0,
+      "end": 728,
+      "reason": "本文文末が「ます／です」にほぼ固定(なっています/ます/です/提供します/います/います/提供します/もたらします/できます/なります/です/なります)。文末変奏(体言止め・でしょう・た形)が皆無で一本調子",
+      "suggested_fix": "文末に体言止め・「〜でしょう」「〜のです」等を混ぜて変奏"
+    },
+    {
+      "id": "f022",
+      "category": "E-1",
+      "category_label": "リズム: 文長の均一性",
+      "severity": "S3",
+      "text_span": "（文書全体）",
+      "start": 0,
+      "end": 728,
+      "reason": "本文の文の多くが36〜66字に集中(mean44.8/stdev14.2)。短文(10-20字)がD-1の1文を除きほぼ無く、機械的に均された構成",
+      "suggested_fix": "段落ごとに短文を意図的に挟みリズムを崩す"
+    }
+  ],
+  "category_summary": {
+    "A": 12,
+    "B": 5,
+    "C": 0,
+    "D": 3,
+    "E": 2,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 0,
+    "J": 0
+  }
+}

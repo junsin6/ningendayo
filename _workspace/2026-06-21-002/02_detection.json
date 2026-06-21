@@ -1,0 +1,177 @@
+{
+  "meta": {
+    "input_length": 596,
+    "detected_count": 14,
+    "ai_tell_density": 0.3,
+    "severity_weighted_score": 79.2,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "サーバーによって厳重に管理されます",
+      "start": 295,
+      "end": 312,
+      "reason": "行為者『サーバー』を『によって』で後置した英語受動態直訳。能動文へ復帰可能",
+      "suggested_fix": "当市のセキュアなサーバーで厳重に管理します"
+    },
+    {
+      "id": "f002",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態述語の濫用",
+      "severity": "S2",
+      "text_span": "導入されることとなりました",
+      "start": 70,
+      "end": 83,
+      "reason": "受動述語『される』が文書内で5回(導入される/行われていた/管理される/処理される/停止される)反復し行為主体が不明瞭",
+      "suggested_fix": "導入します／導入する運びとなりました"
+    },
+    {
+      "id": "f003",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態述語の濫用",
+      "severity": "S2",
+      "text_span": "行われていた",
+      "start": 105,
+      "end": 111,
+      "reason": "受動述語『される』反復の一部。行為者(窓口)を能動に戻せる",
+      "suggested_fix": "窓口で受け付けていた"
+    },
+    {
+      "id": "f004",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "適切に処理されることとなっております",
+      "start": 339,
+      "end": 357,
+      "reason": "『である/処理します』で足りる箇所を『されることとなっております』と二重に状態化(受動+となる+敬語)。日本語LLM最強クセ",
+      "suggested_fix": "適切に処理します"
+    },
+    {
+      "id": "f005",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態述語の濫用",
+      "severity": "S2",
+      "text_span": "一時的に停止される場合がございます",
+      "start": 379,
+      "end": 396,
+      "reason": "受動述語『停止される』。行為主体(当市/保守)を曖昧化",
+      "suggested_fix": "一時的に停止する場合がございます"
+    },
+    {
+      "id": "f006",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる(行為者を曖昧にした要請)",
+      "severity": "S1",
+      "text_span": "本人確認が求められます",
+      "start": 212,
+      "end": 223,
+      "reason": "行為者を曖昧にしたまま要請する日本語ビジネスAI最頻出常套。誰が求めるか不明",
+      "suggested_fix": "本人確認をお願いします／本人確認をしていただきます"
+    },
+    {
+      "id": "f007",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "行っていただく必要があります",
+      "start": 178,
+      "end": 192,
+      "reason": "『必要がある/ございます』が文書内で4回反復(178/266/411/520)。should/need to 直訳の冗長要請",
+      "suggested_fix": "登録をお願いします／登録していただきます"
+    },
+    {
+      "id": "f008",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご提出いただく必要がございます",
+      "start": 259,
+      "end": 274,
+      "reason": "『必要がございます』反復(4回)の一部。提出依頼を冗長に要請",
+      "suggested_fix": "別途、本人確認書類をご提出ください"
+    },
+    {
+      "id": "f009",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご了承いただく必要がございます",
+      "start": 404,
+      "end": 419,
+      "reason": "『必要がございます』反復(4回)。了承を求める依頼を冗長化",
+      "suggested_fix": "あらかじめご了承ください"
+    },
+    {
+      "id": "f010",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご承知おきいただく必要がございます",
+      "start": 511,
+      "end": 528,
+      "reason": "『必要がございます』反復(4回)の最終例。承知依頼を冗長化",
+      "suggested_fix": "あらかじめご承知おきください"
+    },
+    {
+      "id": "f011",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S3",
+      "text_span": "セキュアな",
+      "start": 290,
+      "end": 295,
+      "reason": "『安全な/堅牢な』で書ける箇所のカタカナ語。公的文書では浮く。単発のためS3",
+      "suggested_fix": "堅牢な／安全な"
+    },
+    {
+      "id": "f012",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "提供してまいる所存でございます",
+      "start": 553,
+      "end": 568,
+      "reason": "全文が敬体で文末が『〜ます/ございます/申し上げます』に集中(でございます/ございます/申し上げます等)。体言止め等の変奏が皆無で一本調子",
+      "suggested_fix": "より良い行政サービスを提供してまいります"
+    },
+    {
+      "id": "f013",
+      "category": "E-1",
+      "category_label": "リズム: 文長の標準偏差が低い",
+      "severity": "S3",
+      "text_span": "本システムの運用開始により",
+      "start": 84,
+      "end": 97,
+      "reason": "全文が60〜90字級の硬い長文に集中し短文の挿入がない。文長分散が小さく機械的",
+      "suggested_fix": "（短文を挟む)運用開始で、窓口の各種申請がご自宅から行えます。"
+    },
+    {
+      "id": "f014",
+      "category": "F-1",
+      "category_label": "修飾: 程度・様態副詞の定型反復",
+      "severity": "S3",
+      "text_span": "厳重に",
+      "start": 303,
+      "end": 306,
+      "reason": "『厳重に管理』『適切に処理』『一時的に停止』など様態副詞+受動述語の定型がお役所AI文調を強める",
+      "suggested_fix": "（副詞を削り)サーバーで管理します"
+    }
+  ],
+  "category_summary": {
+    "A": 5,
+    "B": 1,
+    "C": 0,
+    "D": 0,
+    "E": 2,
+    "F": 1,
+    "G": 0,
+    "H": 0,
+    "I": 5,
+    "J": 0
+  }
+}
