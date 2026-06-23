@@ -1,0 +1,59 @@
+{
+  "run_id": "2026-06-23-001",
+  "genre": "技術解説記事",
+  "style": "desu_masu",
+  "method": "ai-tell-detector サブエージェント再走査（IMP-006 準拠・手動照合に依拠せず）",
+  "score_before": 71.9,
+  "score_after": 12.0,
+  "score_before_source": "02_detection.json meta.severity_weighted_score（IMP-003 準拠）",
+  "score_after_source": "ai-tell-detector による 03_rewrite.md 再走査 meta.severity_weighted_score",
+  "improvement_rate": 0.833,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 8,
+    "total": 9
+  },
+  "residual_detail": [
+    { "id": "f001", "category": "E-2", "severity": "S2", "span": "できます系の局所連鎖（後半4回近接）", "note": "文末バリエーションは全体で改善済。中盤の可能形連鎖のみ残存。2次推敲するなら唯一の修正候補" },
+    { "id": "f002", "category": "A-13", "severity": "S3", "span": "レイテンシの増大という課題" },
+    { "id": "f003", "category": "A-5", "severity": "S3", "span": "リアルタイムに処理できるのです" },
+    { "id": "f004", "category": "B-2", "severity": "S3", "span": "センシティブなデータ" },
+    { "id": "f005", "category": "D-4", "severity": "S3", "span": "徹底解説（見出し定型語）" },
+    { "id": "f006", "category": "D-4", "severity": "S3", "span": "多くの可能性を秘めた技術です" },
+    { "id": "f007", "category": "D-6", "severity": "S3", "span": "的確に取り入れていく必要があるでしょう（行為者は明示済で改善）" },
+    { "id": "f008", "category": "H-1", "severity": "S3", "span": "さらに、クラウドへの通信量を削減して" },
+    { "id": "f009", "category": "C-4", "severity": "S3", "span": "段落冒頭トピックセンテンス公式の名残" }
+  ],
+  "over_polish_signals": [
+    {
+      "type": "change_rate_over_30",
+      "severity": "low",
+      "value": 0.326,
+      "threshold": 0.30,
+      "detail": "03_rewrite_diff.json の change_rate=0.326 が 30% 警告閾値を超過（50% 中断閾値は未満）。ただし insertion_rate は 0.092 と低く、膨張の主因は純削除（カタカナ削除・『することができる』短縮・状態叙述圧縮）。検出器再走査で意味改変・文体崩れ・情報欠落・リズム不自然はいずれも未検出のため、IMP-001 既知欠陥（純削除による change_rate 膨張）に該当する形式的シグナル。実害なしと判断し等級降格には用いない。"
+    }
+  ],
+  "over_polish_checks": {
+    "unnatural_colloquialization": false,
+    "style_mixing_keitai_jotai": false,
+    "meaning_thinned_or_choppy": false,
+    "change_rate_over_30": true,
+    "info_loss": false,
+    "rhythm_unnatural": false
+  },
+  "rhythm_metrics": {
+    "num_sentences": 14,
+    "mean_length": 44.5,
+    "stdev_length": 15.1,
+    "min_length": 28,
+    "max_length": 82,
+    "E1": "解消（文長 28〜82 字に分散、stdev 15.1）",
+    "E2": "概ね解消（文末 います/します/ました/のです/れます/はずです/でしょう と変奏）。中盤の可能形連鎖のみ S2 残存"
+  },
+  "grade": "A",
+  "grade_basis": "S1 0 件・S2 1 件（≤2）・改善率 83.3%（≥70%）。過推敲は実害シグナル 0 個（change_rate 超過は純削除起因の形式的シグナルのみ）",
+  "recommendation": "accept",
+  "rewrite_round_2_required": false,
+  "notes": "推敲前の主犯 S1（A-5 することができる×3／A-6 となっている／A-10 抽象主語+万能動詞×2／I-4 求められる）はすべて断定化・行為者復帰で除去済。敬体は全文一貫し過推敲なし。残存 9 件は強制修正対象ではなく A 等級内の仕上げ提案レベル。もし任意で 2 次推敲するなら f001（できます系の局所連鎖）1 点に絞れば十分。change_rate 0.326 は IMP-001 既知欠陥の純削除膨張で、内容監査と整合すれば accept で問題なし。"
+}

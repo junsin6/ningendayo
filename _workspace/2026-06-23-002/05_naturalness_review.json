@@ -1,0 +1,72 @@
+{
+  "run_id": "2026-06-23-002",
+  "genre": "public_notice",
+  "style": "desu_masu",
+  "score_before": 59.4,
+  "score_after": 5.0,
+  "improvement_rate": 0.9158,
+  "score_basis": {
+    "method": "IMP-006: ai-tell-detector サブエージェントを 03_rewrite.md に再走査（手動照合に非依存）",
+    "score_before_source": "02_detection.json meta.severity_weighted_score（IMP-003 準拠）",
+    "weighting": "推敲前と同一: S1=5, S2=2, S3=0.5 の加重和を min(raw,100) で正規化",
+    "score_after_calc": "残存 S2×2(=4) + S3×2(=1) = 5.0（厳密・基準一致値。検出器は密度補正込み 7.0 も提示したが IMP-003 基準一致のため 5.0 を採用）"
+  },
+  "residual_findings": {
+    "S1": 0,
+    "S2": 2,
+    "S3": 2,
+    "total": 4,
+    "detail": [
+      {
+        "id": "f001",
+        "category": "A-9",
+        "severity": "S2",
+        "text_span": "提供するために行うものです",
+        "note": "in order to 直訳調の目的節+万能動詞「提供する」。単発・反復なしで公的文書として許容範囲"
+      },
+      {
+        "id": "f002",
+        "category": "D-1",
+        "severity": "S2",
+        "text_span": "引き続きご愛顧くださいますようお願いいたします",
+        "note": "冒頭「ご理解とご協力をお願いいたします」と同型の依頼定型が末尾で反復。賜る/所存等の過剰敬語は不在で深刻度低"
+      },
+      {
+        "id": "f003",
+        "category": "E-2",
+        "severity": "S3",
+        "text_span": "文末「いたします」6回・「ください」5回への集中",
+        "note": "「ものです/ご了承ください/お待ちください」等で変奏あり。公的文書定型上ある程度不可避の中程度"
+      },
+      {
+        "id": "f004",
+        "category": "I-1",
+        "severity": "S3",
+        "text_span": "更新作業を行うこととなり",
+        "note": "形式名詞「こと」+「となり」の名残。文書内1回のみで濫用ではない"
+      }
+    ]
+  },
+  "removed_clean": [
+    "A-8 無人称受動（8回反復）→ 完全除去。行為者（当館）を主語へ復帰",
+    "A-6 こととなっております（状態叙述 S1）→ 除去",
+    "I-3 必要がございます（3回反復）→ 全て依頼形へ",
+    "D-1 賜りますようお願い申し上げます（2回）・所存でございます → 除去",
+    "A-1 における → での",
+    "F-2 快適で安定した（二重修飾）→ 単一修飾へ"
+  ],
+  "over_polish_signals": [],
+  "over_polish_check": {
+    "unnatural_colloquialization": false,
+    "style_break_keitai_jotai_mix": false,
+    "meaning_thinned_or_choppy": false,
+    "politeness_excessively_stripped": false,
+    "change_rate_over_30pct": true,
+    "change_rate_note": "change_rate 0.4876 は 30% 警告閾値超だが 50% 中断閾値未満。IMP-001 既知欠陥（公的文書は定型敬語・無人称受動が密集し finding 全消化で文字数 change_rate が機械的に高く出る）に該当。意味等価は維持され genre-shift ではないため過推敲シグナルとしては不計上",
+    "courtesy_preserved_note": "敬体・告知内容（停止範囲・返却ポスト・期限延長措置・予約案内・問い合わせ窓口）・結びの礼儀は全て保存。お知らせとしての丁寧さは過度に削がれていない"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "round_2_needed": false,
+  "notes": "S1 0件・S2 2件・改善率約91.6%で A 等級を満たす。残存 4 件はいずれも公的文書の慣用許容範囲（A-9 目的節1回・D-1 結句反復・E-2 中程度・I-1 1回）で、過推敲シグナルは皆無。任意で f001/f002 を緩和すればさらに自然になるが必須ではない。change_rate は閾値超だが IMP-001 ジャンル特性によるもので意味毀損なし。accept 推奨。"
+}
