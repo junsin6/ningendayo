@@ -1,0 +1,309 @@
+{
+  "meta": {
+    "input_length": 774,
+    "detected_count": 26,
+    "ai_tell_density": 0.284,
+    "severity_weighted_score": 71.9,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の過多: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "テクノロジー",
+      "start": 85,
+      "end": 91,
+      "reason": "「テクノロジー」が本文で4回反復。技術記事だが『技術』で書ける箇所をカタカナで知的偽装。B-2の頻出パターン",
+      "suggested_fix": "技術"
+    },
+    {
+      "id": "f002",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の過多: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "テクノロジー",
+      "start": 113,
+      "end": 119,
+      "reason": "「テクノロジー」反復2回目。『技術』で代替可",
+      "suggested_fix": "技術"
+    },
+    {
+      "id": "f003",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の過多: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "テクノロジー",
+      "start": 661,
+      "end": 667,
+      "reason": "「テクノロジー」反復3回目",
+      "suggested_fix": "技術"
+    },
+    {
+      "id": "f004",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の過多: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "テクノロジー",
+      "start": 682,
+      "end": 688,
+      "reason": "「テクノロジー」反復4回目",
+      "suggested_fix": "技術"
+    },
+    {
+      "id": "f005",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の過多: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ベネフィット",
+      "start": 143,
+      "end": 149,
+      "reason": "benefit。『利点・恩恵』で書けるカタカナ語。文書内のメリット/アドバンテージ等と並びカタカナ密度が過剰",
+      "suggested_fix": "恩恵"
+    },
+    {
+      "id": "f006",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の過多: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ポテンシャル",
+      "start": 651,
+      "end": 657,
+      "reason": "potential。『可能性』で書ける不要なカタカナ語",
+      "suggested_fix": "可能性"
+    },
+    {
+      "id": "f007",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の過多: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "シナジー",
+      "start": 690,
+      "end": 694,
+      "reason": "synergy。『相乗効果』で書けるカタカナ語。カタカナ語密度が高い文書全体の一部",
+      "suggested_fix": "相乗効果"
+    },
+    {
+      "id": "f008",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の過多: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "トレンド",
+      "start": 744,
+      "end": 748,
+      "reason": "trend。『動向・潮流』で書ける。文末付近にキャッチアップ等と連続",
+      "suggested_fix": "動向"
+    },
+    {
+      "id": "f009",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の過多: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "キャッチアップ",
+      "start": 752,
+      "end": 759,
+      "reason": "catch up。日本語で『追随する/取り入れる』。動詞をカタカナ名詞化した典型的AIクセ",
+      "suggested_fix": "取り入れて"
+    },
+    {
+      "id": "f010",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の過多: カタカナ語の濫用",
+      "severity": "S3",
+      "text_span": "アドバンテージ",
+      "start": 473,
+      "end": 480,
+      "reason": "advantage。『強み・利点』で書ける。メリット/ベネフィットと同義語をカタカナで重複",
+      "suggested_fix": "強み"
+    },
+    {
+      "id": "f011",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の過多: カタカナ語の濫用",
+      "severity": "S3",
+      "text_span": "レスポンス",
+      "start": 448,
+      "end": 453,
+      "reason": "response。『応答』で書ける。技術文脈だが日本語で十分通る",
+      "suggested_fix": "応答"
+    },
+    {
+      "id": "f012",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "解決することができます",
+      "start": 365,
+      "end": 376,
+      "reason": "「〜することができる」が本文で4回反復。can/be able toの冗長直訳。AI最頻出シグネチャ",
+      "suggested_fix": "解決できます"
+    },
+    {
+      "id": "f013",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "実現することができるのです",
+      "start": 414,
+      "end": 427,
+      "reason": "「することができる」反復2回目。さらに『のです』で強調が重なり冗長",
+      "suggested_fix": "実現できるのです"
+    },
+    {
+      "id": "f014",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "低減することができます",
+      "start": 567,
+      "end": 578,
+      "reason": "「することができる」反復3回目",
+      "suggested_fix": "低減できます"
+    },
+    {
+      "id": "f015",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる の濫用",
+      "severity": "S2",
+      "text_span": "節約することも可能となります",
+      "start": 612,
+      "end": 626,
+      "reason": "「することも可能となります」A-5(可能の冗長)+A-6(となる状態化)の複合。『節約できます』へ",
+      "suggested_fix": "節約できます"
+    },
+    {
+      "id": "f016",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞 〜をもたらす/提供する/示す",
+      "severity": "S1",
+      "text_span": "アドバンテージをもたらします",
+      "start": 473,
+      "end": 487,
+      "reason": "抽象主語『エッジでの処理』+万能動詞『もたらす』。The X brings Yの直訳構文",
+      "suggested_fix": "エッジで処理すれば応答が速い"
+    },
+    {
+      "id": "f017",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞 〜をもたらす/提供する/示す",
+      "severity": "S1",
+      "text_span": "メリットを提供します",
+      "start": 520,
+      "end": 530,
+      "reason": "主語『エッジコンピューティングは』+万能動詞『提供する』。provides の直訳。A-10の典型",
+      "suggested_fix": "セキュリティ面でも有利だ"
+    },
+    {
+      "id": "f018",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "集約される構成となっていました",
+      "start": 295,
+      "end": 310,
+      "reason": "「構成となっていました」だ/であるで足りる箇所を状態化(has become)。A-8受動+A-6複合",
+      "suggested_fix": "クラウドへ集約されていた"
+    },
+    {
+      "id": "f019",
+      "category": "A-3",
+      "category_label": "翻訳調: 〜を通じて の濫用",
+      "severity": "S2",
+      "text_span": "ネットワークを通じて",
+      "start": 279,
+      "end": 289,
+      "reason": "「を通じて」が本文で2回(本箇所とシナジーを通じて)。through/viaの直訳。『で/により』へ分散",
+      "suggested_fix": "ネットワークで"
+    },
+    {
+      "id": "f020",
+      "category": "A-3",
+      "category_label": "翻訳調: 〜を通じて の濫用",
+      "severity": "S2",
+      "text_span": "シナジーを通じて",
+      "start": 690,
+      "end": 698,
+      "reason": "「を通じて」反復2回目。手段提示をすべて通じてで処理",
+      "suggested_fix": "相乗効果で"
+    },
+    {
+      "id": "f021",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる 行為者を曖昧にした要請",
+      "severity": "S2",
+      "text_span": "求められるため",
+      "start": 454,
+      "end": 461,
+      "reason": "「求められる」が本文で2回。行為者を曖昧にした受動要請。ここは『必要なため』等で可だが反復が問題",
+      "suggested_fix": "必要なため"
+    },
+    {
+      "id": "f022",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる 行為者を曖昧にした要請",
+      "severity": "S2",
+      "text_span": "求められます",
+      "start": 766,
+      "end": 772,
+      "reason": "文末「求められます」反復2回目。誰がキャッチアップするのか主語が不在。D-6完結公式とも重なる",
+      "suggested_fix": "取り入れていく必要がある"
+    },
+    {
+      "id": "f023",
+      "category": "D-6",
+      "category_label": "AI慣用句: 完結公式型の結び 〜していく必要がある/求められる",
+      "severity": "S2",
+      "text_span": "遂げていくことでしょう",
+      "start": 706,
+      "end": 717,
+      "reason": "「さらなる進化を遂げていくことでしょう」推測+進化のハイプ。コラム末尾の完結公式",
+      "suggested_fix": "進化していくはずだ"
+    },
+    {
+      "id": "f024",
+      "category": "F-4",
+      "category_label": "過度な修飾: 〜的/性/化 の濫用",
+      "severity": "S3",
+      "text_span": "リアルタイム性",
+      "start": 406,
+      "end": 413,
+      "reason": "「リアルタイム性を実現」抽象接尾辞『性』。『リアルタイムに処理できる』へ開ける",
+      "suggested_fix": "リアルタイムに処理"
+    },
+    {
+      "id": "f025",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "解説していきます",
+      "start": 159,
+      "end": 167,
+      "reason": "全7文中ほぼ全文末が『〜ます/〜です』で終止(集めています/解説していきます/指します/抱えています/できます/もたらします/提供します/節約できます/秘めたテクノロジーです/求められます)。文末が一本調子で体言止め・『〜だ』『〜た』の変奏がない",
+      "suggested_fix": "文末を体言止め・『〜だ』等で変奏"
+    },
+    {
+      "id": "f026",
+      "category": "E-1",
+      "category_label": "リズム: 文長の標準偏差が低い",
+      "severity": "S3",
+      "text_span": "アーキテクチャを指します",
+      "start": 239,
+      "end": 251,
+      "reason": "本文の文がいずれも50〜90字級の中〜長文に集中し、10〜20字の短文が一切挟まれない。リズムが均一でAI的",
+      "suggested_fix": "短文を段落ごとに挟む"
+    }
+  ],
+  "category_summary": {
+    "A": 9,
+    "B": 11,
+    "C": 0,
+    "D": 1,
+    "E": 2,
+    "F": 1,
+    "G": 0,
+    "H": 0,
+    "I": 2,
+    "J": 0
+  }
+}

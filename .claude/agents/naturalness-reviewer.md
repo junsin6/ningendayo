@@ -15,14 +15,17 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
-3. **過推敲シグナルの検出**:
-   * 不自然な口語化（文体に合わないくだけ過ぎ）
-   * 文体崩れ（敬体／常体の混入）
-   * 意味が薄くなった・ぶつ切りで読みにくい
-   * 変更率 30% 超
-4. **品質等級の判定**。
+1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` をサブエージェントとして再呼び出しし、同基準で再走査する（手動照合は禁止。IMP-006）。残存 finding を数える。
+2. **スコアの確定（IMP-003）**:
+   * `score_before` = `02_detection.json` の `meta.severity_weighted_score` をそのまま採用する（独自再計算しない）。
+   * `score_after` = 再実行した検出器が返す `meta.severity_weighted_score`。検出器は taxonomy canonical 式 `100 * raw / (raw + 22)` を使うため、score_before と必ず同一式で算出される。
+3. **改善率の算出**: `(score_before − score_after) / score_before`。
+4. **過推敲シグナルの検出**（各シグナルに `severity: real | formal` を付す。等級降格は `real` のみで数える。IMP-001）:
+   * 不自然な口語化（文体に合わないくだけ過ぎ）→ real
+   * 文体崩れ（敬体／常体の混入）→ real
+   * 意味が薄くなった・ぶつ切りで読みにくい → real
+   * 純削除起因の change_rate 超過（ins_rate が正常で del 主導）→ formal（実害なし。等級降格に数えない）
+5. **品質等級の判定**。
 
 ## 出力
 
