@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（IMP-001 適用）: 挿入と削除を分離計上し、**語句改変率 `ins_rate` を基準にする**。`ins_rate > 0.15` で警告、`ins_rate > 0.30` で中断し `hold_and_report`。`change_rate`（ins+del）が高くても del 主導の純削除が主因なら中断しない。詳細は `references/rewriting-playbook.md §変更率の数え方`。
 
 ### 4. 並列検証
 
@@ -73,8 +73,9 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 条件 | 判定 | アクション |
 | --- | --- | --- |
 | 等級 A/B かつ fidelity 毀損なし | `accept` | `final.md` + `summary.md` 出力 |
-| 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
-| fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
+| `change_rate` 超過だが `ins_rate` 正常・del 主導 ＋ fidelity=pass ＋ 等級 A/B | `accept`（override） | `summary.md` に「削除主導のため override accept」と理由明記（IMP-001） |
+| 等級 C（S1 残り 1〜2 or 過推敲シグナル real 2 個） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
+| fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲（fidelity は等級より優先） |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
