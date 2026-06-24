@@ -22,6 +22,8 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "detected_count": 0,
     "ai_tell_density": 0.0,
     "severity_weighted_score": 0.0,
+    "weight_formula": "raw = S1*5 + S2*2 + S3*0.5 ; score = 100*(1-exp(-raw/K))",
+    "normalization_K": 40,
     "style": "desu_masu | da_dearu | mixed"
   },
   "findings": [
@@ -50,9 +52,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（IMP-002 正規化を固定）:
+   * `raw` = Σ(S1×5 + S2×2 + S3×0.5)。**文書レベル finding（E/C/J の全体パターン）も件数に含む**が、density には含めない。
+   * `severity_weighted_score` = `round(100 * (1 - exp(-raw / K)), 1)`、**K = 40 固定**。飽和型のため高密度短文でも 100 に張り付かず、文書間で可比。
+   * `meta.weight_formula` と `meta.normalization_K` を必ず出力（naturalness-reviewer は再計算せず同じ K を継承＝IMP-006）。
+   * `ai_tell_density` = 検出 span 総文字数（重複区間はマージ）/ 全体文字数。文書レベル全体 span は density から除外。
 
 ## 重要な原則
 

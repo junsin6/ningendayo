@@ -138,11 +138,22 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（v1.1 — 削除主導と過推敲を分離）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+difflib 文字単位の単一 `change_rate` は「健全な圧縮（冗長削除）」と「過推敲（意味改変を伴う書き換え）」を区別できない（IMP-001）。AI 文の推敲は冗長を削る作業が本質で、良質な推敲ほど削除が積み上がり指標が膨らむ。そこで挿入・削除・置換を**分離計上**する:
+
+* `insertions` / `deletions`: 挿入・削除された文字数を別々に記録。
+* `char_change_rate` =（挿入 + 削除）/ 原文文字数。**参考値**（従来指標）。
+* `net_compression_ratio` =（削除 − 挿入）/ 原文文字数。正なら圧縮、負なら膨張。
+* **`rewrite_intensity` =（replace 操作で置換された文字数）/ 原文文字数**。純削除（装飾・常套句・ヘッジの除去）は含めない。これが**過推敲の主指標**。
+
+判定基準:
+
+* `char_change_rate` 30% 超 → `summary.md` に警告を記録し続行（中断しない）。
+* **中断（`hold_and_report`）は `rewrite_intensity` 50% 超で発火**。`char_change_rate` が高くても削除主導（`net_compression_ratio` が大きく正・`rewrite_intensity` < 50%）かつ fidelity=pass かつ自然度 A/B なら **override accept**（理由を summary に明記）。
+* 純削除主導ケース（del ≫ ins）は中断対象から除外。
+
+> meta 例: `{ "char_change_rate": 0.29, "insertions": 44, "deletions": 118, "rewrite_intensity": 0.11, "net_compression_ratio": 0.105 }` — char_change_rate は高いが置換は薄く削除主導 → accept 圏。
 
 ## 文体変換例（before → after 一括サンプル）
 
