@@ -1,0 +1,35 @@
+{
+  "score_before": 70.0,
+  "score_after": 8.95,
+  "improvement_rate": 0.872,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 4,
+    "S3": 1,
+    "by_category": {
+      "A-1": { "severity": "S2", "span": "において", "count": 2, "note": "『現場において』(45)『開発において』(613)で2回反復。閾値上限ちょうど。単発なら無視だが2回で密度finding化" },
+      "B-2": { "severity": "S2", "span": "メリット/アプローチ×2/ポイント", "count": 4, "note": "標準語は推敲前同基準で除外。残存の置換可能カタカナ4スパンを代表1件としてfinding化。推敲前のアジリティ/ソリューションは解消済み" },
+      "J-3": { "severity": "S2", "span": "——", "count": 1, "note": "タイトル行のem-dash。本文未着手で残存。日本語で露見しやすい" },
+      "E-2": { "severity": "S2", "span": "(文末群:全12文末が〜ます/です)", "count": 1, "note": "文書レベル。文末変奏ゼロで一本調子。敬体維持必須のため是正は同一文体内変奏に限る" },
+      "A-13": { "severity": "S3", "span": "という設計手法", "count": 1, "note": "推敲前f019と同一箇所が残存。翻訳調群が激減し孤立、印象は弱い。rewriter が意味等価優先で意図的に非適用(applied:false)" }
+    }
+  },
+  "residual_total": 5,
+  "category_summary_after": { "A": 2, "B": 1, "C": 0, "D": 0, "E": 1, "F": 0, "G": 0, "H": 0, "I": 0, "J": 1 },
+  "s1_before": 10,
+  "s1_after": 0,
+  "ai_tell_density_before": 0.263,
+  "ai_tell_density_after": 0.049,
+  "over_polish_signals": [],
+  "over_polish_detail": {
+    "style_drift_keitai_jotai": { "detected": false, "keitai_count": 12, "jotai_count": 0, "note": "全12文末が敬体(〜ます/です)で統一。常体混入ゼロ。文体維持の鉄則を満たす" },
+    "unnatural_colloquialization": { "detected": false, "note": "『選ばなければなりません』『抑えられます』等は硬すぎず砕けすぎずの中庸。レポート文体を保持" },
+    "meaning_drift": { "detected": false, "note": "fidelity-auditor 領域だが目視範囲で意味改変・情報欠落なし。『選定』→『慎重に選ぶ』も含意保存" },
+    "choppy_rhythm": { "detected": false, "note": "過度の短文化・ぶつ切りなし。文長は適度、接続も自然" },
+    "change_rate": { "value": 0.2168, "over_30pct": false, "note": "変更率21.68%で30%閾値内。過推敲シグナル非該当" }
+  },
+  "grade": "B",
+  "grade_rationale": "S1=0・S2=4(≤4)・改善87.2%(≥50%)でB等級確定。改善率はA水準(70%+)を満たすが、S2=4がA上限(≤2)を超えるためAには到達せず。過推敲シグナル0個。絶対残存数ガード: 残存5件はすべてS2/S3で決定的クセ(S1)ゼロ、過推敲なしのため accept 圏内。E-2のみが唯一の弱点だが過推敲ではなく未推敲側の残存で、敬体内変奏で軽く解消可能",
+  "recommendation": "accept",
+  "notes": "B等級上位。accept 推奨。任意の仕上げで A 到達可能: (1)J-3タイトルのダッシュ——除去、(2)E-2文末を1〜2箇所だけ敬体内変奏(体言止め/〜でしょう)。この2件でS2が4→2となりA確定。2次推敲(rewrite_round_2)は不要——S1=0かつ過推敲0のため費用対効果が低い。残存A-1『において』×2・A-13『という』は孤立S2/S3で印象が弱く、現状で人間が書いた文章として通用する。score算出は推敲前と同一重み式(raw=S1×5+S2×2+S3×0.5, K=70.0/66.5=1.05263)でロックし基準一貫性を担保"
+}

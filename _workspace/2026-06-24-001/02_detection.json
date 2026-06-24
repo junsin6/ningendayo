@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "input_length": 712,
+    "detected_count": 19,
+    "ai_tell_density": 0.263,
+    "severity_weighted_score": 70.0,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞「提供する/もたらす」",
+      "severity": "S1",
+      "text_span": "ソリューションを提供するものとなっています",
+      "start": 126,
+      "end": 147,
+      "reason": "抽象主語『この技術は』+万能動詞『提供する』の英語直訳構文。A-10とA-6『ものとなっている』が複合。本文で『提供する』が2回出現（126,347）",
+      "suggested_fix": "新たな解決策になる"
+    },
+    {
+      "id": "f002",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "ものとなっています",
+      "start": 138,
+      "end": 147,
+      "reason": "『である/だ』で足りる箇所を状態化。『となっ』が本文で3回反復（140,464,696）",
+      "suggested_fix": "ものです→（削除し）解決策になる"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "連携することができます",
+      "start": 252,
+      "end": 263,
+      "reason": "可能の冗長形『することができる』。本文で『ことができ』が4回反復（256,329,418,516）し最頻出シグネチャ",
+      "suggested_fix": "連携できます"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することが可能となり（ことが可能）濫用",
+      "severity": "S1",
+      "text_span": "デプロイすることが可能となり",
+      "start": 294,
+      "end": 308,
+      "reason": "『することが可能』+『となり』の二重冗長。『ことが可能』が2回（300,440）、可能表現が文書全体で計6回飽和",
+      "suggested_fix": "デプロイでき"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "獲得することができます",
+      "start": 325,
+      "end": 336,
+      "reason": "可能の冗長形の反復（4回中3つ目）。ここは可能性主張不要で断定可",
+      "suggested_fix": "獲得できます／高まります"
+    },
+    {
+      "id": "f006",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞「提供する」",
+      "severity": "S1",
+      "text_span": "アプローチが提供する最大のメリット",
+      "start": 341,
+      "end": 358,
+      "reason": "『このアプローチが提供する』=英語 The approach provides の直訳。抽象主語+提供する（2回目）",
+      "suggested_fix": "このアプローチの最大の利点"
+    },
+    {
+      "id": "f007",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜させることができる 濫用",
+      "severity": "S1",
+      "text_span": "スケールアウトさせることができる",
+      "start": 408,
+      "end": 424,
+      "reason": "可能の冗長形（4回中3つ目相当）+使役。文書全体の可能表現飽和の一部",
+      "suggested_fix": "スケールアウトでき"
+    },
+    {
+      "id": "f008",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することが可能（です）濫用",
+      "severity": "S2",
+      "text_span": "活用することが可能です",
+      "start": 436,
+      "end": 447,
+      "reason": "『ことが可能』2回目。可能表現の密度過多。断定で足りる",
+      "suggested_fix": "活用できます"
+    },
+    {
+      "id": "f009",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "疎結合となっているため",
+      "start": 461,
+      "end": 472,
+      "reason": "『疎結合だ』で足りる箇所を状態化。『となっ』反復（2回目/3回中）",
+      "suggested_fix": "疎結合のため／疎結合なので"
+    },
+    {
+      "id": "f010",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "抑えることができます",
+      "start": 513,
+      "end": 523,
+      "reason": "可能の冗長形（『ことができ』4回目）。可能表現が文書全体で6回飽和し決定的",
+      "suggested_fix": "抑えられます"
+    },
+    {
+      "id": "f011",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる 行為者を曖昧にした要請",
+      "severity": "S2",
+      "text_span": "選定が求められます",
+      "start": 635,
+      "end": 644,
+      "reason": "行為者を曖昧にした要請。日本語AI文の最頻出常套。誰が選ぶのか不明",
+      "suggested_fix": "ツールを慎重に選ぶ必要があります／選ばなければなりません"
+    },
+    {
+      "id": "f012",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている+D-1結び『言えるでしょう』複合",
+      "severity": "S1",
+      "text_span": "となっていると言えるでしょう",
+      "start": 696,
+      "end": 710,
+      "reason": "A-6状態叙述『となっている』（3回目）とD-1結び常套句『〜と言えるでしょう』が末尾で複合。AI記事の決定的シグネチャ",
+      "suggested_fix": "欠かせない選択肢の一つです"
+    },
+    {
+      "id": "f013",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動/手段の by 直訳",
+      "severity": "S2",
+      "text_span": "採用することによって",
+      "start": 274,
+      "end": 284,
+      "reason": "英語 by の直訳『によって』。本文で2回（280,581）。『採用すると』で足りる",
+      "suggested_fix": "採用すると／採用すれば"
+    },
+    {
+      "id": "f014",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 直訳",
+      "severity": "S2",
+      "text_span": "複雑化することによって",
+      "start": 574,
+      "end": 585,
+      "reason": "『によって』2回目。原因を『によって』で機械処理。F-4『〜化』とも複合",
+      "suggested_fix": "複雑化するため／複雑になり"
+    },
+    {
+      "id": "f015",
+      "category": "A-7",
+      "category_label": "翻訳調: 〜を持っている／有する",
+      "severity": "S2",
+      "text_span": "持っており",
+      "start": 236,
+      "end": 241,
+      "reason": "英語 have の直訳的所有叙述。『独自のDBとロジックを備える』で自然",
+      "suggested_fix": "備えており"
+    },
+    {
+      "id": "f016",
+      "category": "A-3",
+      "category_label": "翻訳調: 〜を通じて 濫用",
+      "severity": "S2",
+      "text_span": "を通じて",
+      "start": 245,
+      "end": 249,
+      "reason": "手段を『通じて』で処理（英語 through/via）。『APIで相互連携』で足りる。単発だが翻訳調群と複合",
+      "suggested_fix": "で／により"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用（日本語固有）",
+      "severity": "S2",
+      "text_span": "アジリティ",
+      "start": 319,
+      "end": 324,
+      "reason": "カタカナ語が文書全体で高密度。アジリティ(agility)・ソリューション・メリット・アプローチ等、日本語で書けるのに不要なカタカナ語が多数。アジリティ→俊敏さ/機動力、ソリューション→解決策、メリット→利点 が置換可能。固有・標準語（マイクロサービス/API/データベース/デプロイ）は維持対象として除外",
+      "suggested_fix": "俊敏さ／機動力"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用（日本語固有）",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 126,
+      "end": 133,
+      "reason": "solution の不要なカタカナ語。日本語で『解決策』と書ける。B-2密度過多の代表例（2件目）",
+      "suggested_fix": "解決策"
+    },
+    {
+      "id": "f019",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S3",
+      "text_span": "という設計手法",
+      "start": 65,
+      "end": 72,
+      "reason": "『マイクロサービスアーキテクチャという設計手法』=英語 that/so-called の連結。単発のため単独では弱いが翻訳調群と重なり印象を強める",
+      "suggested_fix": "マイクロサービスアーキテクチャ（という）設計手法→という を削除"
+    }
+  ],
+  "category_summary": {
+    "A": 16,
+    "B": 2,
+    "C": 0,
+    "D": 0,
+    "E": 0,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 1,
+    "J": 0
+  }
+}

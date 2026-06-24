@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "input_length": 622,
+    "detected_count": 12,
+    "ai_tell_density": 0.143,
+    "severity_weighted_score": 22.9,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/受動文(by-passive)・行為者曖昧化",
+      "severity": "S2",
+      "text_span": "取り扱われております",
+      "start": 86,
+      "end": 96,
+      "reason": "市が能動で「取り扱う」ものを受動+丁寧進行形に。受動表現が本文書で5回以上反復(取り扱われ/改定され/実施され/変更され/拡充が図られ/導入され/期待され)し行為者(市)を曖昧化。",
+      "suggested_fix": "本市市民課窓口で取り扱う"
+    },
+    {
+      "id": "f002",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文(by-passive)・行為者曖昧化",
+      "severity": "S2",
+      "text_span": "図られることとなりました",
+      "start": 350,
+      "end": 362,
+      "reason": "「図られる」受動+「こととなりました」状態化の二重AIクセ。受動の反復(5回+)の一部。誰が拡充するか(市が)を曖昧化。",
+      "suggested_fix": "拡充します"
+    },
+    {
+      "id": "f003",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文(by-passive)・行為者曖昧化",
+      "severity": "S2",
+      "text_span": "期待されております",
+      "start": 424,
+      "end": 433,
+      "reason": "「期待されております」は行為者を消した受動進行。受動反復クラスタの一部。",
+      "suggested_fix": "高まります"
+    },
+    {
+      "id": "f004",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となりました 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "改定されることとなりました",
+      "start": 119,
+      "end": 132,
+      "reason": "「改定される」+「こととなりました」。受動+状態叙述で「改定します」で足りる箇所を機械的に状態化。同型「こととなりました」が本文で2回反復。",
+      "suggested_fix": "改定します"
+    },
+    {
+      "id": "f005",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっております 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "対象とはなっておりません",
+      "start": 308,
+      "end": 320,
+      "reason": "「対象ではありません」で足りる箇所を「対象とはなっておりません」と状態叙述化。A-6の典型。",
+      "suggested_fix": "対象ではありません"
+    },
+    {
+      "id": "f006",
+      "category": "I-4",
+      "category_label": "形式: 〜が求められる/必要だ(行為者曖昧な要請)",
+      "severity": "S2",
+      "text_span": "求められます",
+      "start": 490,
+      "end": 496,
+      "reason": "「委任状の提出が求められます」は誰が求めるか(市が)を曖昧にした要請。日本語ビジネス/公的AI文の最頻出常套。",
+      "suggested_fix": "委任状をご提出ください"
+    },
+    {
+      "id": "f007",
+      "category": "I-3",
+      "category_label": "形式: 〜する必要がある(should/need to直訳)",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 458,
+      "end": 466,
+      "reason": "「ご持参いただく必要がございます」は need to 型の要請。硬い敬語で冗長化。同段落の「求められます」と要請表現が連続。",
+      "suggested_fix": "ご持参ください"
+    },
+    {
+      "id": "f008",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S2",
+      "text_span": "におきまして",
+      "start": 80,
+      "end": 86,
+      "reason": "「本市市民課窓口におきまして」は in/at の枠づけを硬く処理。「窓口で」で足りる。同文書に「窓口における」も出現(計2回)。",
+      "suggested_fix": "本市市民課窓口で"
+    },
+    {
+      "id": "f009",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における 濫用",
+      "severity": "S2",
+      "text_span": "における",
+      "start": 337,
+      "end": 341,
+      "reason": "「窓口における支払い方法」は in の直訳的枠づけ。「におきまして」と合わせ枠づけ表現が2回。",
+      "suggested_fix": "窓口での"
+    },
+    {
+      "id": "f010",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動+説明調「〜されるものです」",
+      "severity": "S2",
+      "text_span": "実施されるものです",
+      "start": 192,
+      "end": 201,
+      "reason": "「実施されるものです」は受動+「もの」説明調。「実施します」で足りる。受動反復クラスタの一部。",
+      "suggested_fix": "実施します"
+    },
+    {
+      "id": "f011",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復(文末一本調子)",
+      "severity": "S2",
+      "text_span": "(文末: いたします/されます/ております/ございます/申し上げます の反復)",
+      "start": 0,
+      "end": 622,
+      "reason": "全文が敬体。文末が『〜いたします/〜ております/〜ます』に集中し変奏が乏しい。特に『お願い申し上げます』が末尾近接で2回。体言止め・文長変化なしの一本調子。",
+      "suggested_fix": "定型敬語は維持しつつ、状態化・受動を能動短文へ変え文末リズムを変奏"
+    },
+    {
+      "id": "f012",
+      "category": "E-1",
+      "category_label": "リズム: 文長が長文側に均一(短文が無い)",
+      "severity": "S3",
+      "text_span": "(文書全体: 各文が約40〜90字の硬い長文に集中)",
+      "start": 0,
+      "end": 622,
+      "reason": "説明文がいずれも長く、10〜20字の短文が皆無。受動+状態化+硬い敬語の積み重ねで一文が冗長。短文を挟むと人間味が出る。",
+      "suggested_fix": "受動/状態化を解いて短い能動文を所々に挟む(内容不変)"
+    }
+  ],
+  "category_summary": {
+    "A": 8,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 2,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 2,
+    "J": 0
+  }
+}
