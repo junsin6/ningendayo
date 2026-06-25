@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "input_length": 671,
+    "detected_count": 21,
+    "ai_tell_density": 0.37,
+    "severity_weighted_score": 82.6,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "可能となります",
+      "start": 178,
+      "end": 185,
+      "reason": "「〜となる」状態叙述が本文で3回反復（可能となります・必要となります・となっております）。単なる断定で足りる箇所を機械的に状態化",
+      "suggested_fix": "取得できます"
+    },
+    {
+      "id": "f002",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "必要となります",
+      "start": 216,
+      "end": 223,
+      "reason": "「〜となる」状態叙述の3回反復の一つ。「マイナンバーカードが必要です」で足りる",
+      "suggested_fix": "必要です"
+    },
+    {
+      "id": "f003",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "となっております",
+      "start": 377,
+      "end": 385,
+      "reason": "「〜となっております」状態叙述。「税証明書等です」で足りるところを状態化＋丁寧化",
+      "suggested_fix": "です"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/可能 の冗長な可能形",
+      "severity": "S1",
+      "text_span": "取得することが可能となります",
+      "start": 171,
+      "end": 185,
+      "reason": "可能の冗長形＋状態叙述の複合。「証明書を取得できます」へ短縮可能",
+      "suggested_fix": "証明書を取得できます"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/可能 の冗長な可能形",
+      "severity": "S1",
+      "text_span": "ご利用いただくことが可能です",
+      "start": 426,
+      "end": 440,
+      "reason": "「ご利用いただけます」で足りる可能の冗長形",
+      "suggested_fix": "ご利用いただけます"
+    },
+    {
+      "id": "f006",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "設置された",
+      "start": 147,
+      "end": 152,
+      "reason": "受動態の直訳。「コンビニに置かれたマルチコピー機」式。文書全体に受動が高密度（設置された・開始される・停止される・知られることのない）",
+      "suggested_fix": "コンビニにあるマルチコピー機"
+    },
+    {
+      "id": "f007",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "開始されることとなりました",
+      "start": 110,
+      "end": 123,
+      "reason": "受動＋状態叙述の二重。行為者（市）を主語に戻し「市が開始します」へ。受動高密度の一つ",
+      "suggested_fix": "開始します"
+    },
+    {
+      "id": "f008",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "停止される場合がございます",
+      "start": 471,
+      "end": 484,
+      "reason": "受動態の濫用。「停止することがあります」へ能動化可能",
+      "suggested_fix": "停止することがあります"
+    },
+    {
+      "id": "f009",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "第三者によるなりすまし等を防止するため",
+      "start": 529,
+      "end": 548,
+      "reason": "「〜による」by句の直訳的後置。受動的行為者提示。「第三者になりすまされるのを防ぐため」式",
+      "suggested_fix": "第三者になりすまされるのを防ぐため"
+    },
+    {
+      "id": "f010",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "行っていただく必要がございます",
+      "start": 257,
+      "end": 272,
+      "reason": "「する必要がある」直訳が本文で2回反復（必要がございます・必要があります）。要請の冗長形",
+      "suggested_fix": "申請してください"
+    },
+    {
+      "id": "f011",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご注意いただく必要があります",
+      "start": 514,
+      "end": 528,
+      "reason": "「する必要がある」の2回反復の一つ。「十分にご注意ください」で足りる",
+      "suggested_fix": "十分にご注意ください"
+    },
+    {
+      "id": "f012",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために 目的節の濫用",
+      "severity": "S2",
+      "text_span": "図るため",
+      "start": 75,
+      "end": 79,
+      "reason": "目的節 in order to の直訳。「利便性を高めるため」程度に。文書内で「ため」が3回（図るため・防止するため）",
+      "suggested_fix": "高めるため"
+    },
+    {
+      "id": "f013",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために 目的節の濫用",
+      "severity": "S2",
+      "text_span": "防止するため",
+      "start": 542,
+      "end": 548,
+      "reason": "目的節の反復の一つ。能動文に溶かせる",
+      "suggested_fix": "防ぐため"
+    },
+    {
+      "id": "f014",
+      "category": "D-1",
+      "category_label": "AI慣用句: 過剰な定型挨拶・硬い敬語の結び",
+      "severity": "S2",
+      "text_span": "賜り",
+      "start": 42,
+      "end": 44,
+      "reason": "公的文書の常套定型挨拶。AI生成の硬い敬語シグネチャ。1回は許容だが本文書は定型挨拶が冒頭・末尾に集中",
+      "suggested_fix": "いただき"
+    },
+    {
+      "id": "f015",
+      "category": "D-1",
+      "category_label": "AI慣用句: 過剰な定型挨拶・硬い敬語の結び",
+      "severity": "S2",
+      "text_span": "努めてまいる所存でございます",
+      "start": 655,
+      "end": 669,
+      "reason": "「〜所存でございます」過剰丁寧の結び公式。AI公的文書の決定的な硬い敬語。「努めてまいります」で十分",
+      "suggested_fix": "努めてまいります"
+    },
+    {
+      "id": "f016",
+      "category": "E-2",
+      "category_label": "リズム: です・ます／ございます 文末の単調反復",
+      "severity": "S2",
+      "text_span": "ございます",
+      "start": 267,
+      "end": 272,
+      "reason": "丁寧の補助「ございます」が文末に4回反復し一本調子（ございます・ございます・ございます・でございます）。文末変奏が皆無",
+      "suggested_fix": "あります"
+    },
+    {
+      "id": "f017",
+      "category": "D-1",
+      "category_label": "AI慣用句: 過剰な定型挨拶・硬い敬語の結び",
+      "severity": "S2",
+      "text_span": "お願い申し上げます",
+      "start": 330,
+      "end": 339,
+      "reason": "「〜よう お願い申し上げます」依頼公式が2回反復（お早めに・お問い合わせ）。硬い敬語の機械的反復",
+      "suggested_fix": "お願いします"
+    },
+    {
+      "id": "f018",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜よう/〜いただきますよう 行為者曖昧な要請",
+      "severity": "S2",
+      "text_span": "いただきますよう",
+      "start": 322,
+      "end": 330,
+      "reason": "「〜していただきますよう」回りくどい依頼公式が2回反復。「〜してください」で足りる",
+      "suggested_fix": "してください"
+    },
+    {
+      "id": "f019",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/につきましては 硬い主題提示",
+      "severity": "S3",
+      "text_span": "つきましては",
+      "start": 242,
+      "end": 248,
+      "reason": "「〜につきましては」過剰に硬い主題提示。「お持ちでない方は」で足りる。単発だが硬い敬語群と重なる",
+      "suggested_fix": "お持ちでない方は"
+    },
+    {
+      "id": "f020",
+      "category": "I-1",
+      "category_label": "形式名詞: 〜こと/〜ことのないよう の濫用",
+      "severity": "S3",
+      "text_span": "知られることのないよう",
+      "start": 557,
+      "end": 568,
+      "reason": "形式名詞「こと」＋婉曲。「他人に知られないよう」へ直結可能。硬い敬語群と重なる",
+      "suggested_fix": "他人に知られないよう"
+    },
+    {
+      "id": "f021",
+      "category": "E-1",
+      "category_label": "リズム: 文長の均一・低標準偏差",
+      "severity": "S3",
+      "text_span": "利用可能時間は、午前6時30分から午後11時までとされており、土日祝日においてもご利用いただくことが可能です",
+      "start": 386,
+      "end": 440,
+      "reason": "全文が40〜70字の長文に集中し短文の挿入が皆無。文長の標準偏差が低く一本調子",
+      "suggested_fix": "「利用時間は午前6時30分から午後11時。土日祝日も使えます。」など短文を混ぜる"
+    }
+  ],
+  "category_summary": {
+    "A": 12,
+    "B": 0,
+    "C": 0,
+    "D": 3,
+    "E": 2,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 4,
+    "J": 0
+  }
+}
