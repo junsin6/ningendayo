@@ -1,0 +1,47 @@
+{
+  "run_id": "2026-06-25-002",
+  "genre": "public_document",
+  "style": "desu_masu",
+  "score_before": 82.6,
+  "score_after": 0.8,
+  "improvement_rate": 0.99,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 1
+  },
+  "residual_detail": [
+    {
+      "id": "r001",
+      "category": "E-3",
+      "category_label": "リズム: 段落長の均一性（3〜4文公式寄り）",
+      "severity": "S3",
+      "text_span": "（文書レベル: 段落文数 1/1/2/3/4/2/2）",
+      "reason": "本文段落が2〜4文にやや集中。ただし1文段落と4文段落の混在で公式崩しは成立しており、単独S3・リズム調整レベル。他のS1/S2と重ならないため許容範囲。",
+      "blocking": false
+    }
+  ],
+  "residual_raw_weighted_sum": 0.5,
+  "normalization_note": "推敲前 findings 内訳 S1=5・S2=12・S3=4 から raw weighted sum=51.0、公表 score_before=82.6 より線形係数 k≈1.6196 を逆算。推敲後 raw=0.5 に同係数を適用し score_after≈0.8。同一基準での厳密再カウント（手動推定でなく検出器再走査）。",
+  "over_polish_signals": [
+    {
+      "type": "change_rate_over_30",
+      "severity": "soft",
+      "value": 0.371,
+      "threshold": 0.30,
+      "detail": "原文658字→推敲文496字、一致文字数414、変更率37.1%。30%警告ラインを超過するが50%強制中断ラインは未超過。超過分の大半は冗長な可能形・状態叙述・儀礼定型の削除に由来し、内容の書き換えではない。表層短縮型の超過のため等級を下げる過推敲とは判定しないが、規定により報告する。"
+    }
+  ],
+  "over_polish_check": {
+    "unnatural_colloquialization": false,
+    "style_break_keitai_jotai_mix": false,
+    "meaning_thinned_or_choppy": false,
+    "change_rate_over_30": true,
+    "public_doc_politeness_lowered_too_far": false,
+    "ceremony_over_trimmed": false
+  },
+  "public_document_notes": "公的文書としての丁寧度・儀礼レベルは適正に保持。冒頭挨拶「平素より〜厚く御礼申し上げます」と結び「今後とも〜努めてまいります」「お問い合わせください」の骨格は維持。『賜り→いただき』『所存でございます→まいります』『お願い申し上げます→お願いします』の軟化は2〜3箇所に留まり、役所文書として不自然な砕けた口調には至っていない。体言止め「午後11時まで。」は名詞止めであり常体（だ・である）混入ではなく、敬体は全文維持。儀礼の削りすぎ（過剰軟化）には該当しない。",
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1/S2 全消失、新規 AI クセの発生なし。改善率約99%（score 82.6→0.8）。残存は許容水準の E-3（段落長やや均一）1件のみで blocking でない。唯一の留意点は変更率37.1%（30%超）だが、内容書き換えでなく冗長表現・儀礼定型の削除に由来する表層短縮であり、文体崩れ・意味希薄化・不自然な口語化はいずれも検出されず。公的文書としての丁寧度・儀礼も適正保持。等級 A・accept。最終的な意味等価性は content-fidelity-auditor の監査結果と併せてオーケストレーターが総合判定すること。"
+}
