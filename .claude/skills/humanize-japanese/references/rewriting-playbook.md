@@ -138,11 +138,20 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（v1.1 — IMP-001 適用）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+ナイーブな全文 difflib（挿入＋削除文字数）は、C-1 散文化のような**意味を変えない語順移動**を「大量の削除＋挿入」として二重計上し、変更率を実態の 1.5 倍前後に膨らませる。これが装飾削除主導の正当な推敲を誤って `hold_and_report` に落とす原因だった（run 2026-06-12-002 / 2026-06-25-001・002 で再現）。よって複数指標で測る:
+
+* **`span_grounded_change_rate`（主指標）** = 各 edit の実改変文字数の合計 / 原文文字数。finding に紐づく span だけを数える（手術精度の指標）。
+* **`naive_diff_change_rate`（補助・参考）** = 全文 difflib による（挿入＋削除）/ 原文長。語順移動を二重計上するため**参考値に降格**。
+* **`substitution_rate`** = 意味改変を伴う置換 edit の文字数 / 原文長。
+* **`deletion_decoration_rate`** = 装飾・常套句・冗長可能形の**純削除**が編集総量に占める割合。
+
+判定:
+* **警告**: `span_grounded_change_rate` > 0.30 → `warnings`/`summary.md` に記録して続行。
+* **強制中断（hold_and_report）**: `substitution_rate` > 0.50（**意味改変 edit 比率**が基準。単純な文字 delta ではない）。
+* `span_grounded` や `naive` が 50% を超えても、`deletion_decoration_rate` が高い純削除主導なら中断せず、diff の meta に `override_candidate: true` を立ててオーケストレーターに委ねる。
+* diff の `meta` に上記 4 指標を出力する。
 
 ## 文体変換例（before → after 一括サンプル）
 

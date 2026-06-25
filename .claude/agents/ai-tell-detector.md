@@ -21,6 +21,9 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "input_length": 0,
     "detected_count": 0,
     "ai_tell_density": 0.0,
+    "raw_weighted_sum": 0.0,
+    "normalization_K": 0.0,
+    "score_formula": "100*(1-exp(-raw/K)), K=max(20,input_length/100*5)",
     "severity_weighted_score": 0.0,
     "style": "desu_masu | da_dearu | mixed"
   },
@@ -50,8 +53,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
+5. **スコア算出**（taxonomy §検出出力スキーマ v1.1 の確定式に厳密準拠）:
+   * `raw_weighted_sum` = S1×5 + S2×2 + S3×0.5。
+   * `normalization_K` = max(20, input_length / 100 × 5)。**原文長で固定**し、推敲後再計測でも同じ K を使う。
+   * `severity_weighted_score` = round(100 × (1 − exp(−raw_weighted_sum / K)), 1)。
+   * `raw_weighted_sum`・`normalization_K`・`score_formula` を必ず `meta` に出力する（後段が K を逆算しないため）。
    * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
 
 ## 重要な原則

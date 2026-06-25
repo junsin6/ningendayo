@@ -22,7 +22,11 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
   "edits": [
     { "finding_id": "f001", "category": "A-6", "before": "課題となっている", "after": "課題だ", "rationale": "状態叙述を断定へ" }
   ],
-  "change_rate": 0.18,
+  "span_grounded_change_rate": 0.18,
+  "naive_diff_change_rate": 0.27,
+  "substitution_rate": 0.06,
+  "deletion_decoration_rate": 0.55,
+  "override_candidate": false,
   "style_preserved": "desu_masu",
   "warnings": []
 }
@@ -34,9 +38,9 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
 2. **finding 順処理**: 各 finding の span を playbook レシピで修正。検出のない区間は一切触らない。
 3. **連鎖調整**: 同カテゴリの反復（例 A-1「における」5 回）は、全部を同じ形に直さず複数の自然形に分散させる（機械的均一を避ける）。
 4. **リズム（E）**: 文末の単調反復を、同一文体内で変奏。短文・長文を意図的に混ぜる。
-5. **変更率監視**: 挿入＋削除文字数 / 原文文字数を計算。
-   * 30% 超 → `warnings` に記録して続行。
-   * 50% 超 → 中断し、オーケストレーターへ `hold_and_report` を返す。
+5. **変更率監視**（playbook §変更率の数え方 v1.1）: 主指標は `span_grounded_change_rate`（finding 紐付き span の実改変文字数 / 原文長）。補助に `naive_diff_change_rate`、加えて `substitution_rate`（意味改変置換）と `deletion_decoration_rate`（純削除比）を算出し diff の meta に出力。
+   * `span_grounded_change_rate` 30% 超 → `warnings` に記録して続行。
+   * **強制中断は `substitution_rate` > 0.50 のときのみ**。span/naive が 50% 超でも純削除主導（`deletion_decoration_rate` 高）なら中断せず `override_candidate: true` を立ててオーケストレーターに委ねる。
 
 ## 厳守事項
 
