@@ -1,0 +1,54 @@
+{
+  "run_id": "2026-06-25-001",
+  "genre": "技術解説記事",
+  "style": "desu_masu",
+  "score_before": 88.9,
+  "score_after": 3.3,
+  "improvement_rate": 0.963,
+  "score_formula": "raw = S1×5 + S2×2 + S3×0.5; normalized = raw / 119.8 × 100 (clamp 0–100)。K=119.8 は推敲前 raw=106.5 → score_before=88.9 から逆算（IMP-003 契約踏襲）。検証: 推敲前 S1=12,S2=23,S3=1 → raw=106.5 → 88.9 一致。推敲後 S1=0,S2=2,S3=0 → raw=4.0 → 3.34≈3.3。",
+  "detector_rerun": {
+    "method": "ai-tell-detector サブエージェント再実行（IMP-006 準拠・手動推定なし）",
+    "detected_count_before": 36,
+    "detected_count_after": 2,
+    "ai_tell_density_after": 0.016
+  },
+  "residual_findings": {
+    "S1": 0,
+    "S2": 2,
+    "S3": 0,
+    "by_id": [
+      {
+        "id": "f001",
+        "category": "J-3",
+        "severity": "S2",
+        "text_span": "——",
+        "reason": "タイトル「とは何か——基礎から徹底解説」の二倍ダッシュ。出現1回で閾値（1〜2回以下）内のため弱残存。本文中の濫用ではない。原文タイトル由来で推敲役の手術範囲外（finding 紐付けなし区間）の可能性あり。"
+      },
+      {
+        "id": "f002",
+        "category": "E-2",
+        "severity": "S2",
+        "text_span": "敬体終止の連続（文末変奏）",
+        "reason": "本文13文の文末が ています/でした/あります/です/できます/られます/はずです とほぼ敬体終止で揃う。推敲前の全ます/です一本調子からは でした/ません/られます/はずです 等へ変奏が進み大幅改善。体言止め・〜でしょう が皆無な点のみ弱残存。文体（敬体）は維持されており文体崩れではない。"
+      }
+    ]
+  },
+  "over_polish_signals": [],
+  "over_polish_detail": {
+    "style_mixing_keitai_jotai": {
+      "desu_masu_endings": 13,
+      "da_dearu_endings": 0,
+      "verdict": "混入なし。全文敬体終止で文体崩れゼロ。"
+    },
+    "unnatural_colloquialization": false,
+    "meaning_dilution": false,
+    "excessive_taigendome": false,
+    "change_rate": {
+      "estimate": 0.21,
+      "note": "推敲前719字→推敲後571字。span 単位の手術的修正に留まり 30% 閾値内。意味毀損なし（content-fidelity-auditor 側で別途確認）。"
+    }
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1 0件・S2 2件・改善96.3% で A 級基準（S1 0/S2≤2/改善70%+）を満たす。残存2件はいずれも S2 弱残存で、J-3 はタイトル1回（閾値内）、E-2 は体言止め欠如のみで文体は維持。過推敲シグナル0。意味不変・固有名詞（MFA・マイクロセグメンテーション）・引用「決して信頼せず、常に検証する」保存。受理可。任意改善として、E-2 解消のため段落内に体言止め/〜でしょうを1〜2箇所、J-3 解消のためタイトルのダッシュをコロン/読点へ。いずれも必須ではない。"
+}
