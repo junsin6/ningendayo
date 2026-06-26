@@ -21,7 +21,10 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "input_length": 0,
     "detected_count": 0,
     "ai_tell_density": 0.0,
+    "score_raw": 0.0,
+    "severity_counts": { "S1": 0, "S2": 0, "S3": 0 },
     "severity_weighted_score": 0.0,
+    "score_formula": "round(100*(1-exp(-raw/45)), 1)",
     "style": "desu_masu | da_dearu | mixed"
   },
   "findings": [
@@ -30,6 +33,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "span_type": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
@@ -49,10 +53,12 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * E（リズム）: 文長の標準偏差、文末の反復率を計算。
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
+   * 文書レベル/分散の finding は `span_type: "document"`（または `"scattered"`）とし、`start`/`end`/`text_span` を `null` にして `evidence`（stdev・文末分布など数値根拠）を必ず添える（taxonomy v1.1 スキーマ）。連続 span は `span_type: "contiguous"`。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（taxonomy v1.1 で固定。式を即興で変えない）:
+   * `raw = S1×5 + S2×2 + S3×0.5` を `meta.score_raw` に記録。
+   * `severity_weighted_score = round(100·(1 − exp(−raw/45)), 1)`。文長に依存しない単調飽和式。`meta.score_formula` に式を、`meta.severity_counts` に深刻度別件数を併記。
+   * `ai_tell_density` = 検出 span の**被覆文字数（重複区間はマージ）** / 全体文字数。複数カテゴリが同一 span に重なっても 1 を超えないこと。
 
 ## 重要な原則
 
