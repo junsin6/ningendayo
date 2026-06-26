@@ -32,7 +32,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 [japanese-style-rewriter]     ── finding ベースの手術的推敲 → 03_rewrite.md + 03_rewrite_diff.json
     ↓
 [並列検証チーム]
-    ├─ [content-fidelity-auditor]  ── 意味等価性監査（13項）→ 04_fidelity_audit.json
+    ├─ [content-fidelity-auditor]  ── 意味等価性監査（14項）→ 04_fidelity_audit.json
     └─ [naturalness-reviewer]      ── 検出再実行で残存・過推敲を判定 → 05_naturalness_review.json
     ↓
 [オーケストレーター総合判定]
@@ -65,7 +65,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 二つを並行実行:
 
-* `content-fidelity-auditor`: 原文と推敲文を 13 項チェックリストで突き合わせ、意味の毀損があれば該当 edit のロールバックを指示。
+* `content-fidelity-auditor`: 原文と推敲文を 14 項チェックリストで突き合わせ、意味の毀損があれば該当 edit のロールバックを指示。
 * `naturalness-reviewer`: 推敲文に検出器を再実行し、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。
 
 ### 5. 総合判定

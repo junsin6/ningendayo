@@ -1,0 +1,306 @@
+{
+  "meta": {
+    "input_length": 700,
+    "detected_count": 25,
+    "ai_tell_density": 0.46,
+    "severity_weighted_score": 81.3,
+    "style": "desu_masu",
+    "score_formula": "raw = S1*5 + S2*2 + S3*0.5; score = 100*raw/(raw+K), K=18 (saturating normalization, IMP-002 暫定式)",
+    "score_raw": 78.5,
+    "severity_counts": {
+      "S1": 10,
+      "S2": 14,
+      "S3": 1
+    },
+    "density_note": "密度は重複区間をマージして算出(IMP-005回避)。E系の文書全体spanは分母汚染回避のため文字数集計から除外"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用",
+      "severity": "S1",
+      "text_span": "について",
+      "start": 23,
+      "end": 27,
+      "reason": "タイトルで主題提示を「について」処理。英語 about の直訳的枠づけ",
+      "suggested_fix": "がもたらす新たな可能性"
+    },
+    {
+      "id": "f002",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞(示す/提供/もたらす)",
+      "severity": "S1",
+      "text_span": "エッジコンピューティングがもたらす新たな可能性",
+      "start": 0,
+      "end": 23,
+      "reason": "無生物主語『エッジコンピューティング』+万能動詞『もたらす』。本文でも『メリットをもたらす』と反復(計2回)",
+      "suggested_fix": "エッジコンピューティングが開く新たな可能性"
+    },
+    {
+      "id": "f003",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "というアーキテクチャ",
+      "start": 62,
+      "end": 72,
+      "reason": "概念を『という』で連結。本文で『という』が3回(アーキテクチャ/パラダイム/課題)",
+      "suggested_fix": "アーキテクチャ"
+    },
+    {
+      "id": "f004",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "処理するというコンピューティングパラダイムのことを指します",
+      "start": 151,
+      "end": 180,
+      "reason": "『という…のこと』『を指します』が冗長な定義公式。『という』反復3回の一部",
+      "suggested_fix": "処理するコンピューティングパラダイムだ"
+    },
+    {
+      "id": "f005",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "集約されることによって処理されていました",
+      "start": 218,
+      "end": 238,
+      "reason": "英語受動態の直訳。行為者不在の二重受動。『によって』が本文で3回反復",
+      "suggested_fix": "データセンターに集約して処理していました"
+    },
+    {
+      "id": "f006",
+      "category": "H-2",
+      "category_label": "接続詞: 逆接の濫用(しかしながら)",
+      "severity": "S2",
+      "text_span": "しかしながら",
+      "start": 239,
+      "end": 245,
+      "reason": "段落冒頭の重い逆接。『しかし』で足り、硬い翻訳調。逆接接続詞は文書内で過多",
+      "suggested_fix": "しかし"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "という課題が存在していました",
+      "start": 263,
+      "end": 277,
+      "reason": "『課題が存在していました』は『〜があった』で足りる状態叙述の冗長化。状態叙述系が本文で複数回",
+      "suggested_fix": "レイテンシが増大していました"
+    },
+    {
+      "id": "f008",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞(示す/提供/もたらす)",
+      "severity": "S1",
+      "text_span": "ソリューションを提供することができます",
+      "start": 307,
+      "end": 326,
+      "reason": "無生物主語+『提供する』万能動詞。さらに『ことができます』が重畳",
+      "suggested_fix": "この課題を解決できます"
+    },
+    {
+      "id": "f009",
+      "category": "A-3",
+      "category_label": "翻訳調: 〜を通じて/によって 手段の濫用",
+      "severity": "S2",
+      "text_span": "活用することによって",
+      "start": 342,
+      "end": 352,
+      "reason": "手段を『〜することによって』で処理。本文で『〜によって/によって』手段表現が反復",
+      "suggested_fix": "活用すれば"
+    },
+    {
+      "id": "f010",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実現することができます",
+      "start": 366,
+      "end": 377,
+      "reason": "可能の冗長形『ことができます』。本文で『ことができ』系が3回反復する最頻シグネチャ",
+      "suggested_fix": "実現できます"
+    },
+    {
+      "id": "f011",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "自動運転車においては",
+      "start": 383,
+      "end": 393,
+      "reason": "場面を『においては』で抽象枠づけ。本文で『において(は/も)』が3回反復",
+      "suggested_fix": "自動運転車では"
+    },
+    {
+      "id": "f012",
+      "category": "I-4",
+      "category_label": "形式表現: 〜が求められる(行為者曖昧な要請)",
+      "severity": "S2",
+      "text_span": "ミリ秒単位の判断が求められるため",
+      "start": 394,
+      "end": 410,
+      "reason": "行為者を曖昧にした要請『求められる』。日本語ビジネスAI文の最頻常套",
+      "suggested_fix": "ミリ秒単位の判断を迫られるため"
+    },
+    {
+      "id": "f013",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "低レイテンシな処理が不可欠となっています",
+      "start": 411,
+      "end": 431,
+      "reason": "『不可欠となっています』はA-6状態叙述+D系誇張。『〜だ』で足りる。状態化が機械的",
+      "suggested_fix": "低レイテンシな処理が欠かせません"
+    },
+    {
+      "id": "f014",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "帯域幅を節約することもできるようになります",
+      "start": 455,
+      "end": 476,
+      "reason": "『こともできるようになります』は可能形の二重冗長。『ことができ』系反復の一部",
+      "suggested_fix": "帯域幅も節約できます"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "英語/カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "スケーラブルでロバストな",
+      "start": 496,
+      "end": 508,
+      "reason": "日本語で書けるカタカナ語の連打。robust→堅牢が定番置換。本文はカタカナ語密度が高い(レイテンシ/ソリューション/パラダイム/ワークロード/ボトルネック/メリット 等)",
+      "suggested_fix": "拡張しやすく堅牢な"
+    },
+    {
+      "id": "f016",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞(示す/提供/もたらす)",
+      "severity": "S2",
+      "text_span": "うえで重要な役割を果たします",
+      "start": 517,
+      "end": 531,
+      "reason": "無生物主語が『重要な役割を果たす』。英語 play an important role の直訳常套句",
+      "suggested_fix": "構築するうえで欠かせません"
+    },
+    {
+      "id": "f017",
+      "category": "A-3",
+      "category_label": "翻訳調: 〜を通じて/によって 手段の濫用",
+      "severity": "S2",
+      "text_span": "分散させることによって",
+      "start": 543,
+      "end": 554,
+      "reason": "手段を『〜させることによって』で処理。『によって』手段表現の3回反復の一部",
+      "suggested_fix": "分散させれば"
+    },
+    {
+      "id": "f018",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/状態叙述の濫用",
+      "severity": "S2",
+      "text_span": "回避することが可能となります",
+      "start": 568,
+      "end": 582,
+      "reason": "『〜することが可能となります』は『〜できる』で足りる状態化+可能冗長の複合",
+      "suggested_fix": "回避できます"
+    },
+    {
+      "id": "f019",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多(さらに)",
+      "severity": "S2",
+      "text_span": "さらに",
+      "start": 583,
+      "end": 586,
+      "reason": "段落内で『また』『さらに』が連続。文頭接続詞が累積(また/しかしながら/さらに/このように)",
+      "suggested_fix": "(削除)"
+    },
+    {
+      "id": "f020",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S2",
+      "text_span": "セキュリティ面においても",
+      "start": 598,
+      "end": 610,
+      "reason": "『面において(も)』の抽象枠づけ。『において』系3回反復の一部",
+      "suggested_fix": "セキュリティ面でも"
+    },
+    {
+      "id": "f021",
+      "category": "D-1",
+      "category_label": "AI慣用句: 〜と言えるでしょう(結び公式)",
+      "severity": "S1",
+      "text_span": "メリットをもたらすと言えるでしょう",
+      "start": 613,
+      "end": 630,
+      "reason": "『〜と言えるでしょう』はAI結び常套句+万能動詞『もたらす』+ヘッジ。断定すべき箇所",
+      "suggested_fix": "メリットがあります"
+    },
+    {
+      "id": "f022",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多(このように)",
+      "severity": "S2",
+      "text_span": "このように",
+      "start": 633,
+      "end": 638,
+      "reason": "最終段落を要約接続詞で開始。文頭接続詞の累積パターンの一部",
+      "suggested_fix": "(削除)"
+    },
+    {
+      "id": "f023",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "ますます重要な存在となっていくことでしょう",
+      "start": 677,
+      "end": 698,
+      "reason": "『重要な存在となっていく』状態叙述+『ことでしょう』推量結び。締めの典型AI公式",
+      "suggested_fix": "存在感を増していくはずです"
+    },
+    {
+      "id": "f024",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "(文書全体: 文末)",
+      "start": 0,
+      "end": 700,
+      "reason": "全12文の文末が『〜ます/〜ました/〜でしょう/〜です』に集中し体言止め・短文の変奏が皆無。文末一本調子",
+      "suggested_fix": "体言止め・『〜だ』調の変奏でなく、敬体内で『〜でしょう』『体言止め』『短文』を混ぜる"
+    },
+    {
+      "id": "f025",
+      "category": "E-1",
+      "category_label": "リズム: 文長の標準偏差が低い",
+      "severity": "S3",
+      "text_span": "(文書全体: 文長)",
+      "start": 0,
+      "end": 700,
+      "reason": "12文が38〜86字の中域に集中(平均54字)。10〜20字の短文や明確なリズム変化がなく均質",
+      "suggested_fix": "段落ごとに短文(10〜20字)を1〜2個挟む"
+    }
+  ],
+  "category_summary": {
+    "A": 17,
+    "B": 1,
+    "C": 0,
+    "D": 1,
+    "E": 2,
+    "F": 0,
+    "G": 0,
+    "H": 3,
+    "I": 1,
+    "J": 0
+  }
+}

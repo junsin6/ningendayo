@@ -383,7 +383,10 @@ J. 視覚装飾の濫用
     "input_length": 1820,
     "detected_count": 37,
     "ai_tell_density": 0.203,
-    "severity_weighted_score": 71.5,
+    "score_raw": 111.5,
+    "severity_counts": { "S1": 16, "S2": 14, "S3": 7 },
+    "severity_weighted_score": 91.6,
+    "score_formula": "round(100*(1-exp(-raw/45)), 1)",
     "style": "desu_masu"
   },
   "findings": [
@@ -392,11 +395,25 @@ J. 視覚装飾の濫用
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "span_type": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
       "suggested_fix": "課題だ"
+    },
+    {
+      "id": "f037",
+      "category": "E-2",
+      "category_label": "リズム: です・ます単調反復",
+      "severity": "S2",
+      "span_type": "document",
+      "text_span": null,
+      "start": null,
+      "end": null,
+      "evidence": { "sentence_end_distribution": {"です": 9, "ます": 8}, "variation_ratio": 0.0 },
+      "reason": "文末が全17文で です/ます に集中し変奏ゼロ",
+      "suggested_fix": "体言止め・でしょう を散らす"
     }
   ],
   "category_summary": {
@@ -406,14 +423,20 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: **正規化式を固定（v1.1, IMP-002）**。`raw = S1×5 + S2×2 + S3×0.5`、`severity_weighted_score = round(100·(1 − exp(−raw/45)), 1)`。文長に依存しない単調飽和関数で、ジャンル横断・文書長横断で score を比較可能にする（短文書での頭打ち・文長依存の歪みを排除）。`K=45` は SSOT 例（raw 56 → 71.2、raw 106 → 90.5）に校正。`meta.score_raw`（生加重和）・`meta.severity_counts`（深刻度別件数）・`meta.score_formula`（用いた式）を**正式項目**として必ず併記する。
+* `ai_tell_density`: 検出 span の被覆文字数 / 全体文字数。**重複区間はマージしてから被覆文字数を算出**する（複数カテゴリが同一 span に重なっても 1 を超えない、IMP-005/IMP-004）。
+* `span_type`: **finding の span 形態（v1.1, IMP-004）**。`contiguous`（連続 span。`start`/`end` 必須）/ `scattered`（分散反復。`occurrences: [[s,e], …]` を併記、`start`/`end` は先頭出現位置）/ `document`（文書レベル＝リズム E・構造 C の一部。`start`/`end`/`text_span` は `null` 許容で、代わりに `evidence`〔stdev・文末分布など数値根拠〕を必須とする）。
+* `evidence`: 文書レベル/分散 finding の数値根拠（文長の標準偏差、文末タイプ分布、反復回数など）。`span_type` が `document`/`scattered` のとき必須。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
 
 * **v1.0** (2026-05): 日本語 AIクセ分類体系の初版。10 大分類（A〜J）× 40+ サブパターンを定義。
   + 日本語固有として重点配置: `A-6`（〜となっている）, `B-2`（カタカナ語濫用）, `E-2`（です・ます単調）, `I-4`（〜が求められる）, `J-3`（ダッシュ濫用）, D-1 の「いかがでしたでしょうか」。
+* **v1.1** (2026-06-26): 分類体系は不変。**検出出力スキーマのみ改訂**（taxonomist 審査済み）。
+  + `severity_weighted_score` の正規化式を `round(100·(1−exp(−raw/45)), 1)` に固定（IMP-002）。`score_raw` / `severity_counts` / `score_formula` を正式項目化。
+  + finding に `span_type`（contiguous/scattered/document）と `evidence`（文書レベル根拠）を追加し、文書レベル・分散パターンの `start`/`end`/`text_span` を null 許容に（IMP-004）。
+  + `ai_tell_density` を「重複区間マージ後の被覆文字数 / 全体文字数」と再定義（IMP-005 の部分対応）。
 * 拡張原則: 実戦入力で再現 2 回以上 + 日本語の人間の書き手がほぼ使わないパターンのみサブ項目として追加。新パターンは末尾の候補欄に実例 2 件以上を添えて提案する。
 
 ## 拡張候補欄（taxonomist が審査して昇格）
