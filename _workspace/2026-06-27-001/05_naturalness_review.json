@@ -1,0 +1,29 @@
+{
+  "score_before": 75.4,
+  "score_after": 5.7,
+  "improvement_rate": 0.924,
+  "residual_findings": { "S1": 0, "S2": 2, "S3": 0 },
+  "residual_detail": [
+    {
+      "finding_id": "f001",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（実現する）",
+      "severity": "S2",
+      "text_span": "監視を実現します",
+      "reason": "「ゼロトラストはリアルタイムの監視を実現します」。概念主語＋万能動詞『実現する』の同型が残存。推敲前の『可能にします』(A-10/S1) は解消されたが、置換語『実現します』で軽度残存。孤立しており深刻度はS1→S2へ低下。任意修正（『リアルタイムで監視できます』等）。"
+    },
+    {
+      "finding_id": "f002",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復（文書レベル）",
+      "severity": "S2",
+      "text_span": "（文書全体）",
+      "reason": "全16文中『〜ます。』12回・『〜です。』2回・『〜した。』1回・『〜ません。』1回。『ません／した』の変奏が新たに生じ推敲前より改善したが、『〜ます。』が依然75%（12/16）。敬体維持が前提のため強制せず、S2残存として記録。文長分散は自然方向（pstdev 9.5→10.4）に拡大。"
+    }
+  ],
+  "over_polish_signals": [],
+  "change_rate": 0.235,
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "score_before=75.4 は 02_detection.json meta.severity_weighted_score を契約どおり採用（IMP-003）。score_after=5.7 は ai-tell-detector サブエージェント再走査（IMP-006、手動照合ではなく実呼び出し）の severity_weighted_score。同一 score_formula（raw=S1*5+S2*2+S3*0.5、sat=(input_length/40)*5、score=min(100,raw/sat*100)）で再計測。改善率92.4%。S1絶対残存数0件（最重要ガード合格）。S2は2件（上限ぴったり）で内訳は孤立A-10×1と文書レベルE-2×1のみ、いずれも追加修正が過推敲リスクと釣り合わない許容残存。過推敲シグナル0個：不自然な口語化なし／敬体一貫維持で文体崩れなし／意味希薄化・ぶつ切りなし／change_rate=0.235で30%閾値未満。よってA等級・accept。なお diff warnings の f004/f014/f016 節レベル再構成は content-fidelity-auditor の重点監査対象（自然度面では問題なし）。"
+}

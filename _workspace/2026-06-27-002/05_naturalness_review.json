@@ -1,0 +1,59 @@
+{
+  "run_id": "2026-06-27-002",
+  "genre": "public_notice",
+  "style": "desu_masu",
+  "score_before": 47.1,
+  "score_after": 0.0,
+  "improvement_rate": 1.0,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 0
+  },
+  "residual_detail": {
+    "total": 0,
+    "by_category": {
+      "A": 0,
+      "B": 0,
+      "C": 0,
+      "D": 0,
+      "E": 0,
+      "F": 0,
+      "G": 0,
+      "H": 0,
+      "I": 0,
+      "J": 0
+    },
+    "non_flagged_observations": [
+      "D-1 格式結語: 『申し上げます』は冒頭挨拶(御礼申し上げます)と末尾締め(お願い申し上げます)の各1回。同型の締め結語は実質1回ずつで3回反復閾値未満のため、公的文書の正当な定型として非計上(残存ではない)。",
+      "I-3 必要表現: need to系が推敲前4回→1回(『取得していただく必要があります』単発)に縮減。公的文書として正当範囲のため非計上。",
+      "F-3 ご理解とご協力: 冒頭/末尾の各1回の対構造。他AIクセ消失により単独では露見せず、S3成立条件(他パターンとの重なり)を満たさないため非計上。"
+    ]
+  },
+  "over_polish_signals": [],
+  "over_polish_evaluation": {
+    "unnatural_colloquialization": false,
+    "style_register_break": false,
+    "public_document_formality_loss": false,
+    "meaning_dilution": false,
+    "choppy_fragmentation": false,
+    "change_rate_over_30": true,
+    "notes": "文体(硬い敬体)完全維持、敬体/常体の混入なし。末尾『賜りますよう、何卒よろしくお願い申し上げます』と冒頭『厚く御礼申し上げます』の格式結語を意図的に1回ずつ残し、公的文書の格を保持(過度な平易化による格喪失なし)。文末は『ます/ください(3回)/です/いたします/命令形』へ変奏されE-2単調を解消しつつ、ぶつ切り・意味希薄化は発生していない。change_rate 0.504 は30%/50%双方を超過するが、これは過推敲シグナルとして等級減点に用いない(下記 change_rate 判定を参照)。"
+  },
+  "change_rate": 0.504,
+  "change_rate_assessment": {
+    "verdict": "justified_deletion",
+    "deletion_led": true,
+    "deletion_share": 0.72,
+    "rationale": "change_rate 0.504 は削除主導(削除245字/挿入97字、純削除が編集予算の72%)。削除対象はすべて反復する硬い敬語定型・by受動・状態叙述(〜となります/において/によって/必要がございます/お願い申し上げます定型)等のAIクセspanであり、意味・数値・固有名詞(市民課・マイナンバーカード等)・手続き条件・告知内容は保存。新情報の追加はゼロ。原文678字→推敲後530字へ純減148字。よって0.504は過推敲ではなくIMP-001既知欠陥(装飾/常套句の純削除が変更率指標を機械的に押し上げる)に起因する指標アーティファクトと判定する。"
+  },
+  "absolute_residual_guard": {
+    "applied": true,
+    "text_length": 530,
+    "short_text_risk": false,
+    "note": "推敲後本文530字は短文ではなく、score_before 47.1 も十分大きいため、improvement_rate 1.0(100%)は短文による改善率の出にくさ/出やすさのアーティファクトではない。絶対残存数0件は実態として残存ゼロであり、改善率と絶対残存の双方が等級Aを支持する。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "ai-tell-detector 再走査(同基準・IMP-006)により残存 finding 0件(S1=0/S2=0/S3=0)、score 47.1→0.0、改善率100%。過推敲シグナルなし、敬体・公的文書の格式を完全維持。等級A条件(S1=0/S2≤2/改善70%+)を満たす。change_rate 0.504 は rewriter が契約通り hold_and_report を返した根拠だが、その実態は反復AI定型の純削除主導(72%)であり過推敲ではなく正当削除(IMP-001 既知欠陥による指標超過)。本タスク指示(IMP-001)に従い change_rate 超過のみを理由に等級を減点せず、自然度の実態(残存・過推敲)で評価した。fidelity_audit が別途 pass である前提で accept を推奨する。fidelity が fail の場合のみ rollback_and_rewrite へ差し戻すこと。"
+}
