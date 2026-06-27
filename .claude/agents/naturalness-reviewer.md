@@ -15,14 +15,18 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再実行（必須・IMP-006）**: `03_rewrite.md` に `ai-tell-detector` を**サブエージェントとして実呼び出し**して同基準で再走査する。**手動照合は禁止**（残存件数が推定値になり再現性を欠く）。残存 finding を数える。
+2. **スコア契約（IMP-003 / IMP-002）**:
+   * `score_before` = `02_detection.json` の `meta.severity_weighted_score`（推定・再計算しない）。
+   * `score_after` = 再走査結果を**正準式** `100 * (1 - exp(-raw / 45))`（raw = S1×5 + S2×2 + S3×0.5、K=45 固定）で算出。長さ非依存式なので推敲で文長が縮んでも before/after は同一基準で比較できる。
+   * `improvement_rate` = `(score_before − score_after) / score_before`。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
    * 文体崩れ（敬体／常体の混入）
    * 意味が薄くなった・ぶつ切りで読みにくい
-   * 変更率 30% 超
-4. **品質等級の判定**。
+   * **公的文書など格式ジャンルでの格喪失**（過度な平易化＝逆方向の過推敲。敬体維持・格式結語の各1回出現それ自体は減点しない）
+   * 変更率 30% 超。**ただし削除主導（`deletion_share` 高・`info_loss_rate`≈0）かつ fidelity=pass なら過推敲ではなく正当削除として扱い、change_rate だけを理由に減点しない**（IMP-001）。
+4. **品質等級の判定**。改善率だけでなく**絶対残存数**を必ず併記し（`absolute_residual_guard`）、S1 が1件でもあれば C 以下。
 
 ## 出力
 
