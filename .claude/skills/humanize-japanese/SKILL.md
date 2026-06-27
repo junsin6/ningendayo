@@ -77,6 +77,9 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
 
+**override accept（IMP-001・2026-06-27 明文化）**: 推敲役が変更率 50% 超で `hold_and_report` を返しても、次をすべて満たすときはオーケストレーターが `accept` へ昇格してよい —
+(1) `04_fidelity_audit.json` が `verdict: pass`、(2) `05_naturalness_review.json` が等級 A/B、(3) 変更率超過が**削除主導**（`deletion_dominant=true` / `info_loss_rate ≈ 0`）で実体情報の欠落がない。これは「文字単位 change_rate が装飾・敬語定型・絵文字の純削除で機械的に膨張する既知欠陥」への対処。装飾過多のブログ・硬い敬語定型の公的文書で頻出する。**override した場合は `summary.md` に理由（削除/挿入の内訳・fidelity pass・自然度等級）を必ず明記する。**
+
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
 ## 深刻度と品質等級
