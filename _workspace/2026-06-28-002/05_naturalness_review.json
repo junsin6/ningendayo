@@ -1,0 +1,42 @@
+{
+  "score_before": 29.7,
+  "score_after": 2.3,
+  "improvement_rate": 0.923,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 3
+  },
+  "residual_detail": [
+    {
+      "category": "E-2",
+      "severity": "S3",
+      "text_span": "お知らせいたします",
+      "note": "文末「いたします」が全13文中5文に出現し、『お知らせいたします』が冒頭(107)と末尾近く(500)で同型反復。ただし公的文書は敬体統一が必須レジスターのため弱S3。強制除去対象ではない"
+    },
+    {
+      "category": "A-6",
+      "severity": "S3",
+      "text_span": "必要となる場合がございます",
+      "note": "「必要となる」はA-6状態叙述の残り香だが、『更新手続きが必要となる場合』は公的文書の慣用句で単発。過検出回避のためS3に留置。除去は任意"
+    },
+    {
+      "category": "I-3",
+      "severity": "S3",
+      "text_span": "場合がございます",
+      "note": "A-6 finding と同一文の区間重複。公的文書レジスターでは標準表現で除去不要。密度記録としてのみ計上"
+    }
+  ],
+  "change_rate": 0.18,
+  "over_polish_signals": [],
+  "over_polish_check": {
+    "register_over_colloquialization": "なし。ご了承ください/ご持参ください/お願いいたします等、硬い敬体を一貫保持。公的文書として砕けすぎる口語化は確認されず、逆方向（過度な口語化）の過推敲シグナルもゼロ",
+    "style_consistency": "全文 desu_masu で統一。敬体/常体の混入なし",
+    "meaning_thinning": "なし。意味の希薄化・ぶつ切りなし。E-1（文長均一）が短文挿入で解消されリズム回復",
+    "information_loss": "なし。日付（令和8年7月13日〜15日／令和8年9月末日）・本人確認書類・対象サービス・連絡先（図書館ホームページ）等の事実情報は全保存",
+    "change_rate_within_limit": true
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "score_before は IMP-003 指示どおり 02_detection.json の meta.severity_weighted_score=29.7 を採用。score_after=2.3 は ai-tell-detector を 03_rewrite.md に同一 taxonomy 基準で再走査し、同一重み付け（S1×5/S2×2/S3×0.5, raw/(raw+62.73)×100）で算出。残存は S3×3（raw 1.5）のみで S1/S2 はゼロ。推敲前の決定的クセ（停止されることとなりました／予定となっております／必要がございます×2／求められます／なされます／導入されることにより／申し上げます三連）はすべて解消。E-1 文長均一も『あらかじめご了承ください。』(13字) 等の短文挿入で解消。残存 3 件はいずれも公的文書レジスターで慣用的に許容される表現で強制除去対象外。過推敲シグナルなし、敬体一貫、情報欠落なし、変更率約18%で30%閾値内。等級A・accept。"
+}
