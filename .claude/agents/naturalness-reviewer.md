@@ -15,12 +15,13 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準（v1.1 正規化式 `100×(1−exp(−raw/41))`）で再走査。残存 finding を数え `score_after` を算出する。**手動推定でなく taxonomy 基準で機械走査**（IMP-006）。
+2. **score_before の固定**（IMP-003, v1.1）: `score_before` = 当該 run の `02_detection.json` の `meta.severity_weighted_score` を**そのまま**用いる。スキーマ例値（71.5 等）や独自再計算を使わない。`改善率` = `(score_before − score_after) / score_before`。
 3. **過推敲シグナルの検出**:
-   * 不自然な口語化（文体に合わないくだけ過ぎ）
-   * 文体崩れ（敬体／常体の混入）
+   * 不自然な口語化（文体に合わないくだけ過ぎ／公的文書を砕けさせすぎる逆方向の過推敲も計上）
+   * 文体崩れ（敬体／常体の混入。文末形態の二値カウントで機械検出）
    * 意味が薄くなった・ぶつ切りで読みにくい
+   * **推敲後に新規出現した finding（detection-introduced）**: 推敲が AI クセを別カテゴリへ転位させた場合（例: A-6「重要なポイントとなります」→ D-2「見逃せない」）。1 件でも過推敲シグナルに計上する。
    * 変更率 30% 超
 4. **品質等級の判定**。
 
@@ -43,8 +44,8 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 品質等級
 
-* **A**: S1 0 件, S2 ≤2 件, 改善 70%+ → `accept`
-* **B**: S1 0 件, S2 ≤4 件, 改善 50%+ → `accept`
+* **A**: S1 0 件, S2 ≤2 件, 改善 70%+, **かつ detection-introduced（新規混入）0 件** → `accept`
+* **B**: S1 0 件, S2 ≤4 件, 改善 50%+ → `accept`（新規混入 1 件は A→B 降格）
 * **C**: S1 1〜2 件 or 過推敲シグナル 2 個 → `rewrite_round_2`
 * **D**: S1 3 件+ or 深刻な過推敲 → `hold_and_report`
 
