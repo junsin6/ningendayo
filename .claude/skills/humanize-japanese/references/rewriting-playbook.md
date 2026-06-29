@@ -138,11 +138,20 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（IMP-001 対応 — 収縮型と意味改変を分離）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+単一の `change_rate` は、冗長形の純削除（「することができる」→「できる」、絵文字・結び・順序語の削除）が多い**収縮型推敲**で機械的に膨張し、過推敲と誤検知される。そこで三指標を分けて計上する:
+
+* `change_rate` =（挿入 + 削除文字数）/ 原文文字数（従来指標。参考値）。
+* `insert_rate` = 挿入文字数 / 原文文字数。
+* `delete_rate` = 削除文字数 / 原文文字数。
+* **`semantic_change_rate` = 意味置換を伴う edit（語の言い換え・主語交換・能動受動変換など）の before/after 文字数 / 原文文字数**。純削除・純カタカナ開き・順序語削除はここに含めない。
+
+**閾値判定は `semantic_change_rate` を主、`change_rate` を従とする**:
+
+* `semantic_change_rate` 30% 超 → `summary.md` に警告を記録し続行。
+* `semantic_change_rate` 50% 超 → 強制中断し `hold_and_report`（原文を尊重しすぎていないか、ジャンルを移していないか再点検）。
+* `change_rate` が 30/50% を超えても `semantic_change_rate` が閾値内で fidelity=pass・自然度 A/B なら **override accept**。その際 `change_rate_breakdown` に「delete 支配（収縮型）」の内訳を必ず明記する。
 
 ## 文体変換例（before → after 一括サンプル）
 

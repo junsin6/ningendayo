@@ -34,9 +34,9 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
 2. **finding 順処理**: 各 finding の span を playbook レシピで修正。検出のない区間は一切触らない。
 3. **連鎖調整**: 同カテゴリの反復（例 A-1「における」5 回）は、全部を同じ形に直さず複数の自然形に分散させる（機械的均一を避ける）。
 4. **リズム（E）**: 文末の単調反復を、同一文体内で変奏。短文・長文を意図的に混ぜる。
-5. **変更率監視**: 挿入＋削除文字数 / 原文文字数を計算。
-   * 30% 超 → `warnings` に記録して続行。
-   * 50% 超 → 中断し、オーケストレーターへ `hold_and_report` を返す。
+5. **変更率監視**（IMP-001: 収縮型と意味改変を分離）: `change_rate`・`insert_rate`・`delete_rate` に加え、意味置換を伴う edit のみを数えた `semantic_change_rate` を算出する。純削除・カタカナ開き・順序語削除は `semantic_change_rate` に含めない。
+   * 閾値判定は `semantic_change_rate` を主とする: 30% 超 → `warnings` に記録して続行。50% 超 → 中断し `hold_and_report`。
+   * `change_rate` が閾値超でも `semantic_change_rate` が閾値内なら、`change_rate_breakdown`（delete 支配の収縮型である旨と内訳）を diff に明記して続行する。
 
 ## 厳守事項
 
