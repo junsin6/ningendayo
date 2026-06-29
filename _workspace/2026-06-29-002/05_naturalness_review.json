@@ -1,0 +1,51 @@
+{
+  "run_id": "2026-06-29-002",
+  "genre": "public_notice",
+  "style": "desu_masu",
+  "score_before": 73.1,
+  "score_after": 3.0,
+  "improvement_rate": 0.959,
+  "rescan_method": "ai-tell-detector サブエージェント再走査（IMP-006 客観性担保）。同一 SSOT v1.0・同一加重式で再計測。",
+  "normalization": {
+    "formula": "raw = S1*5 + S2*2 + S3*0.5、推敲前 raw=48→73.1 に整合する係数(約1.523)で線形正規化",
+    "raw_before": 48,
+    "raw_after": 2.0,
+    "note": "raw_before の内訳: S1=6(f001-f005,f013), S2=9(f006-f012,f014,f015), S3=0。raw_after=S1 0*5 + S2 1*2 = 2.0。係数 73.1/48≒1.523 を適用し score_after≒3.0。"
+  },
+  "residual_findings": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 0,
+    "total": 1,
+    "detail": [
+      {
+        "id": "r001",
+        "category": "A-2",
+        "severity": "S2",
+        "text_span": "につきましては",
+        "reason": "「につきましては」が3回反復＋「本件について」を含め について系 主題提示が4回。個々は公的文書で自然だが同形反復が機械的。A-2 は本来 S1 だが単発はすべて自然な定型敬語のため反復回数を根拠に density ベース S2 へ減格。",
+        "suggested_fix": "1〜2箇所を主題助詞「は」へ開き 4→2 に削減（公的文書定型として許容範囲内、無修正でも等級不変）"
+      }
+    ]
+  },
+  "document_level_check": {
+    "E-2_monotony": "改善済み。文末が ございます/ました/します/申し上げます/いただけません/ください/いただけます/予定です/いたします と十分に変奏。3連続同一文末なし。",
+    "E-1_length_variance": "健全。長文(期間説明)と定型文が混在し標準偏差良好。",
+    "C_structure": "クリーン（箇条書き・絵文字・機械的並列・見出し公式なし）。",
+    "J_decoration": "クリーン（太字・ダッシュなし。括弧は日付の構造化のみで Do-NOT 対象＝数値）。",
+    "D_signature_phrases": "クリーン（いかがでしたでしょうか / すべき時 / 結論として 等なし）。",
+    "I-4_vague_request": "残存なし。"
+  },
+  "over_polish_signals": [],
+  "over_polish_check": {
+    "style_break": "なし。全文 敬体一貫、常体混入ゼロ。",
+    "excessive_colloquialism": "なし。お済ませください/ご持参ください/ご利用いただけません 等は公的文書の格を保持。",
+    "meaning_thinning": "なし。状態叙述・受動・冗長敬語の除去のみで情報量は不変。",
+    "choppiness": "なし。",
+    "change_rate_over_30pct": false,
+    "public_notice_register": "保持。ご案内の格（平素より〜誠にありがとうございます／何卒〜お願い申し上げます／重ねてお願い申し上げます）を維持。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1 0件・S2 1件（A-2 反復、許容範囲）・改善率約96%で A 等級。過推敲シグナル 0。公的文書/お知らせの格を保ったまま A-6 状態叙述5件・A-8 受動4件・A-5 可能冗長・I-3/I-4 冗長要請・E-2 単調をすべて手術的に除去。2次推敲不要。残存 A-2 につきましては反復は公的文書定型として許容範囲内のため accept。"
+}
