@@ -1,0 +1,342 @@
+{
+  "meta": {
+    "input_length": 823,
+    "detected_count": 29,
+    "ai_tell_density": 0.469,
+    "severity_weighted_score": 91.3,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実行することを可能にする",
+      "start": 123,
+      "end": 135,
+      "reason": "「(する)ことができる」可能の冗長形が本文で9回反復し、断定で足りる箇所まで機械的に冗長化",
+      "suggested_fix": "実行できる"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "構築を可能にします",
+      "start": 199,
+      "end": 208,
+      "reason": "「(する)ことができる」可能の冗長形が本文で9回反復し、断定で足りる箇所まで機械的に冗長化",
+      "suggested_fix": "構築できます"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "することができる仕組み",
+      "start": 259,
+      "end": 270,
+      "reason": "「(する)ことができる」可能の冗長形が本文で9回反復し、断定で足りる箇所まで機械的に冗長化",
+      "suggested_fix": "できる仕組み"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "コンパイルすることができます",
+      "start": 331,
+      "end": 345,
+      "reason": "「(する)ことができる」可能の冗長形が本文で9回反復し、断定で足りる箇所まで機械的に冗長化",
+      "suggested_fix": "コンパイルできます"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "動作することができるのです",
+      "start": 381,
+      "end": 394,
+      "reason": "「(する)ことができる」可能の冗長形が本文で9回反復し、断定で足りる箇所まで機械的に冗長化",
+      "suggested_fix": "動作するのです"
+    },
+    {
+      "id": "f006",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "処理することができるようになります",
+      "start": 463,
+      "end": 480,
+      "reason": "「(する)ことができる」可能の冗長形が本文で9回反復し、断定で足りる箇所まで機械的に冗長化",
+      "suggested_fix": "処理できるようになります"
+    },
+    {
+      "id": "f007",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "マイグレーションすることができるため",
+      "start": 497,
+      "end": 515,
+      "reason": "「(する)ことができる」可能の冗長形が本文で9回反復し、断定で足りる箇所まで機械的に冗長化",
+      "suggested_fix": "移行できるため"
+    },
+    {
+      "id": "f008",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "有効活用することができます",
+      "start": 523,
+      "end": 536,
+      "reason": "「(する)ことができる」可能の冗長形が本文で9回反復し、断定で足りる箇所まで機械的に冗長化",
+      "suggested_fix": "有効に活用できます"
+    },
+    {
+      "id": "f009",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "動かすことができるようになっています",
+      "start": 578,
+      "end": 596,
+      "reason": "「(する)ことができる」可能の冗長形が本文で9回反復し、断定で足りる箇所まで機械的に冗長化",
+      "suggested_fix": "動かせるようになっています"
+    },
+    {
+      "id": "f010",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実行することを可能にし",
+      "start": 672,
+      "end": 683,
+      "reason": "「(する)ことができる」可能の冗長形が本文で9回反復し、断定で足りる箇所まで機械的に冗長化",
+      "suggested_fix": "実行でき"
+    },
+    {
+      "id": "f011",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語 + 万能動詞（提供する/もたらす等）",
+      "severity": "S1",
+      "text_span": "WebAssemblyのアーキテクチャは、従来のJavaScriptエンジンのボトルネックを解消することができる仕組みを提供しています",
+      "start": 211,
+      "end": 278,
+      "reason": "抽象主語「アーキテクチャは」+万能動詞「提供しています」。English `The architecture provides` 直訳型。文書内で提供/もたらす/可能にする等が反復",
+      "suggested_fix": "WebAssemblyのアーキテクチャは、従来のJavaScriptエンジンのボトルネックを解消する。"
+    },
+    {
+      "id": "f012",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語 + 万能動詞（提供する/もたらす等）",
+      "severity": "S1",
+      "text_span": "この技術は、これまでJavaScriptだけでは実現することが難しかったハイパフォーマンスなアプリケーションの構築を可能にします",
+      "start": 144,
+      "end": 208,
+      "reason": "抽象主語「この技術は」+万能動詞「可能にします」。`This technology enables` 直訳型",
+      "suggested_fix": "この技術を使えば、これまでJavaScriptだけでは難しかった高性能なアプリケーションを構築できます"
+    },
+    {
+      "id": "f013",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語 + 万能動詞（提供する/もたらす等）",
+      "severity": "S1",
+      "text_span": "このテクノロジーがもたらすメリットは多岐にわたります",
+      "start": 397,
+      "end": 423,
+      "reason": "抽象主語「テクノロジーが」+万能動詞「もたらす」。`The technology brings benefits` 直訳型",
+      "suggested_fix": "この技術には多くの利点があります"
+    },
+    {
+      "id": "f014",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語 + 万能動詞（提供する/もたらす等）",
+      "severity": "S1",
+      "text_span": "WebAssemblyは現代のソフトウェア開発に新たなパラダイムをもたらす技術だと言えるでしょう",
+      "start": 729,
+      "end": 777,
+      "reason": "抽象主語「WebAssemblyは」+万能動詞「もたらす」+結び「と言えるでしょう」が重複。`X brings a new paradigm` 直訳型",
+      "suggested_fix": "WebAssemblyは現代のソフトウェア開発に新しい考え方を持ち込む"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "テクノロジー",
+      "start": 135,
+      "end": 141,
+      "reason": "日本語で書ける語のカタカナ化が文書全体で密集（テクノロジー3回・スピード・マイグレーション・メリット等）。B-2クラスタ。『テクノロジー』が3回反復",
+      "suggested_fix": "技術"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ハイパフォーマンス",
+      "start": 180,
+      "end": 189,
+      "reason": "日本語で書ける語のカタカナ化が文書全体で密集（テクノロジー3回・スピード・マイグレーション・メリット等）。B-2クラスタ",
+      "suggested_fix": "高性能"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ネイティブに近いスピード",
+      "start": 368,
+      "end": 380,
+      "reason": "日本語で書ける語のカタカナ化が文書全体で密集（テクノロジー3回・スピード・マイグレーション・メリット等）。B-2クラスタ",
+      "suggested_fix": "ネイティブに近い速度"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "マイグレーション",
+      "start": 497,
+      "end": 505,
+      "reason": "日本語で書ける語のカタカナ化が文書全体で密集（テクノロジー3回・スピード・マイグレーション・メリット等）。B-2クラスタ",
+      "suggested_fix": "移行"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "メリット",
+      "start": 410,
+      "end": 414,
+      "reason": "日本語で書ける語のカタカナ化が文書全体で密集（テクノロジー3回・スピード・マイグレーション・メリット等）。B-2クラスタ",
+      "suggested_fix": "利点"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "クライアントサイド",
+      "start": 453,
+      "end": 462,
+      "reason": "日本語で書ける語のカタカナ化が文書全体で密集（テクノロジー3回・スピード・マイグレーション・メリット等）。B-2クラスタ",
+      "suggested_fix": "クライアント側"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "パラダイム",
+      "start": 756,
+      "end": 761,
+      "reason": "日本語で書ける語のカタカナ化が文書全体で密集（テクノロジー3回・スピード・マイグレーション・メリット等）。B-2クラスタ",
+      "suggested_fix": "考え方"
+    },
+    {
+      "id": "f022",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "近年、フロントエンド開発の世界において",
+      "start": 35,
+      "end": 54,
+      "reason": "（文書レベル）全14文中13文が「〜ています／〜ます」で終止。体言止め・「〜だ」「〜でしょう」等の変奏ゼロで一本調子",
+      "suggested_fix": "体言止め・「〜できます」「〜のだ」「〜でしょう」等を混ぜ文末を変奏"
+    },
+    {
+      "id": "f023",
+      "category": "D-6",
+      "category_label": "AI慣用句: 完結公式型の結び（〜していく必要がある）",
+      "severity": "S2",
+      "text_span": "引き続き注目していく必要があります",
+      "start": 804,
+      "end": 821,
+      "reason": "末尾が『〜していく必要があります』公式。行為者を曖昧にした典型的AI結び",
+      "suggested_fix": "これからの動きにも目が離せません"
+    },
+    {
+      "id": "f024",
+      "category": "D-1",
+      "category_label": "AI慣用句: 結び（〜と言えるでしょう）",
+      "severity": "S1",
+      "text_span": "と言えるでしょう",
+      "start": 769,
+      "end": 777,
+      "reason": "『〜と言えるでしょう』はLLM結びの決定的シグネチャ。人間の技術記事ではほぼ使わない",
+      "suggested_fix": "持ち込む技術だ"
+    },
+    {
+      "id": "f025",
+      "category": "C-1",
+      "category_label": "構造: 機械的な並列列挙（まず・次に・さらに）",
+      "severity": "S1",
+      "text_span": "まず、",
+      "start": 424,
+      "end": 427,
+      "reason": "（文書レベル）第3段落が『まず、〜。次に、〜。さらに、〜。』で全体を支配。英作文教本式の機械的並列",
+      "suggested_fix": "列挙の1〜2項を叙述文に溶かし、接続語を外す"
+    },
+    {
+      "id": "f026",
+      "category": "C-1",
+      "category_label": "構造: 機械的な並列列挙（まず・次に・さらに）",
+      "severity": "S1",
+      "text_span": "次に、",
+      "start": 481,
+      "end": 484,
+      "reason": "（文書レベル）『まず・次に・さらに』連発の一部",
+      "suggested_fix": "叙述へ吸収"
+    },
+    {
+      "id": "f027",
+      "category": "C-1",
+      "category_label": "構造: 機械的な並列列挙（まず・次に・さらに）",
+      "severity": "S1",
+      "text_span": "さらに、",
+      "start": 537,
+      "end": 541,
+      "reason": "（文書レベル）『まず・次に・さらに』連発の一部",
+      "suggested_fix": "叙述へ吸収"
+    },
+    {
+      "id": "f028",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S3",
+      "text_span": "具体的には",
+      "start": 279,
+      "end": 284,
+      "reason": "段落冒頭の説明導入。H系として軽微だがC-1並列と重なりAI印象を補強",
+      "suggested_fix": "削除し直接叙述"
+    },
+    {
+      "id": "f029",
+      "category": "H-3",
+      "category_label": "接続詞: 「このように」指示でまとめる定型",
+      "severity": "S3",
+      "text_span": "このように、",
+      "start": 723,
+      "end": 729,
+      "reason": "結論段落を『このように、』で受ける要約定型。単独では軽微",
+      "suggested_fix": "削除または前文と接続"
+    }
+  ],
+  "category_summary": {
+    "A": 14,
+    "B": 7,
+    "C": 3,
+    "D": 2,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 2,
+    "I": 0,
+    "J": 0
+  }
+}

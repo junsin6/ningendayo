@@ -1,0 +1,58 @@
+{
+  "run_id": "2026-06-30-002",
+  "genre": "public_document_notice",
+  "style_preserved": "desu_masu",
+  "score_before": 56.5,
+  "score_after": 10.0,
+  "improvement_rate": 0.823,
+  "score_formula": {
+    "definition": "severity_weighted_score = S1count*W_S1 + S2count*W_S2 + S3count*W_S3",
+    "weights": { "W_S1": 16.5, "W_S2": 8.0, "W_S3": 2.0 },
+    "divisor": "finding-level（同一ルーブリックで before/after を同一重みで算出。分母正規化なしの加算式）",
+    "before_decomposition": "1*16.5(S1=f001) + 5*8.0(S2=f002〜f006) = 56.5（detection meta と一致、IMP-002/003 整合）",
+    "after_decomposition": "0*16.5 + 1*8.0(A-8残存) + 1*2.0(E-2軽微残存) = 10.0"
+  },
+  "rescan_findings": [
+    {
+      "id": "r001",
+      "category": "A-8",
+      "category_label": "翻訳調: 行為者を消した受動の残存",
+      "severity": "S2",
+      "text_span": "蔵書データの正確性が保たれ",
+      "location": "第2段（L5）",
+      "reason": "原文7spanの受動のうち6spanは能動化されたが、「正確性が保たれ」1箇所が残存。ただし『データの正確性が保たれる』は日本語として自然な自動詞的表現で問題度は低い。単独残存・反復なしのため軽微。",
+      "suggested_fix": "任意。『蔵書データの正確性を保ち』と能動化可だが、現状でも自然さは許容範囲。"
+    },
+    {
+      "id": "r002",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復（軽微残存）",
+      "severity": "S3",
+      "text_span": "(document-scope)",
+      "location": "全文",
+      "reason": "文末形態は させていただきます/です/ください/いたします/できるようになります/までです 等へ多様化され一本調子は解消。依然として敬体中心だが、公的お知らせでは適度なフォーマルさが正常であり体言止め回避も妥当。他パターンと重ならないためS3（単独では非問題）。",
+      "suggested_fix": "不要。公的文書ジャンルの自然度基準を満たす。"
+    }
+  ],
+  "residual_findings": { "S1": 0, "S2": 1, "S3": 1 },
+  "residual_by_category": { "A-6": 0, "A-8": 1, "A-5": 0, "I-3": 0, "D-6": 0, "E-2": "S3(軽微)" },
+  "over_polish_signals": [
+    {
+      "type": "change_rate_over_30",
+      "detail": "change_rate 0.342（del187/ins65）が30%閾値を超過。50%未満のため強制中断には至らず。超過要因は A-6 状態叙述5span・A-8 受動2span の能動化で削除文字数が嵩んだ正当な編集であり、ジャンル移動・情報欠落・文体変更は伴わない。",
+      "severity": "warning"
+    }
+  ],
+  "over_polish_check": {
+    "keitai_maintained": true,
+    "joutai_mixing": false,
+    "tagengo_kougoka": false,
+    "taigendome_kakukuzure": false,
+    "meaning_dilution": false,
+    "notes": "敬体（です・ます）全編維持。常体混入なし。『ください』形は公的お知らせの標準的な依頼表現で過度な口語化ではない。体言止めは不採用のため格崩れなし。末尾『よろしくお願い申し上げます』を温存し公的文書の格を保持。日付・CD/DVD返却条件・自動延長措置など内容は希薄化せず保存。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "verdict": "accept",
+  "notes": "S1=0・S2=1（≤2）・改善率82.3%（≥70%）でA等級を満たす。過推敲シグナルはchange_rate超過1件のみ（C降格の閾値=2件未満）で、内容毀損・文体崩れ・格崩れを伴わない正当な編集に起因するため減点せず。残存A-8『正確性が保たれ』は自然な自動詞的表現で許容、E-2はS3軽微で他パターンと重ならず非問題。公的文書として適度なフォーマルさ・敬体・定型結句の温存が保たれており、人間が書いた公的お知らせとして自然。受理推奨。"
+}
