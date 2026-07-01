@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（IMP-001 反映）: **weighted_change_rate**（=(ins+del×0.5)/orig）を主指標に 30% 警告 / 50% 中断。difflib 生値 `change_rate` は参考値で単独中断に使わない。net_change_rate・char_delta も併記（詳細は `references/rewriting-playbook.md §変更率の数え方`）。
 
 ### 4. 並列検証
 
@@ -78,6 +78,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
+
+**override accept（IMP-001 反映）**: difflib 生値 `change_rate` が 50% を超えても、`del ≫ ins` の削除主導・かつ fidelity=pass・かつ 自然度 A/B の場合は `hold_and_report` にせず **accept** する。change_rate 生値は圧縮率であって意味改変率ではないため。判断根拠（weighted_change_rate と char_delta）を `summary.md` に明記すること。
 
 ## 深刻度と品質等級
 

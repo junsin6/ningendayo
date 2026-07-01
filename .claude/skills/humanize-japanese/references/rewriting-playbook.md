@@ -138,11 +138,19 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（v2 — IMP-001 反映 2026-07-01）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+AI クセ除去は本質的に「冗長な水増しの削除」なので、正しい推敲ほど削除主導（del ≫ ins）になる。旧式 `(ins+del)/orig` は削除 1 字を分子に等倍計上するため、意味を全く変えずに贅肉を削るほど値が膨張し、`hold_and_report` を誤発火させる（過去 run で 45〜55% が常態化。実体は net -17% の圧縮）。そこで **3 指標を分離計上**する。
+
+* **change_rate（difflib 生値）** = （挿入 + 削除文字数）/ 原文文字数。参考値として記録するのみ。**単独では中断判定に使わない。**
+* **net_change_rate** = |char_delta| / 原文文字数（char_delta = 推敲後長 − 原文長）。純増減。削除主導の圧縮はここで小さく出る。
+* **weighted_change_rate** = (ins + del×0.5) / 原文文字数。削除に 0.5 係数（削除は情報付加ではないため）。**中断判定の主指標**。
+
+判定:
+* 警告（`summary.md` に記録し続行）: weighted_change_rate 30% 超、または change_rate 生値が高くても net が小さいとき（削除主導の注記を付す）。
+* 強制中断 `hold_and_report`: **weighted_change_rate 50% 超**。原文を尊重しすぎ／ジャンル移動を再点検。
+* **override accept 条件**: change_rate 生値が 50% を超えても、`del ≫ ins`（削除主導）かつ fidelity=pass かつ 自然度 A/B なら中断しない。理由を `summary.md` に明記（意味改変率ではなく圧縮率であるため）。
+* diff の meta には `change_rate` `net_change_rate` `weighted_change_rate` `char_delta` `edits_count` を必ず併記する。
 
 ## 文体変換例（before → after 一括サンプル）
 
