@@ -1,0 +1,333 @@
+{
+  "meta": {
+    "input_length": 839,
+    "detected_count": 28,
+    "ai_tell_density": 0.371,
+    "severity_weighted_score": 100.0,
+    "style": "desu_masu",
+    "score_formula": "score = min(100, raw_weighted_sum / (0.06 * input_length) * 100); weights S1=5,S2=2,S3=0.5. raw_sum=92.0, sat=0.06*839=50.3",
+    "density_note": "E-1/E-2 は文書レベル所見のため density 分子から除外（全文長を span にすると density が飽和し無意味になるため）"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における 濫用",
+      "severity": "S1",
+      "text_span": "における",
+      "start": 47,
+      "end": 51,
+      "reason": "「Web開発における」— 場所/分野を抽象的に枠づける英語 in の直訳。冒頭の硬い枠づけで単発でも典型シグネチャ。",
+      "suggested_fix": "Web開発で / Web開発の"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実行することができる",
+      "start": 151,
+      "end": 161,
+      "reason": "「実行することができる」— 可能の冗長形。本文に「ことができ」系が3回反復（151,470,345近傍）。",
+      "suggested_fix": "実行できる"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "させることができる",
+      "start": 345,
+      "end": 354,
+      "reason": "「動作させることができる」— 可能の冗長形。反復3回のうちの一つ。",
+      "suggested_fix": "動作させられる"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実行することができます",
+      "start": 470,
+      "end": 481,
+      "reason": "「シームレスに実行することができます」— 可能の冗長形（B-2カタカナ語と重畳）。",
+      "suggested_fix": "滑らかに実行できます"
+    },
+    {
+      "id": "f005",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "バイナリフォーマットとなっています",
+      "start": 165,
+      "end": 182,
+      "reason": "「バイナリフォーマットとなっています」— だ/である で足りる箇所を has become 的に状態化。★日本語固有の最強クセ。",
+      "suggested_fix": "バイナリフォーマットです"
+    },
+    {
+      "id": "f006",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "実現することが可能となっています",
+      "start": 527,
+      "end": 543,
+      "reason": "「実現することが可能となっています」— 状態化＋可能冗長の二重クセ（A-5と重畳）。",
+      "suggested_fix": "実現できます / 高いセキュリティを保てます"
+    },
+    {
+      "id": "f007",
+      "category": "A-10",
+      "category_label": "抽象主語+万能動詞: 提供する/もたらす/示している",
+      "severity": "S1",
+      "text_span": "WebAssemblyは、優れたポータビリティを提供します",
+      "start": 402,
+      "end": 431,
+      "reason": "「WebAssemblyは、優れたポータビリティを提供します」— 事象/技術が主語＋万能動詞 provide の直訳。",
+      "suggested_fix": "WebAssemblyは移植性に優れます"
+    },
+    {
+      "id": "f008",
+      "category": "A-10",
+      "category_label": "抽象主語+万能動詞: 提供する/もたらす/示している",
+      "severity": "S2",
+      "text_span": "この状況に大きなパラダイムシフトをもたらしました",
+      "start": 285,
+      "end": 309,
+      "reason": "「この状況に大きなパラダイムシフトをもたらしました」— 抽象主語＋bring 直訳。同型が本文で反復。",
+      "suggested_fix": "この状況を大きく変えました"
+    },
+    {
+      "id": "f009",
+      "category": "A-10",
+      "category_label": "抽象主語+万能動詞: 提供する/もたらす/示している",
+      "severity": "S2",
+      "text_span": "WebAssemblyがもたらすメリット",
+      "start": 369,
+      "end": 389,
+      "reason": "「WebAssemblyがもたらすメリット」— 技術主語＋もたらす。同カテゴリ反復のため密度で計上。",
+      "suggested_fix": "WebAssemblyの利点"
+    },
+    {
+      "id": "f010",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "大きなパラダイムシフト",
+      "start": 290,
+      "end": 301,
+      "reason": "「大きなパラダイムシフト」— 日本語で書けるカタカナ語。paradigm shift。B-2該当語が本文に多数（ポータビリティ/シームレス/セキュア/サンドボックス/コンピューティングパワー/ソリューション/テクノロジー等）。",
+      "suggested_fix": "大きな転換"
+    },
+    {
+      "id": "f011",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ポータビリティ",
+      "start": 418,
+      "end": 425,
+      "reason": "「ポータビリティ」— 移植性 と書ける。カタカナ語濫用の反復。",
+      "suggested_fix": "移植性"
+    },
+    {
+      "id": "f012",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "シームレスに",
+      "start": 464,
+      "end": 470,
+      "reason": "「シームレスに」— 滑らかに/切れ目なく と書ける。seamless。",
+      "suggested_fix": "滑らかに"
+    },
+    {
+      "id": "f013",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "セキュアなサンドボックス環境",
+      "start": 494,
+      "end": 508,
+      "reason": "「セキュアなサンドボックス環境」— 安全な隔離環境 と開ける。secure/sandbox の重畳。",
+      "suggested_fix": "安全な隔離環境"
+    },
+    {
+      "id": "f014",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "コンピューティングパワー",
+      "start": 604,
+      "end": 616,
+      "reason": "「高いコンピューティングパワー」— 高い計算能力 と書ける。computing power。",
+      "suggested_fix": "高い計算能力"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 676,
+      "end": 683,
+      "reason": "「ソリューション」— 解決策/仕組み と書ける。solution。カタカナ濫用の総密度が高い。",
+      "suggested_fix": "仕組み / 解決策"
+    },
+    {
+      "id": "f016",
+      "category": "C-1",
+      "category_label": "構造: まず・次に・最後に 機械的並列",
+      "severity": "S1",
+      "text_span": "まず",
+      "start": 185,
+      "end": 187,
+      "reason": "「まず」— 段落頭が まず/次に/最後に(185,366,546) で機械的に三分割。英語作文教本式の列挙公式。",
+      "suggested_fix": "（削除して叙述に溶かす）"
+    },
+    {
+      "id": "f017",
+      "category": "C-1",
+      "category_label": "構造: まず・次に・最後に 機械的並列",
+      "severity": "S1",
+      "text_span": "次に",
+      "start": 366,
+      "end": 368,
+      "reason": "「次に」— まず/次に/最後に 三点公式の二つ目。段落冒頭を支配。",
+      "suggested_fix": "（削除／言い換え）"
+    },
+    {
+      "id": "f018",
+      "category": "C-1",
+      "category_label": "構造: まず・次に・最後に 機械的並列",
+      "severity": "S1",
+      "text_span": "最後に",
+      "start": 546,
+      "end": 549,
+      "reason": "「最後に」— 三点公式の三つ目。C-4段落冒頭要約公式とも重畳。",
+      "suggested_fix": "（削除／言い換え）"
+    },
+    {
+      "id": "f019",
+      "category": "D-1",
+      "category_label": "AI慣用句: 〜と言えるでしょう 結び",
+      "severity": "S1",
+      "text_span": "と言えるでしょう",
+      "start": 740,
+      "end": 748,
+      "reason": "「と言えるだろう」系の敬体版「と言えるでしょう」— 人間の書き手がほぼ使わない結び常套句。",
+      "suggested_fix": "（削除し断定）革新的なテクノロジーです"
+    },
+    {
+      "id": "f020",
+      "category": "D-1",
+      "category_label": "AI慣用句: いかがでしたでしょうか型の問いかけ結び",
+      "severity": "S1",
+      "text_span": "であると言えるのではないでしょうか",
+      "start": 820,
+      "end": 837,
+      "reason": "「重要であると言えるのではないでしょうか」— ブログAI決定的シグネチャ。婉曲問いかけ結び（G-1とも重畳）。",
+      "suggested_fix": "重要です / 身につけておきたい"
+    },
+    {
+      "id": "f021",
+      "category": "D-4",
+      "category_label": "AI慣用句: ハイプ語彙 革新的な",
+      "severity": "S2",
+      "text_span": "新しいバイナリフォーマット",
+      "start": 162,
+      "end": 175,
+      "reason": "「新しいバイナリフォーマット」＋末尾「革新的なテクノロジー」— 誇張語 革新的/画期的 の多用。",
+      "suggested_fix": "（誇張を弱める）"
+    },
+    {
+      "id": "f022",
+      "category": "D-4",
+      "category_label": "AI慣用句: ハイプ語彙 革新的な/切り開く",
+      "severity": "S2",
+      "text_span": "Webの可能性を大きく切り開く、革新的なテクノロジーであると言えるでしょう",
+      "start": 711,
+      "end": 748,
+      "reason": "「Webの可能性を大きく切り開く、革新的なテクノロジーであると言えるでしょう」— 可能性を切り開く＋革新的＋言えるでしょう のハイプ三重奏。",
+      "suggested_fix": "（大幅圧縮）Webの幅を広げるWebAssembly"
+    },
+    {
+      "id": "f023",
+      "category": "F-1",
+      "category_label": "過度な修飾: 程度副詞 非常に",
+      "severity": "S2",
+      "text_span": "非常に",
+      "start": 815,
+      "end": 818,
+      "reason": "「非常に重要」— 程度副詞中毒。冒頭「大きな注目」等とあわせ強調語過多。",
+      "suggested_fix": "（削除）重要"
+    },
+    {
+      "id": "f024",
+      "category": "G-1",
+      "category_label": "ヘッジング: 〜ではないだろうか 婉曲文末",
+      "severity": "S2",
+      "text_span": "と言えるのではないでしょうか",
+      "start": 823,
+      "end": 837,
+      "reason": "「と言えるのではないでしょうか」— 断定できる箇所を推測型婉曲でぼかす。D-1と重畳。",
+      "suggested_fix": "（断定）重要です"
+    },
+    {
+      "id": "f025",
+      "category": "H-2",
+      "category_label": "接続詞: しかし/だが 逆接の濫用",
+      "severity": "S2",
+      "text_span": "しかしながら",
+      "start": 262,
+      "end": 268,
+      "reason": "「しかしながら」— やや硬い逆接接続詞。対比が自明で接続詞なしで通る。",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f026",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "高まっています",
+      "start": 63,
+      "end": 70,
+      "reason": "文書レベル所見。文末が「高まっています/です/となっています/します/ています」等 敬体で一本調子。体言止め・でしょう・のだ 等の変奏が皆無（代表locusを提示）。",
+      "suggested_fix": "文末に体言止め・短文を混ぜる"
+    },
+    {
+      "id": "f027",
+      "category": "E-1",
+      "category_label": "リズム: 文長の均一性",
+      "severity": "S2",
+      "text_span": "WebAssembly（Wasm）とは何か——次世代のWeb技術を徹底解説",
+      "start": 0,
+      "end": 37,
+      "reason": "文書レベル所見。本文各文が概ね40〜70字に集中し文長の標準偏差が低い。短文(10-20字)/長文(90字+)の混在なし（アンカーとして冒頭行を提示）。",
+      "suggested_fix": "短文・長文を意図的に挟む"
+    },
+    {
+      "id": "f028",
+      "category": "I-1",
+      "category_label": "形式名詞: 〜こと 濫用",
+      "severity": "S2",
+      "text_span": "習得しておくことは",
+      "start": 805,
+      "end": 814,
+      "reason": "「習得しておくことは」— 形式名詞ことで名詞化。結び段落で「こと」が反復（習得しておくこと/予想されること）。",
+      "suggested_fix": "スキルを身につけておくと"
+    }
+  ],
+  "category_summary": {
+    "A": 9,
+    "B": 6,
+    "C": 3,
+    "D": 4,
+    "E": 2,
+    "F": 1,
+    "G": 1,
+    "H": 1,
+    "I": 1,
+    "J": 0
+  }
+}
