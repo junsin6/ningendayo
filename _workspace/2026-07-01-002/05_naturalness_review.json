@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "score_before": 74.2,
+    "score_after": 4.2,
+    "improvement_rate": 0.943,
+    "grade": "A",
+    "residual_S1": 0,
+    "residual_S2": 0,
+    "residual_S3": 3,
+    "overpolish_signals": 0,
+    "rescan_method": "ai-tell-detector をサブエージェントとして 03_rewrite.md に実再走査。score_after=severity_weighted_score(再走査)。",
+    "note_rollback": "本レビューは推敲初版に対する再走査。その後 f009/f010 のfidelityロールバック（システムが→無主体受動）を適用したが、当該箇所は再走査で既に S3 未満・自然と評価しており、無行為者受動化により等級は不変（A）。むしろA-8の主体注入懸念が解消され自然度は微増方向。"
+  },
+  "residual_findings": [
+    {
+      "category": "A-8",
+      "severity": "S3",
+      "text_span": "返却の手続きが行われなかった",
+      "reason": "行為者（利用者）を消した無生物受動。公的文書の返却フロー説明としては許容範囲。単独では過検出のため S3。"
+    },
+    {
+      "category": "A-8",
+      "severity": "S3",
+      "text_span": "延滞のペナルティは科されません",
+      "reason": "行為者（図書館）を消した受動だが、公的文書の免責告知としては自然な定型。AIクセとしては弱い S3。"
+    },
+    {
+      "category": "E-2",
+      "severity": "S3",
+      "text_span": "始めます／られます／行われます／まいります",
+      "reason": "13文中「〜ます」系終止が複数。ただし「ください」3回・「です」2回・「おります」1回で変奏が効き、文長SD14.6（23〜79字）と分散良好。一本調子とまでは言えず密度は閾値未満。除去不要。"
+    }
+  ],
+  "overpolish": [],
+  "verdict": "accept"
+}

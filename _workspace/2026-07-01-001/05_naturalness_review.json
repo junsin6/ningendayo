@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "score_before": 100.0,
+    "score_after": 3.5,
+    "improvement_rate": "raw飽和のため率表示は近似。S1多数+S2多数→S1 0/S2 0で実効改善は最大級（A水準）。score_after は残存S3×3の加重和(0.5×3=1.5)を密度連動で正規化した近似値。",
+    "grade": "A",
+    "residual_S1": 0,
+    "residual_S2": 0,
+    "residual_S3": 3,
+    "overpolish_signals": 1,
+    "rescan_method": "ai-tell-detector をサブエージェントとして 03_rewrite.md に実再走査（手動照合ではない）。"
+  },
+  "residual_findings": [
+    {
+      "category": "J-3",
+      "severity": "S3",
+      "text_span": "——",
+      "reason": "タイトルの em-dash 連結。文書内1回のみで SSOT の許容範囲（1〜2回以下）内。強制除去に当たらない境界事例。"
+    },
+    {
+      "category": "D-4",
+      "severity": "S3",
+      "text_span": "多くの先進的な企業 / 真価を発揮する",
+      "reason": "「先進的な」「真価を発揮する」がやや誇張。各1回・低密度で他パターンと非重複のため単独では問題化しない。"
+    },
+    {
+      "category": "E-2",
+      "severity": "S3",
+      "text_span": "優れます。…実行できます。…動作します。…保てます。",
+      "reason": "第3段落のみ「ます」系文末が4連続し局所的に一本調子。文書全体では体言止め・のです・でしょう・はずですで変奏十分、文書レベルE-2は不成立。"
+    }
+  ],
+  "overpolish": [
+    {
+      "type": "over_colloquialization",
+      "text_span": "だから、高いセキュリティを保てます。",
+      "reason": "敬体は維持され文体崩れではないが、技術解説のレジスターとしては「だから、」がやや砕け気味。「そのため」等が整合。軽微。"
+    }
+  ],
+  "verdict": "accept"
+}
