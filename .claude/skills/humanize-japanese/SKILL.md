@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（IMP-001 — 二指標）: `change_rate`（全文 difflib・参考）と `change_rate_span_only`（語句改変のみ・主判定、安全な定型短縮は控除）を併記。**主判定は span_only**。30% 超で警告、50% 超で中断候補（下の総合判定へ）。詳細は `references/rewriting-playbook.md §変更率の数え方`。
 
 ### 4. 並列検証
 
@@ -76,6 +76,11 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
+
+**変更率ゲート（IMP-001）**: 上表と併用。判定は `change_rate_span_only` を主に見る。
+* `span_only` が 50% 超 **かつ** 意味改変 edit（fidelity fail）を含む → `hold_and_report`。
+* `span_only` が 30〜50% でも **fidelity=pass かつ 自然度 A/B** なら `override accept`（difflib 由来の膨張・削除主導が主因のケース）。**理由を必ず `summary.md` に明記**。
+* 全文 `change_rate` のみ高く `span_only` が閾値内なら構造編集主導と判断し `accept`。
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 

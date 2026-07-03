@@ -22,6 +22,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "detected_count": 0,
     "ai_tell_density": 0.0,
     "severity_weighted_score": 0.0,
+    "score_formula": "100*(1-exp(-raw/60)), raw=S1*5+S2*2+S3*0.5",
     "style": "desu_masu | da_dearu | mixed"
   },
   "findings": [
@@ -31,6 +32,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
       "text_span": "課題となっている",
+      "span_type": "contiguous",
       "start": 142,
       "end": 150,
       "reason": "理由（密度・反復回数など根拠を明記）",
@@ -44,15 +46,17 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
 ## 検出手順
 
 1. **文体判定**: 文末を見て敬体／常体／混在を `meta.style` に記録。
-2. **文単位スキャン**: A・B・D・F・G・H・I の各サブパターンを正規表現＋文脈で検出。`start`/`end` は文字インデックス。
+2. **文単位スキャン**: A・B・D・F・G・H・I の各サブパターンを正規表現＋文脈で検出。`start`/`end` は文字インデックス（ファイル先頭からの Python `str` インデックス＝改行・タイトル含む）。書き出し前に `text[start:end] == text_span` を自己検証し、不一致なら JSON を出さない。
 3. **文書レベルスキャン**:
    * E（リズム）: 文長の標準偏差、文末の反復率を計算。
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
+   * 分散・文書全体に及ぶパターンは `span_type: "scattered"|"document"` と `occurrences: [[s,e],...]` で全出現を列挙（taxonomy §分散・文書レベル span、IMP-004）。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（taxonomy §正規化 SSOT に厳密準拠、IMP-002）:
+   * `raw = S1×5 + S2×2 + S3×0.5`。
+   * `severity_weighted_score = round(100 × (1 − exp(−raw/60)), 1)`（**K=60 固定・input_length 非依存**）。採用式を `meta.score_formula` に必ず明記。旧来の length 相対式は使わない。
+   * `ai_tell_density` = 検出 span の**区間ユニオン被覆**文字数 / 全体文字数（重複・広域 locator を二重計上しない）。
 
 ## 重要な原則
 
