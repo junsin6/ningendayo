@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "input_length": 763,
+    "detected_count": 19,
+    "ai_tell_density": 0.316,
+    "severity_weighted_score": 89.1,
+    "style": "desu_masu",
+    "score_formula": "raw=S1*5+S2*2+S3*0.5=(10*5+9*2+0*0.5)=68.0; normalized=min(100, raw/input_length*1000)=89.1（1000字あたりの深刻度加重値、100上限）"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/可能にする 濫用",
+      "severity": "S1",
+      "text_span": "解決することを可能にします",
+      "start": 190,
+      "end": 203,
+      "reason": "可能の冗長形が本文で計7回反復（190/282/350/399/473/600/627）。最頻出シグネチャ。「可能にする」も同系で断定形『解決します』で足りる",
+      "suggested_fix": "解決します"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/可能にする 濫用",
+      "severity": "S1",
+      "text_span": "実現することができます",
+      "start": 282,
+      "end": 293,
+      "reason": "「することができる」系7回反復の2例目。「実現できます」へ短縮可",
+      "suggested_fix": "実現できます"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/可能にする 濫用",
+      "severity": "S1",
+      "text_span": "提供することが可能になります",
+      "start": 350,
+      "end": 364,
+      "reason": "7回反復の3例目。「提供する」も抽象主語+万能動詞（A-10）と重なる。『低遅延な処理ができます』へ",
+      "suggested_fix": "低遅延な処理ができます"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/可能にする 濫用",
+      "severity": "S1",
+      "text_span": "活用することができます",
+      "start": 399,
+      "end": 410,
+      "reason": "7回反復の4例目。「活用できます」へ短縮",
+      "suggested_fix": "活用できます"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/可能にする 濫用",
+      "severity": "S1",
+      "text_span": "最適化することができるのです",
+      "start": 473,
+      "end": 487,
+      "reason": "7回反復の5例目。「のです」も加わり冗長。『最適化できます』へ",
+      "suggested_fix": "最適化できます"
+    },
+    {
+      "id": "f006",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/可能にする 濫用",
+      "severity": "S1",
+      "text_span": "処理することができる",
+      "start": 600,
+      "end": 610,
+      "reason": "7回反復の6例目。「処理できるため」へ短縮",
+      "suggested_fix": "処理できる"
+    },
+    {
+      "id": "f007",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/可能にする 濫用",
+      "severity": "S1",
+      "text_span": "抑えることが可能です",
+      "start": 627,
+      "end": 637,
+      "reason": "7回反復の7例目（文書内で1段落あたり最多3回）。『抑えられます』へ",
+      "suggested_fix": "抑えられます"
+    },
+    {
+      "id": "f008",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（もたらす/提供する）",
+      "severity": "S1",
+      "text_span": "このアプローチは、スケーラブルでコスト効率の高いソリューションをもたらします",
+      "start": 488,
+      "end": 526,
+      "reason": "抽象概念『このアプローチ』を主語に万能動詞『もたらす』で締める英語直訳構文（The approach brings…）。行為者を戻すか直接叙述へ",
+      "suggested_fix": "この方法なら拡張しやすく、コストも抑えられます"
+    },
+    {
+      "id": "f009",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（擬人化・受動）",
+      "severity": "S1",
+      "text_span": "エッジコンピューティングは、次世代のITインフラを支えるコアテクノロジーとして",
+      "start": 646,
+      "end": 685,
+      "reason": "抽象主語『エッジコンピューティングは』+『イノベーションを加速させ…期待されています』の擬人化+受動。技術が主語で人間の行為を叙述する翻訳調",
+      "suggested_fix": "エッジコンピューティングは次世代ITインフラの中核技術で"
+    },
+    {
+      "id": "f010",
+      "category": "A-7",
+      "category_label": "翻訳調: 〜を持っている/有する",
+      "severity": "S2",
+      "text_span": "大きなアドバンテージを持っています",
+      "start": 566,
+      "end": 583,
+      "reason": "所有叙述（英語 have/possess の直訳）。形容詞述語『利点が大きい』へ回せる。カタカナ語『アドバンテージ』（B-2）とも重複",
+      "suggested_fix": "強みが大きい"
+    },
+    {
+      "id": "f011",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において 濫用",
+      "severity": "S1",
+      "text_span": "において",
+      "start": 337,
+      "end": 341,
+      "reason": "抽象的枠づけの翻訳調（in/at）。単発だが翻訳調構文が全体に多く累積を強める。『ユースケースでも』で足りる",
+      "suggested_fix": "ユースケースでも"
+    },
+    {
+      "id": "f012",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "テクノロジー",
+      "start": 53,
+      "end": 59,
+      "reason": "2字以上のカタカナ語が763字中51トークン（エッジコンピューティング等の標準語を除いても十数語が置換可能）。『テクノロジー』は『技術』で足りる知的偽装",
+      "suggested_fix": "技術"
+    },
+    {
+      "id": "f013",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "メリット",
+      "start": 211,
+      "end": 215,
+      "reason": "カタカナ密集の2例目。同段落にレイテンシ/リモート/レスポンス/ユースケース等が連続。『メリット』は『利点』",
+      "suggested_fix": "利点"
+    },
+    {
+      "id": "f014",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ミッションクリティカルなユースケース",
+      "start": 319,
+      "end": 337,
+      "reason": "カタカナ密集の3例目。1句に3つのカタカナ語が連鎖し露見。『重要度の高い用途』へ開ける",
+      "suggested_fix": "重要度の高い用途"
+    },
+    {
+      "id": "f015",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の連発",
+      "severity": "S2",
+      "text_span": "また、",
+      "start": 367,
+      "end": 370,
+      "reason": "5段落中4段落が接続詞開始（まず206→また367→さらに529→このように640）。段落冒頭公式化。半分以上削除すべき",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f016",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の連発",
+      "severity": "S2",
+      "text_span": "さらに、",
+      "start": 529,
+      "end": 533,
+      "reason": "段落冒頭連発の一連（f015参照）の3要素目。『さらに』は削除しても叙述で通る",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f017",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる 行為者を曖昧にした要請",
+      "severity": "S2",
+      "text_span": "選択することが求められています",
+      "start": 746,
+      "end": 761,
+      "reason": "主語『企業は』はあるが『選択することが求められる』と受け身の要請＋形式名詞『こと』。末尾の結び公式（D-6）でもある。『選ぶ必要があります／選ばなければなりません』へ",
+      "suggested_fix": "選ばなければなりません"
+    },
+    {
+      "id": "f018",
+      "category": "D-4",
+      "category_label": "AI慣用句: ハイプ語彙/ブログ見出し公式",
+      "severity": "S2",
+      "text_span": "徹底解説",
+      "start": 29,
+      "end": 33,
+      "reason": "『〜とは何か──その仕組みとメリットを徹底解説』はAIブログ見出しの定型。『徹底解説』は誇張のハイプ語。見出しを具体化または簡素化",
+      "suggested_fix": "（削除／具体化）"
+    },
+    {
+      "id": "f019",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "実現することができます。これにより",
+      "start": 282,
+      "end": 299,
+      "reason": "全13文の文末が10『ます。』＋3『です。』で敬体一本調子。体言止め・『〜でしょう』『〜のだ』等の変奏がなく単調。文体は維持しつつ文末を変奏すべき",
+      "suggested_fix": "（文末を変奏）"
+    }
+  ],
+  "category_summary": {
+    "A": 11,
+    "B": 3,
+    "C": 0,
+    "D": 1,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 2,
+    "I": 1,
+    "J": 0
+  }
+}
