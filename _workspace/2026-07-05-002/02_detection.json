@@ -1,0 +1,320 @@
+{
+  "meta": {
+    "input_length": 721,
+    "detected_count": 27,
+    "ai_tell_density": 0.28,
+    "severity_weighted_score": 89.5,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "によって",
+      "start": 229,
+      "end": 233,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。 教科書的な『によって』by-passive。",
+      "suggested_fix": "更新作業で（能動化）"
+    },
+    {
+      "id": "f002",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "実施される",
+      "start": 82,
+      "end": 87,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。",
+      "suggested_fix": "更新します"
+    },
+    {
+      "id": "f003",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "停止される",
+      "start": 119,
+      "end": 124,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。",
+      "suggested_fix": "停止します"
+    },
+    {
+      "id": "f004",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "実施される",
+      "start": 215,
+      "end": 220,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。",
+      "suggested_fix": "行うものです"
+    },
+    {
+      "id": "f005",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "改善される",
+      "start": 244,
+      "end": 249,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。",
+      "suggested_fix": "速くなり"
+    },
+    {
+      "id": "f006",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "図られる",
+      "start": 266,
+      "end": 270,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。",
+      "suggested_fix": "拡充します"
+    },
+    {
+      "id": "f007",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "停止されます",
+      "start": 321,
+      "end": 327,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。",
+      "suggested_fix": "停止します"
+    },
+    {
+      "id": "f008",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "延長される",
+      "start": 389,
+      "end": 394,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。",
+      "suggested_fix": "延長し"
+    },
+    {
+      "id": "f009",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "取られます",
+      "start": 397,
+      "end": 402,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。",
+      "suggested_fix": "（措置を）取ります→延長します"
+    },
+    {
+      "id": "f010",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "設置された",
+      "start": 428,
+      "end": 433,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。",
+      "suggested_fix": "設置した"
+    },
+    {
+      "id": "f011",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "投函された",
+      "start": 465,
+      "end": 470,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。",
+      "suggested_fix": "投函した"
+    },
+    {
+      "id": "f012",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文（by-passive）／行為者を伏せた受動叙述の濫用",
+      "severity": "S2",
+      "text_span": "順次行われる",
+      "start": 487,
+      "end": 493,
+      "reason": "本文が受動文一辺倒。「〜される／された」系の受動叙述が12回連発し能動文がほぼ皆無で機械的。",
+      "suggested_fix": "順次行います"
+    },
+    {
+      "id": "f013",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている／こととなる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなりました",
+      "start": 87,
+      "end": 95,
+      "reason": "「〜こととなりました／予定となっております／こととなります」の状態叙述が3回。単なる断定で足りる箇所を機械的に状態化。",
+      "suggested_fix": "更新します"
+    },
+    {
+      "id": "f014",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている／こととなる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "予定となっております",
+      "start": 270,
+      "end": 280,
+      "reason": "「〜こととなりました／予定となっております／こととなります」の状態叙述が3回。単なる断定で足りる箇所を機械的に状態化。",
+      "suggested_fix": "拡充する予定です"
+    },
+    {
+      "id": "f015",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている／こととなる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなります",
+      "start": 493,
+      "end": 500,
+      "reason": "「〜こととなりました／予定となっております／こととなります」の状態叙述が3回。単なる断定で足りる箇所を機械的に状態化。",
+      "suggested_fix": "順次行います"
+    },
+    {
+      "id": "f016",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある の反復",
+      "severity": "S2",
+      "text_span": "ご留意いただく必要があります",
+      "start": 350,
+      "end": 364,
+      "reason": "「〜いただく必要があります」が3回反復。依頼を回りくどく格上げしている。",
+      "suggested_fix": "ご留意ください"
+    },
+    {
+      "id": "f017",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある の反復",
+      "severity": "S2",
+      "text_span": "ご利用いただく必要があります",
+      "start": 440,
+      "end": 454,
+      "reason": "「〜いただく必要があります」が3回反復。依頼を回りくどく格上げしている。",
+      "suggested_fix": "ご利用ください"
+    },
+    {
+      "id": "f018",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある の反復",
+      "severity": "S2",
+      "text_span": "ご了承いただく必要があります",
+      "start": 587,
+      "end": 601,
+      "reason": "「〜いただく必要があります」が3回反復。依頼を回りくどく格上げしている。",
+      "suggested_fix": "ご了承ください"
+    },
+    {
+      "id": "f019",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が必要となる 行為者を曖昧にした要請",
+      "severity": "S3",
+      "text_span": "必要となる",
+      "start": 526,
+      "end": 531,
+      "reason": "「切り替えが必要となる」と行為者を伏せた要請。公的文書としては軽微だが受動的要請の反復に加担。",
+      "suggested_fix": "切り替えをお願いする場合があります"
+    },
+    {
+      "id": "f020",
+      "category": "C-1",
+      "category_label": "構造: 機械的な並列列挙「まず・次に」",
+      "severity": "S1",
+      "text_span": "まず、",
+      "start": 365,
+      "end": 368,
+      "reason": "同一段落が「まず、〜。次に、〜。」の定型並列で構成され機械的。列挙記号的な接続で人手感が薄い。",
+      "suggested_fix": "（削除し叙述へ溶かす）"
+    },
+    {
+      "id": "f021",
+      "category": "C-1",
+      "category_label": "構造: 機械的な並列列挙「まず・次に」",
+      "severity": "S1",
+      "text_span": "次に、",
+      "start": 403,
+      "end": 406,
+      "reason": "同一段落が「まず、〜。次に、〜。」の定型並列で構成され機械的。列挙記号的な接続で人手感が薄い。",
+      "suggested_fix": "（削除し叙述へ溶かす）"
+    },
+    {
+      "id": "f022",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の連続（なお・また）",
+      "severity": "S3",
+      "text_span": "なお、",
+      "start": 455,
+      "end": 458,
+      "reason": "まず・次に に続き段落冒頭が『なお』『また』で連鎖。公的文書で一定許容されるが接続詞依存が過多。",
+      "suggested_fix": "（削除可）"
+    },
+    {
+      "id": "f023",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の連続（なお・また）",
+      "severity": "S3",
+      "text_span": "また、",
+      "start": 503,
+      "end": 506,
+      "reason": "まず・次に に続き段落冒頭が『なお』『また』で連鎖。公的文書で一定許容されるが接続詞依存が過多。",
+      "suggested_fix": "（削除可）"
+    },
+    {
+      "id": "f024",
+      "category": "E-2",
+      "category_label": "リズム: 敬語依頼文末「お願い申し上げます／お願いいたします」の単調反復",
+      "severity": "S2",
+      "text_span": "お願い申し上げます",
+      "start": 172,
+      "end": 181,
+      "reason": "依頼の敬語文末が『お願い申し上げます』2回＋『お願いいたします』1回で計3回。文末が一本調子で過剰敬語。",
+      "suggested_fix": "（末尾の依頼と重複。片方を削除）"
+    },
+    {
+      "id": "f025",
+      "category": "E-2",
+      "category_label": "リズム: 敬語依頼文末「お願い申し上げます／お願いいたします」の単調反復",
+      "severity": "S2",
+      "text_span": "お願い申し上げます",
+      "start": 663,
+      "end": 672,
+      "reason": "依頼の敬語文末が『お願い申し上げます』2回＋『お願いいたします』1回で計3回。文末が一本調子で過剰敬語。",
+      "suggested_fix": "お願いいたします"
+    },
+    {
+      "id": "f026",
+      "category": "E-2",
+      "category_label": "リズム: 敬語依頼文末「お願い申し上げます／お願いいたします」の単調反復",
+      "severity": "S2",
+      "text_span": "お願いいたします",
+      "start": 711,
+      "end": 719,
+      "reason": "依頼の敬語文末が『お願い申し上げます』2回＋『お願いいたします』1回で計3回。文末が一本調子で過剰敬語。",
+      "suggested_fix": "（前文と統合し反復を解消）"
+    },
+    {
+      "id": "f027",
+      "category": "E-1",
+      "category_label": "リズム: 文長・文末の均一性",
+      "severity": "S2",
+      "text_span": "更新作業によって、蔵書検索の応答速度が改善されるとともに、電子書籍サービスの拡充が図られる予定となっております",
+      "start": 225,
+      "end": 280,
+      "reason": "本文はほぼ全文が40〜60字級の長文で短文が皆無。文末も『ます／ございます』に収束し文長・文末の分散が低い（文書レベル）。",
+      "suggested_fix": "10〜20字の短文を段落ごとに挟み文長を変奏"
+    }
+  ],
+  "category_summary": {
+    "A": 15,
+    "B": 0,
+    "C": 2,
+    "D": 0,
+    "E": 4,
+    "F": 0,
+    "G": 0,
+    "H": 2,
+    "I": 4,
+    "J": 0
+  }
+}

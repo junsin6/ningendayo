@@ -1,0 +1,61 @@
+{
+  "run_id": "2026-07-05-002",
+  "genre": "public_notice",
+  "style": "desu_masu",
+  "score_before": 89.5,
+  "score_after": 0.5,
+  "improvement_rate": 0.994,
+  "measurement": {
+    "method": "ai-tell-detector サブエージェント再走査（IMP-006・同一基準）＋レビュアー手動照合",
+    "detector_reported_score_after": 0.0,
+    "reviewer_adjusted_score_after": 0.5,
+    "adjustment_reason": "同一基準の検出器は残存 finding 0・score 0.0 を返したが、絶対残存も見る原則に基づき、段落冒頭に孤立して残る『また、』を S3 の許容内残存として 0.5(raw) 計上。閾値未満のため grade には影響しない。"
+  },
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 1
+  },
+  "residual_detail": [
+    {
+      "category": "H-1",
+      "severity": "S3",
+      "text_span": "また、",
+      "verdict": "tolerated",
+      "note": "まず・次に・なお が除去され連鎖が解消。孤立した1個の文頭接続詞で公的文書として正当。閾値未満・許容。"
+    }
+  ],
+  "tolerated_by_genre": [
+    {
+      "category": "A-8",
+      "text_span": "停止されること／停止されます",
+      "verdict": "legitimate",
+      "note": "『サービスが停止される』は主語がサービス・行為者を慣習的に伏せる告知定型。公的文書の正当な受動で過検出しない。"
+    },
+    {
+      "category": "A-8",
+      "text_span": "投函された資料",
+      "verdict": "legitimate",
+      "note": "自然な連体修飾。by-passive 濫用ではない。"
+    },
+    {
+      "category": "keigo",
+      "text_span": "ご希望される",
+      "verdict": "legitimate",
+      "note": "尊敬語であり受動の残存ではない。"
+    }
+  ],
+  "overpolish_signals": [],
+  "overpolish_checks": {
+    "unnatural_colloquialization": false,
+    "style_break_keitai_jotai_mix": false,
+    "thin_meaning_or_choppy": false,
+    "change_rate_over_30pct": false,
+    "keigo_grade_dropped_too_far": false,
+    "notice_naturalness_ok": true
+  },
+  "passive_retention_assessment": "適正。12箇所の受動叙述のうち9箇所を能動化し密度問題を解消。残る3箇所（停止される・停止されます・投函された）はいずれも告知文として自然で正当な受動であり、無理に能動化しない判断は過推敲回避として妥当。",
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1 0件・S2 0件・改善率99%超で A 等級・accept。A-6状態叙述(S1×3)とC-1機械並列(S1×2)の決定的パターンを完全除去し、A-8受動一辺倒も密度解消。過推敲シグナル0件、硬い敬体・敬語の格を維持し文体崩れなし。本文721→629字(圧縮13%相当)で変更率30%未満。残存『また、』1個は許容範囲。"
+}

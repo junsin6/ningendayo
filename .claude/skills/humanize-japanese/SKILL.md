@@ -79,6 +79,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
+**変更率 override（IMP-001 / v1.1）**: 素朴 `change_rate`（difflib）が 30〜50% でも、それは B-2 カタカナ→漢語置換の二重計上や削除主導で膨張しているだけのことが多い。`meaning_edit_rate` が 50% 未満・fidelity=pass・自然度 A/B なら **override accept** とし、`summary.md` に override 理由（difflib 二重計上／`deletion_rate ≫ lexical_change_rate` の削除主導である旨）を明記する。強制中断は `meaning_edit_rate` 基準でのみ発火させる。
+
 ## 深刻度と品質等級
 
 **深刻度**
