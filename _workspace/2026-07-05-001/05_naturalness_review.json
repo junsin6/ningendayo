@@ -1,0 +1,72 @@
+{
+  "run_id": "2026-07-05-001",
+  "genre": "技術解説記事（ベクトルDB）",
+  "style": "desu_masu",
+  "method": "detector_rerun",
+  "method_note": "ai-tell-detector サブエージェントを同一 taxonomy(A〜J/S1〜S3) 基準で再走査（IMP-006: 手動照合より検出器再実行を優先）。手動照合とクロスチェック済みで一致。",
+  "normalization": "severity_weighted_score = (S1*5 + S2*2 + S3*0.5) / 191 * 100。分母定数191は baseline(140/191*100=73.3) から復元。before/after で同一定数を適用（密度正規化ではなく固定分母を採用し、改善率が絶対的なAIクセ減少を反映するようにした）。",
+  "score_before": 73.3,
+  "score_after": 4.2,
+  "improvement_rate": 0.943,
+  "detected_count_before": 43,
+  "detected_count_after": 4,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 4,
+    "S3": 0
+  },
+  "residual_findings_detail": [
+    {
+      "id": "r001",
+      "category": "E-2",
+      "severity": "S2",
+      "text_span": "左右されます",
+      "reason": "文書レベル: 全15文中14文の文末が です／ます に集中。変奏は末尾『でしょう』1回のみで体言止め・のだ・だろう等の交替なし。baseline f027 と同基準で残存（単調度はやや緩和）。",
+      "confidence": "high"
+    },
+    {
+      "id": "r002",
+      "category": "B-2",
+      "severity": "S2",
+      "text_span": "シャーディング",
+      "reason": "sharding。日本語化可能（分割）。baseline f031 から未変更で残存。ただし文書全体のカタカナ密度は約20語→数語へ激減。業界標準語寄りの境界例。",
+      "confidence": "medium"
+    },
+    {
+      "id": "r003",
+      "category": "B-2",
+      "severity": "S2",
+      "text_span": "レプリケーション",
+      "reason": "replication。日本語化可能（複製）。baseline f032 から未変更で残存。r002 同様の境界例。",
+      "confidence": "medium"
+    },
+    {
+      "id": "r004",
+      "category": "I-3",
+      "severity": "S2",
+      "text_span": "必要があります",
+      "reason": "baseline I-4『調整していくことが求められます』(f039) を『調整していく必要があります』へ修正。要請構文と曖昧な行為者が残る横移動（I-4→I-3、いずれもS2）。単発のため境界。",
+      "confidence": "medium"
+    }
+  ],
+  "category_summary_after": { "A": 0, "B": 2, "C": 0, "D": 0, "E": 1, "F": 0, "G": 0, "H": 0, "I": 1, "J": 0 },
+  "resolved_highlights": [
+    "A系16件全消（において/における→で、することができる×4→できる、となっている×3→です/でしょう、抽象主語+万能動詞×4→具体動詞、によって→で、という×2→削除/呼ばれる）",
+    "D系4件全消（欠かせない/と言えるでしょう/非常に重要である/と言えるのではないでしょうか）",
+    "C-1 機械的並列 解消（次に・最後に を叙述へ溶かし列挙支配を除去）",
+    "B-2 の17/19を日本語化"
+  ],
+  "over_polish_signals": [],
+  "over_polish_checks": {
+    "style_mixing_keitai_jotai": "なし（全15文 敬体で一貫。常体0）",
+    "taigendome_excess": "なし（体言止め0。E-2 の観点ではむしろ変奏不足側）",
+    "meaning_softening": "なし（意味的検索・幻覚抑制・RAG手順・HNSW/分散構成の主張を保持。数値・固有名詞不変）",
+    "unnatural_kango": "なし（埋め込み/文書/幻覚/文脈/性能/拡張性 等はいずれも自然な定着語）",
+    "rhythm_break": "なし（ぶつ切りや読みにくさなし）",
+    "change_rate": 0.290,
+    "change_rate_note": "文字レベル変更率29.0%。30%警告閾値の直下（サブ閾値・非トリガー）。過推敲ではないが上限に接近している点は記録。"
+  },
+  "grade": "B",
+  "recommendation": "accept",
+  "notes": "S1=0・S2=4・改善94.3%で B に該当し accept。過推敲シグナルはゼロ（文体崩れ・意味軟化・不自然漢語化いずれもなし）で、残る4件はすべて『消し残り』方向の残課題。r002/r003(シャーディング/レプリケーション)を業界標準語として除外すればS2=2でA相当となる高位のB。A到達には E-2 の文末変奏を1〜2箇所（例: 中盤の一文を体言止め化）入れれば足り、2次推敲は必須ではない。"
+}
