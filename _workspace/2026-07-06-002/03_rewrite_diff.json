@@ -1,0 +1,32 @@
+{
+  "edits": [
+    { "finding_id": "f001", "category": "A-6", "before": "全面的な刷新が行われることとなりました", "after": "全面的に刷新することになりました", "rationale": "行為者省略の受動＋状態化（こととなる）を能動の断定へ。意味（本市が刷新する）は保持。" },
+    { "finding_id": "f002", "category": "I-3", "before": "ご確認いただく必要がございます", "after": "ご確認ください", "rationale": "『いただく＋必要＋ございます』の二重敬語・必要要請を簡潔な依頼へ。公文書の丁寧さは『ください』で確保。" },
+    { "finding_id": "f003", "category": "C-1", "before": "まず、現行システムの停止期間についてです", "after": "現行システムの停止期間をお知らせします", "rationale": "AI的トピック提示の順序語『まず、』を削除。f004と統合し主題提示を述語化。" },
+    { "finding_id": "f004", "category": "A-2", "before": "停止期間についてです", "after": "停止期間をお知らせします", "rationale": "about直訳の『についてです』を動詞述語へ。" },
+    { "finding_id": "f005", "category": "A-8", "before": "実施されます", "after": "実施します", "rationale": "実施主体（本市）が自明の行為者省略受動を能動へ。" },
+    { "finding_id": "f006", "category": "I-3", "before": "あらかじめご了承いただく必要があります", "after": "あらかじめご了承ください", "rationale": "『いただく＋必要＋あります』の必要要請を依頼へ。『あらかじめ』は保持。" },
+    { "finding_id": "f007", "category": "A-2", "before": "手続きにつきましては", "after": "手続きは", "rationale": "aboutの丁寧直訳『につきまして』を助詞『は』へ。" },
+    { "finding_id": "f008", "category": "A-8", "before": "お済ませいただくことが推奨されます", "after": "お済ませください", "rationale": "推奨主体（本市）を省いた受動＋婉曲を明確な依頼へ。命令過ぎない『ください』で公文書の格を維持。" },
+    { "finding_id": "f009", "category": "A-8", "before": "発行されていた", "after": "発行していた", "rationale": "発行主体（本市）が自明の行為者省略受動を能動へ。" },
+    { "finding_id": "f010", "category": "A-6", "before": "無効となります", "after": "無効になります", "rationale": "『となる』の機械的状態化を自然な『になる』へ。『すべて』は保持。" },
+    { "finding_id": "f011", "category": "H-1", "before": "そのため、", "after": "", "rationale": "段落冒頭の文頭接続詞を削除。前文からの因果は内容で伝わる。" },
+    { "finding_id": "f012", "category": "I-3", "before": "改めてアカウントの再登録を行っていただく必要がございます", "after": "改めてアカウントを登録し直してください", "rationale": "『行っていただく＋必要＋ございます』の二重敬語・必要要請を能動の依頼へ。『再登録』の意味は『登録し直す』で保持。" },
+    { "finding_id": "f013", "category": "A-6", "before": "必要となりますので", "after": "必要ですので", "rationale": "『必要です』で足りる状態を『となります』で状態化していたのを断定へ（A-6＋I-4）。" },
+    { "finding_id": "f014", "category": "A-8", "before": "各種申請のオンライン化が図られる予定です", "after": "各種申請も、オンラインでできるようにする予定です", "rationale": "by-passive『図られる』＋接尾辞『化』を能動の可能形へ。『予定』の未確定ニュアンスは保持。" },
+    { "finding_id": "f015", "category": "I-4", "before": "窓口での対応が求められていた", "after": "窓口までお越しいただく必要があった", "rationale": "行為者を曖昧にした要請『求められていた』を、来庁という具体行為の過去状態叙述へ。『従来は』は保持。" },
+    { "finding_id": "f016", "category": "A-2", "before": "操作方法につきましては", "after": "操作方法は", "rationale": "『につきまして』を助詞『は』へ。『詳細な』は保持。" },
+    { "finding_id": "f017", "category": "A-8", "before": "案内が掲載される予定です", "after": "ご案内する予定です", "rationale": "掲載主体（本市）が自明の受動を能動の丁寧語へ。『予定』は保持。" },
+    { "finding_id": "f018", "category": "E-2", "before": "文末が『されます／です／ございます／予定です』へ一本調子（全17文ほぼ全文が同型終止）", "after": "『刷新することになりました／ご確認ください／実施します／お知らせします／無効になります／登録し直してください／行えるようになります／予定です』等へ分散", "rationale": "敬体（desu_masu）を一切崩さず、A・I系の能動化に伴って生じた終止形の多様性で文末単調を解消。文書レベルの変奏。" }
+  ],
+  "change_rate": 0.2227,
+  "change_rate_breakdown": {
+    "denominator_orig_chars_no_ws": 741,
+    "goku_kaihen_rate_replace": 0.1174,
+    "kouzou_sakujo_rate_delete": 0.0864,
+    "sonyu_rate_insert": 0.0189,
+    "note": "difflib.SequenceMatcher 文字単位（空白・改行除外）。IMP-001配慮で語句改変・構造削除・挿入を分離計上。合算=0.2227で30%未満、警告なし。"
+  },
+  "style_preserved": "desu_masu",
+  "warnings": []
+}

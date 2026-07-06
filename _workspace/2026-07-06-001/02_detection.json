@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "input_length": 845,
+    "detected_count": 26,
+    "ai_tell_density": 0.2036,
+    "severity_weighted_score": 89.2,
+    "style": "desu_masu",
+    "score_formula_note": "IMP-002（正規化式）未確定のため暫定式を明示採用。raw_weighted_sum=Σ(S1×5, S2×2, S3×0.5)=94.0。weighted_density=raw_weighted_sum/input_length×1000=111.2（千字あたり加重深刻度）。severity_weighted_score=round(100×(1−exp(−weighted_density/C)),1), C=50。→ 有界[0,100)の飽和関数で上限クリップ不要、推敲前後の比較で単調。分母=input_length（タイトル含む本文文字数、末尾改行を除いた845字）。ai_tell_density=検出span総文字数(172)/input_length。"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "テクノロジー",
+      "start": 56,
+      "end": 62,
+      "reason": "日本語で書ける語のカタカナ化。本文で不要カタカナ語が8種（テクノロジー/プロセス/レスポンス/シーン/アーキテクチャ/パーソナライズ/チューニング/ポテンシャル）と高密度",
+      "suggested_fix": "技術"
+    },
+    {
+      "id": "f002",
+      "category": "A-4",
+      "category_label": "翻訳調: 〜に基づいて/〜をもとに 濫用",
+      "severity": "S2",
+      "text_span": "に基づいた",
+      "start": 148,
+      "end": 153,
+      "reason": "英語 based on の直訳的根拠提示",
+      "suggested_fix": "から"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実現することができます",
+      "start": 156,
+      "end": 167,
+      "reason": "可能の冗長形。本文で『することができ(ます)』系が計4回反復",
+      "suggested_fix": "実現できます"
+    },
+    {
+      "id": "f004",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "プロセス",
+      "start": 250,
+      "end": 254,
+      "reason": "『過程/工程』で足りる語のカタカナ化（不要カタカナ8種の一つ）",
+      "suggested_fix": "工程"
+    },
+    {
+      "id": "f005",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞（可能にする/示す等）",
+      "severity": "S1",
+      "text_span": "捉えることを可能にします",
+      "start": 284,
+      "end": 296,
+      "reason": "『この技術は…可能にします』と抽象主語＋使役『可能にする』。A-10系（可能にする/提供する/示される）が本文で3回",
+      "suggested_fix": "捉えられます"
+    },
+    {
+      "id": "f006",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "位置することになります",
+      "start": 340,
+      "end": 351,
+      "reason": "『である/だ』で足りる箇所を『〜ことになります』と状態化。A-6系（ことになります/となりつつあります）2回",
+      "suggested_fix": "位置します"
+    },
+    {
+      "id": "f007",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "指します",
+      "start": 255,
+      "end": 259,
+      "reason": "本文17文がすべて敬体終止（です/ます/でしょう）で文末変奏がなく一本調子。代表箇所を明示",
+      "suggested_fix": "文末に体言止め・断定・でしょう等の変奏を混ぜる（文書レベル）"
+    },
+    {
+      "id": "f008",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "そして",
+      "start": 382,
+      "end": 385,
+      "reason": "文頭接続詞。前文と内容で接続でき削除可",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f009",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "探索することができます",
+      "start": 415,
+      "end": 426,
+      "reason": "可能の冗長形（することができる系4回の2回目）",
+      "suggested_fix": "探索できます"
+    },
+    {
+      "id": "f010",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞（提供する/もたらす等）",
+      "severity": "S1",
+      "text_span": "提供します",
+      "start": 529,
+      "end": 534,
+      "reason": "『これらのアルゴリズムは…レスポンスを提供します』と抽象主語＋万能動詞『提供する』（A-10の典型例）",
+      "suggested_fix": "返します"
+    },
+    {
+      "id": "f011",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "レスポンス",
+      "start": 523,
+      "end": 528,
+      "reason": "『応答』で足りる語のカタカナ化（不要カタカナ8種の一つ）",
+      "suggested_fix": "応答"
+    },
+    {
+      "id": "f012",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "シーン",
+      "start": 550,
+      "end": 553,
+      "reason": "『場面』で足りる語のカタカナ化（不要カタカナ8種の一つ）",
+      "suggested_fix": "場面"
+    },
+    {
+      "id": "f013",
+      "category": "C-1",
+      "category_label": "構造: 機械的な並列列挙（まず・次に・最後に）",
+      "severity": "S1",
+      "text_span": "まず",
+      "start": 557,
+      "end": 559,
+      "reason": "段落が『まず…次に…最後に』の三点セットで支配される機械的並列",
+      "suggested_fix": "（削除し叙述に溶かす）"
+    },
+    {
+      "id": "f014",
+      "category": "C-1",
+      "category_label": "構造: 機械的な並列列挙（まず・次に・最後に）",
+      "severity": "S1",
+      "text_span": "次に",
+      "start": 631,
+      "end": 633,
+      "reason": "三点セット並列の2点目",
+      "suggested_fix": "（削除し叙述に溶かす）"
+    },
+    {
+      "id": "f015",
+      "category": "C-1",
+      "category_label": "構造: 機械的な並列列挙（まず・次に・最後に）",
+      "severity": "S1",
+      "text_span": "最後に",
+      "start": 697,
+      "end": 700,
+      "reason": "三点セット並列の3点目",
+      "suggested_fix": "（削除し叙述に溶かす）"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アーキテクチャ",
+      "start": 621,
+      "end": 628,
+      "reason": "『仕組み/構成』で足りる語のカタカナ化（不要カタカナ8種の一つ）",
+      "suggested_fix": "仕組み"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "パーソナライズ",
+      "start": 674,
+      "end": 681,
+      "reason": "『個別化』で足りる語のカタカナ化（不要カタカナ8種の一つ）",
+      "suggested_fix": "個別化"
+    },
+    {
+      "id": "f018",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "行うことができます",
+      "start": 687,
+      "end": 696,
+      "reason": "万能動詞『行う』＋可能の冗長形（することができる系4回の3回目）",
+      "suggested_fix": "行えます"
+    },
+    {
+      "id": "f019",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞（示す/示される）",
+      "severity": "S1",
+      "text_span": "有用性が示されています",
+      "start": 713,
+      "end": 724,
+      "reason": "抽象主語＋『示される』受動の万能動詞（A-10の典型）。行為者不明",
+      "suggested_fix": "役立っています"
+    },
+    {
+      "id": "f020",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭のまとめ接続",
+      "severity": "S2",
+      "text_span": "このように",
+      "start": 727,
+      "end": 732,
+      "reason": "段落冒頭のまとめ接続詞。削除しても流れは通る",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f021",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/〜においては 濫用",
+      "severity": "S1",
+      "text_span": "において",
+      "start": 766,
+      "end": 770,
+      "reason": "英語 in の直訳的な抽象枠づけ",
+      "suggested_fix": "で"
+    },
+    {
+      "id": "f022",
+      "category": "D-4",
+      "category_label": "AI特有の慣用句: ハイプ語彙（欠かせない）",
+      "severity": "S1",
+      "text_span": "欠かせない",
+      "start": 771,
+      "end": 776,
+      "reason": "LLM常套のハイプ語。taxonomy D-4 明示シグネチャ",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f023",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "となりつつあります",
+      "start": 780,
+      "end": 789,
+      "reason": "『基盤技術となりつつあります』の状態化（A-6系2回目）",
+      "suggested_fix": "になりつつあります"
+    },
+    {
+      "id": "f024",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "チューニング",
+      "start": 802,
+      "end": 808,
+      "reason": "『調整』で足りる語のカタカナ化（不要カタカナ8種の一つ）",
+      "suggested_fix": "調整"
+    },
+    {
+      "id": "f025",
+      "category": "B-2",
+      "category_label": "英語引用・カタカナ語: カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ポテンシャル",
+      "start": 817,
+      "end": 823,
+      "reason": "『可能性/力』で足りる語のカタカナ化（不要カタカナ8種の一つ）",
+      "suggested_fix": "可能性"
+    },
+    {
+      "id": "f026",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/可能になる 濫用＋ヘッジ",
+      "severity": "S1",
+      "text_span": "引き出すことが可能になるでしょう",
+      "start": 828,
+      "end": 844,
+      "reason": "『〜ことが可能になる』の冗長可能形＋『でしょう』ヘッジ（G-1）。することができる/可能系4回目",
+      "suggested_fix": "引き出せるでしょう"
+    }
+  ],
+  "category_summary": {
+    "A": 11,
+    "B": 8,
+    "C": 3,
+    "D": 1,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 2,
+    "I": 0,
+    "J": 0
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "edits": [
+    { "finding_id": "f001", "category": "B-2", "before": "テクノロジー", "after": "技術", "rationale": "日本語で足りるカタカナ語を開く。カタカナ密集の起点なので分散の一環として素直に開語" },
+    { "finding_id": "f002", "category": "A-4", "before": "意味的な類似性に基づいた検索", "after": "意味的な類似性をもとに検索", "rationale": "based on の直訳的『に基づいた』を解体。文書内1回のみのため『をもとに』を許容範囲で採用" },
+    { "finding_id": "f003", "category": "A-5", "before": "実現することができます", "after": "実現できます", "rationale": "可能の冗長形を簡潔化（することができる系4回の分散処理・1回目）" },
+    { "finding_id": "f004", "category": "B-2", "before": "変換するプロセスを指します", "after": "変換する過程を指します", "rationale": "プロセス→過程。カタカナ均一化を避け語ごとに最適な和語を選択" },
+    { "finding_id": "f005", "category": "A-10", "before": "捉えることを可能にします", "after": "捉えられます", "rationale": "『可能にする』使役の万能動詞を可能動詞へ。意味（数値表現として捉えられる）を保存" },
+    { "finding_id": "f006", "category": "A-6", "before": "近い距離に位置することになります", "after": "近い距離に位置します", "rationale": "『〜ことになります』の状態化を断定叙述へ" },
+    { "finding_id": "f007", "category": "E-2", "before": "中核をなすのは、エンベディングと呼ばれる技術です", "after": "中核をなすのが、エンベディングと呼ばれる技術", "rationale": "敬体を維持したまま体言止めを1箇所差し込み、です・ます一本調子を文書レベルで変奏（f026『でしょう』と合わせ変化を作る）" },
+    { "finding_id": "f008", "category": "H-1", "before": "そしてシステムは", "after": "システムは", "rationale": "文頭接続詞を削除。前文との連続で論理は通る" },
+    { "finding_id": "f009", "category": "A-5", "before": "探索することができます", "after": "探索できます", "rationale": "可能の冗長形を簡潔化（することができる系・2回目）" },
+    { "finding_id": "f010", "category": "A-10", "before": "レスポンスを提供します", "after": "応答を返します", "rationale": "抽象主語＋万能動詞『提供する』を具体動詞『返す』へ（f011のカタカナ開語と同時処理）" },
+    { "finding_id": "f011", "category": "B-2", "before": "レスポンス", "after": "応答", "rationale": "日本語で足りるカタカナ語を開く" },
+    { "finding_id": "f012", "category": "B-2", "before": "活用シーンとして", "after": "活用場面として", "rationale": "日本語で足りるカタカナ語を開く" },
+    { "finding_id": "f013", "category": "C-1", "before": "活用場面として、まず挙げられるのがRAG", "after": "活用場面として挙げられるのが、RAG", "rationale": "三点セット並列の順序語『まず』を削除し叙述へ溶かす" },
+    { "finding_id": "f014", "category": "C-1", "before": "次に、レコメンドエンジンへの応用があります", "after": "レコメンドエンジンへの応用もあります", "rationale": "順序語『次に』を削除し『も』で自然に列挙をつなぐ（機械的並列の解体・分散）" },
+    { "finding_id": "f015", "category": "C-1", "before": "最後に、異常検知の領域でも、その有用性が示されています", "after": "異常検知の領域でも役立っています", "rationale": "順序語『最後に』を削除し叙述へ溶かす（三点セットを均一処理せず前文からの流れで接続）" },
+    { "finding_id": "f016", "category": "B-2", "before": "組み込むアーキテクチャです", "after": "組み込む仕組みです", "rationale": "『仕組み/構成』で足りるカタカナ語を開く" },
+    { "finding_id": "f017", "category": "B-2", "before": "パーソナライズされた提案", "after": "個別化された提案", "rationale": "日本語で足りるカタカナ語を開く" },
+    { "finding_id": "f018", "category": "A-5", "before": "提案を行うことができます", "after": "提案ができます", "rationale": "万能動詞『行う』＋可能の冗長形をまとめて簡潔化（することができる系・3回目、別の自然形へ分散）" },
+    { "finding_id": "f019", "category": "A-10", "before": "その有用性が示されています", "after": "役立っています", "rationale": "抽象主語＋受動万能動詞『示される』を具体動詞『役立つ』へ。行為者不明の受動を解消" },
+    { "finding_id": "f020", "category": "H-1", "before": "このように、ベクトルデータベースは", "after": "ベクトルデータベースは", "rationale": "段落冒頭のまとめ接続詞を削除。流れは通る" },
+    { "finding_id": "f021", "category": "A-1", "before": "現代のアプリケーションにおいて", "after": "現代のアプリケーションで", "rationale": "in の直訳的『において』を『で』へ" },
+    { "finding_id": "f022", "category": "D-4", "before": "欠かせない基盤技術", "after": "基盤技術", "rationale": "LLM常套のハイプ語『欠かせない』を削除。評価的誇張であり事実情報の欠落なし" },
+    { "finding_id": "f023", "category": "A-6", "before": "基盤技術となりつつあります", "after": "基盤技術になりつつあります", "rationale": "『となりつつある』の状態化を『になりつつある』へ（変化の叙述として自然形）" },
+    { "finding_id": "f024", "category": "B-2", "before": "チューニング", "after": "調整", "rationale": "日本語で足りるカタカナ語を開く" },
+    { "finding_id": "f025", "category": "B-2", "before": "そのポテンシャル", "after": "その可能性", "rationale": "日本語で足りるカタカナ語を開く" },
+    { "finding_id": "f026", "category": "A-5", "before": "引き出すことが可能になるでしょう", "after": "引き出せるでしょう", "rationale": "『〜ことが可能になる』冗長可能形を可能動詞へ。『でしょう』はヘッジではなく見通しの語として保持し文末変奏も兼ねる" }
+  ],
+  "change_rate": 0.1976,
+  "change_rate_breakdown": {
+    "lexical_replace_rate": 0.1456,
+    "deletion_rate": 0.0473,
+    "insertion_rate": 0.0047,
+    "similarity_ratio": 0.8952,
+    "note": "difflib SequenceMatcher（文字単位, autojunk=False, 末尾改行除外）。分母=原文845字。change_rate=(置換除去92+置換挿入31+削除40+挿入4)/845。IMP-001配慮でlexical/deletion/insertionを分離報告。insertion_rateがほぼ0=新情報の追加なし、deletionは接続詞・順序語・ハイプ語の除去による。"
+  },
+  "style_preserved": "desu_masu",
+  "warnings": []
+}
