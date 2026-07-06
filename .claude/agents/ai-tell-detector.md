@@ -31,6 +31,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
       "text_span": "課題となっている",
+      "span_type": "contiguous",
       "start": 142,
       "end": 150,
       "reason": "理由（密度・反復回数など根拠を明記）",
@@ -50,9 +51,15 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **span_type の付与**（IMP-004, v1.1）:
+   * `contiguous`（既定・省略可）: 連続した 1 区間。`start`/`end` が実文字列と一致すること（自己検証必須・不一致なら JSON を出さない）。
+   * `scattered`: 同一クセが複数箇所に散在（絵文字・文末反復の個別出現など）。`occurrences: [[s,e],...]` に全出現を列挙し、`start`/`end` は先頭出現に置く。
+   * `document`: 文書全体の統計量（E リズム・C 構造など）。代表 anchor に `start`/`end` を置き、`reason` に文書レベルの根拠を書く。**density 計算からは locator 相当分を除外**する。
+6. **スコア算出**（IMP-002, v1.1 で確定）:
+   * `W`（加重和）= S1×5 + S2×2 + S3×0.5。**span_type:"document" の locator は W に一度だけ計上**（反復回数で水増ししない）。
+   * `severity_weighted_score = round(100 × (1 − exp(−W / K)), 1)`、**K = 40 固定**。飽和関数により高密度短文でも 100 に張り付かず解像度を保ち、文書長に依存しない。
+   * `ai_tell_density` = 検出 span 総文字数（重複・document locator を除く実クセ文字数）/ input_length。
+   * `input_length` の分母は「タイトルを含む本文・末尾改行除外」で統一。
 
 ## 重要な原則
 
