@@ -1,0 +1,222 @@
+{
+  "meta": {
+    "input_length": 752,
+    "detected_count": 18,
+    "ai_tell_density": 0.223,
+    "severity_weighted_score": 59.8,
+    "style": "desu_masu",
+    "normalization_note": "severity_weighted_score = (S1*5 + S2*2 + S3*0.5) を正規化。内訳 S1=3,S2=15,S3=0 → 加重和=45.0。IMP-002（正規化基準）未確定のため密度基準を採用: 加重和/input_length*1000（＝1000字あたりの加重負荷）を0〜100でクリップ。分母=input_length(752)。"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となる 状態叙述の濫用（こととなる）",
+      "severity": "S1",
+      "text_span": "行われることとなりました",
+      "start": 109,
+      "end": 121,
+      "reason": "単純な『刷新します／することになりました』で足りる箇所を『行われる＋こととなりました』と受身＋状態化。A-6の状態叙述に加えA-8的な行為者省略も重なる決定的シグネチャ。",
+      "suggested_fix": "刷新することになりました"
+    },
+    {
+      "id": "f002",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（+過剰敬語）",
+      "severity": "S2",
+      "text_span": "ご確認いただく必要がございます",
+      "start": 157,
+      "end": 172,
+      "reason": "『いただく＋必要＋ございます』の必要要請＋二重敬語。I-3『する必要がある』が本文で計3回反復（ご確認/ご了承/再登録）する密度の1件目。",
+      "suggested_fix": "ご確認ください"
+    },
+    {
+      "id": "f003",
+      "category": "C-1",
+      "category_label": "構造: 機械的並列列挙『まず』",
+      "severity": "S2",
+      "text_span": "まず、",
+      "start": 175,
+      "end": 178,
+      "reason": "段落を『まず、〜についてです』とAI的トピック提示で開始。次に/最後にの対はないため単発でS2に格下げだが、列挙構造化のクセ。",
+      "suggested_fix": "（削除し）現行システムの停止期間についてお知らせします"
+    },
+    {
+      "id": "f004",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について 濫用",
+      "severity": "S2",
+      "text_span": "停止期間についてです",
+      "start": 185,
+      "end": 195,
+      "reason": "主題提示を『についてです』で処理。about直訳。A-2は本文で計3回（についてです/につきまして×2）反復する密度の1件目。",
+      "suggested_fix": "停止期間をお知らせします"
+    },
+    {
+      "id": "f005",
+      "category": "A-8",
+      "category_label": "翻訳調: 行為者省略の受動（by-passive）",
+      "severity": "S2",
+      "text_span": "実施されます",
+      "start": 233,
+      "end": 239,
+      "reason": "実施主体（本市）が明らかなのに行為者を省いた受動。A-8のby-passive相当が本文で多発（実施/推奨/発行/図られる/掲載）する密度の1件。",
+      "suggested_fix": "実施します"
+    },
+    {
+      "id": "f006",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（+過剰敬語）",
+      "severity": "S2",
+      "text_span": "ご了承いただく必要があります",
+      "start": 280,
+      "end": 294,
+      "reason": "『いただく＋必要＋あります』の要請形。I-3反復の2件目。",
+      "suggested_fix": "あらかじめご了承ください"
+    },
+    {
+      "id": "f007",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について（につきまして）濫用",
+      "severity": "S2",
+      "text_span": "手続きにつきましては",
+      "start": 299,
+      "end": 309,
+      "reason": "『につきまして』はaboutの丁寧直訳。A-2反復の2件目。",
+      "suggested_fix": "お急ぎの手続きは"
+    },
+    {
+      "id": "f008",
+      "category": "A-8",
+      "category_label": "翻訳調: 行為者省略の受動（+ヘッジ）",
+      "severity": "S2",
+      "text_span": "推奨されます",
+      "start": 329,
+      "end": 335,
+      "reason": "本市が推奨する内容を行為者省略の受動＋婉曲で述べる。A-8＋G（推測/婉曲）が重なる。命令回避のAIクセ。",
+      "suggested_fix": "お済ませください"
+    },
+    {
+      "id": "f009",
+      "category": "A-8",
+      "category_label": "翻訳調: 行為者省略の受動（by-passive）",
+      "severity": "S2",
+      "text_span": "発行されていた",
+      "start": 360,
+      "end": 367,
+      "reason": "『利用者ごとに発行されていたID』は発行主体（本市/システム）が自明の行為者省略受動。A-8密度の1件。",
+      "suggested_fix": "これまで利用者ごとに発行していたID"
+    },
+    {
+      "id": "f010",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "無効となります",
+      "start": 382,
+      "end": 389,
+      "reason": "『無効だ／無効になります』で足りる状態を『となります』で機械的に状態化。A-6の決定的シグネチャ。本文で『となる』系が3回反復。",
+      "suggested_fix": "すべて無効になります"
+    },
+    {
+      "id": "f011",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "そのため、",
+      "start": 390,
+      "end": 395,
+      "reason": "段落冒頭に接続詞『そのため』。文頭接続（そのため/なお/まず）が複数段落頭に並ぶ。論理は内容で足りる。",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f012",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（+過剰敬語）",
+      "severity": "S2",
+      "text_span": "再登録を行っていただく必要がございます",
+      "start": 422,
+      "end": 441,
+      "reason": "『行っていただく＋必要＋ございます』の要請＋二重敬語。I-3反復の3件目で密度が閾値超過。",
+      "suggested_fix": "改めてアカウントを登録してください"
+    },
+    {
+      "id": "f013",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となる 状態叙述（+I-4 必要要請）",
+      "severity": "S1",
+      "text_span": "必要となりますので",
+      "start": 487,
+      "end": 496,
+      "reason": "『必要です』で足りる箇所を『必要となります』と状態化（A-6）。同時にI-4『〜が必要だ』の行為者曖昧要請も重なる。",
+      "suggested_fix": "必要ですので"
+    },
+    {
+      "id": "f014",
+      "category": "A-8",
+      "category_label": "翻訳調: 行為者省略の受動（+F-4 化）",
+      "severity": "S2",
+      "text_span": "図られる予定です",
+      "start": 559,
+      "end": 567,
+      "reason": "『オンライン化が図られる』は本市が主語のはずのby-passive直訳＋接尾辞『化』。A-8密度の1件。",
+      "suggested_fix": "オンラインで申請できるようにする予定です"
+    },
+    {
+      "id": "f015",
+      "category": "I-4",
+      "category_label": "形式名詞: 〜が求められる（行為者曖昧の要請）★日本語固有",
+      "severity": "S2",
+      "text_span": "対応が求められていた",
+      "start": 575,
+      "end": 585,
+      "reason": "『窓口での対応が求められていた』は誰が求めていたか（本市/制度）を曖昧にした要請。I-4の典型。",
+      "suggested_fix": "これまで窓口に来ていただく必要があった"
+    },
+    {
+      "id": "f016",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について（につきまして）濫用",
+      "severity": "S2",
+      "text_span": "操作方法につきましては",
+      "start": 612,
+      "end": 623,
+      "reason": "『につきまして』でabout直結を回避。A-2反復の3件目で密度が閾値超過。",
+      "suggested_fix": "詳しい操作方法は"
+    },
+    {
+      "id": "f017",
+      "category": "A-8",
+      "category_label": "翻訳調: 行為者省略の受動（by-passive）",
+      "severity": "S2",
+      "text_span": "案内が掲載される予定です",
+      "start": 643,
+      "end": 655,
+      "reason": "掲載主体（本市）が自明なのに『掲載される』と行為者省略受動。A-8密度の1件。",
+      "suggested_fix": "本市ウェブサイトで改めてご案内します"
+    },
+    {
+      "id": "f018",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復 ★日本語固有",
+      "severity": "S2",
+      "text_span": "予定です",
+      "start": 563,
+      "end": 567,
+      "reason": "文書レベル。全17文中ほぼ全文が『ございます/ます/です』で終止し、特に『されます』系の受身+丁寧が連続。体言止め・〜ください等の変奏が皆無で一本調子。",
+      "suggested_fix": "（文末を変奏。例:『〜します』『〜ください』『体言止め』を混在）"
+    }
+  ],
+  "category_summary": {
+    "A": 11,
+    "B": 0,
+    "C": 1,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 1,
+    "I": 4,
+    "J": 0
+  }
+}
