@@ -15,8 +15,8 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再実行（必須・手動照合禁止）**: `03_rewrite.md` に対し `ai-tell-detector` を**サブエージェントとして実呼び出し**し、同基準で再走査する（IMP-006）。手動で目視カウントしてはならない。得た値を `score_after` とする（taxonomy の `k=45` 式で算出）。
+2. **改善率の算出**: `(score_before − score_after) / score_before`。`score_before` は **`02_detection.json` の `meta.severity_weighted_score` をそのまま採用**する（再計算・推定禁止。IMP-003）。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
    * 文体崩れ（敬体／常体の混入）
@@ -27,6 +27,8 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 ## 出力
 
 `05_naturalness_review.json`
+
+> **例値の注記**: 下の `score_before: 71.5` はスキーマ形状の例示に過ぎない。実 run では必ず `02_detection.json` の `meta.severity_weighted_score` を転記すること（IMP-003）。
 
 ```json
 {
