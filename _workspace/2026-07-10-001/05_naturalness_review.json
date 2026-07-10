@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "run_id": "2026-07-10-001",
+    "genre": "technical_explainer",
+    "style_before": "desu_masu",
+    "style_after": "desu_masu",
+    "style_maintained": true,
+    "reviewer_note": "検出器（ai-tell-detector）を推敲文 03_rewrite.md に再走査させ、score_before と同一の正規化式 raw*400/input_length で score_after を算出。オーケストレーターが元レビュアーの background-child デッドロックを引き取り確定。"
+  },
+  "score_before": 53.0,
+  "score_after": 3.5,
+  "improvement_rate": 0.934,
+  "raw_before": 97,
+  "raw_after": 5.5,
+  "density_before": 0.3388,
+  "density_after": 0.041,
+  "detector_variance_note": "自然度用の推敲後再走査を2回実施。1回目 3件(score 2.0)、2回目（より網羅的）5件(score 3.5)。両者とも grade A・accept に影響なし。この検出器間ばらつきは IMP-002（正規化式未定義）と併せ detected_count の再現性欠如を示すため IMPROVEMENTS へ hits+1。authoritative は 5件版を採用。",
+  "residual_findings": {
+    "detected_count": 5,
+    "S1": 0,
+    "S2": 2,
+    "S3": 3,
+    "items": [
+      {
+        "id": "r001",
+        "category": "F-5",
+        "severity": "S2",
+        "text_span": "拡張性（類似性/関連性/拡張性で3回）",
+        "reason": "『〜性』が3回に到達しF-5閾値ちょうど。うち拡張性はB-2修正（スケーラビリティ→拡張性）の副次残存。技術記事として語彙自体は自然だが密度規則上は残存扱い。"
+      },
+      {
+        "id": "r002",
+        "category": "I-3",
+        "severity": "S2",
+        "text_span": "選ぶ必要があります",
+        "reason": "I-4『選定することが求められます』修正で生じた要請形の残存。単発だが末尾『必須の技能』と義務フレームが重複。行為者は文脈上明確化され改善済み。"
+      },
+      {
+        "id": "r003",
+        "category": "D-4/D-6",
+        "severity": "S3",
+        "text_span": "もはや必須の技能になりつつあります",
+        "reason": "『欠かせない』相当のハイプ closing。軟化済みだが AI 印象を残す。"
+      },
+      {
+        "id": "r004",
+        "category": "E-2",
+        "severity": "S3",
+        "text_span": "〜つつあります/〜ています（文書レベル）",
+        "reason": "『つつあります』×2・『います/ています』系×3で敬体内にやや一本調子。ただし短文22字と長文80字の混在でE-1は解消。"
+      },
+      {
+        "id": "r005",
+        "category": "A-9",
+        "severity": "S3",
+        "text_span": "ことによって（×2）",
+        "reason": "『とらえることによって』『進むことによって』の反復で機械的。detector-001 改善報告の新パターン候補『ことによって』と一致。"
+      }
+    ]
+  },
+  "over_polish_signals": {
+    "count": 0,
+    "keigo_jotai_mixing": false,
+    "meaning_thinning": false,
+    "unnatural_paraphrase": false,
+    "information_loss_feel": false,
+    "rhythm_artificiality": false,
+    "notes": "敬体は全文維持。『ひらく』『そろっており』『変わりつつあります』等の置換はいずれも自然な範囲。change_rate 33%はB-2表層置換由来でIMP-001既知欠陥のため減点しない（fidelity=passかつ意味改変edit3件のみ）。"
+  },
+  "grade": "A",
+  "grade_basis": "S1=0, S2=2(≤2), 改善率93.4%(≥70%)。SKILL.md A基準を満たす。",
+  "recommendation": "accept",
+  "second_pass_needed": false,
+  "optional_improvement": "2次推敲する場合のみ、F-5の『拡張性』を動詞句へ、I-3『選ぶ必要があります』を勧告形へ開けばS2 0件になる（必須ではない）。",
+  "improvement_reports_forwarded": [
+    "公用文/技術記事など短文での絶対残存数と改善率の二重基準をgrade表へ明記（naturalness-002と重複、hits+1候補）",
+    "過推敲シグナルを件数+根拠spanの配列で定量出力するスキーマ定義（naturalness-002と重複）",
+    "B-2カタカナ修正が副次的にF-5『〜性』残存を生む連鎖の注記をplaybookへ（新規: B-2置換の副作用チェック）"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "run_id": "2026-07-10-002",
+  "genre": "public_notice_kokuyobun",
+  "score_before": 21.4,
+  "score_after": 0.0,
+  "improvement_rate": 1.0,
+  "score_before_correction_note": "当初 53.5（検出器の独自式 raw/L*1000）だったが SSOT v1.1 式 raw×400/input_length=29×400/542 で 21.4 に訂正（taxonomist 審査・IMP-002）。残存0のため改善率100%・grade A ともに不変。",
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 0 },
+  "residual_by_category": { "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0 },
+  "residual_detail": {
+    "detected_count_after": 0,
+    "input_length_before": 542,
+    "input_length_after": 454,
+    "note": "検出器再走査（ai-tell-detector サブエージェント、同一 taxonomy・同一ジャンル配慮）で残存 finding 0 件。推敲前 13 件（S1=3, S2=6, S3=4, raw=29, score=53.5）が全件解消。"
+  },
+  "core_tell_resolution": {
+    "A6_kototonaru_reps": { "before": 5, "after": 0, "status": "resolved" },
+    "A8_by_passive": { "before": 3, "after": 0, "status": "resolved" },
+    "A1_niokite": { "before": 2, "after": 0, "status": "resolved" },
+    "A3_wotsujite": { "before": 1, "after": 0, "status": "resolved" },
+    "I3_hitsuyo_ga_gozaimasu": { "before": 1, "after": 0, "status": "resolved" },
+    "G1_kanousei_gozaimasu_hedge": { "before": 1, "after": 0, "status": "resolved" },
+    "E2_gozaimasu_reps": { "before": 4, "after": 1, "status": "resolved", "remark": "残る1回は定型『ございましたら』でジャンル定型・非検出。変奏（場合があります／ご用意ください／お知らせします）で自然に分散。" }
+  },
+  "over_polish_signals": [],
+  "over_polish_assessment": {
+    "unnatural_colloquialization": false,
+    "style_break_keitai_jotai_mix": false,
+    "meaning_thinned_or_choppy": false,
+    "change_rate": 0.247,
+    "change_rate_over_30pct": false,
+    "public_tone_preserved": true,
+    "formal_keigo_over_removal": false,
+    "kokuyobun_notes": "敬体（desu_masu）を全文末で維持し常体混入なし。公用文の定型敬語（平素より…厚く御礼申し上げます／何卒ご理解を賜りますようお願い申し上げます／お問い合わせいただきますようお願いいたします／ございましたら）を保持しており、お知らせ文としての格・トーンを損なわずエッセイ化していない。砕けすぎ・軽口化の流出なし。文末は変奏されつつも硬い敬体の範囲内。"
+  },
+  "style_check": {
+    "target_style": "desu_masu",
+    "maintained": true,
+    "jotai_leakage": false
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "検出器再走査で残存 0 件（S1=0/S2=0/S3=0）、score 53.5→0.0（改善率100%）。推敲前の中核であった A-6/A-8 の状態叙述・受動の過剰反復（こととなる系5回・によって受動3件）は全件能動化・簡潔化で解消。ございます4回反復も定型1回へ整理され自然。変更率24.7%は基準内、fidelity=pass 前提で減点要因なし。公用文トーン・敬体・定型敬語すべて維持されエッセイ化・砕けすぎ・文体崩れいずれも検出されず。A 級（S1 0件/S2 2件以下/改善70%+）を満たすため accept。短文（本文454字）で絶対残存数も0のため 2 次推敲不要。"
+}
