@@ -1,0 +1,302 @@
+{
+  "meta": {
+    "run_id": "2026-07-11-001",
+    "genre": "技術解説記事",
+    "style_preserved": "desu_masu",
+    "orig_length": 761,
+    "new_length": 612,
+    "net_length_delta": -149,
+    "change_rate": 0.3351,
+    "change_rate_method": "difflib.SequenceMatcher: (insert + delete + replace両辺) / 原文文字数（改行含む）",
+    "separated_metrics": {
+      "語句改変率": 0.2155,
+      "削除率": 0.117,
+      "挿入率": 0.0026,
+      "note": "IMP-001 対応。change_rate 0.335 の 30% 超過分の主因は AI 装飾・冗長形・順序語の純削除（削除率 11.7%）であり、実質的な語句の置換（語句改変率 21.5%）は 30% 未満。挿入はほぼゼロで net で 149 字短縮。膨張ではなく圧縮方向の推敲。"
+    },
+    "edit_count": 34,
+    "doc_level_findings": ["f024"]
+  },
+  "edits": [
+    {
+      "finding_id": "f001",
+      "category": "A-1",
+      "edit_type": "substitute",
+      "before": "開発の現場において、",
+      "after": "開発の現場で、",
+      "rationale": "「において」を場所格「で」へ。A-1 反復3回の分散形その1（場所格化）"
+    },
+    {
+      "finding_id": "f002",
+      "category": "B-2",
+      "edit_type": "substitute",
+      "before": "Kubernetesというテクノロジー",
+      "after": "Kubernetesという技術",
+      "rationale": "日本語で書けるカタカナ語「テクノロジー」を「技術」へ開く。Kubernetes 等の技術固有名は不変"
+    },
+    {
+      "finding_id": "f003",
+      "category": "D-2",
+      "edit_type": "substitute",
+      "before": "大きな注目を集めています",
+      "after": "注目されています",
+      "rationale": "誇張定型「大きな注目を集めています」を端的な「注目されています」へ。誇張語彙を除去"
+    },
+    {
+      "finding_id": "f004",
+      "category": "A-2",
+      "edit_type": "substitute",
+      "before": "基礎について、",
+      "after": "基礎を、",
+      "rationale": "主題提示「について」を目的格「を」で解説へ直結。A-2 反復3回の分散形その1（目的格化）"
+    },
+    {
+      "finding_id": "f005",
+      "category": "C-1",
+      "edit_type": "delete",
+      "before": "まず、Kubernetesとは、",
+      "after": "Kubernetesとは、",
+      "rationale": "3段公式（まず・次に・最後に）の1要素目。順序語を削除し内容から直接始める。3つを別々の自然形に分散（本edit=削除）"
+    },
+    {
+      "finding_id": "f006",
+      "category": "B-2",
+      "edit_type": "substitute",
+      "before": "スケーリング、マネジメント",
+      "after": "スケーリング、管理",
+      "rationale": "「マネジメント」を「管理」へ。デプロイ・スケーリングは技術標準語として維持"
+    },
+    {
+      "finding_id": "f007",
+      "category": "D-1",
+      "edit_type": "substitute",
+      "before": "プラットフォームであると言えます",
+      "after": "プラットフォームです",
+      "rationale": "婉曲断定「であると言えます」を断定「です」へ。定義文は断定できる。D-1（と言える型）反復3回の分散形その1"
+    },
+    {
+      "finding_id": "f008",
+      "category": "H-1",
+      "edit_type": "delete",
+      "before": "これにより、開発者は",
+      "after": "開発者は",
+      "rationale": "文頭接続詞「これにより、」を削除。因果は文内容で通る。H-1 反復4回の1例目"
+    },
+    {
+      "finding_id": "f009",
+      "category": "A-5",
+      "edit_type": "substitute",
+      "before": "集中することができるようになります",
+      "after": "集中できるようになります",
+      "rationale": "「することができる」＋「ようになります」の二重冗長を「集中できるようになります」へ短縮。変化のニュアンス（ようになる）は保持。A-5 反復5回の1例目"
+    },
+    {
+      "finding_id": "f010",
+      "category": "C-1",
+      "edit_type": "substitute",
+      "before": "次に、Kubernetesの主要な",
+      "after": "では、Kubernetesの主要な",
+      "rationale": "3段公式の2要素目。順序語「次に、」を語りの転換詞「では、」へ置換し列挙公式を解体。分散形その2（談話標識化・f005 削除／f021 溶かし込みと非対称）"
+    },
+    {
+      "finding_id": "f011",
+      "category": "A-2",
+      "edit_type": "substitute",
+      "before": "コンポーネントについて見ていきましょう",
+      "after": "コンポーネントを見ていきましょう",
+      "rationale": "「について」を目的格「を」へ直結。A-2 反復3回の分散形その2（f004 と同傾向だが段落が離れ自然）"
+    },
+    {
+      "finding_id": "f012",
+      "category": "A-1",
+      "edit_type": "substitute",
+      "before": "Kubernetesにおける最小の",
+      "after": "Kubernetesの最小の",
+      "rationale": "「における」を属格「の」へ。A-1 反復3回の分散形その2（属格化・f001 の場所格化と別形）"
+    },
+    {
+      "finding_id": "f013",
+      "category": "A-6",
+      "edit_type": "substitute",
+      "before": "デプロイ単位となっています",
+      "after": "デプロイ単位です",
+      "rationale": "状態叙述「となっています」を断定「です」へ。日本語LLM最強クセ。A-6 反復2回の1例目"
+    },
+    {
+      "finding_id": "f014",
+      "category": "A-5",
+      "edit_type": "substitute",
+      "before": "まとめて管理することができ、",
+      "after": "まとめて管理でき、",
+      "rationale": "「することができ」を「でき」へ短縮。A-5 反復5回の2例目"
+    },
+    {
+      "finding_id": "f015",
+      "category": "B-2",
+      "edit_type": "substitute",
+      "before": "シームレスに共有",
+      "after": "滑らかに共有",
+      "rationale": "「シームレスに」を「滑らかに」へ。playbook 変換表準拠"
+    },
+    {
+      "finding_id": "f016",
+      "category": "A-5",
+      "edit_type": "substitute",
+      "before": "共有することが可能です",
+      "after": "共有できます",
+      "rationale": "「することが可能です」を「できます」へ。A-5 反復5回の3例目（ことが可能の変種）"
+    },
+    {
+      "finding_id": "f017",
+      "category": "H-1",
+      "edit_type": "delete",
+      "before": "また、サービスという",
+      "after": "サービスという",
+      "rationale": "文頭接続詞「また、」を削除。列挙は接続詞なしで通る。H-1 反復4回の2例目"
+    },
+    {
+      "finding_id": "f018",
+      "category": "B-2",
+      "edit_type": "substitute",
+      "before": "アブストラクション",
+      "after": "抽象化層",
+      "rationale": "「アブストラクション」を日本語「抽象化層」へ。検出 reason の「抽象化（層）」に準拠"
+    },
+    {
+      "finding_id": "f019",
+      "category": "A-3",
+      "edit_type": "substitute",
+      "before": "を通じて、動的に",
+      "after": "によって、動的に",
+      "rationale": "手段の直訳「を通じて」を「によって」へ。A系高密度 co-occur を分散（f018 と同span で統合適用）"
+    },
+    {
+      "finding_id": "f020",
+      "category": "A-5",
+      "edit_type": "substitute",
+      "before": "アクセスを実現することができます",
+      "after": "アクセスを実現できます",
+      "rationale": "「することができます」を「できます」へ。A-5 反復5回の4例目"
+    },
+    {
+      "finding_id": "f021",
+      "category": "C-1",
+      "edit_type": "substitute",
+      "before": "最後に、Kubernetesを導入することのメリットについてです。",
+      "after": "Kubernetesを導入するメリットも押さえておきましょう。",
+      "rationale": "3段公式の3要素目。順序語「最後に、」を削除し、前段との接続を係助詞「も」で叙述に溶かし込む。分散形その3（内容溶かし込み・f005 削除／f010 談話標識と非対称）。同span で f022 も統合適用"
+    },
+    {
+      "finding_id": "f022",
+      "category": "A-2",
+      "edit_type": "substitute",
+      "before": "メリットについてです",
+      "after": "メリットも押さえておきましょう",
+      "rationale": "主題提示「について（です）」を動詞叙述へ。A-2 反復3回の分散形その3（f004 目的格・f011 目的格と別形で動詞化）。f021 と同span 統合"
+    },
+    {
+      "finding_id": "f023",
+      "category": "A-5",
+      "edit_type": "substitute",
+      "before": "リソースを最適化することができます",
+      "after": "リソースを最適化できます",
+      "rationale": "「することができます」を「できます」へ。A-5 反復5回の5例目"
+    },
+    {
+      "finding_id": "f024",
+      "category": "E-2",
+      "edit_type": "rhythm_variation",
+      "before": "（文書全体: ます／です止めが単調反復、できます×5）",
+      "after": "文末を敬体内で変奏（注目されています／です／ましょう／できます／します／欠かせない存在です／触れてみてください）。「担保します」で できます 連鎖を断ち、命令形の結びで着地",
+      "rationale": "文書レベル E-2。敬体を維持したまま文末を分散。できます は原文5→3に低減し、断定『します』と結びの『ください』で一本調子を解消（f028 の担保します選択と連動）"
+    },
+    {
+      "finding_id": "f025",
+      "category": "H-1",
+      "edit_type": "delete",
+      "before": "さらに、セルフヒーリング",
+      "after": "セルフヒーリング",
+      "rationale": "文頭接続詞「さらに、」を削除。並列は内容で流れる。H-1 反復4回の3例目"
+    },
+    {
+      "finding_id": "f026",
+      "category": "A-8",
+      "edit_type": "substitute",
+      "before": "セルフヒーリング機能によって、障害が発生したコンテナは自動的に再起動されるようになっており、",
+      "after": "セルフヒーリング機能が、障害が発生したコンテナを自動的に再起動し、",
+      "rationale": "by受動「機能によって〜再起動される」を能動「機能が〜を再起動し」へ。行為者を主語に前置。「障害が発生した」は不変（finding 外）"
+    },
+    {
+      "finding_id": "f027",
+      "category": "B-2",
+      "edit_type": "substitute",
+      "before": "高いアベイラビリティ",
+      "after": "高い可用性",
+      "rationale": "「アベイラビリティ」を業界標準の日本語「可用性」へ。クラウドネイティブ等は維持"
+    },
+    {
+      "finding_id": "f028",
+      "category": "A-6",
+      "edit_type": "substitute",
+      "before": "担保することが可能となっています",
+      "after": "担保します",
+      "rationale": "A-5（ことが可能）＋A-6（となっている）の二重冗長を断定「担保します」へ。A-6 反復2回の2例目。finding 提示の『担保できます／担保します』のうち できます 連鎖回避のため『します』を選択し E-2 変奏に寄与"
+    },
+    {
+      "finding_id": "f029",
+      "category": "H-1",
+      "edit_type": "delete",
+      "before": "このように、Kubernetesは",
+      "after": "Kubernetesは",
+      "rationale": "結びのまとめ公式「このように、」を削除。前段の列挙を受けて接続詞なしで結べる。H-1 反復4回の4例目"
+    },
+    {
+      "finding_id": "f030",
+      "category": "A-1",
+      "edit_type": "substitute",
+      "before": "アプリケーション開発において、",
+      "after": "アプリケーション開発で",
+      "rationale": "「において」を場所格「で」へ。A-1 反復3回の分散形その3（f012 属格・f001 場所格と均一化を避けつつ場所格へ）"
+    },
+    {
+      "finding_id": "f031",
+      "category": "F-1",
+      "edit_type": "delete",
+      "before": "非常に重要な役割",
+      "after": "（f032 と統合し「欠かせない存在」へ）",
+      "rationale": "程度副詞「非常に」を削除。f032/f033 と同span で「欠かせない存在です」へ統合"
+    },
+    {
+      "finding_id": "f032",
+      "category": "A-10",
+      "edit_type": "substitute",
+      "before": "重要な役割を果たすテクノロジー",
+      "after": "欠かせない存在",
+      "rationale": "抽象主語＋万能述語「重要な役割を果たす」＋総称名詞「テクノロジー」の複合（X plays an important role 直訳）を、必須性の具体叙述「欠かせない存在」へ。重要性の含意は保持"
+    },
+    {
+      "finding_id": "f033",
+      "category": "D-1",
+      "edit_type": "substitute",
+      "before": "であると言えるでしょう",
+      "after": "です",
+      "rationale": "三重婉曲の結句「であると言えるでしょう」を断定「です」へ。D-1（と言える型）反復3回の分散形その2。f031/f032 と統合し『欠かせない存在です』"
+    },
+    {
+      "finding_id": "f034",
+      "category": "D-1",
+      "edit_type": "substitute",
+      "before": "触れてみてはいかがでしょうか",
+      "after": "触れてみてください",
+      "rationale": "ブログ/解説AI 決定的シグネチャ「〜てみてはいかがでしょうか」を、読者への具体的な次の一歩「触れてみてください」へ。CTA『ぜひ、この機会に』は原文情報として保持。D系結びの最小着地文を残す"
+    }
+  ],
+  "change_rate": 0.3351,
+  "style_preserved": "desu_masu",
+  "warnings": [
+    "change_rate 0.3351 が 30% 閾値を超過（50% 未満のため続行）。",
+    "IMP-001 分離報告: 超過分の主因は AI 装飾・冗長形・順序語・文頭接続詞の純削除（削除率 11.7%）であり、実質の語句改変率は 21.5%（30% 未満）。挿入率 0.26%、net で 149 字短縮＝膨張ではなく圧縮方向。change_rate は difflib ベースで削除・再整列を過大計上する傾向があり、語句改変量とは乖離する。",
+    "f005/f010/f021 の C-1 3段公式は削除・談話標識化・内容溶かし込みの3形に分散し機械的均一を回避。",
+    "f019『によって』はA-8『機能によって』（f026 で能動化）と語が重なるが、f019 は手段格・f026 は行為者格で機能が異なり、f026 側を能動化することで文書内の『によって』残存は1回に抑制。"
+  ]
+}
