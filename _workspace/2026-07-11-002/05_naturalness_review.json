@@ -1,0 +1,56 @@
+{
+  "run_id": "2026-07-11-002",
+  "genre": "public_document",
+  "style": "desu_masu",
+  "detector_rerun": {
+    "method": "ai-tell-detector subagent（IMP-006: 検出器を同一基準で再走査）",
+    "weights": { "S1": 5, "S2": 2, "S3": 0.5 },
+    "detected_count_before": 13,
+    "detected_count_after": 2
+  },
+  "score_before": 49.7,
+  "score_after": 1.5,
+  "improvement_rate": 0.97,
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 2 },
+  "residual_detail": [
+    {
+      "id": "r001",
+      "category": "I-4",
+      "severity": "S3",
+      "text_span": "暗証番号が必要ですので",
+      "verdict": "register適合・除去不要",
+      "note": "「必要」型が計3回（うち I-3『必要がございます』1回は意図的温存）だが、各々が具体的対象を伴う個別要件の列挙で機械反復ではない。公的文書として自然範囲。"
+    },
+    {
+      "id": "r002",
+      "category": "H-1",
+      "severity": "S3",
+      "text_span": "なお…つきましては…また",
+      "verdict": "register適合・除去不要",
+      "note": "第4段落の文頭接続詞3種連続。いずれも公的文書の定型接続詞でregisterに適合、同一語連発ではないためAI度は弱い。"
+    }
+  ],
+  "over_polish_signals": [],
+  "over_polish_checks": {
+    "unnatural_colloquialization": false,
+    "style_breakage_keitai_jotai_mix": false,
+    "meaning_thinning_or_choppiness": false,
+    "change_rate_over_30pct": false,
+    "taiген_dome_forced": false
+  },
+  "e2_evaluation": {
+    "criterion": "公的文書ジャンル: 体言止め or 文末形態3種以上分散 の OR 条件で評価",
+    "taigen_dome_used": false,
+    "taigen_dome_exempt": true,
+    "sentence_end_forms": ["〜ています", "〜がございます", "〜です", "〜ください", "〜いたします", "〜申し上げます"],
+    "distinct_form_count": 6,
+    "verdict": "到達ライン（3種以上）を明確に満たす。体言止め不採用は格維持のため過推敲ではない。"
+  },
+  "preservation_of_hard_keigo": {
+    "assessment": "賜り／申し上げます／ございます 等の硬い敬語維持は公的文書registerに忠実。過推敲でない。",
+    "necessity_gozaimasu_retention": "『必要がございます』を3回反復→1回に削減。1回のみの使用は自然な公的表現で残存扱いせず、機械反復の解消として妥当。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "全13 findingのうち11件を解消、1件（必要がございます）を機械反復解消のため意図的に1回温存、E-2は文末6種分散で到達ライン充足。残存はregister適合の弱いS3が2件のみ（I-4・H-1、いずれも除去不要）。S1・S2とも0件、改善率97.0%でA等級の全条件（S1 0件／S2≤2件／改善70%+）を満たす。過推敲シグナルなし・文体崩れなし。受理を推奨。"
+}
