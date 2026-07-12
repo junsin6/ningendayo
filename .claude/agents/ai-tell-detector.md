@@ -22,6 +22,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "detected_count": 0,
     "ai_tell_density": 0.0,
     "severity_weighted_score": 0.0,
+    "weight_scheme": "raw = 5*S1 + 2*S2 + 0.5*S3; score = 100*(1 - exp(-raw/41))",
     "style": "desu_masu | da_dearu | mixed"
   },
   "findings": [
@@ -50,9 +51,12 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（taxonomy §検出出力スキーマの確定式に厳密準拠。IMP-002/003）:
+   * `raw` = S1×5 + S2×2 + S3×0.5。
+   * `severity_weighted_score` = 100 · (1 − exp(−raw / 41))。飽和型で高 raw でも解像度を保つ。
+   * `meta.weight_scheme` に式 `"raw = 5*S1 + 2*S2 + 0.5*S3; score = 100*(1 - exp(-raw/41))"` を必ず記録。
+   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数（scattered/document 型は locator 重複を除いた実文字数）。
+6. **span スコープ**（IMP-004）: 分散パターンは `scope:"scattered"` ＋ `occurrences:[[s,e],…]`、文書全体パターン（E-2 単調・E-1 均一等）は `scope:"document"` ＋ `start/end:null` 可。連続 span は `scope` 省略（"contiguous" 既定）。
 
 ## 重要な原則
 
