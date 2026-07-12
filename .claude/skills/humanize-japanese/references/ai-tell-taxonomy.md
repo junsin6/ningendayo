@@ -121,6 +121,7 @@ J. 視覚装飾の濫用
 * 例: 「この**フレームワーク**を**レバレッジ**して**シームレス**に」→「この枠組みを活かして滑らかに」
 * 頻出: leverage→活用、framework→枠組み、robust→堅牢、insight→示唆、commit→注力、agenda→課題
 * 例外: 固有名詞・業界標準語（Transformer・API・SDK・トークン 等）は維持。
+* 分野標準レジスタ語の免責（v1.1・IMP 由来）: 当該分野の実務者が日常的にそのカタカナで書く語は B-2 対象外とし残差 S3 に固定。過剰和訳はむしろ過推敲になる。例＝検索/LLM: エンベディング・ベクトル・クエリ・レイテンシ・リコール・RAG・ANN・HNSW・IVF・ハルシネーション／ビジネス定着: ルーティン・モチベーション・データドリブン・リスキリング・アジャイル。飾りカタカナ（シームレス・ソリューション・レバレッジ・インサイト）とは区別する。詳細リストは `rewriting-playbook.md §B-2`。
 
 ### B-3. 英語引用句の生埋め込み [S2]
 
@@ -384,6 +385,7 @@ J. 視覚装飾の濫用
     "detected_count": 37,
     "ai_tell_density": 0.203,
     "severity_weighted_score": 71.5,
+    "weight_scheme": "raw = 5*S1 + 2*S2 + 0.5*S3; score = 100*(1 - exp(-raw/41))",
     "style": "desu_masu"
   },
   "findings": [
@@ -406,12 +408,31 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: **確定正規化式（v1.1・IMP-002/003 で確定）**。
+  * 加重和 `raw = 5·(S1件数) + 2·(S2件数) + 0.5·(S3件数)`。
+  * 正規化 `score = 100 · (1 − exp(−raw / 41))`（0〜100、飽和型）。定数 K=41 は既存の 2 参照点（`raw=106 → 92.5`、`raw=26 → 47.0`）を同時に再現する値として確定。
+  * 飽和型を採用する理由: 線形 `100·raw/(raw+K)` 型は参照点を同時再現できず（rational だと raw=26 で 75 になり不整合）、また高密度短文で即 100 付近に張り付いて深刻度の解像度が消える（IMP-002）。指数飽和は高 raw でも徐々に増え解像度を保つ。
+  * `meta.weight_scheme` にこの式を毎回文字列で記録すること（再計測・別 run 間の一貫性のため。IMP-003）。
+  * `naturalness-reviewer` の `score_before` は必ず `02_detection.json` の `meta.severity_weighted_score` を用い、`score_after` も同一式で算出する。
+* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。scattered/document 型 span は locator の重複を除いた実 AI クセ文字数で数える（下記スキーマ拡張参照）。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
+
+### span スコープ拡張（v1.1・IMP-004 で確定）
+
+単一 `start`/`end` では E（リズム）・C（絵文字/箇条書き濫用）・文末単調のような**分散・文書全体パターン**を表現できず、無理に一点を指すと ai_tell_density が歪む。各 finding に任意フィールド `scope` を持たせる:
+
+* `scope: "contiguous"`（既定）: 連続 span。`start`/`end` は従来どおり必須。
+* `scope: "scattered"`: 同一パターンが複数箇所に散在。`occurrences: [[s1,e1],[s2,e2],…]` に全出現を列挙し、`start`/`end` は代表（先頭）出現を指す。density は occurrences の実文字数で数え、locator の重複計上をしない。
+* `scope: "document"`: 文書全体の指標（例 E-2 です・ます単調、E-1 文長均一）。`start`/`end` は `null` 可。`reason` に文書レベルの根拠（例「ます終止が全17文中14文」）を書く。推敲役はこれを「点の修正」ではなく「全体方針」と解釈する。
+
+`scope` 省略時は `"contiguous"` とみなす（後方互換）。
 
 ## バージョン管理
 
+* **v1.1** (2026-07-12): 日次ハーネス実戦由来の確定改善を反映（run 2026-07-12-001/002）。
+  + **IMP-002/003**: `severity_weighted_score` の正規化式を確定（`score = 100·(1 − exp(−raw/41))`）。`meta.weight_scheme` の記録を必須化し、`score_before` を `meta.severity_weighted_score` に固定。
+  + **IMP-004**: span スコープ拡張 `scope: contiguous|scattered|document`（＋ scattered の `occurrences`、document の null 位置）を追加。
+  + **B-2**: 分野標準レジスタ語の免責リストを明記（検索/LLM・ビジネス定着語）。
 * **v1.0** (2026-05): 日本語 AIクセ分類体系の初版。10 大分類（A〜J）× 40+ サブパターンを定義。
   + 日本語固有として重点配置: `A-6`（〜となっている）, `B-2`（カタカナ語濫用）, `E-2`（です・ます単調）, `I-4`（〜が求められる）, `J-3`（ダッシュ濫用）, D-1 の「いかがでしたでしょうか」。
 * 拡張原則: 実戦入力で再現 2 回以上 + 日本語の人間の書き手がほぼ使わないパターンのみサブ項目として追加。新パターンは末尾の候補欄に実例 2 件以上を添えて提案する。
