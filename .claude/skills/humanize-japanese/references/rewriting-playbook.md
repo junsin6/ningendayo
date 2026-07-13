@@ -138,11 +138,20 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（v1.1 改訂 / IMP-001）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+単一の change_rate だけで中断判定しない。次の **3 指標を併記**する:
+
+* `change_rate` =（挿入 + 削除された文字数）/ 原文文字数。編集距離ベース。
+* `net_length_delta_rate` =（最終文字数 − 原文文字数）/ 原文文字数。**正味の長さ変化**。
+* `deletion_share` = 削除文字数 /（挿入 + 削除文字数）。削除主導かを示す。
+
+判定:
+
+* `change_rate` 30% 超 → `summary.md`/`warnings` に警告を記録し続行。
+* `change_rate` 50% 超でも、`deletion_share` が高く（目安 > 0.6）かつ `net_length_delta_rate` の絶対値が小さいとき（＝装飾・常套句・カタカナ・冗長可能形の**純削除主導**）は **自動 `hold_and_report` を返さない**。理由を `warnings` に明記し、意味等価は fidelity 監査へ委ねる（オーケストレーターが fidelity=pass かつ自然度 A/B を確認して override accept）。
+* ロールバック（原意復元）edit には `direction: "toward_source"` を付す。原文へ**近づける**操作なのに difflib 編集距離は増えうる（逆行現象）ため、閾値判定から割り引く。
+* 真に中断すべきは「**挿入主導で意味改変を伴う膨張**」。`net_length_delta_rate` が大きく正で挿入率が高い場合を優先的に `hold_and_report` 対象とする。ジャンルを移していないかもここで再点検。
 
 ## 文体変換例（before → after 一括サンプル）
 

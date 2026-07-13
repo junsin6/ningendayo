@@ -73,6 +73,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 条件 | 判定 | アクション |
 | --- | --- | --- |
 | 等級 A/B かつ fidelity 毀損なし | `accept` | `final.md` + `summary.md` 出力 |
+| 変更率 50% 超だが**削除主導**（`deletion_share` > 0.6・`net_length_delta_rate` 小）で fidelity=pass かつ A/B | `accept`（override） | IMP-001 既知欠陥のため中断しない。`summary.md` に override 理由を明記 |
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
