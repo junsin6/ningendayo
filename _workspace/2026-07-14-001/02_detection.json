@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "input_length": 738,
+    "detected_count": 21,
+    "ai_tell_density": 0.251,
+    "severity_weighted_score": 81.0,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "提供することができます",
+      "start": 185,
+      "end": 196,
+      "reason": "「することができ(る/ます)」が本文で6回反復（提供/実行/コンパイル/実現/発揮/拡張）。可能の冗長形が機械的に多用され、この記事で最も強いAIシグネチャ。",
+      "suggested_fix": "提供できます"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実行することができます",
+      "start": 327,
+      "end": 338,
+      "reason": "「することができ」6回反復のうちの1つ。ここは可能を主張する必要が薄く断定でも通る。",
+      "suggested_fix": "実行できます"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "コンパイルすることができ",
+      "start": 400,
+      "end": 412,
+      "reason": "「することができ」6回反復のうちの1つ。連用中止の冗長形。",
+      "suggested_fix": "コンパイルでき"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実現することができます",
+      "start": 440,
+      "end": 451,
+      "reason": "「することができ」6回反復のうちの1つ。同一文内で他の可能形と重なり過剰。",
+      "suggested_fix": "実現できます"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "発揮することができます",
+      "start": 579,
+      "end": 590,
+      "reason": "「することができ」6回反復のうちの1つ。",
+      "suggested_fix": "発揮できます"
+    },
+    {
+      "id": "f006",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "拡張することができる",
+      "start": 685,
+      "end": 695,
+      "reason": "「することができ」6回反復のうちの1つ。連体形。ここは断定「拡張できる」で十分。",
+      "suggested_fix": "拡張できる"
+    },
+    {
+      "id": "f007",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞（もたらす/提供する）",
+      "severity": "S1",
+      "text_span": "それがもたらすメリット",
+      "start": 118,
+      "end": 129,
+      "reason": "英語 The X brings Y の直訳型。指示語「それ」を抽象主語に置き万能動詞「もたらす」で受ける擬人化叙述。",
+      "suggested_fix": "WebAssemblyの利点"
+    },
+    {
+      "id": "f008",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において 濫用",
+      "severity": "S1",
+      "text_span": "シナリオにおいて",
+      "start": 562,
+      "end": 570,
+      "reason": "「において」が本文で2回。分野・状況を抽象的に枠づける英語 in/at の直訳。単独でも硬いが直後の「領域においても」と隣接反復し露見。",
+      "suggested_fix": "シナリオで"
+    },
+    {
+      "id": "f009",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において 濫用",
+      "severity": "S1",
+      "text_span": "領域においても",
+      "start": 617,
+      "end": 624,
+      "reason": "「において」2回目。前文の「シナリオにおいて」と近接し翻訳調が連続する。",
+      "suggested_fix": "領域でも"
+    },
+    {
+      "id": "f010",
+      "category": "D-1",
+      "category_label": "AI常套句: 〜といえます/といえるでしょう（結び・断定回避）",
+      "severity": "S1",
+      "text_span": "であるといえます",
+      "start": 78,
+      "end": 86,
+      "reason": "「(と)いえます/いえるでしょう」型が本文で4回反復。人間の書き手はまず使わないAI特有の弱い断定句。冒頭の定義文に付き冗長。",
+      "suggested_fix": "です"
+    },
+    {
+      "id": "f011",
+      "category": "D-1",
+      "category_label": "AI常套句: 〜といえます/といえるでしょう（結び・断定回避）",
+      "severity": "S1",
+      "text_span": "であるといえるでしょう",
+      "start": 478,
+      "end": 489,
+      "reason": "「といえるでしょう」4回反復のうちの1つ。断定を避ける常套句で、ここは事実叙述のため断定で足りる。",
+      "suggested_fix": "です"
+    },
+    {
+      "id": "f012",
+      "category": "D-1",
+      "category_label": "AI常套句: 〜といえます/といえるでしょう（結び・断定回避）",
+      "severity": "S1",
+      "text_span": "加速しているといえます",
+      "start": 640,
+      "end": 651,
+      "reason": "「といえます」4回反復のうちの1つ。観測事実に不要なヘッジ（G-1的）が付く。",
+      "suggested_fix": "加速しています"
+    },
+    {
+      "id": "f013",
+      "category": "D-1",
+      "category_label": "AI常套句: 〜といえます/といえるでしょう（結び・断定回避）",
+      "severity": "S1",
+      "text_span": "期待されているといえるでしょう",
+      "start": 721,
+      "end": 736,
+      "reason": "「といえるでしょう」4回反復のうち末尾の1つ。行為者不明の受動「期待されている」＋弱い断定の二重ヘッジで締める典型的AI結び。",
+      "suggested_fix": "期待できます"
+    },
+    {
+      "id": "f014",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "ブースト",
+      "start": 54,
+      "end": 58,
+      "reason": "不要なカタカナ動詞。本文には日本語で書けるカタカナ語が20語超（パフォーマンス/ネイティブ/アドバンテージ/ポテンシャル/ユニバーサル等）密集し、知的偽装型のB-2閾値を大きく超える。boost→高める。",
+      "suggested_fix": "高める"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "ハイパフォーマンスに",
+      "start": 317,
+      "end": 327,
+      "reason": "日本語で書ける形容表現のカタカナ化。同文に「パフォーマンス」「ワークロード」も並びカタカナ密度が高い。high performance→高速に。",
+      "suggested_fix": "高速に"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "ポータビリティ",
+      "start": 356,
+      "end": 363,
+      "reason": "portability。日本語「移植性」で足りる不要カタカナ語。B-2密集の一例。",
+      "suggested_fix": "移植性"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "ユニバーサルな",
+      "start": 427,
+      "end": 434,
+      "reason": "universal。「汎用的な」で足りる。同文に「プラットフォーム」「ランタイム」も並存しカタカナが飽和。",
+      "suggested_fix": "汎用的な"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "アドバンテージ",
+      "start": 471,
+      "end": 478,
+      "reason": "advantage。「強み/利点」で足りる不要カタカナ語。直前の「非常に大きな」と結び誇張を強める。",
+      "suggested_fix": "強み"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "ポテンシャルを発揮",
+      "start": 572,
+      "end": 581,
+      "reason": "potential。「可能性/力を発揮」で足りる。B-2密集の一例（後半に発揮できますのA-5とも重なる区間）。",
+      "suggested_fix": "力を発揮"
+    },
+    {
+      "id": "f020",
+      "category": "F-1",
+      "category_label": "過度な修飾: 程度副詞（非常に）",
+      "severity": "S2",
+      "text_span": "非常に大きな",
+      "start": 465,
+      "end": 471,
+      "reason": "程度副詞「非常に」＋大きな＋直後のカタカナ誇張「アドバンテージ」で意義を水増しする典型。強調は具体で示すべきで副詞は削除可。",
+      "suggested_fix": "大きな"
+    },
+    {
+      "id": "f021",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復 ★日本語固有（文書レベル）",
+      "severity": "S2",
+      "text_span": "多岐にわたります",
+      "start": 511,
+      "end": 519,
+      "reason": "文書レベル所見。全13文中13文が「〜ます/です/でしょう/でした」止めで文末が一本調子。うち6文が『ことができます』、4文が『といえます/でしょう』止めと同型が重畳。敬体を維持したまま体言止め・〜だろう等で文末を変奏すべき。text_spanは代表位置（無変奏の一例）。",
+      "suggested_fix": "多岐にわたります（→ 体言止め等で変奏。例: 用途は多岐にわたる／幅広い）"
+    }
+  ],
+  "category_summary": { "A": 9, "B": 6, "C": 0, "D": 4, "E": 1, "F": 1, "G": 0, "H": 0, "I": 0, "J": 0 }
+}

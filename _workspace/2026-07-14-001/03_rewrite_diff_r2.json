@@ -1,0 +1,16 @@
+{
+  "round": 2,
+  "edits": [
+    {
+      "finding_id": "f001",
+      "category": "A-10",
+      "round": 2,
+      "before": "WebAssemblyは、ブラウザ上でセキュアなサンドボックス環境を提供します",
+      "after": "WebAssemblyを使えば、ブラウザ上にセキュアなサンドボックス環境を用意できます",
+      "rationale": "抽象主語（技術概念）＋万能動詞「提供する」の英語直訳型構文（The X provides Y）を解消。条件節「〜を使えば」で行為の主体を含意し、動詞を「用意できます」へ変更。固有名詞 WebAssembly・専門概念語サンドボックス環境・既存訳語セキュアは保持、敬体維持、意味等価。"
+    }
+  ],
+  "change_rate": 0.014,
+  "style_preserved": "desu_masu",
+  "warnings": []
+}

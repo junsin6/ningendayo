@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "run_id": "2026-07-14-001",
+    "style_preserved": "desu_masu",
+    "orig_chars_no_newline": 729,
+    "rewrite_chars_no_newline": 630,
+    "deleted_chars": 128,
+    "inserted_chars": 29,
+    "change_rate": 0.2154,
+    "lexical_substitution_rate": 0.2154,
+    "structural_deletion_rate": 0.0,
+    "paragraph_count": { "before": 5, "after": 5 },
+    "sentence_count": { "before": 13, "after": 13 },
+    "info_loss": "none",
+    "findings_total": 21,
+    "findings_addressed": 21,
+    "verdict": "accept",
+    "warnings": []
+  },
+  "edits": [
+    {
+      "finding_id": "f010",
+      "category": "D-1",
+      "before": "であるといえます",
+      "after": "です",
+      "sentence_before": "…バイナリフォーマットのテクノロジーであるといえます。",
+      "sentence_after": "…バイナリフォーマットのテクノロジーです。",
+      "rationale": "弱い断定「といえます」を除き定義文を断定へ。E-2変奏も兼ねて文末をですに。"
+    },
+    {
+      "finding_id": "f014",
+      "category": "B-2",
+      "before": "ブーストできる",
+      "after": "高められる",
+      "rationale": "不要なカタカナ動詞boostを和語へ。パフォーマンス/ネイティブレベルは未検出のため保持。"
+    },
+    {
+      "finding_id": "f007",
+      "category": "A-10",
+      "before": "それがもたらすメリット",
+      "after": "その利点",
+      "rationale": "擬人化の万能動詞「もたらす」を除去し、指示語を圏点として自然化。メリット→利点も開く。suggested_fix『WebAssemblyの利点』は直前の『WebAssemblyの…アーキテクチャ』と語の反復を招くため『その利点』を採用（万能動詞除去というA-10核心は達成）。"
+    },
+    {
+      "finding_id": "f001",
+      "category": "A-5",
+      "before": "提供することができます",
+      "after": "提供します",
+      "rationale": "A-5反復6回の分散策として、この文は可能ではなく提供の事実を述べる文脈のため断定「提供します」に。連続するできますの単調を崩す。"
+    },
+    {
+      "finding_id": "f015",
+      "category": "B-2",
+      "before": "ハイパフォーマンスに",
+      "after": "高速に",
+      "rationale": "high performanceの副詞的カタカナを和語へ。"
+    },
+    {
+      "finding_id": "f002",
+      "category": "A-5",
+      "before": "実行することができます",
+      "after": "実行できます",
+      "rationale": "冗長な可能形「することができます」を「できます」へ短縮。可能の主張は保持。"
+    },
+    {
+      "finding_id": "f016",
+      "category": "B-2",
+      "before": "ポータビリティ",
+      "after": "移植性",
+      "rationale": "portability。定着度の低いカタカナを和語へ。ランタイム等の定着語は保持。"
+    },
+    {
+      "finding_id": "f003",
+      "category": "A-5",
+      "before": "コンパイルすることができ",
+      "after": "コンパイルでき",
+      "rationale": "連用中止の冗長な可能形を短縮。C/C++/Rustは不変。"
+    },
+    {
+      "finding_id": "f017",
+      "category": "B-2",
+      "before": "ユニバーサルな",
+      "after": "汎用的な",
+      "rationale": "universal。和語で足りるカタカナを開く。プラットフォーム/ランタイムは定着語のため保持。"
+    },
+    {
+      "finding_id": "f004",
+      "category": "A-5",
+      "before": "実現することができます",
+      "after": "実現できます",
+      "rationale": "冗長な可能形を短縮。"
+    },
+    {
+      "finding_id": "f020",
+      "category": "F-1",
+      "before": "非常に大きな",
+      "after": "大きな",
+      "rationale": "程度副詞「非常に」を削除。誇張を具体語(強み)に委ねる。"
+    },
+    {
+      "finding_id": "f018",
+      "category": "B-2",
+      "before": "アドバンテージ",
+      "after": "強み",
+      "rationale": "advantage。和語へ。"
+    },
+    {
+      "finding_id": "f011",
+      "category": "D-1",
+      "before": "であるといえるでしょう",
+      "after": "です",
+      "sentence_before": "このことは、開発者にとって非常に大きなアドバンテージであるといえるでしょう。",
+      "sentence_after": "このことは、開発者にとって大きな強みです。",
+      "rationale": "弱い断定「といえるでしょう」を除き事実叙述を断定へ。f018/f020と同一文で結合処理。"
+    },
+    {
+      "finding_id": "f021",
+      "category": "E-2",
+      "before": "多岐にわたります",
+      "after": "多岐にわたるものです",
+      "rationale": "文書全体のます止め単調に対する変奏。多岐にわたるの意味は完全保持し、文末型をます→ですへ変える体言止め寄りの処理。周辺のですます各型と合わせ一本調子を緩和。"
+    },
+    {
+      "finding_id": "f008",
+      "category": "A-1",
+      "before": "シナリオにおいて",
+      "after": "シナリオで",
+      "rationale": "翻訳調「において」を格助詞「で」へ。シナリオ自体は未検出のため保持。"
+    },
+    {
+      "finding_id": "f019",
+      "category": "B-2",
+      "before": "ポテンシャルを発揮",
+      "after": "力を発揮",
+      "rationale": "potential。和語「力」へ。f005と同一句で結合。"
+    },
+    {
+      "finding_id": "f005",
+      "category": "A-5",
+      "before": "発揮することができます",
+      "after": "発揮できます",
+      "rationale": "冗長な可能形を短縮。f019と結合し『その力を発揮できます』に。"
+    },
+    {
+      "finding_id": "f009",
+      "category": "A-1",
+      "before": "領域においても",
+      "after": "領域でも",
+      "rationale": "前文f008と近接反復する「において」を「で」へ分散。f008をで、こちらをでもとし機械的均一を回避。"
+    },
+    {
+      "finding_id": "f012",
+      "category": "D-1",
+      "before": "加速しているといえます",
+      "after": "加速しています",
+      "rationale": "観測事実に付く不要ヘッジ「といえます」を除去し断定へ。"
+    },
+    {
+      "finding_id": "f006",
+      "category": "A-5",
+      "before": "拡張することができる",
+      "after": "拡張できる",
+      "rationale": "連体形の冗長な可能形を短縮。後続『テクノロジーです』は不変。"
+    },
+    {
+      "finding_id": "f013",
+      "category": "D-1",
+      "before": "期待されているといえるでしょう",
+      "after": "期待できます",
+      "rationale": "行為者不明の受動『期待されている』＋弱い断定の二重ヘッジを解消。結びを自然な断定『期待できます』へ。"
+    }
+  ]
+}
