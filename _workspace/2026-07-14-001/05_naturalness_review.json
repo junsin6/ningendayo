@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-07-14-001",
+  "reviewer": "naturalness-reviewer",
+  "score_before": 81.0,
+  "score_after": 16.7,
+  "score_delta": -64.3,
+  "improvement_rate": 0.794,
+  "normalization_note": "score_after は before と同一基準で算出: (S1×5 + S2×2 + S3×0.5) / input_length × 1000, cap 100。input_length(after)=629, detected_count(after)=6, ai_tell_density=0.137。",
+  "residual_findings": { "S1": 1, "S2": 2, "S3": 3 },
+  "residual_findings_detail": [
+    {
+      "id": "f001",
+      "category": "A-10",
+      "severity": "S1",
+      "text_span": "セキュアなサンドボックス環境を提供します",
+      "span": [155, 176],
+      "reason": "抽象主語（WebAssembly）＋万能動詞「提供する」の擬人化叙述が残存。推敲前 A-5『提供することができます』は解消されたが、断定化の過程で A-10 パターンが表面化。S1 のため無条件除去対象。",
+      "suggested_fix": "WebAssembly はブラウザ上に安全なサンドボックス環境をつくります／WebAssembly ならブラウザ上で安全なサンドボックスの中で動かせます 等、抽象主語＋提供する型を回避"
+    },
+    {
+      "id": "f002",
+      "category": "B-2",
+      "severity": "S2",
+      "text_span": "CPUインテンシブなワークロード ほかカタカナ残",
+      "reason": "targeted B-2（ブースト/ハイパフォーマンス/ポータビリティ/ユニバーサル/アドバンテージ/ポテンシャル）は解消済み。技術用語系カタカナ（CPUインテンシブ/ワークロード 等）が一部残るが密度は閾値近傍まで低下。"
+    },
+    {
+      "id": "f003",
+      "category": "E-2",
+      "severity": "S2",
+      "text_span": "文末単調（文書レベル）",
+      "reason": "全文が依然『です／ます』止めで文末の変奏がない。敬体は維持されており文体崩れではないが、リズムの一本調子が残る。体言止め・〜だろう等での変奏余地あり。"
+    },
+    { "id": "f004", "category": "C-6", "severity": "S3", "text_span": "（S3 弱シグナル）", "reason": "他パターンと重なる場合のみ問題となる弱シグナル。単独では減点対象外。" },
+    { "id": "f005", "category": "D-5", "severity": "S3", "text_span": "（S3 弱シグナル）", "reason": "他パターンと重なる場合のみ問題となる弱シグナル。単独では減点対象外。" },
+    { "id": "f006", "category": "D-4", "severity": "S3", "text_span": "（S3 弱シグナル）", "reason": "他パターンと重なる場合のみ問題となる弱シグナル。単独では減点対象外。" }
+  ],
+  "over_polish_signals": [],
+  "over_polish_check": {
+    "unnatural_colloquialization": false,
+    "style_drift_keitai_jotai_mix": false,
+    "meaning_dilution": false,
+    "excessive_taigen_dome": false,
+    "change_rate_over_30pct": false,
+    "note": "敬体（です・ます）維持。不自然な和語化・意味の希薄化・体言止め過多なし。変更率は 30% 未満で過推敲なし。"
+  },
+  "grade": "C",
+  "recommendation": "rewrite_round_2",
+  "notes": "改善率 79.4%（81.0→16.7）は A 相当の削減量だが、残存 S1 が 1 件（f001 A-10）あるため grade A/B（ともに S1=0 が必須条件）を満たせず、rubric に従い grade C・rewrite_round_2 と判定。2 次推敲では f001 の抽象主語＋万能動詞『提供します』を手術的に修正するだけで S1=0 となり、grade A（S1=0 / S2≤2 / 改善70%+）到達が見込める。S2 は 2 件（B-2 技術用語残・E-2 文末単調）で A 閾値内、過推敲シグナルは 0。文体崩れ・意味毀損なし。"
+}
