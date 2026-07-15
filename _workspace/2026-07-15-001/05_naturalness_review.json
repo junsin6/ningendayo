@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "run_id": "2026-07-15-001",
+    "genre": "technical_explainer",
+    "style": "desu_masu",
+    "reviewer": "naturalness-reviewer",
+    "detector_rerun": "IMP-006: ai-tell-detector を 03_rewrite.md に 02_detection.json と同一 taxonomy 基準・同一正規化式で再走査（子エージェント実走）。本レビューは自己手動照合と検出器再実行の突き合わせ後に検出器結果を採用。",
+    "score_normalization": "raw = S1*5 + S2*2 + S3*0.5; score = min(100, raw*100/(scored_length*0.2))。推敲前と同一式・同一飽和(=100)基準。score_after は推敲後本文長 625字（改行除外・検出器の連結スキーム）を分母に採用。",
+    "scored_length_before": 754,
+    "scored_length_after": 625
+  },
+  "score_before": 67.6,
+  "score_after": 3.6,
+  "improvement_rate": 0.947,
+  "score_note": "score_before は 02_detection.json の meta.severity_weighted_score(=67.6) を IMP-003 のフィールド契約どおり meta 直下から取得。score_after は検出器再走査の meta.severity_weighted_score(=3.6): raw = S1 0*5 + S2 1*2 + S3 5*0.5 = 4.5 → 4.5*100/(625*0.2)=4.5*100/125=3.6。改善率 = (67.6-3.6)/67.6 = 0.947。",
+  "residual_findings": { "S1": 0, "S2": 1, "S3": 5 },
+  "residual_detail": [
+    {
+      "id": "r001",
+      "category": "D-4",
+      "severity": "S2",
+      "text_span": "欠かせない",
+      "reason": "『リアルタイムの応答が欠かせないユースケース』。D-4 ハイプ常套句『〜は/が欠かせない』に該当。推敲前 I-4『リアルタイム性が求められる』(f026) を置換する過程で新規混入した“クセ交換”。単発・連体修飾で自然寄りだが D-4 語彙リスト該当のため S2 計上。→ 過推敲シグナル(tell-swap)としても重複計上。"
+    },
+    {
+      "id": "r002",
+      "category": "B-2",
+      "severity": "S3",
+      "text_span": "テクノロジー/パフォーマンス/アプローチ/シナリオ",
+      "reason": "置換可能カタカナ残存 計5語(テクノロジー×2/パフォーマンス/アプローチ/シナリオ)。推敲前 8+語の S2 高密度から大半が日本語化済み。残存は技術用語と混在し強シグネチャ閾値未満で S3 へ格下げ。エコシステム/パラダイムシフト/デジタルライフは業界慣用・Do-NOT境界で非計上。"
+    },
+    {
+      "id": "r003",
+      "category": "E-2",
+      "severity": "S3",
+      "text_span": "文末『できます』×5",
+      "reason": "文末変奏は導入済み(下記 e2_measurement, 二値=YES で一本調子解消)。ただし『できます』が5文反復し局所的単調が残る。推敲前 f033(ます系×10 全文一本調子 S2)から大幅改善のため S3 残存。"
+    },
+    {
+      "id": "r004",
+      "category": "G-1",
+      "severity": "S3",
+      "text_span": "でしょう×2(隣接)",
+      "reason": "『でしょう』実測2回(広げていくでしょう/大きく変えるでしょう)。rewriter 予告どおり。回数はヘッジング閾値未満だが第5段落の隣接2文が連続『でしょう』終止でミニ単調。リズム観点 S3。"
+    },
+    {
+      "id": "r005",
+      "category": "H-3",
+      "severity": "S3",
+      "text_span": "指示語始発文×5",
+      "reason": "文頭こそあど始発が5/16文(この技術は/これにより/この仕組みは/これらのテクノロジーを/このパラダイムシフトは)。単独は自然だが密度中程度で機械的結束が残る。S3。"
+    },
+    {
+      "id": "r006",
+      "category": "F-4",
+      "severity": "S3",
+      "text_span": "『的』×2(一般的/効率的)",
+      "reason": "接尾辞『的』残存2(一般的でした/効率的にデプロイ)。推敲前 f029 の中心的は『中心を担う』へ解体済みだが一般的が残り総数2で閾値ぎりぎり。過検出回避で S3。低優先。"
+    }
+  ],
+  "e2_measurement": {
+    "verdict": "resolved (S2→below-threshold, 局所反復のみ S3)",
+    "sentence_endings": ["です", "でした", "ました", "します", "できます", "できます", "ましょう", "できます", "します", "できます", "ています", "できます", "あります", "でしょう", "でしょう", "はずです"],
+    "variation_present": true,
+    "note": "推敲前『ます系×10・変奏皆無』の一本調子(S2)から、でした/ました/ましょう/ています/あります/でしょう/はずです の変奏が導入され敬体は全16文維持。E-2 一本調子は解消。残るのは『できます』×5 の局所反復のみ(S3)。"
+  },
+  "g1_measurement": {
+    "verdict": "hedge resolved; 隣接反復のみ残存",
+    "deshou_count": 2,
+    "spans": ["広げていくでしょう", "大きく変えるでしょう"],
+    "note": "rewriter 予告どおり G-1『と考えられます』→『でしょう』置換で推測ヘッジ解消(でしょうは敬体の自然な推量文末でG-1違反ではない)。第5段の隣接2文が連続『でしょう』のミニ単調のみ S3。"
+  },
+  "over_polish_signals": [
+    {
+      "signal": "tell_swap",
+      "detail": "I-4『リアルタイム性が求められる』(f026) → D-4『欠かせない』(r001) への置換で、除去ではなく別カテゴリのクセへ交換になっている。真の過推敲シグナル。",
+      "severity": "low",
+      "counts_toward_grade_C": false,
+      "note": "単発・自然寄りで文体崩れ・意味毀損なし。単独 low のため C(過推敲2個)には届かないが、rewriter への申し送り事項。suggested_fix: 『リアルタイムに応答したいユースケースで』等へ。"
+    },
+    {
+      "signal": "change_rate_over_30",
+      "value": 0.3108,
+      "severity": "benign",
+      "counts_toward_grade_C": false,
+      "note": "30%警告閾値超・50%中断閾値未満。内訳 delete 0.2351 / insert 0.0757、類似度 0.831。超過分は冗長カタカナ・万能動詞・『することができる』冗長可能形・状態叙述の圧縮短縮(754→625字)で意味追加なし=削除主導の健全圧縮。IMP-001 により difflib は圧縮型推敲を構造的に過大評価するため C 判定には数えない。"
+    },
+    {
+      "signal": "style_consistency_minor",
+      "value": "だが",
+      "severity": "benign",
+      "counts_toward_grade_C": false,
+      "note": "『しかしながら』(H-2)→『だが』置換。常体寄り接続詞だが文頭接続語用法で、文末敬体は全16文維持=ending-level の文体崩れゼロ(検出器も style_break=なしと確認)。真の過推敲ではない。"
+    }
+  ],
+  "genuine_over_polish_count": 1,
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1 0件・S2 1件(≤2)・改善 94.7%(≥70%) で A 基準(S1 0/S2≤2/改善70%+)を満たす。過推敲シグナルは tell_swap(I-4→D-4欠かせない) の low×1 のみで、C トリガー(過推敲2個/S1 1-2件)に届かず 2次推敲は不要。残る S3 5件(カタカナ4語/できます×5/でしょう×2隣接/指示語始発×5/的×2)はすべて任意最適化レベル。accept で確定。次回微修正の申し送り: (1)『欠かせない』を平明表現へ(クセ交換の解消)、(2)『できます』5文の1〜2文を体言止め等へ変奏、(3)連続『でしょう』の一方を『はずです』等へ。いずれも accept を妨げない。"
+}
