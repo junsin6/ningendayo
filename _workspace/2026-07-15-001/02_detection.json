@@ -1,0 +1,393 @@
+{
+  "meta": {
+    "input_length": 754,
+    "detected_count": 33,
+    "ai_tell_density": 0.395,
+    "severity_weighted_score": 67.6,
+    "style": "desu_masu",
+    "score_normalization": "raw = S1*5 + S2*2 + S3*0.5 = 102.0; score = min(100, raw*100/(input_length*0.2))。加重深刻度massが文字数の20%に達した点を飽和(=100)とする長さ正規化",
+    "severity_counts": {
+      "S1": 12,
+      "S2": 21,
+      "S3": 0
+    },
+    "density_note": "8ペアのspan重複あり(例: B-2『メリット』⊂ A-13『高速化というメリット』)。ai_tell_densityは重複除去(区間union=298字/754字)で算出。naive総和は337字(0.447)。※IMP-005: taxonomyにspan重複カウント規約がないためunionを採用"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実現することができます",
+      "start": 283,
+      "end": 294,
+      "reason": "可能の冗長形『することができ(ます)』が本文で4回反復(実現/分析/デプロイ/削減も)。A-5最頻出シグネチャ",
+      "suggested_fix": "実現できます"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "分析することができます",
+      "start": 363,
+      "end": 374,
+      "reason": "『することができ(ます)』反復の2件目。冗長な可能形",
+      "suggested_fix": "分析できます"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "削減することもできます",
+      "start": 423,
+      "end": 434,
+      "reason": "『することもできます』も同型の冗長可能形。A-5反復の一部",
+      "suggested_fix": "削減もできます"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "デプロイすることができます",
+      "start": 548,
+      "end": 561,
+      "reason": "『することができます』反復の4件目。短縮/断定可",
+      "suggested_fix": "デプロイできます"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実行することを可能にします",
+      "start": 228,
+      "end": 241,
+      "reason": "『することを可能にします』はA-5の使役変異形。冗長",
+      "suggested_fix": "現場の近くで処理できます"
+    },
+    {
+      "id": "f006",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞(提供する/もたらす/与える)",
+      "severity": "S1",
+      "text_span": "新たなソリューションを提供します",
+      "start": 187,
+      "end": 203,
+      "reason": "抽象主語(エッジコンピューティングは)+万能動詞『提供する』の英語直訳型。狙われたクセ",
+      "suggested_fix": "こうした課題を解決します"
+    },
+    {
+      "id": "f007",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞(提供する/もたらす/与える)",
+      "severity": "S1",
+      "text_span": "メリットをもたらします",
+      "start": 393,
+      "end": 404,
+      "reason": "抽象主語(この仕組みは)+万能動詞『もたらす』。A-10反復の2件目",
+      "suggested_fix": "異常検知を速めます"
+    },
+    {
+      "id": "f008",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞(提供する/もたらす/与える)",
+      "severity": "S1",
+      "text_span": "インパクトを与えることでしょう",
+      "start": 682,
+      "end": 697,
+      "reason": "抽象主語(このパラダイムシフトは)+万能動詞『与える』。A-10反復の3件目",
+      "suggested_fix": "大きく変えるでしょう"
+    },
+    {
+      "id": "f009",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "システムアーキテクチャにおいて",
+      "start": 19,
+      "end": 34,
+      "reason": "抽象的枠づけ『において』。同文書に『において』2回",
+      "suggested_fix": "システムアーキテクチャで"
+    },
+    {
+      "id": "f010",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "ユースケースにおいて",
+      "start": 261,
+      "end": 271,
+      "reason": "『において』の2件目。『で』へ直結可",
+      "suggested_fix": "ユースケースで"
+    },
+    {
+      "id": "f011",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜に対して/に対する 濫用",
+      "severity": "S2",
+      "text_span": "課題に対する",
+      "start": 181,
+      "end": 187,
+      "reason": "主題提示を『に対する』で処理(regarding直訳)。翻訳調を強める",
+      "suggested_fix": "課題を解く"
+    },
+    {
+      "id": "f012",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "スタンダードとなっていくはずです",
+      "start": 736,
+      "end": 752,
+      "reason": "『となっていく』は状態叙述A-6の変異。『標準になる/標準だ』で足りる",
+      "suggested_fix": "標準になるはずです"
+    },
+    {
+      "id": "f013",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "コンポーネントによって支えられています",
+      "start": 482,
+      "end": 501,
+      "reason": "英語受動態の直訳。行為者を『によって』後置。能動へ復帰可",
+      "suggested_fix": "部品が支えています"
+    },
+    {
+      "id": "f014",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "高速化というメリット",
+      "start": 387,
+      "end": 397,
+      "reason": "概念を『という』で接続(that直訳)。文書内『という』2回",
+      "suggested_fix": "異常検知の高速化"
+    },
+    {
+      "id": "f015",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "保持できるというアドバンテージ",
+      "start": 587,
+      "end": 602,
+      "reason": "『という』連結の2件目。削除可",
+      "suggested_fix": "ローカルに保持できる強み"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "レバレッジ",
+      "start": 513,
+      "end": 518,
+      "reason": "日本語で書ける語のカタカナ濫用。置換可能カタカナ語が文書全体で多数(レバレッジ/シームレス/ソリューション/メリット/アドバンテージ/インパクト/スタンダード/アプローチ 等8+)。B-2高密度。leverage→活用",
+      "suggested_fix": "活用"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "シームレス",
+      "start": 707,
+      "end": 712,
+      "reason": "日本語で書ける語のカタカナ濫用。置換可能カタカナ語が文書全体で多数(レバレッジ/シームレス/ソリューション/メリット/アドバンテージ/インパクト/スタンダード/アプローチ 等8+)。B-2高密度。seamless→滑らか",
+      "suggested_fix": "滑らかに"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 190,
+      "end": 197,
+      "reason": "日本語で書ける語のカタカナ濫用。置換可能カタカナ語が文書全体で多数(レバレッジ/シームレス/ソリューション/メリット/アドバンテージ/インパクト/スタンダード/アプローチ 等8+)。B-2高密度。solution→解決策",
+      "suggested_fix": "解決策"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "メリット",
+      "start": 393,
+      "end": 397,
+      "reason": "日本語で書ける語のカタカナ濫用。置換可能カタカナ語が文書全体で多数(レバレッジ/シームレス/ソリューション/メリット/アドバンテージ/インパクト/スタンダード/アプローチ 等8+)。B-2高密度。merit→利点",
+      "suggested_fix": "利点"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "アドバンテージ",
+      "start": 595,
+      "end": 602,
+      "reason": "日本語で書ける語のカタカナ濫用。置換可能カタカナ語が文書全体で多数(レバレッジ/シームレス/ソリューション/メリット/アドバンテージ/インパクト/スタンダード/アプローチ 等8+)。B-2高密度。advantage→強み/利点",
+      "suggested_fix": "強み"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "インパクト",
+      "start": 682,
+      "end": 687,
+      "reason": "日本語で書ける語のカタカナ濫用。置換可能カタカナ語が文書全体で多数(レバレッジ/シームレス/ソリューション/メリット/アドバンテージ/インパクト/スタンダード/アプローチ 等8+)。B-2高密度。impact→影響",
+      "suggested_fix": "影響"
+    },
+    {
+      "id": "f022",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "スタンダード",
+      "start": 736,
+      "end": 742,
+      "reason": "日本語で書ける語のカタカナ濫用。置換可能カタカナ語が文書全体で多数(レバレッジ/シームレス/ソリューション/メリット/アドバンテージ/インパクト/スタンダード/アプローチ 等8+)。B-2高密度。standard→標準",
+      "suggested_fix": "標準"
+    },
+    {
+      "id": "f023",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "ハイブリッドなアプローチ",
+      "start": 718,
+      "end": 730,
+      "reason": "日本語で書ける語のカタカナ濫用。置換可能カタカナ語が文書全体で多数(レバレッジ/シームレス/ソリューション/メリット/アドバンテージ/インパクト/スタンダード/アプローチ 等8+)。B-2高密度。approach→やり方。アプローチは文書内2回",
+      "suggested_fix": "組み合わせるやり方"
+    },
+    {
+      "id": "f024",
+      "category": "D-4",
+      "category_label": "AI慣用句: ハイプ語彙『可能性を切り開く』",
+      "severity": "S1",
+      "text_span": "可能性をさらに切り開いていく",
+      "start": 633,
+      "end": 647,
+      "reason": "D-4ハイプ常套句『〜の可能性を切り開く』。人間の書き手はほぼ使わない",
+      "suggested_fix": "さらに広げていく"
+    },
+    {
+      "id": "f025",
+      "category": "G-1",
+      "category_label": "過度なヘッジング: 推測型文末『〜と考えられる』",
+      "severity": "S2",
+      "text_span": "と考えられます",
+      "start": 647,
+      "end": 654,
+      "reason": "推測型文末。断定できる箇所の婉曲",
+      "suggested_fix": "でしょう"
+    },
+    {
+      "id": "f026",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる(行為者曖昧の要請) ★日本語固有寄り",
+      "severity": "S2",
+      "text_span": "リアルタイム性が求められる",
+      "start": 248,
+      "end": 261,
+      "reason": "行為者を曖昧にした要請。日本語ビジネスAI文の常套",
+      "suggested_fix": "すぐ応答したい"
+    },
+    {
+      "id": "f027",
+      "category": "I-2",
+      "category_label": "形式的表現: 〜という観点/点/面 反復",
+      "severity": "S2",
+      "text_span": "観点で課題を抱えていました",
+      "start": 147,
+      "end": 160,
+      "reason": "『観点』が文書内2回(レイテンシ…観点/セキュリティの観点)。具体名詞へ置換可",
+      "suggested_fix": "点で課題がありました"
+    },
+    {
+      "id": "f028",
+      "category": "I-2",
+      "category_label": "形式的表現: 〜という観点/点/面 反復",
+      "severity": "S2",
+      "text_span": "セキュリティの観点でも",
+      "start": 566,
+      "end": 577,
+      "reason": "『観点』の2件目。削除・具体化可",
+      "suggested_fix": "セキュリティ面でも"
+    },
+    {
+      "id": "f029",
+      "category": "F-4",
+      "category_label": "過剰修飾: 接尾辞『〜的』の多用",
+      "severity": "S2",
+      "text_span": "中心的な役割",
+      "start": 34,
+      "end": 40,
+      "reason": "抽象接尾辞『的』が文書内2回(中心的/効率的)。密度は中程度",
+      "suggested_fix": "中心を担う"
+    },
+    {
+      "id": "f030",
+      "category": "H-2",
+      "category_label": "接続詞: 逆接『しかしながら』",
+      "severity": "S2",
+      "text_span": "しかしながら",
+      "start": 112,
+      "end": 118,
+      "reason": "硬い逆接接続詞。文頭接続詞(しかしながら/また/さらに)計3回。対比は自明",
+      "suggested_fix": "だが"
+    },
+    {
+      "id": "f031",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多(また/さらに)",
+      "severity": "S2",
+      "text_span": "また、クラウドへのデータ転送",
+      "start": 405,
+      "end": 419,
+      "reason": "文頭『また』。文頭接続詞3回の一部",
+      "suggested_fix": "クラウドへのデータ転送"
+    },
+    {
+      "id": "f032",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多(また/さらに)",
+      "severity": "S2",
+      "text_span": "さらに、セキュリティ",
+      "start": 562,
+      "end": 572,
+      "reason": "文頭『さらに』。文頭接続詞反復の一部",
+      "suggested_fix": "そのうえセキュリティ"
+    },
+    {
+      "id": "f033",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復 ★日本語固有",
+      "severity": "S2",
+      "text_span": "",
+      "start": 0,
+      "end": 754,
+      "reason": "文書レベル。文末が『です/ます』でほぼ全文一本調子(ます系×10、です×2、体言止め・だ・でしょう等の変奏ほぼ皆無)。E-2反復閾値超。※document-scopeのためspanは全文範囲(IMP-004: scattered/document spanを単一start/endで表現できない既知課題)",
+      "suggested_fix": "体言止め・『〜だ』『〜でしょう』等で文末を数箇所変奏(敬体は維持)"
+    }
+  ],
+  "category_summary": {
+    "A": 15,
+    "B": 8,
+    "C": 0,
+    "D": 1,
+    "E": 1,
+    "F": 1,
+    "G": 1,
+    "H": 3,
+    "I": 3,
+    "J": 0
+  }
+}
