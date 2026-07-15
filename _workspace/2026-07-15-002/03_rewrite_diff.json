@@ -1,0 +1,143 @@
+{
+  "meta": {
+    "run_id": "2026-07-15-002",
+    "genre": "public_notice",
+    "style_preserved": "desu_masu",
+    "input_length": 612,
+    "edits_count": 15,
+    "change_rate": 0.2141,
+    "insertion_rate": 0.0474,
+    "deletion_rate": 0.1667,
+    "change_rate_method": "difflib.SequenceMatcher char-level: (insertions 29 + deletions 102) / 612",
+    "thresholds": { "warn_over": 0.30, "halt_over": 0.50 },
+    "over_threshold": false
+  },
+  "edits": [
+    {
+      "finding_id": "f001",
+      "category": "A-1",
+      "change_type": "translationese_reduction",
+      "before": "当館におきましては",
+      "after": "当館では",
+      "rationale": "「においては」系の抽象的枠づけを主題助詞「では」に。敬体・意味は保持。"
+    },
+    {
+      "finding_id": "f002",
+      "category": "A-9",
+      "change_type": "purpose_clause_simplification",
+      "before": "利便性向上を目的として",
+      "after": "利便性を高めるため",
+      "rationale": "名詞化＋目的節(in order to 直訳)を動詞句＋「ため」へ。目的の意味は等価。"
+    },
+    {
+      "finding_id": "f003",
+      "category": "A-6",
+      "change_type": "state_to_assertion",
+      "before": "開始する運びとなりました",
+      "after": "開始します",
+      "rationale": "状態叙述＋硬い定型「運びとなりました」を素直な「開始します」へ。決定済みの告知として意味等価。"
+    },
+    {
+      "finding_id": "f004",
+      "category": "A-6",
+      "change_type": "state_to_assertion_active",
+      "before": "更新作業が実施されることとなりました",
+      "after": "更新作業を実施します",
+      "rationale": "受動＋形式名詞＋状態化の三重冗長を能動断定へ。行為者は当館で明確、意味保持。"
+    },
+    {
+      "finding_id": "f005",
+      "category": "A-1",
+      "change_type": "translationese_reduction",
+      "before": "電子図書館サービスにおいては",
+      "after": "電子図書館サービスでは",
+      "rationale": "「においては」2回目を「では」に分散(f001とは同形反復を避けつつ自然形)。"
+    },
+    {
+      "finding_id": "f006",
+      "category": "A-5",
+      "change_type": "potential_simplification",
+      "before": "借りることが可能となります",
+      "after": "借りられます",
+      "rationale": "可能の冗長形「ことが可能」＋状態化「となります」を可能動詞へ。can 直訳を解消、敬体維持。"
+    },
+    {
+      "finding_id": "f007",
+      "category": "I-3",
+      "change_type": "need_to_simplification",
+      "before": "利用者登録を行う必要がございます",
+      "after": "利用者登録が必要です",
+      "rationale": "need to 直訳の丁寧形を自然な要請へ。「登録が必要」という情報は保持、敬体維持。"
+    },
+    {
+      "finding_id": "f008",
+      "category": "A-3",
+      "change_type": "means_particle_simplification",
+      "before": "ウェブサイトを通じて",
+      "after": "ウェブサイトで",
+      "rationale": "手段格「を通じて」(through/via)を格助詞「で」へ。手段の意味は等価。"
+    },
+    {
+      "finding_id": "f009",
+      "category": "A-5",
+      "change_type": "potential_simplification",
+      "before": "行うことができます",
+      "after": "行えます",
+      "rationale": "可能の冗長形「ことができます」を可能動詞へ。f006とは別形(借りられます/行えます)で反復回避。"
+    },
+    {
+      "finding_id": "f010",
+      "category": "A-6",
+      "change_type": "state_to_assertion",
+      "before": "必要となりますので",
+      "after": "必要ですので",
+      "rationale": "「必要となります」の状態化を「必要です」へ。カード必須の情報は保持。"
+    },
+    {
+      "finding_id": "f011",
+      "category": "I-3",
+      "change_type": "need_to_to_request",
+      "before": "あらかじめご確認いただく必要があります",
+      "after": "あらかじめご確認ください",
+      "rationale": "need to 直訳の要請を丁寧な依頼「ご確認ください」へ。I-3 2回目を f007 と別形に分散。"
+    },
+    {
+      "finding_id": "f012",
+      "category": "A-8",
+      "change_type": "passive_to_active",
+      "before": "下記の日程によって実施されます",
+      "after": "下記の日程で実施します",
+      "rationale": "by-受動「によって実施されます」を能動＋手段格「で実施します」へ。行為者は当館で明確。"
+    },
+    {
+      "finding_id": "f013",
+      "category": "A-6",
+      "change_type": "state_to_assertion_active",
+      "before": "サービスの一部が停止されることとなります",
+      "after": "サービスの一部を停止します",
+      "rationale": "受動＋形式名詞＋状態化を能動断定へ。「一部が停止する」事実は保持。"
+    },
+    {
+      "finding_id": "f014",
+      "category": "E-2",
+      "change_type": "rhythm_variation",
+      "before": "大変ご不便をおかけいたしますが、何卒ご理解とご協力を賜りますようお願い申し上げます。",
+      "after": "大変ご不便をおかけいたします。何卒ご理解とご協力を賜りますよう、お願い申し上げます。",
+      "rationale": "長文一本を短文＋中文に分割し文末リズムを変奏。敬体・硬い敬語(賜りますよう)は保持、体言止めの無理な混入は回避。A-6/A-5系の断定化と併せ文末が7形へ多様化。"
+    },
+    {
+      "finding_id": "f015",
+      "category": "A-6",
+      "change_type": "state_to_assertion",
+      "before": "お知らせする予定となっております",
+      "after": "お知らせする予定です",
+      "rationale": "A-6 最強シグネチャ「となっております」を「予定です」へ。予定であることは保持、敬体維持。"
+    }
+  ],
+  "style_preserved": "desu_masu",
+  "warnings": [],
+  "notes": [
+    "検出のない硬い敬語定型(賜りますよう/ご愛顧いただきますよう/お願い申し上げます/運び…は f003 のみ内包)は原則不変。f014 では文分割のみで敬語語彙は保存。",
+    "変更率 21.4% は 30% 未満。挿入 4.7%/削除 16.7% と削除優位で、冗長形の圧縮が主体。情報欠落なし。"
+  ]
+}

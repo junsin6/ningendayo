@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "input_length": 612,
+    "detected_count": 15,
+    "ai_tell_density": 0.252,
+    "severity_weighted_score": 57,
+    "style": "desu_masu",
+    "score_formula": "raw = S1*5+S2*2+S3*0.5 = 57; normalized = min(100, raw) = 57（クリップ方式・input_length非依存）"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "におきましては",
+      "start": 71,
+      "end": 78,
+      "reason": "「においては」系（におきましては/においては）が2回。当館・サービスを抽象的に枠づける翻訳調。硬く見せる基本動作。",
+      "suggested_fix": "当館では"
+    },
+    {
+      "id": "f002",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために/目的として 目的節の濫用",
+      "severity": "S2",
+      "text_span": "を目的として",
+      "start": 91,
+      "end": 97,
+      "reason": "英語 in order to の直訳的な目的節。「利便性向上を目的として」は名詞化＋目的節で冗長。目的用法の形式表現が文書内に散在。",
+      "suggested_fix": "利便性を高めるため"
+    },
+    {
+      "id": "f003",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "運びとなりました",
+      "start": 115,
+      "end": 123,
+      "reason": "「〜となる」系の状態叙述が本文で6回反復（運びとなりました/こととなりました/可能となります/必要となります/こととなります/となっております）。単なる『始めました』で足りる箇所を状態化。公的文書特有の冗長形式も重畳。",
+      "suggested_fix": "開始しました"
+    },
+    {
+      "id": "f004",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "実施されることとなりました",
+      "start": 142,
+      "end": 155,
+      "reason": "「こととなりました」の状態叙述。受動（実施される）＋形式名詞（こと）＋状態化（となる）の三重冗長。〜となる系6回のうちの一つ。",
+      "suggested_fix": "実施します"
+    },
+    {
+      "id": "f005",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "サービスにおいては",
+      "start": 181,
+      "end": 190,
+      "reason": "「においては」系の2回目。「電子図書館サービスにおいては」→主題助詞「では」で足りる。抽象的枠づけの翻訳調。",
+      "suggested_fix": "サービスでは"
+    },
+    {
+      "id": "f006",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/ことが可能 濫用",
+      "severity": "S1",
+      "text_span": "借りることが可能となります",
+      "start": 216,
+      "end": 229,
+      "reason": "可能の冗長形「ことが可能」＋状態化「となります」。can の直訳的シグネチャ。A-5 は文書内で2回（ことが可能/ことができます）。",
+      "suggested_fix": "借りられます"
+    },
+    {
+      "id": "f007",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "行う必要がございます",
+      "start": 257,
+      "end": 267,
+      "reason": "英語 need to の直訳「必要がある」の丁寧形。行為者を明示せず要請。I-3 は文書内で2回反復（行う必要が/ご確認いただく必要が）。",
+      "suggested_fix": "登録が必要です"
+    },
+    {
+      "id": "f008",
+      "category": "A-3",
+      "category_label": "翻訳調: 〜を通じて/を通して 濫用",
+      "severity": "S2",
+      "text_span": "ウェブサイトを通じて",
+      "start": 282,
+      "end": 292,
+      "reason": "手段・経路を「通じて」で処理する翻訳調（through/via）。単に「ウェブサイトで」で足りる。を目的として/によって と併せ手段格の翻訳調がクラスタ化（単発だがクラスタ内）。",
+      "suggested_fix": "ウェブサイトで"
+    },
+    {
+      "id": "f009",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/ことが可能 濫用",
+      "severity": "S1",
+      "text_span": "行うことができます",
+      "start": 292,
+      "end": 301,
+      "reason": "可能の冗長形「ことができます」。can の直訳。文書内 A-5 の2回目。断定「行えます」で十分。",
+      "suggested_fix": "行えます"
+    },
+    {
+      "id": "f010",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "必要となりますので",
+      "start": 328,
+      "end": 337,
+      "reason": "「必要となります」の状態化。『必要です』で足りる。〜となる系6回のうちの一つ。",
+      "suggested_fix": "必要ですので"
+    },
+    {
+      "id": "f011",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご確認いただく必要があります",
+      "start": 343,
+      "end": 357,
+      "reason": "「必要があります」の要請。I-3 の2回目。丁寧形でも need to 直訳の冗長は残る。",
+      "suggested_fix": "ご確認ください"
+    },
+    {
+      "id": "f012",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "下記の日程によって実施されます",
+      "start": 370,
+      "end": 385,
+      "reason": "英語受動態の直訳。手段・基準を「によって」で後置＋受動「実施されます」。能動化で自然。手段格翻訳調クラスタの一。",
+      "suggested_fix": "下記の日程で実施します"
+    },
+    {
+      "id": "f013",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "停止されることとなります",
+      "start": 416,
+      "end": 428,
+      "reason": "受動＋形式名詞＋状態化の三重冗長「されることとなります」。〜となる系6回のうちの一つ。",
+      "suggested_fix": "停止します"
+    },
+    {
+      "id": "f014",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "お願い申し上げます",
+      "start": 469,
+      "end": 478,
+      "reason": "文末が ございます/いたします/となります/申し上げます と丁寧体で一本調子（全13文が敬体終止、体言止め・変奏ゼロ）。公的文書ゆえ許容度は高いが、同一文体内の変奏が皆無で機械的。文書レベル・分散パターン（代表 span を明示）。",
+      "suggested_fix": "（体言止め・お願いいたします等で変奏）"
+    },
+    {
+      "id": "f015",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "予定となっております",
+      "start": 523,
+      "end": 533,
+      "reason": "「〜となっております」は A-6 の最強シグネチャ。『予定です』で足りるところを状態化＋謙譲で二重に硬化。〜となる系6回のうちの一つ。",
+      "suggested_fix": "予定です"
+    }
+  ],
+  "category_summary": {
+    "A": 12,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 2,
+    "J": 0
+  }
+}
