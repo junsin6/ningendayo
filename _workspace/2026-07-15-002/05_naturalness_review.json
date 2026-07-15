@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "run_id": "2026-07-15-002",
+    "genre": "public_notice",
+    "style": "desu_masu",
+    "reviewer": "naturalness-reviewer",
+    "redetection_method": "ai-tell-detector 同基準で 03_rewrite.md を再走査（IMP-006 準拠・手動照合ではなくタクソノミ再適用）",
+    "score_field_contract": "score_before/after は severity_weighted_score（raw = S1*5 + S2*2 + S3*0.5, normalized = min(100, raw)）で統一（IMP-003）"
+  },
+  "score_before": 57,
+  "score_after": 0.5,
+  "improvement_rate": 0.9912,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 1
+  },
+  "residual_detail": [
+    {
+      "severity": "S3",
+      "category": "E-2",
+      "category_label": "リズム: 文末定型の弱い反復",
+      "text_span": "〜ますようお願い申し上げます / お願いいたします",
+      "reason": "第3〜4段の依頼文末が「〜ようお願い（申し上げ／いたし）ます」で3回。ただし文末語尾自体は ございます／します／られます／えます／です／ください／いたします／申し上げます と多形へ分散済みで、E-2 本体（文末単調）は解消。残るのは依頼定型句の反復のみで、公的文書の標準結句として許容範囲。S3 は他パターンと重畳時のみ問題であり、S1/S2 が消えた本文では非アクショナブル。",
+      "actionable": false
+    }
+  ],
+  "not_counted_ceremonial": [
+    "賜りますよう（儀礼敬語・原文由来・様式として正当）",
+    "ご愛顧いただきますよう（同上）",
+    "お願い申し上げます（結句の様式・AI クセではない）",
+    "詳細につきましては（公的文書の主題提示・A-1 の における／においては とは別語で同基準再検出でも非該当）",
+    "ございましたら／何卒／以下のとおり（officialese・ジャンル適合）"
+  ],
+  "over_polish_signals": [],
+  "over_polish_check": {
+    "unnatural_colloquialization": "なし（敬体・儀礼性を保持、砕けなし）",
+    "style_break_keitai_jotai_mix": "なし（全13文が敬体終止で一貫。公的文書は敬体一本が正しい文体）",
+    "meaning_thinned_or_choppy": "なし（f014 の長文分割は自然な短文＋中文で、ぶつ切り感なし）",
+    "forced_taigen_dome": "なし（体言止めの無理な混入を回避したのは公的文書として適切。E-2 緩和を適用し体言止め0件を減点しない）",
+    "change_rate_over_30": "なし（21.4%、削除優位の冗長圧縮）"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1 0 / S2 0 / 改善 99.1% で A 基準を満たす。〜となる系6回・においては系2回・ことが可能／ことができる・必要がある系・by受動などの翻訳調 S1/S2 が全て解消され、文末も多形へ分散。過推敲シグナルなし（敬体一貫・儀礼敬語保持・変更率21.4%）。残る S3 は依頼結句の弱い反復のみで、公的文書ジャンルでは許容内・非アクショナブル。2次推敲不要。E-2 は公的文書ジャンル向けに緩和適用（体言止め0件でも文末多形化で合格）。儀礼敬語（賜りますよう／ご愛顧／お願い申し上げます）はジャンル分岐により残存クセと誤検出せず正当様式として評価。"
+}
