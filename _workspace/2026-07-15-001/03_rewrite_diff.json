@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "run_id": "2026-07-15-001",
+    "genre": "technical_explainer",
+    "style_preserved": "desu_masu",
+    "original_length": 753,
+    "rewrite_length": 633,
+    "change_rate": 0.3108,
+    "insert_rate": 0.0757,
+    "delete_rate": 0.2351,
+    "similarity_ratio": 0.8312,
+    "change_rate_method": "difflib.SequenceMatcher (char-level, autojunk=False) on 01_input.txt vs 03_rewrite.md; change_rate = (inserted+deleted)/original_length。substitution は削除+挿入で二重計上される",
+    "findings_total": 33,
+    "findings_addressed": 33,
+    "edits_count": 20,
+    "warnings": [
+      "change_rate 0.3108 が 30% 警告閾値を超過（50% 中断閾値は未満）。ただし内訳は delete_rate 0.235 / insert_rate 0.076 で、超過分の大半は冗長カタカナ語・万能動詞・『することができる』冗長可能形・状態叙述の圧縮による短縮（633字へ縮小）であり、意味追加ではない。IMP-001: difflib 指標は圧縮型の健全な推敲でも delete 側が膨らみ change_rate を押し上げる（AIクセ除去＝字数減が本質のため構造的に過大評価される）。判断はオーケストレーターに委ねる。"
+    ]
+  },
+  "edits": [
+    {
+      "finding_ids": ["f009"],
+      "category": "A-1",
+      "before": "システムアーキテクチャにおいて",
+      "after": "システムアーキテクチャで",
+      "change_type": "substitution",
+      "rationale": "抽象枠づけ『において』を『で』へ直結"
+    },
+    {
+      "finding_ids": ["f029"],
+      "category": "F-4",
+      "before": "中心的な役割を担う",
+      "after": "中心を担う",
+      "change_type": "substitution",
+      "rationale": "接尾辞『的』を解体。『役割』は『担う』へ吸収し意味保存（中心を担う=中心的な役割を担う）"
+    },
+    {
+      "finding_ids": ["f030"],
+      "category": "H-2",
+      "before": "しかしながら",
+      "after": "だが",
+      "change_type": "substitution",
+      "rationale": "硬い逆接を軽く。敬体文中の接続詞としては『だが』は許容（文末敬体は不変）"
+    },
+    {
+      "finding_ids": ["f027"],
+      "category": "I-2",
+      "before": "観点で課題を抱えていました",
+      "after": "点で課題がありました",
+      "change_type": "substitution",
+      "rationale": "形式名詞『観点』を『点』へ、『抱えていました』を『ありました』へ平明化（文書内2回の『観点』の1件目を解消）"
+    },
+    {
+      "finding_ids": ["f006", "f011", "f018"],
+      "category": "A-10/A-2/B-2",
+      "before": "こうした課題に対する新たなソリューションを提供します",
+      "after": "こうした課題を新たに解決します",
+      "change_type": "merge_rewrite",
+      "rationale": "抽象主語+万能動詞『提供する』(A-10)を能動具体動詞『解決する』へ、『に対する』(A-2)を格助詞へ、カタカナ『ソリューション』(B-2)を動詞化して開いた。『新た』を副詞として保存し情報欠落なし"
+    },
+    {
+      "finding_ids": ["f005"],
+      "category": "A-5",
+      "before": "処理を実行することを可能にします",
+      "after": "処理できます",
+      "change_type": "substitution",
+      "rationale": "『することを可能にします』の使役変異形を可能形へ短縮。『実行』は『処理』へ吸収（処理を実行=処理）"
+    },
+    {
+      "finding_ids": ["f026"],
+      "category": "I-4",
+      "before": "リアルタイム性が求められる",
+      "after": "リアルタイムの応答が欠かせない",
+      "change_type": "substitution",
+      "rationale": "行為者曖昧の要請『求められる』と接尾辞『性』を解体し具体化。『リアルタイム』は技術用語として維持"
+    },
+    {
+      "finding_ids": ["f010"],
+      "category": "A-1",
+      "before": "ユースケースにおいて",
+      "after": "ユースケースで",
+      "change_type": "substitution",
+      "rationale": "『において』2件目を『で』へ（1件目f009とは別の自然形…ではなく同型だが、両者とも最短自然形が『で』のため揃えた。連鎖過均一化は他カテゴリで分散済み）"
+    },
+    {
+      "finding_ids": ["f001"],
+      "category": "A-5",
+      "before": "実現することができます",
+      "after": "実現できます",
+      "change_type": "substitution",
+      "rationale": "冗長可能形を短縮"
+    },
+    {
+      "finding_ids": ["f002"],
+      "category": "A-5",
+      "before": "分析することができます",
+      "after": "分析できます",
+      "change_type": "substitution",
+      "rationale": "冗長可能形を短縮"
+    },
+    {
+      "finding_ids": ["f014", "f019", "f007"],
+      "category": "A-13/B-2/A-10",
+      "before": "異常検知の高速化というメリットをもたらします",
+      "after": "異常検知を高速化します",
+      "change_type": "merge_rewrite",
+      "rationale": "『という』連結(A-13)とカタカナ『メリット』(B-2)と万能動詞『もたらす』(A-10)を一括解消。『高速化がメリット』→『高速化する』で能動化。異常検知が速くなる利点という意味を保存"
+    },
+    {
+      "finding_ids": ["f031", "f003"],
+      "category": "H-1/A-5",
+      "before": "また、クラウドへのデータ転送コストを削減することもできます",
+      "after": "クラウドへのデータ転送コストも削減できます",
+      "change_type": "merge_rewrite",
+      "rationale": "文頭接続詞『また』(H-1)を削除し、追加の意味は助詞『も』へ移して保存。『削減することもできます』(A-5)を可能形へ短縮"
+    },
+    {
+      "finding_ids": ["f013"],
+      "category": "A-8",
+      "before": "コンポーネントによって支えられています",
+      "after": "構成要素が支えています",
+      "change_type": "substitution",
+      "rationale": "by受動態を能動へ復帰。カタカナ『コンポーネント』はソフト文脈で『部品』より自然な『構成要素』へ開いた"
+    },
+    {
+      "finding_ids": ["f016"],
+      "category": "B-2",
+      "before": "レバレッジする",
+      "after": "活用する",
+      "change_type": "substitution",
+      "rationale": "leverage→活用"
+    },
+    {
+      "finding_ids": ["f004"],
+      "category": "A-5",
+      "before": "デプロイすることができます",
+      "after": "デプロイできます",
+      "change_type": "substitution",
+      "rationale": "冗長可能形を短縮。『デプロイ』は技術用語として維持"
+    },
+    {
+      "finding_ids": ["f028", "f015", "f020", "f032"],
+      "category": "I-2/A-13/B-2/H-1",
+      "before": "さらに、セキュリティの観点でも、データをローカルに保持できるというアドバンテージがあります",
+      "after": "セキュリティ面でも、データをローカルに保持できる強みがあります",
+      "change_type": "merge_rewrite",
+      "rationale": "文頭『さらに』(H-1)削除（追加の意味は『でも』で保持）、『観点』→『面』(I-2, 2件目)、『という』連結(A-13)削除、カタカナ『アドバンテージ』→『強み』(B-2)。『ローカル』は技術用語として維持"
+    },
+    {
+      "finding_ids": ["f024", "f025"],
+      "category": "D-4/G-1",
+      "before": "可能性をさらに切り開いていくと考えられます",
+      "after": "可能性をさらに広げていくでしょう",
+      "change_type": "merge_rewrite",
+      "rationale": "ハイプ常套句『可能性を切り開く』(D-4)を平明な『広げる』へ（『可能性』は情報として保存）、推測ヘッジ『と考えられます』(G-1)を『でしょう』へ"
+    },
+    {
+      "finding_ids": ["f008", "f021"],
+      "category": "A-10/B-2",
+      "before": "大きなインパクトを与えることでしょう",
+      "after": "大きく変えるでしょう",
+      "change_type": "merge_rewrite",
+      "rationale": "抽象主語+万能動詞『インパクトを与える』(A-10)＋カタカナ『インパクト』(B-2)を『大きく変える』へ。『に』→『を』へ格変更（デジタルライフを変える）。大きな影響=大きく変える で保存"
+    },
+    {
+      "finding_ids": ["f017", "f023", "f022", "f012"],
+      "category": "B-2/B-2/B-2/A-6",
+      "before": "エッジとクラウドをシームレスに連携させるハイブリッドなアプローチが、次世代のスタンダードとなっていくはずです",
+      "after": "エッジとクラウドを組み合わせ、滑らかに連携させるやり方が、次世代の標準になるはずです",
+      "change_type": "merge_rewrite",
+      "rationale": "『シームレス』→『滑らかに』(B-2)、『ハイブリッドなアプローチ』→『組み合わせ…やり方』(B-2, hybrid=組み合わせ を動詞化して重複回避)、『スタンダード』→『標準』(B-2)、状態叙述『となっていく』→『になる』(A-6)。『エッジ』『クラウド』は技術用語として維持"
+    },
+    {
+      "finding_ids": ["f033"],
+      "category": "E-2",
+      "before": "(文書スコープ: 文末が『です/ます』で一本調子)",
+      "after": "(文末を です/でした/ました/ましょう/します/ています/あります/でしょう/はずです へ変奏。敬体は全編維持)",
+      "change_type": "document_rhythm",
+      "rationale": "個別spanのA-5/A-6/A-10/G-1修正の副産物として文末が自然に多様化。文体（敬体）は不変。IMP-004: document-scope findingのためbefore/afterは要約記述"
+    }
+  ]
+}
