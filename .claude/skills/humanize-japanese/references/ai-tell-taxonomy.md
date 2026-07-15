@@ -121,6 +121,11 @@ J. 視覚装飾の濫用
 * 例: 「この**フレームワーク**を**レバレッジ**して**シームレス**に」→「この枠組みを活かして滑らかに」
 * 頻出: leverage→活用、framework→枠組み、robust→堅牢、insight→示唆、commit→注力、agenda→課題
 * 例外: 固有名詞・業界標準語（Transformer・API・SDK・トークン 等）は維持。
+* **定着カタカナ語 半免責リスト**（IMP 適用 / 2026-07-15-001,002）: 定訳に開くとかえって冗長・不自然になる定着語は B-2 の検出対象から半免責し、残差 **S3 固定**（除去必須にしない）。
+  + 一般ビジネス: ルーティン・モチベーション・データドリブン。
+  + 技術文脈: アーキテクチャ・エコシステム・デプロイ・ユースケース・パフォーマンス・スケーラブル・パラダイムシフト・レイテンシ。
+  + 判定基準: (1) 日本語定訳が原語より長い／硬い、(2) 当該分野の実務で日本語話者が日常的にカタカナのまま使う、の両方を満たす語。逆に leverage・seamless・solution・insight・merit・advantage のような**平明な和語訳が存在する語は免責しない**（S2 のまま除去対象）。
+  + 注意: suggested_fix の物理寄り訳語に注意（例 component→「部品」はソフト文脈で違和感。「構成要素」を推奨）。
 
 ### B-3. 英語引用句の生埋め込み [S2]
 
@@ -383,7 +388,9 @@ J. 視覚装飾の濫用
     "input_length": 1820,
     "detected_count": 37,
     "ai_tell_density": 0.203,
+    "ai_tell_density_naive": 0.231,
     "severity_weighted_score": 71.5,
+    "score_formula": "sat_k10_per100",
     "style": "desu_masu"
   },
   "findings": [
@@ -396,7 +403,8 @@ J. 視覚装飾の濫用
       "start": 142,
       "end": 150,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
-      "suggested_fix": "課題だ"
+      "suggested_fix": "課題だ",
+      "merged_findings": []
     }
   ],
   "category_summary": {
@@ -406,8 +414,14 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: **文長正規化した飽和スコア（0〜100）。run 間で比較可能な唯一の正規化式**（IMP-002 適用 / 2026-07-15-001,002）。
+  1. `raw = S1×5 + S2×2 + S3×0.5`（加重和）。
+  2. `mass_per_100 = raw / (input_length / 100)`（100 字あたりの加重深刻度。文長非依存）。
+  3. `severity_weighted_score = round(100 × (1 − exp(−mass_per_100 / 10)), 1)`（K=10 固定。飽和型ゆえ短文でも早期に 100 へ張り付かない）。
+  * `min(100, raw)` クリップや `raw×100/(len×0.2)` 等の**アドホック正規化は禁止**（検出器ごとに数値がぶれ run 間比較が不能になるため）。使用式は `meta.score_formula` に "sat_k10_per100" と明記。
+* `score_before` / `score_after` のフィールド契約（IMP-003 適用 / 2026-07-15-001,002）: **`score_before` = `02_detection.json` の `meta.severity_weighted_score`（原文検出の確定値）**。`score_after` = 推敲文 `03_rewrite.md` を**同一式で再走査**した `severity_weighted_score`。findings 側の再合算値や density 等の別指標を混在させない。
+* `ai_tell_density`: **検出 span の区間 union（重複を除いた実カバー文字数）/ 全体文字数**（IMP-005 適用 / 2026-07-15-001,002）。同一文字に複数 finding が正当に紐づく場合でも density は二重計上しない。naive 総和は補助値として `meta.ai_tell_density_naive` に併記してよい。
+* **重複 span のカウント規約**（IMP-005 適用）: 1 span が複数カテゴリに該当する場合、**主分類 1 件を finding とし**、共起する下位カテゴリを `merged_findings: ["B-2","A-10", ...]` 配列で列挙する。`category_summary` は各 finding の主分類のみ集計（merged は含めない）。これにより density・finding 数の過大／過小計上を防ぐ。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
