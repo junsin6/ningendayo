@@ -50,9 +50,15 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（taxonomy v1.1 §検出出力スキーマの canonical 式に厳密準拠）:
+   * `raw = S1×5 + S2×2 + S3×0.5`（加重和）。
+   * `d1000 = raw / input_length × 1000`（1000 字あたり加重 AI クセ負荷）。`input_length` は改行・タイトル行を含む全文字数。
+   * `severity_weighted_score = round(100 × (1 − exp(−d1000 / 80)), 1)`。length 正規化＋指数ソフトキャップで 100 飽和を防ぎ高密度でも解像度を保つ。**検出器ごとに独自式を使わない**（IMP-002）。
+   * `ai_tell_density` = 検出 span の**重複除去した union 被覆文字数** / 全体文字数（単純合算しない。document span は代表区間のみ算入）。
+6. **文書レベル自己検査テーブルの出力**（IMP-004 / IMP-007）: E・C 系の集約クセを 1 次で確実に拾うため、`meta` に次を併記する。
+   * `sentence_ending_histogram`: 文末形（〜ます/です/ています/だ/である/体言止め 等）の分布。最頻形が 60% 超 or 種類数が少なければ E-2 を document span で finding 化。
+   * `paragraph_opening_table`: 各段落の開始主語/接続語。同一開始が連続 2 段落超なら C-4/C-7 を document span で finding 化。
+   * 分散パターン（絵文字・文末単調）は `span_type: "scattered"` ＋ `occurrences: [[s,e],…]`、文書レベルは `span_type: "document"` を用いる。
 
 ## 重要な原則
 
