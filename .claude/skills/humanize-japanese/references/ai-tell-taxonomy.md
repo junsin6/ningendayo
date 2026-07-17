@@ -1,4 +1,4 @@
-# AI 日本語クセ分類体系 v1.0 (Japanese AI-Tell Taxonomy)
+# AI 日本語クセ分類体系 v1.1 (Japanese AI-Tell Taxonomy)
 
 LLM（ChatGPT・Claude・Gemini など）が生成した日本語の文章に繰り返し現れる「AIっぽさ（AIクセ）」を、10 大分類 × サブパターンに整理する。検出器・推敲役・レビュアーが共有する唯一の信頼源（SSOT）。各パターンに (1) 定義、(2) シグネチャ例文、(3) 深刻度（S1 決定的 / S2 強い / S3 弱い）、(4) 推敲処方を付す。
 
@@ -392,11 +392,36 @@ J. 視覚装飾の濫用
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
       "suggested_fix": "課題だ"
+    },
+    {
+      "id": "f014",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "scope": "document",
+      "text_span": null,
+      "start": null,
+      "end": null,
+      "evidence": { "sentence_end_repeat_rate": 0.86, "sentence_len_stdev": 6.2 },
+      "reason": "文末が『です』に86%集中、文長 stdev=6.2 と均一",
+      "suggested_fix": "体言止め・でしょう・のだ を混ぜて文末を変奏"
+    },
+    {
+      "id": "f021",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S2",
+      "scope": "scattered",
+      "text_span": null,
+      "occurrences": [[88, 90], [301, 304], [540, 542]],
+      "reason": "文頭『また／さらに／そして』が3文連続で反復",
+      "suggested_fix": "70% 以上削除し内容で論理を示す"
     }
   ],
   "category_summary": {
@@ -406,16 +431,89 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+### severity_weighted_score（正規化式・K=30 固定）
+
+両検出器が別式を使うと run 間でスコアが比較不能になるため、次の**飽和型（saturating）**に固定する。この式が唯一の正典。
+
+```
+raw = 5*|S1| + 2*|S2| + 0.5*|S3|
+severity_weighted_score = round(100 * (1 - exp(-raw / 30)), 1)   # K = 30 固定
+```
+
+* `score_before` / `score_after` は**必ず同一のこの式**で算出する（run 間・推敲前後で比較可能にするため）。
+* 検証: run002 raw=68 → 89.6 / run001 raw=79 → 92.8 / near-clean raw=2 → 6.5。
+* K=30 の根拠: 高密度段落 raw60–80 が 86–93 に、ほぼクリーン raw2–7 が 6–21 に収まり、飽和で青天井を防ぎつつ低密度域の解像度を残せるため。
+
+### ai_tell_density（分母・重複ルール — IMP-002 付随）
+
+```
+分子 = 被覆 span 文字の和集合（重複区間は排除して1回だけ数える）
+分母 = 改行を除いた実文字数
+ai_tell_density = 分子 / 分母
+```
+
+* 分子は span の**単純総和ではなく和集合**。重なり合う finding の文字を二重計上しない。
+* 分母は改行（`\n`）を除いた実文字数。
+* `scope: "document"` の finding は locator を持たない（下記）ため**分子から除外**する（文書全体を span とみなす過大算入を防ぐ）。
+
+### finding.scope（span 表現 — IMP-004）
+
+document-level / scattered パターン（E-1/E-2 等）が単一の `start`/`end` 自己検証と衝突するため、`scope` を導入する。
+
+* `scope: "contiguous" | "scattered" | "document"`（**既定は contiguous**。省略時は contiguous とみなす）
+* `scope: "contiguous"` — 連続する 1 区間。`start`/`end`/`text_span` 必須。
+* `scope: "scattered"` — 散在する複数箇所。`occurrences: [[start,end], ...]` を持てる。`text_span` は代表例で可。
+* `scope: "document"` — 文書全体の統計的パターン（文長分布・文末反復など）。`start`/`end`/`text_span` は **null 許容**とし、代わりに `evidence`（統計値。例: 文長 stdev、文末反復率）を持つ。
+* **start/end 自己検証**（`input[start:end] == text_span`）は `scope=contiguous` および `scope=scattered`（各 occurrence 区間）でのみ必須。`scope=document` には課さない。
+
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
 
+* **v1.1** (2026-07): スキーマ整合の構造的欠陥 2 件を確定（本文カテゴリ A〜J の意味は不変）。
+  + **IMP-002**（両検出器がスコアで別式 → run 間比較不能）: `severity_weighted_score` を飽和型 `round(100*(1-exp(-raw/30)),1)`（K=30 固定, `raw=5|S1|+2|S2|+0.5|S3|`）に確定。`score_before`/`score_after` を同式に統一。`ai_tell_density` の分母を「改行を除く実文字数」、分子を「被覆 span 文字の和集合（重複排除）」と明文化。
+  + **IMP-004**（document/scattered パターンが start/end 自己検証と衝突）: finding に `scope: contiguous|scattered|document`（既定 contiguous）を追加。`document` は start/end/text_span を null 許容し `evidence`（統計値）を持てる。`scattered` は `occurrences` を持てる。start/end 自己検証は contiguous/scattered のみ必須。`ai_tell_density` は scope=document を分子から除外。
 * **v1.0** (2026-05): 日本語 AIクセ分類体系の初版。10 大分類（A〜J）× 40+ サブパターンを定義。
   + 日本語固有として重点配置: `A-6`（〜となっている）, `B-2`（カタカナ語濫用）, `E-2`（です・ます単調）, `I-4`（〜が求められる）, `J-3`（ダッシュ濫用）, D-1 の「いかがでしたでしょうか」。
 * 拡張原則: 実戦入力で再現 2 回以上 + 日本語の人間の書き手がほぼ使わないパターンのみサブ項目として追加。新パターンは末尾の候補欄に実例 2 件以上を添えて提案する。
 
 ## 拡張候補欄（taxonomist が審査して昇格）
 
-<!-- 実例2件以上を添えて記入。再現2回以上で v1.1 へ昇格 -->
+<!-- 実例2件以上を添えて記入。再現2回以上 + 人間がほぼ使わない を両方満たしたとき本文へ昇格 -->
+
+> **本節の位置づけ**: 以下はすべて **候補登録**（審査待ち）であり、本文 A〜J への正式サブ項追加はまだ行っていない。実例と再現回数を蓄積したうえで、次回の昇格審査にかける。
+
+### 候補 K. 過剰敬語・冗長敬語 [新カテゴリ案] ★日本語固有
+
+* **穴の指摘**: 設計思想（本書冒頭）は日本語 AIクセの重心に「過剰な丁寧体・敬語」を挙げているが、A〜J にその受け皿サブカテゴリが無い。敬語過剰の受け皿として新カテゴリ K を提案。
+* **K-1 二重敬語 / 冗長敬語**: 「していただく必要がございます」式。実例: run002。出所 detector-B, naturalness-B。
+* **K-2 定型結語の過反復**: 「お願い申し上げます」が 3 回以上。実例: run002。出所 detector-B, naturalness-B。
+* **K-3「〜いただきますよう」連発**: 依頼形の機械的反復。実例: run002。出所 detector-B, naturalness-B。
+* 再現状況: run002 で 1 回（同 run 内で detector-B・naturalness-B が独立検出）。**別 run での再現はまだ 1 件**のため、昇格基準「異 run 2 回」未達 → 保留。人間使用率の精査も必要（丁寧語自体は人間も使うため、密度・二重敬語に条件を絞る設計が要る）。
+
+### 候補 A-8 拡張: 行為者を伏せた受動（agentless passive）
+
+* 現行 A-8 は「〜によって」（by-passive）に限定。行為者を明示せず「によって」も使わない受動の連鎖を拾えていない。
+* **拡張案**: A-8 を「行為者を伏せた受動（agentless passive）」まで広げ、`によって`不使用ケースも捕捉。
+* 実例: run002「実施されることとなりました／予定されております／確認されております」— によって不使用で受動が 7 回。出所 detector-B。
+* 再現状況: run002 の 1 run のみ。異 run 再現待ち → 保留。
+
+### 候補 A-14「〜されることで」受動経由の節接続 [S2]
+
+* パターン: 受動「〜される」を「〜ことで」で節接続し因果を作る英語直訳調。
+* 実例: run001「プロンプトにインジェクションされることで」。出所 detector-A。
+* 再現状況: run001 の 1 例のみ。異 run 再現待ち → 保留。
+
+### 候補 B-2 サブ「英日同義反復（言い換え自己重複）」
+
+* パターン: 同一概念を英語カタカナ語と日本語訳で二重表現し自己重複する（AI の言い換え癖）。
+* 実例: run001「リトリーブ→取得」「セマンティック→意味的」。出所 detector-A。
+* 再現状況: run001 の 1 run のみ。異 run 再現待ち → 保留（有望）。
+
+### 候補 B-2 付属: 技術語 維持/開語リスト（ホワイト・ブラックリスト）
+
+* B-2 の誤検出（維持すべき技術語まで開いてしまう）を防ぐ運用リスト案。B-2 例外規定の具体化。
+* **維持（カタカナ/英略のまま）**: ベクトル / プロンプト / トークン / エンベディング / チャンク / RAG / API / SDK / GPU。
+* **開語（日本語へ）**: アウトプット→出力 / ナレッジ→知識 / レスポンス→応答 / メリット→利点 / リトリーブ→取得 / インジェクション→差し込み / キャッチアップ→追随 / ソリューション→解決策。
+* 出所: detector-A, rewriter-A, fidelity-A（3 エージェント一致）。
+* 再現状況: 3 エージェントが同一 run で一致。リスト自体は運用ガイドとして有用だが、B-2 本文改訂を伴うため次回昇格審査で本文反映を検討 → 今回は候補登録。

@@ -1,0 +1,50 @@
+{
+  "edits": [
+    { "finding_id": "f001", "category": "A-1", "before": "活用において", "after": "活用で", "rationale": "英語 in の直訳枠。助詞『で』で直結し硬い知的偽装を除去" },
+    { "finding_id": "f002", "category": "B-2", "before": "テクノロジー", "after": "技術", "rationale": "直前に『技術』と言い換え済みのカタカナ。日本語へ開く" },
+    { "finding_id": "f028", "category": "E-2", "before": "検索を実現する仕組みです", "after": "検索を実現する仕組み", "rationale": "です・ます一辺倒の文末を体言止めで変奏（敬体は維持、体言止めは文体中立）" },
+    { "finding_id": "f003", "category": "B-2", "before": "セマンティックな", "after": "意味的な", "rationale": "後段『意味的な近さ』と対応するカタカナを開く。業界標準語ではない" },
+    { "finding_id": "f004", "category": "A-4", "before": "類似度に基づいて", "after": "類似度に応じて", "rationale": "based on の直訳。文書内2回の1回目を『応じて』へ分散し機械的反復を回避" },
+    { "finding_id": "f006", "category": "B-2", "before": "ベースにした", "after": "もとにした", "rationale": "based on のカタカナ化。『もとにした』で足りる" },
+    { "finding_id": "f005", "category": "A-5", "before": "検索を行うことが可能になります", "after": "検索が行えるのです", "rationale": "可能の冗長形を短縮。可能系5回反復の1つを解消し、文末を『のです』へ変奏" },
+    { "finding_id": "f029", "category": "E-1", "before": "検索とは異なり、意味的な", "after": "検索とは異なります。意味的な", "rationale": "40〜90字帯に集中した文長を、短文（『〜とは異なります。』約20字）を挟んで変奏。情報は原文の分割のみで不追加" },
+    { "finding_id": "f007", "category": "B-2", "before": "というアーキテクチャは", "after": "という仕組みは", "rationale": "architecture のカタカナ化。『仕組み』で書ける" },
+    { "finding_id": "f009", "category": "B-2", "before": "アウトプット", "after": "出力", "rationale": "output のカタカナ化。『出力』で書ける" },
+    { "finding_id": "f008", "category": "A-5", "before": "生成することができる", "after": "生成できる", "rationale": "can の冗長直訳。可能系反復の1つを断定寄りへ短縮" },
+    { "finding_id": "f010", "category": "B-2", "before": "フレームワーク", "after": "枠組み", "rationale": "framework のカタカナ化。技術固有語ではなく一般語として開く" },
+    { "finding_id": "f011", "category": "B-2", "before": "リトリーブされます", "after": "取り出されます", "rationale": "retrieve のカタカナ化。次文の『取得された』との重複を避け『取り出される』へ分散" },
+    { "finding_id": "f012", "category": "B-2", "before": "インジェクションされる", "after": "差し込まれる", "rationale": "injection のカタカナ化。『差し込まれる』で書ける" },
+    { "finding_id": "f013", "category": "B-2", "before": "ナレッジ", "after": "知識", "rationale": "knowledge のカタカナ化。『知識』で書ける" },
+    { "finding_id": "f014", "category": "A-5", "before": "生成することができるようになります", "after": "生成できるようになります", "rationale": "『することができるようになる』の二重冗長を解消" },
+    { "finding_id": "f022", "category": "B-2", "before": "アプローチ", "after": "手法", "rationale": "approach のカタカナ化。『手法』で書ける" },
+    { "finding_id": "f023", "category": "I-2", "before": "優れている点としては", "after": "優れているのは", "rationale": "形式名詞『点としては』の回りくどい主題提示を直結形へ" },
+    { "finding_id": "f024", "category": "I-1", "before": "低減できることが挙げられます", "after": "低減できる点です", "rationale": "『〜ことが挙げられる』の列挙導入を断定へ。前段の『のは〜点です』と呼応させ意味保存" },
+    { "finding_id": "f015", "category": "A-8", "before": "参照することによって", "after": "参照して", "rationale": "by/through の直訳『によって』。手段は連用形で直結。文書内2回の1回目" },
+    { "finding_id": "f016", "category": "A-4", "before": "事実に基づいた", "after": "事実に沿った", "rationale": "based on の直訳2回目。『沿った』で自然化し反復を分散" },
+    { "finding_id": "f017", "category": "B-2", "before": "レスポンス", "after": "応答", "rationale": "response のカタカナ化。『応答』で書ける" },
+    { "finding_id": "f018", "category": "A-6", "before": "返すことが可能となるのです", "after": "返せるのです", "rationale": "★A-6状態叙述『となる』＋可能冗長を可能動詞『返せる』へ。のです は維持し敬体保存" },
+    { "finding_id": "f019", "category": "B-2", "before": "キャッチアップできる", "after": "追いつける", "rationale": "catch up のカタカナ化。『追いつける』で書ける" },
+    { "finding_id": "f020", "category": "I-3", "before": "モデル自体の再学習を行う必要がない", "after": "モデル自体を再学習しなくてよい", "rationale": "need to の直訳を断定的に短縮。意味等価" },
+    { "finding_id": "f021", "category": "B-2", "before": "メリット", "after": "利点", "rationale": "merit のカタカナ化。『利点』で書ける" },
+    { "finding_id": "f025", "category": "A-6", "before": "要素となっています", "after": "要素です", "rationale": "★A-6状態叙述の機械的多用。変化ではない静的叙述なので『です』で足りる" },
+    { "finding_id": "f026", "category": "A-8", "before": "適切な設計を行うことによって", "after": "適切に設計すれば", "rationale": "by の直訳『によって』2回目＋『設計を行う』の冗長を条件節へ集約" },
+    { "finding_id": "f027", "category": "A-5", "before": "構築することができるでしょう", "after": "構築できます", "rationale": "可能の冗長形＋末尾ヘッジ『でしょう』を断定へ。可能系5回反復の最後の1つ" }
+  ],
+  "change_rate": 0.3142,
+  "style_preserved": "desu_masu",
+  "meta": {
+    "orig_length": 748,
+    "new_length": 641,
+    "inserted_chars": 64,
+    "deleted_chars": 171,
+    "insertion_rate": 0.0856,
+    "deletion_rate": 0.2286,
+    "findings_total": 29,
+    "edits_applied": 29,
+    "katakana_opened": 13,
+    "katakana_preserved": ["ベクトル", "ベクトルデータベース", "エンベディング", "RAG", "大規模言語モデル", "クエリ", "チャンク", "チャンキング", "コンテキスト", "プロンプト", "ハルシネーション", "ソース", "インデックス", "パラメータ", "チューニング", "パフォーマンス", "パイプライン", "キーワードマッチング"]
+  },
+  "warnings": [
+    "change_rate 0.3142 が 30% 警告閾値を超過（50% 中断閾値は未満のため続行）。主因は B-2 カタカナ語13語の開語（長いカタカナ→短い漢語）と A-5 可能冗長形の短縮による削除超過。ジャンル移動・情報欠落はなし。"
+  ]
+}

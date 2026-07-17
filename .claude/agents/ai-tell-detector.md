@@ -30,6 +30,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
@@ -50,9 +51,12 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（taxonomy「severity_weighted_score 正規化式」が唯一の正典。両検出器で同一式を使うこと）:
+   * `raw = 5*|S1| + 2*|S2| + 0.5*|S3|`
+   * `severity_weighted_score = round(100 * (1 - exp(-raw / 30)), 1)`（K=30 固定・飽和型）。
+   * 検証値: raw=68→89.6 / raw=79→92.8 / raw=2→6.5。`score_before`/`score_after` は必ずこの同一式で算出（run 間・推敲前後の比較可能性のため）。
+   * `ai_tell_density` = 被覆 span 文字の**和集合（重複排除）** / **改行を除く実文字数**。`scope: "document"` の finding は分子から除外する。
+6. **scope 付与**（taxonomy IMP-004）: 各 finding に `scope` を付す。既定 `contiguous`。文長分布・文末反復など文書全体の統計パターンは `scope: "document"`（start/end/text_span は null、代わりに `evidence` に統計値）。散在反復（文頭接続詞など）は `scope: "scattered"`（`occurrences: [[start,end],...]`）。start/end 自己検証は contiguous/scattered のみ必須。
 
 ## 重要な原則
 
