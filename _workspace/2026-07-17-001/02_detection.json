@@ -1,0 +1,342 @@
+{
+  "meta": {
+    "input_length": 749,
+    "detected_count": 29,
+    "ai_tell_density": 0.274,
+    "severity_weighted_score": 79.0,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "活用において",
+      "start": 37,
+      "end": 43,
+      "reason": "英語 in の直訳的な枠づけ。「〜の活用で」で直結できる硬い知的偽装。S1単発で除去",
+      "suggested_fix": "活用で"
+    },
+    {
+      "id": "f002",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "テクノロジー",
+      "start": 75,
+      "end": 81,
+      "reason": "日本語で書ける語のカタカナ化。文書全体で不要カタカナ語13語超と高密度。直後に『技術』と言い換え済み",
+      "suggested_fix": "技術"
+    },
+    {
+      "id": "f003",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "セマンティックな",
+      "start": 138,
+      "end": 146,
+      "reason": "後段『意味的な近さ』と重複するカタカナ語。カタカナ高密度の一環",
+      "suggested_fix": "意味的な"
+    },
+    {
+      "id": "f004",
+      "category": "A-4",
+      "category_label": "翻訳調: 〜に基づいて 濫用",
+      "severity": "S2",
+      "text_span": "基づいて",
+      "start": 150,
+      "end": 154,
+      "reason": "based on の直訳。文書内で『基づい』が2回。根拠提示を機械的に処理",
+      "suggested_fix": "応じて"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "行うことが可能になります",
+      "start": 207,
+      "end": 219,
+      "reason": "可能の冗長形。文書内で『することができる/可能になる』系が5回反復する最頻シグネチャ",
+      "suggested_fix": "行える"
+    },
+    {
+      "id": "f006",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ベースにした",
+      "start": 198,
+      "end": 204,
+      "reason": "based on のカタカナ化。『〜をもとに/〜で』で足りる。カタカナ高密度",
+      "suggested_fix": "もとにした"
+    },
+    {
+      "id": "f007",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アーキテクチャ",
+      "start": 260,
+      "end": 267,
+      "reason": "architecture のカタカナ化。『構成/仕組み』で書ける。カタカナ高密度",
+      "suggested_fix": "仕組み"
+    },
+    {
+      "id": "f008",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "生成することができる",
+      "start": 309,
+      "end": 319,
+      "reason": "can/be able to の冗長直訳。『することができる』系5回反復の一つ",
+      "suggested_fix": "生成できる"
+    },
+    {
+      "id": "f009",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アウトプット",
+      "start": 302,
+      "end": 308,
+      "reason": "output のカタカナ化。『出力』で書ける。カタカナ高密度",
+      "suggested_fix": "出力"
+    },
+    {
+      "id": "f010",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "フレームワーク",
+      "start": 319,
+      "end": 326,
+      "reason": "framework のカタカナ化。『枠組み』で書ける。カタカナ高密度",
+      "suggested_fix": "枠組み"
+    },
+    {
+      "id": "f011",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "リトリーブ",
+      "start": 367,
+      "end": 372,
+      "reason": "retrieve のカタカナ化。次文で『取得』と自己重複しており不要。カタカナ高密度",
+      "suggested_fix": "取得"
+    },
+    {
+      "id": "f012",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "インジェクション",
+      "start": 395,
+      "end": 403,
+      "reason": "injection のカタカナ化。『挿入/差し込み』で書ける。カタカナ高密度",
+      "suggested_fix": "差し込まれる"
+    },
+    {
+      "id": "f013",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ナレッジ",
+      "start": 431,
+      "end": 435,
+      "reason": "knowledge のカタカナ化。『知識』で書ける。カタカナ高密度",
+      "suggested_fix": "知識"
+    },
+    {
+      "id": "f014",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "生成することができるようになります",
+      "start": 443,
+      "end": 460,
+      "reason": "『することができるようになる』二重冗長。可能系5回反復の一つ",
+      "suggested_fix": "生成できるようになります"
+    },
+    {
+      "id": "f015",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって の濫用",
+      "severity": "S2",
+      "text_span": "参照することによって",
+      "start": 521,
+      "end": 531,
+      "reason": "by/through の直訳的な『によって』。文書内で『によって』が2回。手段は連用形で直結できる",
+      "suggested_fix": "参照して"
+    },
+    {
+      "id": "f016",
+      "category": "A-4",
+      "category_label": "翻訳調: 〜に基づいて 濫用",
+      "severity": "S2",
+      "text_span": "基づいた",
+      "start": 535,
+      "end": 539,
+      "reason": "based on の直訳2回目。『事実に沿った/事実どおりの』で自然",
+      "suggested_fix": "沿った"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "レスポンス",
+      "start": 539,
+      "end": 544,
+      "reason": "response のカタカナ化。『応答/回答』で書ける。カタカナ高密度",
+      "suggested_fix": "応答"
+    },
+    {
+      "id": "f018",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "可能となるのです",
+      "start": 550,
+      "end": 558,
+      "reason": "『となる』状態叙述＋『のです』。★日本語固有の最強クセ。『返せるのです』で足りる",
+      "suggested_fix": "返せるのです"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "キャッチアップ",
+      "start": 582,
+      "end": 589,
+      "reason": "catch up のカタカナ化。『追いつく』で書ける。カタカナ高密度",
+      "suggested_fix": "追いつく"
+    },
+    {
+      "id": "f020",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "行う必要がない",
+      "start": 605,
+      "end": 612,
+      "reason": "need to の直訳。『再学習しなくてよい』で断定的に短縮できる",
+      "suggested_fix": "再学習しなくてよい"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "メリット",
+      "start": 615,
+      "end": 619,
+      "reason": "merit のカタカナ化。『利点』で書ける。カタカナ高密度",
+      "suggested_fix": "利点"
+    },
+    {
+      "id": "f022",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アプローチ",
+      "start": 465,
+      "end": 470,
+      "reason": "approach のカタカナ化。『手法/やり方』で書ける。カタカナ高密度",
+      "suggested_fix": "手法"
+    },
+    {
+      "id": "f023",
+      "category": "I-2",
+      "category_label": "形式名詞: 〜という点/面 反復",
+      "severity": "S2",
+      "text_span": "点としては",
+      "start": 476,
+      "end": 481,
+      "reason": "形式名詞『点としては』で主題を回りくどく提示。『優れているのは』で直結",
+      "suggested_fix": "優れているのは"
+    },
+    {
+      "id": "f024",
+      "category": "I-1",
+      "category_label": "形式名詞: 〜こと/ということ 濫用",
+      "severity": "S2",
+      "text_span": "挙げられます",
+      "start": 503,
+      "end": 509,
+      "reason": "『〜ことが挙げられる』の列挙導入形式。『低減できる』へ断定できる",
+      "suggested_fix": "低減できます"
+    },
+    {
+      "id": "f025",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "要素となっています",
+      "start": 692,
+      "end": 701,
+      "reason": "★日本語固有の最強クセ。『である/だ』で足りる状態叙述の機械的多用（文書内『となる/となっている』2回）",
+      "suggested_fix": "要素です"
+    },
+    {
+      "id": "f026",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって の濫用",
+      "severity": "S2",
+      "text_span": "行うことによって",
+      "start": 708,
+      "end": 716,
+      "reason": "by/through の直訳的『によって』2回目。『設計して』で直結できる",
+      "suggested_fix": "設計して"
+    },
+    {
+      "id": "f027",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "構築することができるでしょう",
+      "start": 733,
+      "end": 747,
+      "reason": "可能の冗長形＋末尾ヘッジ『でしょう』。可能系5回反復の一つ。『構築できます』へ",
+      "suggested_fix": "構築できます"
+    },
+    {
+      "id": "f028",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "仕組みです",
+      "start": 161,
+      "end": 166,
+      "reason": "★日本語固有。全9文の文末が『です/ます/ています/なります/でしょう』のみで一本調子。体言止め・『〜だ』等の変奏がゼロ",
+      "suggested_fix": "（体言止めや断定を混ぜて変奏）"
+    },
+    {
+      "id": "f029",
+      "category": "E-1",
+      "category_label": "リズム: 文長の標準偏差が低い",
+      "severity": "S2",
+      "text_span": "近年",
+      "start": 29,
+      "end": 31,
+      "reason": "全9文が40〜90字帯に集中し10〜20字の短文が皆無。文長がほぼ均一でリズムが単調",
+      "suggested_fix": "（短文を1〜2文挟む）"
+    }
+  ],
+  "category_summary": {
+    "A": 11,
+    "B": 13,
+    "C": 0,
+    "D": 0,
+    "E": 2,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 3,
+    "J": 0
+  }
+}
