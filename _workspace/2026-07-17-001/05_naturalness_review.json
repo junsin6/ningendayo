@@ -1,0 +1,84 @@
+{
+  "run_id": "2026-07-17-001",
+  "reviewer": "naturalness-reviewer",
+  "meta": {
+    "genre": "技術解説記事",
+    "style": "desu_masu",
+    "score_before": 79.0,
+    "score_after": 2.0,
+    "improvement_pct": 97.5,
+    "improvement_rate": 0.975,
+    "scoring": "severity_weighted (S1=5, S2=2, S3=0.5) — 初回 02_detection.json と同一重み",
+    "over_polish_signals": 0,
+    "grade": "A",
+    "recommendation": "accept",
+    "change_rate_note": "change_rate 0.3142 は 30% 警告閾値を超過するが、削除主導（deletion_rate 0.2286 / insertion_rate 0.0856）であり、fidelity-audit=pass・情報欠落ゼロ・ジャンル移動なし。長いカタカナ語→短い漢語の開語と可能冗長形の短縮による削除超過が主因で、過推敲には該当しない（IMP-001 既知欠陥に一致）。"
+  },
+  "residual_findings_count": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 4
+  },
+  "residual_findings": [
+    {
+      "id": "r001",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S3",
+      "text_span": "ソース",
+      "reason": "『外部のソース』の source。初回検出でも finding 化されておらず維持は基準一貫。『情報源／出典』へ開く余地はあるが技術文脈で許容域。単独では非問題。",
+      "action": "許容（維持可）"
+    },
+    {
+      "id": "r002",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S3",
+      "text_span": "という",
+      "reason": "『ベクトルデータベースという技術』『RAGという仕組み』の定義的連結。定義箇所に限定された使用で反復は 2 回。人間の書き手も定義導入で用いる範囲。単独では非問題。",
+      "action": "許容"
+    },
+    {
+      "id": "r003",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって／ことで",
+      "severity": "S3",
+      "text_span": "ことで",
+      "reason": "『組み合わせることで』『差し込まれることで』の手段提示。『によって』からは既に脱しており『ことで』は自然度が高い。反復 2 回で密度は低い。単独では非問題。",
+      "action": "許容"
+    },
+    {
+      "id": "r004",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S3",
+      "text_span": "要素です",
+      "reason": "推敲で体言止め 1 回・『のです』2 回の変奏が入り初回の一本調子（S2）は解消。残る文末は敬体内の自然な範囲で、E-2 は S2→S3 相当まで軽減。単独では非問題。",
+      "action": "許容"
+    }
+  ],
+  "over_polish_assessment": {
+    "signals_detected": 0,
+    "style_break_desu_masu_vs_da_dearu": "なし（全文末が ます／です／のです／体言止めで敬体一貫。だ・である の混入ゼロ。体言止め『仕組み。』は文体中立で敬体を崩さない）",
+    "colloquial_over_casualization": "なし（技術解説のレジスターを維持）",
+    "technical_meaning_dilution": "なし（RAG／エンベディング／クエリ／チャンク／コンテキスト等の技術語は保存。アーキテクチャ→仕組み・インジェクション→差し込まれる 等も指示対象・技術動作が不変。fidelity-audit 項12=pass）",
+    "taigen_dome_excess": "なし（体言止めは 1 回のみ、過剰化していない）",
+    "rhythm_unnaturalness": "なし（文分割 1 箇所は逆接論理を保持し、ぶつ切り感なし。短文挿入で E-1 の均一性が改善）",
+    "change_rate_over_30pct": "フラグ点灯するが削除主導・fidelity=pass のため過推敲と判定しない（IMP-001）"
+  },
+  "borderline_flags_from_fidelity_audit": [
+    { "finding_id": "f027", "issue": "『でしょう』除去による断定強化。可能核は保持され意味毀損なし。過推敲シグナル閾値未満。" },
+    { "finding_id": "f016", "issue": "『事実に基づいた』→『事実に沿った』の含意微差。技術義（fact-grounded）保持で閾値未満。" }
+  ],
+  "grade_rationale": "S1=0・S2=0（≤2）・改善 97.5%（≥70%）で A 等級の全条件を満たす。過推敲シグナル 0。残存はすべて S3 の軽微パターンで単独では非問題、絶対残存数も 4 件と低い。2 次推敲不要。",
+  "improvement_report": [
+    "自然度判定基準の穴①: severity_weighted_score が S3=0.5 の低重みのため、S3 が何件積み上がっても score_after が跳ねず改善率が過大に見える恐れ。短文・低検出数の run では『改善率高＝良』が保証されない。絶対残存数（本 run は 4 件）を等級判定に併記する運用を SSOT に明文化すべき。",
+    "自然度判定基準の穴②: change_rate 30% 超が一律に過推敲シグナル候補として扱われるが、本 run のように削除主導（ins 8.6%）＋fidelity=pass では非過推敲。判定式に『insertion_rate 閾値』を分離導入し、削除主導ケースを自動的に減点対象外にすべき（IMP-001 の恒久修正）。",
+    "新シグナル候補①: 敬体内の『のです』多用。本 run は 2 回で許容だが、E-2 変奏として『のです』へ寄せると別種の単調（説明強調文末の反復）を生む。『のです』3 回以上を E-2 の下位パターン（説明辞の単調反復）として taxonomy 拡張候補に。",
+    "新シグナル候補②: 体言止めによる敬体変奏の副作用。敬体文中の体言止めは文体中立だが、多用すると『メモ調』の不自然さを招く。体言止め密度（文数比）の上限指標がスキーマに無いため、過推敲シグナルとして計測軸を追加検討。",
+    "新シグナル候補③: A-13『という』の定義的用法は残存 S3 だが、定義箇所では人間も使う正当用法。detector が定義文脈と非定義文脈を区別できず過検出/過小検出の揺れが出る。文脈タグ（定義/非定義）を finding に付す拡張を提案。",
+    "スキーマ摩擦①: 05 出力例の residual_findings が {S1,S2,S3} のカウントのみで、どの span が残ったかの明細を持たない。本 run では明細（r001〜r004）を追加したが、スキーマ雛形に residual_findings 配列（id/category/severity/span/reason）を正式フィールドとして定義すべき。",
+    "スキーマ摩擦②: naturalness-reviewer と content-fidelity-auditor の borderline_flags が別ファイルに分散し突合が手作業。両者の境界事例を run 単位で集約する共有フィールド（shared_borderline）をオーケストレーター側に設けると監査が一貫する。",
+    "スキーマ摩擦③: score の正規化定義が曖昧（『0〜100 に正規化』と記載だが実測は raw 加重和 79.0 が非正規化のまま score とされている）。上限クリップの有無・正規化係数を SSOT で確定させないと run 間比較が不能。"
+  ]
+}

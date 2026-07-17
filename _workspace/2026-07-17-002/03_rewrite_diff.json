@@ -133,19 +133,41 @@
       "before": "（各文60〜130字の長文に集中、短文なし）",
       "after": "（「制限されますので〜お願いします」「水を流してください」等の短い指示文を挿入し長短を混在）",
       "rationale": "既存の指示文を区切って短文を作り、文長の均一を解消。新情報は追加せず。"
+    },
+    {
+      "finding_id": "f020",
+      "category": "A-1",
+      "before": "断水が解除された直後におきましては、水道水に",
+      "after": "断水が解除された直後は、水道水に",
+      "rationale": "時点枠づけ「におきましては」を助詞「は」で直結。断水直後→濁り→通水→透明確認→使用の指示連鎖・意味は不変。敬体維持。",
+      "origin": "detection_miss",
+      "round": 2
     }
   ],
-  "change_rate": 0.363,
+  "change_rate": 0.372,
   "style_preserved": "desu_masu",
+  "rounds": [
+    {
+      "round": 1,
+      "edits": ["f001","f002","f003","f004","f005","f006","f007","f008","f009","f010","f011","f012","f013","f014","f015","f016","f017","f018","f019"],
+      "change_rate": 0.363
+    },
+    {
+      "round": 2,
+      "edits": ["f020"],
+      "trigger": "naturalness-reviewer が第4段落に残存 S1（A-1「におきましては」）を検出。初回 detection のfinding 未付与（detection_miss）由来。",
+      "change_rate_delta": 0.009
+    }
+  ],
   "meta": {
     "orig_chars": 639,
     "inserted_chars": 39,
-    "deleted_chars": 193,
+    "deleted_chars": 199,
     "insertion_rate": 0.061,
-    "deletion_rate": 0.302
+    "deletion_rate": 0.311
   },
   "warnings": [
-    "change_rate 0.363 が 30% を超過（50% 未満のため続行）。ただし削除主体（del 0.302 / ins 0.061）で、状態叙述・行為者不在の受動・冗長敬語の贅肉を削いだ結果であり、意味の書き換えではない。挿入率は 6% に留まり情報の追加・改変なし。",
-    "検出漏れ: 第4段落『断水が解除された直後におきましては』の『におきましては』はA-1パターンだが finding 未付与のため、根拠ベース原則により手術せず原文保持。"
+    "change_rate 0.372 が 30% を超過（50% 未満のため続行）。削除主体（del 0.311 / ins 0.061）で、状態叙述・行為者不在の受動・冗長敬語の贅肉を削いだ結果であり、意味の書き換えではない。挿入率は 6% に留まり情報の追加・改変なし。",
+    "round_2 で detection_miss 由来の残存 A-1『におきましては』を f020 として追記・修正。round_1 の warnings にあった『根拠ベース原則により原文保持』の判断は、naturalness-reviewer の残存検出により finding 化されたため解消。"
   ]
 }
