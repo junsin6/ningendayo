@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "run_id": "2026-07-18-001",
+    "genre": "技術解説記事",
+    "style": "desu_masu",
+    "reviewer": "naturalness-reviewer",
+    "method": "detector_rerun_same_taxonomy (IMP-006)",
+    "score_formula": "5*S1 + 2*S2 + 1*S3 (reverse-derived from 02_detection.json meta: 11*S1+16*S2=87.0)"
+  },
+  "score_before": 87.0,
+  "score_after": 4.0,
+  "improvement_rate": 0.954,
+  "residual_findings": { "S1": 0, "S2": 2, "S3": 0 },
+  "residual_detail": [
+    {
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "confidence": "medium",
+      "note": "本文13文すべてが敬体終止。です／ます／ました／てください と動詞形の変化は増えたが、体言止め・〜でしょう等の変奏は皆無で一本調子は残存。敬体維持の制約下では完全解消が困難な構造的残存。"
+    },
+    {
+      "category": "E-1",
+      "category_label": "リズム: 文長の均一性",
+      "severity": "S2",
+      "confidence": "low",
+      "note": "冗長表現の削除で最短が約24字まで下がり分散は改善したが、10〜20字の短文が依然不在。短文挿入は内容追加を伴うため意味不変制約と衝突し、推敲だけでは解消しにくい残存。"
+    }
+  ],
+  "fixed_summary": {
+    "span_level_fixed": 25,
+    "document_level_fixed": 1,
+    "document_level_residual": 2,
+    "notes": "A-5(可能形)4件・A-10(抽象主語万能動詞)2件・A-6/A-1/A-8各1件・D-1(結び常套句)2件・D-4(次世代)1件・B-2(カタカナ)10件・F-1(非常に)1件・I-4(求められる)1件・H-1(文頭接続詞)を確認除去。全S1(11件)解消。"
+  },
+  "over_polish_signals": [],
+  "over_polish_checks": {
+    "keitai_jotai_mixing": 0,
+    "unnatural_kanka": 0,
+    "meaning_thinning": 0,
+    "taigen_dome_excess": 0,
+    "estimated_change_rate": 0.19,
+    "change_rate_threshold": 0.30,
+    "note": "常体混入なし。漢語化は『を要する』がやや硬いが suggested_fix 準拠で許容範囲。意味の痩せ・体言止め過多なし。推定変更率約19%で警告閾値30%未満。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1=0・S2=2(≤2)・改善率95.4%(≥70%)で品質等級A。全11件のS1決定的シグネチャと16件中14件のS2を除去し、敬体・数値・固有名詞・引用を保存。過推敲シグナルなし。残存2件はいずれも文書レベルのリズム系(E-2/E-1)で、敬体維持・意味不変の制約下では推敲単独での完全解消が困難な構造的残存であり、2次推敲の費用対効果は低い。accept を推奨。"
+}
