@@ -15,8 +15,8 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。推敲後 score も taxonomy §スコア算出 v1.1 の飽和正規化式（K=60）と `02_detection.json` の `scoring_weights` を用い、推敲前と同一の重み・式で採点する（reviewer 間のブレ防止 / IMP-002・IMP-003）。
+2. **改善率の算出**: `(score_before − score_after) / score_before`。**`score_before` は必ず `02_detection.json` の `meta.severity_weighted_score` を用いる**（推定値を作らない / IMP-003）。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
    * 文体崩れ（敬体／常体の混入）
