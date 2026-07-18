@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "run_id": "2026-07-18-001",
+    "genre": "技術解説記事",
+    "style_preserved": "desu_masu",
+    "orig_chars": 699,
+    "new_chars": 568,
+    "deleted_chars": 172,
+    "inserted_chars": 41,
+    "change_rate": 0.3047,
+    "change_rate_method": "LCS 文字差分（空白・改行を除外した本文文字数ベース。挿入+削除 / 原文字数）",
+    "threshold_note": "30% 超で warning（記録済み）。50% 未満のため中断せず続行。",
+    "imp_001_note": "本 run は 30% を超えるが、内訳は deleted 172 / inserted 41 と純削除・純置換主導。冗長な可能形（〜することができる）・AI 常套句（〜と言えるでしょう／いかがでしょうか）・長音カタカナ語（インフラストラクチャ等）の除去が中心で、日本語は英語由来語より短いため置換でも文字数が減り change_rate が押し上がる構造的特性がある。意味改変を伴わない（IMP-001 既知欠陥＝change_rate 指標が削除・カタカナ短縮を過大計上する件への注記）。",
+    "document_level_notes": {
+      "f023_E-2": "文末単調（全13文です／ます終止）は、個別 edit の副産物として文末を多様化して緩和（〜行えませんでした／〜向上させます／〜取得します／〜実現できます／〜要素です／〜基盤です／〜検討してみてください）。専用 span を持たない文書レベル finding のため edit 配列には計上せず。",
+      "f024_E-1": "文長均一は、冗長形除去による短文化で部分的に改善。ただし『短文を挟む』処方は新規文の挿入を要し、内容追加禁止（鉄則）と衝突するため実施せず。改善点報告に記載。"
+    }
+  },
+  "edits": [
+    { "finding_id": "f025", "category": "H-1", "operation": "delete", "before": "まず、", "after": "", "rationale": "段落冒頭接続表現の機械的固定（近年→まず→さらに→このように）を解体。順序語なしでも定義文として自然に流れる" },
+    { "finding_id": "f001", "category": "A-5", "operation": "replace", "before": "行うことができませんでした", "after": "行えませんでした", "rationale": "冗長な可能形を可能動詞へ。敬体維持" },
+    { "finding_id": "f002", "category": "A-5", "operation": "replace", "before": "検索することができる", "after": "検索できる", "rationale": "〜することができる→できる。前後の『活用することで／ようになります』は finding 外につき不変" },
+    { "finding_id": "f014", "category": "B-2", "operation": "replace", "before": "パフォーマンス", "after": "性能", "rationale": "performance を日本語へ。本文2回出現（本段落と第4段落『こうしたパフォーマンス』）を共に『性能』へ統一。RAG・ベクトル等の業界標準語は維持" },
+    { "finding_id": "f003", "category": "A-5", "operation": "replace", "before": "向上させることができます", "after": "向上させます", "rationale": "冗長な可能形を除去。他動詞『向上させる』を保ち『この技術が性能を向上させる』の主述関係を保存（提案の『向上します』は格助詞ヲと不整合のため他動詞形を採用）" },
+    { "finding_id": "f013", "category": "B-2", "operation": "replace", "before": "リトリーブして", "after": "取り出して", "rationale": "retrieve のカタカナ化。直後に『取得』もあり重複。日本語に開ける。RAG 概念語は維持" },
+    { "finding_id": "f016", "category": "B-2", "operation": "replace", "before": "アーキテクチャ", "after": "仕組み", "rationale": "architecture を日本語へ。冒頭『基本的な仕組み』と同語だが概念一貫で問題なし" },
+    { "finding_id": "f021", "category": "B-2", "operation": "replace", "before": "ドキュメント", "after": "文書", "rationale": "document を日本語へ。クエリ・エンベディング等の標準語は維持" },
+    { "finding_id": "f005", "category": "A-10", "operation": "replace", "before": "取得することを可能にします", "after": "取得します", "rationale": "抽象主語+万能動詞『可能にする』（英 makes it possible to の直訳調）を直接叙述へ。既存の『高速に』は保持" },
+    { "finding_id": "f015", "category": "B-2", "operation": "replace", "before": "スケーラビリティ", "after": "拡張性", "rationale": "scalability を日本語へ" },
+    { "finding_id": "f009", "category": "A-8", "operation": "replace", "before": "最適化することによって", "after": "最適化して", "rationale": "手段の『〜によって』（英 by -ing 直訳）を『〜して』で自然接続" },
+    { "finding_id": "f017", "category": "B-2", "operation": "replace", "before": "レスポンス", "after": "応答", "rationale": "response を日本語へ。ミリ秒単位（数値・単位）は不変" },
+    { "finding_id": "f004", "category": "A-5", "operation": "replace", "before": "実現することができます", "after": "実現できます", "rationale": "冗長な可能形を除去" },
+    { "finding_id": "f014", "category": "B-2", "operation": "replace", "before": "こうしたパフォーマンス", "after": "こうした性能", "rationale": "f014 の2箇所目（第4段落）。1箇所目と統一" },
+    { "finding_id": "f019", "category": "B-2", "operation": "replace", "before": "リアルタイム性", "after": "即時性", "rationale": "real-time+接尾辞『性』の二重クセを日本語へ" },
+    { "finding_id": "f027", "category": "I-4", "operation": "replace", "before": "が求められる", "after": "を要する", "rationale": "行為者を曖昧にした要請を、連体修飾『即時性を要する本番環境』へ具体化。意味（即時性が必要な環境）は保存" },
+    { "finding_id": "f018", "category": "B-2", "operation": "replace", "before": "プロダクション環境", "after": "本番環境", "rationale": "production を定着した日本語へ" },
+    { "finding_id": "f008", "category": "A-1", "operation": "replace", "before": "環境において", "after": "環境では", "rationale": "英 in の直訳『において』を助詞『では』へ" },
+    { "finding_id": "f026", "category": "F-1", "operation": "delete", "before": "非常に重要な", "after": "重要な", "rationale": "程度副詞『非常に』を削除。誇張の水増しを除く" },
+    { "finding_id": "f007", "category": "A-6", "operation": "replace", "before": "要素となっています", "after": "要素です", "rationale": "『である／だ』で足りる状態叙述『となっています』を断定へ。敬体維持" },
+    { "finding_id": "f025", "category": "H-1", "operation": "delete", "before": "さらに、", "after": "", "rationale": "段落冒頭接続表現の過多（f025 代表アンカー）。内容で流れが伝わるため削除" },
+    { "finding_id": "f025", "category": "H-1", "operation": "delete", "before": "このように、", "after": "", "rationale": "結び段落冒頭の接続表現を削除。まとめは内容で示す" },
+    { "finding_id": "f012", "category": "D-4", "operation": "replace", "before": "次世代の", "after": "これからの", "rationale": "誇張ハイプ語『次世代の』を穏当な語へ" },
+    { "finding_id": "f020", "category": "B-2", "operation": "replace", "before": "インフラストラクチャ", "after": "基盤", "rationale": "infrastructure を日本語へ。長音カタカナで露見しやすい" },
+    { "finding_id": "f006", "category": "A-10", "operation": "delete", "before": "としての役割を担っている", "after": "", "rationale": "技術を擬人化した万能動詞『役割を担う』を除去し、述語を『基盤です』に直結。『重要な基盤としての役割を担う』＝『重要な基盤である』で意味等価" },
+    { "finding_id": "f010", "category": "D-1", "operation": "replace", "before": "と言えるでしょう", "after": "です", "rationale": "LLM 決定的結び常套句を削除し断定で着地。敬体維持" },
+    { "finding_id": "f022", "category": "B-2", "operation": "replace", "before": "プロダクト", "after": "製品", "rationale": "product を『自社の〜』文脈で自然な『製品』へ" },
+    { "finding_id": "f011", "category": "D-1", "operation": "replace", "before": "検討してみてはいかがでしょうか", "after": "検討してみてください", "rationale": "ブログAIの決定的シグネチャ『いかがでしょうか』を、勧誘の意味を保った敬体の着地文へ。『ぜひ』と呼応" }
+  ],
+  "change_rate": 0.3047,
+  "style_preserved": "desu_masu",
+  "warnings": [
+    "change_rate 0.3047 が 30% 警告閾値を超過。ただし deleted 172 / inserted 41 の削除・置換主導で意味改変なし（meta.imp_001_note 参照）。50% 未満のため続行。",
+    "f024（E-1 文長均一）は未達。短文挿入処方が『新規情報の追加禁止』と衝突するため実施せず。冗長形除去による短文化で部分緩和のみ。",
+    "f023（E-2 文末単調）は個別 edit の副産物として文末多様化で緩和。専用 span がなく edit 配列外で処理。"
+  ]
+}
