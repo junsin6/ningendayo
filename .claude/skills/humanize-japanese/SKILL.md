@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視: 30% 超で警告、50% 超で原則中断。ただし `insertion_ratio < 0.35`（削除・置換主導）かつ意味改変なしのケースは続行可（playbook §変更率の数え方 / IMP-001）。
 
 ### 4. 並列検証
 
@@ -76,6 +76,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
+| 変更率 30〜50%（or 50% 超）だが `insertion_ratio < 0.35` の削除主導・fidelity=pass・自然度 A/B | `override accept` | `final.md` 出力。`summary.md` に override 理由（削除主導・意味不変）を明記（IMP-001） |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 

@@ -138,11 +138,22 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（v1.1 で削除主導ケースの扱いを確定 — IMP-001）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+* `change_rate` = （挿入 + 削除された文字数）/ 原文文字数。
+* あわせて **削除・挿入を分離計上**し diff.json の meta に必ず記録する: `deleted_chars` / `inserted_chars` / `insertion_ratio = inserted / (inserted + deleted)`。
+* 判定は change_rate 単独ではなく **insertion_ratio** を併用する:
+
+  | change_rate | insertion_ratio | 判定 |
+  | --- | --- | --- |
+  | ≤30% | — | 通常続行 |
+  | 30〜50% | `< 0.35`（削除・置換主導） | `summary.md` に警告記録のうえ **続行可**。冗長形・常套句・長音カタカナ語の純削除／短縮が主因で意味改変を伴わないケース。fidelity=pass かつ自然度 A/B なら override accept。 |
+  | 30〜50% | `≥ 0.35`（挿入主導） | 警告記録。挿入は新規命題混入リスクがあるため fidelity 監査を重点確認。 |
+  | >50% | `< 0.35` | 削除主導でも要確認。fidelity=pass なら override accept 可、summary に理由明記。 |
+  | >50% | `≥ 0.35` | 強制中断し `hold_and_report`。原文を尊重しすぎ／ジャンル移動を再点検。 |
+
+* **背景**: カタカナ語→漢語の置換（例 インフラストラクチャ→基盤）は日本語が英語由来語より短いため、意味不変の置換でも文字数が減り change_rate を構造的に押し上げる。文字ベース change_rate は「削除・短縮」を過大計上する既知欠陥（IMP-001）を持つため、`insertion_ratio` で削除主導かを判別して中断可否を決める。
+* 中断可否の最終根拠は「意味改変を伴う edit の有無」であり、fidelity 監査の verdict が優先する。
 
 ## 文体変換例（before → after 一括サンプル）
 
