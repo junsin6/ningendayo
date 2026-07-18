@@ -383,7 +383,7 @@ J. 視覚装飾の濫用
     "input_length": 1820,
     "detected_count": 37,
     "raw_weighted_sum": 106,
-    "severity_weighted_score": 71.5,
+    "severity_weighted_score": 82.9,
     "ai_tell_density": 0.203,
     "scoring_weights": { "S1": 5, "S2": 2, "S3": 0.5 },
     "style": "desu_masu"
@@ -432,10 +432,10 @@ J. 視覚装飾の濫用
   severity_weighted_score = round( 100 * (1 - exp(-raw_weighted_sum / K)) , 1)   # K = 60
   ```
 
-  例: raw=56 → 61.0、raw=106 → 82.9。短い高密度文書で raw が 100 を超えても飽和で潰れず、長い低密度文書との比較が保たれる。`K=60` は「raw≈60 で約63点」を基準に設定した既定値。
-  * **後方互換**: v1.0 で `min(100, raw)` クランプを用いた過去 run（2026-06-12・2026-07-18）はその旨を run の summary に注記する。以後の run は上式を用いる。
-  * `improvement_rate = (score_before - score_after) / score_before`。`score_before` は必ず **02_detection.json の meta.severity_weighted_score** を用いる（IMP-003）。scoring_weights も同 meta を参照し reviewer 間のブレを防ぐ。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。**span_type が `document`/`scattered` の finding は locator 文字数を分子に含めない**（density 過大化の回避 — IMP-004）。
+  例: raw=56 → 60.7、raw=106 → 82.9。短い高密度文書で raw が 100 を超えても飽和で潰れず、長い低密度文書との比較が保たれる。`K=60` は観測コーパスが raw≈34〜106 に集中し、その域を 43〜83 点に良好に分散させる校正値（飽和は raw≈276 で 99 点）。
+  * **improvement_rate は raw 尺度で定義する（尺度安定 — taxonomist 審査 #3）**: `improvement_rate = (raw_before - raw_after) / raw_before`。正規化スコア（exp 写像）は非線形で、同一 raw でも K 次第で rate が変わり品質等級（改善率 70%/50% 閾値）を揺らすため、**等級判定には raw_weighted_sum を用い、severity_weighted_score は表示専用**とする。`score_before`/`raw_before` はいずれも **02_detection.json の meta** を用いる（IMP-003）。scoring_weights も同 meta を参照し reviewer 間のブレを防ぐ。
+  * **後方互換**: (i) v1.0 で `min(100, raw)` クランプを用いた過去 run（2026-06-12・2026-07-18）、(ii) span_type/occurrences 欠落のため density が document/scattered を分子に含む旧計算だった run（同）は、その旨を run の summary に注記する。**旧クランプ/raw 尺度スコアと exp 尺度スコアは非線形のため直接比較・トレンド集計不可**（DAILY 集計での混在に注意）。
+* `ai_tell_density`: **被覆オフセットの和集合（ユニーク文字位置）の総数 / 全体文字数**。1 span が複数カテゴリに該当する場合（IMP-005）や span 重複時の二重計上を避けるため単純和でなく和集合で数える。**`document` finding は分子寄与 0**（start=0 は純アンカーで可算文字を持たない）、**`scattered` finding は occurrences の実 span 長の総和を計上**（絵文字8個等は実在する AI クセ文字で除外しない）。（IMP-004）
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ### span_type — 文書レベル／分散パターンの表現（IMP-004）
@@ -449,13 +449,14 @@ J. 視覚装飾の濫用
 | `document` | 文書全体の構造・リズム（E-1 文長均一・C 構造 等） | `0`（代表アンカー） | `null` |
 
 * 推敲役は `document`/`scattered` finding を「この 1 span だけ直す」と誤読してはならない。分散する全 occurrences、または文書全体のリズムを対象に扱う。
-* `document`/`scattered` finding は density 計算の分子から除外し、代わりに検出実文字数のみを計上する。
+* density 計算では **`document` は分子寄与 0、`scattered` は occurrences の実 span 長総和を計上**（上記 §ai_tell_density 参照）。両者を混同しないこと。
 
 ## バージョン管理
 
 * **v1.1** (2026-07-18): 検出出力スキーマの穴を実戦由来で確定。
-  + IMP-002: `severity_weighted_score` の正規化式を `100*(1-exp(-raw/K))`, K=60 に確定。`raw_weighted_sum`・`scoring_weights` を meta に明示フィールド化。
-  + IMP-004: `span_type`（contiguous/scattered/document）と `occurrences` を finding スキーマに追加。文書レベル・分散パターンを density 分子から除外。
+  + IMP-002: `severity_weighted_score` の正規化式を `100*(1-exp(-raw/K))`, K=60 に確定。`raw_weighted_sum`・`scoring_weights` を meta に明示フィールド化。**improvement_rate と品質等級は raw_weighted_sum（線形）で判定し、正規化スコアは表示専用**（taxonomist 審査で exp 非線形が等級を揺らす副作用を指摘され修正）。
+  + IMP-004: `span_type`（contiguous/scattered/document）と `occurrences` を finding スキーマに追加。density は被覆オフセットの和集合で数え、document は分子寄与 0・scattered は occurrences 実長を計上（taxonomist 審査 #5/#6 反映）。
+  + taxonomist 審査（2026-07-18）: スキーマ例を式と整合（82.9）、body 例を 60.7 に訂正、後方互換注記を density 旧規約・尺度非互換まで拡張。新カテゴリ候補（K メタ言及・過剰冗長敬語）は実例1runのため保留。
   + 分類本体（A〜J・40+ サブパターン）は v1.0 から不変。新カテゴリ候補（K メタ言及・過剰冗長敬語）は拡張候補欄で審査中。
 * **v1.0** (2026-05): 日本語 AIクセ分類体系の初版。10 大分類（A〜J）× 40+ サブパターンを定義。
   + 日本語固有として重点配置: `A-6`（〜となっている）, `B-2`（カタカナ語濫用）, `E-2`（です・ます単調）, `I-4`（〜が求められる）, `J-3`（ダッシュ濫用）, D-1 の「いかがでしたでしょうか」。
