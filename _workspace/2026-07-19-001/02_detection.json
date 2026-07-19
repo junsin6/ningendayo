@@ -1,0 +1,343 @@
+{
+  "meta": {
+    "input_length": 769,
+    "detected_count": 29,
+    "ai_tell_density": 0.263,
+    "severity_weighted_score": 77.5,
+    "style": "desu_masu",
+    "score_note": "severity_weighted_score = min(100, S1*5 + S2*2 + S3*0.5) = min(100, 77.5). SSOTのIMP-002を踏まえ長さ正規化項は未導入（短い高密度文書と長い低密度文書が非可換）。input_lengthは改行を除く文字数769（改行込み778）。ai_tell_density=検出spanの重複除去union総文字数202/769。"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "となっています",
+      "start": 90,
+      "end": 97,
+      "reason": "「である/だ」で足りる箇所を英語 has become 的に状態化。冒頭一文目の述語で AI 状態叙述が即露見。line7「引き起こすことになります」も同型。",
+      "suggested_fix": "テクノロジーだ"
+    },
+    {
+      "id": "f002",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/〜においては 濫用",
+      "severity": "S1",
+      "text_span": "において",
+      "start": 64,
+      "end": 68,
+      "reason": "「進化において」「ユースケースにおいては」「観点においても」で3回反復。一文書2回以下の閾値超過。",
+      "suggested_fix": "進化で／進化のなかで"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "発揮することができませんでした",
+      "start": 233,
+      "end": 248,
+      "reason": "可能の冗長形。本文で「することができる」系が4回反復（235/347/579/695）し AI 最頻出シグネチャが密集。",
+      "suggested_fix": "発揮できませんでした"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "削減することができる",
+      "start": 345,
+      "end": 355,
+      "reason": "「削減することができるようになります」と冗長。4回反復のうちの一つ。可能主張が不要なら断定形へ。",
+      "suggested_fix": "大きく削減できる／削減できます"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "解決することができるのです",
+      "start": 577,
+      "end": 590,
+      "reason": "可能の冗長形＋「のです」で説明調が重なる。4回反復のうちの一つ。",
+      "suggested_fix": "解決できるのです／解決します"
+    },
+    {
+      "id": "f006",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "低減することができます",
+      "start": 693,
+      "end": 704,
+      "reason": "可能の冗長形。4回反復のうちの一つで文体を一本調子にしている。",
+      "suggested_fix": "低減できます"
+    },
+    {
+      "id": "f007",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（示す/提供する/もたらす）",
+      "severity": "S1",
+      "text_span": "ソリューションを提供します",
+      "start": 277,
+      "end": 290,
+      "reason": "主語=エッジコンピューティング（技術）＋述語=提供する の英語 The X provides Y 直訳。本文で提供する/可能にする/もたらす の抽象主語構文が3回反復。",
+      "suggested_fix": "この課題を解決する（行為主体に戻すか直接叙述）"
+    },
+    {
+      "id": "f008",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（示す/提供する/もたらす）",
+      "severity": "S1",
+      "text_span": "ハンドリングすることを可能にします",
+      "start": 403,
+      "end": 420,
+      "reason": "「この技術は…を可能にします」の抽象主語+万能動詞。カタカナ語ハンドリングと二重の AI クセ。",
+      "suggested_fix": "膨大なトラフィックを効率よくさばける"
+    },
+    {
+      "id": "f009",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（示す/提供する/もたらす）",
+      "severity": "S1",
+      "text_span": "アドバンテージをもたらします",
+      "start": 636,
+      "end": 650,
+      "reason": "「エッジコンピューティングは…もたらします」の The X brings Y 直訳。3回反復の抽象主語構文の一つ。",
+      "suggested_fix": "大きな強みになります（または利点がある）"
+    },
+    {
+      "id": "f010",
+      "category": "D-1",
+      "category_label": "AI慣用句: 結び「〜と言えるでしょう」",
+      "severity": "S1",
+      "text_span": "だと言えるでしょう",
+      "start": 767,
+      "end": 776,
+      "reason": "末尾の結び常套句。人間の書き手はほぼ使わない断定回避の締め。D-1 決定的シグネチャ。",
+      "suggested_fix": "だ／存在感を高めていくだろう"
+    },
+    {
+      "id": "f011",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ポジション",
+      "start": 75,
+      "end": 80,
+      "reason": "日本語で書ける語のカタカナ化。本文に置換可能カタカナ語が高密度（ポジション/アプローチ/ソリューション/ハンドリング/ケース/センシング/プロセッシング/アドバンテージ 等8語超）。",
+      "suggested_fix": "位置づけ／立場"
+    },
+    {
+      "id": "f012",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アプローチ",
+      "start": 149,
+      "end": 154,
+      "reason": "手法の意でカタカナ化。knowledge偽装のカタカナ語密集の一つ。",
+      "suggested_fix": "やり方／手法"
+    },
+    {
+      "id": "f013",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 277,
+      "end": 284,
+      "reason": "解決策の意でカタカナ化。革新的な＋ソリューションでハイプ語と連結。",
+      "suggested_fix": "解決策"
+    },
+    {
+      "id": "f014",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "センシング",
+      "start": 460,
+      "end": 465,
+      "reason": "感知/検知の意でカタカナ化。動詞化された不要カタカナ語（センシングし）。",
+      "suggested_fix": "感知し／捉え"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "プロセッシング",
+      "start": 550,
+      "end": 557,
+      "reason": "処理の意でカタカナ化。直後に「処理を」相当が続き実質重言。",
+      "suggested_fix": "処理する"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ケース",
+      "start": 434,
+      "end": 437,
+      "reason": "例/場合の意でカタカナ化。「自動運転車のケース」。ユースケースを含めカタカナ語密度を押し上げる。",
+      "suggested_fix": "例／場合"
+    },
+    {
+      "id": "f017",
+      "category": "D-4",
+      "category_label": "AI慣用句: ハイプ語彙（革新的な等）",
+      "severity": "S2",
+      "text_span": "革新的な",
+      "start": 273,
+      "end": 277,
+      "reason": "誇張形容。ソリューションと連結し AI の意義誇張パターン。爆発的な とあわせ2回。",
+      "suggested_fix": "新しい／（削除）"
+    },
+    {
+      "id": "f018",
+      "category": "D-4",
+      "category_label": "AI慣用句: ハイプ語彙（爆発的な等）",
+      "severity": "S2",
+      "text_span": "爆発的な",
+      "start": 377,
+      "end": 381,
+      "reason": "誇張形容「爆発的な普及」。D-4 ハイプ語彙の反復。",
+      "suggested_fix": "急速な／急激な"
+    },
+    {
+      "id": "f019",
+      "category": "F-1",
+      "category_label": "過度な修飾: 程度副詞中毒",
+      "severity": "S2",
+      "text_span": "極めて",
+      "start": 69,
+      "end": 72,
+      "reason": "程度副詞が「極めて/十分に/大幅に/ますます」で4回。強調が具体性なしに乗る AI 特有の水増し。",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f020",
+      "category": "I-1",
+      "category_label": "形式名詞: 〜こと/〜ということ 濫用",
+      "severity": "S2",
+      "text_span": "おこなうこと",
+      "start": 325,
+      "end": 331,
+      "reason": "形式名詞「こと」が本文で10回。可能・手段構文と結合して機械的（おこなうことによって/削減すること/ハンドリングすること 等）。",
+      "suggested_fix": "おこなえば／処理することで"
+    },
+    {
+      "id": "f021",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる（行為者曖昧の要請）",
+      "severity": "S2",
+      "text_span": "求められます",
+      "start": 479,
+      "end": 485,
+      "reason": "行為者を曖昧にした要請。「判断をくだすことが求められます」。line3「リアルタイム性が求められる」と2回。誰が要求するか不明。",
+      "suggested_fix": "瞬時に判断しなければなりません"
+    },
+    {
+      "id": "f022",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって（by/手段の後置）",
+      "severity": "S2",
+      "text_span": "処理することによって",
+      "start": 660,
+      "end": 670,
+      "reason": "「〜することによって」が3回反復（331/561/666）。英語 by V-ing の直訳が段落構造を一様化。",
+      "suggested_fix": "処理すれば／処理することで"
+    },
+    {
+      "id": "f023",
+      "category": "F-1",
+      "category_label": "過度な修飾: 程度副詞中毒",
+      "severity": "S3",
+      "text_span": "大幅に",
+      "start": 342,
+      "end": 345,
+      "reason": "程度副詞の反復の一部。単独では弱いが極めて/十分に/ますますと重なり密度を形成。",
+      "suggested_fix": "（削除）／大きく"
+    },
+    {
+      "id": "f024",
+      "category": "F-1",
+      "category_label": "過度な修飾: 程度副詞中毒",
+      "severity": "S3",
+      "text_span": "ますます",
+      "start": 746,
+      "end": 750,
+      "reason": "結び付近の強調副詞。D-1 の締めと重なり誇張トーンを強める。",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f025",
+      "category": "J-3",
+      "category_label": "視覚装飾: ダッシュ（—）の濫用",
+      "severity": "S3",
+      "text_span": "——",
+      "start": 16,
+      "end": 18,
+      "reason": "タイトルの em-dash 付加説明。出現は1回で閾値内だが、日本語では露見しやすい定番の見出しクセ。過検出防止のため単発として S3。",
+      "suggested_fix": "「エッジコンピューティングとは何か：次世代インフラの全体像」（読点/コロン/別行）"
+    },
+    {
+      "id": "f026",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S3",
+      "text_span": "というアプローチ",
+      "start": 146,
+      "end": 154,
+      "reason": "「処理されるというアプローチ」の冗長連結。単発だが翻訳調カタカナと重複し AI 印象を補強。",
+      "suggested_fix": "処理する手法"
+    },
+    {
+      "id": "f027",
+      "category": "F-5",
+      "category_label": "過度な修飾: 〜性 抽象名詞",
+      "severity": "S3",
+      "text_span": "リアルタイム性",
+      "start": 195,
+      "end": 202,
+      "reason": "「リアルタイム性/機密性」で「性」名詞化が2回。閾値(3回)未満のため単独では弱く S3。他クセと重なる場合のみ処理。",
+      "suggested_fix": "リアルタイムの処理が必要な"
+    },
+    {
+      "id": "f028",
+      "category": "E-1",
+      "category_label": "リズム: 文長の標準偏差が低い",
+      "severity": "S3",
+      "text_span": "エッジコンピューティング",
+      "start": 0,
+      "end": 12,
+      "reason": "文書レベル。全13文が概ね40〜90字の長文に偏り短文(10〜20字)が皆無。段落もすべて2〜3文で均一。リズムに人間的な緩急がない。",
+      "suggested_fix": "各段落に10〜20字の短文を1つ挟み、緩急を作る"
+    },
+    {
+      "id": "f029",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S3",
+      "text_span": "可能にします",
+      "start": 414,
+      "end": 420,
+      "reason": "文書レベル。文末が「〜します/〜ます」に集中（提供します/なります/可能にします/もたらします 等）。でした/でしょう/ましょう等の変奏はあるが「します」比率が高く一本調子気味。文体(敬体)は維持のうえ体言止め等で変奏推奨。",
+      "suggested_fix": "一部を体言止め・「〜のです」「〜でしょう」へ変奏"
+    }
+  ],
+  "category_summary": {
+    "A": 11,
+    "B": 6,
+    "C": 0,
+    "D": 3,
+    "E": 2,
+    "F": 4,
+    "G": 0,
+    "H": 0,
+    "I": 2,
+    "J": 1
+  }
+}
