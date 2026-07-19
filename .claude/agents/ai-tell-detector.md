@@ -30,6 +30,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "span",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
@@ -50,9 +51,14 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（v1.1 で式を確定 — IMP-002）:
+   * `W = S1件数×5 + S2件数×2 + S3件数×0.5`、`L = input_length`（本文文字数, 改行・空白を除く）。
+   * `severity_weighted_score = round(100 * (1 - exp(-23 * W / L)), 1)`。密度 `W/L` ベースの飽和式で文書長に依存しない。
+   * `ai_tell_density` = 検出 span の**重複除去 union** 文字数 / `L`。scope=document の finding は union に含めない。
+6. **locator 型（scope）の付与**（v1.1 — IMP-004）:
+   * 単一連続区間は `scope: "span"`（既定、`text_span`/`start`/`end`）。
+   * 絵文字・文頭接続語など分散反復は `scope: "scattered"` ＋ `occurrences: [[s,e],...]`。
+   * E リズム・H 接続密度・受動比率など文書全体の性質は `scope: "document"` ＋ `metric: {name, value}`（例 `sentence_end_repeat_rate`, `passive_ratio`）。
 
 ## 重要な原則
 
