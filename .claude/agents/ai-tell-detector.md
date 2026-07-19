@@ -52,7 +52,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
 5. **スコア算出**（v1.1 で式を確定 — IMP-002）:
-   * `W = S1件数×5 + S2件数×2 + S3件数×0.5`、`L = input_length`（本文文字数, 改行・空白を除く）。
+   * `W = S1件数×5 + S2件数×2 + S3件数×0.5`、`L = input_length`（本文文字数, 改行・空白を除く）。W は **finding 件数ベース**（`scope=scattered`/`document` の finding も、出現回数に関わらず 1 finding = 1 件としてその severity で計上する）。
    * `severity_weighted_score = round(100 * (1 - exp(-23 * W / L)), 1)`。密度 `W/L` ベースの飽和式で文書長に依存しない。
    * `ai_tell_density` = 検出 span の**重複除去 union** 文字数 / `L`。scope=document の finding は union に含めない。
 6. **locator 型（scope）の付与**（v1.1 — IMP-004）:

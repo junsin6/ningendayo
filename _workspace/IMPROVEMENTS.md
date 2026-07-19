@@ -97,5 +97,12 @@
 ### detector/スキーマ実装
 - **input_length と ai_tell_density の分母定義の明文化** `status: ready` `hits: 2runs` — 改行込み/除きが未規定（0719-001 は 769 vs 778）。density の分母もこれに依存。再スキャン時（本文のみ）と初回（全体）で分母が変わり density が非可比。「input_length＝改行・空白を除く本文文字数、density は重複除去 union」を契約固定。 出所 detector-A(0612), detector-001(0719), naturalness-001(0719)
 - 密度依存 finding の severity 昇格閾値表（同カテゴリ N 回以上で S3→S2）を SSOT に。 `hits: 1run` 出所 detector-001(0719)
+- **taxonomist v1.1 審査の follow-up（0719）** `status: open` 出所 taxonomist(0719):
+  + `input_length` の二義性（改行除き本文長か生入力長か）→ `body_length` へ改名 or meta に stripped 長を別フィールド。
+  + `scope=scattered/document` の W 寄与規則 → **0719 で detector.md に「finding 件数ベース（scattered/document も 1 件計上）」を明記して解消**。SSOT 側へも将来反映。
+  + `detected_count` とは別に `total_occurrences` を持たせ密度を直感化。
+  + 候補に運用メタ（初観測日 / 累積 hit run 数 / 次審査サイクル）を構造化フィールドで付与し再現2回条件を自動追跡。
+  + 新カテゴリ新設 vs 既存サブ項目吸収の判断基準（処方が根本的に異なるか）を SSOT 冒頭に明文化。
+- **A-8 分割は taxonomist が「昇格条件充足・次サイクルで A-8a/A-8b に分割本採用（A-8b=手段 by-Ving, S2 想定）」と裁定**。K 過剰敬語・A-14 は「人間も常用する定型のため誤検出リスク大」で保留裁定。出所 taxonomist(0719)
 - start/end 自己検証（regex 位置と text_span 一致を assert）（0612）出所 detector-A
 - 絵文字正規表現レンジ明示 `\U0001F300-\U0001FAFF` ＋ `☀-➿`（0612）出所 detector-B
