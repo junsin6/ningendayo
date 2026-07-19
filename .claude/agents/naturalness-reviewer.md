@@ -15,8 +15,12 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再実行（必須・IMP-006）**: `03_rewrite.md` に対し、**Agent ツールで `ai-tell-detector` サブエージェントを呼んで**同基準で再走査する。手動照合による score_after の推定は不可。子検出器の結果が取得できない場合のみ、taxonomy 基準で自ら厳密に再スキャンして代替し、その旨を `notes` に明記する。可能なら自己再スキャンと子検出器結果を reconcile する。
+2. **スコアと改善率の算出（契約固定・IMP-003）**:
+   * `score_before` = **`02_detection.json` の `meta.severity_weighted_score`**（この値以外を使わない）。
+   * `score_after` は taxonomy §検出出力スキーマの式で算出（`round(100*(1-exp(-23*W/L)),1)`）。
+   * **分母 `L` は原文 `input_length` に固定**する。推敲で文字数が変わっても before/after ともに原文 L を使い、improvement_rate を可比化する。
+   * `improvement_rate = (score_before − score_after) / score_before`。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
    * 文体崩れ（敬体／常体の混入）
@@ -34,12 +38,15 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
   "score_after": 18.0,
   "improvement_rate": 0.748,
   "residual_findings": { "S1": 0, "S2": 2, "S3": 3 },
+  "sub_threshold_observations": [],
   "over_polish_signals": [],
   "grade": "A",
   "recommendation": "accept | rewrite_round_2 | hold_and_report",
   "notes": ""
 }
 ```
+
+* `sub_threshold_observations`（任意）: 閾値未満で非 finding とした残存（単発の I-4「求められる」や A-13「という」など）を residual と別に列挙し、次段の追い込み推敲へ引き継ぐ（IMP-006 の受け渡し契約）。
 
 ## 品質等級
 

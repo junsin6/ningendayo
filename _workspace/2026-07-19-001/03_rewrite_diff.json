@@ -1,0 +1,69 @@
+{
+  "edits": [
+    { "finding_id": "f025", "category": "J-3", "before": "エッジコンピューティングとは何か——次世代インフラの全体像", "after": "エッジコンピューティングとは何か：次世代インフラの全体像", "rationale": "見出しのem-dashをコロンへ。視覚装飾クセを解消し情報は不変" },
+    { "finding_id": "f002", "category": "A-1", "before": "近年のクラウドコンピューティングの進化において", "after": "近年のクラウドコンピューティングの進化のなかで", "rationale": "における濫用の1つ目。3回反復のため別々の自然形に分散（のなかで）" },
+    { "finding_id": "f019", "category": "F-1", "before": "極めて重要なポジション", "after": "重要な位置づけ", "rationale": "具体性のない程度副詞『極めて』を削除" },
+    { "finding_id": "f011", "category": "B-2", "before": "ポジション", "after": "位置づけ", "rationale": "日本語で書けるカタカナ語を開く。技術固有語ではない" },
+    { "finding_id": "f001", "category": "A-6", "before": "テクノロジーとなっています", "after": "テクノロジーです", "rationale": "has become 的な状態叙述を敬体のまま断定へ（です）" },
+    { "finding_id": "f026", "category": "A-13", "before": "そこで処理されるというアプローチが主流でした", "after": "そこで処理する手法が主流でした", "rationale": "『という』過剰連結を解体（検出のsuggested_fixに従い能動化）" },
+    { "finding_id": "f012", "category": "B-2", "before": "アプローチ", "after": "手法", "rationale": "手法の意のカタカナ語を開く" },
+    { "finding_id": "f027", "category": "F-5", "before": "リアルタイム性が求められるユースケースにおいては", "after": "リアルタイムの処理が求められるユースケースでは", "rationale": "『性』抽象名詞を動詞句へ開き、同時に2つ目の『において』を解体（では）。求められる・ユースケースは非flaggedのためロールバック済（span厳守）" },
+    { "finding_id": "f003", "category": "A-5", "before": "発揮することができませんでした", "after": "発揮できませんでした", "rationale": "可能の冗長形を短縮（4回反復のうち1つ目）" },
+    { "finding_id": "f017", "category": "D-4", "before": "革新的な", "after": "新しい", "rationale": "ハイプ語彙を抑制。ソリューションとの連結を解消（下記f007/f013で文を再構成）" },
+    { "finding_id": "f013", "category": "B-2", "before": "ソリューション", "after": "（解決／やり方に吸収）", "rationale": "解決策の意のカタカナ語を開く" },
+    { "finding_id": "f007", "category": "A-10", "before": "この課題に対する革新的なソリューションを提供します", "after": "この課題を新しいやり方で解決します", "rationale": "抽象主語+万能動詞『提供します』を直接叙述『解決します』へ。革新的→新しい、ソリューション→やり方を統合" },
+    { "finding_id": "f020", "category": "I-1", "before": "処理をおこなうことによって", "after": "処理をおこなえば", "rationale": "形式名詞『こと』+『によって』を条件形へ直結" },
+    { "finding_id": "f004", "category": "A-5", "before": "大幅に削減することができるようになります", "after": "大きく削減できます", "rationale": "可能の冗長形『することができるようになります』を短縮。程度副詞は大きくへ（f023）" },
+    { "finding_id": "f023", "category": "F-1", "before": "大幅に", "after": "大きく", "rationale": "程度副詞の反復緩和。削減の度合いは保存し語をやわらげる" },
+    { "finding_id": "f018", "category": "D-4", "before": "爆発的な普及", "after": "急速な普及", "rationale": "ハイプ語彙を抑制。普及が速い事実は保存" },
+    { "finding_id": "f008", "category": "A-10", "before": "この技術は、IoTデバイスの…膨大なトラフィックを、効率的にハンドリングすることを可能にします", "after": "この技術を使えば、IoTデバイスの…膨大なトラフィックを、効率的にさばけます", "rationale": "抽象主語+万能動詞『可能にします』を直接叙述へ。ハンドリング（B-2）→さばくへ開く。効率的には非flaggedのため原文維持（ロールバック済）" },
+    { "finding_id": "f016", "category": "B-2", "before": "自動運転車のケースを考えてみましょう", "after": "自動運転車を例に考えてみましょう", "rationale": "例/場合の意のカタカナ語を開く" },
+    { "finding_id": "f014", "category": "B-2", "before": "周囲の環境をセンシングし", "after": "周囲の環境を感知し", "rationale": "感知の意の動詞化カタカナ語を開く" },
+    { "finding_id": "f021", "category": "I-4", "before": "瞬時に判断をくだすことが求められます", "after": "瞬時に判断をくださなければなりません", "rationale": "行為者曖昧の要請を、自動運転車を主体とした義務叙述へ。形式名詞ことも解消" },
+    { "finding_id": "f001", "category": "A-6", "before": "致命的な遅延を引き起こすことになります", "after": "致命的な遅延を引き起こします", "rationale": "f001同型の状態叙述『ことになります』を断定へ（検出reasonが指摘した2箇所目）" },
+    { "finding_id": "f015", "category": "B-2", "before": "データをプロセッシングすることによって", "after": "データを処理し", "rationale": "処理の意のカタカナ語を開き、同時に『によって』構文（f022）を連用形へ" },
+    { "finding_id": "f022", "category": "A-8", "before": "プロセッシングすることによって", "after": "処理し", "rationale": "by V-ing直訳の3回反復のうち2つ目。連用形で自然化（分散策）" },
+    { "finding_id": "f005", "category": "A-5", "before": "解決することができるのです", "after": "解決できます", "rationale": "可能の冗長形+説明調『のです』を短縮（4回反復のうち1つ）" },
+    { "finding_id": "f002", "category": "A-1", "before": "セキュリティやプライバシーの観点においても", "after": "セキュリティやプライバシーの観点でも", "rationale": "における濫用の3つ目。でもへ解体（1つ目のなかで、2つ目では、と分散）" },
+    { "finding_id": "f009", "category": "A-10", "before": "大きなアドバンテージをもたらします", "after": "大きな利点があります", "rationale": "抽象主語+万能動詞『もたらします』を存在叙述へ。アドバンテージ（B-2）→利点" },
+    { "finding_id": "f022", "category": "A-8", "before": "データをローカルで処理することによって", "after": "データをローカルで処理すれば", "rationale": "by V-ing直訳の3回反復のうち3つ目。条件形へ（分散策）" },
+    { "finding_id": "f006", "category": "A-5", "before": "低減することができます", "after": "低減できます", "rationale": "可能の冗長形を短縮（4回反復のうち最後）" },
+    { "finding_id": "f024", "category": "F-1", "before": "ますますその存在感を高めていく", "after": "その存在感を高めていく", "rationale": "結び付近の強調副詞を削除。『高めていく』が増加を含意し情報不変" },
+    { "finding_id": "f010", "category": "D-1", "before": "テクノロジーだと言えるでしょう", "after": "でしょう", "rationale": "断定回避の結び常套句を除去。敬体の推量『でしょう』のみ残し文末変奏（E-2）にも寄与" },
+    { "finding_id": "f029", "category": "E-2", "before": "（文末が『します』に集中）", "after": "です／でした／できませんでした／解決します／さばけます／なりません／引き起こします／できます／あります／でしょう", "rationale": "敬体を維持したまま文末を分散。ましょう・なければなりません・でしょう等で単調反復を解消" }
+  ],
+  "change_rate": 0.359,
+  "style_preserved": "desu_masu",
+  "warnings": [
+    "change_rate 0.359 が 30% 閾値を超過（50% 未満のため続行）。B-2カタカナ語6語＋A-5×4＋A-10×3が高密度に重なり、span除去だけで必然的に変化量が嵩んだもの。ジャンル移動・情報付加は無し。",
+    "f028(E-1 文長均一)は情報付加を避けるため強く矯正せず、冗長表現の除去で生じた短文化とE-2変奏で部分対応にとどめた。10〜20字の短文挿入は未実施。",
+    "f026で検出のsuggested_fixに従い受動『処理される』→能動『処理する』へ態を変更。意味は保存だが態変換のためfidelity-auditorの確認対象。",
+    "自己監査により finding外変更率を算出。初版では43字/769=5.59%で自己提案の5%閾値を超過していたため、非flagged語への裁量的波及3件（求められる→必要な、ユースケース→場面、効率的に→効率よく）を原文へロールバック。是正後 finding外変更率=23字/769=2.99%。"
+  ],
+  "meta": {
+    "input_length": 769,
+    "inserted_chars": 80,
+    "deleted_chars": 196,
+    "changed_total": 276,
+    "change_rate_formula": "(inserted 80 + deleted 196) / 769 = 0.359",
+    "over_polish_threshold_30": true,
+    "hold_and_report_threshold_50": false,
+    "findings_addressed": 29,
+    "edits_count": 31,
+    "finding_external_audit": {
+      "definition": "非flaggedトークンへ波及した挿入+削除字数 / 原文字数",
+      "initial_external_chars": 43,
+      "initial_external_rate": 0.0559,
+      "initial_verdict_against_5pct": "FAIL",
+      "breakdown_initial": {
+        "forced_collateral": { "chars": 17, "items": ["される→する(f026強制)", "に対する→を(f007強制)", "は→を使えば(f008強制)", "のケース格助詞調整(f016強制)"] },
+        "discretionary_reverted": { "chars": 19, "items": ["求められる→必要な", "ユースケース→場面", "効率的に→効率よく"] },
+        "detector_fix_sanctioned": { "chars": 6, "items": ["テクノロジー削除(f010 suggested_fixが明示的に落としていた)"] }
+      },
+      "post_rollback_external_chars": 23,
+      "post_rollback_external_rate": 0.0299,
+      "post_rollback_verdict_against_5pct": "PASS",
+      "residual_external_note": "是正後の波及23字は全て文法上強制(17字)またはdetector suggested_fix準拠(6字)。裁量的な過推敲はゼロ。"
+    }
+  }
+}
