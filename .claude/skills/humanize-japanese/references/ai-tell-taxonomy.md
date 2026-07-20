@@ -392,9 +392,12 @@ J. 視覚装飾の濫用
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "span_type": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
+      "occurrences": [[142, 150]],
+      "secondary_category": null,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
       "suggested_fix": "課題だ"
     }
@@ -406,8 +409,11 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: **正規化式を固定（IMP-002 適用 2026-07-20）**。`raw = 5·S1件数 + 2·S2件数 + 0.5·S3件数` を飽和式 **`score = 100·raw/(raw+28.5)`** で 0〜100 へ写像。定数 `K = 28.5` は基準 run 2026-06-12-002（raw 61.5 → 68.3）を再現する値。**長さ非依存・飽和型・run 間比較可能**。edit 単位でなく文書全体の件数から一意に決まる。（式導入前の 2026-06-12-001 等の adhoc スコアは非準拠の歴史値。）
+* `ai_tell_density`: **「重複を除いた被覆文字の和集合 / input_length」（union ベース、IMP-004 適用）**。同一文字が複数 finding に覆われても二重計上しない。文書レベル span（`span_type: "document"`）は density 分子に含めない（locator であり実クセ文字ではないため）。
+* `span_type`: `"contiguous"`（連続する単一 span、既定）/ `"scattered"`（分散反復。`occurrences: [[s,e],...]` に各出現を列挙し `start/end` は代表 1 件）/ `"document"`（E-2 文末単調・H-1 接続過多など文書全体パターン。`start/end` は代表 locator、density には算入しない）。（IMP-004 適用）
+* `secondary_category`: **1 span が複数カテゴリに該当する場合の副分類（IMP-005 適用）**。主分類 1 つを `category` に、従を `secondary_category` に置く（例 A-6＋A-8 の重畳）。`category_summary` は **各 finding の主 `category` 先頭文字のみ**を集計する。
+* `category_summary`: A〜J に加え、**実戦で表面化した拡張カテゴリ（例 K「過剰敬語」）のスロットを許容する open-ended 形**。未使用カテゴリは 0 でよい。（IMP-005 適用）
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
