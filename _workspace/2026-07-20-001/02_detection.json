@@ -1,0 +1,320 @@
+{
+  "meta": {
+    "input_length": 775,
+    "detected_count": 27,
+    "ai_tell_density": 0.338,
+    "severity_weighted_score": 76.4,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "管理することができる",
+      "start": 91,
+      "end": 101,
+      "reason": "「〜することができる」可能の冗長形が本文で6回反復（管理/オーケストレーション/実現/収束/容易に + 可能になります）。A-5はS1で単発でも除去対象、かつ密度が極端",
+      "suggested_fix": "管理できる"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "オーケストレーションすることができます",
+      "start": 162,
+      "end": 181,
+      "reason": "「〜することができる」可能の冗長形が本文で6回反復（管理/オーケストレーション/実現/収束/容易に + 可能になります）。A-5はS1で単発でも除去対象、かつ密度が極端",
+      "suggested_fix": "まとめて統合できます"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用（可能になる変種）",
+      "severity": "S1",
+      "text_span": "デプロイすることが可能になります",
+      "start": 228,
+      "end": 244,
+      "reason": "「〜することができる」可能の冗長形が本文で6回反復（管理/オーケストレーション/実現/収束/容易に + 可能になります）。A-5はS1で単発でも除去対象、かつ密度が極端",
+      "suggested_fix": "デプロイできます"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実現することができます",
+      "start": 319,
+      "end": 330,
+      "reason": "「〜することができる」可能の冗長形が本文で6回反復（管理/オーケストレーション/実現/収束/容易に + 可能になります）。A-5はS1で単発でも除去対象、かつ密度が極端",
+      "suggested_fix": "実現できます"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "収束させることができます",
+      "start": 469,
+      "end": 481,
+      "reason": "「〜することができる」可能の冗長形が本文で6回反復（管理/オーケストレーション/実現/収束/容易に + 可能になります）。A-5はS1で単発でも除去対象、かつ密度が極端",
+      "suggested_fix": "収束させられます"
+    },
+    {
+      "id": "f006",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "容易にすることができます",
+      "start": 598,
+      "end": 610,
+      "reason": "「〜することができる」可能の冗長形が本文で6回反復（管理/オーケストレーション/実現/収束/容易に + 可能になります）。A-5はS1で単発でも除去対象、かつ密度が極端",
+      "suggested_fix": "容易になります"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "テクノロジーとなっています",
+      "start": 41,
+      "end": 54,
+      "reason": "「である／だ」で足りる箇所を has become 的に状態化。A-6はS1で単発でも除去対象",
+      "suggested_fix": "不可欠な技術です"
+    },
+    {
+      "id": "f008",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞 提供する",
+      "severity": "S1",
+      "text_span": "機能を提供します",
+      "start": 281,
+      "end": 289,
+      "reason": "抽象主語（本プラットフォーム/アーキテクチャ/コンポーネント/アプローチ）＋万能動詞（提供する/もたらす/貢献する）が本文で4回。The X provides/brings Y の直訳型。A-10はS1",
+      "suggested_fix": "リソースを動的にスケーリングします"
+    },
+    {
+      "id": "f009",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞 もたらす",
+      "severity": "S1",
+      "text_span": "維持することをもたらします",
+      "start": 402,
+      "end": 415,
+      "reason": "抽象主語（本プラットフォーム/アーキテクチャ/コンポーネント/アプローチ）＋万能動詞（提供する/もたらす/貢献する）が本文で4回。The X provides/brings Y の直訳型。A-10はS1",
+      "suggested_fix": "一貫して維持できます"
+    },
+    {
+      "id": "f010",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞 貢献する",
+      "severity": "S1",
+      "text_span": "削減することに貢献します",
+      "start": 500,
+      "end": 512,
+      "reason": "抽象主語（本プラットフォーム/アーキテクチャ/コンポーネント/アプローチ）＋万能動詞（提供する/もたらす/貢献する）が本文で4回。The X provides/brings Y の直訳型。A-10はS1",
+      "suggested_fix": "運用コストを大幅に減らせます"
+    },
+    {
+      "id": "f011",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞 価値を提供する",
+      "severity": "S1",
+      "text_span": "価値を提供します",
+      "start": 643,
+      "end": 651,
+      "reason": "抽象主語（本プラットフォーム/アーキテクチャ/コンポーネント/アプローチ）＋万能動詞（提供する/もたらす/貢献する）が本文で4回。The X provides/brings Y の直訳型。A-10はS1",
+      "suggested_fix": "生産性を大きく高めます"
+    },
+    {
+      "id": "f012",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "モダンな",
+      "start": 19,
+      "end": 23,
+      "reason": "日本語で書ける語を不要なカタカナ／英語に置換（置換可能語だけで11語超）。技術記事の知的偽装型カタカナ濫用。※Kubernetes/Helm/Operator/デプロイ/マニフェスト等の業界標準語・固有名詞は対象外",
+      "suggested_fix": "現代的な"
+    },
+    {
+      "id": "f013",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "シームレスに",
+      "start": 222,
+      "end": 228,
+      "reason": "日本語で書ける語を不要なカタカナ／英語に置換（置換可能語だけで11語超）。技術記事の知的偽装型カタカナ濫用。※Kubernetes/Helm/Operator/デプロイ/マニフェスト等の業界標準語・固有名詞は対象外",
+      "suggested_fix": "意識せず滑らかに"
+    },
+    {
+      "id": "f014",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "レバレッジする",
+      "start": 373,
+      "end": 380,
+      "reason": "taxonomy/playbook明記の代表濫用語（leverage→活用）。日本語で書ける語を不要なカタカナ／英語に置換（置換可能語だけで11語超）。技術記事の知的偽装型カタカナ濫用。※Kubernetes/Helm/Operator/デプロイ/マニフェスト等の業界標準語・固有名詞は対象外",
+      "suggested_fix": "活用する"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "コンフィグレーション",
+      "start": 362,
+      "end": 372,
+      "reason": "日本語で書ける語を不要なカタカナ／英語に置換（置換可能語だけで11語超）。技術記事の知的偽装型カタカナ濫用。※Kubernetes/Helm/Operator/デプロイ/マニフェスト等の業界標準語・固有名詞は対象外",
+      "suggested_fix": "設定"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "アプローチ",
+      "start": 484,
+      "end": 489,
+      "reason": "日本語で書ける語を不要なカタカナ／英語に置換（置換可能語だけで11語超）。技術記事の知的偽装型カタカナ濫用。※Kubernetes/Helm/Operator/デプロイ/マニフェスト等の業界標準語・固有名詞は対象外",
+      "suggested_fix": "方法"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "レジリエンス",
+      "start": 312,
+      "end": 318,
+      "reason": "日本語で書ける語を不要なカタカナ／英語に置換（置換可能語だけで11語超）。技術記事の知的偽装型カタカナ濫用。※Kubernetes/Helm/Operator/デプロイ/マニフェスト等の業界標準語・固有名詞は対象外",
+      "suggested_fix": "耐障害性"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "スケーラビリティ",
+      "start": 303,
+      "end": 311,
+      "reason": "日本語で書ける語を不要なカタカナ／英語に置換（置換可能語だけで11語超）。技術記事の知的偽装型カタカナ濫用。※Kubernetes/Helm/Operator/デプロイ/マニフェスト等の業界標準語・固有名詞は対象外",
+      "suggested_fix": "拡張性"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "アドバンテージ",
+      "start": 532,
+      "end": 539,
+      "reason": "日本語で書ける語を不要なカタカナ／英語に置換（置換可能語だけで11語超）。技術記事の知的偽装型カタカナ濫用。※Kubernetes/Helm/Operator/デプロイ/マニフェスト等の業界標準語・固有名詞は対象外",
+      "suggested_fix": "強み"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "インテグレート",
+      "start": 566,
+      "end": 573,
+      "reason": "日本語で書ける語を不要なカタカナ／英語に置換（置換可能語だけで11語超）。技術記事の知的偽装型カタカナ濫用。※Kubernetes/Helm/Operator/デプロイ/マニフェスト等の業界標準語・固有名詞は対象外",
+      "suggested_fix": "組み合わせる"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "コアテクノロジー",
+      "start": 693,
+      "end": 701,
+      "reason": "日本語で書ける語を不要なカタカナ／英語に置換（置換可能語だけで11語超）。技術記事の知的偽装型カタカナ濫用。※Kubernetes/Helm/Operator/デプロイ/マニフェスト等の業界標準語・固有名詞は対象外",
+      "suggested_fix": "中核技術"
+    },
+    {
+      "id": "f022",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用 ★日本語固有",
+      "severity": "S2",
+      "text_span": "デファクトスタンダード",
+      "start": 737,
+      "end": 748,
+      "reason": "日本語で書ける語を不要なカタカナ／英語に置換（置換可能語だけで11語超）。技術記事の知的偽装型カタカナ濫用。※Kubernetes/Helm/Operator/デプロイ/マニフェスト等の業界標準語・固有名詞は対象外",
+      "suggested_fix": "事実上の標準"
+    },
+    {
+      "id": "f023",
+      "category": "F-4",
+      "category_label": "過度な修飾: 〜的 の濫用",
+      "severity": "S2",
+      "text_span": "統合的に",
+      "start": 158,
+      "end": 162,
+      "reason": "「〜的に」抽象接尾辞が本文で5回（統合的/自動的×2/動的/宣言的）。副詞的〜的が密",
+      "suggested_fix": "まとめて"
+    },
+    {
+      "id": "f024",
+      "category": "F-1",
+      "category_label": "過度な修飾: 程度副詞・誇張副詞",
+      "severity": "S2",
+      "text_span": "飛躍的に向上させる",
+      "start": 634,
+      "end": 643,
+      "reason": "「飛躍的に」は誇張の程度副詞。具体的根拠なく効果を強調するAIハイプ表現",
+      "suggested_fix": "生産性を高める"
+    },
+    {
+      "id": "f025",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復 ★日本語固有",
+      "severity": "S2",
+      "text_span": "採用されています",
+      "start": 119,
+      "end": 127,
+      "reason": "全14文が例外なくます／ですで終止（できます×4・提供／貢献／もたらします×4・ています×3・なります・されます・です）。文末が一本調子で変奏ゼロ。※文体維持のうえで体言止め等の変奏を推奨",
+      "suggested_fix": "（文体維持のまま）採用が進んでいます 等へ文末を変奏"
+    },
+    {
+      "id": "f026",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭加算接続詞",
+      "severity": "S2",
+      "text_span": "加えて、豊富な",
+      "start": 515,
+      "end": 522,
+      "reason": "段落・文頭の加算接続詞が反復（また／さらに／加えて／これにより／このように）。各段落が加算接続で始まる",
+      "suggested_fix": "（接続詞を削り）豊富なエコシステムも"
+    },
+    {
+      "id": "f027",
+      "category": "D-6",
+      "category_label": "AI慣用句: 完結公式型の結び（行為者不在の期待）",
+      "severity": "S2",
+      "text_span": "さらなる進化を遂げていくことが期待されます",
+      "start": 752,
+      "end": 773,
+      "reason": "行為者を欠いた受動的期待でのコラム／記事定型の締め（〜が期待されます）。誇張的な結び公式",
+      "suggested_fix": "これからも進化していくでしょう / さらに広く使われていくはずだ"
+    }
+  ],
+  "category_summary": {
+    "A": 11,
+    "B": 11,
+    "C": 0,
+    "D": 1,
+    "E": 1,
+    "F": 2,
+    "G": 0,
+    "H": 1,
+    "I": 0,
+    "J": 0
+  }
+}

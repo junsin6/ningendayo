@@ -30,9 +30,12 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "span_type": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
+      "occurrences": [[142, 150]],
+      "secondary_category": null,
       "reason": "理由（密度・反復回数など根拠を明記）",
       "suggested_fix": "課題だ"
     }
@@ -40,6 +43,8 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
   "category_summary": { "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0 }
 }
 ```
+
+`span_type`/`occurrences`/`secondary_category`/`category_summary` の拡張カテゴリ許容は taxonomy §検出出力スキーマ（IMP-004/005 適用）に準拠。分散パターンは `span_type:"scattered"`＋`occurrences`、文書レベルは `span_type:"document"`。
 
 ## 検出手順
 
@@ -50,9 +55,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（IMP-002/004 適用・式固定）:
+   * `raw` = S1件数×5 + S2件数×2 + S3件数×0.5。
+   * `severity_weighted_score` = `100·raw/(raw+28.5)`（飽和・長さ非依存・run 間比較可能。定数 K=28.5 は基準 run 2026-06-12-002 を再現）。
+   * `ai_tell_density` = 重複を除いた被覆文字の**和集合** / input_length。`span_type:"document"` の finding は分子に含めない。
+6. **start/end 自己検証**: 各 finding の `text_span` が入力の `start:end` スライスと一致することを assert。不一致なら JSON を出さず修正する。
 
 ## 重要な原則
 
