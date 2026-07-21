@@ -1,0 +1,321 @@
+{
+  "meta": {
+    "input_length": 766,
+    "detected_count": 28,
+    "ai_tell_density": 0.319,
+    "severity_weighted_score": 92.0,
+    "style": "desu_masu",
+    "score_note": "raw加重和 = S1×5(12件)+S2×2(16件)=92。0〜100正規化の分母定義がSSOTに無いため cap100 を適用した実質生スコア。改善報告参照。"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（もたらす）",
+      "severity": "S1",
+      "text_span": "サーバーレスアーキテクチャがもたらす",
+      "start": 0,
+      "end": 18,
+      "reason": "表題から事象（技術）を主語に万能動詞「もたらす」で叙述。The X brings Y の直訳型。文末 f013 とあわせA-10が2回。",
+      "suggested_fix": "サーバーレスがひらく開発の新しいかたち／サーバーレスで開発はこう変わる"
+    },
+    {
+      "id": "f002",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において 濫用",
+      "severity": "S1",
+      "text_span": "開発において",
+      "start": 52,
+      "end": 58,
+      "reason": "「において/における」が本文で3回反復（52,520,707）。抽象的な枠づけ in の直訳。",
+      "suggested_fix": "開発で"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "集中することができる",
+      "start": 141,
+      "end": 151,
+      "reason": "「〜することができる/できます」が本文で4回、加えて「ことが可能です」1回。can/be able to の冗長直訳が高密度（本サンプルの最強シグネチャ）。",
+      "suggested_fix": "集中できる"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "委譲することができます",
+      "start": 340,
+      "end": 351,
+      "reason": "「することができ」反復（141,340,405,533）の2例目。冗長可能形。",
+      "suggested_fix": "委譲できます"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "対応することができます",
+      "start": 405,
+      "end": 416,
+      "reason": "「することができ」反復の3例目。可能を主張する必要がなく断定形でも足りる。",
+      "suggested_fix": "対応できます／柔軟に対応します"
+    },
+    {
+      "id": "f006",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することが可能です（できる系）濫用",
+      "severity": "S1",
+      "text_span": "実現することが可能です",
+      "start": 463,
+      "end": 474,
+      "reason": "「ことが可能です」はA-5の変種。同一文脈で「できます」多用と重なり冗長。",
+      "suggested_fix": "コストを最適化できます／コストを抑えられます"
+    },
+    {
+      "id": "f007",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "発揮することができます",
+      "start": 533,
+      "end": 544,
+      "reason": "「することができ」反復の4例目。f013の抽象主語文と重複区間。",
+      "suggested_fix": "価値を発揮します／役立ちます"
+    },
+    {
+      "id": "f008",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において 濫用",
+      "severity": "S1",
+      "text_span": "ユースケースにおいて",
+      "start": 520,
+      "end": 530,
+      "reason": "「において/における」3回反復の2例目。カタカナ語(ユースケース,f019)と区間重複。",
+      "suggested_fix": "幅広い用途で"
+    },
+    {
+      "id": "f009",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜に対して 濫用",
+      "severity": "S1",
+      "text_span": "課題に対しては",
+      "start": 637,
+      "end": 644,
+      "reason": "主題提示を to/toward の直訳「に対して」で処理。主題助詞「は」で足りる。",
+      "suggested_fix": "こうした課題には"
+    },
+    {
+      "id": "f010",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における 濫用",
+      "severity": "S1",
+      "text_span": "開発における",
+      "start": 707,
+      "end": 713,
+      "reason": "「において/における」3回反復の3例目。「の」で直結可。",
+      "suggested_fix": "これからの開発で"
+    },
+    {
+      "id": "f011",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "一つとなっていく",
+      "start": 720,
+      "end": 728,
+      "reason": "「である/になる」で足りる箇所を has become 的に状態化。締めの誇張とも連動。日本語固有の最強クセ。",
+      "suggested_fix": "重要な選択肢の一つになる"
+    },
+    {
+      "id": "f012",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって（手段/受動）",
+      "severity": "S2",
+      "text_span": "活用することによって",
+      "start": 306,
+      "end": 316,
+      "reason": "手段を by/through の直訳「によって」で後置。文中に「選定によって」(660付近)もあり反復。A-5と連鎖し冗長。",
+      "suggested_fix": "サーバーレスを活用すれば／活用して"
+    },
+    {
+      "id": "f013",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（価値を発揮する）",
+      "severity": "S1",
+      "text_span": "このような従量課金のモデルは、スタートアップから大規模なエンタープライズに至るまで、幅広いユースケースにおいて価値を発揮することができます",
+      "start": 475,
+      "end": 544,
+      "reason": "「モデルは…価値を発揮する」= The model provides value の直訳。事物主語+万能動詞。f007/f008と区間重複するが構文単位で別finding。",
+      "suggested_fix": "この従量課金なら、小さなスタートアップから大企業まで、幅広い用途で活きてきます"
+    },
+    {
+      "id": "f014",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "メリット",
+      "start": 181,
+      "end": 185,
+      "reason": "日本語で書けるのにカタカナ化。本文には変換可能なカタカナ語（メリット/タスク/リソース/オペレーション/ポイント/ユースケース）が多数散在し知的偽装化。※サーバーレス/オートスケーリング/コールドスタート/レイテンシ/ベンダーロックイン等の業界標準語はDo-NOTで維持。",
+      "suggested_fix": "利点"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "タスク",
+      "start": 272,
+      "end": 275,
+      "reason": "変換可能カタカナ。日本語語彙で足りる。B-2密度群の一つ。",
+      "suggested_fix": "作業"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "リソース",
+      "start": 279,
+      "end": 283,
+      "reason": "変換可能カタカナ。ここでは人員・手間の意。B-2密度群の一つ。",
+      "suggested_fix": "手間／人手"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "オペレーション",
+      "start": 321,
+      "end": 328,
+      "reason": "変換可能カタカナ。運用の意。B-2密度群の一つ。",
+      "suggested_fix": "運用作業"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ポイント",
+      "start": 569,
+      "end": 573,
+      "reason": "変換可能カタカナ。「点」で足りる。I-2「という点」的な形式性とも近接。",
+      "suggested_fix": "点"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ユースケース",
+      "start": 520,
+      "end": 526,
+      "reason": "変換可能カタカナ。「用途/場面」で足りる。f008(A-1)と区間重複。",
+      "suggested_fix": "用途／場面"
+    },
+    {
+      "id": "f020",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "（文書全体）ています。／します。／できます。／です。 が全11文の文末を占有",
+      "start": 0,
+      "end": 766,
+      "reason": "全11文がます/です止まりで一本調子。うち4文が「〜ことができます」で語尾まで一致。体言止め・「〜だ/のだ」等の変奏がゼロ。※文体（敬体）自体は維持し同一文体内で変奏すること。",
+      "suggested_fix": "体言止め・「〜のです」「〜ます」以外の語尾を段落ごとに1〜2箇所混ぜる（敬体は維持）"
+    },
+    {
+      "id": "f021",
+      "category": "E-1",
+      "category_label": "リズム: 文長の標準偏差が低い",
+      "severity": "S2",
+      "text_span": "（文書全体）全文が約40〜90字に集中、短文なし",
+      "start": 0,
+      "end": 766,
+      "reason": "10字台の短文が一つも無く長文が均質に連続。段落も概ね2〜4文で均一。意図的な短文挿入が必要。",
+      "suggested_fix": "10〜20字の短文を段落ごとに1〜2個挟む"
+    },
+    {
+      "id": "f022",
+      "category": "G-1",
+      "category_label": "ヘッジング: 推測・観測型の文末（ことでしょう）",
+      "severity": "S2",
+      "text_span": "ことでしょう",
+      "start": 728,
+      "end": 734,
+      "reason": "「となっていくことでしょう」+末文「ものと考えられます」でヘッジ型文末が連続2回、締め全体が推量調。断定できる箇所は断定へ。",
+      "suggested_fix": "選択肢の一つになるはずだ／なっていくでしょう（1回に抑える）"
+    },
+    {
+      "id": "f023",
+      "category": "G-1",
+      "category_label": "ヘッジング: 〜ものと考えられる",
+      "severity": "S2",
+      "text_span": "広がっていくものと考えられます",
+      "start": 760,
+      "end": 775,
+      "reason": "末文の「ものと考えられます」。直前文のヘッジと連続し、締め2文が両方推量で弱い。",
+      "suggested_fix": "活用の幅はさらに広がっていくでしょう／広がるはずです"
+    },
+    {
+      "id": "f024",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞",
+      "severity": "S2",
+      "text_span": "また、",
+      "start": 354,
+      "end": 357,
+      "reason": "段落・文頭の論理接続詞が複数（しかし354前後・また354・一方で547）。「また」は内容で流れが自明なため削除可。",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f025",
+      "category": "H-2",
+      "category_label": "接続詞の多用: 逆接の濫用",
+      "severity": "S2",
+      "text_span": "しかし、",
+      "start": 295,
+      "end": 299,
+      "reason": "逆接「しかし」。前後の対比は自明で接続詞なしでも通る。段落頭「一方で」とも役割が重複。",
+      "suggested_fix": "（削除）そうしたオペレーションはクラウドプロバイダーに委ねられます"
+    },
+    {
+      "id": "f026",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 段落冒頭公式（一方で）",
+      "severity": "S2",
+      "text_span": "一方で、",
+      "start": 547,
+      "end": 551,
+      "reason": "段落冒頭「一方で」。逆接群（しかし/一方で/また）が近接反復。3つのうち1〜2を落として流れで示す。",
+      "suggested_fix": "ただ、サーバーレスにも考えておきたい点はあります"
+    },
+    {
+      "id": "f027",
+      "category": "I-4",
+      "category_label": "形式表現: 〜が求められる（行為者曖昧の要請）",
+      "severity": "S2",
+      "text_span": "対処していくことが求められます",
+      "start": 668,
+      "end": 683,
+      "reason": "誰がやるのかを伏せた要請。日本語ビジネスAI文の最頻出常套。主語・動詞で具体化すべき。",
+      "suggested_fix": "設計とツール選定で対処していきます／開発者が対処する必要があります"
+    },
+    {
+      "id": "f028",
+      "category": "I-3",
+      "category_label": "形式表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "必要がありました",
+      "start": 286,
+      "end": 294,
+      "reason": "need to の直訳「必要がある」。ここは事実叙述なので断定「割いていました」で足りる。",
+      "suggested_fix": "多くの手間を割いていました"
+    }
+  ],
+  "category_summary": { "A": 13, "B": 6, "C": 0, "D": 0, "E": 2, "F": 0, "G": 2, "H": 3, "I": 2, "J": 0 }
+}

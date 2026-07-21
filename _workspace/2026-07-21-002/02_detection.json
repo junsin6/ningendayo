@@ -1,0 +1,200 @@
+{
+  "meta": {
+    "input_length": 690,
+    "detected_count": 17,
+    "ai_tell_density": 0.33,
+    "severity_weighted_score": 66.7,
+    "style": "desu_masu",
+    "score_note": "severity_weighted_score = min(100, (S1x5 + S2x2 + S3x0.5) / input_length * 1000)。raw=46, S1=4, S2=13, S3=0。正規化式は taxonomy 未定義のため密度基準を採用（改善報告参照）。"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/〜に関して/〜につきまして 濫用",
+      "severity": "S1",
+      "text_span": "につきまして",
+      "start": 77,
+      "end": 83,
+      "reason": "硬い主題提示「につきまして／につきましては」が本文で3回反復（77・242・528）。英語 regarding の直訳的な枠づけ。",
+      "suggested_fix": "された方は"
+    },
+    {
+      "id": "f002",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/〜に関して/〜につきまして 濫用",
+      "severity": "S1",
+      "text_span": "本人確認書類につきましては",
+      "start": 236,
+      "end": 249,
+      "reason": "「につきましては」の反復（3回中の2例目）。主題は助詞「は」で足りる。",
+      "suggested_fix": "本人確認書類は"
+    },
+    {
+      "id": "f003",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "ご本人による",
+      "start": 165,
+      "end": 171,
+      "reason": "行為者を「による」で後置する by-passive。受動系（による・される・られる）が文書全体で8回以上連鎖し行為者を隠す（165・445 の「による」＋各種受動）。",
+      "suggested_fix": "ご本人が窓口で受け取る"
+    },
+    {
+      "id": "f004",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態の直訳（〜される）",
+      "severity": "S2",
+      "text_span": "予想されるため",
+      "start": 295,
+      "end": 302,
+      "reason": "「混雑することが予想される」の非人称受動。行為者不在の硬い受動。文書内の受動連鎖の一部。",
+      "suggested_fix": "混雑が見込まれるため／混雑しますので"
+    },
+    {
+      "id": "f005",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態の直訳（〜られております）",
+      "severity": "S2",
+      "text_span": "電話にて受け付けられております",
+      "start": 333,
+      "end": 348,
+      "reason": "「受け付けられております」受動＋硬い敬語。行為者（市）を主語に戻せる。",
+      "suggested_fix": "電話で受け付けています"
+    },
+    {
+      "id": "f006",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "代理人による受け取りが認められる場合がございます",
+      "start": 442,
+      "end": 466,
+      "reason": "「による」by-passive＋「認められる」受動の二重。行為者（市）を隠したまま許可を叙述。",
+      "suggested_fix": "代理人が受け取れる場合もあります"
+    },
+    {
+      "id": "f007",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態の直訳（〜とされております）",
+      "severity": "S2",
+      "text_span": "3か月以内とされております",
+      "start": 549,
+      "end": 562,
+      "reason": "「とされております」受動＋敬語で規定を叙述。数値「3か月」は保存（Do-NOT）。受動連鎖の一部。",
+      "suggested_fix": "3か月以内です"
+    },
+    {
+      "id": "f008",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態の直訳（〜される）",
+      "severity": "S2",
+      "text_span": "カードが廃棄されることがございますので",
+      "start": 572,
+      "end": 591,
+      "reason": "「廃棄される」受動で行為者（市）を隠す。受動表現が文書全体で高密度（される/られる/とされる/による ≒ 8回）。",
+      "suggested_fix": "カードを廃棄することがありますので"
+    },
+    {
+      "id": "f009",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "事前の予約が必要となります",
+      "start": 303,
+      "end": 316,
+      "reason": "「必要となります」は「必要です」で足りる状態叙述（A-6）。文書内で「必要となります／必要となる」が2回、「必要が」系全体で5回。",
+      "suggested_fix": "事前の予約が必要です"
+    },
+    {
+      "id": "f010",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "別途必要となる書類がございます",
+      "start": 472,
+      "end": 487,
+      "reason": "「必要となる」状態叙述の2例目。「別途必要な書類があります」で十分。",
+      "suggested_fix": "別途必要な書類があります"
+    },
+    {
+      "id": "f011",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある/ございます",
+      "severity": "S2",
+      "text_span": "ご留意いただく必要がございます",
+      "start": 134,
+      "end": 149,
+      "reason": "「必要がございます／必要があります」が文書内で計4回反復（141・225・474・509）。should の直訳的要請。",
+      "suggested_fix": "以下の点にご留意ください"
+    },
+    {
+      "id": "f012",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある/ございます",
+      "severity": "S2",
+      "text_span": "持参していただく必要があります",
+      "start": 217,
+      "end": 232,
+      "reason": "「必要があります」反復（2例目）。勧告は命令・依頼の敬体で直接言える。",
+      "suggested_fix": "本人確認書類をお持ちください"
+    },
+    {
+      "id": "f013",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある/ございます",
+      "severity": "S2",
+      "text_span": "お問い合わせいただく必要がございます",
+      "start": 499,
+      "end": 517,
+      "reason": "「必要がございます」反復（4例目）。「お問い合わせください」で足りる。",
+      "suggested_fix": "事前に担当窓口までお問い合わせください"
+    },
+    {
+      "id": "f014",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる 行為者を曖昧にした要請",
+      "severity": "S2",
+      "text_span": "顔写真付きのものが求められます",
+      "start": 263,
+      "end": 278,
+      "reason": "「求められます」は行為者を曖昧にした要請（I-4）。誰が誰に求めるかを主語・動詞で具体化すべき。",
+      "suggested_fix": "顔写真付きのものをお持ちください"
+    },
+    {
+      "id": "f015",
+      "category": "I-3",
+      "category_label": "形式的表現: 過剰敬語（二重敬語・冗長な謙譲）※専用カテゴリ未収載のため I に暫定分類",
+      "severity": "S2",
+      "text_span": "受け取りとさせていただいております",
+      "start": 175,
+      "end": 192,
+      "reason": "「させていただいております」は使役謙譲＋継続敬語の過剰累積。taxonomy に過剰敬語の専用カテゴリがなく I に暫定分類（改善報告参照）。",
+      "suggested_fix": "受け取りをお願いしています"
+    },
+    {
+      "id": "f016",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復（文末ございます連鎖）",
+      "severity": "S2",
+      "text_span": "がございます",
+      "start": 143,
+      "end": 149,
+      "reason": "文末「〜ございます。」が6回（144・377・461・482・512・584）、加えて「お願い申し上げます」3回で文末が一本調子。文書レベルのリズム均一。",
+      "suggested_fix": "文末に体言止め・「〜です」「〜ください」を混ぜて変奏"
+    },
+    {
+      "id": "f017",
+      "category": "D-6",
+      "category_label": "AI慣用句: 完結公式型の結び（〜いただきますようお願い申し上げます）",
+      "severity": "S2",
+      "text_span": "いただきますようお願い申し上げます",
+      "start": 393,
+      "end": 410,
+      "reason": "「〜いただきますよう／賜りますようお願い申し上げます」の結び公式が3回反復（401・611・679）。定型の完結公式。",
+      "suggested_fix": "1回に絞り、他はご案内・依頼の直接表現へ"
+    }
+  ],
+  "category_summary": { "A": 10, "B": 0, "C": 0, "D": 1, "E": 1, "F": 0, "G": 0, "H": 0, "I": 5, "J": 0 }
+}
