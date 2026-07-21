@@ -21,7 +21,7 @@
 
 ### IMP-002 severity_weighted_score の正規化が未定義で saturate `status: done` `hits: 2run(4agent)` `applied: 2026-07-21`
 - 症状: 正規化式が SSOT に無く、検出器・レビュアーが run ごとに別基準を即興。detector-001 は cap100 の生和で 92.0、detector-002 は密度基準で 66.7、reviewer 群は `raw/input_length*1000` を採用。**同一ハーネス内で score のスケールが不一致 → run 間・推敲前後の「改善率」判定が成立しない**。
-- 検証: 提案式 `min(100, raw/input_length*1000)` は taxonomy の既存スキーマ例（input_length 1820 → 71.5）を正確に再現（raw≈130 で 71.5）。back-compatible。
+- 検証: 提案式 `min(100, raw/input_length*1000)` は taxonomy の既存スキーマ例（input_length 1820）と後方互換。taxonomist 監査により例を **71.4**（raw≈130）へ是正（旧 71.5 は式導入前の概数で 0.5 刻み加重和では厳密に生成不能）。
 - 出所: detector-A/B(day0), detector-001/002・naturalness-001/002(day1)
 - 適用内容: `ai-tell-taxonomy.md §検出出力スキーマ` に `severity_weighted_score = min(100, round(raw / input_length * 1000, 1))` を明記。`ai-tell-detector.md §スコア算出` と `naturalness-reviewer.md` に同式と「score_before = 02_detection.json の meta.severity_weighted_score」（IMP-003 併合）を追記。
 
