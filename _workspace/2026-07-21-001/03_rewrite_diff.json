@@ -2,10 +2,12 @@
   "run_id": "2026-07-21-001",
   "style_preserved": "desu_masu",
   "original_length": 766,
-  "change_rate": 0.29,
-  "insert_total": 64,
-  "delete_total": 160,
-  "edit_char_total": 224,
+  "change_rate": 0.3,
+  "change_rate_editdistance": 0.2,
+  "insert_total": 67,
+  "delete_total": 166,
+  "edit_char_total": 233,
+  "rounds": 2,
   "edits": [
     {
       "finding_id": "f001",
