@@ -1,4 +1,4 @@
-# AI 日本語クセ分類体系 v1.0 (Japanese AI-Tell Taxonomy)
+# AI 日本語クセ分類体系 v1.1 (Japanese AI-Tell Taxonomy)
 
 LLM（ChatGPT・Claude・Gemini など）が生成した日本語の文章に繰り返し現れる「AIっぽさ（AIクセ）」を、10 大分類 × サブパターンに整理する。検出器・推敲役・レビュアーが共有する唯一の信頼源（SSOT）。各パターンに (1) 定義、(2) シグネチャ例文、(3) 深刻度（S1 決定的 / S2 強い / S3 弱い）、(4) 推敲処方を付す。
 
