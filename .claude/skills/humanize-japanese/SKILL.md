@@ -79,6 +79,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
+**変更率 override（IMP-001, 2026-07-21）**: change_rate（sum-metric）が 30〜50% 帯でも、(1) fidelity=pass かつ (2) 自然度 A/B かつ (3) 超過が構造編集・純削除・良性の単一置換によるもの（`del ≫ ins` または編集距離ベースでは低い）なら **override accept** とする。文字単位 sum-metric は「良い推敲ほど閾値に触れる」逆相関を持つため、これ単独では中断しない。override した場合は `summary.md` に理由（何が change_rate を押し上げたか）を明記する。
+
 ## 深刻度と品質等級
 
 **深刻度**

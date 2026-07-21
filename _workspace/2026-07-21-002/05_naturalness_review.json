@@ -1,0 +1,37 @@
+{
+  "run_id": "2026-07-21-002",
+  "genre": "public_notice",
+  "style": "desu_masu",
+  "score_before": 66.7,
+  "score_after": 1.72,
+  "improvement_rate": 0.974,
+  "score_basis": "severity_weighted_score = min(100, (S1x5 + S2x2 + S3x0.5) / input_length * 1000)。score_before は 02_detection.json meta.severity_weighted_score。score_after は 03_rewrite.md への ai-tell-detector 再走査値（同式・同基準）。",
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 2 },
+  "residual_detail": [
+    {
+      "id": "r001",
+      "category": "I-3",
+      "severity": "S3",
+      "text_span": "お受け取りいただいております",
+      "note": "継続敬語がやや硬いが公用文 register 内で許容。単発で S1/S2 の受動・使役謙譲は解消済み。"
+    },
+    {
+      "id": "r002",
+      "category": "E-2",
+      "severity": "S3",
+      "text_span": "ございます",
+      "note": "存在動詞「ございます」系5回。ただし文末は です・ください×5・おります・いたします・申し上げます と変奏済みで元 f016 の一本調子は解消。register 上は標準語彙で過検出寄り。"
+    }
+  ],
+  "change_rate_vs_original": 0.24,
+  "over_polish_signals": [],
+  "over_polish_check": {
+    "politeness_floor": "維持。命令文は『ご/お＋ください』の丁寧命令へ統一され、冒頭『厚く御礼申し上げます』・結び『賜りますようお願い申し上げます』を保持。事務的・失礼への転落なし。",
+    "style_integrity": "敬体（desu_masu）一貫維持。常体混入なし。",
+    "meaning_thinning": "なし。事実・数値（3か月）・固有名詞（マイナンバーカード／運転免許証／パスポート）・引用を全保存。ぶつ切り・情報欠落なし。",
+    "change_rate": "24%。30% 警告閾値・50% 中断閾値ともに未達。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1 0件・S2 0件・改善率約97%で A 等級。残存は S3 2件のみ（いずれも公用文 register 内で許容される弱シグナルで過検出寄り）。過推敲シグナルなし、丁重さ下限・敬体・意味とも保全。2次推敲不要、accept 妥当。"
+}
