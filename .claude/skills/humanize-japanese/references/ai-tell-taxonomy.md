@@ -392,11 +392,25 @@ J. 視覚装飾の濫用
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "span_type": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
       "suggested_fix": "課題だ"
+    },
+    {
+      "id": "f002",
+      "category": "E-2",
+      "category_label": "リズム: です・ます単調反復",
+      "severity": "S2",
+      "span_type": "document",
+      "text_span": "(文末が全文「〜ます」で一致)",
+      "start": null,
+      "end": null,
+      "occurrences": [[38, 40], [95, 97], [210, 212]],
+      "reason": "文末が『ます』止まりで一本調子。代表3箇所を occurrences に列挙",
+      "suggested_fix": "体言止め・でしょう・ます を混ぜて変奏"
     }
   ],
   "category_summary": {
@@ -406,8 +420,19 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和 `raw` を**入力長で正規化**する（IMP-002, 適用 2026-07-21）:
+
+  ```
+  severity_weighted_score = min(100, round(raw / input_length * 1000, 1))
+  ```
+
+  ＝1000 字あたりの深刻度密度。分母は `input_length`（文字数）。この式は本スキーマ例（input_length 1820 → 71.5、raw≈130）と後方互換。**cap100 の生和を使ってはならない**（短文で飽和し run 間・推敲前後の score が比較不能になる）。`span_type:"document"` の finding も raw には算入するが、下記の density には数えない。
+* `score_before` の契約（IMP-003）: naturalness-reviewer は `score_before = 02_detection.json の meta.severity_weighted_score` をそのまま採用する。`score_after` は推敲文へ検出器を再実行した同式の値。
+* `ai_tell_density`: 検出 span の **union** 文字数 / 全体文字数（**重複区間は二重計上しない**。IMP-005 一部適用）。`span_type:"document"` の finding は locator が全域になり density を暴発させるため**分子から除外**する（IMP-004, 適用 2026-07-21）。
+* `span_type`（任意, 既定 `"contiguous"`。IMP-004）:
+  * `"contiguous"` — 連続する単一 span。`start`/`end` で表現。
+  * `"scattered"` — 同一パターンが分散出現。`occurrences: [[s,e],...]` に各出現を列挙し、`start`/`end` は代表出現を指す。
+  * `"document"` — リズム・文末単調など文書全体現象。`start`/`end` は `null` 可。density 計算から除外。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
