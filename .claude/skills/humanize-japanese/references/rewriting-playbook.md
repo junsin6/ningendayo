@@ -138,11 +138,17 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（v1.1 改訂・IMP-001）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+分母はすべて `02_detection.json` の `meta.input_length`（原文文字数）に一本化する。
+
+* `change_rate` =（挿入 + 削除文字数）/ 原文文字数。**参考値**（difflib ベースで構造編集・純削除に膨張しやすい）。
+* **`insert_rate` =（挿入文字数のみ）/ 原文文字数。過推敲の主指標。** 過推敲＝原文にない語句の持ち込みなので、危険度は挿入量で測る。削除は fidelity 監査（情報欠落チェック）で担保されるため二重に罰しない。
+* 判定:
+  * `insert_rate` 30% 超 → `summary.md` に警告を記録し続行。
+  * `insert_rate` 50% 超 → 強制中断し `hold_and_report`（ジャンル移動・原文尊重不足を再点検）。
+  * `change_rate` が 30/50% を超えても `insert_rate` が閾値内なら**削除主導**。fidelity=pass かつ自然度 A/B の場合は中断せず **override accept**（`summary.md` に「削除主導・情報欠落ゼロ」を明記）。公的文書の冗長要請/受動/状態叙述の圧縮はこの典型。
+* `03_rewrite_diff.json` には `change_rate`・`insert_rate`・`delete_rate` を併記する。
 
 ## 文体変換例（before → after 一括サンプル）
 

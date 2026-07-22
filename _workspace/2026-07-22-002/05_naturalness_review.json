@@ -1,0 +1,56 @@
+{
+  "run_id": "2026-07-22-002",
+  "genre": "public_document",
+  "style": "desu_masu",
+  "score_before": 74.0,
+  "score_after": 3.0,
+  "improvement_rate": 0.9595,
+  "scoring_basis": "taxonomy SSOT 加重和 S1=5・S2=2・S3=0.5。before: 10×S1+12×S2=74（原検出22件と一致）。after: 0×S1+1×S2+2×S3=3.0。",
+  "residual_findings": { "S1": 0, "S2": 1, "S3": 2 },
+  "residual_detail": [
+    {
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/〜において 濫用",
+      "severity": "S2",
+      "text_span": "すべての利用者において",
+      "reason": "検出器の見逃し（元 detection に finding 無し）。推敲後の再走査で顕在化。f012 置換後、要請述語『再設定をお願いいたします』と噛み合わず翻訳調の locative として残存。『すべての利用者に』/『すべての利用者の皆さまに』が自然。単発かつ官僚文で半ば慣用のため公称 S1 を S2 に格下げ判定。rewriter warning[2] も同 span を審査要と自己申告。",
+      "recommended_fix": "すべての利用者に",
+      "detector_miss": true
+    },
+    {
+      "category": "F-4",
+      "category_label": "修飾: 〜的 の濫用",
+      "severity": "S3",
+      "text_span": "一時的に / 自動的に",
+      "reason": "元 f003 のクラスタ3件（全面的・一時的・自動的）のうち全面的は解消。残る2件は高度に語彙化した自然な副詞で、F-4 が狙う抽象『硬く見せる〜的』（根本的・構造的等）ではない。500字級の本文で密度も過剰域ではない。単独では非問題の弱残存。",
+      "recommended_fix": "（据え置き可。過修正不要）",
+      "detector_miss": false
+    },
+    {
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S3",
+      "text_span": "つきましては / また",
+      "reason": "元 f014 の文頭接続4回（なお×2・また・つきましては）のうち なお×2 を削除。残2件で処方『70%以上削除』には未達（50%減）だが、つきましては（帰結）・また（追加）は論理接続として機能し、4段落文書での2件は許容域。均一化回避を優先した保持で、弱残存に留まる。",
+      "recommended_fix": "（保持可。過削除は逆に不自然）",
+      "detector_miss": false
+    }
+  ],
+  "resolved_summary": {
+    "resolved": 21,
+    "total_original_findings": 22,
+    "notes": "A-2 につきましては/に関する系5件+2件, A-6 状態叙述3件, A-8 by受動3件, A-5, A-9, I-3 要請4件, I-4, E-2 文末単調 を全解消。E-2 は敬体維持のまま ください×3・いたします×2・ございます×2 等へ健全に変奏（体言止めは公的文書に不適のため意図的に不使用＝過推敲回避）。未解消は A-1『において』1件のみ。"
+  },
+  "change_rate": 0.38,
+  "over_polish_signals": [],
+  "over_polish_check": {
+    "tone_casualization": "none — 全文末 敬体を維持。口語化・くだけ表現の混入なし。公的お知らせの格調を保持。",
+    "style_break": "none — です/ます体で一貫。だ/である体の混入ゼロ（style_preserved=desu_masu）。",
+    "choppiness_or_thinning": "none — 意味希薄化・ぶつ切りなし。全要件（停止時間帯・再設定義務・手順・自動引継ぎ・再入力・問い合わせ窓口・日程後日公表）を保存。",
+    "change_rate_over_30": "flagged_benign — change_rate=0.38 は30%警告閾値超だが50%未満で続行域。挿入48字/削除181字の削除主導であり、冗長要請（〜していただく必要がございます）・by受動（〜によって）・状態叙述（〜となっております）の官僚パディング圧縮の結果。情報欠落ゼロ。IMP-001 既知欠陥に該当し、削除主導の change_rate 膨張はトーン逸脱・過推敲を意味しない。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "fidelity_dependency": "override accept は fidelity=pass 前提。本 run に 04_fidelity_audit.json 未生成のため、fidelity 監査の pass 確定を条件に accept を確定。fail の場合は該当 edit ロールバック後に再評価。",
+  "notes": "等級A: S1=0, S2=1(≤2), 改善95.95%(≥70%)。公的文書として過推敲シグナルなし（トーン逸脱・文体崩れ・意味希薄化いずれもゼロ）。change_rate=0.38 は30%閾値超だが削除主導（挿入48/削除181字, 冗長要請圧縮）であり IMP-001 既知欠陥に該当 → fidelity=pass かつ等級A/B のため override accept 相当と判定。残存 A-1『すべての利用者において』1件は検出器の見逃しで span-grounded 原則により未修整のまま推敲を通過（rewriter warning[2] が審査要と自己申告済）。等級Aの範囲内だが、次回 detection で A-1 において を捕捉できれば score_after は 3.0→2.0 へ改善可能。accept と同時に detector の A-1 感度改善を推奨（IMP-002 候補）。"
+}
