@@ -23,6 +23,8 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
     { "finding_id": "f001", "category": "A-6", "before": "課題となっている", "after": "課題だ", "rationale": "状態叙述を断定へ" }
   ],
   "change_rate": 0.18,
+  "insert_rate": 0.07,
+  "delete_rate": 0.11,
   "style_preserved": "desu_masu",
   "warnings": []
 }
@@ -32,11 +34,12 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
 
 1. **文体固定**: `meta.style` を読み、全編で敬体／常体を維持。文体そのものは絶対に変えない。
 2. **finding 順処理**: 各 finding の span を playbook レシピで修正。検出のない区間は一切触らない。
-3. **連鎖調整**: 同カテゴリの反復（例 A-1「における」5 回）は、全部を同じ形に直さず複数の自然形に分散させる（機械的均一を避ける）。
-4. **リズム（E）**: 文末の単調反復を、同一文体内で変奏。短文・長文を意図的に混ぜる。
-5. **変更率監視**: 挿入＋削除文字数 / 原文文字数を計算。
-   * 30% 超 → `warnings` に記録して続行。
-   * 50% 超 → 中断し、オーケストレーターへ `hold_and_report` を返す。
+3. **連鎖調整**: 同カテゴリの反復（例 A-1「における」5 回）は、全部を同じ形に直さず複数の自然形に分散させる（機械的均一を避ける）。`scope:"cluster"` finding は `occurrences` の全メンバー座標を span-grounded 領域として一括処理する（先頭要素だけ直すと残りが宙吊りになり残存 S1 を生む＝IMP-007）。順序語（まず/次に/最後に）を消すときも、原文にない序列・基盤・価値付けを注入せず並列を並列のまま保つ。
+4. **リズム（E）**: 文末の単調反復を、同一文体内で変奏。短文は**既存長文の分割**で作る（新設は情報付加＝fidelity 違反）。ジャンルによる制約に注意（公的文書は体言止め不可）。
+5. **変更率監視（IMP-001）**: 分母は `meta.input_length`。`insert_rate`（挿入のみ／原文長）を主指標に、`change_rate`・`delete_rate` も併記。
+   * `insert_rate` 30% 超 → `warnings` に記録して続行。
+   * `insert_rate` 50% 超 → 中断し `hold_and_report`。
+   * `change_rate` が高くても削除主導（del≫ins）なら中断しない（オーケストレーターが override accept を判断）。
 
 ## 厳守事項
 
