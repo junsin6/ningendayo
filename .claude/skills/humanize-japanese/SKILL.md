@@ -79,6 +79,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
+**変更率超過の override（IMP-001 の既知欠陥への対処）**: change_rate が 30%/50% を超えても、(1) 削除主導（del ≫ ins）で AI パディングの純剥離であり、(2) fidelity 監査が pass、(3) 自然度が A/B、の 3 条件が揃えば `hold_and_report` に落とさず **override accept** とする。difflib の文字単位 change_rate は構造編集・純削除・格助詞調整で機械的に膨張するため、総変更率単独を中断根拠にしない。override した場合は `summary.md` に「change_rate=X（削除主導・正当削除）につき override accept」と理由を明記する。
+
 ## 深刻度と品質等級
 
 **深刻度**
