@@ -33,6 +33,8 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
+      "span_type": "scattered",
+      "occurrences": [[142, 150], [389, 397], [612, 620]],
       "reason": "理由（密度・反復回数など根拠を明記）",
       "suggested_fix": "課題だ"
     }
@@ -40,6 +42,12 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
   "category_summary": { "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0 }
 }
 ```
+
+`span_type` は任意（既定 `"contiguous"`）。詳細は taxonomy「検出出力スキーマ」の finding 任意フィールドを参照:
+
+* `"contiguous"`: 単一連続区間。`start`/`end` が該当範囲。フィールド省略時の既定。
+* `"scattered"`: 分散反復。`occurrences` に `[[start,end], ...]` で全出現を列挙し、`start`/`end` は先頭出現を指す。
+* `"document"`: 文書全体が根拠（E リズム・C 構造）。`start`/`end` に代表アンカー位置を置き、`reason` に文書レベル根拠（文末反復率・文長分布等）を記す。
 
 ## 検出手順
 
@@ -49,10 +57,13 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * E（リズム）: 文長の標準偏差、文末の反復率を計算。
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
-4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+   * 文書レベル finding は `span_type="document"` で表現し、`start`/`end` に代表アンカーを置く（単一 start/end で全域を覆わない → density 過大化を回避）。
+4. **span_type の割り当て**: 単一連続区間は `"contiguous"`（省略可）、同一パターンが複数箇所に分散反復するなら `"scattered"` として `occurrences` に全出現を列挙、文書全体が根拠なら `"document"`。
+5. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
+6. **スコア算出**:
+   * `raw = S1×5 + S2×2 + S3×0.5`
+   * `severity_weighted_score = round(100 × raw / (raw + 50), 1)`（k=50 固定の有界飽和関数。0〜100 未満に収まる）。例: `raw=115→69.7` / `raw=56→52.8` / `raw=37.5→42.9`。
+   * `ai_tell_density` = 検出 span が被覆する文字の**和集合（union）**の文字数 / 全体文字数。重複・入れ子・`scattered` の `occurrences` は二重計上せず union で数える（上限 1.0）。
 
 ## 重要な原則
 
