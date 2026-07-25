@@ -20,13 +20,17 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
 ```json
 {
   "edits": [
-    { "finding_id": "f001", "category": "A-6", "before": "課題となっている", "after": "課題だ", "rationale": "状態叙述を断定へ" }
+    { "finding_id": "f001", "category": "A-6", "type": "lexical", "before": "課題となっている", "after": "課題だ", "rationale": "状態叙述を断定へ" }
   ],
   "change_rate": 0.18,
+  "lexical_change_rate": 0.11,
+  "structural_deletion_rate": 0.07,
   "style_preserved": "desu_masu",
   "warnings": []
 }
 ```
+
+各 edit に `type: "lexical"`（語句の置換・語形変更）か `"structural"`（装飾・常套句・冗語の純削除、構造編集）を付す。meta の 3 率は playbook §変更率の数え方（v1.1）に従い、`lexical_change_rate + structural_deletion_rate ≈ change_rate` を満たすこと。
 
 ## 推敲手順
 
@@ -34,9 +38,10 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
 2. **finding 順処理**: 各 finding の span を playbook レシピで修正。検出のない区間は一切触らない。
 3. **連鎖調整**: 同カテゴリの反復（例 A-1「における」5 回）は、全部を同じ形に直さず複数の自然形に分散させる（機械的均一を避ける）。
 4. **リズム（E）**: 文末の単調反復を、同一文体内で変奏。短文・長文を意図的に混ぜる。
-5. **変更率監視**: 挿入＋削除文字数 / 原文文字数を計算。
-   * 30% 超 → `warnings` に記録して続行。
-   * 50% 超 → 中断し、オーケストレーターへ `hold_and_report` を返す。
+5. **変更率監視**（IMP-001 分離計上）: `change_rate`（総）・`lexical_change_rate`（語句改変）・`structural_deletion_rate`（純削除）を計算。判定は**実質改変率 = 語句改変率 + 正味挿入増加分**（純削除を除外）で行う。
+   * 実質改変率 30% 超 → `warnings` に記録して続行。
+   * 実質改変率 50% 超 → 中断し、オーケストレーターへ `hold_and_report` を返す。
+   * 総 `change_rate` が閾値超でも実質改変率が閾値未満なら中断しない（削除主導ケース。オーケストレーターが override accept を判断）。
 
 ## 厳守事項
 

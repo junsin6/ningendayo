@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（IMP-001 分離計上）: `change_rate`（総）・`lexical_change_rate`・`structural_deletion_rate` を記録。判定は**実質改変率**（語句改変率＋正味挿入）で行い、30% 超で警告、50% 超で中断。純削除主導で総変更率だけ高いケースは中断しない。
 
 ### 4. 並列検証
 
@@ -76,6 +76,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
+
+**override accept（IMP-001）**: 総 `change_rate` が 30/50% を超えても、**実質改変率（語句改変率＋正味挿入）が閾値未満**で、かつ fidelity=pass・自然度 A/B なら `accept` とする（純削除主導ケース）。理由を必ず `summary.md` に明記する。difflib 文字単位の総変更率は AI クセ除去（＝引き算）で構造的に膨張するため、これを唯一の中断根拠にしない。
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 

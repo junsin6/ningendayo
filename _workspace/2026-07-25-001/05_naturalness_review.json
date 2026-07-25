@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "run_id": "2026-07-25-001",
+    "reviewer": "naturalness-reviewer",
+    "style": "desu_masu",
+    "scoring": "S1=5, S2=2, S3=0.5 加重和 ×0.6 正規化（推敲前 122×0.6=73.2 と同一基準）",
+    "estimated_change_rate": 0.22
+  },
+  "score_before": 73.2,
+  "score_after": 3.3,
+  "improvement_rate": 0.955,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 2,
+    "S3": 3
+  },
+  "residual_detail": [
+    {
+      "category": "E-2",
+      "severity": "S2",
+      "note": "文末は です/でした/ました/ません/ます に変奏され原文の一本調子は大きく改善。ただし ます・です 系が依然支配的で、体言止め・のです・でしょう が皆無。到達ラインまであと一歩。"
+    },
+    {
+      "category": "E-1",
+      "severity": "S2",
+      "note": "「それが課題でした。」の短文挿入で標準偏差は改善したが、90字級の長文が無く中文集中は残る。"
+    },
+    {
+      "category": "D-4",
+      "severity": "S3",
+      "note": "「リアルタイム性が欠かせない」— I-4『が求められる』の修正で導入された語だが 欠かせない 自体が D-4 ハイプ語リスト該当。単発のため弱。"
+    },
+    {
+      "category": "D-2",
+      "severity": "S3",
+      "note": "「変革する可能性を秘めた技術」— 原文の『秘めた』を保持。誇張の余韻がわずかに残る。"
+    },
+    {
+      "category": "B-2",
+      "severity": "S3",
+      "note": "検出済み15語のカタカナは全置換。残存（リスク・ローカル・デバイス・セキュリティ等）は技術記事で標準的だが密度は依然中程度。"
+    }
+  ],
+  "over_polish_signals": [],
+  "over_polish_check": {
+    "unnatural_colloquialization": false,
+    "style_breakdown_keitai_jotai_mix": false,
+    "meaning_thinned_or_choppy": false,
+    "change_rate_over_30pct": false
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1=0・S2=2・改善95.5% で A 相当、accept。文体崩れ・過剰削除・原文にない意味付与は無し（敬体を完全維持）。留意点：score が S1 群（推敲前122点中60点）を全消去したことで改善率が大きく出やすく、残る鈍い一本調子（E-1/E-2）を数値が過小評価しがち。残存カタカナ密度を S2 と数えれば S2=3 で B だが、いずれも accept。2次推敲は不要だが、任意で E-2 の体言止め/でしょう 一手を入れると自然度がさらに上がる。"
+}
