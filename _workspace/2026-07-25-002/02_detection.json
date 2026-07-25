@@ -1,0 +1,265 @@
+{
+  "meta": {
+    "input_length": 643,
+    "detected_count": 22,
+    "ai_tell_density": 0.316,
+    "severity_weighted_score": 80,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において 濫用",
+      "severity": "S1",
+      "text_span": "下記の期間において",
+      "start": 123,
+      "end": 132,
+      "reason": "「において/におきまして/におかれまして」が全文で4回反復（下記の期間において・停止期間中におきましては・当市ウェブサイトにおいて・利用者の皆様におかれましては）。抽象的な枠づけの多用。",
+      "suggested_fix": "下記の期間は"
+    },
+    {
+      "id": "f002",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において 濫用",
+      "severity": "S1",
+      "text_span": "停止期間中におきましては",
+      "start": 184,
+      "end": 196,
+      "reason": "「においては」の敬語形。A-1が4回反復するうちの2箇所目。",
+      "suggested_fix": "停止期間中は"
+    },
+    {
+      "id": "f003",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において 濫用",
+      "severity": "S1",
+      "text_span": "当市ウェブサイトにおいて",
+      "start": 328,
+      "end": 340,
+      "reason": "「において」の場所枠づけ。「〜で」で直結できる。A-1反復の3箇所目。",
+      "suggested_fix": "当市ウェブサイトで"
+    },
+    {
+      "id": "f004",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において 濫用",
+      "severity": "S1",
+      "text_span": "利用者の皆様におかれましては",
+      "start": 447,
+      "end": 461,
+      "reason": "「におかれましては」は「においては」の過剰敬語形。A-1反復の4箇所目。",
+      "suggested_fix": "利用者の皆様には"
+    },
+    {
+      "id": "f005",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用",
+      "severity": "S1",
+      "text_span": "お急ぎの方につきましては",
+      "start": 232,
+      "end": 244,
+      "reason": "主題提示を「につきまして/について/に関して」で処理する形が全文で4回反復（お急ぎの方につきましては・その際につきましては・関連する情報についても・手続きに関して）。",
+      "suggested_fix": "お急ぎの方は"
+    },
+    {
+      "id": "f006",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用",
+      "severity": "S1",
+      "text_span": "その際につきましては",
+      "start": 314,
+      "end": 324,
+      "reason": "「につきましては」（についてはの敬語形）。A-2反復の2箇所目。主題助詞「は」で足りる。",
+      "suggested_fix": "その際は"
+    },
+    {
+      "id": "f007",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用",
+      "severity": "S1",
+      "text_span": "関連する情報についても",
+      "start": 363,
+      "end": 374,
+      "reason": "「についても」。A-2反復の3箇所目。「関連する情報も」で直結可。",
+      "suggested_fix": "関連する情報も"
+    },
+    {
+      "id": "f008",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用",
+      "severity": "S1",
+      "text_span": "手続きに関して",
+      "start": 507,
+      "end": 514,
+      "reason": "「に関して」。A-2反復の4箇所目。",
+      "suggested_fix": "手続きで"
+    },
+    {
+      "id": "f009",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "実施されることとなりました",
+      "start": 101,
+      "end": 114,
+      "reason": "「〜こととなる/となっております」の状態叙述が全文で4回連鎖（実施されることとなりました・停止されることとなりますので・予定となっております・掲載が行われることとなっております）。単なる断定で足りる箇所を機械的に状態化。日本語LLM最強クセ。",
+      "suggested_fix": "実施します"
+    },
+    {
+      "id": "f010",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "停止されることとなりますので",
+      "start": 141,
+      "end": 155,
+      "reason": "「こととなりますので」。A-6連鎖の2箇所目。受動＋となる二重の迂遠。",
+      "suggested_fix": "停止いたしますので"
+    },
+    {
+      "id": "f011",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "予定となっております",
+      "start": 347,
+      "end": 357,
+      "reason": "「〜予定となっております」。A-6連鎖の3箇所目。「予定です」で足りる。",
+      "suggested_fix": "予定です"
+    },
+    {
+      "id": "f012",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "掲載が行われることとなっております",
+      "start": 376,
+      "end": 393,
+      "reason": "「こととなっております」。A-6連鎖の4箇所目。受動「行われる」＋状態化「となっております」の二重迂遠。",
+      "suggested_fix": "掲載いたします"
+    },
+    {
+      "id": "f013",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態の濫用（行為者省略）",
+      "severity": "S2",
+      "text_span": "実施される",
+      "start": 101,
+      "end": 106,
+      "reason": "行為者（当市）を省いた無主語受動が全文で5回反復（実施される・停止される・変更される・行われる×2）。行政文書に典型のAI受動連鎖。能動化で解消。※A-8は本来「〜によって」by-passive限定だが、行為者省略型の受動もここで扱う（分類ギャップとして報告）。",
+      "suggested_fix": "実施する"
+    },
+    {
+      "id": "f014",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態の濫用（行為者省略）",
+      "severity": "S2",
+      "text_span": "停止される",
+      "start": 141,
+      "end": 146,
+      "reason": "無主語受動「停止される」。A-8反復の2箇所目。「（当市が）停止する/停止いたします」へ能動化。",
+      "suggested_fix": "停止する"
+    },
+    {
+      "id": "f015",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態の濫用（行為者省略）",
+      "severity": "S2",
+      "text_span": "変更される",
+      "start": 300,
+      "end": 305,
+      "reason": "無主語受動「変更される」。A-8反復の3箇所目。",
+      "suggested_fix": "変更になる"
+    },
+    {
+      "id": "f016",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態の濫用（行為者省略）",
+      "severity": "S2",
+      "text_span": "行われる",
+      "start": 343,
+      "end": 347,
+      "reason": "「周知が行われる」— 無主語受動。A-8反復の4箇所目。「周知します/お知らせします」へ。",
+      "suggested_fix": "お知らせします"
+    },
+    {
+      "id": "f017",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態の濫用（行為者省略）",
+      "severity": "S2",
+      "text_span": "行われる",
+      "start": 379,
+      "end": 383,
+      "reason": "「掲載が行われる」— 無主語受動。A-8反復の5箇所目。「掲載します」へ。（A-6の状態化とも重複）",
+      "suggested_fix": "掲載します"
+    },
+    {
+      "id": "f018",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "完了していただく必要がございます",
+      "start": 258,
+      "end": 274,
+      "reason": "「〜必要がございます」（I-3「必要がある」の敬語形）が2回反復。英語 need to の直訳調。依頼文なら勧告形へ。",
+      "suggested_fix": "完了してください"
+    },
+    {
+      "id": "f019",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご連絡いただく必要がございます",
+      "start": 539,
+      "end": 554,
+      "reason": "「〜必要がございます」の2箇所目。案内なら「ご連絡ください」で足りる。",
+      "suggested_fix": "ご連絡ください"
+    },
+    {
+      "id": "f020",
+      "category": "G-1",
+      "category_label": "ヘッジング: 推測・観測型の文末",
+      "severity": "S2",
+      "text_span": "ものと考えております",
+      "start": 436,
+      "end": 446,
+      "reason": "「〜ものと考えております」は観測・婉曲の文末。断定「ご利用いただけます」で足りる箇所を迂遠にヘッジ。硬い敬語の単調とも重なる。",
+      "suggested_fix": "ご利用いただけます"
+    },
+    {
+      "id": "f021",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "なお、",
+      "start": 277,
+      "end": 280,
+      "reason": "文頭接続詞「なお」「また」「あわせて」が3つの段落頭に反復。論理は内容で伝わるため過半は削除可。（お知らせ文としては許容寄りだが敬語単調と重なる）",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f022",
+      "category": "E-2",
+      "category_label": "リズム: です・ます（硬い敬語）の単調反復",
+      "severity": "S2",
+      "text_span": "お願い申し上げます",
+      "start": 172,
+      "end": 181,
+      "reason": "文末が「〜ございます」「〜申し上げます」「〜おります」に集中し一本調子。「お願い申し上げます」3回、「所存でございます」2回、「ございます」系の文末9回、変奏ゼロ。体言止め・「〜です」等で緩急を。",
+      "suggested_fix": "（文末を変奏：体言止め・「〜です」を織り交ぜる）"
+    }
+  ],
+  "category_summary": {
+    "A": 17,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 1,
+    "H": 1,
+    "I": 2,
+    "J": 0
+  }
+}
