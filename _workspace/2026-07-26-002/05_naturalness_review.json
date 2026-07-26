@@ -1,0 +1,52 @@
+{
+  "run_id": "2026-07-26-002",
+  "genre": "public_notice",
+  "style_before": "desu_masu",
+  "style_after": "desu_masu",
+  "style_preserved": true,
+  "score_before": 58.3,
+  "score_after": 0.0,
+  "score_after_method": "検出器再走査(ai-tell-detector)を02_detection.jsonと同一基準で実行。raw=ΣS1*5+S2*2+S3*0.5=0 → severity_weighted_score=100*0/(0+45)=0.0。閾値(S2は3回反復・S1は無条件)を超える残存findingは0件。",
+  "improvement_rate": 1.0,
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 0 },
+  "residual_detail": {
+    "note": "推敲前21件(S1=7:A-1×1/A-2×3/A-6×3、S2=14:A-8×6/I-3×3/H-1×3/G-1×1/E-2×1)は全件解消。以下はfinding化しない残存だが監視対象として明記。",
+    "sub_threshold_survivors": [
+      {
+        "category": "H-1",
+        "text_span": "ただし、",
+        "count": 1,
+        "verdict": "非finding（反復閾値3回未満）",
+        "reason": "また・なお削除で文頭接続詞は3→1に削減。対比の論理を担う『ただし』は誤読回避のため意図的保持。単発のため密度ベースのH-1に非該当。"
+      },
+      {
+        "category": "E-2",
+        "text_span": "お願い申し上げます / お願いいたします",
+        "count": 3,
+        "verdict": "非finding（変奏で単調緩和）",
+        "reason": "元『お願い申し上げます』3回反復→2回に整理し中間を『お願いいたします』へ変奏。文末語尾も 申し上げます/ます/ください/いたします/おります が交替し一本調子を解消。公用文定型の締め句として2回保持は格の範囲内。"
+      },
+      {
+        "category": "A-11",
+        "text_span": "および（蔵書検索端末および… / 向上および…）",
+        "count": 2,
+        "verdict": "非finding（公用文標準の並列助詞・原文由来）",
+        "reason": "『および』は公的文書標準の並列表現で本taxonomyの検出対象外。原文保存の範囲。"
+      }
+    ]
+  },
+  "change_rate": 0.263,
+  "change_rate_verdict": "under_30_percent（警告閾値の直下）",
+  "over_polish_signals": [],
+  "over_polish_detail": {
+    "unnatural_colloquialization": "なし。『行います』『停止します』『延長いたします』『不要です』『ご留意ください』『見込んでおります』はいずれも公的お知らせとして妥当な敬体。くだけ過ぎ・格の低下なし。",
+    "style_breakdown": "なし。desu_masu敬体を全編維持。敬体/常体の混入なし。",
+    "meaning_thinning_or_choppiness": "なし。能動化・断定化で情報は保存され、むしろ可読性が向上。ぶつ切り感なし。",
+    "residual_over_keigo": "なし。二重敬語『差し上げられる』は『ご連絡いたします』へ解消。他に『延長いたします』『ご連絡いたします』等は正しい謙譲一段で過剰敬語なし。",
+    "change_rate_over_30": false,
+    "note": "change_rate 26.3%は閾値直下。第2〜4段落に二重受動・状態叙述の除去が集中したためで、意味付加・削除は伴わず過推敲には至っていない。次回同種文書では30%接近を監視。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1=0・S2=0・改善率100%でA等級。公的文書(public_notice)の難所である『格の維持とAIクセ除去の両立』を達成: 翻訳調受動・状態叙述こととなる・について/においてを能動断定へ開きつつ、誠に/何卒/お願い申し上げますの公用文定型は過剰反復のみ整理し格を保持。焦点であった二重敬語『差し上げられる』(f012:謙譲+受身/可能の二重敬語)は『ご連絡いたします』へ正しく解消。score_after=0.0は『検出閾値を下回る』意で、人間の完全な自然さの証明ではない点に留意。change_rate 26.3%は許容だが閾値直下のため次同種案件で監視推奨。"
+}
