@@ -1,0 +1,255 @@
+{
+  "meta": {
+    "input_length": 692,
+    "detected_count": 21,
+    "ai_tell_density": 0.272,
+    "severity_weighted_score": 58.3,
+    "style": "desu_masu",
+    "notes": "severity_weighted_score = 100*raw/(raw+45) （raw=ΣS1*5+S2*2+S3*0.5=63）。0起点・単調増加で100に漸近する飽和式のため過大評価しにくい。ai_tell_density=検出spanのユニオン文字数/全体文字数（重複二重計上を避けるためunion採用）。S1=7件(A-1×1,A-2×3,A-6×3), S2=14件(A-8×6,I-3×3,H-1×3,G-1×1,E-2×1)。"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において 枠づけ助詞の濫用",
+      "severity": "S1",
+      "text_span": "下記の期間において",
+      "start": 113,
+      "end": 122,
+      "reason": "英語 in/at 直訳の枠づけ助詞「において」。公的文書でも硬い翻訳調シグネチャ。単発だが受動・状態叙述群と共起し翻訳調テクスチャを強める",
+      "suggested_fix": "下記の期間に"
+    },
+    {
+      "id": "f002",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/につきまして 主題提示の濫用",
+      "severity": "S1",
+      "text_span": "手続きについても",
+      "start": 264,
+      "end": 272,
+      "reason": "主題提示「について」。文書内で について/につきまして が計3回反復し主題処理が機械的（1/3）",
+      "suggested_fix": "手続きも"
+    },
+    {
+      "id": "f003",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/につきまして 主題提示の濫用",
+      "severity": "S1",
+      "text_span": "資料につきましては",
+      "start": 331,
+      "end": 340,
+      "reason": "主題提示「につきまして」の反復（2/3）。公用文の定型でもあるが密度が高い",
+      "suggested_fix": "資料は"
+    },
+    {
+      "id": "f004",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/につきまして 主題提示の濫用",
+      "severity": "S1",
+      "text_span": "受け取りにつきましては",
+      "start": 417,
+      "end": 428,
+      "reason": "主題提示「につきまして」の反復（3/3）",
+      "suggested_fix": "受け取りは"
+    },
+    {
+      "id": "f005",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜こととなる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなりました",
+      "start": 97,
+      "end": 105,
+      "reason": "「〜こととなる」状態叙述。単に『行います／します』で足りる箇所を状態化。文書内で3回反復（1/3）",
+      "suggested_fix": "更新作業を行うこととなりました→行います"
+    },
+    {
+      "id": "f006",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜こととなる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなりますので",
+      "start": 282,
+      "end": 291,
+      "reason": "「〜こととなる」状態叙述の反復（2/3）",
+      "suggested_fix": "停止しますので"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜こととなる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなりますので",
+      "start": 452,
+      "end": 461,
+      "reason": "「〜こととなる」状態叙述の反復（3/3）",
+      "suggested_fix": "ご連絡しますので"
+    },
+    {
+      "id": "f008",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動文(by-passive)の濫用",
+      "severity": "S2",
+      "text_span": "実施される",
+      "start": 92,
+      "end": 97,
+      "reason": "行為者(当図書館)を隠した受身。本文で受動が7回、うち二重受動2箇所と密度が突出（1/7）",
+      "suggested_fix": "更新作業を行う"
+    },
+    {
+      "id": "f009",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動文(by-passive)の濫用",
+      "severity": "S2",
+      "text_span": "停止されます",
+      "start": 130,
+      "end": 136,
+      "reason": "受身「停止される」。行為者を主語に戻せる（2/7）",
+      "suggested_fix": "一部を停止します"
+    },
+    {
+      "id": "f010",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動文(by-passive)の濫用",
+      "severity": "S2",
+      "text_span": "実施される",
+      "start": 197,
+      "end": 202,
+      "reason": "受身の反復（3/7）",
+      "suggested_fix": "行う予定です"
+    },
+    {
+      "id": "f011",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動文(by-passive)の濫用",
+      "severity": "S2",
+      "text_span": "延長される措置が取られます",
+      "start": 350,
+      "end": 363,
+      "reason": "二重受動（延長される＋取られる）。行為者不明の翻訳調受身（4/7）",
+      "suggested_fix": "返却期限を自動的に延長します"
+    },
+    {
+      "id": "f012",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動文(by-passive)の濫用",
+      "severity": "S2",
+      "text_span": "差し上げられる",
+      "start": 445,
+      "end": 452,
+      "reason": "謙譲語「差し上げる」に受身/可能「られる」を重ねた二重敬語＋受身。過剰敬語で不自然（5/7）※現行taxonomyに過剰敬語の専用コードがなくA-8で暫定分類",
+      "suggested_fix": "ご連絡します"
+    },
+    {
+      "id": "f013",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動文(by-passive)の濫用",
+      "severity": "S2",
+      "text_span": "図られることが期待されております",
+      "start": 513,
+      "end": 529,
+      "reason": "二重受動（図られる＋期待される）＋行為者曖昧な期待表現。翻訳調受身の極み（6/7）",
+      "suggested_fix": "簡素化できると見込んでいます"
+    },
+    {
+      "id": "f014",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある の濫用",
+      "severity": "S2",
+      "text_span": "ご了承いただく必要があります",
+      "start": 297,
+      "end": 311,
+      "reason": "「〜する必要がある」要請の機械的常套。文書内で『必要』表現が3回反復（1/3）",
+      "suggested_fix": "あらかじめご了承ください"
+    },
+    {
+      "id": "f015",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある の濫用",
+      "severity": "S2",
+      "text_span": "していただく必要はございません",
+      "start": 387,
+      "end": 402,
+      "reason": "「〜する必要（はない）」反復（2/3）",
+      "suggested_fix": "お手続きは不要です"
+    },
+    {
+      "id": "f016",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある の濫用",
+      "severity": "S2",
+      "text_span": "ご留意いただく必要がございます",
+      "start": 462,
+      "end": 477,
+      "reason": "「〜する必要がある」反復（3/3）",
+      "suggested_fix": "ご留意ください"
+    },
+    {
+      "id": "f017",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "また、",
+      "start": 250,
+      "end": 253,
+      "reason": "接続詞の連発。また/なお/ただし が近接して3回（1/3）",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f018",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "なお、",
+      "start": 314,
+      "end": 317,
+      "reason": "文頭接続詞（2/3）",
+      "suggested_fix": "（削除または本文化）"
+    },
+    {
+      "id": "f019",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "ただし、",
+      "start": 403,
+      "end": 407,
+      "reason": "文頭接続詞（3/3）",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f020",
+      "category": "G-1",
+      "category_label": "ヘッジング: 推測・観測型の文末",
+      "severity": "S2",
+      "text_span": "ものと考えております",
+      "start": 561,
+      "end": 571,
+      "reason": "「〜ものと考えております」推測型の婉曲文末。断定を避ける硬い緩衝表現",
+      "suggested_fix": "ご活用いただけます"
+    },
+    {
+      "id": "f021",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "お願い申し上げます",
+      "start": 681,
+      "end": 690,
+      "reason": "文末が全文でです/ます/ございます系に集中し一本調子。特に「お願い申し上げます」が3回反復（153/599/681）。文体は敬体を維持しつつ体言止め・語尾変奏で緩和を推奨",
+      "suggested_fix": "（末尾の一つを体言止め等に変奏）"
+    }
+  ],
+  "category_summary": {
+    "A": 13,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 1,
+    "H": 3,
+    "I": 3,
+    "J": 0
+  }
+}

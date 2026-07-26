@@ -79,6 +79,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
+**変更率超過の override（IMP-001）**: `raw_change_rate`（生の文字会計）が 30% を超えても、`semantic_change_rate`（意味・語彙改変分。B-2 等価置換は max(len) 1 回、純削除・重複解消は控除。playbook §変更率の数え方）が閾値内で、かつ fidelity=pass・自然度 A/B なら、それは過推敲ではなく高密度 AI 文の正常な除染コストである。`hold_and_report` にせず **override accept** とし、その理由（生率と意味率の乖離、fidelity/自然度の結果）を `summary.md` に明記する。
+
 ## 深刻度と品質等級
 
 **深刻度**
