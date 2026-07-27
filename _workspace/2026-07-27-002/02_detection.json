@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "input_length": 661,
+    "detected_count": 14,
+    "ai_tell_density": 0.25,
+    "severity_weighted_score": 57.5,
+    "style": "desu_masu",
+    "normalization_note": "severity_weighted_score = 100 * raw / (raw + 34)。raw = S1*5 + S2*2 + S3*0.5（=46）。飽和しにくい有理飽和型で100に漸近するが到達しない（IMP-002対応）。今回 raw=46 → 57.5。ai_tell_density は文単位の除去対象span総文字数(165)/全体(661)。文書レベルのE-2アンカーは密度に加算しない。"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において/〜においては 濫用",
+      "severity": "S1",
+      "text_span": "下記の期間において",
+      "start": 108,
+      "end": 117,
+      "reason": "「において」が本文で2回反復。日付・期間を抽象的に枠づける翻訳調。単なる助詞で足りる。",
+      "suggested_fix": "下記の期間に"
+    },
+    {
+      "id": "f002",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において/〜においては 濫用",
+      "severity": "S1",
+      "text_span": "期間中においては",
+      "start": 337,
+      "end": 345,
+      "reason": "「において/においては」の2回目。ここは主題助詞「は」で十分。",
+      "suggested_fix": "更新作業の期間中は"
+    },
+    {
+      "id": "f003",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "停止されることとなりました",
+      "start": 129,
+      "end": 142,
+      "reason": "となる系（となりました/となります/となっております）が本文で計4回反復。「停止する/停止いたします」で足りる箇所を状態化＋受動化。",
+      "suggested_fix": "一時的に停止いたします"
+    },
+    {
+      "id": "f004",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "利用できない状態となります",
+      "start": 267,
+      "end": 280,
+      "reason": "「状態となります」は状態叙述の典型（A-6の中核例）。「利用できません/ご利用いただけません」で足りる。",
+      "suggested_fix": "ご利用いただけません"
+    },
+    {
+      "id": "f005",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "延長される措置が取られることとなっております",
+      "start": 427,
+      "end": 449,
+      "reason": "「となっております」＋二重受動（延長される・取られる）で状態叙述が最も機械的。となる系4回のうちの1つ。",
+      "suggested_fix": "返却期限を自動的に延長いたします"
+    },
+    {
+      "id": "f006",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "簡素化が図られる予定となっております",
+      "start": 582,
+      "end": 600,
+      "reason": "「予定となっております」は「予定です」で足りる状態化。となる系4回の反復を締める。受動「図られる」も併発。",
+      "suggested_fix": "簡素化する予定です"
+    },
+    {
+      "id": "f007",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動文（by-passive）の濫用",
+      "severity": "S2",
+      "text_span": "実施されることに伴い",
+      "start": 97,
+      "end": 107,
+      "reason": "「される」受動が本文で計7か所（実施される/停止される/取られる/延長される/図られる 等）。行為者（当館）を主語に戻せる。",
+      "suggested_fix": "更新作業を実施するのに伴い"
+    },
+    {
+      "id": "f008",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動文（by-passive）の濫用",
+      "severity": "S2",
+      "text_span": "実施されるものであり",
+      "start": 223,
+      "end": 233,
+      "reason": "受動「実施される」の反復＋「ものであり」の硬い連結。行為者は当館で明白。",
+      "suggested_fix": "実施するもので"
+    },
+    {
+      "id": "f009",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動文（by-passive）の濫用",
+      "severity": "S2",
+      "text_span": "対応が取られる場合がございます",
+      "start": 311,
+      "end": 326,
+      "reason": "行為者を曖昧にした受動「取られる」。当館が主語なら能動化できる。",
+      "suggested_fix": "異なる対応をとる場合がございます"
+    },
+    {
+      "id": "f010",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動文（by-passive）の濫用",
+      "severity": "S2",
+      "text_span": "予約された資料",
+      "start": 346,
+      "end": 353,
+      "reason": "名詞修飾の受動「予約された」。「ご予約の資料」で自然。受動密度の一部。",
+      "suggested_fix": "ご予約の資料"
+    },
+    {
+      "id": "f011",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために 目的節の濫用",
+      "severity": "S2",
+      "text_span": "提供するために",
+      "start": 216,
+      "end": 223,
+      "reason": "in order to 直訳型の目的節。「提供しようと」等へ分散可能。受動「実施される」と連結し翻訳調が強い。",
+      "suggested_fix": "ご提供しようと"
+    },
+    {
+      "id": "f012",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（必要がございます）",
+      "severity": "S2",
+      "text_span": "ご了承いただく必要がございます",
+      "start": 379,
+      "end": 394,
+      "reason": "「必要がございます」が本文で2回反復。公的文書は依頼形「ご了承ください」で足り、必要性の明言は冗長。",
+      "suggested_fix": "あらかじめご了承ください"
+    },
+    {
+      "id": "f013",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（必要がございます）",
+      "severity": "S2",
+      "text_span": "対応をご検討いただく必要がございます",
+      "start": 484,
+      "end": 502,
+      "reason": "「必要がございます」の2回目。依頼形「ご検討ください」で自然。行為の要請を回りくどく述べる翻訳調。",
+      "suggested_fix": "対応をご検討ください"
+    },
+    {
+      "id": "f014",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復（★日本語固有）",
+      "severity": "S2",
+      "text_span": "場合がございますので",
+      "start": 363,
+      "end": 373,
+      "reason": "文末・節末の「ございます」が5回（65/321/366/389/497）反復し一本調子。硬い敬体は維持しつつ、体言止め・「〜ます」等で変奏の余地。register由来もあり除去は控えめに。",
+      "suggested_fix": "場合があり（文末の一部を変奏）"
+    }
+  ],
+  "category_summary": {
+    "A": 11,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 2,
+    "J": 0
+  }
+}
