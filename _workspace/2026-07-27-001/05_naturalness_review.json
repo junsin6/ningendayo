@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "run_id": "2026-07-27-001",
+    "reviewer": "naturalness-reviewer",
+    "rescan_method": "taxonomy-based re-detection (IMP-006準拠): ai-tell-taxonomy.md の同一パターン基準で 03_rewrite.md を再走査。手動 span 照合ではなく、原文検出(02_detection.json)がどの語・構文を flag/非flag としたかの同一基準を推敲文へ再適用。推敲文608字/15文の短文につき自走査で信頼可、ai-tell-detector サブエージェントは非起動。",
+    "score_formula": "raw = S1*5 + S2*2 + S3*0.5; score = 100*raw/(raw+60)（02_detection.json meta と同一正規化式・半飽和点 raw=60）"
+  },
+  "score_before": 67.6,
+  "score_after": 2.4,
+  "improvement_rate": 0.964,
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 3 },
+  "residual_detail": [
+    {
+      "category": "B-2",
+      "severity": "S3",
+      "span": "マッピング",
+      "location": "P2「ベクトル空間へマッピングする技術です」",
+      "reason": "日本語化余地あり（写像）。ただし原文検出は f009 を I-1（のこと）で立て、マッピングを B-2 として非flag。同一基準では新規 flag に至らない弱残存。技術文脈で許容度あり。",
+      "action": "許容（rewrite_round_2 不要）"
+    },
+    {
+      "category": "B-2",
+      "severity": "S3",
+      "span": "アーキテクチャ",
+      "location": "P3「RAG（検索拡張生成）と呼ばれるアーキテクチャです」",
+      "reason": "原文でも当該文は D-2『とりわけ注目〜』のみ flag で アーキテクチャは非flag。定着技術語として同一基準で非flag相当の弱残存。",
+      "action": "許容"
+    },
+    {
+      "category": "A-8",
+      "severity": "S3",
+      "span": "〜することで（手段節）",
+      "location": "P3「LLMに渡すことで」／P4「手法を活用することで」の2箇所",
+      "reason": "手段の『〜することで』が文書内2回。原文の『渡すことで』は非flag、『レバレッジすることで』の することで も非flag だったため同一基準では弱残存扱い。クラスタしても S3 上限。単独では無害。",
+      "action": "許容（次段落・前文と接続しない限り問題化しない）"
+    }
+  ],
+  "resolved_highlights": [
+    "S1 13件（A-1/A-5×6/A-6×2/A-10×3/A-2）全て解消。可能冗長・抽象主語万能動詞・状態叙述の中核 AI クセを一掃。",
+    "B-2 カタカナ17件: 日本語化13件（ソリューション/インフラ/クエリ等）＋テック語3件は日本語グロス併記（ハルシネーション/スループット）で自然化。",
+    "E-2 文末単調(S2, 文書レベル)解消: 全15文が敬体維持のまま『〜のです』『〜でしょう』『〜なければなりません』『〜られます』等へ変奏。です終止3回に抑制、一本調子を解消。",
+    "I系(要請曖昧)・H-2(しかし)・D-2(誇張導入)・F-4(〜的×3)いずれも解消。"
+  ],
+  "change_rate": 0.50,
+  "change_rate_verdict": "not_over_polish",
+  "change_rate_analysis": "境界値(中断閾値=0.50)だが内訳は語句改変0.43/構造削除0.07。43 finding(ai_tell_density=0.53)が原文をほぼ被覆し、その1対1語句置換（カタカナ日本語化・A-5短縮・A-10行為者復帰）が主因。char単位difflibは非対称置換（『における』4字→『で』1字＝del4+ins1）を両側計上するため高密度検出文では最小手術でも0.50近傍に達する構造的性質がある。段落削除・ジャンル移動・情報欠落は認めず。よって高変更率は密度由来の見かけであり過推敲ではないと判定。",
+  "over_polish_signals": [],
+  "over_polish_checklist": {
+    "unnatural_colloquialization": { "detected": false, "note": "『使うと』『この方法なら』『うまく取るには』等は技術解説の敬体として自然。くだけ過ぎなし。" },
+    "style_mixing_kei_jyo": { "detected": false, "count": 0, "note": "全15文が敬体（です/ます/ません/のです/でしょう/なければなりません）で統一。常体混入ゼロ。文体崩れなし。" },
+    "meaning_dilution": { "detected": false, "note": "固有名詞(RAG/ANN/HNSW/IVF/LLM)・数値(数億件/ミリ秒)・専門語グロス保存。意味希薄化なし。※内容等価の最終判定は content-fidelity-auditor 管轄。" },
+    "choppy_fragmentation": { "detected": false, "note": "文の分断・ぶつ切りなし。各文が完結。" },
+    "over_deletion": { "detected": false, "note": "608/748字=構造削除0.07。カタカナ短縮と冗長除去由来で情報欠落なし。" }
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1=0・S2≤2(=0)・改善96.4%(≥70%)・過推敲シグナル0(<2)で A 等級。残存はいずれも S3 の弱カタカナ／手段節で、原文検出の同一基準では新規flagに至らない下位残存であり、rewrite_round_2 は不要。改善率が突出して高い（score_after=2.4）のは43件高密度AI文が finding準拠推敲でほぼ完全被覆されたためで、絶対残存数(S1=0,S2=0)からも過大評価ではない。change_rate=0.50 は中断境界だが密度由来の見かけ値と判定、オーケストレーターへは『accept 推奨・境界値は要因説明済み』として送る。"
+}
