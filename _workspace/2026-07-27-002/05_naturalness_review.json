@@ -1,13 +1,18 @@
 {
-  "run_id": "2026-07-27-002",
-  "genre": "public_notice",
-  "style": "desu_masu",
-  "rescan_method": "ai-tell-detector エージェント再走査（IMP-006）＋ naturalness-reviewer 自走査での照合。公的文書 register 免責基準を適用。",
+  "meta": {
+    "run_id": "2026-07-27-002",
+    "reviewer": "naturalness-reviewer",
+    "genre_declared_by_task": "ブログ調",
+    "genre_actual": "public_notice（図書館サービス一時停止のお知らせ・硬い敬体）",
+    "genre_note": "タスクは『ブログ調・敬体』と提示したが、01_input・02_detection・03_rewrite_diff はいずれも public_notice（公的文書）。ジャンル前提が実データと不一致。過推敲評価は実ジャンル=public_notice の register 基準で行い、ブログ閾値論は別途論じる（返却メッセージ参照）。",
+    "rescan_method": "taxonomy-based re-detection（IMP-006準拠）: ai-tell-taxonomy.md の同一パターン基準で 03_rewrite.md を再走査し、原文検出(02_detection.json)の flag/非flag 基準を再適用。506字/短文につき自走査で信頼可。public_notice register 免責基準を適用。",
+    "score_formula": "raw = S1*5 + S2*2 + S3*0.5; score = 100*raw/(raw+K)。本 run は K=34（02_detection.json meta の正規化定数、score_before=57.5 と同一）。※run-001 は K=60 で算出されており定数が run 間で不一致（改善点報告参照）。"
+  },
   "score_before": 57.5,
   "score_after": 2.9,
-  "score_after_note": "raw = S1*5 + S2*2 + S3*0.5 = 0 + 0 + 2*0.5 = 1.0。score = 100*1.0/(1.0+34) = 2.857 → 2.9。detector と同一の有理飽和型正規化式。",
+  "score_after_note": "raw = 0*5 + 0*2 + 2*0.5 = 1.0。score = 100*1.0/(1.0+34) = 2.857 → 2.9。",
   "improvement_rate": 0.95,
-  "improvement_rate_note": "(57.5 - 2.9) / 57.5 = 0.9496。S1 系（A-1/A-6）が全消、S2 系（A-8/A-9/I-3/E-2）も解消。絶対残存は S3 2 件のみで短文でも十分な低残存。",
+  "improvement_rate_note": "(57.5 - 2.9)/57.5 = 0.9496。S1 6件・S2 8件が全解消、絶対残存は S3 2件のみ。",
   "residual_findings": { "S1": 0, "S2": 0, "S3": 2 },
   "residual_detail": [
     {
@@ -15,30 +20,59 @@
       "category": "F-4",
       "severity": "S3",
       "text_span": "検索機能の向上および貸出手続きの簡素化を図る",
-      "reason": "抽象名詞化『向上』『簡素化』を『および』で対句化した機械的並列の名残。ただし『および』は公的文書 register の標準連結であり、当該並列は原文由来（元 finding 対象外の区間）。他パターンと重ならず単発のため無害。強制修正不要。",
-      "register_note": "原文にも存在した構文。fidelity 維持のため無理に動詞句化しないのは妥当。"
+      "location": "最終段落",
+      "reason": "抽象名詞化『向上』『簡素化』を『および』で対句化した機械的並列の名残。ただし『および』は公的文書 register の標準連結で、当該並列は原文由来（元 finding 対象外の区間）。単発で他パターンと重ならず無害。",
+      "register_note": "原文にも存在した構文。fidelity 維持のため無理な動詞句化はしない判断が妥当。強制修正不要。"
     },
     {
       "id": "r002",
       "category": "A-8",
       "severity": "S3",
       "text_span": "新しいシステムの導入により",
+      "location": "最終段落冒頭",
       "reason": "手段を『により』で後置する翻訳調寄り構文。公的文書の告知定型に近く免責寄り。単発 S3 で必須修正ではない。",
-      "register_note": "公的文書の定型表現域。過推敲でここを能動化すると事務的になりむしろ register を崩す恐れ。保持が正解。"
+      "register_note": "公的文書の定型域。能動化すると事務的になり register を崩す恐れがあり保持が正解。"
     }
   ],
+  "resolved_highlights": [
+    "S1 6件（A-1×2『において/においては』, A-6×4 状態叙述『となりました/状態となります/措置が取られることとなっております/予定となっております』）全解消。",
+    "A-8 受動7か所を当館主語の能動へ復元。stray される・られる ゼロ。",
+    "A-9『提供するために』→『ご提供できるよう』、I-3『必要がございます』×2→依頼形『ください』。",
+    "E-2『ございます』5回反復を e010 連用中止化で閾値以下へ緩和（register 免責のため残存カウントせず・過推敲もせず）。"
+  ],
   "change_rate": 0.221,
-  "change_rate_note": "03_rewrite_diff.json の change_rate（編集オペ146/原文661）。本文セグメント基準 0.254。いずれも 30% 未満で過推敲の変更率警告に非該当。",
+  "change_rate_verdict": "not_over_polish",
+  "change_rate_analysis": "0.221 は playbook 警告閾値(0.30)を大きく下回る。内訳は語句改変0.109／構造削除挿入0.112で、削除の大半は冗長状態叙述の圧縮による純減(-68字)。ジャンル移動・情報欠落なし。run-001(0.50境界)と異なり密度0.25・finding14件のため最小手術が素直に低変更率へ収まった健全ケース。",
   "over_polish_signals": [],
-  "over_polish_detail": {
-    "unnatural_colloquialization": "なし。公的文書の敬度を保ったまま。くだけ過ぎた口語化なし。",
-    "style_breakage_keitai_jotai": "なし。全文 desu_masu＋keigo で一貫。敬体/常体の混入ゼロ。",
-    "request_intensity_weakening": "なし。『いただく必要がございます』→『ください』は要請強度を保った依頼形化。要請の弱化ではない（義務→依頼のニュアンス低下も register 内で許容範囲）。",
-    "over_activization_register_break": "なし。『停止いたします』『延長いたします』等の能動化は当館を主語とする keigo 能動であり、事務的すぎる能動化＝register 破壊には至っていない。定型連結『〜に伴い』『場合がございます』は保持。",
-    "e2_monotony_immunity_note": "公的文書は E-2 単調が文体由来のため過推敲の下限に配慮。文末変奏は『あり』1 箇所の連用中止のみで最小限に留め、register の一本調子を過剰に崩していない。"
+  "over_polish_checklist": {
+    "unnatural_colloquialization": {
+      "detected": false,
+      "note": "★本 run 重点確認。推敲後も『停止いたします／ご利用いただけません／ご了承ください／延長いたします／図る予定です』と謙譲・丁重体を保持。口語寄せ（〜しちゃう/〜だよね/素の です・ます 降格）皆無。A-6・A-8 除去を register 破壊と引き換えにしていない。"
+    },
+    "style_mixing_kei_jyo": {
+      "detected": false,
+      "count": 0,
+      "note": "全文が敬体（いたします/ございます/です/ください/申し上げます/まいります）。常体（だ・である）混入ゼロ。文体崩れなし。"
+    },
+    "request_intensity_weakening": {
+      "detected": false,
+      "note": "『いただく必要がございます』→『ください』は要請強度を保った依頼形化で、要請の弱化・骨抜きではない。"
+    },
+    "over_activization_register_break": {
+      "detected": false,
+      "note": "『停止いたします』等の能動化は当館主語の keigo 能動であり事務的すぎる能動化=register 破壊に至らず。定型連結『〜に伴い』『場合がございます』は保持。"
+    },
+    "meaning_dilution": {
+      "detected": false,
+      "note": "『自動的に』『一時的に』等を保存。e014 は『図る』を残し『向上』の述語欠落を回避。※内容等価の最終判定は content-fidelity-auditor 管轄。"
+    },
+    "choppy_over_deletion": {
+      "detected": false,
+      "note": "ぶつ切りなし。純削除は冗長状態叙述の圧縮由来で情報欠落なし。structural_delete 0.112 は閾値以下。"
+    }
   },
   "grade": "A",
-  "grade_rationale": "S1 0 件・S2 0 件（≤2 件を満たす）・改善率 95%（70%+ を満たす）。過推敲シグナル 0。A 等級の全条件を充足。",
+  "grade_rationale": "S1 0件・S2 0件（≤2 充足）・改善率95%（70%+ 充足）・過推敲シグナル0。A 等級の全条件を満たす。",
   "recommendation": "accept",
-  "notes": "公的文書（図書館お知らせ）ジャンルで、翻訳調 A 系の S1（〜において/〜となっている系）と S2（受動・目的節・必要性）を register を壊さず手術的に除去できた優良例。残存は S3 2 件のみで、いずれも register 標準または原文由来で強制修正の対象外。E-2 の『ございます』反復・定型依頼は register 免責を適用し過検出せず、reviewer 側でも E-2 は残存にカウントしない。過推敲側も敬体/常体混入・要請弱化・能動化による事務化のいずれも発生せず、変更率 22.1% で過推敲の下限に触れていない。2 次推敲不要、accept を推奨。"
+  "notes": "公的文書 register を壊さず翻訳調 A系 S1（〜において/〜となる系）と S2（受動・目的節・必要性）を手術的に一掃した優良例。残存は S3 2件（F-4機械的並列・A-8『により』）のみで、いずれも register 標準または原文由来で強制修正対象外。E-2 は register 免責し過検出せず、過推敲もせず（変奏は連用中止1箇所のみ）。過推敲側は口語化・敬体常体混入・要請弱化・能動化による事務化いずれも不発。2次推敲不要、accept 推奨。※score は K=34 正規化。run-001(K=60)との improvement_rate 直接比較は不可（改善点報告参照）。"
 }
