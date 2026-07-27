@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（IMP-001 適用 v1.1）: 総 `change_rate` は参考指標。`lexical_substitution_rate` と `structural_delete_rate` の二軸を内訳計上し、`structural_delete_rate` 30% 超で警告。総変更率 50% 超でも語句置換主導なら中断せず override 判定へ回す。
 
 ### 4. 並列検証
 
@@ -76,6 +76,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
+| 総変更率 50% 超だが fidelity=pass かつ自然度 A/B かつ `structural_delete_rate` 低 | **`override accept`** | IMP-001 既知欠陥。`summary.md` に「密度由来の見かけ高変更率」と内訳を明記して accept |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
