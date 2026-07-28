@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "run_id": "2026-07-28-002",
+    "genre": "public_notice",
+    "style_preserved": "desu_masu",
+    "style_register": "formal_keigo_maintained",
+    "input_length": 610,
+    "edit_count": 13,
+    "change_chars_total": 118,
+    "change_rate": 0.19,
+    "substitution_rate": 0.18,
+    "deletion_rate": 0.013,
+    "over_polish_guard": "御礼申し上げます・お願い申し上げます・賜りますよう 等の定型依頼敬語はジャンル必須のため保持。なお×2 も register 維持のため残置。",
+    "warnings": []
+  },
+  "edits": [
+    {
+      "edit_id": "e001",
+      "finding_id": "f004",
+      "category": "A-1",
+      "before": "下記の日程において",
+      "after": "下記の日程で",
+      "rationale": "抽象的に時点を枠づける「において」を格助詞「で」で直結。翻訳調を除去し硬さは維持。"
+    },
+    {
+      "edit_id": "e002",
+      "finding_id": "f003",
+      "category": "A-6",
+      "before": "断水が行われることとなりました",
+      "after": "断水が行われることになりました",
+      "rationale": "状態叙述「となる」を、決定の帰結を表す自然な慣用「になる」へ最小変更。公的文書での過推敲を避け、能動化までは踏み込まず受動「行われる」(未検出) は保存。"
+    },
+    {
+      "edit_id": "e003",
+      "finding_id": "f001",
+      "category": "A-6",
+      "before": "全域となっております",
+      "after": "全域です",
+      "rationale": "機械的状態叙述を断定へ。短文の断定で E-2 のリズム変奏も兼ねる。"
+    },
+    {
+      "edit_id": "e004",
+      "finding_id": "f013",
+      "category": "E-2",
+      "before": "予定しております",
+      "after": "予定しています",
+      "rationale": "「おります／ございます」一本調子の文末を「います」で変奏。日付・時刻は不変。敬体は維持。"
+    },
+    {
+      "edit_id": "e005",
+      "finding_id": "f005",
+      "category": "A-5",
+      "before": "ご使用いただくことができません",
+      "after": "ご使用になれません",
+      "rationale": "可能の冗長形「ことができません」を尊敬語の可能形「になれません」へ短縮。敬意と硬さを保持したまま簡潔化。"
+    },
+    {
+      "edit_id": "e006",
+      "finding_id": "f011",
+      "category": "H-1",
+      "before": "そのため、飲料水や生活用水",
+      "after": "飲料水や生活用水",
+      "rationale": "文頭接続詞「そのため」を削除。断水中に水が使えない→汲み置き、の因果は前文で自明。"
+    },
+    {
+      "edit_id": "e007",
+      "finding_id": "f008",
+      "category": "A-2",
+      "before": "生活用水につきましては",
+      "after": "生活用水は",
+      "rationale": "主題提示「につきましては」を主題助詞「は」で直結。主題処理の反復を分散。"
+    },
+    {
+      "edit_id": "e008",
+      "finding_id": "f009",
+      "category": "I-3",
+      "before": "汲み置きをしていただく必要がございます",
+      "after": "汲み置きをお願いいたします",
+      "rationale": "回りくどい「〜していただく必要がございます」を依頼形「お願いいたします」へ直接化。公的文書の依頼敬語として自然で硬さも保つ。"
+    },
+    {
+      "edit_id": "e009",
+      "finding_id": "f012",
+      "category": "H-1",
+      "before": "また、断水が解除された直後",
+      "after": "断水が解除された直後",
+      "rationale": "追加を示す文頭「また」を削除し、並列を叙述へ溶かす。f011 と合わせ接続詞クラスタを解消。"
+    },
+    {
+      "edit_id": "e010",
+      "finding_id": "f006",
+      "category": "A-8",
+      "before": "空気や濁りによって",
+      "after": "空気や濁りで",
+      "rationale": "原因を後置する by-passive 直訳「によって」を格助詞「で」へ。※条件表現「進捗状況によっては」は非該当のため不変。"
+    },
+    {
+      "edit_id": "e011",
+      "finding_id": "f002",
+      "category": "A-6",
+      "before": "実施される予定となっております",
+      "after": "実施する予定です",
+      "rationale": "受動「実施される」＋状態叙述「となっております」の二重翻訳調を能動＋断定へ。「予定」の含意(未実施の計画)は保存。"
+    },
+    {
+      "edit_id": "e012",
+      "finding_id": "f010",
+      "category": "I-3",
+      "before": "ご持参いただく必要がございます",
+      "after": "ご持参ください",
+      "rationale": "「必要がございます」の2回目反復を尊敬依頼形「ご持参ください」へ直接化。文末も「ございます」から変奏。"
+    },
+    {
+      "edit_id": "e013",
+      "finding_id": "f007",
+      "category": "A-2",
+      "before": "本工事に関するお問い合わせにつきましては",
+      "after": "本工事のお問い合わせは",
+      "rationale": "「に関する」＋「につきましては」の二重主題処理を「の」＋「は」で解消。電話番号・機関名は不変。"
+    }
+  ]
+}
