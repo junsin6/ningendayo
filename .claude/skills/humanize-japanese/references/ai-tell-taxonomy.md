@@ -397,7 +397,7 @@ J. 視覚装飾の濫用
       "start": 142,
       "end": 150,
       "merged_categories": [],
-      "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
+      "reason": "この箇所の状態叙述は単なる断定で足りる（単一出現の span 例）。反復する場合は下記 f002 のように scattered で全出現を列挙する",
       "suggested_fix": "課題だ"
     },
     {
@@ -442,6 +442,7 @@ J. 視覚装飾の濫用
   * `score_before`（IMP-003）= 推敲前 `02_detection.json` の `meta.severity_weighted_score`。`score_after` は同式で推敲後を再走査。
 * `ai_tell_density`（IMP-004/005）: **span/scattered の検出文字の集合（union）/ 全体文字数**。`document` スコープと `merged_categories` の重複は密度に二重計上しない。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
+* **後方互換（v1.0 finding の解釈）**: v1.0（scope 無し）の finding は `scope: "span"` とみなす（v1.0 の全 finding は `start`/`end` を持つため一意に解釈できる）。`merged_categories` 省略時は `[]`、`occurrences` 省略時は無し（span 単一区間）とみなす。新フィールドはすべて追加のみで既存フィールドの意味は不変。
 
 ## バージョン管理
 
@@ -452,6 +453,7 @@ J. 視覚装飾の濫用
   + `scope: span|scattered|document` と `occurrences[]` を追加（IMP-004/007: 多出現・文書レベル finding の表現と、単一アンカー取りこぼしの防止）。
   + `merged_categories[]` と category_summary の主分類集計規約を追加（IMP-005: 1 span 複数カテゴリの過小評価/二重計上を解消）。
   + `score_before = 02_detection.json の meta.severity_weighted_score` を明文化（IMP-003）。
+  + 後方互換規約を明記: v1.0 の scope 無し finding は `span`、`merged_categories`/`occurrences` 省略は空とみなす（新フィールドは追加のみ・既存意味不変）。スキーマ例 f001 を単一出現に修正し「反復 A 群は scattered」契約との自己矛盾を解消。
 * 拡張原則: 実戦入力で再現 2 回以上 + 日本語の人間の書き手がほぼ使わないパターンのみサブ項目として追加。新パターンは末尾の候補欄に実例 2 件以上を添えて提案する。
 
 ## 拡張候補欄（taxonomist が審査して昇格）
