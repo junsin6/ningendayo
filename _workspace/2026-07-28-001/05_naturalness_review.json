@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-07-28-001",
+  "genre": "technical_explainer",
+  "style": "desu_masu",
+  "current_round": 2,
+  "score_before": 92.0,
+  "score_after": 4.0,
+  "improvement_rate": 0.957,
+  "scoring_note": "S1=5, S2=2, S3=0.5 の加重和。原検出 raw=92.0、正規化係数 1:1。同係数で round2 残存を再集計: S2×2=4.0。",
+  "rescan_summary": {
+    "original_findings": 28,
+    "resolved": 26,
+    "residual": 2,
+    "newly_introduced": 0
+  },
+  "residual_findings": { "S1": 0, "S2": 2, "S3": 0 },
+  "residual_detail": [
+    {
+      "id": "r003",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "verdict": "PLAUSIBLE",
+      "line": 0,
+      "text_span": "(文書レベル)",
+      "reason": "round2 でも終止する全節が です/ます で終止(『のです』1回のみ)。体言止め・でしょう・のだ等の文末変奏はゼロのまま。E-1(文長分散)は短文挿入で改善済みだが E-2(文末形態)の単調は未解消。過推敲ではなく残存(推敲不足)側。単独 S2 のため grade A を妨げない。",
+      "suggested_fix": "任意改善: 1〜2箇所を体言止めまたは『〜でしょう』に変奏"
+    },
+    {
+      "id": "r004",
+      "category": "D-5",
+      "category_label": "AI常套句: 擬人化された抽象主語",
+      "severity": "S2",
+      "verdict": "PLAUSIBLE",
+      "line": 3,
+      "text_span": "この技術は、開発者を…解放します",
+      "reason": "抽象主語『この技術は』+擬人化動詞『解放します』の構図が round2 でも残存。round2 は r001/r002 の局所修正に scope 限定されたため未着手。技術系文章では許容範囲との判断もあり得る境界事例のため PLAUSIBLE。単独 S2。",
+      "suggested_fix": "任意改善: 開発者はインフラ管理から解放されます / サーバーレスならインフラ管理を手放せます"
+    }
+  ],
+  "over_polish_signals": [],
+  "over_polish_detail": {
+    "keitai_joutai_mix": { "count": 0, "note": "常体の混入なし。全文 敬体で一貫。文体崩れなし。" },
+    "meaning_drift": { "count": 0, "note": "round2 は既存文の局所置換のみ。新規の意味毀損なし(最終判定は content-fidelity-auditor)。" },
+    "new_sentence_end_cluster": { "count": 0, "note": "新たな文末クラスタの発生なし。r003 は既存 E-2 クラスタの残存であり過推敲ではない。" },
+    "over_trimming": { "count": 0, "note": "情報欠落・ぶつ切りによる可読性低下なし。round2 の『集中でき』短縮は自然。" },
+    "change_rate": { "value": null, "note": "round2 は r001『集中することができ』→『集中でき』、r002『この点については』→『この点は』の2箇所局所置換のみ。目視で 30% 閾値超の兆候なし。" }
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "grade_rationale": "改善率 95.7%、残存 S1=0・S2=2(いずれも PLAUSIBLE)・S3=0、過推敲シグナル 0。SKILL.md 基準『A: S1 0件, S2 2件以下, 改善 70%+』を全項目で満たす。round1 の near-miss(残存 S1×2)は 2箇所の局所修正で解消され、過推敲も誘発していない。",
+  "notes": "round1 の対象 r001(A-5『集中することができ』)・r002(A-2『この点については』)はいずれも解消。残る r003(E-2 文末単調)・r004(D-5 抽象主語)は PLAUSIBLE S2 で accept を妨げないが、任意改善余地として記録。強制的な round3 は不要。",
+  "history": [
+    {
+      "round": 1,
+      "score_before": 92.0,
+      "score_after": 14.0,
+      "improvement_rate": 0.848,
+      "residual_findings": { "S1": 2, "S2": 2, "S3": 0 },
+      "residual_ids": ["r001(A-5)", "r002(A-2)", "r003(E-2)", "r004(D-5)"],
+      "over_polish_signals": [],
+      "grade": "C",
+      "recommendation": "rewrite_round_2",
+      "note": "残存 S1×2(r001 集中することができ / r002 この点については)により C。過推敲 0 の near-miss。局所修正で A 到達を見込むと判定。"
+    }
+  ]
+}

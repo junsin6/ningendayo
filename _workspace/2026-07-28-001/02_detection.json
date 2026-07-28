@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "input_length": 771,
+    "detected_count": 28,
+    "ai_tell_density": 0.259,
+    "severity_weighted_score": 92.0,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について 主題提示の濫用",
+      "severity": "S1",
+      "text_span": "について",
+      "start": 27,
+      "end": 31,
+      "reason": "見出しで主題を英語 about 式に「について」で処理。日本語の見出しは主題を直に立てる。本文行9「この点については」と合わせ2回出現。",
+      "suggested_fix": "変える（例『サーバーレスが変える開発スタイル』）"
+    },
+    {
+      "id": "f002",
+      "category": "E-1",
+      "category_label": "リズム: 文長の標準偏差が低い",
+      "severity": "S2",
+      "text_span": "近年",
+      "start": 33,
+      "end": 35,
+      "reason": "文書レベル測定: 本文が40〜120字の長文に偏り、10〜20字の短文が皆無。文長分散が小さく一本調子。アンカーは代表位置。",
+      "suggested_fix": "短文を段落ごとに1〜2挟む"
+    },
+    {
+      "id": "f003",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において の濫用",
+      "severity": "S1",
+      "text_span": "において",
+      "start": 56,
+      "end": 60,
+      "reason": "分野を英語 in で抽象的に枠づけ。同語根の「における」が行11にも出現し文書内2回。",
+      "suggested_fix": "開発で"
+    },
+    {
+      "id": "f004",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "集めています",
+      "start": 81,
+      "end": 87,
+      "reason": "文書レベル測定: 本文9文の文末がすべて『ます/です』系で終止。体言止め・だろう等の変奏がゼロ。アンカーは代表位置。",
+      "suggested_fix": "文末に変奏を混ぜる"
+    },
+    {
+      "id": "f005",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "解放されるという",
+      "start": 113,
+      "end": 121,
+      "reason": "名詞句を that 式に「という」で連結。行9『増加という課題』と合わせ2回。",
+      "suggested_fix": "解放される"
+    },
+    {
+      "id": "f006",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞『提供する』",
+      "severity": "S1",
+      "text_span": "価値を提供する",
+      "start": 124,
+      "end": 131,
+      "reason": "『この技術は…価値を提供する』と概念を主語に万能動詞 provide を直訳。行5『モデルを提供しており』と合わせ2回。",
+      "suggested_fix": "（開発者を主語に）インフラ管理から解放する"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "ものとなっています",
+      "start": 131,
+      "end": 140,
+      "reason": "『である/だ』で足りる箇所を英語 has become 式に状態化。行5『仕組みとなっています』と合わせ2回反復。",
+      "suggested_fix": "ものだ／解放する"
+    },
+    {
+      "id": "f008",
+      "category": "I-3",
+      "category_label": "形式表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "行う必要がありました",
+      "start": 184,
+      "end": 194,
+      "reason": "英語 need to の直訳。行為者を曖昧にした要請。",
+      "suggested_fix": "手動で行っていた"
+    },
+    {
+      "id": "f009",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用: オペレーション",
+      "severity": "S2",
+      "text_span": "オペレーション",
+      "start": 218,
+      "end": 225,
+      "reason": "日本語で書けるカタカナ語。文書内で不要カタカナ（シームレス/フォーカス/アジリティ/ソリューション/モダン）が計6語と高密度。",
+      "suggested_fix": "作業／運用"
+    },
+    {
+      "id": "f010",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "削減することができます",
+      "start": 229,
+      "end": 240,
+      "reason": "可能の冗長形 be able to。文書内で『することができる/ができ/ことが可能』が計5回反復し最頻シグネチャ。",
+      "suggested_fix": "削減できます／減らせます"
+    },
+    {
+      "id": "f011",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞『提供する』",
+      "severity": "S1",
+      "text_span": "モデルを提供しており",
+      "start": 330,
+      "end": 340,
+      "reason": "『マネージドサービスは…モデルを提供しており』と概念主語+provide 直訳。行3と合わせ2回。",
+      "suggested_fix": "（イベントで動く仕組みを）採る"
+    },
+    {
+      "id": "f012",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "仕組みとなっています",
+      "start": 365,
+      "end": 375,
+      "reason": "『仕組みだ』で足りる箇所を状態化。行3『ものとなっています』と合わせ2回反復。",
+      "suggested_fix": "仕組みです"
+    },
+    {
+      "id": "f013",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "最適化することができます",
+      "start": 416,
+      "end": 428,
+      "reason": "可能の冗長形が5回反復するうちの2つ目。断定でも足りる。",
+      "suggested_fix": "最適化できます／高められます"
+    },
+    {
+      "id": "f014",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 段落冒頭『また』",
+      "severity": "S3",
+      "text_span": "また、",
+      "start": 431,
+      "end": 434,
+      "reason": "段落冒頭の接続詞。行9『一方で』と合わせ段落頭が接続詞化。論理は内容で示せる。",
+      "suggested_fix": "（削除して直叙）"
+    },
+    {
+      "id": "f015",
+      "category": "A-7",
+      "category_label": "翻訳調: 〜を備えている/有する",
+      "severity": "S2",
+      "text_span": "備えているため",
+      "start": 462,
+      "end": 469,
+      "reason": "所有・特性叙述 have/possess の名詞的処理。形容詞・動詞へ回せる。",
+      "suggested_fix": "自動で拡張するため"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用: シームレス",
+      "severity": "S2",
+      "text_span": "シームレス",
+      "start": 484,
+      "end": 489,
+      "reason": "taxonomy 明示の代表例。日本語に開ける。不要カタカナ6語の一つ。",
+      "suggested_fix": "滑らかに"
+    },
+    {
+      "id": "f017",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することが可能 の濫用",
+      "severity": "S1",
+      "text_span": "することが可能です",
+      "start": 497,
+      "end": 506,
+      "reason": "可能の冗長形（ことが可能）。5回反復の一つ。",
+      "suggested_fix": "スケールアウトできます"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用: フォーカス",
+      "severity": "S2",
+      "text_span": "フォーカス",
+      "start": 526,
+      "end": 531,
+      "reason": "『集中する/専念する』で足りるカタカナ語。不要カタカナ6語の一つ。",
+      "suggested_fix": "集中する"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用: アジリティ",
+      "severity": "S2",
+      "text_span": "アジリティ",
+      "start": 542,
+      "end": 547,
+      "reason": "『俊敏さ/機動力』で書けるカタカナ語。不要カタカナ6語の一つ。",
+      "suggested_fix": "開発の速さ"
+    },
+    {
+      "id": "f020",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "向上させることができます",
+      "start": 548,
+      "end": 560,
+      "reason": "可能の冗長形。1文に『フォーカスすることができ』『向上させることができます』が連続。",
+      "suggested_fix": "高められます"
+    },
+    {
+      "id": "f021",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "増加という課題",
+      "start": 592,
+      "end": 599,
+      "reason": "名詞を that 式に連結。行3『解放されるという』と合わせ2回。",
+      "suggested_fix": "増加が課題"
+    },
+    {
+      "id": "f022",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜ている 状態叙述の濫用",
+      "severity": "S2",
+      "text_span": "存在しています",
+      "start": 600,
+      "end": 607,
+      "reason": "『課題もある』で足りる存在叙述を状態化。となっている系の状態叙述が文書内で頻出。",
+      "suggested_fix": "課題もあります"
+    },
+    {
+      "id": "f023",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用: ソリューション",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 692,
+      "end": 699,
+      "reason": "『解決策』で書けるカタカナ語。不要カタカナ6語の一つ。",
+      "suggested_fix": "解決策"
+    },
+    {
+      "id": "f024",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる の濫用",
+      "severity": "S1",
+      "text_span": "緩和することができます",
+      "start": 712,
+      "end": 723,
+      "reason": "可能の冗長形。文書内5回目。ヘッジ『ある程度』とも重複。",
+      "suggested_fix": "緩和できます"
+    },
+    {
+      "id": "f025",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用: モダン",
+      "severity": "S2",
+      "text_span": "モダンな",
+      "start": 734,
+      "end": 738,
+      "reason": "『現代的な』で書けるカタカナ語。不要カタカナ6語の一つ。",
+      "suggested_fix": "現代的な"
+    },
+    {
+      "id": "f026",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における の濫用",
+      "severity": "S1",
+      "text_span": "における",
+      "start": 748,
+      "end": 752,
+      "reason": "分野を in で枠づけ。行3『において』と同語根で文書内2回。",
+      "suggested_fix": "開発の"
+    },
+    {
+      "id": "f027",
+      "category": "D-4",
+      "category_label": "誇張語彙: 強力な",
+      "severity": "S3",
+      "text_span": "強力な選択肢",
+      "start": 752,
+      "end": 758,
+      "reason": "ハイプ寄りの形容。単独では弱いが結び常套句と重なり印象を強める。",
+      "suggested_fix": "有力な選択肢"
+    },
+    {
+      "id": "f028",
+      "category": "D-1",
+      "category_label": "AI常套句: 〜と言えるでしょう（結び）",
+      "severity": "S1",
+      "text_span": "と言えるでしょう",
+      "start": 761,
+      "end": 769,
+      "reason": "D-1 結び常套句。末尾を型どおりに締める AI シグネチャ。",
+      "suggested_fix": "選択肢だ／有力だ"
+    }
+  ],
+  "category_summary": {
+    "A": 16,
+    "B": 6,
+    "C": 0,
+    "D": 2,
+    "E": 2,
+    "F": 0,
+    "G": 0,
+    "H": 1,
+    "I": 1,
+    "J": 0
+  }
+}
