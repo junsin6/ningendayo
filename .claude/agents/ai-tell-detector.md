@@ -30,9 +30,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "span",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
+      "merged_categories": [],
       "reason": "理由（密度・反復回数など根拠を明記）",
       "suggested_fix": "課題だ"
     }
@@ -50,9 +52,15 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（taxonomy §検出出力スキーマの確定式に厳密準拠 — IMP-002）:
+   * `raw = Σ severity_weight`（S1=5, S2=2, S3=0.5）
+   * `density_weighted = raw / input_length * 1000`（1000字あたり加重和）
+   * `severity_weighted_score = round(100 * (1 - exp(-density_weighted / 40)), 1)`（非飽和正規化。キャップ法・線形法など独自式を使わないこと）
+   * `ai_tell_density` = span/scattered の検出文字の union / 全体文字数（document スコープと merged_categories 重複は二重計上しない）。
+6. **多出現・文書レベルの表現**（IMP-004/007）:
+   * 反復パターン（A 群・E・C）は `scope:"scattered"` とし `occurrences:[[s,e],...]` に**全出現を列挙**する。単一アンカーにまとめない。
+   * 文長分散・文末単調など文書全域の測定は `scope:"document"`（start/end 省略可）。
+   * 1 span が複数カテゴリに該当するときは主分類を `category`、従を `merged_categories` に置く（IMP-005）。
 
 ## 重要な原則
 
