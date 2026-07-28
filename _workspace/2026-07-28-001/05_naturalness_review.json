@@ -2,40 +2,19 @@
   "run_id": "2026-07-28-001",
   "genre": "technical_explainer",
   "style": "desu_masu",
+  "current_round": 2,
   "score_before": 92.0,
-  "score_after": 14.0,
-  "improvement_rate": 0.848,
-  "scoring_note": "S1=5, S2=2, S3=0.5 の加重和。原検出は raw=13*5+13*2+2*0.5=92.0 で正規化係数 1:1。同係数で残存を再集計し score_after を算出。",
+  "score_after": 4.0,
+  "improvement_rate": 0.957,
+  "scoring_note": "S1=5, S2=2, S3=0.5 の加重和。原検出 raw=92.0、正規化係数 1:1。同係数で round2 残存を再集計: S2×2=4.0。",
   "rescan_summary": {
     "original_findings": 28,
-    "resolved": 24,
-    "residual": 4,
+    "resolved": 26,
+    "residual": 2,
     "newly_introduced": 0
   },
-  "residual_findings": { "S1": 2, "S2": 2, "S3": 0 },
+  "residual_findings": { "S1": 0, "S2": 2, "S3": 0 },
   "residual_detail": [
-    {
-      "id": "r001",
-      "category": "A-5",
-      "category_label": "翻訳調: 〜することができる の濫用",
-      "severity": "S1",
-      "verdict": "CONFIRMED",
-      "line": 7,
-      "text_span": "集中することができ",
-      "reason": "原 f018(フォーカス/B-2)と f020(向上させることができます/A-5)を同一文で処理した際、フォーカス→集中 の語彙置換は成功したが 述部の『することができ』(A-5 冗長可能形)がそのまま残存。『集中でき』へ短縮すべき。文書内で A-5 を5箇所修正しながら1箇所を取りこぼした最頻シグネチャの生き残り。",
-      "suggested_fix": "実装に集中でき、開発の俊敏さを高められます"
-    },
-    {
-      "id": "r002",
-      "category": "A-2",
-      "category_label": "翻訳調: 〜について 主題提示",
-      "severity": "S1",
-      "verdict": "CONFIRMED",
-      "line": 9,
-      "text_span": "この点については",
-      "reason": "原 f001 は『について』を2回出現(見出し+この点については)と記しながら finding を見出し span のみにアンカー。見出しは修正されたが本文の第2出現に独立 finding が無く未修正のまま残存。単独でも A-2 は S1。",
-      "suggested_fix": "この点は、プロビジョンドコンカレンシー等で / この課題には"
-    },
     {
       "id": "r003",
       "category": "E-2",
@@ -44,8 +23,8 @@
       "verdict": "PLAUSIBLE",
       "line": 0,
       "text_span": "(文書レベル)",
-      "reason": "終止する15節すべてが です/ます で終止。体言止め・でしょう・のだ等の変奏はゼロ(『のです』1回のみ)。E-1(文長分散)は短文挿入で明確に改善したが、E-2 の文末形態の単調は部分的にしか解消していない。過推敲ではなく推敲不足側の残存。",
-      "suggested_fix": "1〜2箇所を体言止めまたは『〜でしょう』に変奏"
+      "reason": "round2 でも終止する全節が です/ます で終止(『のです』1回のみ)。体言止め・でしょう・のだ等の文末変奏はゼロのまま。E-1(文長分散)は短文挿入で改善済みだが E-2(文末形態)の単調は未解消。過推敲ではなく残存(推敲不足)側。単独 S2 のため grade A を妨げない。",
+      "suggested_fix": "任意改善: 1〜2箇所を体言止めまたは『〜でしょう』に変奏"
     },
     {
       "id": "r004",
@@ -54,21 +33,35 @@
       "severity": "S2",
       "verdict": "PLAUSIBLE",
       "line": 3,
-      "text_span": "この技術は、開発者を…から解放します",
-      "reason": "原 f006(価値を提供する/A-10)の万能動詞『提供する』は除去されたが、抽象主語『この技術は』+擬人化動詞『解放します』の構図が残存。suggested_fix は開発者を主語に戻すよう指示していた。境界事例(技術系文章では許容範囲との判断もあり得る)のため PLAUSIBLE。",
-      "suggested_fix": "開発者はインフラ管理から解放されます / サーバーレスならインフラ管理を手放せます"
+      "text_span": "この技術は、開発者を…解放します",
+      "reason": "抽象主語『この技術は』+擬人化動詞『解放します』の構図が round2 でも残存。round2 は r001/r002 の局所修正に scope 限定されたため未着手。技術系文章では許容範囲との判断もあり得る境界事例のため PLAUSIBLE。単独 S2。",
+      "suggested_fix": "任意改善: 開発者はインフラ管理から解放されます / サーバーレスならインフラ管理を手放せます"
     }
   ],
   "over_polish_signals": [],
   "over_polish_detail": {
     "keitai_joutai_mix": { "count": 0, "note": "常体の混入なし。全文 敬体で一貫。文体崩れなし。" },
-    "meaning_drift": { "count": 0, "note": "『それが新しい価値です』等の短文化・言い換えは見られるが事実・主張の毀損なし(最終判定は content-fidelity-auditor)。" },
-    "new_sentence_end_cluster": { "count": 0, "note": "新たな文末クラスタの発生なし。むしろ E-2 の既存クラスタが残る=過推敲ではなく残存問題。" },
-    "over_trimming": { "count": 0, "note": "情報欠落・ぶつ切りによる可読性低下は認められず。短文挿入はリズム改善に寄与。" },
-    "change_rate": { "value": null, "note": "01_input.txt / 03_rewrite_diff.json が本レビューに未供給のため定量不可。目視では 30% 閾値超の兆候なし。" }
+    "meaning_drift": { "count": 0, "note": "round2 は既存文の局所置換のみ。新規の意味毀損なし(最終判定は content-fidelity-auditor)。" },
+    "new_sentence_end_cluster": { "count": 0, "note": "新たな文末クラスタの発生なし。r003 は既存 E-2 クラスタの残存であり過推敲ではない。" },
+    "over_trimming": { "count": 0, "note": "情報欠落・ぶつ切りによる可読性低下なし。round2 の『集中でき』短縮は自然。" },
+    "change_rate": { "value": null, "note": "round2 は r001『集中することができ』→『集中でき』、r002『この点については』→『この点は』の2箇所局所置換のみ。目視で 30% 閾値超の兆候なし。" }
   },
-  "grade": "C",
-  "recommendation": "rewrite_round_2",
-  "grade_rationale": "改善率 84.8% は B/A 相当(70%+)だが、残存 S1 が2件(A-5『集中することができ』, A-2『この点については』)。SKILL.md 基準『C: S1 1〜2件』に該当し、絶対残存数が改善率に優先する。過推敲シグナルは0のため D ではない。2箇所の局所修正で A 到達が見込める near-miss。",
-  "notes": "2次推敲は全面再作成ではなく r001/r002 の局所修正に限定すべき(変更率を最小化)。余力があれば r003(文末変奏1〜2箇所)、r004(抽象主語の行為者化)も。r001・r002 はいずれも『検出器が多出現パターンを単一 finding にまとめ、非アンカー出現が未修正で残る』という同一のエンジン欠陥に起因する。"
+  "grade": "A",
+  "recommendation": "accept",
+  "grade_rationale": "改善率 95.7%、残存 S1=0・S2=2(いずれも PLAUSIBLE)・S3=0、過推敲シグナル 0。SKILL.md 基準『A: S1 0件, S2 2件以下, 改善 70%+』を全項目で満たす。round1 の near-miss(残存 S1×2)は 2箇所の局所修正で解消され、過推敲も誘発していない。",
+  "notes": "round1 の対象 r001(A-5『集中することができ』)・r002(A-2『この点については』)はいずれも解消。残る r003(E-2 文末単調)・r004(D-5 抽象主語)は PLAUSIBLE S2 で accept を妨げないが、任意改善余地として記録。強制的な round3 は不要。",
+  "history": [
+    {
+      "round": 1,
+      "score_before": 92.0,
+      "score_after": 14.0,
+      "improvement_rate": 0.848,
+      "residual_findings": { "S1": 2, "S2": 2, "S3": 0 },
+      "residual_ids": ["r001(A-5)", "r002(A-2)", "r003(E-2)", "r004(D-5)"],
+      "over_polish_signals": [],
+      "grade": "C",
+      "recommendation": "rewrite_round_2",
+      "note": "残存 S1×2(r001 集中することができ / r002 この点については)により C。過推敲 0 の near-miss。局所修正で A 到達を見込むと判定。"
+    }
+  ]
 }

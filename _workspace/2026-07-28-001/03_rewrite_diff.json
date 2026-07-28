@@ -3,17 +3,21 @@
     "run_id": "2026-07-28-001",
     "genre": "技術解説記事",
     "style_preserved": "desu_masu",
+    "round": 2,
+    "round_note": "2次推敲。自然度レビュー(grade C, 残存S1×2: r001 A-5 / r002 A-2)を受け、当該2 spanのみ手術的に修正。他spanは完全保持。",
     "input_length_no_ws": 757,
-    "output_length_no_ws": 672,
-    "lcs": 611,
-    "changed_chars": 207,
-    "change_rate": 0.2734,
-    "substitution_rate": 0.1929,
+    "output_length_no_ws": 663,
+    "lcs": 602,
+    "changed_chars": 216,
+    "change_rate": 0.2853,
+    "change_rate_round1": 0.2734,
+    "substitution_rate": 0.2048,
     "deletion_rate": 0.0806,
-    "change_rate_note": "changed_chars=挿入+削除（LCS法, 置換=1削除+1挿入）。substitution_rate=削除側(len_o-LCS)/原文、deletion_rate=挿入側(len_n-LCS)/原文として分離計上。27.3%で30%警告閾値未満。",
+    "change_rate_note": "changed_chars=挿入+削除（LCS法, 置換=1削除+1挿入）。substitution_rate=削除側(len_o-LCS)/原文、deletion_rate=挿入側(len_n-LCS)/原文として分離計上。round2の2 editはいずれも純削除(冗長可能形の圧縮・主題助詞の短縮)のため挿入側61は不変、削除側のみ+9。28.5%で30%警告閾値未満。",
     "findings_total": 28,
     "findings_covered": 28,
-    "edits_total": 24,
+    "residual_s1_fixed": ["r001", "r002"],
+    "edits_total": 26,
     "warnings": []
   },
   "edits": [
@@ -211,6 +215,24 @@
       "before": "選択肢の一つと言えるでしょう。",
       "after": "選択肢の一つです。",
       "rationale": "D-1 結び常套句『と言えるでしょう』を断定『です』へ。敬体維持。誇張なく締める。"
+    },
+    {
+      "edit_id": "e025",
+      "round": 2,
+      "finding_id": "r001",
+      "category": "A-5",
+      "before": "実装に集中することができ、開発の俊敏さを高められます",
+      "after": "実装に集中でき、開発の俊敏さを高められます",
+      "rationale": "2次推敲。round1で f018(フォーカス→集中/B-2)は解消したが同一文の述部『することができ』(A-5 冗長可能形)が取りこぼされ残存(r001, S1)。可能動詞『集中でき』へ圧縮。後続『高められます』も可能動詞だが、連用中止『集中でき、』は自然な連結で機械的均一には当たらない(A-5全6回=減らせます/できます/できます/集中でき/高められます/和らげられますと分散)。意味・敬体不変。"
+    },
+    {
+      "edit_id": "e026",
+      "round": 2,
+      "finding_id": "r002",
+      "category": "A-2",
+      "before": "この点については、プロビジョンドコンカレンシーなどの解決策を活用することで",
+      "after": "この点は、プロビジョンドコンカレンシーなどの解決策を活用することで",
+      "rationale": "2次推敲。翻訳調の主題提示『については』(as for〜)を主題助詞『は』へ短縮(r002, S1)。原 f001 は『について』を見出しspanにのみアンカーし本文第2出現を取りこぼしていた。文意(コールドスタート由来レイテンシをプロビジョンドコンカレンシー等で緩和)は不変。固有語『プロビジョンドコンカレンシー』保持、敬体維持。"
     }
   ]
 }
