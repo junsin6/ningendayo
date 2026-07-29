@@ -73,11 +73,16 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 条件 | 判定 | アクション |
 | --- | --- | --- |
 | 等級 A/B かつ fidelity 毀損なし | `accept` | `final.md` + `summary.md` 出力 |
+| 変更率超過だが fidelity=pass かつ 等級 A/B かつ `deletion_led=true` | `override accept` | accept。理由を `summary.md` に明記（IMP-001 既知欠陥） |
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
+
+**変更率の override 規則（IMP-001）**: char-level `change_rate` は純削除主導で膨張するため、単独では中断根拠にしない。中断は推敲役の `substitution_rate`（主指標）50% 超のときのみ。`change_rate` 50% 超でも `substitution_rate` が閾値内・`deletion_led=true`・fidelity=pass・自然度 A/B なら `override accept` とし、その旨を summary に記す。
+
+**絶対残存 S1 ガード（naturalness）**: 改善率が高くても、残存 S1 が 1 件でもあれば等級は C 以下（A/B の前提条件は S1=0）。
 
 ## 深刻度と品質等級
 
