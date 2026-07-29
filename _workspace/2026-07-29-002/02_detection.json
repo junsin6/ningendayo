@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "input_length": 678,
+    "detected_count": 19,
+    "ai_tell_density": 0.202,
+    "severity_weighted_score": 60.5,
+    "score_formula": "raw = S1*5 + S2*2 + S3*0.5 = 8*5 + 10*2 + 1*0.5 = 60.5; severity_weighted_score = min(100, raw)（clip-at-100 正規化。分母未定義の schema 穴を暫定的にクリップで処理。詳細は改善報告参照）",
+    "style": "desu_masu",
+    "notes": "自治体の公的お知らせ文。敬体（です・ます）で統一。定型敬語（お願い申し上げます・ご確認いただきますよう 等）はジャンル妥当のため原則『文体維持』対象とし、過剰反復・翻訳調に起因する冗長のみ finding 化した。ai_tell_density は inline span の総文字数(137)/input_length(678)。document-level span(E-2)は density 分子に含めない。"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用（ここでは敬語変種『におきましては』）",
+      "severity": "S2",
+      "text_span": "本市におきましては",
+      "start": 34,
+      "end": 43,
+      "reason": "『において』系が本文で計4回（におきまして/におかれまして/においても/において）。うち本例は『本市は』で足りる枠づけ。定型敬語だが密度が高く翻訳調を強める",
+      "suggested_fix": "本市では"
+    },
+    {
+      "id": "f002",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用（敬語変種『におかれましては』）",
+      "severity": "S2",
+      "text_span": "市民の皆様におかれましては",
+      "start": 89,
+      "end": 102,
+      "reason": "公的文書の定型敬語だが、同文書に『において』系4回の一つ。ジャンル妥当な最小限として残す選択肢もあるが密度過多。severityは中",
+      "suggested_fix": "市民の皆様には"
+    },
+    {
+      "id": "f003",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "時間帯においても",
+      "start": 212,
+      "end": 220,
+      "reason": "『において』系4回の一つ。『時間帯でも』で足り、抽象的枠づけの翻訳調。単独でもAIシグネチャ性が強い",
+      "suggested_fix": "時間帯でも"
+    },
+    {
+      "id": "f004",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "窓口において",
+      "start": 314,
+      "end": 320,
+      "reason": "『において』系4回の一つ。『市民課の窓口で』に直結できる。場所を『において』で抽象化する翻訳調",
+      "suggested_fix": "窓口で"
+    },
+    {
+      "id": "f005",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなりました",
+      "start": 80,
+      "end": 88,
+      "reason": "『となる』系が本文3回（なりました/なる/なります）。『開始されました』で足りるところを状態化する日本語LLM最強クセ",
+      "suggested_fix": "開始されました"
+    },
+    {
+      "id": "f006",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "となるものです",
+      "start": 185,
+      "end": 192,
+      "reason": "『となる』系3回の一つ。『取得できます』で足り、可能表現A-5と重畳して冗長化",
+      "suggested_fix": "取得できます"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "必要となります",
+      "start": 287,
+      "end": 294,
+      "reason": "『となる』系3回の一つ。『必要です』で足りる状態叙述。同一文にI-3『必要があります』も出現し要請表現が過密",
+      "suggested_fix": "必要です"
+    },
+    {
+      "id": "f008",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用（可能表現の冗長）",
+      "severity": "S1",
+      "text_span": "することが可能",
+      "start": 178,
+      "end": 185,
+      "reason": "『ことができる/ことが可能』系が本文3回。『各種証明書を取得でき』に短縮可能。canの冗長直訳",
+      "suggested_fix": "取得でき"
+    },
+    {
+      "id": "f009",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用（可能表現の冗長）",
+      "severity": "S1",
+      "text_span": "受け取ることができる",
+      "start": 225,
+      "end": 235,
+      "reason": "可能表現系3回の一つ。『受け取れる』に短縮可能。『ことができるようになります』はA-6状態化とも重畳し二重に冗長",
+      "suggested_fix": "受け取れる"
+    },
+    {
+      "id": "f010",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用（可能表現の冗長）",
+      "severity": "S1",
+      "text_span": "することが可能な",
+      "start": 412,
+      "end": 420,
+      "reason": "可能表現系3回の一つ。『取得できる証明書の種類』に短縮可能",
+      "suggested_fix": "取得できる"
+    },
+    {
+      "id": "f011",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "コピー機によって",
+      "start": 161,
+      "end": 169,
+      "reason": "『によって』受動が本文2回。行為者/手段を後置する英語受動の直訳。『マルチコピー機で』の手段格に開ける",
+      "suggested_fix": "マルチコピー機で"
+    },
+    {
+      "id": "f012",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "等によって",
+      "start": 504,
+      "end": 509,
+      "reason": "『によって』受動2回の一つ。『システムメンテナンス等で』の手段格に開ける",
+      "suggested_fix": "等で"
+    },
+    {
+      "id": "f013",
+      "category": "A-3",
+      "category_label": "翻訳調: 〜を通じて/を通して 濫用",
+      "severity": "S2",
+      "text_span": "を通じて",
+      "start": 546,
+      "end": 550,
+      "reason": "手段・経路を『を通じて』で処理（through/via直訳）。本文では単発だが『ホームページ等で』に開ける。他の翻訳調と重なり冗長",
+      "suggested_fix": "等で"
+    },
+    {
+      "id": "f014",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（should/need to 直訳）",
+      "severity": "S2",
+      "text_span": "必要があります",
+      "start": 330,
+      "end": 337,
+      "reason": "『手続きを行う必要があります』。公的文書として妥当だが、同一文にA-6『必要となります』が併存し要請表現が過密。片方を具体勧告形へ",
+      "suggested_fix": "手続きが必要です"
+    },
+    {
+      "id": "f015",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用（敬語変種『につきましては』）",
+      "severity": "S2",
+      "text_span": "につきましては",
+      "start": 379,
+      "end": 386,
+      "reason": "『につきまして』が同一段落(L9)で2回連続。主題提示をすべてこの形で処理。『交付手数料は』の主題助詞に開ける",
+      "suggested_fix": "は"
+    },
+    {
+      "id": "f016",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用（敬語変種『につきましては』）",
+      "severity": "S2",
+      "text_span": "につきましては",
+      "start": 439,
+      "end": 446,
+      "reason": "『につきまして』2回の一つ（同段落内反復）。『詳細は』の主題助詞に開ける",
+      "suggested_fix": "は"
+    },
+    {
+      "id": "f017",
+      "category": "I-4",
+      "category_label": "形式的表現: 行為者を曖昧にした要請・期待（★日本語固有寄り、ここでは期待の無主体受動）",
+      "severity": "S2",
+      "text_span": "期待されております",
+      "start": 620,
+      "end": 629,
+      "reason": "『広く活用されることが期待されております』は行為者不在の受動的期待でI-4類型。硬い敬語受動が結びの常套。誰の期待か曖昧。断定叙述へ",
+      "suggested_fix": "活用いただければ幸いです"
+    },
+    {
+      "id": "f018",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復＋硬い敬語結びの反復（★日本語固有、文書レベル）",
+      "severity": "S2",
+      "text_span": "(文書全体)",
+      "span_type": "document",
+      "occurrences": [
+        {"text": "こととなりました。", "note": "L3 文末"},
+        {"text": "お願い申し上げます。", "start": 120, "end": 130},
+        {"text": "お願いいたします。", "start": 356, "end": 365},
+        {"text": "お願い申し上げます。", "start": 576, "end": 586},
+        {"text": "お願い申し上げます。", "start": 667, "end": 677}
+      ],
+      "start": 0,
+      "end": 678,
+      "reason": "全12文が敬体で文末が『〜ます。/〜です。/〜おります。』に集中し一本調子。特に『お願い申し上げます』が3回＋『お願いいたします』1回で結びが機械反復。ジャンル妥当な定型のため全削除は不可だが、一部を体言止め・別語彙（お願いいたします/幸いです 等）へ変奏し反復を割る",
+      "suggested_fix": "結びの敬語を1〜2回に整理し、文末に変奏（体言止め・語彙差し替え）を挟む"
+    },
+    {
+      "id": "f019",
+      "category": "I-1",
+      "category_label": "形式的表現: 〜こと 濫用",
+      "severity": "S3",
+      "text_span": "活用されること",
+      "start": 612,
+      "end": 619,
+      "reason": "形式名詞『こと』が本文5回。単独では問題ないが翻訳調・受動と重畳するとAI印象を強める。他パターンと重なる本例のみS3で計上",
+      "suggested_fix": "活用され"
+    }
+  ],
+  "category_summary": {
+    "A": 15,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 3,
+    "J": 0
+  }
+}
