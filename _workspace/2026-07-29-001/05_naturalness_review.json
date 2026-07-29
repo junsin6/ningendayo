@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "score_before": 70.3,
+    "score_after": 2.8,
+    "improvement_rate": 0.96,
+    "grade": "A",
+    "decision": "accept",
+    "score_before_source": "02_detection.json meta.severity_weighted_score (IMP-003)",
+    "score_after_method": "detector 相当の再走査を 03_rewrite.md に実施（IMP-006, 推定でなく実計測）。加重和 raw = 5*S1 + 2*S2 + 0.5*S3 = 5*0 + 2*1 + 0.5*2 = 3.0 ; score_after = min(100, round(raw / rewrite_len(597, 改行込み=検出器の input_length=775 と同一規約) * 550, 1)) = 2.8",
+    "residual_severity_counts": { "S1": 0, "S2": 1, "S3": 2 },
+    "findings_before": 33,
+    "findings_resolved": 33,
+    "findings_residual_or_partial": 3,
+    "style_before": "desu_masu",
+    "style_after": "desu_masu",
+    "style_preserved": true
+  },
+  "residual_findings": [
+    {
+      "id": "r001",
+      "traces_to": "f031",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "span_type": "distributed",
+      "status": "partial",
+      "measure": "文末16箇所中、非ます/です終止は2箇所（体言止め「帯域幅の節約。」／依頼形「触れてみてください。」）＝12.5%。原文0%からは改善したが、ます/です終止が依然87.5%と高い。",
+      "e2_reach_line": "非ます/です終止 15〜20% を到達ラインとみなすと僅かに未達。体言止め or 「〜でしょう／〜のです」をあと1〜2箇所（例: line5『解決できます』, line9『生まれます』の一方）で解消可能。",
+      "reason": "変奏は導入されたため S2 の『変奏がない』条件は緩和されるが、密度はなお高いため残存 S2 として計上（保守判定）。",
+      "blocking": false
+    },
+    {
+      "id": "r002",
+      "traces_to": "f033",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用（分散）",
+      "severity": "S3",
+      "span_type": "span",
+      "status": "partial",
+      "text_span": "ネットワークコスト",
+      "measure": "テクノロジー→技術／アーキテクチャ→構成／ローカル→手元／ユースケース→場面／デジタルライフ→デジタルな暮らし の5語を開き密度は目標どおり半減。残存は『ネットワークコスト』単発（除去閾値の反復3回+に未達）と『スマートファクトリー』（準固有名詞で維持可）。",
+      "reason": "単発残存で除去閾値未満。『通信コスト／回線コスト』へ開けば完全解消だが必須ではない。",
+      "blocking": false
+    },
+    {
+      "id": "r003",
+      "traces_to": "f010",
+      "category": "D-4",
+      "category_label": "ハイプ語彙「新たな」",
+      "severity": "S3",
+      "span_type": "span",
+      "status": "partial",
+      "text_span": "新たな価値が生まれます",
+      "measure": "A-10 の万能動詞『提供します』は『生まれます』へ解消済み。共起していたハイプ修飾『新たな』が残存（元 f010 reason で D-4 重複を指摘）。",
+      "reason": "単独では軽微。『新しい使い方が生まれます』等で完全に無色化できるが減点は小。",
+      "blocking": false
+    }
+  ],
+  "overpolish_signals": [
+    {
+      "type": "change_rate_over_30",
+      "value": 0.4646,
+      "threshold_warning": 0.30,
+      "threshold_abort": 0.50,
+      "verdict": "注意（許容）",
+      "counts_toward_grade_c": false,
+      "detail": "03_rewrite_diff.json 記録の char-level change_rate は 46.5%（警告閾値30%超・中断閾値50%未満）。ただし削除主導（deletion_driven=true）：純削除14.6%は英語併記4件・AI常套句/接続詞（——, まず, すなわち, 一方で, したがって, このように, いかがでしょうか）・冗長可能形の字数減に由来し、意味置換ではない。純粋改変 substitution_rate は 30.8%。全変更が33 findings と1:1で紐づき（span-grounded）、内容毀損は fidelity-auditor 領域で保持済。過推敲としては非深刻。"
+    }
+  ],
+  "overpolish_checks_clear": [
+    { "check": "文体崩れ（敬体/常体混入）", "result": "clear", "measure": "文末二値カウント: 常体(だ/である)終止=0。全終止が敬体(ます/です=14)＋体言止め(1)＋依頼形(ください=1)。混入なし。" },
+    { "check": "語彙の不自然な硬化", "result": "clear", "measure": "構成/手元/場面/だからこそ 等いずれも自然。過度な硬化・不自然な口語化なし。" },
+    { "check": "削りすぎ・ぶつ切り", "result": "clear", "measure": "『もう一つは、帯域幅の節約。』は簡潔だが文法的で自然（体言止めはリズム変奏に寄与）。意味の希薄化なし。" },
+    { "check": "リズム破壊", "result": "improved", "measure": "短文『帯域幅の節約。』(12字)と体言止め導入で文長SD拡大、E-1均一性は解消方向。破壊なし。" }
+  ],
+  "grade_rationale": "残存 S1=0（絶対残存ガード通過）, S2=1（≤2）, 改善率96.0%（≥70%）で品質等級 A。過推敲シグナルは change_rate の1個のみ（C 判定は2個必要）で非深刻・削除主導のため降格せず。→ decision: accept。",
+  "notes": "全33 findings が解消/実質解消。残る3件はいずれも S2/S3 の非ブロッキングで、2次推敲を要さない。オーケストレーターへの申し送り: (1) change_rate 46.5% は削除主導だが警告閾値超のため summary に明記推奨、(2) さらに磨くなら E-2 をあと1〜2箇所の文末変奏で 15%+ に載せると B→A の余裕が増す（必須でない）。"
+}
