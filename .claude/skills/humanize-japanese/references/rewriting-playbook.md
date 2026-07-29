@@ -1,4 +1,4 @@
-# 推敲プレイブック (Japanese Rewriting Playbook) v1.0
+# 推敲プレイブック (Japanese Rewriting Playbook) v1.1
 
 `ai-tell-taxonomy.md` で検出された各カテゴリを、**意味を一字も変えずに**文体・リズム・表現だけ自然な日本語へ戻すための置換レシピ集。推敲役（`japanese-style-rewriter`）の作業マニュアル。
 
@@ -138,11 +138,21 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（v1.1・二軸方式 — IMP-001 適用）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+単一の char-level `change_rate` は、英語併記・常套句・冗長可能形の**正当な純削除**でも膨張し、fidelity 完全保持の良推敲を誤って中断させる（実測: 削除主導の推敲で change_rate 46.5% でも実質改変は 31.0%）。そこで **3 指標を分離計上**する。
+
+* `change_rate` = （挿入 + 削除文字数）/ 原文文字数。difflib 文字単位。**参考値**（単独で中断判定に使わない）。
+* `substitution_rate`（**主指標**）= 意味置換に伴う改変文字数 / 原文文字数。純削除（下記）分を除外した「語句を別語句に置き換えた」量。
+* `pure_deletion_rate`（別掲）= 情報を含まない純削除（英語併記グロス・絵文字・AI 常套句・冗長可能形・文頭接続詞）の削除文字数 / 原文文字数。
+* `deletion_led`（フラグ）= 削除文字数 > 挿入文字数 なら true。true は「冗長カット主体（健全）」、false は「書き換え主体（過推敲リスク要注意）」を示す。
+
+**分母の定義**: 原文 = `01_input.txt` の本文（見出し行含む・空行除く連結）。検出器 `meta.input_length` と食い違う場合は diff meta に both を記録する。
+
+**判定（中断トリガは substitution_rate に一本化）:**
+* `substitution_rate` 30% 超 → `warnings`／`summary.md` に警告を記録し続行。
+* `substitution_rate` 50% 超 → 強制中断し `hold_and_report`。ジャンルを移していないか再点検。
+* `change_rate` が 50% 超でも `substitution_rate` が閾値内かつ `deletion_led=true` なら中断しない（純削除膨張のため）。最終判定はオーケストレーターが SKILL.md §総合判定の override 規則で行う。
 
 ## 文体変換例（before → after 一括サンプル）
 

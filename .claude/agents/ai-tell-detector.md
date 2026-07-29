@@ -30,9 +30,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "span_type": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
+      "occurrences": null,
       "reason": "理由（密度・反復回数など根拠を明記）",
       "suggested_fix": "課題だ"
     }
@@ -50,9 +52,15 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **span_type 判定（IMP-004）**: 各 finding に `span_type` を付す。
+   * `"contiguous"`: 連続 span。`start`/`end` を持ち `occurrences` は null。
+   * `"scattered"`: 分散反復（例 絵文字8個・B-2 カタカナ密集）。`occurrences: [[s,e],...]` に各出現を列挙。`start`/`end` は先頭出現でよい。
+   * `"document"`: 文書レベル（E-1 文長均一・E-2 文末単調）。`occurrences` に代表例、`start`/`end` は null 可。
+   * `occurrences` 内の各 offset も text_span 一致を自己検証する。
+6. **スコア算出（IMP-002・文書長非依存）**:
+   * `severity_weighted_score = min(100, (S1×5 + S2×2 + S3×0.5) / input_length × 1000)`。「1000 字あたり加重和」を 100 で上限クリップ。文書長に依存しない密度スコアで、短文の飽和・長文の無限膨張を防ぐ。使用式を `meta.score_formula` に文字列で明記する。
+   * `ai_tell_density` = 検出 span の**重複を排除した実 AI クセ文字数** / 全体文字数（locator や document span は含めない）。
+   * `score_before`（下流の naturalness-reviewer が使う値）= 本 `meta.severity_weighted_score`（IMP-003）。
 
 ## 重要な原則
 

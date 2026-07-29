@@ -22,11 +22,20 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
   "edits": [
     { "finding_id": "f001", "category": "A-6", "before": "課題となっている", "after": "課題だ", "rationale": "状態叙述を断定へ" }
   ],
-  "change_rate": 0.18,
+  "meta": {
+    "change_rate": 0.18,
+    "substitution_rate": 0.12,
+    "pure_deletion_rate": 0.06,
+    "deletion_led": true,
+    "input_length_used": 762
+  },
   "style_preserved": "desu_masu",
   "warnings": []
 }
 ```
+
+* `finding_id` は単数文字列。1 span に複数 finding が乗る場合は `finding_ids: ["f017","f019"]` 配列で表す。
+* 変更率は **3 指標を分離計上**（IMP-001）。詳細は playbook §変更率の数え方。中断判定は `substitution_rate` を主指標とする。
 
 ## 推敲手順
 
@@ -34,9 +43,10 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
 2. **finding 順処理**: 各 finding の span を playbook レシピで修正。検出のない区間は一切触らない。
 3. **連鎖調整**: 同カテゴリの反復（例 A-1「における」5 回）は、全部を同じ形に直さず複数の自然形に分散させる（機械的均一を避ける）。
 4. **リズム（E）**: 文末の単調反復を、同一文体内で変奏。短文・長文を意図的に混ぜる。
-5. **変更率監視**: 挿入＋削除文字数 / 原文文字数を計算。
-   * 30% 超 → `warnings` に記録して続行。
-   * 50% 超 → 中断し、オーケストレーターへ `hold_and_report` を返す。
+5. **変更率監視（二軸・IMP-001）**: `change_rate`（参考）・`substitution_rate`（主指標）・`pure_deletion_rate`（別掲）・`deletion_led`（フラグ）を計算し `meta` に出力。
+   * `substitution_rate` 30% 超 → `warnings` に記録して続行。
+   * `substitution_rate` 50% 超 → 中断し `hold_and_report`。
+   * `change_rate` が高くても純削除主体（`deletion_led=true`）で `substitution_rate` が閾値内なら中断しない。最終判定はオーケストレーターに委ねる。
 
 ## 厳守事項
 
