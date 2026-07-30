@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-07-30-001",
+  "genre": "technical_explainer",
+  "style": "desu_masu",
+  "detector_rerun": {
+    "method": "manual_taxonomy_rescan",
+    "reason": "ai-tell-detector サブエージェント（Task/Agent ツール）が本レビュアーのツールセットに存在せず呼び出せなかったため、IMP-006 に従い taxonomy v1.0 を基準に自力で厳密再走査した。手動照合のためスコアは近似値であり、検出器実行値との差異が残りうる。"
+  },
+  "score_before": 100.0,
+  "score_after": 2.8,
+  "improvement_rate": 0.972,
+  "score_note": "score_before は 02_detection.json meta.severity_weighted_score（IMP-003 準拠）。ただし原文の生加重和は S1×13 + S2×21 = 65 + 42 = 107 で 100 に上限クリップ済み。score_after は残存 finding に同一重み(S1=5,S2=2,S3=0.5)を当て、before と同じ正規化係数(100/107)を掛けた近似値（生残存和 3.0 → 2.8）。before がクリップされている分、改善率はやや圧縮されている（IMP-003 既知の上限飽和）。",
+  "residual_findings": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 2
+  },
+  "residual_detail": [
+    {
+      "severity": "S2",
+      "category": "E-2",
+      "label": "です・ます体の単調反復 [文書レベル]",
+      "note": "14 文中、平叙 ます止め 9 文（約64%）。ています×2 / です×1 / ました×1 / はずです×1 の変奏は入ったが、playbook 推奨の体言止めが 0 で、文末の一本調子が弱く残存。敬体は正しく維持されており文体崩れではない。"
+    },
+    {
+      "severity": "S3",
+      "category": "E-1",
+      "label": "文長の均一性 [文書レベル]",
+      "note": "各文がおおむね中程度長に集中。短文（10〜20字）は『リアルタイム性の向上に貢献できる技術です。』程度で、依然として標準偏差は低め。E-2 と重畳したときのみ問題となる残存。"
+    },
+    {
+      "severity": "S3",
+      "category": "A-10",
+      "label": "抽象主語＋万能動詞（タイトル『エッジAIがもたらす』）",
+      "note": "タイトルの『エッジAIがもたらす次世代のデータ処理』は原文から不変。抽象主語＋『もたらす』の A-10 パターンだが、02_detection.json はタイトルを走査対象外としており finding が無い。span-grounded 原則上、推敲役が触らなかったのは正当。本文の A-10（f013/f014）は完全に解消済み。検出器のタイトル未カバーに起因する残存であり推敲失敗ではないため S3 扱い・要 grade 影響なしとする。"
+    }
+  ],
+  "resolved_summary": {
+    "findings_before": 34,
+    "S1_before": 13,
+    "S2_before": 21,
+    "S1_fixed": 13,
+    "S2_fixed": 20,
+    "notes": "全 S1(13/13) 解消。B-2 で検出された置換可能カタカナ 11 語すべて漢語化（テクノロジー→技術, アーキテクチャ/ソリューション→仕組み, レスポンス→応答, ボトルネック→滞り, シームレス→滑らかな, ユーザーエクスペリエンス→使い心地, ユースケース→活用例, メリット→利点, ポテンシャル→可能性, デジタルライフ→暮らし）。A-5 の『することができる』系 8 箇所, A-6, A-7, A-8, A-10×2, D-5, D-6, G-1/G-2 二重婉曲, F-1『大き〜』(3→2) いずれも処方どおり修正。残るカタカナ(レイテンシ, オンデバイス, ネットワーク, モデル等)は業界標準語(B-2 例外)。"
+  },
+  "over_polish_signals": [
+    {
+      "type": "change_rate_exceeds_30pct",
+      "value": 0.447,
+      "threshold": 0.30,
+      "substantive": false,
+      "note": "IMP-001 既知欠陥。削除主導（することができる→できる、カタカナ→漢語、のです/二重婉曲の除去）で文字ベースの変更率が飽和したもの。fidelity=pass 前提で個別検証した結果、意味毀損・数値/固有名詞改変・文体崩れ・原文にない情報の混入・ぶつ切りのいずれも認められず、実体的な過推敲ではない。"
+    }
+  ],
+  "over_polish_check_detail": {
+    "style_bleed_keitai_jotai": "none — 14 文すべて敬体維持。常体(だ/である/した/だった)止めの混入 0。",
+    "taigen_dome_excess": "none — 体言止めは 0 件（むしろ E-2 変奏の余地あり）。過多ではない。",
+    "added_information": "none — 原文にない事実・例・主張の追加なし。段落ごとの命題は原文と一致。",
+    "unnatural_choppiness_or_colloquialism": "none — 技術解説の敬体トーンを保持。くだけ過ぎ・意味希薄化・リズム断絶なし。",
+    "substantive_over_polish_count": 0
+  },
+  "grade": "A",
+  "grade_rationale": "S1 残存 0 件、S2 残存 1 件(≤2)、改善率 97.2%(≥70%)、実体的過推敲シグナル 0 個。品質等級 A の全条件を満たす。絶対残存数(S1+S2=1)も極小で短文バイアスの懸念なし。",
+  "recommendation": "accept",
+  "round_2_required": false,
+  "notes": "近似スコアである点(検出器サブエージェント未使用)、および score_before の 100 上限クリップにより改善率がやや圧縮されている点に留意。実質的には原文の決定的 AI クセ(A-1/A-5/A-6/A-7/A-8/A-10/D-5/D-6/G-2/B-2)がほぼ全滅した高品質な推敲。唯一の実質残存は E-2 の文末単調(体言止め未使用)で、round_2 を要するレベルではない。change_rate 0.447 は削除主導の見かけ値で過推敲の実体なし。"
+}

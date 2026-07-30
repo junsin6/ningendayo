@@ -21,7 +21,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "input_length": 0,
     "detected_count": 0,
     "ai_tell_density": 0.0,
+    "raw_weighted_sum": 0.0,
+    "density_raw": 0.0,
     "severity_weighted_score": 0.0,
+    "severity_weights": { "S1": 5, "S2": 2, "S3": 0.5 },
+    "normalization": { "formula": "100*(1-exp(-density_raw/K))", "K": 8 },
     "style": "desu_masu | da_dearu | mixed"
   },
   "findings": [
@@ -50,9 +54,12 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（taxonomy v1.1 §検出出力スキーマの正規化式に厳密準拠）:
+   * `raw_weighted_sum` = S1×5 + S2×2 + S3×0.5（生加重和）。
+   * `density_raw` = `raw_weighted_sum / (input_length/100)`（100 字あたり加重和。文長非依存）。
+   * `severity_weighted_score` = `round(100 * (1 - exp(-density_raw / K)), 1)`、**K=8**（暫定既定）。指数飽和で raw が高くても 100 に張り付かず深刻度の解像度を保つ（IMP-002）。
+   * meta に `raw_weighted_sum`・`density_raw`・`severity_weights`・`normalization`（K 含む）を必ず併記（改善率を生値でも追跡可能に。IMP-002/003）。
+   * `ai_tell_density` = 検出 span の**重複を排した union 被覆文字数** / 全体文字数（重畳 span を二重計上しない。IMP-005）。
 
 ## 重要な原則
 

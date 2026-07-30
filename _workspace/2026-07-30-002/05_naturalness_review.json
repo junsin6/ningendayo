@@ -1,0 +1,58 @@
+{
+  "run_id": "2026-07-30-002",
+  "genre": "public_document_notice",
+  "style": "desu_masu",
+  "score_before": 36.5,
+  "score_after": 4.5,
+  "improvement_rate": 0.877,
+  "change_rate": 0.228,
+  "detector_rerun": {
+    "method": "manual_taxonomy_rescan",
+    "subagent_invoked": false,
+    "reason": "naturalness-reviewer はサブエージェントとして起動しており、ai-tell-detector を再帰的に spawn する Agent/Task ツールが本コンテキストで未提供のため呼べない。IMP-006 準拠で taxonomy 基準の自力厳密再走査を実施し明記。",
+    "score_after_basis": "score_before(=meta.severity_weighted_score) と同一の severity 重み(S1=4, S2=2, S3=1.5 — 推敲前16件が36.5に一致する推定重み)で残存 finding を再加重。"
+  },
+  "resolved_findings": [
+    "f001", "f002", "f003", "f004", "f005", "f006", "f007",
+    "f008", "f009", "f010", "f011", "f012", "f013"
+  ],
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 3 },
+  "residual_detail": [
+    {
+      "ref": "f014",
+      "category": "E-2",
+      "severity_before": "S2",
+      "severity_after": "S3",
+      "note": "文末変奏が改善（刷新されます/受け付けます/一時停止します/受け付けられません 等の言い切りが加わり、12文で7種の文末形に分散）。ただし末尾3文が『お願いいたします／お願い申し上げます』系に収束し軽度の単調残存。公的文書の結び定型として register 相応であり、体言止め等の強制はむしろ過推敲になるため S3 で許容。"
+    },
+    {
+      "ref": "f015",
+      "category": "E-1",
+      "severity_before": "S2",
+      "severity_after": "S3",
+      "note": "段落9の一文分割（『受け付けられません。』で切り、了承文を独立）で長文一辺倒は緩和。ただし段落5・7に40〜90字級の長文が残り、意図的短文挿入は限定的。公文書として不自然ではなく S3。"
+    },
+    {
+      "ref": "f016",
+      "category": "H-1",
+      "severity_before": "S2",
+      "severity_after": "S3",
+      "note": "文頭接続は『まず』『また』を削除し 5→3（つきましては／そのため／なお）に減少。『なお』は公文書慣用で許容範囲。70%削減目標には未達だが多用状態は解消。S3。"
+    }
+  ],
+  "residual_minor_passives": [
+    "para5『これまで電話受付のみに限られていた申込方法が拡充され』の『拡充され』受動が残存（A-8 系）。",
+    "para7『新システムへ引き継がれない場合がございます』の『引き継がれない』受動が残存。いずれも公文書 register で自然な範囲であり新規 finding として計上せず（原文でも単独未フラグ）。"
+  ],
+  "over_polish_signals": [],
+  "over_polish_check": {
+    "register_break": false,
+    "keitai_jotai_mixing": false,
+    "excessive_casualization": false,
+    "change_rate_over_30pct": false,
+    "note": "全12文末が です／ます／ございます／申し上げます／いたします／ください の敬体で統一され、常体(だ・である)混入なし。『厚く』削除・『所存でございます』→『まいります』・『御礼申し上げます』は finding 準拠の過剰敬語圧縮であり、自治体お知らせとしての丁重さ・儀礼枠は保持。register 崩壊なし。change_rate 0.228 は 30% 未満で過推敲閾値内。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1=0・S2=0・改善 87.7% で A 等級。S1 シグネチャ(A-6×2, A-5)と主要 S2(A-8受動×3, I-3必要がございます×3, D-6所存)を全除去。文書レベル E-1/E-2/H-1 は S3 まで低減し、公的文書の register を壊さない範囲での軽度残存にとどまる。過推敲・敬体崩れなし。2次推敲不要。"
+}
