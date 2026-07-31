@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "input_length": 713,
+    "detected_count": 19,
+    "ai_tell_density": 0.306,
+    "severity_weighted_score": 51.2,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S2",
+      "text_span": "支給されることとなりました",
+      "start": 83,
+      "end": 96,
+      "reason": "「支給される」で足りる箇所を「支給されることとなりました」と受動+こと+状態化で三重に冗長化。A-6状態叙述が計4回。",
+      "suggested_fix": "支給されます"
+    },
+    {
+      "id": "f002",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（need to の直訳）の機械的反復",
+      "severity": "S2",
+      "text_span": "ご確認いただく必要があります",
+      "start": 119,
+      "end": 133,
+      "reason": "「〜いただく必要があります」が本文で計5回反復し同一構文が機械的。公的文書でも単発は許容だが、案内文の大半が同じ要請形で終わる点がAI特有。",
+      "suggested_fix": "以下の内容をご確認ください"
+    },
+    {
+      "id": "f003",
+      "category": "E-2",
+      "category_label": "リズム: です・ます文末の単調反復",
+      "severity": "S2",
+      "text_span": "支給されます",
+      "start": 167,
+      "end": 173,
+      "reason": "文末が「必要があります」5回・「ております」3回・「されます」系に集中し一本調子。文長も45〜60字にほぼ均一で標準偏差が低い（文書レベル）。",
+      "suggested_fix": "体言止めや「〜ください」を交え文末を変奏"
+    },
+    {
+      "id": "f004",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 主題提示の濫用",
+      "severity": "S2",
+      "text_span": "支給額については",
+      "start": 174,
+      "end": 182,
+      "reason": "「については/につきましては」が計4回反復し主題提示がほぼ全てこの形。単発なら公的文書として自然だが反復で露見。",
+      "suggested_fix": "支給額は"
+    },
+    {
+      "id": "f005",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S2",
+      "text_span": "支給されることとなっております",
+      "start": 193,
+      "end": 208,
+      "reason": "「支給されます」で足りる箇所を受動+こと+「となっております」で冗長化。状態叙述の反復（計4回）。",
+      "suggested_fix": "支給されます"
+    },
+    {
+      "id": "f006",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 主題提示の濫用",
+      "severity": "S2",
+      "text_span": "支給の手続きにつきましては",
+      "start": 264,
+      "end": 277,
+      "reason": "「については/につきましては」計4回の反復の一つ。段落冒頭の主題提示がすべてこの形で固定。",
+      "suggested_fix": "支給の手続きは"
+    },
+    {
+      "id": "f007",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（行為者を曖昧にした される）の濫用",
+      "severity": "S2",
+      "text_span": "確認書が郵送されますので",
+      "start": 286,
+      "end": 298,
+      "reason": "「市（区）から確認書を送付」と能動で言える箇所を行為者省略の受動に。文書全体で行為者不明の「される」受動が多用され機械的。",
+      "suggested_fix": "対象世帯へ確認書をお送りしますので"
+    },
+    {
+      "id": "f008",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜により（by-instrument の後置）",
+      "severity": "S2",
+      "text_span": "封筒により",
+      "start": 317,
+      "end": 322,
+      "reason": "手段を「により」で後置。英語 by の直訳調。公的文書でも「で」で足りる。",
+      "suggested_fix": "封筒で"
+    },
+    {
+      "id": "f009",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（need to の直訳）の機械的反復",
+      "severity": "S2",
+      "text_span": "返送していただく必要があります",
+      "start": 322,
+      "end": 337,
+      "reason": "「〜いただく必要があります」計5回反復の一つ。「ご返送ください」で足りる。",
+      "suggested_fix": "返信用封筒でご返送ください"
+    },
+    {
+      "id": "f010",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる（can の冗長形）",
+      "severity": "S2",
+      "text_span": "受け取ることができない",
+      "start": 355,
+      "end": 366,
+      "reason": "可能の冗長形「ことができる」が2回。「受け取れない」で足りる。",
+      "suggested_fix": "受け取れない"
+    },
+    {
+      "id": "f011",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（need to の直訳）の機械的反復",
+      "severity": "S2",
+      "text_span": "ご注意いただく必要があります",
+      "start": 376,
+      "end": 390,
+      "reason": "「〜いただく必要があります」計5回反復の一つ。要請形の一本調子。",
+      "suggested_fix": "ご注意ください"
+    },
+    {
+      "id": "f012",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S2",
+      "text_span": "とされております",
+      "start": 417,
+      "end": 425,
+      "reason": "「令和8年9月30日です」で足りる期限提示を「とされております」と状態化+過剰敬語。状態叙述の反復（計4回）。",
+      "suggested_fix": "です"
+    },
+    {
+      "id": "f013",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 主題提示の濫用",
+      "severity": "S2",
+      "text_span": "提出された確認書については",
+      "start": 432,
+      "end": 445,
+      "reason": "「については」計4回反復の一つ。受動「提出された」も重なる。",
+      "suggested_fix": "期限を過ぎた確認書は"
+    },
+    {
+      "id": "f014",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S2",
+      "text_span": "取り扱いとなりますので",
+      "start": 457,
+      "end": 468,
+      "reason": "「受理しません」で足りる箇所を「受理されない取り扱いとなりますので」と受動+状態化で冗長。状態叙述の反復（計4回）。",
+      "suggested_fix": "受理できませんので"
+    },
+    {
+      "id": "f015",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（need to の直訳）の機械的反復",
+      "severity": "S2",
+      "text_span": "手続きを行っていただく必要があります",
+      "start": 473,
+      "end": 491,
+      "reason": "「〜いただく必要があります」計5回反復の一つ。「お早めにお手続きください」で足りる。",
+      "suggested_fix": "お早めにお手続きください"
+    },
+    {
+      "id": "f016",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（need to の直訳）の機械的反復",
+      "severity": "S2",
+      "text_span": "ご連絡いただく必要があります",
+      "start": 616,
+      "end": 630,
+      "reason": "「〜いただく必要があります」計5回反復の締め。案内文がほぼ全てこの要請形で終わる点が最大のAIシグネチャ。",
+      "suggested_fix": "速やかに最寄りの警察署または市の相談窓口へご連絡ください"
+    },
+    {
+      "id": "f017",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 主題提示の濫用",
+      "severity": "S2",
+      "text_span": "制度の詳細につきましては",
+      "start": 672,
+      "end": 684,
+      "reason": "「については/につきましては」計4回反復の締め。主題提示が全てこの形。",
+      "suggested_fix": "制度の詳しい内容は"
+    },
+    {
+      "id": "f018",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において/においても の枠づけ",
+      "severity": "S3",
+      "text_span": "においても",
+      "start": 695,
+      "end": 700,
+      "reason": "「市の公式ホームページでも」で足りる箇所を「においても」で硬く枠づけ。単発かつ公的文書ゆえS3。",
+      "suggested_fix": "市の公式ホームページでも"
+    },
+    {
+      "id": "f019",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる（can の冗長形）",
+      "severity": "S2",
+      "text_span": "確認することができます",
+      "start": 700,
+      "end": 711,
+      "reason": "可能の冗長形「ことができる」計2回の一つ。「確認できます」で足りる。",
+      "suggested_fix": "確認できます"
+    }
+  ],
+  "category_summary": {
+    "A": 13,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 5,
+    "J": 0
+  }
+}
