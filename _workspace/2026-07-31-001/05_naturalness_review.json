@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "reviewed_file": "03_rewrite.md",
+    "rescan_method": "manual_taxonomy_rescan",
+    "rescan_method_note": "本環境にサブエージェント起動手段（Task ツール）がないため ai-tell-detector を呼べず、ai-tell-taxonomy.md v1.0 と検出器のスコア規則に基づき手動で同基準再走査した。IMP-006 が想定する『ai-tell-detector をサブエージェントとして呼ぶ経路』は未達。",
+    "style_after": "desu_masu",
+    "style_preserved": true
+  },
+  "score_before": 100.0,
+  "score_after": 5.7,
+  "improvement_rate": 0.943,
+  "scoring_detail": {
+    "formula": "raw = S1*5 + S2*2 + S3*0.5 （taxonomy 検出出力スキーマ準拠）",
+    "raw_before": 87.0,
+    "raw_before_breakdown": "S1 11件*5 + S2 16件*2 + S3 0件 = 87（02_detection の 27 finding）",
+    "raw_after": 5.0,
+    "raw_after_breakdown": "S1 0*5 + S2 1*2 + S3 6*0.5 = 5.0",
+    "normalization_note": "02_detection では raw 87 が正規化後 100.0（飽和上限に張り付き）。正規化関数が非公開のため score_after は線形係数 100/87≈1.149 を仮定して 5.0→約5.7 と換算。improvement_rate は係数がキャンセルするためスケール不変で信頼できる（(87-5)/87=0.943）。"
+  },
+  "residual_findings": { "S1": 0, "S2": 1, "S3": 6 },
+  "residual_detail": [
+    {
+      "severity": "S2",
+      "category": "A-10",
+      "text_span": "この技術は、リアルタイム性が必要なユースケースで、大きなメリットをもたらします",
+      "reason": "抽象主語『この技術は』＋万能動詞『もたらす』が残存。推敲文の中で最も AI 寄りに読める一文。A-10 は本来 S1 だが単発かつ許容範囲の可読性のため S2 に格下げ判定。",
+      "suggested_fix": "『エッジコンピューティングなら、リアルタイム性が要る場面で大きな利点がある』等、行為者/具体名詞へ開く"
+    },
+    {
+      "severity": "S3",
+      "category": "I-4",
+      "text_span": "リアルタイム性が必要な",
+      "reason": "元 f004『求められる』を『必要な』へ置換したが、I-4 のパターン定義は『〜が求められる / 〜が必要だ』の両方を含むため、行為者曖昧の要請という同族シグネチャが残る。ただし『求められる』より自然度は明確に向上し反復閾値(3回)未満のため S3。",
+      "suggested_fix": "行為者を主語に具体化（誰にとって必要か）"
+    },
+    {
+      "severity": "S3",
+      "category": "I-4",
+      "text_span": "ハイブリッドなアプローチが必要です",
+      "reason": "元 f023『求められます』→『必要です』。上と同じ I-4 同族置換。自然度は向上、反復閾値未満で S3。",
+      "suggested_fix": "『クラウドとエッジを組み合わせて使う』等の勧告動詞へ開く"
+    },
+    {
+      "severity": "S3",
+      "category": "A-6",
+      "text_span": "制約も存在しています",
+      "reason": "『存在している』は A-6（状態叙述の濫用）族。単に『制約もある』で足りる。02_detection では未検出だが同基準再走査では S3 相当。",
+      "suggested_fix": "制約もある"
+    },
+    {
+      "severity": "S3",
+      "category": "D-2/D-6",
+      "text_span": "今後ますます重要になっていくはずです",
+      "reason": "元 f025/f026 の誇張＋結び公式を『重要になっていくはずです』へ緩和済み。誇張は弱まったが『今後ますます重要になっていく』は依然やや常套的な締め。断定化で解消済みのため残りは S3。",
+      "suggested_fix": "具体的な用途の広がりを述べて締める"
+    },
+    {
+      "severity": "S3",
+      "category": "D-1",
+      "text_span": "ぜひ、この機会に…触れてみてください",
+      "reason": "元 f027『いかがでしょうか』を除去し S1 は解消。ただし『ぜひ〜てみてください』はブログ CTA の緩い定型として残る。",
+      "suggested_fix": "具体的な次の一歩（学ぶ順序・関連技術）を提示"
+    },
+    {
+      "severity": "S3",
+      "category": "B-2",
+      "text_span": "メリット（本文2回）",
+      "reason": "『メリット』が推敲後も2回残存（利点との分散は評価できるが完全解消せず）。反復閾値3回未満のため S3。他カタカナ（アプローチ1・ユースケース1）は閾値内。",
+      "suggested_fix": "残り2回のうち1回を『利点/強み』へ"
+    }
+  ],
+  "resolved_highlights": {
+    "s1_eliminated": "S1 11件すべて除去（における×2 / について×2 / することができる×2 / となっている / 第一に第二に / 次世代…基盤技術 / と言えるでしょう / いかがでしょうか）",
+    "structure": "C-1 第一に/第二に/第三に の完全並列を非対称叙述へ解体",
+    "connectors": "H-1 段落冒頭接続詞 まず/次に/一方で を削除（このように1つのみ残置）"
+  },
+  "over_polish_signals": [],
+  "over_polish_checks": {
+    "unnatural_colloquialism": "なし（文体に合わないくだけ過ぎなし）",
+    "style_break_keitai_jotai": "なし（全文末が敬体で統一、だ・である体の混入ゼロ）",
+    "meaning_thinning_or_choppy": "なし（意味の希薄化・ぶつ切りなし。3メリット・課題・制約の情報は保持）",
+    "change_rate": 0.264,
+    "change_rate_over_30pct": false,
+    "change_rate_note": "26.4% < 30%、純削除主導（del:ins≒2.7:1）で過推敲リスク低"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1 0件 / S2 1件(≤2) / 改善94.3%(≥70%) で品質等級 A、accept 相当。過推敲シグナルなし・文体崩れなし。残存は主に I-4 同族置換（求められる→必要）と抽象主語+もたらす1件で、いずれも自然度は許容範囲。round_2 を要する水準ではないが、次回改善余地として (1) A-10『この技術は…もたらします』の主語開き、(2) I-4『必要』の行為者具体化、を推敲役へ申し送り。score_after は検出器再実行ではなく手動再走査による推計値。"
+}

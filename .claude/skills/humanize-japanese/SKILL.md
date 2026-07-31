@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視: del_rate/ins_rate を分離記録。30% 超で警告、50% 超で原則中断だが、del 主導の超過は §総合判定の override accept 条件で救済する（IMP-001）。
 
 ### 4. 並列検証
 
@@ -73,11 +73,14 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 条件 | 判定 | アクション |
 | --- | --- | --- |
 | 等級 A/B かつ fidelity 毀損なし | `accept` | `final.md` + `summary.md` 出力 |
+| 変更率 30〜50% 超だが **del 主導**（del:ins ≧ 2:1・ins_rate 低）かつ fidelity=pass かつ自然度 A/B | `override accept` | AI 冗語の正当な圧縮とみなし accept。`summary.md` に del_rate/ins_rate と override 理由を明記（IMP-001） |
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
+
+**変更率の扱い（IMP-001）**: 単一 change_rate ではなく del_rate/ins_rate を分離評価する。挿入率が低い削除主導の超過は過推敲ではないため中断しない。警戒するのは ins_rate が高い（語句改変・水増し主導の）超過。
 
 ## 深刻度と品質等級
 
