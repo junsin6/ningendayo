@@ -1,4 +1,4 @@
-# AI 日本語クセ分類体系 v1.0 (Japanese AI-Tell Taxonomy)
+# AI 日本語クセ分類体系 v1.1 (Japanese AI-Tell Taxonomy)
 
 LLM（ChatGPT・Claude・Gemini など）が生成した日本語の文章に繰り返し現れる「AIっぽさ（AIクセ）」を、10 大分類 × サブパターンに整理する。検出器・推敲役・レビュアーが共有する唯一の信頼源（SSOT）。各パターンに (1) 定義、(2) シグネチャ例文、(3) 深刻度（S1 決定的 / S2 強い / S3 弱い）、(4) 推敲処方を付す。
 
@@ -383,7 +383,8 @@ J. 視覚装飾の濫用
     "input_length": 1820,
     "detected_count": 37,
     "ai_tell_density": 0.203,
-    "severity_weighted_score": 71.5,
+    "raw_weighted_score": 75.5,
+    "severity_weighted_score": 71.6,
     "style": "desu_masu"
   },
   "findings": [
@@ -392,11 +393,25 @@ J. 視覚装飾の濫用
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "span",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
       "suggested_fix": "課題だ"
+    },
+    {
+      "id": "f020",
+      "category": "E-2",
+      "category_label": "リズム: です・ます単調反復",
+      "severity": "S2",
+      "scope": "document",
+      "text_span": "果たします",
+      "start": 610,
+      "end": 615,
+      "occurrences": [[88, 92], [255, 259], [610, 615]],
+      "reason": "文末の85%が「ます／です」。text_span は代表アンカーで、実改変は occurrences 全体に及ぶ",
+      "suggested_fix": "文末を体言止め・〜でしょう・〜た等へ変奏"
     }
   ],
   "category_summary": {
@@ -406,14 +421,22 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `raw_weighted_score`: S1=5, S2=2, S3=0.5 の**素の加重和（正規化前）**。絶対比較・run 間の回帰検証・改善率の内訳確認に使う。検出器は必ず併記する。
+* `severity_weighted_score`: `raw_weighted_score` を飽和しにくい対数圧縮で 0〜100 に正規化した値。
+  * 式: `severity_weighted_score = round(100 * (1 - exp(-raw_weighted_score / K)), 1)`、**K = 60（固定・input_length 非依存）**。
+  * 例: raw 75.5 → 71.6 ／ raw 15 → 22.1 ／ raw 200 → 96.4。高密度短文でも 100 に張り付かず解像度を保つ（旧「raw×1000/長さ」方式の飽和欠陥を解消。IMP-002）。
+  * 上限は理論上 100 に漸近するのみで実際には飽和しない。
+* `score_before` / `score_after` の契約: naturalness-reviewer は `score_before = 02_detection.json の meta.severity_weighted_score`、`score_after` は推敲後テキストに**同じ式・同じ K=60**を適用して算出する。K を固定し input_length に依存させないため、before・after はともに入力長非依存の同一関数値であり、改善率 `(before−after)/before` も入力長に依存しない（スケール不変）。※対数圧縮は非線形関数のため、旧「raw×1000／長さ」方式のように「正規化係数がキャンセルする」のではなく、「正規化式そのものが入力長を含まない」ことがスケール不変の根拠である（IMP-003）。
+* `ai_tell_density`: 検出 span の**重複除去後のユニーク被覆文字数** / 全体文字数。算入規則は次の通り: (1) `occurrences[]` を持つ finding はその全 span の和集合を被覆に算入し、代表アンカー（`text_span`/`start`/`end`）は occurrences に含まれる前提のため別途加算しない。(2) `occurrences[]` を持たない finding は `[start,end]` を用いる。(3) 全 finding の span を文書全体で和集合化（重複・入れ子を除去）してから全体文字数で割る。これにより重複 span・文書レベル locator を二重計上しない（IMP-004）。
+* `scope`（finding 単位, 既定 `"span"`）: `"span"` = 連続する単一箇所。`"document"` = 文書全体の分布が根拠のパターン（E リズム／C-1・C-7 構造／H-1 接続詞連鎖 等）。`scope:"document"` の finding は `text_span`/`start`/`end` を**代表アンカー**とし、任意の `occurrences: [[start,end],...]` に実該当箇所を列挙する。推敲役は `scope:"document"` の finding について reason・occurrences が示す全 span を改変対象としてよい（「検出のない区間は触らない」の例外）。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
 
 * **v1.0** (2026-05): 日本語 AIクセ分類体系の初版。10 大分類（A〜J）× 40+ サブパターンを定義。
   + 日本語固有として重点配置: `A-6`（〜となっている）, `B-2`（カタカナ語濫用）, `E-2`（です・ます単調）, `I-4`（〜が求められる）, `J-3`（ダッシュ濫用）, D-1 の「いかがでしたでしょうか」。
+* **v1.1** (2026-07): 検出出力スキーマ改訂（raw_weighted_score 追加・対数正規化 K=60・scope/occurrences 導入・density 再定義）。適用 run 2026-07-31-001/002。
+  + 審査補正: score 改善率のスケール不変性の根拠記述を訂正（対数圧縮は非線形のため「係数がキャンセル」ではなく「式が入力長を含まない」ことが根拠）。density の occurrences[] 算入規則を明文化。
 * 拡張原則: 実戦入力で再現 2 回以上 + 日本語の人間の書き手がほぼ使わないパターンのみサブ項目として追加。新パターンは末尾の候補欄に実例 2 件以上を添えて提案する。
 
 ## 拡張候補欄（taxonomist が審査して昇格）
