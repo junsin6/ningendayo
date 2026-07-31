@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "input_length": 823,
+    "edits_applied": 27,
+    "s1_handled": 11,
+    "style_preserved": "desu_masu",
+    "change_rate": 0.264,
+    "del_rate": 0.193,
+    "ins_rate": 0.070,
+    "del_chars": 159,
+    "ins_chars": 58,
+    "total_changed_chars": 217,
+    "dominance": "deletion_led",
+    "dominance_note": "純削除主導（del 159 : ins 58 ≒ 2.7:1）。AI 冗語の除去が中心で、語句改変は従。過推敲・ジャンル移動の兆候なし。"
+  },
+  "edits": [
+    { "finding_id": "f001", "category": "B-1", "before": "エッジコンピューティング（Edge Computing）という技術", "after": "エッジコンピューティングという技術", "rationale": "タイトル・本文で既出のカタカナ語への英語併記は冗長。初出併記を削除（IoT・エッジ（端）・レイテンシ（遅延）の併記は finding 対象外のため保存）。", "del": 16, "ins": 0 },
+    { "finding_id": "f002", "category": "A-2", "before": "仕組みについて", "after": "仕組みを", "rationale": "主題提示の「について」を目的格「を」で直結。", "del": 4, "ins": 1 },
+    { "finding_id": "f003", "category": "B-1", "before": "クラウド（Cloud）", "after": "クラウド", "rationale": "一般化したカタカナ語への英語併記を削除。", "del": 7, "ins": 0 },
+    { "finding_id": "f004", "category": "I-4", "before": "リアルタイム性が求められる", "after": "リアルタイム性が必要な", "rationale": "行為者不明の受け身要請「求められる」を形容詞的な「必要な」へ。要請の意味は保存。", "del": 5, "ins": 3 },
+    { "finding_id": "f005", "category": "A-1", "before": "ユースケースにおいて", "after": "ユースケースで", "rationale": "英語 in の直訳「において」を格助詞「で」へ直結。", "del": 4, "ins": 1 },
+    { "finding_id": "f006", "category": "A-5", "before": "もたらすことができます", "after": "もたらします", "rationale": "可能の冗長形を断定へ。敬体維持。", "del": 6, "ins": 1 },
+    { "finding_id": "f007", "category": "A-13", "before": "処理されるという仕組み", "after": "処理される仕組み", "rationale": "概念連結の「という」を削除（文書内 3 回のうち本 1 回目）。", "del": 3, "ins": 0 },
+    { "finding_id": "f008", "category": "A-6", "before": "仕組みとなっていました", "after": "仕組みでした", "rationale": "状態叙述「となっていました」を単純過去「でした」へ。S1・単発でも除去。", "del": 7, "ins": 2 },
+    { "finding_id": "f009", "category": "B-2", "before": "このアプローチには", "after": "このやり方では", "rationale": "カタカナ語「アプローチ」を「やり方」へ（連鎖調整: 段落5の同語は変奏保持のため別処理）。には→では は f010 の再構成に付随。", "del": 5, "ins": 3 },
+    { "finding_id": "f010", "category": "A-13", "before": "レイテンシ（遅延）の増大という課題があります", "after": "レイテンシ（遅延）の増大が課題です", "rationale": "「という課題があります」の連結を「が課題です」へ直結（という 2 回目除去）。レイテンシ（遅延）の併記は保存。", "del": 9, "ins": 5 },
+    { "finding_id": "f011", "category": "A-5", "before": "削減することができるのです", "after": "削減できます", "rationale": "可能の冗長形（2 回目）を短縮し、説明口調「〜のです」も除去。断定・敬体維持。", "del": 9, "ins": 2 },
+    { "finding_id": "f012", "category": "F-4", "before": "代表的なメリット", "after": "主なメリット", "rationale": "抽象接尾辞「〜的」を「主な」へ（効率的・基本的は finding 対象外のため保存）。", "del": 3, "ins": 1 },
+    { "finding_id": "f013", "category": "A-2", "before": "メリットについて", "after": "メリットは", "rationale": "「について」2 回目を主題「は」へ（f014 と連結し叙述へ再構成）。", "del": 4, "ins": 2 },
+    { "finding_id": "f014", "category": "D-3", "before": "整理します", "after": "三つあります", "rationale": "列挙予告の定型『整理します』を削除し、項目数を述べる叙述へ溶かす（後続の第一〜第三＝三つを保存）。", "del": 5, "ins": 3 },
+    { "finding_id": "f015", "category": "C-1", "before": "第一に、リアルタイム処理を実現できること。第二に、ネットワークの帯域幅を効率的に活用できること。第三に、", "after": "ひとつはリアルタイム処理を実現できること、もうひとつはネットワークの帯域幅を効率的に活用できることです。さらに、", "rationale": "「第一に/第二に/第三に」の完全並列を解体。3 項を非対称に再配置し各項の長さ・構造を崩す。3 メリットの内容は完全保存。", "del": 12, "ins": 14 },
+    { "finding_id": "f016", "category": "I-1", "before": "強化できることです。", "after": "強化できます。", "rationale": "体言止め「〜こと」3 連続の 3 つ目を叙述文へ開き、機械的均一を解消。", "del": 3, "ins": 1 },
+    { "finding_id": "f017", "category": "B-2", "before": "これらのメリットは", "after": "これらの利点は", "rationale": "カタカナ語「メリット」を「利点」へ（連鎖調整: 段落2・段落4冒頭のメリットは保持し分散）。", "del": 4, "ins": 2 },
+    { "finding_id": "f018", "category": "A-1", "before": "領域において、", "after": "領域で", "rationale": "「において」2 回目を「で」へ直結。", "del": 5, "ins": 1 },
+    { "finding_id": "f019", "category": "F-1", "before": "非常に重要な役割", "after": "重要な役割", "rationale": "程度副詞「非常に」を削除。「重要な役割を果たす」は原文の意義叙述として保存。", "del": 3, "ins": 0 },
+    { "finding_id": "f020", "category": "E-2", "before": "（文書全体: 文末がほぼ全て「〜ます/です」で一本調子）", "after": "（でした・課題です・強化できます・はずです・体言止め等を混在）", "rationale": "敬体を維持したまま文末を変奏。他 edit（f008/f011/f014/f025/f026 等）で自然に達成し、追加改変は最小。", "del": 0, "ins": 0 },
+    { "finding_id": "f021", "category": "H-1", "before": "まず、／次に、／一方で、（段落冒頭の接続詞連鎖）", "after": "（削除）", "rationale": "段落冒頭の接続詞 4 連（まず/次に/一方で/このように）のうち 3 つを削除。「このように」1 つのみ残し、しかし・そのため（finding 外）は保持して機械的均一を回避。", "del": 10, "ins": 0 },
+    { "finding_id": "f022", "category": "A-13", "before": "リソースが限られているという制約", "after": "リソースが限られる制約", "rationale": "「という」連結（3 回目）を削除し連体修飾で直結。", "del": 6, "ins": 1 },
+    { "finding_id": "f023", "category": "I-4", "before": "求められます", "after": "必要です", "rationale": "行為者曖昧の受け身要請（2 回目）を「必要です」へ。要請の意味は保存、敬体維持。", "del": 5, "ins": 3 },
+    { "finding_id": "f024", "category": "D-4", "before": "次世代のインフラを支える基盤技術", "after": "インフラを支える技術", "rationale": "ハイプ語彙「次世代の」「基盤」を除去。『インフラを支える技術』で機能は保存。読点追加はリズム調整。", "del": 6, "ins": 1 },
+    { "finding_id": "f025", "category": "D-2", "before": "その重要性を増していく", "after": "重要になっていく", "rationale": "抽象名詞化＋誇張「重要性を増す」を「重要になる」へ開く。『ますます重要になる』意味は保存。", "del": 4, "ins": 3 },
+    { "finding_id": "f026", "category": "D-1", "before": "増していくと言えるでしょう", "after": "なっていくはずです", "rationale": "結び常套句「と言えるでしょう」を削除し断定的な「はずです」へ。敬体維持。", "del": 8, "ins": 4 },
+    { "finding_id": "f027", "category": "D-1", "before": "触れてみてはいかがでしょうか", "after": "触れてみてください", "rationale": "ブログ AI の定番結び「いかがでしょうか」を除去。読者への誘い（原文の情報）は「てみてください」で保持。", "del": 8, "ins": 4 }
+  ],
+  "change_rate": 0.264,
+  "style_preserved": "desu_masu",
+  "warnings": [],
+  "notes": [
+    "変更率 26.4% < 30%: 警告閾値内。純削除主導のため過推敲リスク低。",
+    "連鎖調整: という（4→1）・メリット/利点（3語を2形に分散）・アプローチ/やり方（2語を2形に分散）・段落冒頭接続詞（4→1）で機械的均一を回避。",
+    "finding 対象外で保存した span: IoT（Internet of Things）併記・ネットワークのエッジ（端）・レイテンシ（遅延）・基本的な・効率的に・アーキテクチャ・リソース・ハイブリッド・しかし・そのため・この技術は・自動運転・スマートファクトリー・帯域幅。"
+  ]
+}
