@@ -19,7 +19,7 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 2. **スコア契約と改善率**（IMP-002/003）:
    * `score_before` = `02_detection.json` の `meta.severity_weighted_score`。
    * `score_after` = 推敲後テキストの `raw_weighted_score` に**同じ式・同じ K=60**（`round(100*(1-exp(-raw/60)),1)`）を適用。
-   * 改善率 = `(score_before − score_after) / score_before`（正規化係数がキャンセルしスケール不変）。
+   * 改善率 = `(score_before − score_after) / score_before`。K=60 固定で正規化式が input_length を含まないため入力長に依存しない（taxonomy §score 契約。対数圧縮は非線形なので「係数キャンセル」ではなく「式が入力長非依存」が根拠）。raw ベースの内訳が要る場合は `raw_weighted_score` の before/after も併記する。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
    * 文体崩れ（敬体／常体の混入）

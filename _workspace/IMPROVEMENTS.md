@@ -54,6 +54,12 @@
 - 影響: `naturalness-reviewer.md §処理`, `SKILL.md §並列検証`
 - 備考: ハーネス構造の制約のため、次回 run でオーケストレーター側にワークフロー変更として適用予定。
 
+### IMP-008 SSOT 改訂が下流エージェント定義へ伝播する機構が無い `status: ready` `hits: 1run`
+- 症状: taxonomy（SSOT）改訂が detector/rewriter/auditor/reviewer の 4 定義に影響するのに、各 agent .md が taxonomy 版番号を参照・整合チェックする仕組みが無い。v1.2 の mixed=ゾーン単位監査／E-2 register 別評価は content-fidelity-auditor・naturalness-reviewer 定義への追随改訂が必要だが未反映。また enum を列挙しても値ごとの挙動が未定義のまま SSOT に載る穴（style:"mixed" が実例）があり、版リリース時に「enum 全値 × 依存エージェント挙動が定義済みか」を確認するチェックリストが無い。hold_and_report のトリガーが taxonomy と SKILL.md に二重管理され乖離しうる。
+- 出所: taxonomist（07-31）
+- 提案: (a) 各 agent .md 冒頭に「準拠 taxonomy 版」を明記し版不一致を検知。(b) 版管理節に enum 全値網羅チェックリストを追加。(c) hold_and_report 条件は SKILL.md に一元化し taxonomy は参照のみ。(d) 次 run で auditor/reviewer に mixed ゾーン監査を追随適用。
+- 影響: `SKILL.md`, `content-fidelity-auditor.md`, `naturalness-reviewer.md`, `ai-tell-taxonomy.md §バージョン管理`
+
 ### IMP-007 ジャンル条件付き severity 軸が無い（genre-conditional severity）`status: ready` `hits: 2run`
 - 症状: taxonomy の severity は「一般散文で単発でも決定的か」で固定（A-1/A-2/A-5=S1）。しかし公的文書では「支給額については」「ホームページにおいても」の単発は標準表現で S1 の定義「一度で AI 確信」が成立しない。detector が場当たりで severity を上書きせざるを得ず、レビュアーと基準がズレる。SEO ブログでは逆に絵文字・CTA が正常。
 - 出所: detector-B, naturalness-B（07-31）＋ 06-12 の「クラスタ崩壊時の severity 降格」「定着カタカナ B-2 半免責」と同根
