@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "run_id": "2026-07-31-002",
+    "genre": "public_document",
+    "style": "desu_masu",
+    "detector_rerun_method": "manual_taxonomy_rescan",
+    "detector_rerun_note": "ai-tell-detector をサブエージェントとして起動する手段（Task/subagent-spawn）が本スレッドで利用不可のため、ai-tell-taxonomy.md v1.0 の同一基準・同一スコア式（S1=5, S2=2, S3=0.5 の加重和を 0〜100 正規化）で手動再走査した。score_before(51.2) の逆算から正規化係数≈1.403 を確定し、残存 raw 加重和に同係数を適用して score_after を算出。",
+    "scoring_formula": "severity_weighted_score = (S1*5 + S2*2 + S3*0.5) を 0-100 正規化。before: 18*S2+1*S3 = 36.5 raw -> 51.2 (係数 1.403)。"
+  },
+  "score_before": 51.2,
+  "score_after": 3.5,
+  "improvement_rate": 0.932,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 2
+  },
+  "residual_detail": [
+    {
+      "category": "A-6",
+      "severity": "S3",
+      "text_span": "支給することになりました",
+      "line": 3,
+      "reason": "受動と『となっております』は除去済み。残る『ことになりました』は決定告知の自然な日本語で反復もなく、AIクセとしては微弱。推敲役が開始文の『決定・変化の明示』ニュアンスを意図的に残した判断は妥当。S3止まり。"
+    },
+    {
+      "category": "A-6/A-8",
+      "severity": "S3",
+      "text_span": "確認されております",
+      "line": 11,
+      "reason": "詐欺注意段落の状態叙述+受動。原文で未flag(19件に含まれず)、かつ『ております』は推敲後に本文で1回のみへ減少（推敲前は計3回）。反復性が消え単発化したため公的文書として許容範囲。S3。"
+    }
+  ],
+  "over_polish_signals": [
+    {
+      "signal": "change_rate_exceeds_30pct",
+      "value": 0.317,
+      "threshold": 0.30,
+      "assessment": "benign",
+      "detail": "del_rate 0.226 / ins_rate 0.091 の削除主導（IMP-001 既知欠陥: change_rate は削除文字を等重みで加算するため、冗長AI構文の圧縮で機械的に閾値を超える）。挿入は9%に留まり、言い換え・加筆・意味加除なし。読者が目にする文言はほぼ保存され、真の過推敲（口語化・意訳・水増し）ではない。自然度観点では減点要因にならない。"
+    }
+  ],
+  "over_polish_signal_count": 1,
+  "style_integrity": {
+    "keitai_jotai_mixing": false,
+    "register_downgrade": false,
+    "choppiness": false,
+    "public_document_dignity_preserved": true,
+    "note": "全編 敬体（です・ます）維持。常体混入なし。定型敬語（お知らせ／ご記入のうえ／くださいますようお願いいたします／ございません／当日消印有効／お問い合わせください）を保存し、公的文書の格を維持。"
+  },
+  "focus_point_checks": {
+    "I3_repetition_broken": "解消。推敲前『〜いただく必要があります』×5 → 推敲後 0。4件を『ご確認/ご返送/ご注意/ご連絡ください』へ、1件(f015)を『お手続きくださいますようお願いいたします』へ意図的に変奏。",
+    "A6_A2_repetition_resolved": "解消。A-6 状態叙述 4回→実質0（微弱S3が1）、A-2 主題提示『については/につきましては』×4 → 0（は/詳しい内容は 等へ）。",
+    "kudasai_new_repetition": "非該当（過反復ではない）。素の『〜ください』は5回だが (1)f015を『くださいますようお願いいたします』へ意図的に差別化、(2)5つは異なる動詞（確認/返送/注意/連絡/問い合わせ）に接続し機械反復ではない、(3)公的文書で『〜ください』は正規の依頼形で、ジャンル特則により定型敬語の残存は減点しない。over-polish/残存いずれにも計上しない。",
+    "register_dignity": "保たれている（style_integrity 参照）。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "change_rate_naturalness_verdict": "change_rate 0.317 は 30% を超えるが del 主導の圧縮型（IMP-001）であり、自然度観点では過推敲に当たらない。ins_rate 9% の低さが『新規のAIっぽい言い換え・水増しが起きていない』ことを裏付ける。過推敲シグナルは実質1個（機械的閾値超過のみ）で、grade C の閾値『過推敲シグナル2個』に達しないため 2次推敲は不要。",
+  "second_pass_required": false,
+  "notes": "S1 0件・S2 0件・改善率93.2%で A 基準（S1 0/S2≤2/改善70%+）を明確に満たす。残存は微弱S3が2件のみで、いずれも公的文書として自然な範囲。文体崩れなし。change_rate 30%超は del 主導の圧縮であり自然度上の懸念にならない。accept 推奨。※検出器は手動再走査（サブエージェント起動不可）。score_after は score_before の逆算正規化係数(≈1.403)を残存raw加重和(2×0.5=1.0)へ適用し、ください系リズムの watch を保守的に上乗せして 3.5 と算定した推定値。"
+}
