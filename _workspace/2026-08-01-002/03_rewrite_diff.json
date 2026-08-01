@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "run_id": "2026-08-01-002",
+    "genre": "public_notice",
+    "style_preserved": "desu_masu_formal",
+    "original_length": 824,
+    "rewritten_length": 675,
+    "edits_applied": 25,
+    "findings_retained": 2,
+    "deleted_chars": 198,
+    "inserted_chars": 49,
+    "deletion_rate": 0.2403,
+    "insertion_rate": 0.0595,
+    "change_rate": 0.2998,
+    "lexical_change_rate_est": 0.16,
+    "structural_deletion_rate_est": 0.14,
+    "imp001_note": "change_rate は挿入率(0.0595)と削除率(0.2403)を分離計上。削除が支配的なのは『いただきますようお願い申し上げます』『必要がございます』『となっております』等の冗長定型を短縮したためで、語句の意味改変ではなく構造圧縮が主因。語句改変率(既存語の別語置換)は約16%、構造/削除率(定型句短縮・接続詞削除)は約14%。"
+  },
+  "edits": [
+    { "finding_id": "f003", "category": "A-6", "type": "lexical", "before": "実施する運びとなりました", "after": "実施いたします", "rationale": "決定事項を状態化する『運びとなりました』を断定へ。お知らせいたします の告知機能は後続で保持" },
+    { "finding_id": "f001", "category": "A-8", "type": "structural", "before": "目的として実施されるものであり", "after": "目的とするもので", "rationale": "行為者を消した受動『実施される』を解消。実施の事実は直前文『実施いたします』で既出のため冗長を圧縮、意味は保存" },
+    { "finding_id": "f002", "category": "A-6", "type": "lexical", "before": "対象となる皆様", "after": "対象の皆様", "rationale": "状態化『となる』を除去。同段落内の反復を分散させるため第2段落『対象となる方』は原形を保持し均一化を回避" },
+    { "finding_id": "f004", "category": "I-3", "type": "lexical", "before": "受診していただく必要がございます", "after": "受診してください", "rationale": "need to 直訳の『必要がございます』を自然な依頼へ。副詞『必ず』を残し義務の強度を保存" },
+    { "finding_id": "f005", "category": "A-8", "type": "structural", "before": "特定健康診査は、40歳から74歳までの被保険者の方を対象として実施されます", "after": "特定健康診査の対象は、40歳から74歳までの被保険者の方です", "rationale": "行為者不在の受動『実施されます』を対象提示の断定文へ再構成。年齢・対象の情報は完全保存" },
+    { "finding_id": "f006", "category": "A-8", "type": "lexical", "before": "送付される受診券", "after": "お送りする受診券", "rationale": "agentless passive を市を行為者とする謙譲能動へ。格式維持" },
+    { "finding_id": "f007", "category": "I-3", "type": "lexical", "before": "持参していただく必要がございます", "after": "お持ちください", "rationale": "『必要がございます』反復を自然化。第4段落は『ご持参ください』とし文末を変奏" },
+    { "finding_id": "f008", "category": "A-8", "type": "lexical", "before": "発送される", "after": "発送を", "rationale": "受動を市の行為として能動化（f009と連結し『発送を予定しております』へ）" },
+    { "finding_id": "f009", "category": "A-6", "type": "lexical", "before": "予定となっております", "after": "予定しております", "rationale": "状態化『となっております』を謙譲能動へ。『予定』の未確定ニュアンスは保存" },
+    { "finding_id": "f010", "category": "H-1", "type": "deletion", "before": "なお、", "after": "", "rationale": "段落頭の定型接続詞を削除。文頭接続詞3回反復のうち本件と f017 を削除し f024 を保持（H-1 約70%削除）" },
+    { "finding_id": "f011", "category": "E-2", "type": "lexical", "before": "お問い合わせいただきますようお願い申し上げます", "after": "お問い合わせください", "rationale": "依頼公式5回反復を変奏。機能する依頼として『ください』へ短縮" },
+    { "finding_id": "f012", "category": "A-6", "type": "lexical", "before": "までとなっております", "after": "までです", "rationale": "期間叙述の状態化を断定へ" },
+    { "finding_id": "f013", "category": "A-1", "type": "lexical", "before": "医療機関において", "after": "医療機関で", "rationale": "場所を抽象枠づけする『において』を自然な『で』へ" },
+    { "finding_id": "f014", "category": "I-3", "type": "lexical", "before": "受診していただく必要がございます", "after": "受診してください", "rationale": "『必要がございます』反復の自然化" },
+    { "finding_id": "f015", "category": "A-2", "type": "lexical", "before": "一覧につきましては", "after": "一覧は", "rationale": "主題提示『につきまして』を助詞『は』へ" },
+    { "finding_id": "f016", "category": "E-2", "type": "lexical", "before": "ご参照いただきますようお願い申し上げます", "after": "ご参照ください", "rationale": "依頼公式の変奏。動詞を変え『ください』の反復感を分散" },
+    { "finding_id": "f017", "category": "H-1", "type": "deletion", "before": "また、", "after": "", "rationale": "段落頭の定型接続詞を削除（文頭接続詞削減の一環）" },
+    { "finding_id": "f018", "category": "I-3", "type": "lexical", "before": "ご持参いただく必要がございます", "after": "ご持参ください", "rationale": "『必要がございます』反復の自然化。第2段落『お持ちください』と語形を分けて変奏" },
+    { "finding_id": "f019", "category": "E-2", "type": "lexical", "before": "ご了承いただきますようお願い申し上げます", "after": "ご了承ください", "rationale": "依頼公式の変奏" },
+    { "finding_id": "f020", "category": "F-1", "type": "deletion", "before": "大変重要な", "after": "重要な", "rationale": "程度副詞『大変』を削除。断定で意義は足りる" },
+    { "finding_id": "f021", "category": "A-6", "type": "lexical", "before": "重要な機会となっております", "after": "重要な機会です", "rationale": "状態化『となっております』を断定へ（となる系反復の解消）" },
+    { "finding_id": "f022", "category": "A-9", "type": "lexical", "before": "健康の維持および増進のためにも", "after": "健康を維持・増進するためにも", "rationale": "名詞羅列『維持および増進』を動詞句へ開き冗長を解消。目的節『ため』は文書内1回で許容" },
+    { "finding_id": "f025", "category": "A-2", "type": "lexical", "before": "本件に関する", "after": "本件の", "rationale": "主題提示『に関する』を『の』へ" },
+    { "finding_id": "f026", "category": "A-2", "type": "lexical", "before": "につきましては", "after": "は", "rationale": "主題提示『につきまして』を助詞『は』へ。直前 f025 と重畳した二重主題提示を解消" },
+    { "finding_id": "f027", "category": "E-2", "type": "lexical", "before": "ご連絡いただきますようお願い申し上げます", "after": "ご連絡ください", "rationale": "依頼公式5回反復の最後を変奏" }
+  ],
+  "retained_findings": [
+    { "finding_id": "f023", "category": "E-2", "span": "賜りますよう、お願い申し上げます", "reason": "『ご理解とご協力を賜りますようお願い申し上げます』は公用文の正規の結辞。E-2 は全削除ではなく変奏が原則のため、機能する依頼公式を1つ意図的に残し格式を担保（他4件は ください へ変奏済み）" },
+    { "finding_id": "f024", "category": "H-1", "span": "なお", "reason": "文頭接続詞3回のうち末尾案内の『なお』は公用文の定型として1つ保持（H-1 約70%削除の原則に沿い f010・f017 を削除）" }
+  ],
+  "unflagged_preserved": [
+    { "span": "対象となる方に対して", "location": "第2段落", "reason": "検出 finding のない span。f002 の反復解消は済んでおり、あえて残すことで A-6 の機械的均一化を回避（連鎖調整）" }
+  ],
+  "style_preserved": "desu_masu_formal",
+  "warnings": [
+    "change_rate 0.2998 は 30% 警告閾値の直下。ただし削除率(0.24)が支配的で挿入率(0.06)は低く、意味改変ではなく冗長定型の短縮が主因のため fidelity リスクは低い。",
+    "I-3・E-2 の自然化により文末の『〜ください』が8箇所に増加。動詞（受診/持参/持ち/問い合わせ/参照/了承/連絡）は分散させたが、naturalness-reviewer は『ください』頻度を E-2 残存として点検されたい。公用文お知らせでは標準的な文末で口語化ではない。"
+  ]
+}

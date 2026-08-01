@@ -59,14 +59,14 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（二軸: playbook §変更率の数え方）: 30% 超で警告。50% 超でも削除主導かつ語句改変率が低く fidelity=pass・自然度 A/B なら `override accept`（理由を summary 明記）。強制中断は語句改変率が高いケースに限定（IMP-001）。
 
 ### 4. 並列検証
 
 二つを並行実行:
 
 * `content-fidelity-auditor`: 原文と推敲文を 13 項チェックリストで突き合わせ、意味の毀損があれば該当 edit のロールバックを指示。
-* `naturalness-reviewer`: 推敲文に検出器を再実行し、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。
+* `naturalness-reviewer`: 残存 AI クセと過推敲シグナルを計測し品質等級 A〜D を判定。**検出器はサブエージェントが入れ子で起動できないため、オーケストレーターが推敲後 `03_rewrite.md` に `ai-tell-detector` を先に再実行**し、その再検出 JSON を reviewer へ渡す（IMP-006）。改善率は生加重和 `raw_score` で算出（IMP-002）。
 
 ### 5. 総合判定
 

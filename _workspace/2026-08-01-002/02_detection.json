@@ -1,0 +1,309 @@
+{
+  "meta": {
+    "input_length": 825,
+    "detected_count": 27,
+    "ai_tell_density": 0.29,
+    "severity_weighted_score": 69.0,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態（行為者を消した agentless passive）",
+      "severity": "S2",
+      "text_span": "実施される",
+      "start": 120,
+      "end": 125,
+      "reason": "行為者（市）を消した受動態。実施される/実施されます/送付される/発送される と本文で4回反復し翻訳調の状態受動が機械的",
+      "suggested_fix": "実施する"
+    },
+    {
+      "id": "f002",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "対象となる",
+      "start": 131,
+      "end": 136,
+      "reason": "となる/となっております が本文で計6回反復（対象となる×2・運びとなりました・予定となっております・までとなっております・機会となっております）",
+      "suggested_fix": "対象の"
+    },
+    {
+      "id": "f003",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "運びとなりました",
+      "start": 70,
+      "end": 78,
+      "reason": "「である／だ」で足りる決定事項を状態化する定型。となる系6回反復の一部",
+      "suggested_fix": "実施します"
+    },
+    {
+      "id": "f004",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（必要がございます）",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 157,
+      "end": 165,
+      "reason": "「必要がございます」が本文で4回反復（157/235/430/518）。need to の直訳的要請で文末が一本調子",
+      "suggested_fix": "受診してください"
+    },
+    {
+      "id": "f005",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態（行為者を消した agentless passive）",
+      "severity": "S2",
+      "text_span": "実施されます",
+      "start": 199,
+      "end": 205,
+      "reason": "行為者を消した受動態。実施する系受動が反復（計4回）",
+      "suggested_fix": "実施します"
+    },
+    {
+      "id": "f006",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態（行為者を消した agentless passive）",
+      "severity": "S2",
+      "text_span": "送付される",
+      "start": 218,
+      "end": 223,
+      "reason": "「市が送付する」を行為者不在の受動で表現。受動態4回反復の一部",
+      "suggested_fix": "お送りする"
+    },
+    {
+      "id": "f007",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（必要がございます）",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 235,
+      "end": 243,
+      "reason": "「必要がございます」4回反復の一部。持参の要請",
+      "suggested_fix": "お持ちください"
+    },
+    {
+      "id": "f008",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態（行為者を消した agentless passive）",
+      "severity": "S2",
+      "text_span": "発送される",
+      "start": 273,
+      "end": 278,
+      "reason": "行為者を消した受動態。直後の「予定となっております」と連結し翻訳調が濃い",
+      "suggested_fix": "発送する"
+    },
+    {
+      "id": "f009",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "予定となっております",
+      "start": 278,
+      "end": 288,
+      "reason": "「予定です」で足りる箇所を状態化。となる系6回反復の一部",
+      "suggested_fix": "予定です"
+    },
+    {
+      "id": "f010",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多（なお／また）",
+      "severity": "S2",
+      "text_span": "なお",
+      "start": 289,
+      "end": 291,
+      "reason": "文頭接続詞「なお」「また」が段落頭で3回（289/486/709）。定型的なつなぎ",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f011",
+      "category": "E-2",
+      "category_label": "リズム: 敬語定型『〜いただきますようお願い申し上げます』の反復（文末単調）",
+      "severity": "S2",
+      "text_span": "お問い合わせいただきますようお願い申し上げます",
+      "start": 314,
+      "end": 337,
+      "reason": "『〜いただきますようお願い申し上げます』依頼公式が本文で5回反復（314/463/569/690/739）し文末が一本調子。公的文書特有の硬い敬語定型の機械的多用",
+      "suggested_fix": "お問い合わせください"
+    },
+    {
+      "id": "f012",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "までとなっております",
+      "start": 371,
+      "end": 381,
+      "reason": "「までです」で足りる期間叙述を状態化。となる系6回反復の一部",
+      "suggested_fix": "までです"
+    },
+    {
+      "id": "f013",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において（における濫用）",
+      "severity": "S2",
+      "text_span": "医療機関において",
+      "start": 414,
+      "end": 422,
+      "reason": "場所を抽象枠づけする「において」。「医療機関で」が自然。単発だが翻訳調の硬さ（公的文書文脈のため taxonomy 既定 S1 から文脈調整）",
+      "suggested_fix": "医療機関で"
+    },
+    {
+      "id": "f014",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（必要がございます）",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 430,
+      "end": 438,
+      "reason": "「必要がございます」4回反復の一部。受診の要請",
+      "suggested_fix": "受診してください"
+    },
+    {
+      "id": "f015",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について／に関して／につきまして",
+      "severity": "S2",
+      "text_span": "につきましては",
+      "start": 448,
+      "end": 455,
+      "reason": "主題提示「につきまして」「に関する」が計3回（448/712/724）。公的文書で定型化しており文脈上 S2 へ調整",
+      "suggested_fix": "は"
+    },
+    {
+      "id": "f016",
+      "category": "E-2",
+      "category_label": "リズム: 敬語定型『〜いただきますようお願い申し上げます』の反復（文末単調）",
+      "severity": "S2",
+      "text_span": "ご参照いただきますようお願い申し上げます",
+      "start": 463,
+      "end": 483,
+      "reason": "依頼公式5回反復の一部",
+      "suggested_fix": "ご参照ください"
+    },
+    {
+      "id": "f017",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多（なお／また）",
+      "severity": "S2",
+      "text_span": "また",
+      "start": 486,
+      "end": 488,
+      "reason": "文頭接続詞3回反復の一部",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f018",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（必要がございます）",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 518,
+      "end": 526,
+      "reason": "「必要がございます」4回反復の一部。被保険者証持参の要請",
+      "suggested_fix": "お持ちください"
+    },
+    {
+      "id": "f019",
+      "category": "E-2",
+      "category_label": "リズム: 敬語定型『〜いただきますようお願い申し上げます』の反復（文末単調）",
+      "severity": "S2",
+      "text_span": "ご了承いただきますようお願い申し上げます",
+      "start": 569,
+      "end": 589,
+      "reason": "依頼公式5回反復の一部",
+      "suggested_fix": "ご了承ください"
+    },
+    {
+      "id": "f020",
+      "category": "F-1",
+      "category_label": "過度な修飾: 程度副詞（大変）＋意義誇張（重要）",
+      "severity": "S2",
+      "text_span": "大変",
+      "start": 619,
+      "end": 621,
+      "reason": "程度副詞「大変」が直後「重要な機会」を誇張（D-2 意義誇張との重複）。断定で足りる",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f021",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "重要な機会となっております",
+      "start": 621,
+      "end": 634,
+      "reason": "「重要な機会です」で足りる箇所を状態化。となる系6回反復の一部",
+      "suggested_fix": "重要な機会です"
+    },
+    {
+      "id": "f022",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために（目的節）",
+      "severity": "S2",
+      "text_span": "のためにも",
+      "start": 649,
+      "end": 654,
+      "reason": "in order to 的な目的節。直前「維持および増進」から直結でき冗長",
+      "suggested_fix": "ためにも→（読点で直結）"
+    },
+    {
+      "id": "f023",
+      "category": "E-2",
+      "category_label": "リズム: 敬語定型『〜賜りますようお願い申し上げます』の反復（文末単調）",
+      "severity": "S2",
+      "text_span": "賜りますよう、お願い申し上げます",
+      "start": 690,
+      "end": 706,
+      "reason": "依頼公式5回反復の一部（賜りますよう変奏）",
+      "suggested_fix": "お願いします"
+    },
+    {
+      "id": "f024",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多（なお／また）",
+      "severity": "S2",
+      "text_span": "なお",
+      "start": 709,
+      "end": 711,
+      "reason": "文頭接続詞3回反復の一部",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f025",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について／に関して／につきまして",
+      "severity": "S2",
+      "text_span": "本件に関する",
+      "start": 712,
+      "end": 718,
+      "reason": "主題提示「に関する」。について系3回反復の一部",
+      "suggested_fix": "本件の"
+    },
+    {
+      "id": "f026",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について／に関して／につきまして",
+      "severity": "S2",
+      "text_span": "につきましては",
+      "start": 724,
+      "end": 731,
+      "reason": "について系3回反復の一部。直前「本件に関する」と近接し重畳",
+      "suggested_fix": "は"
+    },
+    {
+      "id": "f027",
+      "category": "E-2",
+      "category_label": "リズム: 敬語定型『〜いただきますようお願い申し上げます』の反復（文末単調）",
+      "severity": "S2",
+      "text_span": "ご連絡いただきますようお願い申し上げます",
+      "start": 739,
+      "end": 759,
+      "reason": "依頼公式5回反復の一部。全6段落中5段落が同一の依頼公式で結ばれ文書レベルでリズムが機械的",
+      "suggested_fix": "ご連絡ください"
+    }
+  ],
+  "category_summary": { "A": 14, "B": 0, "C": 0, "D": 0, "E": 5, "F": 1, "G": 0, "H": 3, "I": 4, "J": 0 }
+}
