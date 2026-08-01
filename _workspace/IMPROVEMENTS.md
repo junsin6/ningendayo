@@ -99,6 +99,12 @@
 ### 定着カタカナ語 B-2 免責リスト `status: ready` `hits: 1run(3agent)`
 - ルーティン・モチベーション・データドリブン 等の定訳が冗長になる語は B-2 から半免責し残差 S3 固定。（2026-06-12 起票、継続）
 
+### taxonomy 運用（taxonomist 審査 2026-08-01 由来）
+- **severity と weight の二層分離**: 固定 severity（S1/S2/S3）は taxonomy が持ち、可変 weight/ジャンル降格は検出器設定へ分離する境界を明文化すべき。ジャンル依存降格を導入すると SSOT が「固定severity」と「実効weight」に二層化する。出所 taxonomist。
+- **finding へジャンルタグ（col/rep/blog/gov）軸を追加**: D-7 等ジャンル特化パターンをカテゴリを増やさず管理でき、severity ジャンル降格とも接続。カテゴリ D 肥大化の回避策。出所 taxonomist。
+- **昇格条件の明文化**: 「再現2回以上」を「**独立した 2 run 以上での再現**」と定義に一行追加（同一 run 内反復と区別）。D-7 は同一 run 内5回でも 1run 扱いで候補止まりとした。出所 taxonomist。
+- **改善率のゼロ除算ガード**: `raw_before=0`（AIクセ未検出）時は improvement=0 と定義（taxonomy スキーマ節に追記済み）。
+
 ### detector 実装
 - start/end 自己検証（regex マッチ位置と text_span 一致を assert）`hits: 2run`（両 run で detector が assert 実装・有効）。出所 detector-A（両 run）。
 - 絵文字正規表現レンジ明示 `\U0001F300-\U0001FAFF` ＋ `☀-➿`（2026-06-12 継続）。
