@@ -383,7 +383,8 @@ J. 視覚装飾の濫用
     "input_length": 1820,
     "detected_count": 37,
     "ai_tell_density": 0.203,
-    "severity_weighted_score": 71.5,
+    "raw_score": 56.0,
+    "severity_weighted_score": 60.7,
     "style": "desu_masu"
   },
   "findings": [
@@ -406,8 +407,11 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `raw_score`: S1=5, S2=2, S3=0.5 の**生加重和**（上限なし・クリップしない）。改善率算出の基準値。**必須フィールド**。
+* `severity_weighted_score`: 表示用に 0〜100 へ正規化したスコア。飽和曲線 `100 * (1 - exp(-raw_score / K))`（K=60）を用いる。単純クリップ `min(100, raw)` は天井効果でスコアが張り付き解像度を失うため**禁止**（IMP-002, 2026-08-01-001 で raw120→クリップ100 の飽和を実証）。
+  * **改善率は必ず生加重和で算出**: `improvement = (raw_before − raw_after) / raw_before`。正規化済み score は表示専用で改善率計算に使わない（天井効果で過小評価するため）。
+  * K は密度基準の目安。K=60 で raw60→約63、raw120→約86、raw200→約96 と高 raw 域でも解像度が残る。
+* `ai_tell_density`: 検出 finding span の**和集合（重複除去）文字数 / 全体文字数**。複数カテゴリが同一・隣接 span に該当する場合、単純総和すると二重計上され density>1.0 もあり得るため、必ず union で算出する（IMP-005, 両 run の detector が実証）。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理

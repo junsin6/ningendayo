@@ -21,6 +21,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "input_length": 0,
     "detected_count": 0,
     "ai_tell_density": 0.0,
+    "raw_score": 0.0,
     "severity_weighted_score": 0.0,
     "style": "desu_masu | da_dearu | mixed"
   },
@@ -50,9 +51,10 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（IMP-002 二層化）:
+   * `raw_score` = S1×5 + S2×2 + S3×0.5 の**生加重和（クリップしない）**。必須。改善率の基準値。
+   * `severity_weighted_score` = 表示用に飽和曲線 `100 * (1 - exp(-raw_score / K))`（K=60）で 0〜100 正規化。`min(100, raw)` の単純クリップは天井効果で禁止。
+   * `ai_tell_density` = 検出 finding span の**和集合（重複除去）文字数** / 全体文字数（IMP-005。単純総和は二重計上で禁止）。
 
 ## 重要な原則
 
