@@ -1,26 +1,36 @@
 {
   "meta": {
     "run_id": "2026-08-01-001",
+    "round": 2,
     "style_preserved": "desu_masu",
     "input_length_with_newlines": 943,
     "input_length_no_newlines": 930,
-    "output_length_with_newlines": 803,
-    "findings_total": 36,
-    "edits_applied": 36,
-    "change_rate": 0.3033,
-    "insertion_rate": 0.0774,
-    "deletion_rate": 0.2259,
-    "chars_inserted": 73,
-    "chars_deleted": 213,
-    "lexical_substitution_note": "削除主体（213字削除 / 73字挿入）。挿入率7.7%は語句改変（カタカナ和語化・断定化・接続詞置換）に相当し低い。削除率22.6%の大半は冗長構造の除去（「いかがでしたでしょうか」「第一に/第二に/第三に」「ことができる」冗長・状態叙述の圧縮）であり、意味置換ではなく構造トリミング。IMP-001: 単一 change_rate は構造削除と語句改変を混同するため、両者を分離計上した。",
+    "output_length_with_newlines": 800,
+    "output_length_no_newlines": 787,
+    "findings_total": 37,
+    "edits_applied": 37,
+    "change_rate": 0.3129,
+    "insertion_rate": 0.0796,
+    "deletion_rate": 0.2333,
+    "chars_inserted": 74,
+    "chars_deleted": 217,
+    "lexical_substitution_note": "削除主体（217字削除 / 74字挿入）。挿入率8.0%は語句改変（カタカナ和語化・断定化・接続詞置換）に相当し低い。削除率23.3%の大半は冗長構造の除去（「いかがでしたでしょうか」「第一に/第二に/第三に」「ことができる」冗長・状態叙述の圧縮）であり、意味置換ではなく構造トリミング。IMP-001: 単一 change_rate は構造削除と語句改変を混同するため、両者を分離計上した。",
+    "round2": {
+      "scope": "局所ロールバック＋再推敲（対象2 span のみ、他 span 不変）",
+      "e002_rollback_reedit": "content-fidelity-auditor 指示により round1の「広がっています」（命題すり替え）をロールバックし「注目されています」へ再推敲。原意「注目」を保存。",
+      "a5_residual_fix": "naturalness-reviewer が唯一の残存 S1 として検出した A-5 冗長「進めることができるため」を「進められるため」へ修正（新規 e037）。",
+      "change_rate_delta": "0.3033 → 0.3129（全文の char 差分で再計算。round1数値は差分アルゴリズム差もあり近似）。依然30%超・50%未満で continue_with_warning を維持。",
+      "spans_touched": 2,
+      "spans_untouched": "e002/e037 以外の全 edit・全区間は不変"
+    },
     "warnings": [
-      "change_rate 0.3033 が 30% 警告閾値を超過（50% 未満のため続行）。超過の主因は冗長スキャフォールド削除であり語句改変ではない。最終判断はオーケストレーターに委ねる。"
+      "change_rate 0.3129 が 30% 警告閾値を超過（50% 未満のため続行）。超過の主因は冗長スキャフォールド削除であり語句改変ではない。round2 の局所修正で微増（+0.0096）。最終判断はオーケストレーターに委ねる。"
     ],
     "verdict": "continue_with_warning"
   },
   "edits": [
     { "edit_id": "e001", "finding_id": "f001", "category": "A-1", "before": "現場において、", "after": "現場で、", "rationale": "「において」を助詞「で」へ。翻訳調の抽象的枠づけを解消。" },
-    { "edit_id": "e002", "finding_id": "f002", "category": "D-4", "before": "大きな注目を集めています", "after": "広がっています", "rationale": "AIブログ導入部のハイプ・クリシェを、抽象事象の誇張なしの事実叙述へ。" },
+    { "edit_id": "e002", "finding_id": "f002", "category": "D-4", "before": "大きな注目を集めています", "after": "注目されています", "rationale": "AIブログ導入部のハイプ修飾「大きな」を除去し脱ハイプ。原意の「注目」は保存。round1の「広がっています」は『注目の増大→普及の拡大』という命題すり替えのため content-fidelity-auditor 指示でロールバックし再推敲（round2）。", "round": 2, "superseded_after_round1": "広がっています" },
     { "edit_id": "e003", "finding_id": "f003", "category": "F-4", "before": "基本的なコンセプト", "after": "基本の概念", "rationale": "不要な抽象接尾辞「的」を除去（f004と連動）。" },
     { "edit_id": "e004", "finding_id": "f004", "category": "B-2", "before": "コンセプト", "after": "概念", "rationale": "日本語で書けるカタカナ語を和語化（concept→概念）。" },
     { "edit_id": "e005", "finding_id": "f005", "category": "A-1", "before": "導入における", "after": "導入の", "rationale": "A-1の2回目。「〜の」で直結し反復を分散（1回目はf001で「で」に変え均一化を回避）。" },
@@ -54,7 +64,10 @@
     { "edit_id": "e033", "finding_id": "f033", "category": "D-1", "before": "いかがでしたでしょうか。", "after": "", "rationale": "ブログAIの決定的シグネチャ。無条件削除。" },
     { "edit_id": "e034", "finding_id": "f034", "category": "A-10", "before": "価値をもたらすことができる", "after": "価値を生む", "rationale": "抽象主語+万能動詞「もたらす」を「生む」へ、A-5冗長「ことができる」を除去。" },
     { "edit_id": "e035", "finding_id": "f035", "category": "D-4", "before": "強力なアプローチです", "after": "有力な手法です", "rationale": "ハイプ修飾「強力な」+カタカナ「アプローチ」を「有力な手法」へ。" },
-    { "edit_id": "e036", "finding_id": "f036", "category": "D-1", "before": "ぜひ、自社のシステムに最適なアーキテクチャを検討してみてはいかがでしょうか。", "after": "自社のシステムに最適なアーキテクチャを検討してみる価値はあります。", "rationale": "ブログAI定番の勧誘結び「〜してみてはいかがでしょうか」を提案の断定へ。勧誘副詞「ぜひ」は結び定型の一部として除去（事実情報なし）。" }
+    { "edit_id": "e036", "finding_id": "f036", "category": "D-1", "before": "ぜひ、自社のシステムに最適なアーキテクチャを検討してみてはいかがでしょうか。", "after": "自社のシステムに最適なアーキテクチャを検討してみる価値はあります。", "rationale": "ブログAI定番の勧誘結び「〜してみてはいかがでしょうか」を提案の断定へ。勧誘副詞「ぜひ」は結び定型の一部として除去（事実情報なし）。" },
+    { "edit_id": "e037", "finding_id": "f037", "category": "A-5", "before": "進めることができるため", "after": "進められるため", "rationale": "round1で見落とした A-5 冗長（可能の「ことができる」）を naturalness-reviewer が唯一の残存 S1 として検出。可能動詞「進められる」へ短縮。敬体・意味維持。round2 追加。", "round": 2, "source": "naturalness_review_residual" }
   ],
-  "rollback_log": []
+  "rollback_log": [
+    { "round": 2, "edit_id": "e002", "action": "rollback_and_reedit", "trigger": "content-fidelity-auditor", "reason": "round1のafter「広がっています」は原文「注目を集めています」の命題（注目の増大）を『普及の拡大』へすり替え（意味非等価）。", "rolled_back_from": "広がっています", "reedited_to": "注目されています", "fidelity_restored": true }
+  ]
 }
