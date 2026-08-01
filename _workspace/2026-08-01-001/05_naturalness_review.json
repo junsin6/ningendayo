@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "run_id": "2026-08-01-001",
+    "target": "03_rewrite.md",
+    "detector_basis": "ai-tell-taxonomy v1.0 (SSOT), same criteria as 02_detection.json",
+    "scoring_formula": "severity_weighted_score = min(100, S1*5 + S2*2 + S3*0.5)",
+    "redetection_mode": "methodological re-scan (no Task/subagent-spawn tool available in this harness; see notes/IMP-006)"
+  },
+  "score_before": 100.0,
+  "score_after": 7.5,
+  "improvement_rate": 0.925,
+  "improvement_rate_uncapped": 0.9375,
+  "residual_findings": {
+    "S1": 1,
+    "S2": 1,
+    "S3": 1
+  },
+  "residual_detail": [
+    {
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "開発を進めることができるため",
+      "reason": "rewriter が意図的に残した A-5 残存1件。A-5 は S1（決定的シグネチャ）。同一基準では単発でも finding 化される。fix: 「進められるため」。",
+      "intentional": true
+    },
+    {
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ポイント（見出し: 導入のポイントを解説）",
+      "reason": "本文の『ポイント』は f006 で要点に修正済みだが、見出しの『ポイント』が未修正で残存。→ 要点。",
+      "intentional": false
+    },
+    {
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復 ★日本語固有",
+      "severity": "S3",
+      "text_span": "文末が依然 8 割方『〜です／〜ます』",
+      "reason": "推敲で『でしょう』『ました』『なりません』の変奏が入り S2→S3 まで緩和。ただし体言止め・断定の混入はなく完全解消には至らず。単独では軽微。",
+      "intentional": false
+    }
+  ],
+  "sub_threshold_notes": [
+    "『といった』(A-13) は原文 2 回→推敲後 1 回（サービスメッシュといった技術）。反復閾値未満のため過検出回避で finding 化せず。",
+    "メリット / スケーラビリティ / コミュニケーション 等のカタカナ語は原検出でも非 finding（業界標準寄り）。同一基準を維持し非計上。"
+  ],
+  "over_polish_signals": [],
+  "over_polish_checks": {
+    "keitai_jotai_mixing": "なし（全文末 です・ます・でしょう・ました・ません で統一、だ／である の混入なし）",
+    "meaning_thinning": "なし（事実・主張・数値・固有名詞は保存。監査は content-fidelity-auditor 管掌）",
+    "unnatural_colloquialism": "なし（『むだなく』『ただ』等は文体に整合）",
+    "excessive_taigen_dome": "なし（むしろ体言止めは不足気味）",
+    "change_rate": "30% 未満（局所的な語句置換中心。強制中断・警告域に達せず）"
+  },
+  "resolved_summary": {
+    "before_count": 36,
+    "before_S1": 16,
+    "before_S2": 20,
+    "before_S3": 0,
+    "after_count": 3,
+    "removed_count": 33,
+    "removal_rate": 0.917
+  },
+  "grade": "C",
+  "recommendation": "rewrite_round_2",
+  "notes": "残存 AI クセ 36→3 件（除去率 91.7%）、加重スコア 100.0→7.5（改善 92.5%）と大幅改善。過推敲シグナルはゼロ（文体崩れ・意味痩せ・不自然口語化・過度な体言止めいずれもなし、変更率 30% 未満）。ただし A-5『開発を進めることができるため』が S1（決定的シグネチャ）として 1 件残存するため、SKILL.md 等級基準（A/B はいずれも S1=0 が必須、C は『S1 1〜2 件』）により機械的に grade C・rewrite_round_2 と判定する。rewriter が意図的に残したものだが、A-5 は一度の出現で AI を示す S1 のため『意図的』は減点回避事由にならない。round_2 の修正は『進めることができるため → 進められるため』の 1 span のみで足り、副作用リスクは極小。見出しの『ポイント→要点』(B-2/S2) も併せて手当てすれば A 到達見込み。【再検出手段の注記】本ハーネスには Task/サブエージェント起動ツールが提供されておらず、IMP-006 の要求する ai-tell-detector の実サブエージェント再呼び出しは実行不能だった。代替として taxonomy v1.0 SSOT・同一スコア式・同一過検出閾値で推敲文を手動再走査し、検出器と同一基準での残存計測を行った。"
+}
