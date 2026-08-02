@@ -33,6 +33,9 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
+      "scope": "scattered",
+      "related_spans": [[142, 150], [402, 410]],
+      "merged_categories": [],
       "reason": "理由（密度・反復回数など根拠を明記）",
       "suggested_fix": "課題だ"
     }
@@ -49,10 +52,12 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * E（リズム）: 文長の標準偏差、文末の反復率を計算。
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
-4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。反復・分散パターンは `scope:"scattered"` とし全出現位置を `related_spans` に列挙（reason へ位置を埋め込まない）。文末単調・リズムなど点の span を持たない文書レベルは `scope:"document"`。1 span が複数カテゴリに該当するときは主分類を `category`、従を `merged_categories` に置く（1 span = 主分類 1 finding）。
+5. **スコア算出**（taxonomy v1.1 §スキーマに厳密準拠、全 detector 共通）:
+   * raw = 5·(S1数) + 2·(S2数) + 0.5·(S3数)。
+   * `severity_weighted_score = 100 × (1 − exp(−raw / 40))`（τ=40 固定・正準式）。線形 `min(100, raw)` は禁止（raw>100 で飽和し解像度が消える）。
+   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。**多カテゴリ重複 span は union（重複区間を一度だけ）で計上**。
+   * `category_summary` は各 finding の主 `category` 先頭文字のみ集計（従カテゴリは数えない）。
 
 ## 重要な原則
 
