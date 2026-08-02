@@ -74,8 +74,8 @@
       "finding_id": "f011",
       "category": "A-6",
       "before": "差し上げられる予定となっておりますので",
-      "after": "いたしますので",
-      "rationale": "受動＋「予定となっております」の三重状態化を解消。f010と一体で「改めてご連絡いたしますので」に統合。将来の連絡意思は「いたします」で保持され情報欠落なし"
+      "after": "する予定ですので",
+      "rationale": "【round2 ロールバック再推敲】round1では f010 と一体で「ご連絡いたしますので」に統合し『予定』を脱落させたため、確定コミットメント化（将来連絡の計画・変動含みモダリティ喪失）と content-fidelity-auditor が rollback_required 判定。本ラウンドで『予定』を保持したまま AI クセ（受動「差し上げられる」＋状態叙述「となっております」）のみ剥離。f010 の二重敬語是正は「ご連絡する」で継承され、統合フラグメントは「改めてご連絡する予定ですので」。『予定』モダリティ復元により fidelity 回復、二重敬語も不再発。敬体維持"
     },
     {
       "finding_id": "f012",
@@ -93,10 +93,13 @@
     }
   ],
   "meta": {
-    "change_rate": 0.191,
-    "change_rate_method": "difflib.SequenceMatcher の挿入＋削除文字数 / 原文文字数（末尾改行を除く695字）。ins=32, del=101, sum=133",
+    "change_rate": 0.19,
+    "change_rate_method": "difflib.SequenceMatcher の挿入＋削除文字数 / 原文文字数（末尾改行を除く695字）。ins=32, del=100, sum=132",
     "style_preserved": "desu_masu",
     "tone": "public_notice",
+    "round": 2,
+    "rolled_back": ["f011"],
+    "round2_note": "content-fidelity-auditor の rollback_required（f011: 『予定』モダリティ喪失＝将来連絡の確定コミットメント化）を受け、f011 該当箇所のみ部分ロールバック再推敲。原文完全復帰ではなく『予定』を保持しつつ受動＋状態叙述の AI クセのみ剥離（after: いたしますので → する予定ですので）。f010 の二重敬語是正は「ご連絡する」で継承。他 span（f001-f010, f012-f013）は不変。change_rate 0.191→0.19",
     "warnings": []
   }
 }
