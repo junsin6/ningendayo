@@ -24,6 +24,17 @@
 - 適用: 正準式を `score = 100×(1 − exp(−raw/40))`（raw = 5·S1 + 2·S2 + 0.5·S3）に確定し taxonomy §スキーマ・ai-tell-detector.md に明記。τ=40 は既存 run と整合（raw106→92.9≈記録92.5、raw36.5→59.8）。
 - 影響: `ai-tell-taxonomy.md §検出出力スキーマ`, `ai-tell-detector.md`
 
+### IMP-009 昇格規則が「別 run 再現」と「文書内反復」を混同 `status: ready` `hits: 1run` `new`
+- 症状: 候補欄の「実例2件」を記入者が in-document の 2〜3 例で満たし、規則が要求する**別 run 再現**を満たしたように見せてしまう。A-14/A-6 追記候補が典型（1 run 内 3 反復を根拠化）。同一 run の複数 agent 相関も独立再現ではない（同じ入力・同じ検出器系列）。
+- 出所: taxonomist(0802 審査)
+- 提案: 候補欄テンプレを `distinct_runs: N / in_doc_occurrences: M` の二軸必須に。昇格規則本文へ「同一 run の複数 agent は 1 hit」を成文化。「日本語人間がほぼ使わない」の証拠様式（人間サンプルでの出現有無）欄を追加。
+- 影響: `japanese-ai-tell-taxonomist.md`, `ai-tell-taxonomy.md §拡張原則`, `IMPROVEMENTS.md 凡例`
+
+### IMP-010 正準式確定後の過去 run 再スコアリングが未定義 `status: ready` `hits: 1run` `new`
+- 症状: IMP-002 で式を確定したが、過去 run の score を再計算するか放置するか未規定。naturalness の改善率が run 間比較不能のまま（0802-001=62.0 禁止式基準 vs 0802-002=59.8 飽和式基準）。「適用 run」＝動機 run であって、新フィールドを実出力した run ではない点も用語混乱。
+- 出所: taxonomist(0802 審査)
+- 提案: score_before 使用前に正準式で再計算するルールは taxonomy に明記済（IMP-002 フォロー）。用語を「動機 run」/「実使用 run」に分離。scattered/document finding を実出力する次 run で新フィールドの実機能を検証（現状は前方拡張・当該 run 未使用）。
+
 ### IMP-003 score_before のフィールド契約が曖昧 `status: ready` `hits: 1run`
 - 症状: naturalness-reviewer がどの値を score_before にするか未固定。
 - 出所: naturalness-A(0612)
