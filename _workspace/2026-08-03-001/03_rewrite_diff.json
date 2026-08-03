@@ -27,7 +27,7 @@
     { "finding_id": "f009", "category": "A-9", "before": "最大化するための、きわめて", "after": "最大化する、きわめて", "rationale": "in order to 直訳の目的節『ための』を除去し連体修飾へ直結。" },
     { "finding_id": "f025", "category": "F-1", "before": "最大化する、きわめて有効な解決策", "after": "最大化する有効な解決策", "rationale": "程度副詞『きわめて』を削除（読点も吸収し連体修飾を自然化）。" },
     { "finding_id": "f023", "category": "B-2", "before": "有効なソリューション", "after": "有効な解決策", "rationale": "solution→解決策。" },
-    { "finding_id": "f026", "category": "D-1", "before": "有効な解決策と言えるでしょう", "after": "有効な解決策です", "rationale": "LLM結び常套句『と言えるでしょう』を断定『です』へ。原文は推量でなく断定的評価のため推量を残さない。" },
+    { "finding_id": "f026", "category": "D-1", "before": "有効な解決策と言えるでしょう", "after": "有効な解決策でしょう", "rationale": "LLM結び常套句『と言える』を除去しつつ推量『でしょう』を温存。fidelity監査#7でロールバック指示（推量→断定の確信度強化＝毀損, IMP『D系推量は保持』例外則）を受け round2 で修正。" },
     { "finding_id": "f027", "category": "D-4", "before": "さらなる進化を遂げていく", "after": "改良が続く", "rationale": "中身のないハイプ語彙を具体語『改良が続く』へ。" },
     { "finding_id": "f029", "category": "I-4", "before": "改良が続くことが期待されます", "after": "改良が続くことが期待できます", "rationale": "主体不在の受動的期待『期待されます』を『期待できます』へ。" }
   ],
