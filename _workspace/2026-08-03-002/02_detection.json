@@ -1,0 +1,322 @@
+{
+  "meta": {
+    "input_length": 498,
+    "detected_count": 25,
+    "ai_tell_density": 0.351,
+    "severity_weighted_score": 78.0,
+    "score_formula": "raw=5*S1+2*S2+0.5*S3=5*5+2*17+0.5*3=60.5; score=100*(1-exp(-raw/K)), K=40 (非飽和正規化, IMP-002対応)",
+    "style": "desu_masu",
+    "stats": {
+      "sentence_count": 10,
+      "sentence_len_mean": 49.7,
+      "sentence_len_std": 10.6,
+      "sentence_lengths": [
+        69,
+        59,
+        58,
+        59,
+        47,
+        39,
+        45,
+        36,
+        49,
+        36
+      ],
+      "passive_predicate_count": 10,
+      "necessity_request_count": 3,
+      "tonaru_state_count": 4,
+      "S1": 5,
+      "S2": 17,
+      "S3": 3
+    }
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "E-1",
+      "category_label": "リズム: 文長の標準偏差が低い",
+      "severity": "S2",
+      "text_span": "このたび、当市の電子申請システムにつきまして",
+      "start": 9,
+      "end": 31,
+      "reason": "全10文が36〜69字に収まり、緩急をつける短文(25字未満)が皆無。mean49.7/std10.6と均一で単調(stats参照)。段落ごとに短文を挟むべき。",
+      "suggested_fix": "短文を1〜2文挟み緩急をつける"
+    },
+    {
+      "id": "f002",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/につきまして 濫用",
+      "severity": "S2",
+      "text_span": "につきまして",
+      "start": 25,
+      "end": 31,
+      "reason": "主題提示『につきまして』が本文2回。硬い翻訳調。助詞『は』直結で足りる。",
+      "suggested_fix": "は"
+    },
+    {
+      "id": "f003",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（〜される/〜によって）の濫用",
+      "severity": "S2",
+      "text_span": "改善が図られる",
+      "start": 35,
+      "end": 42,
+      "reason": "無生物主語の受動叙述。本文書は受動述語が計10箇所に密集(図られる/実施される/行われる/処理される/使用される/引き継がれる/案内が行われる)。能動へ戻すべき。",
+      "suggested_fix": "市が改善する"
+    },
+    {
+      "id": "f004",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなりました",
+      "start": 42,
+      "end": 50,
+      "reason": "『となる』系状態叙述が本文で4回反復(となりました/となっております/可能となります/こととなります)。断定で足りる箇所を機械的に状態化。",
+      "suggested_fix": "なりました"
+    },
+    {
+      "id": "f005",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（〜される/〜によって）の濫用",
+      "severity": "S2",
+      "text_span": "実施される",
+      "start": 112,
+      "end": 117,
+      "reason": "受動叙述クラスタ。『実施する/行う』へ。",
+      "suggested_fix": "実施する"
+    },
+    {
+      "id": "f006",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "となっております",
+      "start": 119,
+      "end": 127,
+      "reason": "A-6状態叙述クラスタ。『実施される予定です』で足りる。",
+      "suggested_fix": "予定です"
+    },
+    {
+      "id": "f007",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "におきましては",
+      "start": 133,
+      "end": 140,
+      "reason": "『この時間帯におきましては』は場面を抽象枠づけする翻訳調。『この時間帯は』で足りる。",
+      "suggested_fix": "この時間帯は"
+    },
+    {
+      "id": "f008",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある の濫用",
+      "severity": "S2",
+      "text_span": "ご了承いただく必要がございます",
+      "start": 170,
+      "end": 185,
+      "reason": "『必要がございます/があります』要請形が本文3回反復。過剰敬語と結合し行為者が曖昧。",
+      "suggested_fix": "あらかじめご了承ください"
+    },
+    {
+      "id": "f009",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（〜される/〜によって）の濫用",
+      "severity": "S2",
+      "text_span": "今回の更新によって",
+      "start": 188,
+      "end": 197,
+      "reason": "『によって』原因後置(英語by-passiveの直訳調)。『今回の更新で』へ。",
+      "suggested_fix": "今回の更新で"
+    },
+    {
+      "id": "f010",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（〜される/〜によって）の濫用",
+      "severity": "S2",
+      "text_span": "行われていた",
+      "start": 205,
+      "end": 211,
+      "reason": "受動叙述クラスタ。『行っていた』へ。",
+      "suggested_fix": "行っていた"
+    },
+    {
+      "id": "f011",
+      "category": "F-4",
+      "category_label": "過度な修飾: 〜的/〜性/〜化 の濫用",
+      "severity": "S3",
+      "text_span": "統合的に",
+      "start": 225,
+      "end": 229,
+      "reason": "抽象接尾辞『的』。『まとめて/一つの画面で』へ開ける。単発のためS3。",
+      "suggested_fix": "まとめて"
+    },
+    {
+      "id": "f012",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（〜される/〜によって）の濫用",
+      "severity": "S2",
+      "text_span": "処理される",
+      "start": 229,
+      "end": 234,
+      "reason": "受動叙述クラスタ。可能形と結合し二重に硬い。『処理できる』へ。",
+      "suggested_fix": "処理できる"
+    },
+    {
+      "id": "f013",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "可能となります",
+      "start": 237,
+      "end": 244,
+      "reason": "A-6状態叙述クラスタ。可能表現(A-5)とも重複。『処理できます』で足りる。",
+      "suggested_fix": "処理できます"
+    },
+    {
+      "id": "f014",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞",
+      "severity": "S3",
+      "text_span": "また、",
+      "start": 245,
+      "end": 248,
+      "reason": "文頭接続詞。公用文では許容だが受動叙述の連続と重なり機械的。無くても文意は通る。",
+      "suggested_fix": "（削除可）"
+    },
+    {
+      "id": "f015",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（〜される/〜によって）の濫用",
+      "severity": "S2",
+      "text_span": "強化が行われることにより",
+      "start": 255,
+      "end": 267,
+      "reason": "受動『行われる』＋『により』の二重翻訳調。『強化されるので』へ簡素化。",
+      "suggested_fix": "強化されるので"
+    },
+    {
+      "id": "f016",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（〜される/〜によって）の濫用",
+      "severity": "S2",
+      "text_span": "図られる",
+      "start": 280,
+      "end": 284,
+      "reason": "受動叙述クラスタ。『保護を高める』へ能動化。",
+      "suggested_fix": "高められる"
+    },
+    {
+      "id": "f017",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなります",
+      "start": 284,
+      "end": 291,
+      "reason": "A-6状態叙述クラスタ4回目。『守られます』で足りる。",
+      "suggested_fix": "守られます"
+    },
+    {
+      "id": "f018",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞",
+      "severity": "S3",
+      "text_span": "なお、",
+      "start": 294,
+      "end": 297,
+      "reason": "文頭接続詞。単発なら自然だが定型連鎖を強める。可読性を損なわぬ範囲で整理。",
+      "suggested_fix": "（保持可）"
+    },
+    {
+      "id": "f019",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある の濫用",
+      "severity": "S2",
+      "text_span": "行っていただく必要がございます",
+      "start": 315,
+      "end": 330,
+      "reason": "要請形2回目。『再設定をお願いします』へ。",
+      "suggested_fix": "再設定をお願いします"
+    },
+    {
+      "id": "f020",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（〜される/〜によって）の濫用",
+      "severity": "S2",
+      "text_span": "使用されていた",
+      "start": 337,
+      "end": 344,
+      "reason": "受動叙述クラスタ。『お使いの』へ。",
+      "suggested_fix": "お使いの"
+    },
+    {
+      "id": "f021",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（〜される/〜によって）の濫用",
+      "severity": "S2",
+      "text_span": "引き継がれません",
+      "start": 350,
+      "end": 358,
+      "reason": "受動叙述クラスタ。『引き継げません』へ。",
+      "suggested_fix": "引き継げません"
+    },
+    {
+      "id": "f022",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある の濫用",
+      "severity": "S2",
+      "text_span": "ご注意いただく必要があります",
+      "start": 361,
+      "end": 375,
+      "reason": "要請形3回目。『ご注意ください』へ。",
+      "suggested_fix": "ご注意ください"
+    },
+    {
+      "id": "f023",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/につきまして 濫用",
+      "severity": "S2",
+      "text_span": "につきましては",
+      "start": 382,
+      "end": 389,
+      "reason": "主題提示2回目。『再設定の手順は』へ。",
+      "suggested_fix": "は"
+    },
+    {
+      "id": "f024",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動文（〜される/〜によって）の濫用",
+      "severity": "S2",
+      "text_span": "ご案内が行われる",
+      "start": 399,
+      "end": 407,
+      "reason": "受動叙述クラスタ。行為者(市)を主語に。『改めてご案内します』へ。",
+      "suggested_fix": "改めてご案内する"
+    },
+    {
+      "id": "f025",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "お願い申し上げます。市民の皆さまのご理解とご協力を賜りますよう、よろしくお願い申し上げます",
+      "start": 451,
+      "end": 496,
+      "reason": "文末が『ます/ございます/申し上げます』の一本調子。最終2文が共に『お願い申し上げます』で終わり反復。『ございます』系4回、体言止め・変奏ゼロ。",
+      "suggested_fix": "文末を変奏(一文を体言止めや『〜ください』に)"
+    }
+  ],
+  "category_summary": {
+    "A": 17,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 2,
+    "F": 1,
+    "G": 0,
+    "H": 2,
+    "I": 3,
+    "J": 0
+  }
+}
