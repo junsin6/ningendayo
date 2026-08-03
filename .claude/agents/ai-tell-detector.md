@@ -50,9 +50,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（IMP-002 適用・SSOT 固定式。detector ごとに式を自作しないこと）:
+   * `raw = 5·S1 + 2·S2 + 0.5·S3`（各深刻度の件数）。
+   * `severity_weighted_score = 100·(1 − exp(−raw / 45))`。**k=45 固定**（taxonomy 例 raw56→71.5 を再現）。使った式を `meta.score_formula` に明記。
+   * `ai_tell_density` = 検出 span の**和集合（重複除去）**文字数 / input_length。重なる finding は二重計上しない。document/scattered の locator は実 AI クセ文字数から除く。
+6. **start/end 自己検証**: 各 finding で `input[start:end] == text_span` を assert。不一致なら JSON を出さず修正する（実装必須）。
 
 ## 重要な原則
 

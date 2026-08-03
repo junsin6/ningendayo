@@ -406,9 +406,13 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: **正規化式を SSOT で固定（IMP-002 適用 2026-08-03）**。
+  * `raw = 5·(S1件数) + 2·(S2件数) + 0.5·(S3件数)`
+  * `severity_weighted_score = 100 · (1 − exp(−raw / 45))`
+  * **k=45 固定**。これは本 SSOT の例（raw56 → 71.5）を再現する値であり、detector ごとに k を自作してはならない（k=45 と k=40 で数値が割れた実例あり）。飽和しにくく高密度短文でも解像度が残る。meta に `score_formula` として実際に使った式を明記すること。
+* `ai_tell_density`: **検出 span の和集合（重複除去）文字数 / input_length**（IMP-002 適用）。複数 finding が重なる領域は二重計上しない。document/scattered レベルの locator は実 AI クセ文字数から除く。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
+* `score_before`（naturalness-reviewer が参照）: **必ず `02_detection.json` の `meta.severity_weighted_score` を用いる**（IMP-003 適用 2026-08-03）。スキーマ例中の数値を流用しないこと。
 
 ## バージョン管理
 
