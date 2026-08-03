@@ -1,0 +1,360 @@
+{
+  "meta": {
+    "input_length": 635,
+    "detected_count": 30,
+    "ai_tell_density": 0.387,
+    "severity_weighted_score": 86.5,
+    "style": "desu_masu",
+    "score_formula": "severity_weighted_score = 100*(1 - exp(-raw/45)), raw = 5*S1 + 2*S2 + 0.5*S3。k=45 は taxonomy 例(raw56→71.5)を再現する値。ai_tell_density = 検出spanの和集合(重複除去)文字数 / input_length。",
+    "raw_weighted_sum": 90.0,
+    "severity_counts": {
+      "S1": 10,
+      "S2": 20,
+      "S3": 0
+    }
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において 濫用",
+      "severity": "S1",
+      "text_span": "において",
+      "start": 381,
+      "end": 385,
+      "reason": "抽象的枠づけ『〜において』を『エンタープライズにおいて』で使用。英語 in の直訳で硬い知的偽装。",
+      "suggested_fix": "多くの企業で"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "補完することができる",
+      "start": 93,
+      "end": 103,
+      "reason": "可能の冗長形『することができる』が本文で計5回反復。AI最頻出シグネチャ。",
+      "suggested_fix": "補える"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "検索することができます",
+      "start": 203,
+      "end": 214,
+      "reason": "『することができ(ます)』の反復（計5回）の一つ。",
+      "suggested_fix": "検索できます"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "とらえることができる",
+      "start": 249,
+      "end": 259,
+      "reason": "『することができる』反復（計5回）の一つ。直後に形式名詞『点』も伴う。",
+      "suggested_fix": "とらえられる"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "寄与することができます",
+      "start": 304,
+      "end": 315,
+      "reason": "『することができ(ます)』反復（計5回）の一つ。",
+      "suggested_fix": "役立ちます"
+    },
+    {
+      "id": "f006",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することが可能になる 濫用",
+      "severity": "S1",
+      "text_span": "生成することが可能になるのです",
+      "start": 351,
+      "end": 366,
+      "reason": "『することが可能になる』は can/be able to の冗長直訳。形式名詞こと＋のです強調も重畳。",
+      "suggested_fix": "生成できます"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "となっています",
+      "start": 272,
+      "end": 279,
+      "reason": "『である/だ』で足りる箇所を has become 的に状態化。日本語LLM最強クセの一つ。",
+      "suggested_fix": "です"
+    },
+    {
+      "id": "f008",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "エンベディングモデルによって",
+      "start": 146,
+      "end": 160,
+      "reason": "英語受動態の直訳。行為者を『によって』で後置。能動へ戻すのが自然。",
+      "suggested_fix": "エンベディングモデルが"
+    },
+    {
+      "id": "f009",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために 目的節の濫用",
+      "severity": "S2",
+      "text_span": "最大化するための",
+      "start": 577,
+      "end": 585,
+      "reason": "in order to の直訳的な目的節。",
+      "suggested_fix": "最大化する"
+    },
+    {
+      "id": "f010",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞 提供する",
+      "severity": "S1",
+      "text_span": "仕組みを提供します",
+      "start": 103,
+      "end": 112,
+      "reason": "『この技術は…仕組みを提供します』は The X provides Y の直訳。抽象主語＋提供する。",
+      "suggested_fix": "仕組みです"
+    },
+    {
+      "id": "f011",
+      "category": "B-1",
+      "category_label": "カタカナ/英語併記: 括弧併記の習慣",
+      "severity": "S2",
+      "text_span": "（ジェネレーティブ AI）",
+      "start": 8,
+      "end": 21,
+      "reason": "『生成 AI（ジェネレーティブ AI）』は日本語と同義カタカナの二重併記で冗長。",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f012",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アドバンテージ",
+      "start": 265,
+      "end": 272,
+      "reason": "カタカナ語が本文全体で高密度（レバレッジ/ソリューション/ポテンシャル等）。日本語で書ける語の知的偽装。",
+      "suggested_fix": "強み"
+    },
+    {
+      "id": "f013",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アプローチ",
+      "start": 284,
+      "end": 289,
+      "reason": "カタカナ語高密度の一例。日本語で置換可能。",
+      "suggested_fix": "手法"
+    },
+    {
+      "id": "f014",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アウトプット",
+      "start": 344,
+      "end": 350,
+      "reason": "output の不要カタカナ化。",
+      "suggested_fix": "出力"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "エンタープライズ",
+      "start": 373,
+      "end": 381,
+      "reason": "enterprise の不要カタカナ化。",
+      "suggested_fix": "企業"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "フレームワーク",
+      "start": 413,
+      "end": 420,
+      "reason": "framework→枠組み。playbook 明示の頻出置換語。",
+      "suggested_fix": "枠組み"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "レバレッジ",
+      "start": 421,
+      "end": 426,
+      "reason": "leverage→活用。playbook 明示のAI知的偽装代表語。受動『されています』も重畳。",
+      "suggested_fix": "活用されています"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "チャレンジ",
+      "start": 455,
+      "end": 460,
+      "reason": "challenge→課題。不要カタカナ化。",
+      "suggested_fix": "課題"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "パフォーマンス",
+      "start": 492,
+      "end": 499,
+      "reason": "performance→性能。不要カタカナ化。",
+      "suggested_fix": "性能"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "インパクト",
+      "start": 503,
+      "end": 508,
+      "reason": "impact→影響。『インパクトを与えます』で万能動詞も伴う。",
+      "suggested_fix": "影響"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "プロダクションレベル",
+      "start": 533,
+      "end": 543,
+      "reason": "production-level→本番。不要カタカナ化。",
+      "suggested_fix": "本番"
+    },
+    {
+      "id": "f022",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ポテンシャル",
+      "start": 570,
+      "end": 576,
+      "reason": "potential→潜在力。不要カタカナ化。",
+      "suggested_fix": "潜在力"
+    },
+    {
+      "id": "f023",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 593,
+      "end": 600,
+      "reason": "solution→解決策。不要カタカナ化。",
+      "suggested_fix": "解決策"
+    },
+    {
+      "id": "f024",
+      "category": "F-2",
+      "category_label": "過度な修飾・重複: 同義語の二重修飾",
+      "severity": "S2",
+      "text_span": "セマンティックな意味",
+      "start": 235,
+      "end": 245,
+      "reason": "semantic=意味であり『セマンティックな意味』は同義反復。",
+      "suggested_fix": "意味"
+    },
+    {
+      "id": "f025",
+      "category": "F-1",
+      "category_label": "過度な修飾: 程度副詞中毒",
+      "severity": "S2",
+      "text_span": "きわめて有効な",
+      "start": 586,
+      "end": 593,
+      "reason": "程度副詞『きわめて』＋価値誇張形容。強調は具体で代替すべき。",
+      "suggested_fix": "有効な"
+    },
+    {
+      "id": "f026",
+      "category": "D-1",
+      "category_label": "AI常套句: 〜と言えるでしょう(結び)",
+      "severity": "S1",
+      "text_span": "と言えるでしょう",
+      "start": 600,
+      "end": 608,
+      "reason": "『〜と言えるでしょう』は人間がほぼ使わないLLM結び常套句。",
+      "suggested_fix": "です"
+    },
+    {
+      "id": "f027",
+      "category": "D-4",
+      "category_label": "AI常套句: ハイプ語彙(さらなる進化を遂げる)",
+      "severity": "S1",
+      "text_span": "さらなる進化を遂げていく",
+      "start": 612,
+      "end": 624,
+      "reason": "『さらなる進化を遂げていく』は中身のないハイプ語彙。",
+      "suggested_fix": "改良が続く"
+    },
+    {
+      "id": "f028",
+      "category": "I-4",
+      "category_label": "形式的要請: 〜が求められる(行為者曖昧)",
+      "severity": "S2",
+      "text_span": "求められます",
+      "start": 550,
+      "end": 556,
+      "reason": "行為者を曖昧にした要請。誰が何をすべきか主語・動詞で具体化すべき。日本語ビジネスAI最頻出。",
+      "suggested_fix": "必要です"
+    },
+    {
+      "id": "f029",
+      "category": "I-4",
+      "category_label": "形式的要請: 〜が期待される(行為者曖昧)",
+      "severity": "S2",
+      "text_span": "期待されます",
+      "start": 627,
+      "end": 633,
+      "reason": "『ことが期待されます』は主体不在の受動的期待。ハイプ結びと重畳。",
+      "suggested_fix": "期待できます"
+    },
+    {
+      "id": "f030",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "集まっています",
+      "start": 57,
+      "end": 64,
+      "reason": "文末が全14文ほぼ『〜ます/です』一本調子（集まっています/提供します/です/できます/なっています/与えます/求められます/言えるでしょう/期待されます 等）。※文書レベルパターン。本 span は代表アンカー。",
+      "suggested_fix": "体言止め・でしょう・のだ等で変奏（文体は敬体維持）"
+    }
+  ],
+  "category_summary": {
+    "A": 10,
+    "B": 13,
+    "C": 0,
+    "D": 2,
+    "E": 1,
+    "F": 2,
+    "G": 0,
+    "H": 0,
+    "I": 2,
+    "J": 0
+  }
+}
