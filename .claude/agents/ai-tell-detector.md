@@ -21,6 +21,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "input_length": 0,
     "detected_count": 0,
     "ai_tell_density": 0.0,
+    "severity_counts": { "S1": 0, "S2": 0, "S3": 0 },
     "severity_weighted_score": 0.0,
     "style": "desu_masu | da_dearu | mixed"
   },
@@ -54,7 +55,8 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
 5. **スコア算出**（正準式を厳守・IMP-002）:
    * `raw` = S1×5 + S2×2 + S3×0.5（加重和）。
-   * `severity_weighted_score` = `round(min(100, raw / input_length * 1000), 1)`（**1000 字あたり加重和**で文長正規化）。他式を用いない。
+   * `severity_weighted_score` = `round(min(100, raw / input_length * 1000), 1)`（**1000 字あたり加重和**で文長正規化）。他式を用いない。丸めは最終スコアに 1 回だけ・分母は必ず `meta.input_length`。
+   * `meta.severity_counts` = `{S1,S2,S3}` の件数（`sum = detected_count`）を併記し raw を再現可能にする。
    * `ai_tell_density` = 検出 span 総文字数 / 全体文字数（重複 span は union で 1 回）。
 6. **重複カテゴリ**（IMP-005）: 1 span が複数カテゴリに該当したら **主分類 1 finding** とし、従カテゴリは `secondary_categories: []` に列挙。`category_summary` は主 category のみ集計。
 7. **確信度**（IMP-007）: 各 finding に `confidence`（0.0〜1.0）。S1 でも単発・レジスター依存で確信が下がる場合は値を落とす。
