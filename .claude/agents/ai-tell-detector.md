@@ -34,7 +34,9 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "start": 142,
       "end": 150,
       "reason": "理由（密度・反復回数など根拠を明記）",
-      "suggested_fix": "課題だ"
+      "suggested_fix": "課題だ",
+      "confidence": 0.9,
+      "secondary_categories": []
     }
   ],
   "category_summary": { "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0 }
@@ -50,9 +52,12 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（正準式を厳守・IMP-002）:
+   * `raw` = S1×5 + S2×2 + S3×0.5（加重和）。
+   * `severity_weighted_score` = `round(min(100, raw / input_length * 1000), 1)`（**1000 字あたり加重和**で文長正規化）。他式を用いない。
+   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数（重複 span は union で 1 回）。
+6. **重複カテゴリ**（IMP-005）: 1 span が複数カテゴリに該当したら **主分類 1 finding** とし、従カテゴリは `secondary_categories: []` に列挙。`category_summary` は主 category のみ集計。
+7. **確信度**（IMP-007）: 各 finding に `confidence`（0.0〜1.0）。S1 でも単発・レジスター依存で確信が下がる場合は値を落とす。
 
 ## 重要な原則
 
