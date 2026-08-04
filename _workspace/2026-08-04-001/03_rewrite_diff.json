@@ -1,0 +1,33 @@
+{
+  "edits": [
+    { "finding_id": "f001", "category": "J-3", "before": "——", "after": "：", "rationale": "英語 em-dash 風のダッシュをコロンに分解。1回のみで低密度だが視覚装飾を除去" },
+    { "finding_id": "f002", "category": "B-2", "before": "テクノロジー", "after": "技術", "rationale": "不要なカタカナ語を和語化。分散1/9" },
+    { "finding_id": "f003", "category": "B-2", "before": "アプローチ", "after": "手法", "rationale": "不要なカタカナ語を和語化。分散2/9" },
+    { "finding_id": "f004", "category": "B-2", "before": "プロセス", "after": "過程", "rationale": "不要なカタカナ語を和語化。分散3/9" },
+    { "finding_id": "f005", "category": "B-2", "before": "コンセプト", "after": "概念", "rationale": "不要なカタカナ語を和語化。分散4/9" },
+    { "finding_id": "f006", "category": "B-2", "before": "パフォーマンス", "after": "性能", "rationale": "不要なカタカナ語を和語化。分散5/9" },
+    { "finding_id": "f007", "category": "B-2", "before": "スケーラビリティ", "after": "拡張性", "rationale": "不要なカタカナ語を和語化。分散6/9" },
+    { "finding_id": "f008", "category": "B-2", "before": "アドバンテージ", "after": "強み", "rationale": "不要なカタカナ語を和語化。f023 の再構成内で処理。分散7/9" },
+    { "finding_id": "f009", "category": "B-2", "before": "ナレッジ", "after": "知識", "rationale": "不要なカタカナ語を和語化。分散8/9" },
+    { "finding_id": "f010", "category": "B-2", "before": "レスポンス", "after": "応答", "rationale": "不要なカタカナ語を和語化。分散9/9。RAG/LLM/HNSW 等の業界標準語・コンテキスト等は例外維持" },
+    { "finding_id": "f011", "category": "A-5", "before": "扱うことができる", "after": "扱える", "rationale": "可能の冗長形を簡潔化。連鎖分散のため動詞可能形を採用" },
+    { "finding_id": "f012", "category": "A-5", "before": "実現することが可能になります", "after": "実現できます", "rationale": "可能の冗長形を簡潔化。連鎖分散のため『できます』" },
+    { "finding_id": "f013", "category": "A-5", "before": "取得することができるのです", "after": "取得できるのです", "rationale": "可能の冗長形を簡潔化。『のです』の語調は保持し文末を変奏（E-2 にも寄与）" },
+    { "finding_id": "f014", "category": "A-5", "before": "最適化することができます", "after": "最適化できます", "rationale": "可能の冗長形を簡潔化" },
+    { "finding_id": "f015", "category": "A-5", "before": "生成することができるようになります", "after": "生成できるようになります", "rationale": "可能の冗長形を簡潔化。『ようになります』の変化ニュアンスは保持" },
+    { "finding_id": "f016", "category": "A-6", "before": "特徴となっています", "after": "特徴です", "rationale": "状態叙述を断定へ。連鎖分散1/3" },
+    { "finding_id": "f017", "category": "A-6", "before": "配置されることになります", "after": "配置されます", "rationale": "状態叙述を簡潔な受動へ。連鎖分散2/3" },
+    { "finding_id": "f018", "category": "A-6", "before": "コンポーネントとなっています", "after": "コンポーネントです", "rationale": "状態叙述を断定へ。連鎖分散3/3" },
+    { "finding_id": "f019", "category": "A-8", "before": "異なるアプローチによって", "after": "異なる手法で", "rationale": "by-passive 手段を『で』へ。A-8 連鎖分散1/4（f003 カタカナ化と同span）" },
+    { "finding_id": "f020", "category": "A-8", "before": "この変換によって", "after": "この変換により", "rationale": "手段の『によって』を『により』へ。A-8 連鎖分散2/4" },
+    { "finding_id": "f021", "category": "A-8", "before": "採用することによって", "after": "採用することで", "rationale": "手段の『によって』を『ことで』へ。A-8 連鎖分散3/4" },
+    { "finding_id": "f022", "category": "A-8", "before": "統合することによって", "after": "統合すれば", "rationale": "手段節を条件形へ。A-8 連鎖分散4/4（機械的均一を回避）" },
+    { "finding_id": "f023", "category": "A-10", "before": "こうしたアーキテクチャは大きなアドバンテージをもたらす", "after": "このアーキテクチャなら大きな強みが得られます", "rationale": "抽象主語＋万能動詞『もたらす』の直訳型を解体。行為主体を条件（なら）に変え自然化。f008 アドバンテージ→強みを内包" },
+    { "finding_id": "f024", "category": "D-1", "before": "と言えるでしょう", "after": "", "rationale": "AI 常套の結びを削除し断定化。f023 の『得られます』で結ぶ" },
+    { "finding_id": "f025", "category": "A-9", "before": "実現するためには", "after": "実現するには", "rationale": "in order to 直訳の目的節を簡潔化" },
+    { "finding_id": "f026", "category": "E-2", "before": "高まっていくことが予想されます", "after": "高まっていくでしょう", "rationale": "文末単調（です・ます終止の連続）を敬体内で変奏。『予想される』の推量ニュアンスを『でしょう』で保持し意味等価" }
+  ],
+  "change_rate": 0.218,
+  "style_preserved": "desu_masu",
+  "warnings": []
+}
