@@ -383,7 +383,7 @@ J. 視覚装飾の濫用
     "input_length": 1820,
     "detected_count": 37,
     "ai_tell_density": 0.203,
-    "severity_weighted_score": 71.5,
+    "severity_weighted_score": 27.8,
     "style": "desu_masu"
   },
   "findings": [
@@ -396,7 +396,9 @@ J. 視覚装飾の濫用
       "start": 142,
       "end": 150,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
-      "suggested_fix": "課題だ"
+      "suggested_fix": "課題だ",
+      "confidence": 0.9,
+      "secondary_categories": []
     }
   ],
   "category_summary": {
@@ -406,9 +408,11 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: **正準式 = `round(min(100, raw / input_length * 1000), 1)`**。ここで `raw = S1×5 + S2×2 + S3×0.5`（加重和）。**1000 字あたりの加重和**として文長で正規化し、短文で saturate しないようにする（IMP-002）。全検出器はこの式を厳守し、他式を用いてはならない。推敲後の再計測（naturalness-reviewer）も同一式で score_after を算出する。
+* `ai_tell_density`: 検出 span の総文字数 / 全体文字数（重複 span は union で 1 回だけ数える）。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
+* `confidence`（各 finding・0.0〜1.0）: 検出の確信度（IMP-007）。S1 でも単発・レジスター依存で確信が下がる場合は値を落として表現する。
+* `secondary_categories`（各 finding・配列）: 1 span が複数カテゴリに該当する場合の**従カテゴリ**（IMP-005）。**規約: 1 span = 主分類 1 finding**とし、共起カテゴリはここに列挙する（例 `["B-2","D-4"]`）。`category_summary` は各 finding の**主 category の先頭文字**のみを集計する（従カテゴリは二重計上しない）。反復回数を `reason` に記す際は従カテゴリ分も含めて数える。
 
 ## バージョン管理
 
