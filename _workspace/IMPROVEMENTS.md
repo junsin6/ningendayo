@@ -26,11 +26,10 @@
 - 提案: 飽和しにくい・文長正規化された式を SSOT 明記。密度依存 `min(100, raw/input_length*1000)`（＝1000字あたり加重和）を正とし全検出器に強制。分母は input_length。
 - 影響: `ai-tell-taxonomy.md §検出出力スキーマ`, `ai-tell-detector.md §スコア算出`
 
-### IMP-003 score_before のフィールド契約が曖昧 `status: ready` `hits: 1run`
+### IMP-003 score_before のフィールド契約が曖昧 `status: done`（適用 2026-08-04-*・co-located） `hits: 1run`
 - 症状: naturalness-reviewer がどの値を score_before にするか未固定（スキーマ例 71.5 vs 実 severity_weighted_score 92.5）。レビュアーごとに数値がぶれる。
 - 出所: naturalness-A
-- 提案: 「score_before = 02_detection.json の meta.severity_weighted_score」と明文化。
-- 影響: `naturalness-reviewer.md`, `ai-tell-taxonomy.md`
+> **適用済(2026-08-04)**: IMP-002 適用時に co-located で naturalness-reviewer.md §処理2 に「score_before = 02_detection.json の meta.severity_weighted_score、score_after は正準式で算出」を明文化。IMP-002 の正準式確定と対で score 契約が固まった。
 
 ---
 
@@ -77,6 +76,8 @@
 ## P2 — 分類・レシピ・チェックリスト
 
 ### 新パターン候補（taxonomist 審査待ち）
+> **2026-08-04 更新**: 下記 0804 由来の5候補は taxonomist が審査し taxonomy v1.1 §拡張候補欄に実例つきで記録済み（番号未付与＝同一 run 単一由来のため昇格保留、次 run で 2run 再現が取れ次第 v1.2 で番号付与）。所見: 可能の状態化→A-5 サブ / 定義口調→secondary_categories 捕捉で新設不要 / 確定事実の伝聞化→G-1 サブ or 新 G-3 / 主題提示の過丁寧化→A-2 敬体バリアント / K 官庁敬語→新設保留。
+
 - **C 系: redundant restatement** 叙述（まず・次に・最後に）と箇条書きが同内容を二重記載。本文書で最も人間離れ。実例: 001(0612)。 `hits: 1` 出所 detector-A
 - **D-7 ブログ結び呼びかけ公式** 「今回は〜ご紹介しました」「素敵な〜ライフを応援しています」「〜してみてはいかがでしょうか」。実例2件で昇格条件充足。 `hits: 1` 出所 detector-B
 - **C-9 導入誘導定型** 「さっそく見ていきましょう」式の導入→本論ブリッジ。 `hits: 1` 出所 detector-B
