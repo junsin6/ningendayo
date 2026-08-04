@@ -1,0 +1,36 @@
+{
+  "run_id": "2026-08-04-002",
+  "genre": "public_document",
+  "style": "desu_masu",
+  "score_before": 69.8,
+  "score_after": 0.9,
+  "improvement_rate": 0.987,
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 1 },
+  "residual_detail": [
+    {
+      "category": "E-2",
+      "severity": "S3",
+      "text_span": "ご確認ください / ご予約ください / お持ちください / ご相談ください",
+      "reason": "行動案内の para3末〜para4で「〜ください」終止が4連続。命令の適正レジスターであり内容上も妥当だが、局所的に文末が一様化する弱い残存。単発クラスタのため許容域（他パターンと重ならず問題化しない）。",
+      "threshold_note": "検出器の『単発を過検出しない』原則ではfinding未満とも判断しうる。透明性のため弱S3として計上。"
+    }
+  ],
+  "sub_threshold_notes": [
+    "『免疫力が低下することにより』— 弱い翻訳調の因果接続。単発・クラスタ無しのため検出器の過検出禁止則によりfinding化せず（公的文書のレジスターとして許容）。"
+  ],
+  "resolved_findings_count": 20,
+  "resolved_breakdown": { "S1": 4, "S2": 15, "S3": 1 },
+  "over_polish_signals": [],
+  "change_rate": 0.40,
+  "change_rate_verdict": "legitimate_deletion",
+  "grade": "A",
+  "recommendation": "accept",
+  "detector_rerun": {
+    "method": "manual_equivalent",
+    "reason": "本レビュアーはサブエージェントとして起動されており、当環境ではAgent/Taskツールが未提供のためai-tell-detectorサブエージェントを実呼び出しできなかった。IMP-006の要求に沿い、ai-tell-detector.mdおよびai-tell-taxonomy.mdと完全同一基準で03_rewrite.mdを再走査し残存を計数した。",
+    "criteria_source": ".claude/agents/ai-tell-detector.md + references/ai-tell-taxonomy.md",
+    "input_length_after": 572,
+    "score_formula": "raw=(S1*5+S2*2+S3*0.5); normalized=min(100, raw/input_length*1000)"
+  },
+  "notes": "【残存】原文20 finding（S1:4, S2:15, S3:1）は全て解消。S1の4件（A-6 位置づけられることとなりました / A-1 年度において / A-2 費用の一部については / A-2 詳細につきましては）はいずれも断定・主題直叙に置換済み。S2 15件（とされる系ヘッジ×4、必要がございます系×3、受動＋状態叙述×5、求められる、によって、引き起こされる、E-2文末単調）も全消。E-2は文末が『ます系8・ください5・です2』の3系統に分散し、原文の敬体100%一本調子から反復率が大幅低下。残存はpara3末〜para4のください4連続という弱いリズム点のみ（S3・許容域）。\n\n【過推敲判定・change_rate 0.40】over_polish_signals=空（過推敲なし）と判断。理由：(1)口語化・くだけ過ぎ無し。文末は位置づけられます/ください/です/お送りします/お願い申し上げます/賜りますよう等すべて公的文書の敬体レジスターを維持し『格』を保っている。(2)敬体崩れ無し。全15文が敬体終止で常体混入ゼロ。(3)意味希薄化・ぶつ切り無し。むしろ可読性は向上。\n\nchange_rate 0.40は【正当削除】と判定しover_polish_signalsに入れない（IMP-001既知欠陥の該当ケース）。根拠：削減は全て finding 紐付きの形式敬語・状態叙述パディングの除去に由来する。公的文書のAIクセは『位置づけられることとなりました』『していただく必要がございます』『求められます』『予定となっております』のように1句が長大で、除去1回あたりの文字デルタが大きい。原文が短文（724字）かつ長い形式句が密集していたため、編集回数＝finding件数でも機械的にchange_rateが押し上がる。実測でも非空白713→561字（約21%削減）で、504字が原文と一致継続。事実・数値（令和8年4月1日、65歳、5歳刻み）・固有名詞（水痘・帯状疱疹ウイルス）・引用は全保存で、内容の追加・欠落・希薄化は無い。よってchange_rate超過は『形式敬語・状態叙述の正当削除』由来であり過推敲ではない。\n\n【等級】S1:0, S2:0（≤2）, 改善98.7%（≥70%）, 過推敲シグナル0 → A。recommendation=accept。\n\n【検出器再実行の制約】当環境でAgent/Taskツール未提供のためai-tell-detectorサブエージェントの実呼び出し不可。同一基準の手動再走査で代替（detector_rerun参照）。オーケストレーターは、厳密なIMP-006準拠が必要なら detector サブエージェントを直接起動可能な階層で再計測することを推奨。"
+}
