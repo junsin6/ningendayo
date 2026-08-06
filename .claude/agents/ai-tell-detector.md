@@ -40,7 +40,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "suggested_fix": "課題だ"
     }
   ],
-  "category_summary": { "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0 }
+  "category_summary": { "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0, "K": 0 }
 }
 ```
 
