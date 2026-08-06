@@ -1,0 +1,210 @@
+{
+  "meta": {
+    "input_length": 780,
+    "detected_count": 17,
+    "ai_tell_density": 0.156,
+    "severity_weighted_score": 53.2,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動態(by-passive)の濫用",
+      "severity": "S2",
+      "text_span": "変更される",
+      "start": 127,
+      "end": 132,
+      "reason": "受動態が全文で9回反復（変更される/排出されていた/構成されている/予定されております/配布される/掲載されている/行われなかった/行われない/指定された）。行為者を隠す機械的受動。",
+      "suggested_fix": "変更する / 変わる"
+    },
+    {
+      "id": "f002",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動態の濫用",
+      "severity": "S2",
+      "text_span": "排出されていた",
+      "start": 225,
+      "end": 232,
+      "reason": "受動態密度の一部（9件中）。行為者（市民）が主語から消えている。",
+      "suggested_fix": "出していた / 捨てていた"
+    },
+    {
+      "id": "f003",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動態の濫用",
+      "severity": "S2",
+      "text_span": "構成されている",
+      "start": 335,
+      "end": 342,
+      "reason": "受動態密度の一部（9件中）。",
+      "suggested_fix": "できている"
+    },
+    {
+      "id": "f004",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動態の濫用",
+      "severity": "S2",
+      "text_span": "予定されております",
+      "start": 424,
+      "end": 433,
+      "reason": "受動態＋『おります』の二重の硬さ。受動態密度の一部（9件中）。",
+      "suggested_fix": "予定しています"
+    },
+    {
+      "id": "f005",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動態の濫用",
+      "severity": "S2",
+      "text_span": "配布される",
+      "start": 453,
+      "end": 458,
+      "reason": "受動態密度の一部（9件中）。配る主体（市）を隠す。",
+      "suggested_fix": "お配りする / 配る"
+    },
+    {
+      "id": "f006",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動態の濫用",
+      "severity": "S2",
+      "text_span": "掲載されている",
+      "start": 505,
+      "end": 512,
+      "reason": "受動態密度の一部（9件中）。",
+      "suggested_fix": "載せている"
+    },
+    {
+      "id": "f007",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動態の濫用",
+      "severity": "S2",
+      "text_span": "行われなかった",
+      "start": 540,
+      "end": 547,
+      "reason": "受動態密度の一部（9件中）。『行われない』と合わせ2連続。",
+      "suggested_fix": "（分別が）正しくされていなかった → 正しく分けられていなかった"
+    },
+    {
+      "id": "f008",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜される 受動態の濫用",
+      "severity": "S2",
+      "text_span": "指定された",
+      "start": 573,
+      "end": 578,
+      "reason": "受動態密度の一部（9件中）。",
+      "suggested_fix": "指定の"
+    },
+    {
+      "id": "f009",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある(need to)",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 272,
+      "end": 280,
+      "reason": "『必要がございます』が3回反復（分別していただく/ご参照いただく/排出していただく）。need to の直訳＋過剰敬語。",
+      "suggested_fix": "〜してください"
+    },
+    {
+      "id": "f010",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる（行為者曖昧な要請）★日本語固有寄り",
+      "severity": "S2",
+      "text_span": "求められます",
+      "start": 399,
+      "end": 405,
+      "reason": "行為者を曖昧にしたまま要請。I-3の必要がございますと合わせ要請表現が計4回。",
+      "suggested_fix": "（水洗いして）お出しください"
+    },
+    {
+      "id": "f011",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して/につきまして の濫用",
+      "severity": "S1",
+      "text_span": "につきましては",
+      "start": 240,
+      "end": 247,
+      "reason": "について系が全文で計8回（につきましては4/につきましても1/について1/に関する2）。主題提示をすべてこの硬い形で処理。",
+      "suggested_fix": "は / を で直結"
+    },
+    {
+      "id": "f012",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/におきまして の濫用",
+      "severity": "S2",
+      "text_span": "本市におきましては",
+      "start": 77,
+      "end": 86,
+      "reason": "『におきましては』（における系）の硬い枠づけ。冒頭『皆様におかれましては』と合わせ定型化。",
+      "suggested_fix": "本市では"
+    },
+    {
+      "id": "f013",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用 ★日本語固有寄り",
+      "severity": "S1",
+      "text_span": "こととなりました",
+      "start": 132,
+      "end": 140,
+      "reason": "となる系が3回（こととなりました/ものとなります/対象となる）。『変更しました』で足りる箇所を状態化。",
+      "suggested_fix": "変更します / 変わります"
+    },
+    {
+      "id": "f014",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる(can) の濫用",
+      "severity": "S1",
+      "text_span": "ことが可能です",
+      "start": 524,
+      "end": 531,
+      "reason": "可能の冗長形。『できます』で足りる。",
+      "suggested_fix": "ご活用いただけます"
+    },
+    {
+      "id": "f015",
+      "category": "D-1",
+      "category_label": "慣用句/定型末尾: 過剰敬語の反復（お願い申し上げます 等）※新パターン候補",
+      "severity": "S2",
+      "text_span": "お願い申し上げます",
+      "start": 188,
+      "end": 197,
+      "reason": "『お願い申し上げます』が4回、『御礼申し上げます』1回で申し上げます系が計5回。『賜り』2回。定型末尾の過剰敬語が文書を支配。分類体系に過剰敬語カテゴリが無く暫定でD-1にマップ。",
+      "suggested_fix": "一部を『お願いします』へ、重複する結びは削除"
+    },
+    {
+      "id": "f016",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多（また/なお）",
+      "severity": "S3",
+      "text_span": "また、",
+      "start": 408,
+      "end": 411,
+      "reason": "段落冒頭の『また』『なお』。密度は中程度だが他パターンと重なり硬さを増す。",
+      "suggested_fix": "削除して直接始める"
+    },
+    {
+      "id": "f017",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復 ★日本語固有",
+      "severity": "S2",
+      "text_span": "ますようお願い申し上げます",
+      "start": 184,
+      "end": 197,
+      "reason": "文書レベル: 全文が敬体で文末が『〜ます/ございます/申し上げます』に集中し変奏ゼロ。体言止め・『〜ます』の変化が無い。",
+      "suggested_fix": "文末を変奏（体言止め・『〜ます。』の変化）"
+    }
+  ],
+  "category_summary": {
+    "A": 12,
+    "B": 0,
+    "C": 0,
+    "D": 1,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 1,
+    "I": 2,
+    "J": 0
+  }
+}
