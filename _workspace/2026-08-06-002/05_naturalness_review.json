@@ -1,0 +1,60 @@
+{
+  "run_id": "2026-08-06-002",
+  "reviewer": "naturalness-reviewer",
+  "genre": "public_notice",
+  "style": "desu_masu",
+  "score_before": 53.2,
+  "score_after": 0.6,
+  "score_basis": "detector式 S1×5 + S2×2 + S3×0.5 を0〜100正規化。推敲前raw=3×5+13×2+1×0.5=41.5→正規化53.2（係数1.282）。残存raw=0×5+0×2+1×0.5=0.5→0.5×1.282≈0.6。",
+  "improvement_rate": 0.989,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 1
+  },
+  "residual_detail": [
+    {
+      "category": "E-2",
+      "severity": "S3",
+      "pattern": "文末『ください。』が7回に集中（ご確認/お出し/ご参照/ご連絡/ご了承/分別してください等）",
+      "verdict": "閾値未満・許容",
+      "note": "元の『申し上げます』単調（変奏ゼロ）は解消。一方で勧告化の副作用で文末が『ください』へ寄った。ただし語幹（ご確認・お出し・ご参照・ご連絡・ご了承）が異なり機械的反復には至らず、公的お知らせの指示文として自然。除去閾値未満のためS3残存として記録するのみ。"
+    },
+    {
+      "category": "H-1",
+      "severity": "S3",
+      "pattern": "文頭『なお、』×2（第4段・第7段）",
+      "verdict": "genre-natural・非finding",
+      "note": "f016の『また、』は除去済み。残る『なお、』2回は補足接続として公的文書で標準。他パターンが解消済みのためS3発火条件（他パターンとの重畳）を満たさず、findingとしては非計上。"
+    },
+    {
+      "category": "A-6",
+      "severity": "S3",
+      "pattern": "『対象となる品目』×1",
+      "verdict": "genre-natural・非finding",
+      "note": "となる系はf013『こととなりました』／f003『ものとなります』を解消し3→1。残る『対象となる』は単発かつ自然で過検出禁止原則により非計上。"
+    },
+    {
+      "category": "A-1/A-2/D-1",
+      "severity": "kept_untouched",
+      "pattern": "『皆様におかれましては』『に関するお知らせ』（表題）／『賜り』×2・『申し上げます』×2",
+      "verdict": "機能的敬語・格の維持に必要",
+      "note": "冒頭挨拶と表題は03_rewrite_diffのkept_untouchedに明記。申し上げます2回・賜り2回はS2許容範囲（1〜2回）内で、公的文書の開始御礼・結び依頼という機能的丁寧さ。削り過ぎ（格の崩壊）を回避する適正な保持であり残存違反ではない。"
+    }
+  ],
+  "over_polish_signals": [],
+  "over_polish_checks": {
+    "register_collapse_too_casual": "none — 敬体の指示文（〜てください/お出しください）に留まり口語化なし。開始御礼『御礼申し上げます』と結び『重ねてお願い申し上げます』を保持し公的文書の格を維持。",
+    "style_break_keitai_jotai_mix": "none — 全文desu_masu維持。常体混入ゼロ（文末変奏はします/です/あります/いただけます/ください/申し上げますで全て敬体）。",
+    "minimal_landing_sentence_preserved": "yes — 最小着地文『あらかじめご了承ください。』および結び『重ねてお願い申し上げます。』を保持。長文分割後も各文が独立した着地を持つ。",
+    "meaning_thinned_or_choppy": "none — 分割後も情報密度保持。ぶつ切り感なし。",
+    "meaning_shift": "watch(non-blocking) — f007『収集が行われない』→『ごみを収集できない』の不作為→可能形の微移行。04_fidelity_auditのmonitor_notesと同一論点。帰結（不適正排出→未収集の可能性）は同一で自治体標準表現のため過推敲シグナルには非計上。次ラウンドがあれば『収集しないことがあります』を推奨。"
+  },
+  "change_rate": 0.37,
+  "change_rate_assessment": "警告閾値0.30超・強制中断0.50未満。既知IMP-001該当。削除超過は過剰敬語末尾の集約（申し上げ系5→2）とneed-to/求められる系の勧告化による非情報担持機能語の除去が主因で、fidelity=passかつ情報欠落ゼロ。過推敲ではない。",
+  "grade": "A",
+  "grade_rationale": "S1残存0件・S2残存0件（≤2）・改善率98.9%（≥70%）でA要件を充足。過推敲シグナル0個。fidelity verdict=pass。",
+  "recommendation": "accept",
+  "recommendation_note": "等級A＋fidelity=passによりIMP-001オーバーライドを適用し、change_rate0.37の30%超過を許容してaccept。ロールバック不要。final.md化推奨。",
+  "notes": "公的文書（お知らせ・敬体）として理想的な着地。17 finding全てをspanレベルで解消しつつ、開始御礼・結び依頼・最小着地文を残して格を維持しており砕けすぎ（格の崩壊）は皆無。唯一の実質残存は勧告化の反作用で生じた『ください』文末の集中（E-2 S3・閾値未満）で、語幹が分散するため機械反復には至らない。次ラウンドがあれば任意で文末をさらに1〜2箇所変奏（体言止め等）する余地はあるが、accept判定には影響しない。f007の可能形微移行はfidelity側monitor_noteと共有済みで、より厳格運用では『収集しないことがあります』を推奨。"
+}
