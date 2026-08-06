@@ -31,8 +31,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
       "text_span": "課題となっている",
+      "scope": "span",
       "start": 142,
       "end": 150,
+      "occurrences": [[142, 150]],
+      "co_located_with": [],
       "reason": "理由（密度・反復回数など根拠を明記）",
       "suggested_fix": "課題だ"
     }
@@ -40,6 +43,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
   "category_summary": { "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0 }
 }
 ```
+
+* `scope`: `"span"`（連続1区間）/ `"scattered"`（同一パターンが散在）/ `"document"`（文長均一・文末単調など連続 span を持たない文書レベル現象）。（IMP-004）
+* `occurrences`: 同一 finding が支配する全出現の `[start,end]` 配列。scattered/document で必須、span でも冗長に併記可。推敲役はこの配列で全出現を機械的に手術する。（IMP-004）
+* `co_located_with`: 同一の連続文字列に同居する別 finding の id 配列（例 A-8＋A-6 複合）。ロールバックは finding 単位でなく**セグメント（連続書き換え領域）単位**で行う。（IMP-005）
+* **アンカー規約（IMP-007）**: `text_span` を唯一の正規アンカーとする。`start`/`end`/`occurrences` は補助情報。後段（推敲役・監査官）は offset ではなく text_span 文字列で照合すること。
 
 ## 検出手順
 
@@ -49,10 +57,16 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * E（リズム）: 文長の標準偏差、文末の反復率を計算。
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
-4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。集約 vs 個別は「一意な span 文字列 = 主分類 1 finding、reason に回数」を原則とする（IMP-005）。
+5. **スコア算出**（IMP-002 で正規化式を確定）:
+   * `raw_weighted` = S1×5 + S2×2 + S3×0.5（finding 数ベース、集約 finding は 1 件で数える）。
+   * `severity_weighted_score` = **`min(100, raw_weighted / input_length * 1000)`**（per-1000字加重、K=1000・上限100固定）。文長非依存の比較のため分母は必ず `input_length`。
+   * `ai_tell_density` = 検出 span 実文字数 / 全体文字数。ただし `scope:"document"` の finding と重複領域は **de-dup**（二重計上しない）。（IMP-004）
+6. **自己検証ゲート（必須・IMP-007）**: JSON を出す前に全 finding で以下を assert し、1 つでも失敗したら JSON を出さず修正する:
+   * `source[start:end] == text_span`（全 span スライス突合）。
+   * `len(body) == meta.input_length`（本文実長と一致。改行・タイトル行を数えるか統一）。
+   * `category_summary` の各値 = findings の category 先頭文字の集計と一致。
+   * span 同士の物理重複が無いか検査（重複は `co_located_with` で明示）。
 
 ## 重要な原則
 

@@ -393,8 +393,11 @@ J. 視覚装飾の濫用
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
       "text_span": "課題となっている",
+      "scope": "span",
       "start": 142,
       "end": 150,
+      "occurrences": [[142, 150]],
+      "co_located_with": [],
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
       "suggested_fix": "課題だ"
     }
@@ -406,8 +409,13 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`（**正規化式を確定 / IMP-002**）: `raw_weighted = S1×5 + S2×2 + S3×0.5`（finding 数ベース）を **`score = min(100, raw_weighted / input_length * 1000)`** で正規化（per-1000字加重、係数 K=1000・上限 100 固定）。分母は必ず `input_length`。**score_after（推敲後再計測）も同一 input_length で正規化**し before と直接比較する（IMP-003）。上限飽和で改善率が形骸化する場合は raw_weighted の生値も併記してよい。
+  * 参考: input_length=1820, raw_weighted=39 → `min(100, 39/1820*1000)=21.4`。短文高密度（input_length=780, raw_weighted=41.5）は 53.2。**文長で score が変わるのは仕様**（密度指標のため）。等級判定は絶対残存件数（S1/S2）と併用する。
+* `scope`: `"span"` / `"scattered"`（散在）/ `"document"`（文長均一・文末単調など連続 span 非保持）。（IMP-004）
+* `occurrences`: 同一 finding が支配する全出現の `[start,end]` 配列。scattered/document で必須。
+* `co_located_with`: 同一連続文字列に同居する別 finding の id 配列。ロールバックは**セグメント単位**（同居 finding をまとめて再試行）。（IMP-005）
+* **アンカー規約（IMP-007）**: `text_span` が唯一の正規アンカー。offset は補助。後段は text_span 文字列で照合。検出器は出力前に `source[start:end]==text_span` と `len(body)==input_length` を全件 assert する。
+* `ai_tell_density`: 検出 span の実文字数 / 全体文字数。`scope:"document"` と重複領域は de-dup。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
