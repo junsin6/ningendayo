@@ -1,0 +1,88 @@
+{
+  "run_id": "2026-08-06-001",
+  "reviewer": "naturalness-reviewer",
+  "genre": "technical_explainer",
+  "style": "desu_masu",
+  "measurement_basis": {
+    "taxonomy_version": "v1.0",
+    "detector_invoked": false,
+    "method": "手動再走査（ai-tell-detector 未起動）。基準は 02_detection.json が実際に適用した flag 閾値と同一（=検出器一貫性基準）。トークンが残存しても、当該カテゴリの発火条件（密度・反復・問題性）を満たさない残りは finding として非計上し、watch_items に別掲。",
+    "score_formula": "severity_weighted_score = min(100, (S1*5 + S2*2 + S3*0.5) / input_length * 1000)",
+    "score_before_source": "02_detection.json meta.severity_weighted_score",
+    "denominator": "input_length=906 を before/after 共通で使用（同一分母でないと改善率が文長変化の artifact を含むため）"
+  },
+  "score_before": 95.5,
+  "score_after": 4.97,
+  "improvement_rate": 0.948,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 2,
+    "S3": 1
+  },
+  "residual_detail": [
+    {
+      "category": "F-4",
+      "severity": "S2",
+      "span": "基本的 / 多角的 / 継続的",
+      "count_after": 3,
+      "count_before": 6,
+      "note": "「〜的」を 6→3 に半減（処方の density 半減目標を達成）。3 回は 906 字文書で自然域内だが token は残存するため保守的に S2 残存 1 件として計上。"
+    },
+    {
+      "category": "H-1",
+      "severity": "S2",
+      "span": "これにより / これによって",
+      "count_after": 2,
+      "count_before": 4,
+      "note": "文頭接続を 4→2 に削減（さらに・また を除去、因果の指示接続 2 個を論理保持で残置）。5 段落中 2 個は自然域だが文頭指示接続の残存として S2 残存 1 件計上。"
+    },
+    {
+      "category": "E-1",
+      "severity": "S3",
+      "span": "(文書レベル)",
+      "count_after": 1,
+      "note": "体言止め短文「文化そのもの。」(6字) を配置し分散を一部付与。ただし鉄則『情報付加禁止』のため 90 字級長文の新設は見送り、文長均一は完全解消せず。S3 部分残存 1 件。"
+    }
+  ],
+  "removed_findings_summary": {
+    "S1_removed": 12,
+    "S1_total_before": 12,
+    "S2_removed": 13,
+    "S2_total_before": 13,
+    "S3_before": 1,
+    "note": "S1 は全 12 件（可能冗長形 A-5×6・抽象主語万能動詞 A-10×3・状態叙述 A-6/複合・D-1 結び×2 等）を完全除去。可能・できる系 8 回反復は全解消。"
+  },
+  "over_polish_signals": [],
+  "over_polish_metrics": {
+    "keitai_jotai_mixing_binary": 0,
+    "keitai_jotai_mixing_note": "全 15 文の終止を検査。ています/のです/いきます/指します/いけます/なります/です/できます/します/ありません/なります は全て敬体、加えて体言止め 1。だ・である体の混入なし。文体崩れ 0。",
+    "taigen_dome_count": 1,
+    "taigen_dome_note": "「文化そのもの。」1 箇所のみ。体言止めは常体ではなく文体中立、E-2 処方が同一敬体内変奏として明示的に推奨する手法。1 箇所は過剰でなくリズム上有効。文体崩れに非該当。",
+    "unnatural_colloquialization": 0,
+    "unnatural_colloquialization_note": "まとめて/たえず/一か所に/先回りした/即時に は敬体技術記事のレジスターと整合。くだけ過ぎの口語化なし。",
+    "meaning_thinning_or_choppy": 0,
+    "meaning_thinning_note": "意味希薄化・ぶつ切り読みにくさなし（意味等価の最終判定は content-fidelity-auditor 管轄）。",
+    "change_rate": 0.287,
+    "change_rate_threshold": 0.30,
+    "change_rate_note": "0.287 < 0.30。既知 IMP-001。閾値未超過につき過推敲シグナル非該当。ただし閾値至近（余裕 0.013）。"
+  },
+  "watch_items": [
+    {
+      "category": "A-1",
+      "span": "このような状況において",
+      "location": "第1段落",
+      "severity_if_flagged": "S1",
+      "status": "非計上",
+      "note": "「〜において」は A-1(S1)。ただし原文にも存在し 02_detection.json では未 flag（検出器一貫性基準では non-finding）。かつ『状況において』は慣用的転換句で 1 回のみ、処方も『一文書に 2 回以下』を許容。同一基準維持のため残存 S1 に計上せず。次ラウンドがあれば『こうした状況で』への軽微置換候補として監視。"
+    },
+    {
+      "category": "detection_offsets",
+      "status": "既知不整合",
+      "note": "02_detection.json の start/end が本文実オフセットと不整合（rewriter warning 参照、body 実長 vs input_length=906）。本レビューは text_span 文字列照合をアンカーに走査。score 分母は契約通り 906 を採用。"
+    }
+  ],
+  "grade": "A",
+  "grade_rationale": "S1 残存 0 件、S2 残存 2 件（≤2）、改善率 94.8%（≥70%）。SKILL.md 等級表 A の全条件を充足。過推敲シグナル 0・文体崩れ 0。change_rate 0.287 は IMP-001 既知で閾値内。fidelity は 04 監査に委任。",
+  "recommendation": "accept",
+  "notes": "推敲は極めて手術的で、S1/S2 の主要シグネチャ（可能冗長形・抽象主語万能動詞・状態叙述・カタカナ濫用・D-1 結び）を確実に除去しつつ敬体を完全維持。残存 2 件の S2（F-4「的」×3・H-1 指示接続×2）はいずれも処方目標（半減）を満たした自然域残留で、追加推敲の必要性は低い。E-1(S3) のみ情報付加禁止との衝突で部分残存だが S3・許容範囲。総合判定は accept を推奨。ただし score_before=95.5 が上限至近で、改善率が高く出やすい構造的性質（下記【改善点報告】参照）に留意。"
+}
