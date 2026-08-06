@@ -2,9 +2,9 @@
 
 ## プロジェクト概要
 
-AI（ChatGPT・Claude・Gemini など）が書いた日本語テキストを「人間が書いた文章のように」推敲する 5 人パイプラインハーネス。翻訳調・カタカナ語過多・機械的並列・AI 常套句・過剰なヘッジング・接続詞の多用・です/ます単調・絵文字/箇条書き濫用など 10 大カテゴリ 40+ の AI クセを検出・分類し、**内容は一字も変えずに**文体・リズム・表現だけ再作成する。
+AI（ChatGPT・Claude・Gemini など）が書いた日本語テキストを「人間が書いた文章のように」推敲する 5 人パイプラインハーネス。翻訳調・カタカナ語過多・機械的並列・AI 常套句・過剰なヘッジング・接続詞の多用・です/ます単調・絵文字/箇条書き濫用など 11 大カテゴリ 40+ の AI クセを検出・分類し、**内容は一字も変えずに**文体・リズム・表現だけ再作成する。
 
-検出（detector）・推敲（rewriter）・内容監査（fidelity auditor）・自然度検証（naturalness reviewer）を分離したエージェントで実行し、A〜J の 10 分類・S1〜S3 の深刻度・span 単位の出力スキーマで一貫管理する。
+検出（detector）・推敲（rewriter）・内容監査（fidelity auditor）・自然度検証（naturalness reviewer）を分離したエージェントで実行し、A〜K の 11 分類・S1〜S3 の深刻度・span 単位の出力スキーマで一貫管理する。
 
 ## 鉄則
 
@@ -30,7 +30,7 @@ ningendayo/
 │   └── skills/humanize-japanese/
 │       ├── SKILL.md               # オーケストレーター
 │       └── references/
-│           ├── ai-tell-taxonomy.md     # SSOT — 10 大分類 × 40+ パターン
+│           ├── ai-tell-taxonomy.md     # SSOT — 11 大分類 × 40+ パターン
 │           ├── rewriting-playbook.md   # カテゴリ別置換レシピ
 │           └── web-service-spec.md     # Phase 5 Web 拡張用
 ├── scripts/
@@ -120,6 +120,7 @@ ningendayo/
 * **I-4** 「〜が求められる」行為者を曖昧にした要請
 * **J-3** ダッシュ（—）の濫用
 * **D-1** ブログ AI 特有の「いかがでしたでしょうか」
+* **K-1** 公的文書 AI 特有の「お願い申し上げます／賜り」定型末尾の過剰反復
 
 ## 拡張ポイント
 
