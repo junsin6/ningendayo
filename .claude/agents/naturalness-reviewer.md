@@ -15,13 +15,14 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。検出器を実プロセスで再実行できない場合は手動再走査でよいが、その旨を JSON に明記する（IMP-006 既知欠陥）。
+2. **改善率の算出（taxonomy v1.1 契約）**: `score_before` = `02_detection.json` の `meta.severity_weighted_score`（正規化後 0〜100、raw や旧クリップ値と混用しない／IMP-003）。`score_after` は再走査で得た同式の `severity_weighted_score`。改善率 = `(score_before − score_after) / score_before`。正規化後どうしで比較する。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
-   * 文体崩れ（敬体／常体の混入）
-   * 意味が薄くなった・ぶつ切りで読みにくい
-   * 変更率 30% 超
+   * 文体崩れ（敬体／常体の混入・二値カウントで機械検出）
+   * 意味が薄くなった・ぶつ切りで読みにくい（縮小率で定量化）
+   * 公的文書等では「格の喪失」（締め定型・敬語骨格の削りすぎ）も過推敲シグナル
+   * lexical_change_rate 30% 超（char_change_rate は delete_dominant なら除外／IMP-001）
 4. **品質等級の判定**。
 
 ## 出力

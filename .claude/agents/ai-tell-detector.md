@@ -50,9 +50,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出（taxonomy v1.1 契約）**:
+   * `raw_weighted_sum` = Σ(S1×5 + S2×2 + S3×0.5)（正規化前の生値。meta の正式フィールドとして出力）。
+   * `severity_weighted_score = 100 * raw / (raw + K)`（raw = raw_weighted_sum、K=60 暫定）。旧「100 でクリップ」は飽和するため使わない。用いた式を `score_formula` 文字列にも記録。
+   * `ai_tell_density` = 重複・広域 locator を除いた実 AI クセ文字数 / 全体文字数（同一文字位置は一度だけ計上、二重計上禁止）。
+   * scattered/document な現象は `span_type` と `occurrences` で表現（taxonomy v1.1 §finding の span 表現）。
 
 ## 重要な原則
 
