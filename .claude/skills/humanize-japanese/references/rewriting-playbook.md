@@ -138,11 +138,19 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（v1.1 — IMP-001 適用 / 適用 run: 2026-08-07-001,002）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+difflib 文字単位の素の変更率は、AI 常套句・並列語・装飾の**純削除**で機械的に膨張し、「正当な削除」と「過推敲」を区別できない（既知欠陥 IMP-001）。そこで指標を分離計上する。
+
+* **char_change_rate** = （挿入 + 削除文字数）/ 原文文字数。従来指標。参考値として残すが、単独では中断判定に使わない。
+* **語句改変率 (lexical_change_rate)** = 意味を担う語彙を「別語へ置換」した文字数 / 原文文字数。純削除・並列語の解体はここに含めない。**過推敲の主指標**。
+* **reduction_rate（削除率）** = 削除文字数 / 原文文字数。**insert_rate（挿入率）** = 挿入文字数 / 原文文字数。両者を diff meta に併記する。
+* `delete_dominant`: `reduction_rate ≥ 2 × insert_rate` のとき true。AI 常套句・装飾の除去が主体で、意味改変が小さいことを示すフラグ。
+
+**判定基準（新）:**
+* 警告（`summary.md` に記録し続行）: **lexical_change_rate 30% 超**、または char_change_rate 30% 超だが `delete_dominant=true` の場合（後者は「削除主導のため過推敲ではない」と明記して続行）。
+* 強制中断（`hold_and_report`）: **lexical_change_rate 50% 超**。char_change_rate が 50% を超えても、`delete_dominant=true` かつ fidelity=pass なら中断しない（IMP-001 の override 条件）。ジャンルを移していないか・意味を痩せさせていないかは fidelity 監査と naturalness の「縮小率」で別途担保する。
+* 短尺（&lt;1000字）高密度テキストでは 1 edit あたりの寄与が大きく char_change_rate が触れやすい。閾値は lexical 基準で見ること。
 
 ## 文体変換例（before → after 一括サンプル）
 

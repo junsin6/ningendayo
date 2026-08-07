@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "run_id": "2026-08-07-001",
+    "genre": "技術解説記事（サーバーレス解説）",
+    "style": "desu_masu",
+    "reviewer": "naturalness-reviewer",
+    "rescan_method": "manual_reapply",
+    "rescan_method_note": "IMP-006 既知欠陥のため ai-tell-detector を実プロセス呼び出しできない。02_detection.json の 35 finding を 1 件ずつ 03_rewrite.md に照合し（解消/残存/降格を判定）、加えて taxonomy A〜J を前方フルスキャンして新規混入 tell を探索した完全手動再走査。",
+    "score_formula": "raw=Σ(S1*5+S2*2+S3*0.5); severity_weighted_score=min(100, raw/(input_length/1000))。detection と同一式。",
+    "input_length_before": 863,
+    "input_length_after": 723,
+    "raw_after": 1.5,
+    "score_after_uncapped": 2.08,
+    "improvement_basis": "uncapped-to-uncapped（before が 100 で飽和＝IMP-002 のため、公平比較は uncapped 135 対 after 2.08。after は飽和しない）"
+  },
+
+  "score_before": 100.0,
+  "score_before_uncapped": 135.0,
+  "score_after": 2.1,
+  "improvement_rate": 0.98,
+  "improvement_rate_detail": {
+    "vs_uncapped_135": 0.985,
+    "vs_capped_100": 0.979,
+    "adopted": "vs_uncapped_135（IMP-002 飽和補正後の公平値）"
+  },
+
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 3 },
+  "residual_detail": [
+    {
+      "category": "E-2",
+      "severity_original": "S2",
+      "severity_residual": "S3",
+      "rule": "cluster_collapse_downgrade",
+      "evidence": "全15文が敬体。文末形態: です/ます 10、ましょう1・ませんでした1・のです2・でしょう1 の変奏5。同一文末の最長連続は『です・です』の2連（文13-14）で S2 閾値『3回以上連続の単調反復』に未達。原文の16/16 一本調子から変奏が入り単調クラスタが崩壊 → S2→S3 降格。体言止めは0で敬体の到達可能ライン内の弱残存。",
+      "reachable_line_note": "敬体では文末の大半が です/ます に固定されるため E-2 を 0 にはできない。到達可能ラインは『同一形の3連禁止＋ましょう/のです/でしょう/体言止めの変奏を2〜3文おきに挿入』。本推敲はこのラインをほぼ満たす（体言止め未使用の一点のみ改善余地）。"
+    },
+    {
+      "category": "F-4",
+      "severity_original": "S2",
+      "severity_residual": "S3",
+      "rule": "below_threshold_downgrade",
+      "evidence": "『〜的』は原文3件（基本的・効率的・自動的）→ 推敲後2件（基本的な仕組み／自動的に調整）。効率的→効率よく に解体済み。F-4 の S2 発火閾値は『3回以上／密度過剰』で、残2件は閾値未満 → S3 弱残存。"
+    },
+    {
+      "category": "A-10",
+      "severity_original": "unflagged",
+      "severity_residual": "S3",
+      "rule": "under_detected_by_detector",
+      "evidence": "『この手法は…集中することを可能にする』は抽象主語＋万能動詞（The X enables Y）の弱い直訳残り。原文『フォーカスすることを可能にするこのアプローチ』でも detector は 可能にする 部を未検出（f030/f033 のみ）。手動再走査で顕在化した under-detection。意味不変のため無理押しは非推奨、S3 の弱残存として記録。"
+    }
+  ],
+  "resolved_notable": [
+    "S1 全17件（A-1×3, A-2, A-5×4, A-6×2, A-10×2, C-1×3, D-1×2）を100%解消。することができる=0, における/においては/において=0, となっている=0, もたらす/提供する=0, に他ならない=0。",
+    "C-1 機械的並列クラスタ崩壊: まず=削除／次に→続いて／第一に→一つは／第二に→もう一つの…が。『続いて』単独は並列列挙を支配せず C-1(S1) を構成しない → 解消（残存カウントに含めない）。",
+    "B-2 カタカナ11件（マネージ/アロケート/レバレッジ/キャパシティ/スパイク/シームレス/UX/アイドル/ビジネスバリュー/フォーカス/アプローチ）を全て和語化。残るカタカナ（アーキテクチャ・スケーラビリティ・イベントドリブン等）は業界標準語で B-2 例外、原文同様に非検出。"
+  ],
+
+  "over_polish_signals": [],
+  "over_polish_measurements": {
+    "keitai_jotai_mixing": {
+      "keitai_count": 15,
+      "jotai_count": 0,
+      "verdict": "混入なし。敬体を完全維持、文体崩れゼロ。"
+    },
+    "added_information_or_tone": {
+      "verdict": "新規主張・事実・語調の追加なし。急激な負荷(=spike)・滑らかな使い勝手(=seamless UX)は等価置換で語調も原文の解説トーン維持。"
+    },
+    "meaning_thinning": {
+      "length_no_ws_before": 854,
+      "length_no_ws_after": 714,
+      "reduction_rate": 0.164,
+      "verdict": "縮小16.4%で30%未満。意味の痩せ・ぶつ切りなし。"
+    },
+    "change_rate": {
+      "estimate": 0.18,
+      "threshold_warn": 0.30,
+      "verdict": "span 局所修正が中心で構造・段落順は不変。閾値内。"
+    },
+    "rhythm": {
+      "verdict": "『一つは…／もう一つの大きなメリットが…』の非対称化で列挙が散文化。不自然な口語化・ぶつ切りなし。"
+    }
+  },
+
+  "grade": "A",
+  "grade_rationale": "S1=0 かつ S2=0(≤2) かつ 改善98%(≥70%) かつ 過推敲シグナル0。絶対残存数ガード（S1≥1 で C 以下）は S1=0 のため不発火。残存は S3×3 の弱残りのみで、うち2件は元S2/元S1相当のクラスタ崩壊による降格、1件は detector under-detection の弱残。A 等級の全条件を満たす。",
+  "absolute_residual_guard": "not_triggered (S1=0)",
+  "recommendation": "accept",
+
+  "notes": "敬体の到達可能ラインをほぼ満たす良好な推敲。唯一の改善余地は文末に体言止めを1〜2箇所入れて E-2 残り香を消す点だが、S3弱残のため2次推敲は不要（accept）。A-10『可能にするこの手法は』は意味不変を優先し無改変が妥当。IMP-006 のため score_after は手動再走査値であり、detector 実行時に±1件程度の誤差可能性あり（ただし S1/S2 が0のため grade は不変で頑健）。"
+}
