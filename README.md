@@ -34,7 +34,7 @@ AI（ChatGPT・Claude・Gemini など）が書いた日本語を、**内容を�
 [japanese-style-rewriter]   ── finding ベースの手術的推敲
     ↓
 [並列検証チーム]
-    ├─ [content-fidelity-auditor]  ── 13 項チェックリストで意味等価性を監査
+    ├─ [content-fidelity-auditor]  ── 14 項チェックリストで意味等価性を監査
     └─ [naturalness-reviewer]      ── 検出再実行で残存・過推敲を判定
     ↓
 [オーケストレーター総合]
