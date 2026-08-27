@@ -21,7 +21,8 @@
 ### IMP-002 severity_weighted_score の正規化が未定義で saturate `status: done(2026-08-27-001)` `hits: 2run`
 - 症状: 正規化式が SSOT に無く、高密度短文で raw が即 100 付近に張り付き深刻度の解像度が消える（Sample A raw106→92.5、taxonomy 例は raw56→71.5 と不整合）。
 - 再現(2026-08-27): detector-001 は raw 106.5 を「100字あたり加重和クリップ」だと score 13.3（14件S1が「クリーン」誤表示）→ 暫定 REF=15 で 89.0 を運用。detector-002 は raw/長×1000 で 48.9 と別式を採用し**run 間非互換が実証**。
-- 適用(2026-08-27-001): taxonomy §検出出力スキーマに正規化式 `score = min(100, (raw/文字数×100) / REF × 100)`（REF=0.15＝100字あたり加重和15点で満点）を明文化。ai-tell-detector.md にも同式を記載。REF は day0/今日の実データで暫定較正、要再較正フラグ付き。
+- 適用(2026-08-27-001): taxonomy §検出出力スキーマに正規化式 `score = min(100, (raw/文字数×100) / REF × 100)`（**REF=15**＝100字あたり加重和15点で満点）を明文化。ai-tell-detector.md にも同式を記載。REF は day0/今日の実データで暫定較正、要再較正フラグ付き。
+- **審査所見(taxonomist)**: 初回適用稿は REF=0.15 で両 run が 100 に飽和し saturate 不具合を再導入していた（factor-100 単位取り違え）。taxonomist が per100 基準の REF=15 に訂正、検算(89.0/32.6)を SSOT に常設。→ スコア節に「較正値に一致する worked example を常設し検出器に per100 と最終値の両方を記録させる」CI 的自己検証を次サイクル課題として起票。taxonomy は v1.0.1 に記録。
 - 出所: detector-A, detector-B（day0）／ detector-001, detector-002（2026-08-27）
 - 提案: 飽和しにくい正規化を SSOT 明記（例 `100*(1-exp(-raw/k))` か「100字あたり加重和」）。分母（input_length 依存 or 固定 max）を確定。
 - 影響: `ai-tell-taxonomy.md §検出出力スキーマ`, `ai-tell-detector.md §スコア算出`
