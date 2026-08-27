@@ -1,0 +1,162 @@
+{
+  "run_id": "2026-08-27-002",
+  "style_preserved": "desu_masu",
+  "register": "public_notice_formal_keigo",
+  "edits": [
+    {
+      "finding_id": "f001",
+      "category": "A-8",
+      "before": "更新作業が実施されることに伴い",
+      "after": "更新作業を行うことに伴い",
+      "rationale": "行為者不在の受動＋名詞化を能動へ。主体（図書館）は省略のまま『行う』で受動リズムの起点を解消。硬い敬体は不変。",
+      "edit_type": "structural",
+      "changed_chars": 7
+    },
+    {
+      "finding_id": "f002",
+      "category": "A-6",
+      "before": "一部サービスが停止されることとなりましたので",
+      "after": "一部サービスを停止いたしますので",
+      "rationale": "受動『停止される』＋状態叙述『こととなりました』の二重責任回避を、言い切り敬体『停止いたします』へ。助詞が→をで能動化。S1シグネチャ除去。",
+      "edit_type": "structural",
+      "changed_chars": 18
+    },
+    {
+      "finding_id": "f003",
+      "category": "A-9",
+      "before": "より快適な利用環境を提供するために行われるものです",
+      "after": "より快適にお使いいただくために行うものです",
+      "rationale": "in order to 直訳の目的節＋抽象目的語＋万能動詞『提供する』を読者本位の具体表現へ開く。f004の能動化と一体で処理。",
+      "edit_type": "structural",
+      "changed_chars": 18
+    },
+    {
+      "finding_id": "f004",
+      "category": "A-8",
+      "before": "行われるものです",
+      "after": "行うものです",
+      "rationale": "受動＋形式名詞『もの』の叙述を能動へ。主語（図書館）は省略のまま。f003と同一文で連結処理。",
+      "edit_type": "structural",
+      "changed_chars": 6
+    },
+    {
+      "finding_id": "f008",
+      "category": "A-1",
+      "before": "停止期間中においても",
+      "after": "停止期間中も",
+      "rationale": "in/at 的枠づけ『においても』を助詞『も』へ縮約。意味等価。",
+      "edit_type": "lexical",
+      "changed_chars": 4
+    },
+    {
+      "finding_id": "f005",
+      "category": "A-8",
+      "before": "通常どおり継続されます",
+      "after": "通常どおり継続します",
+      "rationale": "窓口業務を継続する主体（図書館・職員）を消した受動を能動敬体へ。主語省略許容。",
+      "edit_type": "structural",
+      "changed_chars": 3
+    },
+    {
+      "finding_id": "f006",
+      "category": "A-8",
+      "before": "システムを介した処理が行われないため",
+      "after": "システムでの処理ができないため",
+      "rationale": "『を介した』(A-3)＋受動『行われない』の複合を、助詞『で』＋可能否定『できない』で能動化。理由節の行為者不在を解消。",
+      "edit_type": "structural",
+      "changed_chars": 11
+    },
+    {
+      "finding_id": "f007",
+      "category": "I-3",
+      "before": "カウンターにて職員へお問い合わせいただく必要がございます",
+      "after": "カウンターにて職員へお問い合わせください",
+      "rationale": "need to 直訳の要請『必要がございます』を依頼形『お問い合わせください』へ。公的文書の丁寧さは尊敬語依頼形で保持。読者に義務を課す硬さを緩和。",
+      "edit_type": "structural",
+      "changed_chars": 16
+    },
+    {
+      "finding_id": "f009",
+      "category": "A-6",
+      "before": "期限が自動的に延長される措置が取られることとなっております",
+      "after": "期限を自動的に延長いたします",
+      "rationale": "三重受動（延長される＋取られる＋こととなっております）で決定・実行主体を完全に消す最強シグネチャを、言い切り敬体『延長いたします』へ集約。助詞が→をで能動化。S1除去。『措置が取られる』は延長行為そのものに含意されるため情報欠落なし。",
+      "edit_type": "structural",
+      "changed_chars": 27
+    },
+    {
+      "finding_id": "f010",
+      "category": "A-8",
+      "before": "更新作業によって",
+      "after": "更新作業で",
+      "rationale": "英語 by-passive 直訳『によって』を手段の助詞『で』へ。後続f014の能動化と呼応。",
+      "edit_type": "lexical",
+      "changed_chars": 5
+    },
+    {
+      "finding_id": "f014",
+      "category": "A-8",
+      "before": "失われることはございません",
+      "after": "なくなることはございません",
+      "rationale": "『失う』の受動＋形式名詞を自動詞『なくなる』へ。行為者不在感を除去しつつ『ございません』で敬体維持。",
+      "edit_type": "structural",
+      "changed_chars": 8
+    },
+    {
+      "finding_id": "f012",
+      "category": "A-2",
+      "before": "データについては",
+      "after": "データは",
+      "rationale": "about/regarding の主題提示『については』を主題助詞『は』へ直結。f011と同一文で連結処理。",
+      "edit_type": "lexical",
+      "changed_chars": 4
+    },
+    {
+      "finding_id": "f011",
+      "category": "A-8",
+      "before": "安全に移行が行われますので",
+      "after": "安全に移行しますので",
+      "rationale": "移行の主体（図書館・業者）を消した受動を能動敬体『移行します』へ。受動連鎖(行われ×3)の締めを解消。主語省略許容。",
+      "edit_type": "structural",
+      "changed_chars": 5
+    },
+    {
+      "finding_id": "f013",
+      "category": "A-6",
+      "before": "可能となる予定です",
+      "after": "できるようになる予定です",
+      "rationale": "可能の冗長形『可能となる』(A-5)＋状態叙述(A-6)を『できるようになる』へ。敬体『予定です』は不変。",
+      "edit_type": "structural",
+      "changed_chars": 9
+    },
+    {
+      "finding_id": "f016",
+      "category": "A-8",
+      "before": "（文書全体：受動8〜9回の連鎖リズム）",
+      "after": "（個別edit f001/f002/f004/f005/f006/f009/f011/f014の能動化により受動の過半を解消。主体は敬体上省略のまま能動へ復帰）",
+      "rationale": "文書レベルの受動リズムは個別spanの能動化の累積で解消。図書館お知らせの体裁上、主語の明示（当館が〜）はかえって冗長になるため主語省略を許容し動詞のみ能動化。",
+      "edit_type": "structural",
+      "changed_chars": 0
+    },
+    {
+      "finding_id": "f015",
+      "category": "E-2",
+      "before": "（文書全体：文末が ます/です/ございます に集中）",
+      "after": "（能動化により いたします/行うものです/継続します/ください/延長いたします/できるようになる予定です と文末が自然に多様化）",
+      "rationale": "E-2の文末変奏は能動化edit群の副産物として達成。公的お知らせの格を保つため体言止め等の砕けた変奏はあえて導入せず、敬体内の動詞バリエーションのみで単調を緩和。文体は敬体で不変。",
+      "edit_type": "structural",
+      "changed_chars": 0
+    }
+  ],
+  "change_rate": 0.206,
+  "change_rate_breakdown": {
+    "lexical": 0.019,
+    "structural": 0.187,
+    "changed_chars_total": 141,
+    "input_length": 685,
+    "note": "変更の大半(構造 91%)が受動→能動の態変換に集中。語句置換(においても/によって/については)は少数。過推敲閾値30%未満。"
+  },
+  "style_preserved_detail": "全文末が敬体維持（いたします・ございます・ください・申し上げます・存じます・します・予定です）。主語省略は敬体上自然な範囲で許容し能動化。",
+  "info_fidelity": "数値・日付・固有名詞なし。『措置が取られる』は延長行為に含意され欠落なし。『利用環境を提供する』→『お使いいただく』は読者本位への言い換えで意味等価。",
+  "warnings": []
+}
