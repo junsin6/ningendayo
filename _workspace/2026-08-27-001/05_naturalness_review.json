@@ -1,0 +1,59 @@
+{
+  "run_id": "2026-08-27-001",
+  "doc_type": "技術解説記事",
+  "style": "desu_masu",
+  "score_before": 89.0,
+  "score_after": 0.0,
+  "improvement_rate": 1.0,
+  "score_model": {
+    "formula": "raw = S1*5 + S2*2 + S3*0.5、正規化係数 = score_before/raw_before = 89.0/106.5 ≈ 0.8357（IMP-002 正規化暫定・元検出と同一係数を after にも適用）",
+    "raw_before": 106.5,
+    "raw_after": 0.0,
+    "score_before_source": "02_detection.json meta.severity_weighted_score をそのまま使用（IMP-003）",
+    "note": "score_after は残存 detector-category finding = 0 のため formula 上 0.0。過推敲観測（下記）は detector finding ではなく別枠計上のため score には乗せない。"
+  },
+  "detector_rerun": {
+    "path": "manual_criteria_match",
+    "reason": "本エージェントはサブエージェントであり ai-tell-detector の再サブエージェント起動が不可（IMP-006）。02_detection.json の finding 定義・深刻度・カテゴリ閾値・業界標準語除外基準を同一基準で 03_rewrite.md に手動照合。全 33 finding を rewrite 内へトレースし残存判定。",
+    "traced_findings": 33,
+    "basis_consistency": "元検出が非フラグとした語（業界標準カタカナ語=デプロイメント/レプリカセット/オブザーバビリティ等、及び原文由来の『組み合わせることで』『本記事では』）は同基準で新規フラグしない（re-scan の一貫性担保）。"
+  },
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 0
+  },
+  "residual_by_category": {
+    "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0
+  },
+  "residual_note": "33/33 finding 解消。新規 S1/S2/S3 検出器カテゴリ tell の混入なし。絶対残存数ガード: S1=0（フロア違反なし）、短文（798字）だが改善率と絶対残存が共に最良ケースで整合。",
+  "over_polish_signals": [
+    {
+      "type": "change_rate_over_30",
+      "detail": "03_rewrite_diff.json の change_rate.combined ≈ 0.35 が 30% 警告閾値を超過。",
+      "triggered": false,
+      "mitigation": "IMP-001: del+ins 合算計上が純圧縮（することができる→できる 等）を二重計上して実質改変を過大表示。片側/編集距離換算 ≈0.20 で 30% 未満。超過分の大半は AI 冗長構文の等価圧縮＝意味改変ではない。50% 強制中断閾値も未達。genuine 過推敲欠陥としては不成立（警告記録のみ）。"
+    },
+    {
+      "type": "mechanical_new_monotony_dekimasu",
+      "detail": "文末『〜できます』が起動/自動化/解決/可視化/構築 の 5 箇所。可能冗長 A-5×6 を一律『できます』断定へ寄せた副作用の新単調候補。",
+      "triggered": false,
+      "mitigation": "5 箇所は段落横断で分散し、各所が です/します/ません/体言止め/しましょう/てください と交互配置（17 文中 4 種の非-できます系着地）。rewriter は f026 を『実現できます』でなく『実現します』へ意図的に散らし連続を回避済み。sub-threshold 観測に留まり round_2 を要さない。"
+    }
+  ],
+  "over_polish_triggered_count": 0,
+  "style_integrity": {
+    "keitai_jotai_mix": "none",
+    "sentence_final_forms": ["しています", "します", "しましょう", "です", "できます", "ません", "てください", "体言止め(こと。)"],
+    "check": "文末述語は全て敬体。だ/である/した 等の常体着地は 0。体言止め『各サービスが疎結合であること。』は敬体互換の名詞止めでリズム変奏＝文体崩れではない。IMP-021相当の敬体/常体二値カウントで常体 0。"
+  },
+  "meaning_thinning": {
+    "verdict": "none",
+    "note": "『これが特徴です。』『疎結合であること。』は意図的リズム挿入で意味希薄化・ぶつ切りに該当せず。数値(3つの柱)・固有名詞(Kubernetes/Prometheus 等)・引用は保持。厳密な意味等価は content-fidelity-auditor 管轄。"
+  },
+  "grade": "A",
+  "grade_rationale": "S1=0, S2=0(≤2), 改善率 100%(≥70%), genuine 過推敲シグナル 0(<2)。A 基準を全項充足。過推敲候補 2 件はいずれも測定バイアス(IMP-001)/sub-threshold で降格せず。",
+  "recommendation": "accept",
+  "second_rewrite_needed": false,
+  "notes": "detector 再走査は手動同基準経路(IMP-006)。score_before=89.0 は元 severity_weighted_score を継承(IMP-003)、正規化係数は元検出と同一(IMP-002 暫定)。score_after 0.0 は『検出器フラグ可能な tell が残存ゼロ』の意であり絶対的完全性の主張ではない—『できます』5連の cadence と『本記事では〜解説します』の残り香は人間の目にはごく僅かに機械的たりうるが、検出器基準・過推敲基準いずれの閾値も跨がない。span 統合(IMP-005)4組が clean に解消されたため残存マップが素直。総合: accept 推奨。"
+}
