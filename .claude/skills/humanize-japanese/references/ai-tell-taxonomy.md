@@ -406,9 +406,14 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和 `raw` を、文字数非依存の密度基準で 0〜100 に正規化した値（**IMP-002 で式を固定**）。
+  * **正規化式**: `score = min(100, (raw / input_length × 100) / REF × 100)`
+    * `raw / input_length × 100` = 100 字あたり加重和（密度）。
+    * `REF = 0.15`（= 100 字あたり加重和 15 点で満点 100）。実データ（2026-06-12, 2026-08-27）で暫定較正。`REF` は run 蓄積で再較正する（`要再較正` フラグ）。
+  * 検出器ごとに便宜式を使わず、必ずこの式を適用する（従来は式が未定義で run 間非互換だった）。
+* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。**span が重複する場合は区間マージ後の非重複結合長で分子を数える**（IMP-005: 二重計上防止）。`scope:"document"` の文書レベル finding は分子に加算しない。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
+* **score_before / score_after の契約（IMP-003）**: naturalness-reviewer の `score_before` は必ず `02_detection.json` の `meta.severity_weighted_score` を厳密継承する。`score_after` は推敲文に同一正規化式・同一 `REF` を適用して算出し、レビュアー独自の推定値を入れない。
 
 ## バージョン管理
 
