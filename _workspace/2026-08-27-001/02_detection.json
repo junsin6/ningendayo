@@ -1,0 +1,393 @@
+{
+  "meta": {
+    "input_length": 798,
+    "detected_count": 33,
+    "ai_tell_density": 0.412,
+    "severity_weighted_score": 89.0,
+    "style": "desu_masu",
+    "severity_breakdown": {
+      "S1": 14,
+      "S2": 18,
+      "S3": 1
+    },
+    "score_note": "raw=S1*5+S2*2+S3*0.5=106.5, per100=13.35。正規化は暫定(参照15/100字=100点,線形クリップ)—IMP-002正規化未定義。",
+    "covered_chars": 329
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において/における 濫用",
+      "severity": "S1",
+      "text_span": "開発現場において",
+      "start": 6,
+      "end": 14,
+      "reason": "「において/における/においては」が本文で計3回反復し場を抽象枠づけ。英語 in/at の直訳癖。",
+      "suggested_fix": "開発現場で"
+    },
+    {
+      "id": "f002",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について 濫用",
+      "severity": "S1",
+      "text_span": "オーケストレーションについて",
+      "start": 62,
+      "end": 76,
+      "reason": "主題提示を「について」で処理。本文で計2回。英語 about の直訳。",
+      "suggested_fix": "オーケストレーションを"
+    },
+    {
+      "id": "f003",
+      "category": "C-6",
+      "category_label": "構造: 案内文公式（本記事では〜解説していきます）",
+      "severity": "S2",
+      "text_span": "分かりやすく解説していきます",
+      "start": 83,
+      "end": 97,
+      "reason": "「本記事では〜分かりやすく解説していきます」はAI解説記事の定型導入。「分かりやすく」も中身のない自己宣伝語。",
+      "suggested_fix": "解説します"
+    },
+    {
+      "id": "f004",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について 濫用",
+      "severity": "S2",
+      "text_span": "何かについて",
+      "start": 109,
+      "end": 115,
+      "reason": "「について」2回目。同段で主題を機械的に「について」処理。",
+      "suggested_fix": "何かを"
+    },
+    {
+      "id": "f005",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "まとめる技術となっています",
+      "start": 167,
+      "end": 180,
+      "reason": "「となっている/となります」が本文で計4回反復。単なる「だ/です」で足りる断定を状態化。日本語LLM最強クセ。",
+      "suggested_fix": "まとめる技術です"
+    },
+    {
+      "id": "f006",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ライトウェイト",
+      "start": 200,
+      "end": 207,
+      "reason": "lightweight。日本語「軽量」で足りるのに知的偽装カタカナ語。同段の業界標準語（コンテナ等）とは区別。",
+      "suggested_fix": "軽量"
+    },
+    {
+      "id": "f007",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "高速に起動することができる",
+      "start": 211,
+      "end": 224,
+      "reason": "可能の冗長形が本文で計6回反復（最頻出シグネチャ）。ここは可能性主張不要で断定可。",
+      "suggested_fix": "高速に起動できる"
+    },
+    {
+      "id": "f008",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "という特徴があります",
+      "start": 224,
+      "end": 234,
+      "reason": "「という」で特徴を後付け連結。ほぼ削除可。",
+      "suggested_fix": "特徴があります"
+    },
+    {
+      "id": "f032",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "特徴があります",
+      "start": 227,
+      "end": 234,
+      "reason": "★日本語固有。全13文中12文が「〜ます/〜です」で終わり文末が一本調子（体言止め・〜だろう等の変奏ゼロ）。E-1（文長も40〜70字に集中し標準偏差が低い）も併発。※文書レベルパターンのため代表spanを提示（スキーマに文書レベル表現なし→改善点参照）。",
+      "suggested_fix": "体言止め・「〜でしょう」等を段落ごとに1〜2箇所混ぜ、短文も挿入"
+    },
+    {
+      "id": "f009",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために 目的節",
+      "severity": "S2",
+      "text_span": "管理するための",
+      "start": 263,
+      "end": 270,
+      "reason": "in order to の直訳的目的節。連体修飾で足りる。",
+      "suggested_fix": "管理する"
+    },
+    {
+      "id": "f010",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/することによって 手段・受動",
+      "severity": "S2",
+      "text_span": "活用することによって",
+      "start": 293,
+      "end": 303,
+      "reason": "「によって」が本文で計4回反復。手段は「〜すれば/〜で」に分散すべき。",
+      "suggested_fix": "活用すれば"
+    },
+    {
+      "id": "f011",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "自動化することができます",
+      "start": 327,
+      "end": 339,
+      "reason": "可能の冗長形2回目。断定で足りる。",
+      "suggested_fix": "自動化できます"
+    },
+    {
+      "id": "f033",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S3",
+      "text_span": "具体的には",
+      "start": 340,
+      "end": 345,
+      "reason": "文頭「具体的には」。単独ではS3だが「また」「このように」と併せ文頭接続の反復を形成。",
+      "suggested_fix": "（削除して直結）"
+    },
+    {
+      "id": "f012",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "グルーピングされ",
+      "start": 362,
+      "end": 370,
+      "reason": "grouping。「まとめられ/グループ化され」で足りる。",
+      "suggested_fix": "まとめられ"
+    },
+    {
+      "id": "f013",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動（by-passive）",
+      "severity": "S2",
+      "text_span": "レプリカセットによって可用性が担保される",
+      "start": 371,
+      "end": 391,
+      "reason": "英語受動態の直訳。行為者「レプリカセット」を主語に復帰させ能動化可。",
+      "suggested_fix": "レプリカセットが可用性を担保する"
+    },
+    {
+      "id": "f014",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "担保される仕組みとなっています",
+      "start": 386,
+      "end": 401,
+      "reason": "「となっています」3回目。受動+状態化の二重AIクセ。",
+      "suggested_fix": "担保する仕組みです"
+    },
+    {
+      "id": "f015",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において/における 濫用",
+      "severity": "S1",
+      "text_span": "アーキテクチャにおいては",
+      "start": 412,
+      "end": 424,
+      "reason": "「においては」2回目。",
+      "suggested_fix": "アーキテクチャでは"
+    },
+    {
+      "id": "f016",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "重要なポイントとなります",
+      "start": 440,
+      "end": 452,
+      "reason": "「となります」4回目。断定「重要だ」で足りる。「ポイント」もカタカナ語(B-2)。",
+      "suggested_fix": "重要です"
+    },
+    {
+      "id": "f017",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動 〜行われることが一般的",
+      "severity": "S2",
+      "text_span": "経由して行われることが一般的です",
+      "start": 473,
+      "end": 489,
+      "reason": "行為者を消した受動叙述。能動化可。",
+      "suggested_fix": "APIゲートウェイを経由するのが一般的です"
+    },
+    {
+      "id": "f018",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "また、",
+      "start": 490,
+      "end": 493,
+      "reason": "文頭「また」。同記事「具体的には」「このように」と併せ文頭接続詞が反復。",
+      "suggested_fix": "（削除して直結）"
+    },
+    {
+      "id": "f019",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 手段",
+      "severity": "S2",
+      "text_span": "仕組みによって",
+      "start": 504,
+      "end": 511,
+      "reason": "「によって」3回目。手段の「によって」濫用。",
+      "suggested_fix": "仕組みで"
+    },
+    {
+      "id": "f020",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することが可能 濫用",
+      "severity": "S1",
+      "text_span": "解決することが可能となっています",
+      "start": 527,
+      "end": 543,
+      "reason": "「することが可能」＝することができる系（可能冗長）＋「となっています」の二重クセ。",
+      "suggested_fix": "解決できます"
+    },
+    {
+      "id": "f021",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において/における 濫用",
+      "severity": "S1",
+      "text_span": "運用面においては",
+      "start": 546,
+      "end": 554,
+      "reason": "「においては」3回目。",
+      "suggested_fix": "運用では"
+    },
+    {
+      "id": "f022",
+      "category": "I-4",
+      "category_label": "形式表現: 〜が求められる（行為者曖昧の要請）",
+      "severity": "S2",
+      "text_span": "確保が求められます",
+      "start": 565,
+      "end": 574,
+      "reason": "★日本語固有。誰が確保するのか主語が曖昧なまま要請。ビジネスAI文最頻出。",
+      "suggested_fix": "運用者はオブザーバビリティを確保しなければなりません"
+    },
+    {
+      "id": "f023",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "トレースという3つの柱",
+      "start": 584,
+      "end": 595,
+      "reason": "「という」で列挙を概念化。削除可。",
+      "suggested_fix": "トレースの3つの柱"
+    },
+    {
+      "id": "f024",
+      "category": "A-3",
+      "category_label": "翻訳調: 〜を通じて 濫用",
+      "severity": "S2",
+      "text_span": "3つの柱を通じて",
+      "start": 591,
+      "end": 599,
+      "reason": "手段を「を通じて」で処理（through の直訳）。「〜で/により」に開ける。",
+      "suggested_fix": "3つの柱で"
+    },
+    {
+      "id": "f025",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "可視化することができます",
+      "start": 608,
+      "end": 620,
+      "reason": "可能の冗長形4回目。",
+      "suggested_fix": "可視化できます"
+    },
+    {
+      "id": "f026",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することが可能 濫用",
+      "severity": "S1",
+      "text_span": "実現することが可能です",
+      "start": 665,
+      "end": 676,
+      "reason": "「することが可能」5回目。断定で足りる。",
+      "suggested_fix": "実現できます"
+    },
+    {
+      "id": "f027",
+      "category": "H-1",
+      "category_label": "接続詞/結び公式: このように",
+      "severity": "S2",
+      "text_span": "このように、",
+      "start": 679,
+      "end": 685,
+      "reason": "文頭「このように」で機械的に総括へ接続。",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f028",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜することによって 手段",
+      "severity": "S2",
+      "text_span": "活用することによって",
+      "start": 719,
+      "end": 729,
+      "reason": "「によって」4回目（同一表現「活用することによって」の反復）。",
+      "suggested_fix": "活用すれば"
+    },
+    {
+      "id": "f029",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "スケーラブルでレジリエントな",
+      "start": 730,
+      "end": 744,
+      "reason": "scalable+resilient。日本語で開ける知的偽装カタカナ語の二重使用。",
+      "suggested_fix": "拡張しやすく障害に強い"
+    },
+    {
+      "id": "f030",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "構築することができるのです",
+      "start": 749,
+      "end": 762,
+      "reason": "可能の冗長形6回目。文末「のです」も説明口調。",
+      "suggested_fix": "構築できるのです"
+    },
+    {
+      "id": "f031",
+      "category": "D-1",
+      "category_label": "AI慣用句: いかがでしょうか（ブログAIの決定的シグネチャ）",
+      "severity": "S1",
+      "text_span": "いかがでしょうか",
+      "start": 788,
+      "end": 796,
+      "reason": "「導入を検討してみてはいかがでしょうか」はブログAIの締め常套句。人間の技術記事ではほぼ使わない。",
+      "suggested_fix": "（削除、または『試してみてほしい』程度に）"
+    }
+  ],
+  "category_summary": {
+    "A": 23,
+    "B": 3,
+    "C": 1,
+    "D": 1,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 3,
+    "I": 1,
+    "J": 0
+  }
+}
