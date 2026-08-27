@@ -1,0 +1,52 @@
+{
+  "run_id": "2026-08-27-002",
+  "genre": "public_notice_formal_keigo",
+  "detector_rerun_method": "manual_same_standard (IMP-006: ai-tell-detector をネストしたサブエージェントとして起動できないため、検出器と同一の深刻度基準・スコア式を手動適用して再走査した)",
+  "score_before": 48.9,
+  "score_after": 1.6,
+  "score_after_formula": "raw=(S1x5+S2x2+S3x0.5)=(0*5+0*2+2*0.5)=1.0; normalized=min(100, raw/input_length*1000)=min(100, 1.0/634*1000)=1.6; rewrite_length=634",
+  "improvement_rate": 0.967,
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 2 },
+  "residual_detail": [
+    {
+      "category": "A-2",
+      "severity": "S3",
+      "text_span": "窓口業務については",
+      "reason": "about/regarding の主題提示『については』が残存。原文検出では f012『データについては』のみ拾い、本 span は未検出だった（原検出の取りこぼし）。同一基準では A-2 として残存扱い。密度低く S3。",
+      "suggested_fix": "窓口業務は"
+    },
+    {
+      "category": "A-2",
+      "severity": "S3",
+      "text_span": "貸出期間の確認等につきましては",
+      "reason": "『については』の敬語変種『につきましては』。同じく原検出で未拾い。文書内で について系が計2回残り、単発閾値近傍のため S3。公的文書では許容範囲だが AI クセの弱い残り香。",
+      "suggested_fix": "貸出期間の確認等は / 貸出期間の確認などは"
+    }
+  ],
+  "watched_sub_threshold": [
+    {
+      "category": "A-8(attributive)",
+      "text_span": "これまで蓄積された利用履歴",
+      "note": "『蓄積された』は行為者不在の連体受動。原検出でも未フラグ（原文にも存在）。原検出ベースライン維持のため今回もカウント外の watched とする。次回検出器強化候補。"
+    }
+  ],
+  "resolved_findings": {
+    "S1_removed": ["f002 停止されることとなりました", "f009 措置が取られることとなっております"],
+    "passive_chain_f016": "される/られる/行われ の残存 0 件。受動8〜9回連鎖を全解消。",
+    "sentence_ending_f015": "文末が いたします/行うものです/継続します/ください/延長いたします/ございません/存じます/予定です/申し上げます と敬体内で自然に多様化。E-2 単調は解消。",
+    "others": "f001,f003,f004,f005,f006,f007,f008,f010,f011,f013,f014 いずれも同基準で残存なし。"
+  },
+  "over_polish_signals": [],
+  "over_polish_detail": {
+    "register_broken_casual": "なし。硬い敬体（公的文書格）を維持。『お問い合わせください』は依頼形だが通知文の標準register内で砕けすぎではない。『お使いいただくために』『延長いたします』『ございません』等、格は不変。",
+    "keigo_taitai_mixing": "なし。全文末が敬体。常体（だ・である）の混入ゼロ。",
+    "verbose_subject_repetition": "なし。能動化にあたり主語（当館・図書館）を明示せず省略を維持したため、慇懃な主語連呼は発生せず。公的お知らせとして自然。",
+    "meaning_thinning_choppy": "なし。ぶつ切り・体言止め等の砕けた変奏はあえて未導入。全文が完全文で読みやすさ維持。",
+    "change_rate": 0.206,
+    "change_rate_note": "20.6% < 30% 閾値。過推敲域外。"
+  },
+  "grade": "A",
+  "grade_basis": "S1 0件 かつ S2 0件(≤2) かつ 改善率96.7%(≥70%)。過推敲シグナル0。絶対残存S1数ガード(S1=0)クリア。",
+  "recommendation": "accept",
+  "notes": "受動連鎖(S1×2含む)と目的節・要請・状態叙述を的確に能動化し、硬い敬体を崩さず自然化した高品質推敲。残存は about系(について/につきまして)2件のS3のみで、公的文書では許容範囲。過推敲なし。2次推敲不要。改善提案として、について系残存は次回推敲でついでに直せば A→ほぼ満点。原検出が『窓口業務については』『につきましては』を取りこぼした点は検出器側の改善候補（IMP新規提案）。"
+}
