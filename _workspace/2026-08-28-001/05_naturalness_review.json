@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "score_before": 73.2,
+    "score_after": 2.47,
+    "improvement_rate": 0.9663,
+    "score_basis": "IMP-003: score_before は 02_detection.json meta.severity_weighted_score=73.2 を基準。score_after は同一写像 score=100*(1-exp(-raw/60)), raw=S1*5+S2*2+S3*0.5 を残存 finding に適用（S1=0,S2=0,S3=3 → raw=1.5 → 2.47）。",
+    "detector_rerun": "IMP-006 制約: 本レビュアーはサブエージェント文脈で稼働しており Agent/Task 起動ツールを持たないため、ai-tell-detector サブエージェントの新規起動は不可。代替として ai-tell-detector.md の検出手順と ai-tell-taxonomy.md v1.0 の同一基準を 03_rewrite.md に直接適用し、02_detection.json の全 finding を残存判定した（手動照合ではなく検出器メソドロジーの等価適用）。",
+    "style_before": "da_dearu",
+    "style_after": "da_dearu",
+    "style_maintained": true,
+    "change_rate_estimate": 0.20,
+    "change_rate_note": "原文 688 字に対し置換スパン総計 概算 ~140 字 ≈ 20%。30% 警告閾値・50% 中断閾値のいずれも下回る。"
+  },
+  "resolution_summary": {
+    "findings_before": 23,
+    "findings_resolved": 23,
+    "findings_residual": 0,
+    "note": "span 単位 f001–f022（22 件）および文書レベル f023(E-2) すべて解消。以下 residual_findings は解消後に残る S3 級の微弱残渣であり、02_detection.json の元 finding とは別物（新規スキャンで拾った閾値近傍のもの）。"
+  },
+  "residual_findings": [
+    {
+      "id": "r001",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋動詞（残渣）",
+      "severity": "S3",
+      "text_span": "本技術は安定した性能を発揮できる",
+      "reason": "元 f013(S1) は解消（提供する→発揮できる、パフォーマンス→性能）。ただし抽象主語『本技術は』＋『発揮できる』の構文は微弱に残存。技術記事では許容範囲で S3 止まり。無理な再修正は過推敲リスクのため据え置き推奨。"
+    },
+    {
+      "id": "r002",
+      "category": "E-2",
+      "category_label": "リズム: 常体文末の である 収束（二次的）★日本語固有",
+      "severity": "S3",
+      "text_span": "解決策である / 強みである / コンポーネントである",
+      "reason": "元 f023 の『〜ている／される／ことができる』一本調子は解消。推敲で導入された『である』が 3 回（全 15 文中 20%）。閾値『同一文末 3 回以上で露見』の到達ラインちょうどだが、間に だ・する・なる・される・ている・可能形・だろう が挟まり分散しているため一本調子には至らず。S3 監視レベル。である一本調子への再収束は起きていない。"
+    },
+    {
+      "id": "r003",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって（手段用法・残渣）",
+      "severity": "S3",
+      "text_span": "この変換によって / 採用することによって",
+      "reason": "元 f004 の by-passive（行為者後置『モデルによって…される』）は能動化で解消。残る『によって』2 箇所はいずれも手段・原因用法で、日本語として自然な範囲。単発過検出を避け S3 監視に留める。"
+    }
+  ],
+  "residual_counts": { "S1": 0, "S2": 0, "S3": 3 },
+  "over_polish_signals": [],
+  "over_polish_detail": {
+    "unnatural_colloquialism": "なし。『即時の応答が要る』等は常体技術記事の平易表現の範囲でくだけ過ぎではない。",
+    "register_break": "なし。全文常体（だ／である／動詞終止／だろう）を維持、です・ます の混入ゼロ。原文文体を保持。",
+    "meaning_thinning_or_choppiness": "なし。数値（数百万〜数十億・ミリ秒）・固有名詞（RAG・レイテンシ・インデックス・エンベディング）保存、ぶつ切りなし、技術記事としての明晰さ維持。",
+    "change_rate_over_30pct": "なし（約 20%）。",
+    "signal_count": 0,
+    "note": "である 収束（r002）は過推敲の初期兆候として監視対象だが、分散が効いており過推敲シグナルには昇格しない（グレード判定の『過推敲シグナル 2 個』にはカウントしない）。"
+  },
+  "grade": "A",
+  "grade_reason": "S1=0 件、S2=0 件（≤2）、改善率 96.6%（≥70%）。絶対残存数ガード（S1≥1 で C 以下）に非該当。残存は S3 微弱残渣のみ・過推敲シグナル 0 個。A 等級の条件を全て満たす。",
+  "recommendation": "accept",
+  "notes": "推敲は全 23 finding を解消し、常体を維持したまま文末変奏（だ・である・する・なる・される・ている・可能形・だろう）を回復。過推敲・文体崩れ・意味毀損なし。である 3 回は到達ラインだが分散良好で二次的 E-2 の再発には至らず。次段（fidelity-auditor）で『欠かせない→重要な』『リアルタイム性→即時の応答』の意味等価のみ最終確認を推奨。"
+}

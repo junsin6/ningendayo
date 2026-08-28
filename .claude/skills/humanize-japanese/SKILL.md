@@ -32,7 +32,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 [japanese-style-rewriter]     ── finding ベースの手術的推敲 → 03_rewrite.md + 03_rewrite_diff.json
     ↓
 [並列検証チーム]
-    ├─ [content-fidelity-auditor]  ── 意味等価性監査（13項）→ 04_fidelity_audit.json
+    ├─ [content-fidelity-auditor]  ── 意味等価性監査（14項）→ 04_fidelity_audit.json
     └─ [naturalness-reviewer]      ── 検出再実行で残存・過推敲を判定 → 05_naturalness_review.json
     ↓
 [オーケストレーター総合判定]
@@ -59,13 +59,13 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（IMP-001 適用）: 判定は **語句改変率（difflib `replace`）** で行う。語句改変率 30% 超で警告、50% 超で中断し `hold_and_report`。純削除（`insert`+`delete`）主導で総変更率だけが 30% を超えるケースは中断しない。詳細は `references/rewriting-playbook.md §変更率の数え方`。
 
 ### 4. 並列検証
 
 二つを並行実行:
 
-* `content-fidelity-auditor`: 原文と推敲文を 13 項チェックリストで突き合わせ、意味の毀損があれば該当 edit のロールバックを指示。
+* `content-fidelity-auditor`: 原文と推敲文を 14 項チェックリストで突き合わせ、意味の毀損があれば該当 edit のロールバックを指示。
 * `naturalness-reviewer`: 推敲文に検出器を再実行し、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。
 
 ### 5. 総合判定
@@ -76,6 +76,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
+
+**override accept（IMP-001）**: 総変更率が 30%/50% を超えても、それが装飾・常套句の**純削除主導**（語句改変率が閾値未満）であり、かつ fidelity=pass・自然度 A/B なら、変更率超過のみを理由に `hold_and_report` へ落とさず `accept` とする。理由（純削除主導・語句改変率の値）を `summary.md` に明記する。
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 

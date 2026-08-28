@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "score_before": 66.5,
+    "score_after": 2.6,
+    "improvement_rate": 0.961,
+    "score_before_source": "02_detection.json:meta.severity_weighted_score (IMP-003準拠)",
+    "score_after_formula": "raw_weighted_sum(S1*5+S2*2+S3*0.5=1.5) / input_length(583) * 1000, cap 100 = 2.6。推敲前と同一の密度加重強度式(IMP-002対策)を適用。",
+    "rewrite_input_length": 583,
+    "change_rate": 0.247,
+    "change_rate_note": "difflib文字レベル比較。原文679字中マッチ511字→変更率24.7%。30%閾値未満、50%強制中断ラインを大きく下回る。",
+    "detector_reexecution": {
+      "method": "manual_rescan_same_taxonomy",
+      "actual_subagent_invoked": false,
+      "reason": "IMP-006が要求するai-tell-detectorサブエージェントのAgent/Task起動は、本レビュアー自身がサブエージェントとして稼働しており利用可能ツールにAgent/Task系が存在しないため実行不可。ai-tell-detector.md + ai-tell-taxonomy.md v1.0の判定手順・スコア式・過検出禁止原則を厳密に適用し、17 findings全span照合＋推敲文の新規フルスキャンを実施した。"
+    }
+  },
+  "residual_findings": [
+    {
+      "id": "r001",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復 ★日本語固有（文書レベル）",
+      "severity": "S3",
+      "text_span": "ご予約ください。…ご持参ください。",
+      "reason": "推敲前S2から大幅改善。文末が します/行います/お送りします/ください/です/欠かせません/お勧めします/申し上げます/いたします と明確に多様化し、依頼形・否定形・断定を混在。ただし全14文が敬体一色で体言止め・変奏語尾はゼロ、隣接する「ご予約ください/ご持参ください」が同末尾。単独では問題化しない残存でありS3に降格。公的文書register上むしろ自然。",
+      "resolved_from": "f016 (S2)"
+    },
+    {
+      "id": "r002",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞の過多（文書レベル）",
+      "severity": "S3",
+      "text_span": "また、…また、…なお、",
+      "reason": "さて/なお(1回)/つきましては/そのためにも を削除し文頭接続詞7→3（約57%削減）。目標70%には僅かに未達で「また」×2「なお」×1が残るが、13文の公的案内文として3語は許容範囲。他パターンと重ならず単独ではAI印象を強めないためS3。",
+      "resolved_from": "f017 (S2)"
+    },
+    {
+      "id": "r003",
+      "category": "D-4",
+      "category_label": "AI特有の慣用句: ハイプ語彙「〜は欠かせない」",
+      "severity": "S3",
+      "text_span": "把握しておくことが欠かせません",
+      "reason": "推敲役がf012「把握することが必要である」を置換する際に導入。taxonomy D-4は「〜は欠かせない」をシグネチャ語彙(名目S1)に列挙するが、健康啓発の公的文書における単発かつ文脈自然な使用であり、検出器の過検出禁止原則(単独の自然使用は非finding化)に照らしS3止まり。過推敲シグナルとしても計上。",
+      "introduced_by_rewrite": true
+    }
+  ],
+  "residual_summary": { "S1": 0, "S2": 0, "S3": 3 },
+  "verified_resolved": {
+    "count": 17,
+    "ids": ["f001","f002","f003","f004","f005","f006","f007","f008","f009","f010","f011","f012","f013","f014","f015","f016","f017"],
+    "note": "A-8 by-passive×3(f001,f004,f008)→全能動化。A-6 状態叙述×4(f002,f005,f009,f010)→全解消。I-3 必要がございます×3(f006,f007,f015)→依頼形化。I-4 求められる/望まれる(f011,f014)→主体復帰。G-1 と考えられます(f013)→断定化。E-2/H-1文書レベル→S3へ降格。"
+  },
+  "over_polish_signals": [
+    {
+      "type": "introduced_signature_phrase",
+      "severity": "minor",
+      "detail": "「必要である」→「欠かせません」でD-4ハイプ語彙を1件導入。単発・文脈自然のため深刻ではないが、断定形（例:「欠かせません」→「大切です／欠かせないものです」等の中和）に留めればより安全だった。",
+      "location": "健康の維持および増進のためには…欠かせません"
+    }
+  ],
+  "over_polish_checks": {
+    "unnatural_colloquialization": false,
+    "register_break_desu_da_mixing": false,
+    "buntai_end_form_binary_count": { "keitai_desu_masu": 14, "jotai_da_dearu": 0 },
+    "public_document_register_preserved": true,
+    "register_note": "賜り／申し上げます／ございましたら／おかれましては／いたします 等の硬い敬語定型を保持。口語化・くだけ過ぎなし。公的文書としての硬度は維持され、必要な定型（御礼・依頼の結び）の削りすぎもない。",
+    "meaning_thinned_or_choppy": false,
+    "change_rate_over_30pct": false
+  },
+  "grade": "A",
+  "grade_rationale": "S1=0, S2=0(≤2), 改善率96.1%(≥70%)でA等級要件を満たす。絶対残存数ガード(S1が1件でもC以下)はS1=0のため非抵触。残存はすべてS3(3件)で単独非問題、過推敲シグナルは1件(<2)でC降格ライン未満。",
+  "recommendation": "accept",
+  "notes": "推敲前66.5→推敲後2.6、改善率96.1%。原17 findingsを全span照合で解消確認。変更率24.7%で過推敲域外、敬体14/常体0で文体崩れなし、公的文書registerも保持。唯一の留意は「欠かせません」導入(D-4軽微)。総合してaccept。IMP-006の実サブエージェント再走査はツール制約により未実行、同一基準の手動再走査で代替(meta.detector_reexecution参照)。"
+}
