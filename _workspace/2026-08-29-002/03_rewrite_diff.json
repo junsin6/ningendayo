@@ -164,6 +164,24 @@
       "meaning_changed": false
     }
   ],
+  "round2_edits": [
+    {
+      "target_finding_id": "f011",
+      "type": "fidelity_rollback",
+      "before": "あらかじめ市民課の窓口で手続きをお願いします",
+      "after": "あらかじめ市民課の窓口で手続きを行う必要があります",
+      "reason": "04_fidelity_audit verdict=rollback_required（項目7 modality）への対応。round1のf011『手続きをお願いします』は原文の義務標識『必要（がございます）』を脱落させ、要請→依頼へdeontic強度を低下させていた。利用者証明用電子証明書が無い場合の窓口手続きは制度上の前提条件（欠くとサービス利用不可）であり、公的文書では準法的な義務強度を持つ。義務標識『必要があります』を保存する形へ再作成し原意の deontic 強度を回復。同型のf014（『必要ですので』）と義務保持を揃え非対称を解消。敬体維持・意味等価。",
+      "restores_finding_intent": "A-6/I-3（need to 直訳型の状態叙述回避）は『行う必要があります』が『行っていただく必要がございます』の冗長敬語連鎖へ戻らない範囲で維持。過剰敬語連鎖への復帰なし。"
+    },
+    {
+      "target_finding_id": "f018",
+      "type": "over_polish_fix",
+      "before": "住民の皆様には、本サービスを積極的にご活用ください。",
+      "after": "住民の皆様には、本サービスを積極的にご活用いただきますようお願いいたします。",
+      "reason": "05_naturalness_review の過推敲シグナル2件への対応。(a) 公的文書の結辞として命令形『ご活用ください』が砕けすぎ、自治体お知らせの改まった距離感を損なう（unnatural_register_softening）。(b) 主題『皆様には』は要請構文『〜いただきますよう』を呼ぶため直接命令『ください』と整合が崩れる（keigo_agreement_awkwardness）。公的文書の改まった結辞『ご活用いただきますようお願いいたします』へ復元し、レジスター格上げ（『お願いします』相当→『お願いいたします』）と主題-述語整合の解消を同時達成。原文結辞は『ご活用いただきますようお願い申し上げます』で、round2はこれに最も近い改まり度へ回帰。文末は最終文のみ改まった要請形とし、直前の『ご確認ください／お問い合わせください』依頼形との差で単調な同一定型連鎖には戻さない。",
+      "register_upgrade_note": "round2指示の第3点『お願いします→お願いいたします 格上げ』は、round1で唯一の『お願いします』がf011スパン（=本rollbackで『必要があります』へ変換）であったため、当該スパンの義務標識化と本結辞の『お願いいたします』導入で充足。新たな『お願いします』残存は0。"
+    }
+  ],
   "meta": {
     "orig_char_len": 698,
     "rewritten_char_len": 531,
@@ -177,6 +195,19 @@
     "meaning_altering_edit_ratio": 0.0,
     "edits_total": 20,
     "meaning_altering_edits": 0,
+    "round2_meta": {
+      "round2_edits_total": 2,
+      "round2_types": { "fidelity_rollback": 1, "over_polish_fix": 1 },
+      "rewritten_char_len_after_round2": 547,
+      "net_length_delta_after_round2": -151,
+      "net_length_retention_after_round2": 0.783,
+      "change_rate_after_round2": 0.334,
+      "change_rate_direction": "round1=0.363 → round2=0.334（低下）。round2はf011・結辞の両スパンを原文へ近づける方向の修正のため、原文との乖離＝change_rateは減少。30%警告閾値は依然超過だが50%中断閾値は未達で続行可。",
+      "meaning_altering_edits_after_round2": 0,
+      "style_preserved": "desu_masu",
+      "fidelity_rollback_resolved": "04_fidelity_audit の rollback_edits=[f011] を解消。義務標識『必要』を復元し項目7 modality 毀損を修復。",
+      "over_polish_resolved": "05_naturalness_review の over_polish_signals 2件（unnatural_register_softening / keigo_agreement_awkwardness）を結辞復元で解消。"
+    },
     "style_preserved": "desu_masu",
     "invariants_preserved": [
       "対象証明書（住民票の写し・印鑑登録証明書・各種税証明書）",
@@ -187,8 +218,9 @@
     ]
   },
   "warnings": [
-    "change_rate=0.363 が30%警告閾値を超過（50%中断閾値は未達のため続行）。削除・縮約主体で語句改変率は0.143と低く、意味改変edit比率は0.0。",
-    "net_length_retention=0.761（原文比24%減）。公的文書ジャンルとして縮約がやや大きい。意味・条件は全保存だが、削除下限ガードの観点で要監視。",
-    "f009/f005/f018 は単一findingがreasonで複数出現位置を列挙する『束ね型』のため、findingのspan外の同型反復も連鎖調整対象とした。純粋なspan-grounded運用からは逸脱があり、監査時に確認が必要。"
+    "change_rate=0.334（round2適用後）が30%警告閾値を超過（50%中断閾値は未達のため続行）。round1の0.363から低下。削除・縮約主体で語句改変率は低く、意味改変edit比率は0.0。",
+    "net_length_retention=0.783（round2適用後、原文比約22%減）。round1の0.761から改善（結辞の改まった要請形復元で本文が原文へ近づいたため）。公的文書ジャンルの様式的重みは round2 で回復方向。",
+    "f009/f005/f018 は単一findingがreasonで複数出現位置を列挙する『束ね型』のため、findingのspan外の同型反復も連鎖調整対象とした。純粋なspan-grounded運用からは逸脱があり、監査時に確認が必要。",
+    "round2で f011 を fidelity_rollback、結辞（f018スパン）を over_polish_fix として2点のみ修正。他の18 edit と AI クセ除去成果（における/となり/とされて/受動連鎖の一掃）は保持。冗長な状態叙述・過剰敬語連鎖への復帰なし。"
   ]
 }
