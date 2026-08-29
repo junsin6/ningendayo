@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "run_id": "2026-08-29-002",
+    "genre": "public_notice",
+    "style_before": "desu_masu",
+    "style_after": "desu_masu",
+    "style_preserved": true,
+    "rescan_method": "manual_taxonomy_rescan",
+    "rescan_note": "IMP-006 準拠の ai-tell-detector サブエージェント再走査は、本環境に Task/Agent 起動ツールが存在せず（利用可能な対エージェント系ツールは SendMessage / TaskStop / ListAgents / Monitor のみで、いずれもサブエージェントを spawn できない）実行不能。フォールバック規定に従い ai-tell-detector.md と ai-tell-taxonomy.md の同一基準で 03_rewrite.md を厳密手動再走査し、score_after の根拠とした。",
+    "length_reduction_pct": 23.9,
+    "body_length_reduction_pct": 24.9,
+    "change_rate_pct": 22.7,
+    "change_rate_threshold_pct": 30.0
+  },
+  "score_before": 58.0,
+  "score_after": 1.0,
+  "improvement_rate": 0.983,
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 2 },
+  "residual_detail": [
+    {
+      "category": "E-2",
+      "severity": "S3",
+      "pattern": "文末「〜ください」5回（ご留意/ご了承/ご確認/お問い合わせ/ご活用）＋「〜です」系の反復で依頼・断定文末がやや一本調子。ただし原文の『お願い申し上げます』3回連鎖より大幅改善しており、単独では自然な範囲。",
+      "residual_count": 5
+    },
+    {
+      "category": "I-4",
+      "severity": "S3",
+      "pattern": "「〜が必要です」3回（マイナンバーカード／再設定手続き／交付手数料）。原文の『必要となります』状態化（f006/f020）は解消済みで、残るのは同一述語の軽い反復のみ。行為者は文脈で自明のため実害は小。",
+      "residual_count": 3
+    }
+  ],
+  "removed_findings_confirmed": {
+    "total_before": 20,
+    "still_present": 0,
+    "note": "A-1(における/において)=0, A-2(につきまして)=0, A-6(となり/前提となり)=0, A-8(される/とされて/されており)=0 を全走査で確認。20 findings すべて span 消失。S1 6件・S2 14件とも残存なし。"
+  },
+  "over_polish_signals": [
+    {
+      "type": "unnatural_register_softening",
+      "label": "敬語レジスターの砕け／公的文書としての硬さの喪失",
+      "severity": "moderate",
+      "evidence": "原文の最上位敬語『お願い申し上げます』3回＋『お願いいたします』1回を全廃し、『ご活用ください』『お願いします』へ一律置換（お願い申し上げます=0 に確認）。純長さ約24%減と相まって、自治体お知らせの改まった距離感・様式的な重みが後退。特に結び『本サービスを積極的にご活用ください』を命令形で締めており、公的文書の結辞としては砕けすぎ。『手続きをお願いします』も koubunsho では『お願いいたします』相当が期待される。"
+    },
+    {
+      "type": "keigo_agreement_awkwardness",
+      "label": "敬語整合のぎこちなさ（ぶつ切り気味の結辞）",
+      "severity": "mild",
+      "evidence": "『住民の皆様には、本サービスを積極的にご活用ください。』— 主題の『〜には』は『〜いただきますよう』型の要請構文を呼ぶため、直接命令の『ください』と噛み合わず軽い不自然さが残る。『皆様、ぜひご活用ください』か『〜ご活用いただきますようお願いいたします』が自然。"
+    }
+  ],
+  "grade": "C",
+  "recommendation": "rewrite_round_2",
+  "notes": "AI クセ除去そのものは S1/S2 残存 0・改善率 98% で A 相当の出来。敬体は維持され（敬体/常体の混入なし）、変更率 22.7% も 30% 閾値内。減点理由は過推敲シグナル 2 個（レジスターの砕け＋『皆様には…ください』の整合崩れ）で、これにより等級 C・rewrite_round_2 と判定した。round 2 は外科的に限定すること: (1) 結びの1文を『〜ご活用いただきますようお願いいたします』等、公的文書の改まった結辞へ復元し『皆様には…ください』の整合も同時に解消、(2)『手続きをお願いします』→『お願いいたします』へ格上げ。既存の優れた AI クセ除去（における/となり/とされて/受動連鎖の一掃）は保持し、再び冗長な状態叙述・過剰敬語連鎖へ戻さないこと。純長さ約24%減は AI 由来の水増し除去が主因で妥当だが、公的文書ジャンルでは縮約が様式的重みを削りやすい点を round 2 でも監視。"
+}
