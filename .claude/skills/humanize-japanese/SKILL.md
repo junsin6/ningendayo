@@ -59,25 +59,27 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（`rewriting-playbook.md §変更率の数え方` の二層指標 / IMP-001）: 総 change_rate 30% 超で警告、`lexical_change_rate` 50% 超または `semantic_change_edit_ratio > 0` で中断・ロールバック。
 
 ### 4. 並列検証
 
-二つを並行実行:
+**先に**オーケストレーターが `ai-tell-detector` を `03_rewrite.md` に再実行し `05_rescan.json`（推敲後検出）を生成して `naturalness-reviewer` に渡す（IMP-006。reviewer 自身は検出器を spawn できない環境があるため。生成不能なら reviewer が手動再走査し `meta.rescan_method` に記録）。その上で二つを並行実行:
 
 * `content-fidelity-auditor`: 原文と推敲文を 13 項チェックリストで突き合わせ、意味の毀損があれば該当 edit のロールバックを指示。
-* `naturalness-reviewer`: 推敲文に検出器を再実行し、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。
+* `naturalness-reviewer`: `05_rescan.json`（または手動再走査）で残存 AI クセと過推敲シグナルを計測。`score_before` は `02_detection.json` の `meta.severity_weighted_score`（IMP-003）。品質等級 A〜D を判定。
 
 ### 5. 総合判定
 
 | 条件 | 判定 | アクション |
 | --- | --- | --- |
 | 等級 A/B かつ fidelity 毀損なし | `accept` | `final.md` + `summary.md` 出力 |
+| 等級 A/B ＋ fidelity=pass だが 総 change_rate のみ 30% 超（`lexical_change_rate` 閾値内・`semantic_change_edit_ratio`=0・削除主導） | **`override accept`** | `accept` 扱い。`summary.md` に override 理由（削除主導・意味改変0）を明記（IMP-001） |
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
-| fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
+| fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit **のみ**をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
 
-ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
+* 中断判定は総 change_rate ではなく `lexical_change_rate`（語句改変率）50% 超と `semantic_change_edit_ratio > 0` を主根拠にする（IMP-001）。
+* ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
 ## 深刻度と品質等級
 

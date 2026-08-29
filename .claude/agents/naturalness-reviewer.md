@@ -10,13 +10,14 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 ## 入力
 
 * `01_input.txt`（原文・スコア比較用）
-* `02_detection.json`（推敲前スコア）
+* `02_detection.json`（推敲前スコア。**`score_before` = `02_detection.json` の `meta.severity_weighted_score` と固定** / IMP-003）
 * `03_rewrite.md`（推敲文）
+* `05_rescan.json`（**あれば**: オーケストレーターが `ai-tell-detector` を `03_rewrite.md` に再実行して生成した推敲後検出結果）
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再走査（IMP-006）**: 原則はオーケストレーターが `ai-tell-detector` を `03_rewrite.md` に対して再実行し `05_rescan.json` として渡す。それを読んで残存 finding を数える。**サブエージェントから検出器を spawn できない実行環境では**（対エージェント系ツールが無い場合）、`ai-tell-taxonomy.md` の同一基準で手動再走査し、`meta.rescan_method` に `"agent_rescan"` か `"manual_taxonomy_rescan"` を必ず記録する（手動代替が黙って通るのを防ぐ）。
+2. **改善率の算出**: `(score_before − score_after) / score_before`。`score_after` は再走査結果に taxonomy の飽和スコア式（IMP-002）を適用して算出。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
    * 文体崩れ（敬体／常体の混入）
@@ -30,6 +31,7 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ```json
 {
+  "meta": { "rescan_method": "agent_rescan | manual_taxonomy_rescan" },
   "score_before": 71.5,
   "score_after": 18.0,
   "improvement_rate": 0.748,
@@ -40,6 +42,9 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
   "notes": ""
 }
 ```
+
+* `score_before` は必ず `02_detection.json` の `meta.severity_weighted_score` を転記（IMP-003）。
+* `meta.rescan_method` は必須。手動再走査だった場合は notes にもその旨と限界を明記。
 
 ## 品質等級
 

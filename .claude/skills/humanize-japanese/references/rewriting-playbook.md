@@ -138,11 +138,20 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（IMP-001 適用 / 二層化）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+単一の char-diff 変更率は「危険な書き換え」と「健全な贅肉除去」を区別できず、装飾・常套句・可能表現の**純削除**や構造編集で機械的に膨張する（実測: 2026-08-29-001 は change_rate 0.41 だが意味改変 edit 比率 0.0・grade A）。`03_rewrite_diff.json` の `meta` に次を**分離計上**する:
+
+* `change_rate` = （挿入 + 削除文字数）/ 原文文字数（総体・参考値）。
+* `lexical_change_rate`（**語句改変率＝主判定指標**）= 純置換 span の原文側文字数 / 原文文字数。語を別物に書き換えた割合。
+* `delete_rate` / `insert_rate` = 削除・挿入を単独併記（`delete_rate ≫ insert_rate` は削除主導）。
+* `semantic_change_edit_ratio` = 意味を変えた edit 数 / 全 edit 数。fidelity の主指標。
+
+**閾値判定（この順で適用）**:
+* `semantic_change_edit_ratio > 0` → fidelity-auditor がロールバック指示（中断の第一根拠）。
+* `lexical_change_rate 50% 超` → 強制中断し `hold_and_report`（ジャンル移動・過度な言い換えを疑う）。
+* `change_rate（総）30% 超`だが `lexical_change_rate` が閾値内・削除主導・`semantic_change_edit_ratio = 0` → **警告どまりで続行**（`summary.md` に override 理由を明記）。総 change_rate 単独では中断しない。
+* 高密度原文（`ai_tell_density ≥ 0.30`）では正しい推敲ほど削除で縮むため、総 change_rate の警告閾値を +10pt 緩める。
 
 ## 文体変換例（before → after 一括サンプル）
 
