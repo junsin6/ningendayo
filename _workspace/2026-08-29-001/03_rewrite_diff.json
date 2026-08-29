@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "run_id": "2026-08-29-001",
+    "style_preserved": "desu_masu",
+    "input_length": 787,
+    "input_chars_no_ws": 775,
+    "output_chars_no_ws": 662,
+    "findings_total": 36,
+    "edits_applied": 36,
+    "change_rate": 0.4116,
+    "lexical_change_rate": 0.191,
+    "insert_rate": 0.1329,
+    "delete_rate": 0.2787,
+    "semantic_change_edit_ratio": 0.0,
+    "metric_notes": "change_rate は difflib(SequenceMatcher, autojunk=False, 空白除去)で (置換+挿入+削除文字)/原文字数。削除率が挿入率の約2倍なのは A-5『することができます』(6字)×6・冗長カタカナ・受動語尾の除去が支配的なため。意味改変edit比率=0（全 edit が同義・構文置換で事実/数値/固有名詞/引用は不変）。",
+    "thresholds": {
+      "warn_over": 0.30,
+      "abort_over": 0.50,
+      "status": "WARN"
+    },
+    "warnings": [
+      "change_rate 0.4116 が 30% を超過（50% 未満のため続行）。原因は原文の ai_tell_density 0.339 と、A-10 抽象主語並列3文＋A-5 6連の構文的再配置。ジャンル（技術解説・敬体）は不変、意味は保存。"
+    ],
+    "preserved_terms": [
+      "オブザーバビリティ", "マイクロサービスアーキテクチャ", "メトリクス", "ログ", "トレース",
+      "テレメトリデータ", "OpenTelemetry", "モニタリング", "エンドツーエンド", "ベンダーロックイン",
+      "DevOps", "トレンド", "インシデント", "3つ"
+    ]
+  },
+  "edits": [
+    { "finding_id": "f001", "category": "B-2", "before": "モダンな", "after": "現代の", "rationale": "hypeカタカナを開く。見出し語の modern を日本語化（現代『的』を避け『の』で F-4 二次発生を抑止）" },
+    { "finding_id": "f002", "category": "B-2", "before": "新たなアプローチ", "after": "新たな手法", "rationale": "approach を開く。見出しの2回目カタカナを除去、『新たな』は非検出語のため保持" },
+    { "finding_id": "f036", "category": "J-3", "before": "──", "after": "：", "rationale": "見出しの二重ダッシュをコロンへ分解（J-3、1回のみ）" },
+    { "finding_id": "f003", "category": "B-2", "before": "コンセプト", "after": "概念", "rationale": "concept を日本語化" },
+    { "finding_id": "f028", "category": "A-13", "before": "というコンセプト", "after": "という概念", "rationale": "コンセプト→概念で対応。『という』は新出語を初めて命名する自然な用法のため保持（後述 IMP: A-13 命名用法の免責則）" },
+    { "finding_id": "f029", "category": "A-13", "before": "観測可能にするというアプローチであり", "after": "観測可能にする手法であり", "rationale": "動詞+という+名詞の冗長連結を除去し、同時に approach を開く。文書内『という』を3→2へ分散" },
+    { "finding_id": "f027", "category": "A-8", "before": "一歩前進させたものとして位置づけられています", "after": "一歩前進させたものと言えます", "rationale": "受動＋状態叙述を能動評価へ。敬体（言えます）維持" },
+    { "finding_id": "f025", "category": "A-8", "before": "3つのテレメトリデータによって構成されます", "after": "3つのテレメトリデータから成ります", "rationale": "by受動を『から成る』へ。行為者不在の直訳受動を解消" },
+    { "finding_id": "f019", "category": "A-10", "before": "メトリクスは、システムのパフォーマンス", "after": "メトリクスを使えば、システムの性能", "rationale": "抽象主語＋万能動詞を条件節『使えば』へ。3並列の1文目、構文を分散" },
+    { "finding_id": "f004", "category": "B-2", "before": "パフォーマンス", "after": "性能", "rationale": "performance を日本語化" },
+    { "finding_id": "f013", "category": "A-5", "before": "数値として可視化することができます", "after": "数値で可視化できます", "rationale": "可能の冗長形を『できます』へ。可視化の語義は保持" },
+    { "finding_id": "f020", "category": "A-10", "before": "ログは、イベントの詳細なコンテキストを保持することができます", "after": "ログには、イベントの詳細な文脈が残ります", "rationale": "抽象主語を『には…が残る』へ再配置。3並列の2文目を別構文へ分散（機械的均一を回避）" },
+    { "finding_id": "f014", "category": "A-5", "before": "保持することができます", "after": "残ります", "rationale": "『することができます』の冗長を自動詞『残る』へ。意味（ログに文脈が保持される）は保存" },
+    { "finding_id": "f005", "category": "B-2", "before": "コンテキスト", "after": "文脈", "rationale": "context を日本語化" },
+    { "finding_id": "f021", "category": "A-10", "before": "トレースは、リクエスト", "after": "トレースをたどれば、リクエスト", "rationale": "抽象主語を条件節『たどれば』へ。3並列の3文目、1文目『使えば』と別語で分散" },
+    { "finding_id": "f030", "category": "H-1", "before": "そしてトレースは", "after": "トレースをたどれば", "rationale": "並列3項目目の不要な文頭『そして』を削除（H-1）" },
+    { "finding_id": "f015", "category": "A-5", "before": "追跡することができます", "after": "追跡できます", "rationale": "可能の冗長形を『できます』へ" },
+    { "finding_id": "f032", "category": "F-4", "before": "これらを統合的に活用することで", "after": "これらを組み合わせて使えば", "rationale": "『的』抽象接尾辞を動詞句へ解体。『活用することで』の形式名詞も同時に解消" },
+    { "finding_id": "f016", "category": "A-5", "before": "より迅速に特定することが可能になります", "after": "より速く特定できます", "rationale": "『可能になります』の可能冗長を『できます』へ。迅速→速く（同義、程度不変）" },
+    { "finding_id": "f024", "category": "A-6", "before": "デファクトスタンダードとなりつつあり", "after": "事実上の標準になりつつあり", "rationale": "状態叙述だが実際の進行変化を表すため『つつあり』は保持し、デファクトスタンダードを開く（A-6 変化叙述の許容則）" },
+    { "finding_id": "f006", "category": "B-2", "before": "シームレスなデータ収集を実現できる", "after": "切れ目なくデータを収集できる", "rationale": "seamless を『切れ目なく』へ（playbook 指定）。『実現できる』の万能動詞も同時に平易化" },
+    { "finding_id": "f007", "category": "B-2", "before": "ソリューション", "after": "仕組み", "rationale": "solution を日本語化。文脈上『解決策』より製品・機構を指す『仕組み』が自然" },
+    { "finding_id": "f026", "category": "A-8", "before": "オブザーバビリティの導入によって", "after": "オブザーバビリティを導入すると", "rationale": "手段の『によって』を能動条件節へ" },
+    { "finding_id": "f022", "category": "A-10", "before": "システムの信頼性は飛躍的に向上します", "after": "システムの信頼性は大きく高まります", "rationale": "万能動詞『向上』を『高まる』へ、主語『信頼性』は語義保存のため保持（提案の主語入替＝信頼性→安定 は意味を狭めるため部分適用）" },
+    { "finding_id": "f033", "category": "F-4", "before": "飛躍的に", "after": "大きく", "rationale": "程度副詞化した『的』＋ハイプ修飾を平易な程度副詞へ（f022 と同一 span で統合適用）" },
+    { "finding_id": "f008", "category": "B-2", "before": "プロアクティブな異常検知が可能になり", "after": "異常を先回りして検知できるようになり", "rationale": "proactive を『先回りして』へ（『予防的』案は F-4 の『的』を再発させるため回避）" },
+    { "finding_id": "f009", "category": "B-2", "before": "ユーザーエクスペリエンスの毀損", "after": "利用者の体験を損なう事態", "rationale": "user experience を日本語化。毀損（名詞）は動詞『損なう』へ開くが語義は保存" },
+    { "finding_id": "f017", "category": "A-5", "before": "未然に防ぐことができるようになります", "after": "未然に防げます", "rationale": "『できるようになります』の二重冗長を可能動詞『防げます』へ" },
+    { "finding_id": "f031", "category": "H-1", "before": "また、開発チーム", "after": "開発チーム", "rationale": "段落中の付加接続詞『また』を削除（H-1）" },
+    { "finding_id": "f010", "category": "B-2", "before": "コラボレーション", "after": "連携", "rationale": "collaboration を日本語化" },
+    { "finding_id": "f018", "category": "A-5", "before": "醸成にも寄与することができます", "after": "醸成にも寄与できます", "rationale": "可能の冗長形を『できます』へ" },
+    { "finding_id": "f011", "category": "B-2", "before": "レジリエントなシステム", "after": "回復力のあるシステム", "rationale": "resilient を『回復力のある』へ（ハイプ形容の平易化）" },
+    { "finding_id": "f012", "category": "B-2", "before": "ケイパビリティ", "after": "能力", "rationale": "capability を日本語化。文末の知的偽装を解消" },
+    { "finding_id": "f023", "category": "A-6", "before": "不可欠なケイパビリティとなっているのです", "after": "不可欠な能力なのです", "rationale": "copula で足りる状態叙述『となっているのです』を『なのです』へ。ケイパビリティ→能力（f012）と同一 span で統合" },
+    { "finding_id": "f034", "category": "E-2", "before": "（全14文が『です/ます』終止で変奏ゼロ）", "after": "文末を変奏：〜言えます／〜から成ります／〜残ります／〜なのです、および条件節始まり文を混在", "rationale": "敬体を保ったまま文末の単調反復を分散。文体（敬体）自体は不変" },
+    { "finding_id": "f035", "category": "E-1", "before": "（文が40〜80字に集中し短文なし）", "after": "『メトリクスを使えば、システムの性能を数値で可視化できます。』等の短めの文と、伝播説明の長文で緩急を付与", "rationale": "既存情報の分節のみで文長に変化を付与（新情報の追加なし）" }
+  ]
+}

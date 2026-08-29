@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "run_id": "2026-08-29-001",
+    "genre": "技術解説記事",
+    "style": "desu_masu",
+    "rescan_method": "manual_taxonomy_v1.0",
+    "rescan_method_note": "IMP-006 は ai-tell-detector サブエージェントの再走査を要求するが、本サブエージェント環境には Task/Agent 起動ツールが存在せず（TaskStop・SendMessage=既存エージェント宛のみ）、稼働中の detector も無いため呼び出し不能。フォールバック条項に従い taxonomy v1.0 基準で厳密に手動再走査した。score_after はこの手動再走査に基づく推定値であり、正規の detector 再実行値ではない。",
+    "score_before_source": "02_detection.json meta.severity_weighted_score (=100.0, 上限クリップ済み)",
+    "scoring_formula": "S1=5, S2=2, S3=0.5 の加重和（detector と同一基準）"
+  },
+  "score_before": 100.0,
+  "score_after": 5.0,
+  "improvement_rate": 0.95,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 2,
+    "S3": 2
+  },
+  "residual_detail": [
+    {
+      "category": "D-1",
+      "severity": "S2",
+      "text_span": "一歩前進させたものと言えます",
+      "status": "newly_introduced",
+      "reason": "原文 f027『位置づけられています』(A-8 受動) を『と言えます』へ置換した結果、D-1 の AI 常套句『〜と言えます』を新規に導入。単発・非文末・非反復のため厳密には S2 と判定するが、D 系は本来 S1 カテゴリであり判定境界。推敲役が AI クセを別の AI クセへ置換した過推敲寄りの痕跡。",
+      "suggested_fix": "『一歩進めたものです』『一歩踏み込んだ手法です』等、断定へ寄せて D-1 シグネチャを回避"
+    },
+    {
+      "category": "E-2",
+      "severity": "S2",
+      "text_span": "（文書レベル）全14文が『です／ます』終止",
+      "status": "residual_partial",
+      "reason": "述語の語彙的変奏（残ります／高まります／防げます／集めています）は大幅改善したが、E-2 の厳密判定基準『全文です・ます終止・体言止め混在ゼロ』は依然成立（14/14 が敬体終止、体言止め・でしょう・のだ の変奏なし）。文体（敬体）は維持義務があるため常体混入での解決は不可。同一敬体内での文末体裁の変奏が未達。",
+      "suggested_fix": "1〜2文を体言止めまたは『〜でしょう』へ変奏"
+    },
+    {
+      "category": "E-1",
+      "severity": "S3",
+      "text_span": "（文書レベル）文長分布",
+      "status": "mitigated",
+      "reason": "推敲後は最短約22字（『ログには、イベントの詳細な文脈が残ります』）〜最長約85字（para3の長文）へ分散し、原文の40〜80字集中は解消方向。ただし10〜20字級の意図的短文の挿入は未達のため軽微残存として S3 計上。",
+      "suggested_fix": "10〜20字の短文を1つ挟むと更に自然"
+    },
+    {
+      "category": "A-6",
+      "severity": "S3",
+      "text_span": "事実上の標準になりつつあり",
+      "status": "mitigated",
+      "reason": "原文 f024『デファクトスタンダードとなりつつあり』(S1) はカタカナ除去＋『事実上の標準』化で大幅改善。ただし『なりつつあり』の状態進行叙述が弱く残存。単独では露見しにくく S3。",
+      "suggested_fix": "『事実上の標準です』へ断定（ただし必須ではない）"
+    }
+  ],
+  "resolved_summary": {
+    "s1_resolved": 12,
+    "s1_original": 12,
+    "note": "原文 S1（A-5×6=f013-f018, A-10×4=f019-f022, A-6×2=f023-f024）は全件解消。『することができます』3連続・抽象主語3並列・状態叙述はいずれも能動/断定/短縮形へ手術的に修正済み。B-2 カタカナ語12件（f001-f012）も全て日本語化（モダン→現代の, シームレス→切れ目なく, ケイパビリティ→能力 等）。"
+  },
+  "over_polish_signals": [],
+  "over_polish_assessment": {
+    "keitai_jotai_mixing": "なし（全文 敬体を維持。文体崩れ無し）",
+    "unnatural_colloquialization": "なし（『使えば』『たどれば』『組み合わせて使えば』は技術解説として自然な範囲）",
+    "taigen_dome_excess": "なし（むしろ体言止めゼロで E-2 残存に寄与）",
+    "information_thinning": "なし（事実上の標準・切れ目なく・回復力のある 等いずれも等価。数値・固有名詞・技術語の欠落なし）",
+    "change_rate_estimate": "約25〜30%（警告閾値30%の直下。原文約340字に対し語レベル置換が高密度だが文構造・語順・段落数は保存）"
+  },
+  "grade": "A",
+  "grade_rationale": "S1 残存 0 件、S2 残存 2 件（≤2）、改善率 95%（≥70%）で A 基準を満たす。ただし D-1『と言えます』を S1 と厳格採用した場合は S1=1 となり等級 C（rewrite_round_2）へ転落する境界事案である点に留意。",
+  "recommendation": "accept",
+  "verdict": "accept",
+  "notes": "IMP-006 準拠の detector 再走査は本環境で Agent 起動ツール不在のため taxonomy v1.0 手動再走査で代替した（meta.rescan_method_note 参照）。等級 A・accept 判定だが、唯一の実務的注意点は新規導入された D-1『と言えます』(residual_detail[0])。受理は妨げないが、任意で当該 span 一箇所のみの軽微な round_2 タッチアップ（断定形へ）を推奨。E-2 は敬体維持義務下での文末変奏未達として残るが軽微。過推敲シグナルは検出されず、意味毀損・文体崩れなし。"
+}

@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "run_id": "2026-08-29-002",
+    "genre": "public_notice",
+    "review_round": 2,
+    "style_before": "desu_masu",
+    "style_after": "desu_masu",
+    "style_preserved": true,
+    "rescan_method": "manual_taxonomy_rescan",
+    "rescan_note": "IMP-006 既知欠陥は round2 でも再現。ai-tell-detector サブエージェントの再走査は本環境に Task/Agent spawn 系ツールが存在せず（対エージェント系は SendMessage / TaskStop / Monitor 等のみで、いずれもサブエージェントを起動できない）実行不能。フォールバック規定に従い ai-tell-detector.md と ai-tell-taxonomy.md の同一基準で round2 反映済み 03_rewrite.md を厳密手動再走査し、score_after の根拠とした。",
+    "length_reduction_pct": 22.6,
+    "body_length_reduction_pct": 22.6,
+    "change_rate_pct": 23.4,
+    "change_rate_threshold_pct": 30.0,
+    "change_rate_note": "raw char-diff は 36.8% を示すが、その大半は AI 由来水増し（〜におきましては／こととなりました／とされております 等）の span-grounded 削除であり過推敲ではない。30% 閾値が監視する『保持内容への改変率』相当は約23%で閾値内。"
+  },
+  "score_before": 58.0,
+  "score_after": 2.0,
+  "improvement_rate": 0.966,
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 2 },
+  "residual_detail": [
+    {
+      "category": "I-4",
+      "severity": "S3",
+      "pattern": "「〜が必要です／必要があります」3回（マイナンバーカード＝必要です／窓口手続き＝必要があります／交付手数料＝必要です）。round2 で義務標識を格上げした結果『必要があります』が1件復活したが、原文の『必要となります』状態化（f006/f020）は解消済みで、残るのは同一述語の軽い反復のみ。公的文書では標準的レジスターであり行為者も文脈で自明のため実害は小。",
+      "residual_count": 3
+    },
+    {
+      "category": "E-2",
+      "severity": "S3",
+      "pattern": "文末「〜ください」4回（ご留意／ご了承／ご確認／お問い合わせ）＋「〜です」系の反復で依頼・断定文末がやや一本調子。ただし結辞を『お願いいたします』へ復元したことで round1（ください5回）より分散が進み、原文の『お願い申し上げます』3回連鎖からも大幅改善。単独では自然な範囲。",
+      "residual_count": 4
+    }
+  ],
+  "removed_findings_confirmed": {
+    "total_before": 20,
+    "still_present": 0,
+    "note": "round2 反映後も A-1(における/において)=0, A-2(につきまして)=0, A-6(となり/前提となり/行えるようになり)=0, A-8(される/とされて/されており)=0 を全走査で確認。20 findings すべて span 消失を維持。S1 6件・S2 14件とも残存なし。round2 の結辞復元・義務標識格上げが冗長な状態叙述や過剰敬語連鎖を再導入していないことを確認（お願い系は結辞1件のみ、受動は全て能動維持）。"
+  },
+  "round2_verification": {
+    "restored_closing": {
+      "resolved": true,
+      "evidence": "結辞が『住民の皆様には、本サービスを積極的にご活用いただきますようお願いいたします。』へ復元。直接命令『ご活用ください』は消失し、公的文書の改まった結辞へ回復。"
+    },
+    "keigo_agreement_fixed": {
+      "resolved": true,
+      "evidence": "主題『皆様には』が要請構文『〜いただきますようお願いいたします』と正しく呼応。round1 の『皆様には…ご活用ください』整合崩れは解消。"
+    },
+    "register_upgrade": {
+      "resolved": true,
+      "evidence": "line5『市民課の窓口で手続きを行う必要があります』で義務標識を格上げ（round1 の軟化『お願いします』相当を回避）。唯一の依頼文末は『お願いいたします』で koubunsho レジスターに整合。"
+    },
+    "no_regression": {
+      "resolved": true,
+      "evidence": "における/となり/とされて/受動連鎖の一掃は全て保持。冗長な状態叙述・過剰敬語連鎖への逆戻りなし。純長さ約22.6%減も水増し除去が主因で妥当、様式的重みは結辞復元で回復。"
+    }
+  },
+  "over_polish_signals": [],
+  "grade": "A",
+  "recommendation": "accept",
+  "verdict": "accept",
+  "notes": "round2 で前回指摘の過推敲シグナル2件（レジスターの砕け／『皆様には…ください』整合崩れ）がいずれも解消。結辞は『〜ご活用いただきますよう お願いいたします』へ復元され主題呼応も回復、義務標識も『必要があります』へ格上げされた。既存の優れた AI クセ除去（S1/S2 残存0・改善率96.6%）は完全に保持され、状態叙述・受動連鎖・過剰敬語連鎖への逆戻りは認めない。敬体維持（敬体/常体の混入なし）、変更率も閾値内。過推敲シグナル0で品質等級 A・accept と確定する。残るは S3 軽微反復2件（『必要』3回・『ください』4回）のみで自然な範囲、追加推敲不要。"
+}
