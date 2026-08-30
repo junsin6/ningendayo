@@ -22,6 +22,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "detected_count": 0,
     "ai_tell_density": 0.0,
     "severity_weighted_score": 0.0,
+    "score_formula": "round(100*S/(S+20),1); S=5*S1+2*S2+0.5*S3",
     "style": "desu_masu | da_dearu | mixed"
   },
   "findings": [
@@ -50,9 +51,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（taxonomy v1.1 §検出出力スキーマの確定式を厳守。検出器ごとの独自式は禁止 — IMP-002）:
+   * `S = 5·count(S1) + 2·count(S2) + 0.5·count(S3)`。
+   * `severity_weighted_score = round(100 * S / (S + K), 1)`、飽和定数 `K = 20`。
+   * `ai_tell_density` = 検出 span 総文字数 / **改行を除いた本文文字数**（分母は `meta.input_length` と一致させる）。
+   * 使用した式を `meta.score_formula` に明記し、`start`/`end` は `text_span == 本文[start:end]` を全件自己検証してから出力する。
 
 ## 重要な原則
 

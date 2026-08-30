@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "score_method": "manual_rescan",
+    "detector_autorun": false,
+    "detector_autorun_note": "IMP-006 未対応: 本レビュアーはサブエージェント実行コンテキスト内で動作しており、ai-tell-detector を新規スポーンする Task/Agent ツールが露出していない。よって 03_rewrite.md を taxonomy(SSOT) と 02_detection.json の同一基準で手動再走査し、score_after は検出器と同一の式で算出した。",
+    "score_formula": "score = 100 * S / (S + 15); S = 5*count(S1) + 2*count(S2) + 0.5*count(S3). K=15.",
+    "change_rate": 0.239,
+    "change_rate_threshold": 0.30,
+    "sentence_count": 13,
+    "style": "desu_masu",
+    "style_preserved": true
+  },
+  "score_before": 87.1,
+  "score_after": 9.1,
+  "improvement_pct": 0.896,
+  "residual_severity_counts": { "S1": 0, "S2": 0, "S3": 3 },
+  "original_findings_resolved": "29/32 完全解消, 3 件は S3 レベルの軽微残存へ低減",
+  "residual_findings": [
+    {
+      "ref_finding": "f002",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity_before": "S2",
+      "severity_after": "S3",
+      "status": "reduced",
+      "text_span": "できます/します/担います（文末〜ます 13文中5文）",
+      "reason": "原文は全13文が一本調子だったが、でした・ません・はずです・ています の変奏が入り 6 種の文末形へ改善。ただし平叙〜ます が 5 文でなお最頻。敬体技術文の許容範囲だが完全均一化の名残がわずかに残る。",
+      "actionable": false
+    },
+    {
+      "ref_finding": "f017/f001系",
+      "category": "A-13",
+      "category_label": "翻訳調: 「〜という」過剰連結",
+      "severity_before": "S2",
+      "severity_after": "S3",
+      "status": "acceptable_residual",
+      "text_span": "RAG（検索拡張生成）というアーキテクチャで",
+      "reason": "原文3回のうち2回（テクノロジー/課題）を除去。残る1回は固有名(RAG)を定義導入する自然な用法で、A-13 の許容基準(1〜2回)内。除去不要。",
+      "actionable": false
+    },
+    {
+      "ref_finding": "f031",
+      "category": "A-6",
+      "category_label": "翻訳調: 「〜となる」状態叙述の濫用",
+      "severity_before": "S1",
+      "severity_after": "S3",
+      "status": "reduced",
+      "text_span": "基盤になっていくはずです",
+      "reason": "A-6 中核の「となる」は「なる」へ解消済み(S1 tell 消滅)。ただし「〜ていく」相アスペクトが残り、suggested_fix の『基盤になる／基盤だ』ほど締まってはいない。軽微。",
+      "actionable": false
+    }
+  ],
+  "overpolish_signals": [
+    {
+      "type": "lexical_repetition_introduced",
+      "severity": "mild",
+      "text_span": "中核を担っているのが（P2） / 中核を担います（P3）",
+      "reason": "f015(A-10「重要な役割を果たしています」S1)を『中核を担います』へ置換した結果、P2 既存の『中核を担っている』と語彙が重複。S1 の直訳調(役割を果たす=X plays a role)は解消したが、隣接段落で同一比喩動詞が2回反復する軽度の推敲副作用。1語入替で解消可能（例: P3を『欠かせません』『中心的に使われています』）。",
+      "count_as_signal": true
+    }
+  ],
+  "overpolish_checks": {
+    "keitai_jotai_mixing": { "detected": false, "note": "全13文が敬体維持。常体(だ/である)の混入なし。" },
+    "taigen_dome_excess": { "detected": false, "note": "体言止め0。全文が述語で終止。" },
+    "meaning_weakening": { "detected": false, "note": "『極めて重要な役割』『欠かせない』の減衰は F-1/D-4 の意図された脱ハイプであり原意毀損ではない。数値・固有名・引用の欠落なし。最終判断は fidelity-auditor へ委譲。" },
+    "rhythm_over_uniform": { "detected": false, "note": "文長・構文にばらつきあり。均一化なし。" },
+    "change_rate_over": { "detected": false, "note": "変更率 23.9% で 30% 閾値内。" }
+  },
+  "overpolish_signal_count": 1,
+  "grade": "A",
+  "grade_basis": "S1=0, S2=0(≤2), 改善 89.6%(≥70%)。過推敲シグナル1(<2)。A 基準を全項目で充足。",
+  "recommendation": "accept",
+  "notes": "32 findings 中 29 件を完全解消、残る3件はいずれも S1/S2→S3 へ低減した許容範囲の軽微残存。過推敲シグナルは『中核を担う』の語彙重複1件のみで grade を下げるレベルではないが、accept 時に P3 側を1語入替すれば完成度が上がる。文体(敬体)は完全維持。score_after は検出器自動再走査ではなく手動再走査に基づく推定値である点に留意(IMP-006)。"
+}

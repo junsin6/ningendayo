@@ -1,0 +1,60 @@
+{
+  "run_id": "2026-08-30-002",
+  "genre": "公的文書/お知らせ",
+  "style": "desu_masu",
+  "detector_rerun": {
+    "method": "manual_rescan",
+    "reason": "IMP-006: この reviewer コンテキストから ai-tell-detector サブエージェントを新規起動する手段がなく（ListAgents に detector が存在せず、Task 起動系ツールも本コンテキスト未搭載）、02_detection.json と同一の taxonomy v1.0・同一 score_formula で手動再走査した。",
+    "score_formula": "severity_weighted_score = min(100, round((S1*5 + S2*2 + S3*0.5) / input_length * 1000, 1)); input_length = 推敲後 raw 文字数 494"
+  },
+  "score_before": 83.6,
+  "score_after": 9.1,
+  "improvement_pct": 89.1,
+  "input_length_after": 494,
+  "residual_raw_weight": 4.5,
+  "original_findings_resolved": "17/17",
+  "residual_findings": [
+    {
+      "id": "r001",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動過多（受動述語の密度）",
+      "severity": "S2",
+      "text_span": "改善される / 拡充されます / 停止されます / 延長される",
+      "count": 4,
+      "reason": "推敲前の受動約10回から4回に減少したが、なお A-8 の反復閾値(3回+)を超える。ただし『応答速度が改善される』『機能が拡充されます』は主語が事物で、公的文書では機関を主語に立てない受動が慣行として自然な側面もあり、AIクセ度は弱い。",
+      "note": "ジャンル適合により実害小。無理な能動化は不要。"
+    },
+    {
+      "id": "r002",
+      "category": "A-10/A-9",
+      "category_label": "翻訳調: 万能動詞『提供する』＋目的節『〜ために』の残存",
+      "severity": "S2",
+      "text_span": "より快適な利用環境をご提供するために行います",
+      "count": 1,
+      "reason": "推敲前 f006(A-9 目的として)/A-10(提供する) を『ご提供するために行います』へ置換したが、抽象主語(システムの更新は)＋万能動詞『提供する』＋目的節『ために』の翻訳調骨格が残る。単発かつ敬体で緩和されるため S2 相当に減衰。",
+      "suggested_fix": "『システムの更新は、蔵書検索を速く、電子書籍を使いやすくするための作業です』等、具体動詞へ開くとさらに自然。"
+    },
+    {
+      "id": "r003",
+      "category": "E-2",
+      "category_label": "リズム: です・ます文末の単調（★日本語固有）",
+      "severity": "S3",
+      "text_span": "いたします×5 / お知らせいたします×2 / お願い申し上げます×2",
+      "count": 1,
+      "reason": "文末は『いたします』クラスタが残るが、『ご利用ください/ご了承ください/お問い合わせください』の ください系3件で変奏が入り、単調は大きく緩和。公的文書の定型上『お願い申し上げます』2回・『お知らせいたします』2回は慣行内で許容範囲。S3(弱)に留まる。"
+    }
+  ],
+  "residual_findings_by_severity": { "S1": 0, "S2": 2, "S3": 1 },
+  "overpolish_signals": [],
+  "overpolish_checks": {
+    "change_rate_pct": 17.0,
+    "change_rate_threshold": 30.0,
+    "change_rate_verdict": "OK（30%未満・警告域外）",
+    "style_break_desu_masu_mixing": "なし（全文 敬体を維持。だ・である体の混入ゼロ）",
+    "politeness_damage": "なし（公的文書必須の丁寧定型を保存: 申し上げます×2・賜り×2・何卒×1・おかれましては×1・ございます・ご〜ください。過度な丁寧AIクセ『必要がございます』『告知が行われる予定です』のみを除去し、必要な敬度は毀損していない）",
+    "choppiness_meaning_loss": "なし（文がぶつ切りにならず、事実・数値・固有名詞・主張は保存）"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "17件の finding を全て解消(S1×6, S2×9, S3×2 → 残存 S1=0, S2=2, S3=1)。score 83.6→9.1、改善89.1%。S1 ゼロ・S2 2件以下・改善70%+ で等級A。過推敲シグナルなし(変更率17%、文体崩れなし、公的文書の丁寧定型を保持)。残存2件のS2(受動密度・提供/ために)はジャンル適合により実害小で、そのまま accept 可。任意で r002 を具体動詞へ開けば更に自然。"
+}

@@ -59,14 +59,14 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（swap/trim 分離 — IMP-001）: 語句改変率 **swap** が 30% 超で警告、50% 超で中断し `hold_and_report`。純削除 **trim** は単独では中断対象にしない。各 edit に `kind: swap|trim|rhythm` を付す。
 
 ### 4. 並列検証
 
 二つを並行実行:
 
 * `content-fidelity-auditor`: 原文と推敲文を 13 項チェックリストで突き合わせ、意味の毀損があれば該当 edit のロールバックを指示。
-* `naturalness-reviewer`: 推敲文に検出器を再実行し、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。
+* `naturalness-reviewer`: 推敲文に検出器を再実行し、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。`score_before` は `02_detection.json` の `meta.severity_weighted_score`、`score_after` は taxonomy v1.1 の確定式で算出し、再走査の方法を `detector_rerun` に必須記録（IMP-006）。
 
 ### 5. 総合判定
 
@@ -76,6 +76,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
+| 全体 change_rate が 30〜50% でも swap が閾値内・trim 主導で fidelity=pass かつ A/B | **override accept** | `accept`。`summary.md` に override 理由（swap/trim 内訳）を明記（IMP-001 既知欠陥） |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
