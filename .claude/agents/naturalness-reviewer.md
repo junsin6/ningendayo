@@ -15,8 +15,10 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再実行**（IMP-006）: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査し残存 finding を数える。
+   * Agent ツールで `ai-tell-detector` サブエージェントを呼べる場合は**必須**で呼ぶ（`method: "agent"`）。
+   * 呼べない場合は taxonomy v1.1 §検出出力スキーマの**同一 score_formula**（`round(100·S/(S+20),1)`）で手動再走査し、`method: "manual"` とする。**手動照合の暗黙化は禁止** — 必ず `detector_rerun` に記録する。
+2. **改善率の算出**: `(score_before − score_after) / score_before`。`score_before` は `02_detection.json` の `meta.severity_weighted_score` を用いる（推定値を使わない）。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
    * 文体崩れ（敬体／常体の混入）
@@ -37,9 +39,12 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
   "over_polish_signals": [],
   "grade": "A",
   "recommendation": "accept | rewrite_round_2 | hold_and_report",
+  "detector_rerun": { "method": "agent | manual", "score_formula": "round(100*S/(S+20),1)", "note": "" },
   "notes": ""
 }
 ```
+
+`detector_rerun` は必須フィールド。`method` は検出器を実際に再実行したか手動再走査かを表し、`score_formula` は taxonomy v1.1 の確定式と一致させる。
 
 ## 品質等級
 

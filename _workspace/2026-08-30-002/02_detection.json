@@ -1,0 +1,212 @@
+{
+  "meta": {
+    "input_length": 586,
+    "detected_count": 17,
+    "ai_tell_density": 0.288,
+    "severity_weighted_score": 83.6,
+    "score_formula": "severity_weighted_score = min(100, round((S1*5 + S2*2 + S3*0.5) / input_length * 1000, 1)); 内訳 S1=6, S2=9, S3=2 -> raw = 6*5 + 9*2 + 2*0.5 = 49; 49 / 586 * 1000 = 83.6（重み付き密度の飽和点を input_length/10 に設定）",
+    "ai_tell_density_formula": "検出 span 総文字数 169 / 全体文字数 586 = 0.288",
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "実施されることとなりました",
+      "start": 40,
+      "end": 53,
+      "reason": "『実施される』(受動)に『こととなりました』(A-6 状態叙述変異形)が重なり、単に『実施します』で足りる箇所を英語 it is the case that 的に状態化。行為者(図書館)が主語から消えている。",
+      "suggested_fix": "更新作業を実施します"
+    },
+    {
+      "id": "f002",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/〜において 濫用",
+      "severity": "S1",
+      "text_span": "下記の期間において",
+      "start": 63,
+      "end": 72,
+      "reason": "場所・期間を抽象的に枠づける『において』(英語 in/during 直訳)。本文書で『において』が計2回反復(f016 も)し硬い翻訳調を強める。",
+      "suggested_fix": "下記の期間は"
+    },
+    {
+      "id": "f003",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文(by-passive)/受動態の直訳",
+      "severity": "S2",
+      "text_span": "一部のサービスが停止されます",
+      "start": 73,
+      "end": 87,
+      "reason": "受動述語が本文全体で約10回反復(実施される/停止される×2/行われる×2/改善される/拡充される/設置された/延長される/告知が行われる)する受動過多の一例。行為者(図書館)を主語に戻せる。",
+      "suggested_fix": "一部のサービスを停止します"
+    },
+    {
+      "id": "f004",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復 ★日本語固有",
+      "severity": "S2",
+      "text_span": "お願い申し上げます",
+      "start": 137,
+      "end": 146,
+      "reason": "『お願い申し上げます』が本文で3回反復し、加えて『お願いいたします』も出現。文末がます/です一辺倒で変奏がなく、E-2 の単調反復に該当。",
+      "suggested_fix": "文末に体言止め・『〜ください』等を混ぜ、締めの定型反復を2回以下に"
+    },
+    {
+      "id": "f005",
+      "category": "I-1",
+      "category_label": "形式名詞: 〜こと/〜ということ 濫用",
+      "severity": "S3",
+      "text_span": "提供すること",
+      "start": 168,
+      "end": 174,
+      "reason": "『こと』による名詞化が本文で複数(実施されること/提供すること/拡充されること/ご利用いただくこと)反復。単独では許容だが密度が高く冗長。",
+      "suggested_fix": "提供するため"
+    },
+    {
+      "id": "f006",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために/目的として 目的節の濫用",
+      "severity": "S2",
+      "text_span": "目的として",
+      "start": 175,
+      "end": 180,
+      "reason": "英語 in order to 直訳の目的節『〜を目的として』。直前の『快適な利用環境を提供する』(A-10 万能動詞 提供する)と結合し、抽象主語+目的節の翻訳調。",
+      "suggested_fix": "更新の目的は、蔵書検索を速くし電子書籍を使いやすくすることです"
+    },
+    {
+      "id": "f007",
+      "category": "I-1",
+      "category_label": "形式名詞: 〜もの/〜ものです 形式的説明の濫用",
+      "severity": "S3",
+      "text_span": "行われるものです",
+      "start": 180,
+      "end": 188,
+      "reason": "受動『行われる』+説明の形式名詞『ものです』。抽象主語(システムの更新)を能動に戻せば不要。",
+      "suggested_fix": "システムを更新します"
+    },
+    {
+      "id": "f008",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "今回の作業によって",
+      "start": 189,
+      "end": 198,
+      "reason": "英語受動態 by の直訳。『作業によって〜が改善される/拡充される』と行為者を『によって』で後置した典型的 by-passive。行為者を主語に戻し能動化すべき。",
+      "suggested_fix": "今回の作業で蔵書検索が速くなり、電子書籍の機能も増えます"
+    },
+    {
+      "id": "f009",
+      "category": "G-1",
+      "category_label": "過度なヘッジング: 推測・観測型の文末(見込まれる)",
+      "severity": "S2",
+      "text_span": "見込まれております",
+      "start": 243,
+      "end": 252,
+      "reason": "受動+謙譲進行『見込まれております』で観測・推量調にぼかす。改善は施策の予定として断定できる箇所であり過剰なヘッジング。",
+      "suggested_fix": "拡充します"
+    },
+    {
+      "id": "f010",
+      "category": "A-3",
+      "category_label": "翻訳調: 〜を通じて/〜を通して 濫用",
+      "severity": "S2",
+      "text_span": "ウェブサイトを通じた",
+      "start": 301,
+      "end": 311,
+      "reason": "手段・経路を英語 through/via 直訳の『を通じた』で処理。『ウェブサイトでの』に直結できる。",
+      "suggested_fix": "ウェブサイトでの"
+    },
+    {
+      "id": "f011",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/〜に関して 濫用",
+      "severity": "S1",
+      "text_span": "手続きについても",
+      "start": 319,
+      "end": 327,
+      "reason": "主題提示を英語 about/regarding 直訳の『について』で処理。本文書で『について』系(f011 と f013 の につきまして)が2回反復。主題助詞『は』/目的格『も』で直結可。",
+      "suggested_fix": "手続きも"
+    },
+    {
+      "id": "f012",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "ご利用いただくことができなくなります",
+      "start": 328,
+      "end": 346,
+      "reason": "可能の冗長形『〜することができる』(英語 be able to 直訳)を否定化した形。『ご利用いただけなくなります』に短縮できる AI 最頻出シグネチャ。",
+      "suggested_fix": "ご利用いただけなくなります"
+    },
+    {
+      "id": "f013",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/〜に関して(につきまして) 濫用",
+      "severity": "S1",
+      "text_span": "につきましては",
+      "start": 356,
+      "end": 363,
+      "reason": "『について』の敬体変異『につきましては』。主題提示の翻訳調で、『は』で直結できる。A-2 の2回目。",
+      "suggested_fix": "返却をご希望の資料は"
+    },
+    {
+      "id": "f014",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態の直訳(設置された)",
+      "severity": "S2",
+      "text_span": "館内に設置された",
+      "start": 364,
+      "end": 372,
+      "reason": "受動連体修飾『設置された』。設置主体は図書館で明白であり、能動(『館内に用意した』)に戻せる。受動過多の一例。",
+      "suggested_fix": "館内の"
+    },
+    {
+      "id": "f015",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご利用いただく必要がございます",
+      "start": 378,
+      "end": 393,
+      "reason": "英語 need to 直訳の『〜する必要がある』(敬体『必要がございます』)。行為の勧告を回りくどく述べており、素直な依頼形に変えられる。",
+      "suggested_fix": "館内の返却ポストをご利用ください"
+    },
+    {
+      "id": "f016",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/〜において 濫用",
+      "severity": "S1",
+      "text_span": "ウェブサイトにおいて",
+      "start": 442,
+      "end": 452,
+      "reason": "『において』(英語 in/on 直訳)の2回目(f002 と重複反復)。場所を『で』に直結できる。",
+      "suggested_fix": "ウェブサイトで"
+    },
+    {
+      "id": "f017",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動態の直訳(告知が行われる)",
+      "severity": "S2",
+      "text_span": "告知が行われる予定です",
+      "start": 455,
+      "end": 466,
+      "reason": "受動『告知が行われる』で行為者(市)が消えている。能動(『市が改めてお知らせします』)に戻せる。受動過多の締めくくり。",
+      "suggested_fix": "市が改めてお知らせします"
+    }
+  ],
+  "category_summary": {
+    "A": 12,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 1,
+    "H": 0,
+    "I": 3,
+    "J": 0
+  }
+}

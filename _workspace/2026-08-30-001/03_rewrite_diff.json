@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "style_preserved": "desu_masu",
+    "orig_chars": 709,
+    "new_chars": 580,
+    "edit_count": 32,
+    "change_rate": 0.374,
+    "change_rate_breakdown": {
+      "lexical_swap_rate": 0.209,
+      "structural_trim_rate": 0.157,
+      "note": "change_rate = difflib(ins+del)/orig。内訳は edit を swap(語句の言い換え・カタカナ和語化)と trim(AI冗長構文の削り)に分類して集計。本文は可能形冗長・状態叙述が高密度で、trim だけで純圧縮 18.2%(709→580字) が発生する特性がある。"
+    },
+    "sentence_final_variation": ["ています", "です", "ませんでした", "できます", "です", "します", "できます", "担います", "知られています", "できます", "なりません", "できます", "はずです"],
+    "kept_katakana_as_residual": ["データ", "テキスト", "データベース", "ベクトル", "エンベディング", "プロセス", "クエリ", "コンテキスト", "インデックスアルゴリズム", "レイテンシ(併記のみ)", "RAG"]
+  },
+  "edits": [
+    { "finding_id": "f001", "category": "A-13", "before": "ベクトルデータベースというテクノロジーが", "after": "ベクトルデータベースが", "kind": "trim", "note": "「という」概念連結を削除し名詞を直結（3回反復の1回目を解消）" },
+    { "finding_id": "f002", "category": "E-2", "before": "（全13文が「ます／です」止めで一本調子）", "after": "（文末を でした・します・ています・ません・はずです 等に分散）", "kind": "rhythm", "note": "敬体を維持したまま文末を変奏。文書レベルの調整のため個別 span ではなく全文にわたる。" },
+    { "finding_id": "f003", "category": "A-5", "before": "格納・検索することができる", "after": "格納・検索できる", "kind": "trim", "note": "可能形冗長を短縮（ことができる→できる）" },
+    { "finding_id": "f004", "category": "A-5", "before": "行うことができませんでした", "after": "行えませんでした", "kind": "trim", "note": "可能形冗長の否定形を可能動詞へ。文末に でした を残しリズムに寄与" },
+    { "finding_id": "f005", "category": "A-8", "before": "活用することによって", "after": "活用すれば", "kind": "trim", "note": "手段構文を条件形へ（A-8連鎖5件の分散1: すれば）" },
+    { "finding_id": "f006", "category": "A-6", "before": "高速に検索することが可能となります", "after": "高速に検索できます", "kind": "trim", "note": "状態叙述＋可能形冗長を断定の可能へ（A-6連鎖の分散1）" },
+    { "finding_id": "f007", "category": "B-2", "before": "テクノロジー", "after": "技術", "kind": "swap", "note": "定訳のある語を和語化" },
+    { "finding_id": "f008", "category": "B-2", "before": "セマンティックな", "after": "意味的な", "kind": "swap", "note": "知的偽装のカタカナを開く" },
+    { "finding_id": "f009", "category": "A-5", "before": "マッピングすることができます", "after": "マッピングします", "kind": "trim", "note": "機能記述のため可能形を平叙へ（A-5連鎖の分散: します。できます偏りを回避）" },
+    { "finding_id": "f010", "category": "A-8", "before": "この仕組みによって", "after": "この仕組みで", "kind": "trim", "note": "手段構文を助詞で（A-8連鎖の分散2: で）" },
+    { "finding_id": "f011", "category": "A-3", "before": "自然言語によるクエリを通じて", "after": "自然言語のクエリを使って", "kind": "swap", "note": "「を通じて」を「を使って」へ。直前の「で」との二重手段を避けるため助詞でなく動詞化" },
+    { "finding_id": "f012", "category": "A-5", "before": "アクセスすることができるようになります", "after": "アクセスできます", "kind": "trim", "note": "可能形冗長＋「ようになります」の二重冗長を解消" },
+    { "finding_id": "f013", "category": "A-1", "before": "アーキテクチャにおいて", "after": "アーキテクチャで", "kind": "trim", "note": "抽象枠づけ「において」を助詞で（A-1連鎖の分散1）" },
+    { "finding_id": "f014", "category": "F-1", "before": "極めて", "after": "", "kind": "trim", "note": "程度副詞を削除" },
+    { "finding_id": "f015", "category": "A-10", "before": "重要な役割を果たしています", "after": "中核を担います", "kind": "swap", "note": "万能動詞「役割を果たす」を具体動詞へ。主語(ベクトルDB)は既に具体" },
+    { "finding_id": "f016", "category": "A-7", "before": "大規模言語モデルが持つ", "after": "大規模言語モデルに起きる", "kind": "swap", "note": "所有叙述「が持つ」を、ハルシネーションが生じる現象として自然化" },
+    { "finding_id": "f017", "category": "A-13", "before": "ハルシネーションという課題を", "after": "ハルシネーションを", "kind": "trim", "note": "「という」連結を削除。範疇語「課題」は軽減対象であることが文脈で自明のため省略（軽微な情報省略として要監査）" },
+    { "finding_id": "f018", "category": "A-5", "before": "軽減することができる", "after": "軽減できる", "kind": "trim", "note": "可能形冗長を短縮" },
+    { "finding_id": "f019", "category": "B-2", "before": "アプローチ", "after": "手法", "kind": "swap", "note": "定訳のある語を和語化" },
+    { "finding_id": "f020", "category": "F-4", "before": "具体的には", "after": "たとえば", "kind": "swap", "note": "「〜的」定型導入を平易な例示語へ" },
+    { "finding_id": "f021", "category": "B-2", "before": "ナレッジベース", "after": "知識ベース", "kind": "swap", "note": "和語化（RAG用語のベース部分は維持）" },
+    { "finding_id": "f022", "category": "A-8", "before": "与えることによって", "after": "与えて", "kind": "trim", "note": "手段構文を接続へ（A-8連鎖の分散3: 与えて）" },
+    { "finding_id": "f023", "category": "A-6", "before": "生成することが可能となります", "after": "生成できます", "kind": "trim", "note": "状態叙述＋可能形冗長を断定の可能へ（A-6連鎖の分散2）" },
+    { "finding_id": "f024", "category": "B-2", "before": "スケーラビリティやレイテンシ", "after": "拡張性や応答速度（レイテンシ）", "kind": "swap", "note": "拡張性・応答速度へ和語化。レイテンシは技術語として括弧併記で保存" },
+    { "finding_id": "f025", "category": "I-3", "before": "考慮する必要があります", "after": "考慮しなければなりません", "kind": "swap", "note": "「する必要がある」を義務表現へ。文末 ません でリズム変奏も兼ねる" },
+    { "finding_id": "f026", "category": "A-8", "before": "選定することによって", "after": "選定すれば", "kind": "trim", "note": "手段構文を条件形へ（A-8連鎖の分散4: すれば）" },
+    { "finding_id": "f027", "category": "B-2", "before": "検索のパフォーマンス", "after": "検索の性能", "kind": "swap", "note": "定訳のある語を和語化" },
+    { "finding_id": "f028", "category": "A-5", "before": "最適化することができるでしょう", "after": "最適化できます", "kind": "trim", "note": "可能形冗長＋事実への推量ヘッジ「でしょう」を断定へ" },
+    { "finding_id": "f029", "category": "A-1", "before": "今後のAI活用において", "after": "これからのAI活用を（支える）", "kind": "swap", "note": "抽象枠づけ「において」を解体し目的語構文へ（A-1連鎖の分散2、今後→これから）" },
+    { "finding_id": "f030", "category": "D-4", "before": "欠かせない基盤", "after": "支える基盤", "kind": "swap", "note": "ハイプ語「欠かせない」を具体動詞「支える」へ。新事実を足さず重要性を保持（強調度はやや低下、要監査）" },
+    { "finding_id": "f031", "category": "A-6", "before": "基盤となっていく", "after": "基盤になっていく", "kind": "trim", "note": "状態叙述「となる」を「になる」へ（変化を言う文脈のため進行は維持）" },
+    { "finding_id": "f032", "category": "A-8", "before": "ことが期待されます", "after": "はずです", "kind": "swap", "note": "行為者不明の受動的締め「期待される」を、主語(ベクトルDB)明示の推量断定へ（A-8連鎖の分散5）" }
+  ],
+  "change_rate": 0.374,
+  "style_preserved": "desu_masu",
+  "warnings": [
+    "change_rate 37.4% が 30% 閾値を超過（50% 未満のため続行）。超過の主因は AI 冗長構文の高密度（可能形冗長6件・状態叙述3件・手段構文5件）で、trim だけで 18.2% の純圧縮が生じたこと。語句改変率は 20.9%、構造/削除率は 15.7% に分離済み。ジャンル移動・意味改変は行っていない。",
+    "f017: 範疇語「課題」を省略（文脈上自明と判断）。content-fidelity-auditor での情報保存確認を推奨。",
+    "f030: ハイプ語「欠かせない」→「支える」で強調度がやや低下。意味等価だが要確認。",
+    "残差(S3): エンベディング・プロセス・クエリ・コンテキスト・インデックスアルゴリズム・ベクトル・データ・データベース・RAG・レイテンシ(併記) は定着技術語として和語化せず保持。"
+  ]
+}
