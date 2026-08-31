@@ -22,6 +22,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "detected_count": 0,
     "ai_tell_density": 0.0,
     "severity_weighted_score": 0.0,
+    "scoring_formula": "100*(1-exp(-per1k/50)), per1k=raw/len*1000, raw=S1*5+S2*2+S3*0.5",
     "style": "desu_masu | da_dearu | mixed"
   },
   "findings": [
@@ -30,6 +31,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "span",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
@@ -50,9 +52,13 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（v1.1 で正規化式を SSOT 固定 = IMP-002）:
+   * `raw` = S1件数×5 + S2件数×2 + S3件数×0.5。
+   * `per1k` = raw ÷ input_length × 1000（1000字あたり加重和・文書長不変）。
+   * `severity_weighted_score` = round( 100 × (1 − exp(−per1k ÷ 50)), 1 )（0〜100 で飽和、100 超えなし。K=50 固定）。
+   * `meta.scoring_formula` に式を文字列で明記（例 `"100*(1-exp(-per1k/50)), per1k=raw/len*1000, raw=S1*5+S2*2+S3*0.5"`）。検出器間・推敲前後で必ず同式を使う。
+   * `ai_tell_density` = 検出 span の実 AIクセ文字数 ÷ 全体文字数。**`scope:"document"` の finding は密度計算から除外**し、`scattered` は `occurrences` の重複を除いた実文字数で数える（IMP-004）。
+   * 詳細は `references/ai-tell-taxonomy.md §検出出力スキーマ` を正典とする。
 
 ## 重要な原則
 
