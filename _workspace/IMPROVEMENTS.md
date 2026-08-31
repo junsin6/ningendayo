@@ -20,7 +20,7 @@
 ### IMP-002 severity_weighted_score の正規化が未定義で run 間非再現 `status: done(2026-08-31-001/002 で適用)` `hits: 2run`
 - 症状: 正規化式が SSOT に無く、**同一サイクルで検出器2体が別式を採用**（2026-08-31: detector-001 は raw=95 をそのまま、detector-002 は raw/input_length×1000=43.9）。改善率が比較不能になる致命傷。naturalness も毎回リバースエンジニアリング。
 - 出所: detector-A/B（両 run・式が食い違う実害を実証）, naturalness-A/B
-- **適用(2026-08-31)**: taxonomy §検出出力スキーマに正規化式 `score = 100*(1-exp(-raw/K))`（raw=S1×5+S2×2+S3×0.5, K=文書長依存の飽和定数 K=max(20, input_length/40)）を SSOT 明記。meta に `scoring_formula` フィールドを追加。detector.md §スコア算出をこの式に統一。→ v1.1。
+- **適用(2026-08-31, v1.1)**: taxonomy §検出出力スキーマに正規化式を SSOT 固定 — `raw=S1×5+S2×2+S3×0.5` → `per1k=raw÷input_length×1000` → `severity_weighted_score=round(100×(1−exp(−per1k÷50)),1)`（飽和定数 **K=50 固定**、0〜100・100超えなし）。meta に `scoring_formula` フィールド追加。改善率の分母は推敲前 input_length に固定。detector.md §スコア算出も同式に統一（整合確認済み）。回帰検算: run001 raw95/len812→per1k117→90.4、run002 raw30/len684→per1k43.9→58.4（重い文書ほど高く、100超えなし・(raw,len)のみで一意再現）。
 - 影響: `ai-tell-taxonomy.md §検出出力スキーマ`, `ai-tell-detector.md §スコア算出`
 
 ### IMP-003 score_before のフィールド契約が曖昧 `status: ready` `hits: 2run`
