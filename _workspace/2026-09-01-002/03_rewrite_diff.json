@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "run_id": "2026-09-01-002",
+    "genre": "public_notice",
+    "style_preserved": "desu_masu",
+    "original_length": 542,
+    "edits_count": 15,
+    "findings_addressed": 16,
+    "change_rate": 0.2989,
+    "change_rate_breakdown": {
+      "lexical_substitution_rate": 0.0461,
+      "deletion_structural_rate": 0.2527,
+      "note": "IMP-001 既知欠陥: difflib 系の char-diff は受動→能動・状態叙述除去・過剰敬語縮約を span 全置換として計上するため headline 値が膨らむ。実際の語句置換(について→は 等の表層スワップ)は 4.6% にとどまり、残り約 25% は AI 冗長パディング(状態叙述×3・受動×2・過剰敬語×2・冗長可能形)の縮約=正味 94 字の短縮であって内容置換ではない。"
+    }
+  },
+  "edits": [
+    {
+      "finding_id": "f001",
+      "category": "A-6",
+      "before": "こととなりました",
+      "after": "ことになりました",
+      "start": 74,
+      "end": 82,
+      "bucket": "lexical_substitution",
+      "rationale": "状態叙述『こととなりました』を自然な決定叙述『ことになりました』へ。となる状態化を解消しつつ、公的告知の『決定した』ニュアンスは保持。"
+    },
+    {
+      "finding_id": "f002",
+      "category": "A-8",
+      "before": "本作業によって",
+      "after": "本作業で",
+      "start": 83,
+      "end": 90,
+      "bucket": "deletion_structural",
+      "rationale": "by受動の行為者後置『によって』を能動下地の『本作業で』へ。後続の f003 能動化と連動。"
+    },
+    {
+      "finding_id": "f003",
+      "category": "A-6",
+      "before": "の刷新が図られることとなっております",
+      "after": "を刷新いたします",
+      "start": 110,
+      "end": 128,
+      "bucket": "deletion_structural",
+      "rationale": "A-6状態叙述+A-8受動の二重AIクセ『刷新が図られることとなっております』を能動の断定『刷新いたします』へ。行為主体(図書館)を回復。蔵書検索・貸出管理システムの刷新という情報は不変。"
+    },
+    {
+      "finding_id": "f004",
+      "category": "I-3",
+      "before": "とさせていただく必要がございます",
+      "after": "といたします",
+      "start": 167,
+      "end": 183,
+      "bucket": "deletion_structural",
+      "rationale": "I-3必要叙述+過剰敬語(させていただく)の重畳を公的敬語の断定『といたします』へ。休館の必要性は直前の『システムの切り替え作業に伴い』が担保し情報欠落なし。"
+    },
+    {
+      "finding_id": "f016",
+      "category": "E-1",
+      "before": "おかけいたしますが、何卒",
+      "after": "おかけいたします。何卒",
+      "start": 199,
+      "end": 211,
+      "bucket": "structural",
+      "rationale": "E-1文長均一(36〜57字密集)を是正。長文を『が、』の位置で二分し短文のお詫び文(約24字)を挿入。語句の増減はなく句点化のみ。E-2の文末変奏にも寄与。"
+    },
+    {
+      "finding_id": "f013",
+      "category": "A-8",
+      "before": "Web サイトによる",
+      "after": "Web サイトの",
+      "start": 244,
+      "end": 254,
+      "bucket": "lexical_substitution",
+      "rationale": "後置修飾by『による』を『の』へ。固有表記『Web サイト』(半角スペース含む)は不変。"
+    },
+    {
+      "finding_id": "f005",
+      "category": "A-5",
+      "before": "ご利用いただくことができなくなります",
+      "after": "ご利用いただけなくなります",
+      "start": 263,
+      "end": 281,
+      "bucket": "deletion_structural",
+      "rationale": "A-5可能の冗長形『いただくことができ』を『いただけ』へ短縮。可能・不可の意味不変。"
+    },
+    {
+      "finding_id": "f006",
+      "category": "A-2",
+      "before": "図書の返却につきましては",
+      "after": "図書の返却は",
+      "start": 282,
+      "end": 294,
+      "bucket": "lexical_substitution",
+      "rationale": "A-2主題提示『につきましては』を主題助詞『は』へ(3回反復の分散1)。"
+    },
+    {
+      "finding_id": "f007",
+      "category": "I-3",
+      "before": "ブックポストをご利用いただく必要がございます",
+      "after": "ブックポストをご利用ください",
+      "start": 305,
+      "end": 327,
+      "bucket": "deletion_structural",
+      "rationale": "I-3必要叙述を勧告形『ご利用ください』へ。返却はブックポストで、という手続き情報は保持。文末変奏(E-2)にも寄与。"
+    },
+    {
+      "finding_id": "f008",
+      "category": "A-2",
+      "before": "貸出期間中の図書につきましては",
+      "after": "貸出期間中の図書は",
+      "start": 331,
+      "end": 346,
+      "bucket": "lexical_substitution",
+      "rationale": "A-2主題提示を『は』へ(分散2)。"
+    },
+    {
+      "finding_id": "f009",
+      "category": "A-6",
+      "before": "休館期間分を考慮した貸出期間の延長対応が行われることとなっております",
+      "after": "休館期間分を考慮し、貸出期間を延長いたします",
+      "start": 347,
+      "end": 381,
+      "bucket": "deletion_structural",
+      "rationale": "A-6状態叙述+A-8受動『延長対応が行われることとなっております』を能動断定へ。『考慮した』→『考慮し、』で連体修飾の詰まりを解消。休館期間分を考慮した延長という条件は不変。"
+    },
+    {
+      "finding_id": "f010",
+      "category": "I-3",
+      "before": "再登録手続きを行っていただく必要が生じる場合がございます",
+      "after": "再登録手続きが必要になる場合があります",
+      "start": 403,
+      "end": 431,
+      "bucket": "deletion_structural",
+      "rationale": "I-3必要叙述『行っていただく必要が生じる』の婉曲重畳を『必要になる』へ。『場合がございます』→『場合があります』で文末を変奏(E-2)。再登録が必要になる可能性という条件付き情報は保持。"
+    },
+    {
+      "finding_id": "f011",
+      "category": "A-2",
+      "before": "詳細につきましては",
+      "after": "詳しくは",
+      "start": 432,
+      "end": 441,
+      "bucket": "lexical_substitution",
+      "rationale": "A-2主題提示の3回目は『は』で均一化せず『詳しくは』へ分散(機械的均一を回避)。"
+    },
+    {
+      "finding_id": "f012",
+      "category": "A-6",
+      "before": "お知らせさせていただく予定となっております",
+      "after": "お知らせする予定です",
+      "start": 467,
+      "end": 488,
+      "bucket": "deletion_structural",
+      "rationale": "A-6状態叙述+過剰敬語(させていただく)を『お知らせする予定です』へ。文末を『です』体に変え敬体単調を打破(E-2)。広報誌・市公式ホームページでの後日告知という予定は不変。"
+    },
+    {
+      "finding_id": "f014",
+      "category": "I-4",
+      "before": "円滑な移行に向けたご協力が求められるところでございます",
+      "after": "円滑な移行に向けてご協力をお願いいたします",
+      "start": 498,
+      "end": 525,
+      "bucket": "deletion_structural",
+      "rationale": "I-4行為者曖昧の要請『求められる』+過剰敬語(ところでございます)を、依頼主体の明確な勧告形『ご協力をお願いいたします』へ。円滑な移行への協力要請という趣旨は保持。"
+    },
+    {
+      "finding_id": "f015",
+      "category": "E-2",
+      "before": "__document_level__",
+      "after": "__document_level__",
+      "start": 0,
+      "end": 543,
+      "bucket": "structural",
+      "rationale": "文末単調(ございます×3・っております×3・申し上げます×2)を、上記 span 修正の副次効果として変奏。改訂後の文末は ございます/なりました/いたします/申し上げます/なります/ください/あります/です が交替し一本調子を解消。敬体は全編維持。単独の追加編集は行わず既存 edit で担保。"
+    }
+  ],
+  "warnings": [
+    "change_rate 0.2989 は 30% 警告閾値の直下。ただし内訳の 25.3% は AI 冗長パディング(状態叙述・受動・過剰敬語・冗長可能形)の縮約による正味短縮であり、語句置換は 4.6% のみ。内容置換型の過推敲ではない(IMP-001 該当: char-diff が能動化 span を過大計上)。",
+    "過剰敬語(させていただく×2・ところでございます)の整理は正式 finding 化されていないが、いずれも既存 finding(f004/f012/f014)の span 内に重畳していたため、当該 edit の範囲内で自然な公的敬語へ吸収。span 外の独立編集は行っていない。"
+  ]
+}
