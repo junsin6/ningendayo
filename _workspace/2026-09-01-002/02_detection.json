@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "input_length": 543,
+    "detected_count": 16,
+    "ai_tell_density": 0.228,
+    "severity_weighted_score": 93.8,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなりました",
+      "start": 74,
+      "end": 82,
+      "reason": "「こと+となる」状態叙述。本文で状態化叙述（となりました/となっております/予定となっております）が計4回反復し機械的。当ジャンルのS1シグネチャ。",
+      "suggested_fix": "実施することになりました"
+    },
+    {
+      "id": "f002",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "本作業によって",
+      "start": 83,
+      "end": 90,
+      "reason": "英語受動態直訳の行為者後置。「本作業によって…刷新が図られる」を能動へ復帰すべき。文書内で無主語受動（実施される/図られる/行われる）が連鎖。",
+      "suggested_fix": "本作業で"
+    },
+    {
+      "id": "f003",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなっております",
+      "start": 118,
+      "end": 128,
+      "reason": "「図られること+となっております」。受動+状態叙述の二重AIクセ。となっておりますは本文2回、状態化叙述は計4回。",
+      "suggested_fix": "刷新いたします"
+    },
+    {
+      "id": "f004",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 175,
+      "end": 183,
+      "reason": "英語 need to の直訳的必要叙述の敬体化。必要がございます/必要が生じるが計3回反復。行為の主体と動作を直接叙述すべき。",
+      "suggested_fix": "臨時休館いたします"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 可能形の冗長",
+      "severity": "S1",
+      "text_span": "ことができなくなります",
+      "start": 270,
+      "end": 281,
+      "reason": "可能の冗長形「ご利用いただくことができなくなる」。ことができ→いただけ、で短縮できる冗長シグネチャ。",
+      "suggested_fix": "ご利用いただけなくなります"
+    },
+    {
+      "id": "f006",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/につきましては 濫用",
+      "severity": "S1",
+      "text_span": "返却につきましては",
+      "start": 285,
+      "end": 294,
+      "reason": "主題提示を「につきましては」で処理。文書内で「〜につきましては」が3回反復（返却/図書/詳細）。主題助詞「は」で直結できる。",
+      "suggested_fix": "返却は"
+    },
+    {
+      "id": "f007",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 319,
+      "end": 327,
+      "reason": "必要叙述の敬体化2回目。「ご利用いただく必要がございます」は勧告形「ご利用ください」で足りる。",
+      "suggested_fix": "ご利用ください"
+    },
+    {
+      "id": "f008",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/につきましては 濫用",
+      "severity": "S1",
+      "text_span": "図書につきましては",
+      "start": 337,
+      "end": 346,
+      "reason": "「につきましては」主題提示の2回目。密度過多（計3回）。主題助詞「は」へ。",
+      "suggested_fix": "図書は"
+    },
+    {
+      "id": "f009",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなっております",
+      "start": 371,
+      "end": 381,
+      "reason": "「行われること+となっております」。延長対応の受動+状態叙述。状態化叙述4回のうち3つ目。",
+      "suggested_fix": "延長いたします"
+    },
+    {
+      "id": "f010",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "必要が生じる",
+      "start": 417,
+      "end": 423,
+      "reason": "必要叙述3回目「必要が生じる場合がございます」。婉曲「場合がございます」も重畳。誰に何が必要かを直接叙述すべき。",
+      "suggested_fix": "再登録が必要になる場合があります"
+    },
+    {
+      "id": "f011",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/につきましては 濫用",
+      "severity": "S1",
+      "text_span": "詳細につきましては",
+      "start": 432,
+      "end": 441,
+      "reason": "「につきましては」主題提示3回目。密度が閾値超過。主題助詞「は」へ。",
+      "suggested_fix": "詳細は"
+    },
+    {
+      "id": "f012",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "予定となっております",
+      "start": 478,
+      "end": 488,
+      "reason": "「予定+となっております」。単なる「予定です」で足りる状態叙述。状態化叙述4回目でジャンル最頻。",
+      "suggested_fix": "予定です"
+    },
+    {
+      "id": "f013",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜による/によって 受動・後置修飾",
+      "severity": "S2",
+      "text_span": "Web サイトによる",
+      "start": 244,
+      "end": 254,
+      "reason": "「Webサイトによる蔵書検索サービス」の後置修飾的by。「Webサイトの」で足りる。文書内by-passive連鎖の一部。",
+      "suggested_fix": "Web サイトの"
+    },
+    {
+      "id": "f014",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる 行為者曖昧の要請 ★日本語固有寄り",
+      "severity": "S2",
+      "text_span": "ご協力が求められる",
+      "start": 507,
+      "end": 516,
+      "reason": "行為者を曖昧にしたままの要請。「利用者の皆様に…ご協力が求められる」は誰が求めるか不明で機械的。勧告形へ。",
+      "suggested_fix": "ご協力をお願いいたします"
+    },
+    {
+      "id": "f015",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復 ★日本語固有",
+      "severity": "S2",
+      "text_span": "__document_level__",
+      "start": 0,
+      "end": 543,
+      "reason": "全12文がすべて丁寧体ます止め。文末が『〜がございます』3回・『〜っております』3回・『申し上げます』2回と同型反復し一本調子。体言止め・語尾変奏がなく敬体単調。IMP-004によりspanは文書全体を指す。",
+      "suggested_fix": "同一敬体内で語尾を変奏（体言止め・『〜ます。』と『〜です。』の交替・『〜ください』など勧告形の混在）"
+    },
+    {
+      "id": "f016",
+      "category": "E-1",
+      "category_label": "リズム: 文長の標準偏差が低い",
+      "severity": "S2",
+      "text_span": "__document_level__",
+      "start": 0,
+      "end": 543,
+      "reason": "本文11文が36〜57字に密集（末尾の結び16字を除き平均約47字、母集団標準偏差10.5）。短文・長文の変化がなく均一。IMP-004によりspanは文書全体を指す。",
+      "suggested_fix": "短文（10〜20字）を1〜2文挟み文長にメリハリをつける"
+    }
+  ],
+  "category_summary": {
+    "A": 10,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 2,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 4,
+    "J": 0
+  }
+}
