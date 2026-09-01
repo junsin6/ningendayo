@@ -79,6 +79,14 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
+### 変更率の override 規約（IMP-001 対応）
+
+変更率の判定は difflib 総合値でなく **語句改変率**（rewriting-playbook §変更率の数え方 参照）で行う。
+
+* 総合変更率 30〜50% でも、**語句改変率が 30% 未満**かつ **fidelity=pass**（情報欠落ゼロ）かつ **自然度 A/B** なら → `override accept`。総合値の膨張が削除・構造（カタカナ語開き・過剰敬語/常套句/絵文字の純削除・順序語削除・A系節単位書換え）主導であることを `summary.md` に明記する。
+* 語句改変率が 50% 超のときのみ `hold_and_report`（意味の作り替えを疑う）。
+* fidelity 毀損があれば変更率にかかわらず `rollback_and_rewrite`（override より優先）。
+
 ## 深刻度と品質等級
 
 **深刻度**

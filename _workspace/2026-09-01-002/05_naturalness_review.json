@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "run_id": "2026-09-01-002",
+    "genre": "public_notice",
+    "style": "desu_masu",
+    "score_before": 93.8,
+    "score_after": 1.7,
+    "improvement_rate": 0.982,
+    "grade": "A",
+    "verdict": "accept",
+    "detector_invocation": "manual_rescan",
+    "detector_invocation_note": "IMP-006: この実行環境に ai-tell-detector を起動できる Task/Agent ツールが存在しない（ToolSearch で確認: 利用可能な agent 系は TaskStop / SendMessage / worktree / plugin のみ）。フォールバック条項に従い taxonomy v1.0 基準で 03_rewrite.md を厳密自前再走査。加重は検出器と同一（S1=5, S2=2, S3=0.5）、正規化係数は score_before=93.8 / 加重生値56 = 1.675 を後半にも適用。"
+  },
+  "score_computation": {
+    "before_weighted_raw": 56,
+    "before_breakdown": "S1×8=40 + S2×8=16 = 56",
+    "normalization_factor": 1.675,
+    "after_weighted_raw": 1.0,
+    "after_breakdown": "S1×0=0 + S2×0=0 + S3×2×0.5=1.0",
+    "score_after": 1.7,
+    "improvement_rate": 0.982
+  },
+  "residual_severity_summary": { "S1": 0, "S2": 0, "S3": 2 },
+  "findings_resolution": {
+    "addressed": 16,
+    "fully_resolved": 16,
+    "resolved_ids": ["f001","f002","f003","f004","f005","f006","f007","f008","f009","f010","f011","f012","f013","f014","f015","f016"],
+    "note": "検出済み16 finding はすべて解消。S1×8（A-6状態叙述×4・A-2主題提示×3・A-5冗長可能形×1）、S2×8（A-8受動×2・I-3必要叙述×3・I-4曖昧要請×1・E-1文長・E-2文末単調）とも span 単位で自然な公的敬語へ着地。文体崩れ（敬体→常体の混入）・意味希薄化・ぶつ切りは検出されず。"
+  },
+  "residual_findings": [
+    {
+      "category": "A-8",
+      "category_label": "翻訳調: 無主語受動（by-passive の残り）",
+      "severity": "S3",
+      "text_span": "更新作業が実施されることになりました",
+      "location": "第1段落・第2文",
+      "reason": "検出前は『実施される／図られる／行われる』の無主語受動が3連鎖しS2だったが、図られる(f003)・行われる(f009)が能動化され孤立。『更新作業が実施されることになりました』は公的告知の定型で単独ではほぼ自然。S2密度閾値(3回反復)未満のため弱シグナルへ降格。除去は任意。",
+      "weight": 0.5,
+      "action": "accept_as_is"
+    },
+    {
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の文末変奏（残density）",
+      "severity": "S3",
+      "text_span": "__document_level__ (いたします×5 / 全13文末中)",
+      "location": "全文",
+      "reason": "文末は なりました／いたします／ございます／申し上げます／ください／あります／です と交替し一本調子は解消（E-2 の主目的は達成）。ただし『〜いたします』が13文末中5回でやや高密度。ただし他語尾に分散して挟まれるため露見度は低く弱シグナル。",
+      "weight": 0.5,
+      "action": "accept_as_is"
+    }
+  ],
+  "overpolish_signals": [],
+  "overpolish_audit": {
+    "unnatural_colloquialization": { "detected": false, "note": "くだけ過ぎ・口語化なし。全編が公的告知にふさわしい敬体を維持。" },
+    "style_breakage_keitai_jotai_mix": { "detected": false, "note": "敬体→常体の混入ゼロ。『考慮し、』は連用中止であり文末常体ではない。全13文が です／ます／いたします／ございます 止め。" },
+    "meaning_thinned_or_choppy": { "detected": false, "note": "意味希薄化・ぶつ切りなし。f016 の文分割（おかけいたしますが、→おかけいたします。）は短文お詫び(約24字)を生み読みやすさ向上。" },
+    "change_rate_over_30pct": { "detected": false, "change_rate": 0.2989, "note": "変更率29.89%は30%警告閾値の直下だが未超過。内訳は語句置換4.6%＋AI冗長パディング縮約25.3%（状態叙述×3・受動×2・過剰敬語×2・冗長可能形）で、内容置換型の過推敲ではない（IMP-001: char-diff が能動化 span を過大計上）。" },
+    "over_honorific_stripping_rudeness": {
+      "detected": false,
+      "note": "公的文書特有観点。過剰敬語パディング（させていただく×2・ところでございます・必要がございます×2）を削ったが失礼化なし。最小着地文が敬体を保持: 『臨時休館といたします』『ご利用ください』『お知らせする予定です』『ご協力をお願いいたします』はいずれも適正な公的敬語。事務的・突き放し口調への転落は認められない。",
+      "watch_point": "『お知らせする予定です』は謙譲『お知らせいたす』より一段軽いが、E-2 文末変奏（です体の挿入）として意図的であり許容範囲。失礼ではない。"
+    }
+  },
+  "public_notice_genre_checks": {
+    "excess_keigo_K_category_residual": {
+      "sase_te_itadaku": 0,
+      "tokoro_de_gozaimasu": 0,
+      "hitsuyou_ga_gozaimasu": 0,
+      "double_keigo": 0,
+      "note": "taxonomy v1.0 に正式カテゴリ K（過剰敬語）は未定義。本文の過剰敬語パディングは全て0に縮約済み（『ありがとうございます』は自然な挨拶で非該当）。失礼化を伴わずにゼロ着地した点が本ジャンルの好成績。"
+    },
+    "e2_desu_masu_monotony_resolved": true,
+    "a6_state_narration_residual": 0,
+    "a8_agentless_passive_residual": 1,
+    "i3_i4_requirement_residual": 0,
+    "minimal_landing_sentence_preserved": true
+  },
+  "backlog_reproduction": {
+    "note": "既知バックログ再現報告（taxonomist 昇格候補）",
+    "candidate_category": "K（過剰敬語 / over-honorific padding）★日本語固有・公的文書ジャンル",
+    "evidence": [
+      "『臨時休館とさせていただく必要がございます』→ させていただく＋必要がございます の二重パディング",
+      "『お知らせさせていただく予定となっております』→ させていただく＋状態叙述",
+      "『ご協力が求められるところでございます』→ ところでございます 過剰婉曲"
+    ],
+    "reproduction_count": 3,
+    "recommendation": "過剰敬語（させていただく／ところでございます／〜する運びとなりました 等）は現状 A-6・I-3・I-4 の span に相乗して吸収されているが、公的文書で独立反復する固有クセ。実例2件以上・再現2回以上を満たすため K カテゴリ新設を taxonomist へ提案（IMP-001 の char-diff 過大計上とも連動）。"
+  },
+  "recommendation": "accept",
+  "notes": "全16 finding 解消・S1/S2残存0・過推敲シグナル0・文体崩れなし・失礼化なし。公的告知の最小着地文が敬体を保持したまま AI 冗長（状態叙述・受動・過剰敬語・冗長可能形）を除去できた模範例。残存は孤立した無主語受動(A-8/S3)1件と『いたします』文末のやや高密度(E-2/S3)のみで、いずれも除去任意の弱シグナル。改善率98.2%は score_before=93.8 に対する加重生値56→1.0 の縮約による。等級A・accept。2次推敲不要。"
+}

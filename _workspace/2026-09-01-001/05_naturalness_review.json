@@ -1,0 +1,123 @@
+{
+  "meta": {
+    "run_id": "2026-09-01-001",
+    "genre": "技術解説記事",
+    "style_before": "desu_masu",
+    "style_after": "desu_masu",
+    "style_preserved": true,
+    "score_before": 59.1,
+    "score_before_source": "02_detection.json meta.severity_weighted_score (IMP-003 準拠)",
+    "score_after": 1.7,
+    "score_after_basis": "03_rewrite.md 実長 519字で再正規化 (raw=2.5, K=350)。strict: B-2フレームワーク残存を計上した保守値。",
+    "score_after_graded": 0.34,
+    "score_after_graded_basis": "フレームワーク免責（技術固有語・クラスタ崩壊）時 raw=0.5。等級判定はこちらを採用。",
+    "improvement_rate": 0.9715,
+    "improvement_rate_graded": 0.9943,
+    "reweight_formula": "raw = 5*S1 + 2*S2 + 0.5*S3; normalized = min(100,(raw/length)*350)",
+    "detector_rerun_method": "IMP-006 準拠のサブエージェント実呼び出しは本ハーネスに Agent/Task ツールが未提供のため実行不可。フォールバックとして ai-tell-taxonomy.md v1.0 の同一基準（同一 severity 重み・同一スコア式）で自前厳密再走査し、02_detection.json の全36 finding を1件ずつ解消/残存判定した。その旨を明記（IMP-006 逸脱として記録）。",
+    "grade": "A",
+    "verdict": "accept",
+    "residual_counts_for_grade": { "S1": 0, "S2": 0, "S3": 1 },
+    "residual_counts_strict": { "S1": 0, "S2": 1, "S3": 1 },
+    "overpolish_signal_count": 1,
+    "known_backlog_hits": ["IMP-001", "IMP-005", "IMP-006"]
+  },
+  "resolution_summary": {
+    "findings_total": 36,
+    "fully_resolved": 33,
+    "resolved_by_density_collapse": 1,
+    "retained_exempt": 1,
+    "retained_residual": 1,
+    "note": "S1 13件は全解消（A-6×2, A-5×3, A-10×4, A-1, C-1, D-4, D-1）。B-1 4回併記→初出1回のみ（f003）で密度解消。カタカナ14語中13語を開き、フレームワーク1語のみ技術文脈で維持。"
+  },
+  "residual_findings": [
+    {
+      "finding_id": "f002",
+      "category": "E-1",
+      "category_label": "リズム: 文長の均一性（短文の欠如）",
+      "severity": "S3",
+      "text_span": "（文書全体）",
+      "status": "residual_counted",
+      "counts_toward_grade": true,
+      "reason": "推敲後も最短文は約27字（『今後、エッジ AI が与える影響は、拡大していくはずです。』）で、10〜20字級の息継ぎ短文が依然ゼロ。全10文が27〜95字域。rewriter が過推敲・変更率抑制のため構造挿入を見送った既知の判断（retained_findings f002）。S3・単独では低影響だが未解消。"
+    },
+    {
+      "finding_id": "f022",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "フレームワーク",
+      "status": "retained_exempt",
+      "counts_toward_grade": false,
+      "reason": "技術文脈の固有語として維持（直後に TensorFlow Lite / ONNX Runtime を列挙、ML フレームワークの指示精度優先）。B-2 は密度依存カテゴリ（S2=3回以上反復で露見）だが、周辺クラスタ（レイテンシ/メリット/シームレス/レバレッジ/サポート 等13語）が全解消し、訳出可能カタカナの反復条件が崩壊。単独残存1語は B-2 の発火閾値を満たさないため免責し等級カウントから除外。ニューラルネットワーク・ハードウェアアクセラレーション・アプリケーション・プルーニングも同様に未フラグ（実質免責）で扱いは整合。detector finding と playbook 例外の矛盾は改善提案 gap#3 として記録。"
+    },
+    {
+      "finding_id": "f003",
+      "category": "B-1",
+      "category_label": "英語引用: 括弧併記の習慣",
+      "severity": "S2",
+      "text_span": "（Edge Computing）",
+      "status": "resolved_by_density_collapse",
+      "counts_toward_grade": false,
+      "reason": "初出見出し概念語の1回併記のみ残置。原文は計4回併記（Cloud/Quantization/Pruning を削除）で機械反復が発火条件だったが、単発の初出注記は人間的で B-1 濫用条件を満たさない。playbook『初出1回のみ残す』に一致。残存 AI クセとしてカウントせず。"
+    },
+    {
+      "finding_id": "note-f030",
+      "category": "D-4",
+      "category_label": "AI慣用句: ハイプ語彙（弱残存）",
+      "severity": "sub_threshold",
+      "text_span": "大きな可能性があります",
+      "status": "soft_residual",
+      "counts_toward_grade": false,
+      "reason": "S1 だった『大きな可能性を秘めています』のハイプ動詞『秘めて』は除去され平叙化。残る『大きな可能性があります』は空虚な誇張の名残だが D-4 シグネチャ（可能性を切り開く/秘める）ではなく弱い。具体化は新情報追加＝fidelity 違反になるため rewriter が断定化に留めた判断は妥当。閾値下・非カウント。"
+    }
+  ],
+  "resolved_s1_findings": [
+    "f005 A-6 技術領域となっています→です",
+    "f007 A-5 実行することができる→実行できる",
+    "f010 A-10 提供します→利点があります",
+    "f011 C-1 まず/次に/最後に 全削除",
+    "f015 A-10 可能にします→配置できます",
+    "f020 A-5 向上させることができます→向上します",
+    "f021 A-1 実装においては→実装では",
+    "f023 A-6 重要な鍵となります→重要な鍵です",
+    "f027 A-5 構築することができます→構築できます",
+    "f030 D-4 大きな可能性を秘めています→大きな可能性があります(弱残存)",
+    "f032 A-10 新たな価値をもたらす→新たな価値が生まれます",
+    "f033 D-1 と言えるでしょう 削除",
+    "f034 A-10 もたらすインパクト→与える影響"
+  ],
+  "overpolish_signals": [
+    {
+      "signal": "change_rate_over_30",
+      "severity": "caution",
+      "value": 0.4460,
+      "threshold": 0.30,
+      "abort_threshold": 0.50,
+      "counts_as_overpolish": true,
+      "count_value": 1,
+      "reason": "総合変更率 44.6% が 30% 警告閾を超過（50% 中断閾は未達で続行可）。ただし主因はカタカナ14語の開き作業と A系節単位の断定化で、意味改変ではなく語句改変が構造的に嵩んだもの。純削除は10.2%側に分離済み。",
+      "mitigation": "IMP-001 既知欠陥: A-6/A-10/A-5 の節単位書換えが difflib 上『replace』一括計上となり語句改変率が実際の意味改変より膨張。語彙置換のみでも34.4%で、これも IMP-001 の膨張を含む。fidelity-auditor が意味等価を担保していれば実害なし。過推敲シグナルは1個のみで等級降格閾（2個）未達。"
+    }
+  ],
+  "overpolish_checks_passed": {
+    "style_mixing_keitai_jotai": {
+      "result": "clean",
+      "detail": "文末10形態すべて敬体（です/指します/あります/できます/向上します/鍵です/構築できます/生まれます/はずです）。常体（だ・である）混入ゼロ。文体崩れなし。"
+    },
+    "meaning_thinning": {
+      "result": "none",
+      "detail": "意味の痩せは fidelity-auditor 管轄だが、レビュー観点でも新規欠落・断片化なし。『大きな可能性があります』は原文も同程度に抽象で痩せ増分なし。"
+    },
+    "taigendome_overuse": {
+      "result": "none",
+      "detail": "体言止めの使用は0。過多なし（E-2 変奏はです/あります/できます/はずですの語幹分散で実現）。"
+    },
+    "rhythm_break_choppiness": {
+      "result": "none",
+      "detail": "ぶつ切りなし。段落3第2文は約95字の長文を保持し、リズム破壊は生じていない。"
+    }
+  },
+  "grade_rationale": "S1 残存 0件、等級カウント S2 0件（フレームワーク免責）、改善率 97.2〜99.4%（≥70%）。過推敲シグナル1個（変更率44.6%）は降格閾2個に未達。→ A 等級。strict 計上（フレームワーク S2=1）でも S2≤2 のため A は不変・頑健。verdict=accept。",
+  "notes": "IMP-006 のサブエージェント実呼び出しは Agent/Task ツール不在のため未実施、taxonomy v1.0 同基準の自前厳密再走査で代替（逸脱記録済み）。フレームワークの免責可否は等級を変えない（strict でも A）。E-2 は解消判定だが全文末が『〜す』で終わり体言止め・でしょうが皆無のため、語幹変奏どまりの『浅い解消』。E-1 短文欠如(S3)と併せ、2次推敲を強制するほどではないが人間らしさの伸びしろとして残る。"
+}
