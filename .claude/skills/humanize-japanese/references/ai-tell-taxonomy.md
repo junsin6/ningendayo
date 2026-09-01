@@ -121,6 +121,10 @@ J. 視覚装飾の濫用
 * 例: 「この**フレームワーク**を**レバレッジ**して**シームレス**に」→「この枠組みを活かして滑らかに」
 * 頻出: leverage→活用、framework→枠組み、robust→堅牢、insight→示唆、commit→注力、agenda→課題
 * 例外: 固有名詞・業界標準語（Transformer・API・SDK・トークン 等）は維持。
+* **定着カタカナ語 allowlist（v1.1・IMP 昇格）**: 定訳が冗長・不自然になる定着語は開かず残差 S3 固定（検出しても除去対象にしない）。
+  * 一般（全ジャンル）: ルーティン・モチベーション・データドリブン・リスク・サービス・システム。
+  * 技術解説ジャンルでの borderline 維持: フレームワーク・ニューラルネットワーク・アプリケーション・パイプライン・プライバシー・デプロイ。**判定則**: 同一文内に固有ランタイム/製品名（TensorFlow Lite・ONNX Runtime 等）が列挙される技術文脈では開かず維持。一般向け文章では開く。
+  * detector と rewriter・naturalness-reviewer はこの allowlist を共有し、免責語を残存 B-2 として二重に評価しない。
 
 ### B-3. 英語引用句の生埋め込み [S2]
 
@@ -406,8 +410,13 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: **正規化式を v1.1 で確定（IMP-002）**。
+  * `raw = 5·(S1件数) + 2·(S2件数) + 0.5·(S3件数)`
+  * `score = 100 × (1 − exp(−(raw / L) / c))`、`L = input_length`（改行込みの生ファイル文字数）、較正定数 `c = 0.05`。
+  * 性質: 単調増加・0〜100 有界・高密度短文でも 100 に張り付かず解像度を保つ・detector 間で一意（旧来の K=350 / D_max 式の不整合を解消）。
+  * 参考較正: raw/L=0.10 → ≈87、0.17 → ≈97、0.05 → ≈63、0.02 → ≈33。
+  * `score_before`（naturalness-reviewer が使う）= この式で計算した `meta.severity_weighted_score`（IMP-003）。
+* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。**重複 span は union（和集合）で数える**（素朴合計での二重計上を禁止, IMP-005）。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
