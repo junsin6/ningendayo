@@ -1,68 +1,386 @@
 {
-  "meta": {
-    "run_id": "2026-09-01-001",
-    "genre": "技術解説記事",
-    "style_detected": "desu_masu",
-    "style_preserved": "desu_masu",
-    "input_length": 649,
-    "output_length": 519,
-    "findings_total": 36,
-    "edits_applied": 33,
-    "findings_not_edited": 3,
-    "not_edited_ids": ["f003", "f022", "f002"],
-    "change_rate_method": "difflib.SequenceMatcher(autojunk=False) over the 4 paragraphs joined by blank lines; replace=語句改変, delete+insert=削除・構造",
-    "change_rate": 0.4460,
-    "change_rate_lexical_substitution": 0.3441,
-    "change_rate_delete_and_structural": 0.1019,
-    "change_rate_note": "総合44.6%は30%警告閾を超過（50%中断閾は未達）。主犯B系18のカタカナ14語開き＋A系断定化で語句改変が必然的に嵩む。IMP-001既知欠陥: A-6/A-10/A-5の節単位書換えはdifflib上『replace』一括計上となり語句改変率が実際の意味改変より膨張。純削除（（Cloud）（Quantization）（Pruning）・ますます×2・順序語×3）は削除・構造率10.2%側に分離計上。",
-    "warnings": [
-      "change_rate 総合 44.6% が 30% 警告閾値を超過（続行可・50%未満）。カタカナ語過多(B系18)が主犯のため開き作業で語句改変率が構造的に高い。",
-      "f022 フレームワーク: playbook B-2 の明示例外『（技術文脈の固有語は維持）』と検出findingが矛盾。TensorFlow Lite / ONNX Runtime を直後に列挙する技術文脈のため、意味精度優先で『フレームワーク』を維持し開かなかった。naturalness-reviewer 再検出で残存B-2として計上される可能性あり（fidelity優先の判断）。",
-      "f002 E-1 短文欠如(S3): 過推敲・変更率抑制のため短文の構造的挿入は見送り。E-2文末変奏（です/ます/できます/生まれます/はずです）で部分的に代替。S3かつ他パターン解消により影響は低下。"
-    ],
-    "known_backlog_hits": ["IMP-001", "IMP-005"]
-  },
-  "edits": [
-    { "finding_id": "f001", "category": "E-2", "before": "（文末が …ています/…ます/…でしょう/予想されます の一本調子）", "after": "です/指します/あります/できます/向上します/生まれます/はずです に分散", "start": 0, "end": 649, "rationale": "敬体を維持したまま文末を変奏。文体（敬体）は不変。" },
-    { "finding_id": "f004", "category": "F-1", "before": "ますます", "after": "", "start": 49, "end": 53, "rationale": "程度副詞『ますます』反復（計2回）の1つ目を削除。空虚な強調。" },
-    { "finding_id": "f005", "category": "A-6", "before": "技術領域となっています", "after": "技術領域です", "start": 56, "end": 67, "rationale": "状態叙述『となっています』を断定へ。敬体維持（だ→です）。" },
-    { "finding_id": "f006", "category": "B-1", "before": "（Cloud）", "after": "", "start": 82, "end": 89, "rationale": "一般語 Cloud への英語括弧併記を削除（純削除）。" },
-    { "finding_id": "f007", "category": "A-5", "before": "実行することができる", "after": "実行できる", "start": 120, "end": 130, "rationale": "可能の冗長形（be able to）を簡約。" },
-    { "finding_id": "f008", "category": "B-2", "before": "レイテンシ", "after": "遅延", "start": 144, "end": 149, "rationale": "定訳あり。latency→遅延。f010のA-10節書換えとspan重複（IMP-005, change_rateは重複計上せず）。" },
-    { "finding_id": "f009", "category": "B-2", "before": "メリット", "after": "利点", "start": 171, "end": 175, "rationale": "定訳あり。merit→利点。f010節とspan重複（IMP-005）。" },
-    { "finding_id": "f010", "category": "A-10", "before": "この技術は、…メリットを提供します", "after": "エッジ AI には、…利点があります", "start": 176, "end": 181, "rationale": "抽象主語『この技術は』（=エッジAI, 等価）＋万能動詞『提供する』を『エッジAIには…がある』の直接叙述へ。カタカナ2語(f008/f009)は同span内で処理（IMP-005）。" },
-    { "finding_id": "f011", "category": "C-1", "before": "まず、", "after": "", "start": 184, "end": 187, "rationale": "機械的並列『まず・次に・最後に』の順序語を全削除し各段落を並列の直接叙述に。1/3。" },
-    { "finding_id": "f011", "category": "C-1", "before": "次に、", "after": "", "start": 342, "end": 345, "rationale": "同上。2/3。各段落が自己完結するため順序語なしで流れは保たれる。" },
-    { "finding_id": "f011", "category": "C-1", "before": "最後に、", "after": "", "start": 506, "end": 510, "rationale": "同上。3/3。結論性は末尾文の『今後』が担うため順序語不要。" },
-    { "finding_id": "f012", "category": "B-2", "before": "アーキテクチャ", "after": "構成", "start": 195, "end": 202, "rationale": "architecture→構成。f015のA-10節とspan重複（IMP-005）。" },
-    { "finding_id": "f013", "category": "B-2", "before": "リソース", "after": "資源", "start": 204, "end": 208, "rationale": "resource→資源。『資源が制約された』で定着。" },
-    { "finding_id": "f014", "category": "B-2", "before": "デプロイ", "after": "配置", "start": 242, "end": 246, "rationale": "deploy→配置。f015のA-10節とspan重複（IMP-005）。" },
-    { "finding_id": "f015", "category": "A-10", "before": "アーキテクチャは、…デプロイすることを可能にします", "after": "構成では、…配置できます", "start": 251, "end": 257, "rationale": "抽象主語＋可能化動詞『可能にします』（enables to 直訳）を『配置できます』の直接叙述へ。上で→上に（配置と自然な接続）。" },
-    { "finding_id": "f016", "category": "B-1", "before": "（Quantization）", "after": "", "start": 265, "end": 279, "rationale": "定訳『量子化』済で英語不要。英語併記の機械反復を解消（純削除）。" },
-    { "finding_id": "f017", "category": "B-1", "before": "（Pruning）", "after": "", "start": 286, "end": 295, "rationale": "英語括弧併記の反復を削除（純削除）。プルーニングは定着カタカナ語として本体維持。" },
-    { "finding_id": "f018", "category": "B-2", "before": "テクニック", "after": "手法", "start": 299, "end": 304, "rationale": "technique→手法。" },
-    { "finding_id": "f019", "category": "B-2", "before": "パフォーマンス", "after": "性能", "start": 316, "end": 323, "rationale": "performance→性能。" },
-    { "finding_id": "f020", "category": "A-5", "before": "パフォーマンスを大幅に向上させることができます", "after": "性能が大幅に向上します", "start": 327, "end": 339, "rationale": "可能の冗長形を断定へ。他動『向上させる』→自動『向上します』に伴い を→が（意味等価）。f019と同span（IMP-005）。" },
-    { "finding_id": "f021", "category": "A-1", "before": "実装においては", "after": "実装では", "start": 353, "end": 360, "rationale": "抽象的枠づけ『においては』（in/regarding 直訳）を『では』へ。" },
-    { "finding_id": "f023", "category": "A-6", "before": "重要な鍵となります", "after": "重要な鍵です", "start": 372, "end": 381, "rationale": "状態叙述『となります』を断定へ。敬体維持。" },
-    { "finding_id": "f024", "category": "B-2", "before": "シームレスな", "after": "滑らかな", "start": 424, "end": 429, "rationale": "seamless→滑らか（playbook明示例）。" },
-    { "finding_id": "f025", "category": "B-2", "before": "サポートしており", "after": "対応しており", "start": 452, "end": 456, "rationale": "support→対応。（抽象主語『ランタイムは』A-10重複だが独立findingなし＝構文は維持, IMP-005）。" },
-    { "finding_id": "f026", "category": "B-2", "before": "レバレッジ", "after": "活用", "start": 469, "end": 474, "rationale": "leverage→活用（B-2筆頭シグネチャ, playbook明示例）。" },
-    { "finding_id": "f027", "category": "A-5", "before": "構築することができます", "after": "構築できます", "start": 492, "end": 503, "rationale": "可能の冗長形を簡約。" },
-    { "finding_id": "f028", "category": "B-2", "before": "スケーラビリティ", "after": "拡張性", "start": 519, "end": 527, "rationale": "scalability→拡張性。" },
-    { "finding_id": "f029", "category": "B-2", "before": "ロバストネス", "after": "堅牢性", "start": 528, "end": 534, "rationale": "robustness→堅牢性（playbook明示例）。" },
-    { "finding_id": "f030", "category": "D-4", "before": "大きな可能性を秘めています", "after": "大きな可能性があります", "start": 541, "end": 554, "rationale": "ハイプ動詞『秘めて』を除去し平叙化。具体化は新情報追加になるため意味保存を優先し断定化に留めた。" },
-    { "finding_id": "f031", "category": "I-4", "before": "リアルタイム性が求められるアプリケーション", "after": "リアルタイム性が欠かせないアプリケーション", "start": 564, "end": 577, "rationale": "行為者曖昧の受動要請『求められる』を、アプリ側の必要関係『欠かせない』へ具体化。リアルタイム性・アプリケーションは定着語として維持。" },
-    { "finding_id": "f032", "category": "A-10", "before": "この技術の進化は、…新たな価値をもたらす", "after": "エッジ AI が進化すれば、…新たな価値が生まれます", "start": 587, "end": 597, "rationale": "抽象主語『この技術の進化は』＋万能動詞『もたらす』を行為者主語＋自動詞へ。『この技術』=エッジAI（等価）、『進化』情報は保持、『新たな価値』は保存。" },
-    { "finding_id": "f033", "category": "D-1", "before": "と言えるでしょう", "after": "（削除・断定化）", "start": 597, "end": 605, "rationale": "常套結び『と言えるでしょう』を削除し文末を断定『生まれます』に統合（f032と連続span）。" },
-    { "finding_id": "f034", "category": "A-10", "before": "もたらすインパクト", "after": "与える影響", "start": 617, "end": 626, "rationale": "万能動詞『もたらす』→『与える』。インパクト→影響(f035)を同span処理（IMP-005）。" },
-    { "finding_id": "f035", "category": "B-2", "before": "インパクト", "after": "影響", "start": 621, "end": 626, "rationale": "impact→影響。直前『もたらすインパクト』のA-10(f034)とspan完全重複（IMP-005実例, change_rate二重計上せず）。" },
-    { "finding_id": "f004", "category": "F-1", "before": "ますます", "after": "", "start": 628, "end": 632, "rationale": "程度副詞『ますます』反復の2つ目を削除（f004 reasonが位置628を明示）。span重複回避のため別editとして記録。" },
-    { "finding_id": "f036", "category": "G-1", "before": "予想されます", "after": "はずです", "start": 641, "end": 647, "rationale": "行為者不在の受動推量『予想されます』を断定寄りの『はずです』へ。敬体維持。" }
+ "meta": {
+  "run_id": "2026-09-01-001",
+  "genre": "技術解説記事",
+  "style_detected": "desu_masu",
+  "style_preserved": "desu_masu",
+  "input_length": 649,
+  "output_length": 519,
+  "findings_total": 36,
+  "edits_applied": 33,
+  "findings_not_edited": 3,
+  "not_edited_ids": [
+   "f003",
+   "f022",
+   "f002"
   ],
-  "retained_findings": [
-    { "finding_id": "f003", "category": "B-1", "span": "（Edge Computing）", "reason": "本文書の見出し概念語の初出。playbook B-1『初出1回のみ残す』に従い、1つだけ残して他3つ（Cloud/Quantization/Pruning）を削除＝機械反復(計4回)を解消。人間的な初出注記として自然。" },
-    { "finding_id": "f022", "category": "B-2", "span": "フレームワーク", "reason": "playbook B-2 明示例外『（技術文脈の固有語は維持）』。直後にTensorFlow Lite/ONNX Runtimeを列挙する技術文脈で、『枠組み』へ開くと ML フレームワークの指示精度が落ちる。意味精度優先で維持。detectionと矛盾（改善提案参照）。" },
-    { "finding_id": "f002", "category": "E-1", "span": "（文書全体）", "reason": "S3。短文の構造挿入は過推敲・変更率膨張を招くため見送り。E-2変奏で部分代替。" }
+  "change_rate_method": "difflib.SequenceMatcher(autojunk=False) over the 4 paragraphs joined by blank lines; replace=語句改変, delete+insert=削除・構造",
+  "change_rate": 0.446,
+  "change_rate_lexical_substitution": 0.3441,
+  "change_rate_delete_and_structural": 0.1019,
+  "change_rate_note": "総合44.6%は30%警告閾を超過（50%中断閾は未達）。主犯B系18のカタカナ14語開き＋A系断定化で語句改変が必然的に嵩む。IMP-001既知欠陥: A-6/A-10/A-5の節単位書換えはdifflib上『replace』一括計上となり語句改変率が実際の意味改変より膨張。純削除（（Cloud）（Quantization）（Pruning）・ますます×2・順序語×3）は削除・構造率10.2%側に分離計上。",
+  "warnings": [
+   "change_rate 総合 44.6% が 30% 警告閾値を超過（続行可・50%未満）。カタカナ語過多(B系18)が主犯のため開き作業で語句改変率が構造的に高い。",
+   "f022 フレームワーク: playbook B-2 の明示例外『（技術文脈の固有語は維持）』と検出findingが矛盾。TensorFlow Lite / ONNX Runtime を直後に列挙する技術文脈のため、意味精度優先で『フレームワーク』を維持し開かなかった。naturalness-reviewer 再検出で残存B-2として計上される可能性あり（fidelity優先の判断）。",
+   "f002 E-1 短文欠如(S3): 過推敲・変更率抑制のため短文の構造的挿入は見送り。E-2文末変奏（です/ます/できます/生まれます/はずです）で部分的に代替。S3かつ他パターン解消により影響は低下。"
+  ],
+  "known_backlog_hits": [
+   "IMP-001",
+   "IMP-005"
+  ],
+  "rollback_applied": [
+   "f020"
   ]
+ },
+ "edits": [
+  {
+   "finding_id": "f001",
+   "category": "E-2",
+   "before": "（文末が …ています/…ます/…でしょう/予想されます の一本調子）",
+   "after": "です/指します/あります/できます/向上します/生まれます/はずです に分散",
+   "start": 0,
+   "end": 649,
+   "rationale": "敬体を維持したまま文末を変奏。文体（敬体）は不変。"
+  },
+  {
+   "finding_id": "f004",
+   "category": "F-1",
+   "before": "ますます",
+   "after": "",
+   "start": 49,
+   "end": 53,
+   "rationale": "程度副詞『ますます』反復（計2回）の1つ目を削除。空虚な強調。"
+  },
+  {
+   "finding_id": "f005",
+   "category": "A-6",
+   "before": "技術領域となっています",
+   "after": "技術領域です",
+   "start": 56,
+   "end": 67,
+   "rationale": "状態叙述『となっています』を断定へ。敬体維持（だ→です）。"
+  },
+  {
+   "finding_id": "f006",
+   "category": "B-1",
+   "before": "（Cloud）",
+   "after": "",
+   "start": 82,
+   "end": 89,
+   "rationale": "一般語 Cloud への英語括弧併記を削除（純削除）。"
+  },
+  {
+   "finding_id": "f007",
+   "category": "A-5",
+   "before": "実行することができる",
+   "after": "実行できる",
+   "start": 120,
+   "end": 130,
+   "rationale": "可能の冗長形（be able to）を簡約。"
+  },
+  {
+   "finding_id": "f008",
+   "category": "B-2",
+   "before": "レイテンシ",
+   "after": "遅延",
+   "start": 144,
+   "end": 149,
+   "rationale": "定訳あり。latency→遅延。f010のA-10節書換えとspan重複（IMP-005, change_rateは重複計上せず）。"
+  },
+  {
+   "finding_id": "f009",
+   "category": "B-2",
+   "before": "メリット",
+   "after": "利点",
+   "start": 171,
+   "end": 175,
+   "rationale": "定訳あり。merit→利点。f010節とspan重複（IMP-005）。"
+  },
+  {
+   "finding_id": "f010",
+   "category": "A-10",
+   "before": "この技術は、…メリットを提供します",
+   "after": "エッジ AI には、…利点があります",
+   "start": 176,
+   "end": 181,
+   "rationale": "抽象主語『この技術は』（=エッジAI, 等価）＋万能動詞『提供する』を『エッジAIには…がある』の直接叙述へ。カタカナ2語(f008/f009)は同span内で処理（IMP-005）。"
+  },
+  {
+   "finding_id": "f011",
+   "category": "C-1",
+   "before": "まず、",
+   "after": "",
+   "start": 184,
+   "end": 187,
+   "rationale": "機械的並列『まず・次に・最後に』の順序語を全削除し各段落を並列の直接叙述に。1/3。"
+  },
+  {
+   "finding_id": "f011",
+   "category": "C-1",
+   "before": "次に、",
+   "after": "",
+   "start": 342,
+   "end": 345,
+   "rationale": "同上。2/3。各段落が自己完結するため順序語なしで流れは保たれる。"
+  },
+  {
+   "finding_id": "f011",
+   "category": "C-1",
+   "before": "最後に、",
+   "after": "",
+   "start": 506,
+   "end": 510,
+   "rationale": "同上。3/3。結論性は末尾文の『今後』が担うため順序語不要。"
+  },
+  {
+   "finding_id": "f012",
+   "category": "B-2",
+   "before": "アーキテクチャ",
+   "after": "構成",
+   "start": 195,
+   "end": 202,
+   "rationale": "architecture→構成。f015のA-10節とspan重複（IMP-005）。"
+  },
+  {
+   "finding_id": "f013",
+   "category": "B-2",
+   "before": "リソース",
+   "after": "資源",
+   "start": 204,
+   "end": 208,
+   "rationale": "resource→資源。『資源が制約された』で定着。"
+  },
+  {
+   "finding_id": "f014",
+   "category": "B-2",
+   "before": "デプロイ",
+   "after": "配置",
+   "start": 242,
+   "end": 246,
+   "rationale": "deploy→配置。f015のA-10節とspan重複（IMP-005）。"
+  },
+  {
+   "finding_id": "f015",
+   "category": "A-10",
+   "before": "アーキテクチャは、…デプロイすることを可能にします",
+   "after": "構成では、…配置できます",
+   "start": 251,
+   "end": 257,
+   "rationale": "抽象主語＋可能化動詞『可能にします』（enables to 直訳）を『配置できます』の直接叙述へ。上で→上に（配置と自然な接続）。"
+  },
+  {
+   "finding_id": "f016",
+   "category": "B-1",
+   "before": "（Quantization）",
+   "after": "",
+   "start": 265,
+   "end": 279,
+   "rationale": "定訳『量子化』済で英語不要。英語併記の機械反復を解消（純削除）。"
+  },
+  {
+   "finding_id": "f017",
+   "category": "B-1",
+   "before": "（Pruning）",
+   "after": "",
+   "start": 286,
+   "end": 295,
+   "rationale": "英語括弧併記の反復を削除（純削除）。プルーニングは定着カタカナ語として本体維持。"
+  },
+  {
+   "finding_id": "f018",
+   "category": "B-2",
+   "before": "テクニック",
+   "after": "手法",
+   "start": 299,
+   "end": 304,
+   "rationale": "technique→手法。"
+  },
+  {
+   "finding_id": "f019",
+   "category": "B-2",
+   "before": "パフォーマンス",
+   "after": "性能",
+   "start": 316,
+   "end": 323,
+   "rationale": "performance→性能。"
+  },
+  {
+   "finding_id": "f020",
+   "category": "A-5",
+   "before": "パフォーマンスを大幅に向上させることができます",
+   "after": "性能を大幅に向上させられます",
+   "start": 327,
+   "end": 339,
+   "rationale": "可能形の冗長さのみ簡約し可能モダリティは保持（向上させられます）。B-2 性能 は維持。",
+   "rollback": {
+    "reason": "fidelity item7(modality): 可能→断定の過変換。姉妹edit f007/f027は可能保持のため方針統一",
+    "revised_after": "向上させられます",
+    "by": "orchestrator rollback_and_rewrite"
+   }
+  },
+  {
+   "finding_id": "f021",
+   "category": "A-1",
+   "before": "実装においては",
+   "after": "実装では",
+   "start": 353,
+   "end": 360,
+   "rationale": "抽象的枠づけ『においては』（in/regarding 直訳）を『では』へ。"
+  },
+  {
+   "finding_id": "f023",
+   "category": "A-6",
+   "before": "重要な鍵となります",
+   "after": "重要な鍵です",
+   "start": 372,
+   "end": 381,
+   "rationale": "状態叙述『となります』を断定へ。敬体維持。"
+  },
+  {
+   "finding_id": "f024",
+   "category": "B-2",
+   "before": "シームレスな",
+   "after": "滑らかな",
+   "start": 424,
+   "end": 429,
+   "rationale": "seamless→滑らか（playbook明示例）。"
+  },
+  {
+   "finding_id": "f025",
+   "category": "B-2",
+   "before": "サポートしており",
+   "after": "対応しており",
+   "start": 452,
+   "end": 456,
+   "rationale": "support→対応。（抽象主語『ランタイムは』A-10重複だが独立findingなし＝構文は維持, IMP-005）。"
+  },
+  {
+   "finding_id": "f026",
+   "category": "B-2",
+   "before": "レバレッジ",
+   "after": "活用",
+   "start": 469,
+   "end": 474,
+   "rationale": "leverage→活用（B-2筆頭シグネチャ, playbook明示例）。"
+  },
+  {
+   "finding_id": "f027",
+   "category": "A-5",
+   "before": "構築することができます",
+   "after": "構築できます",
+   "start": 492,
+   "end": 503,
+   "rationale": "可能の冗長形を簡約。"
+  },
+  {
+   "finding_id": "f028",
+   "category": "B-2",
+   "before": "スケーラビリティ",
+   "after": "拡張性",
+   "start": 519,
+   "end": 527,
+   "rationale": "scalability→拡張性。"
+  },
+  {
+   "finding_id": "f029",
+   "category": "B-2",
+   "before": "ロバストネス",
+   "after": "堅牢性",
+   "start": 528,
+   "end": 534,
+   "rationale": "robustness→堅牢性（playbook明示例）。"
+  },
+  {
+   "finding_id": "f030",
+   "category": "D-4",
+   "before": "大きな可能性を秘めています",
+   "after": "大きな可能性があります",
+   "start": 541,
+   "end": 554,
+   "rationale": "ハイプ動詞『秘めて』を除去し平叙化。具体化は新情報追加になるため意味保存を優先し断定化に留めた。"
+  },
+  {
+   "finding_id": "f031",
+   "category": "I-4",
+   "before": "リアルタイム性が求められるアプリケーション",
+   "after": "リアルタイム性が欠かせないアプリケーション",
+   "start": 564,
+   "end": 577,
+   "rationale": "行為者曖昧の受動要請『求められる』を、アプリ側の必要関係『欠かせない』へ具体化。リアルタイム性・アプリケーションは定着語として維持。"
+  },
+  {
+   "finding_id": "f032",
+   "category": "A-10",
+   "before": "この技術の進化は、…新たな価値をもたらす",
+   "after": "エッジ AI が進化すれば、…新たな価値が生まれます",
+   "start": 587,
+   "end": 597,
+   "rationale": "抽象主語『この技術の進化は』＋万能動詞『もたらす』を行為者主語＋自動詞へ。『この技術』=エッジAI（等価）、『進化』情報は保持、『新たな価値』は保存。"
+  },
+  {
+   "finding_id": "f033",
+   "category": "D-1",
+   "before": "と言えるでしょう",
+   "after": "（削除・断定化）",
+   "start": 597,
+   "end": 605,
+   "rationale": "常套結び『と言えるでしょう』を削除し文末を断定『生まれます』に統合（f032と連続span）。"
+  },
+  {
+   "finding_id": "f034",
+   "category": "A-10",
+   "before": "もたらすインパクト",
+   "after": "与える影響",
+   "start": 617,
+   "end": 626,
+   "rationale": "万能動詞『もたらす』→『与える』。インパクト→影響(f035)を同span処理（IMP-005）。"
+  },
+  {
+   "finding_id": "f035",
+   "category": "B-2",
+   "before": "インパクト",
+   "after": "影響",
+   "start": 621,
+   "end": 626,
+   "rationale": "impact→影響。直前『もたらすインパクト』のA-10(f034)とspan完全重複（IMP-005実例, change_rate二重計上せず）。"
+  },
+  {
+   "finding_id": "f004",
+   "category": "F-1",
+   "before": "ますます",
+   "after": "",
+   "start": 628,
+   "end": 632,
+   "rationale": "程度副詞『ますます』反復の2つ目を削除（f004 reasonが位置628を明示）。span重複回避のため別editとして記録。"
+  },
+  {
+   "finding_id": "f036",
+   "category": "G-1",
+   "before": "予想されます",
+   "after": "はずです",
+   "start": 641,
+   "end": 647,
+   "rationale": "行為者不在の受動推量『予想されます』を断定寄りの『はずです』へ。敬体維持。"
+  }
+ ],
+ "retained_findings": [
+  {
+   "finding_id": "f003",
+   "category": "B-1",
+   "span": "（Edge Computing）",
+   "reason": "本文書の見出し概念語の初出。playbook B-1『初出1回のみ残す』に従い、1つだけ残して他3つ（Cloud/Quantization/Pruning）を削除＝機械反復(計4回)を解消。人間的な初出注記として自然。"
+  },
+  {
+   "finding_id": "f022",
+   "category": "B-2",
+   "span": "フレームワーク",
+   "reason": "playbook B-2 明示例外『（技術文脈の固有語は維持）』。直後にTensorFlow Lite/ONNX Runtimeを列挙する技術文脈で、『枠組み』へ開くと ML フレームワークの指示精度が落ちる。意味精度優先で維持。detectionと矛盾（改善提案参照）。"
+  },
+  {
+   "finding_id": "f002",
+   "category": "E-1",
+   "span": "（文書全体）",
+   "reason": "S3。短文の構造挿入は過推敲・変更率膨張を招くため見送り。E-2変奏で部分代替。"
+  }
+ ]
 }
