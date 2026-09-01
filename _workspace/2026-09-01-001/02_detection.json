@@ -1,15 +1,15 @@
 {
   "meta": {
     "input_length": 649,
-    "detected_count": 35,
-    "ai_tell_density": 0.379,
-    "severity_weighted_score": 58.0,
+    "detected_count": 36,
+    "ai_tell_density": 0.39,
+    "severity_weighted_score": 59.1,
     "style": "desu_masu",
     "score_formula": "raw = 5*S1 + 2*S2 + 0.5*S3; normalized = min(100, (raw/input_length)*350). K=350 は「重み付きtell密度」を0〜100へ写す較正定数（本タスクで明示定義, 参照: IMP-002）。",
-    "density_note": "ai_tell_density は検出spanのUNION(重複文字を1回)で算出=0.379。素朴合計=251字（重複二重計上, IMP-005）。文書レベルspan(E-1/E-2)は密度計算から除外。",
+    "density_note": "ai_tell_density は検出spanのUNION(重複文字を1回)で算出=0.390。素朴合計=258字（重複二重計上, IMP-005）。文書レベルspan(E-1/E-2)は密度計算から除外。",
     "severity_breakdown": {
       "S1": 13,
-      "S2": 21,
+      "S2": 22,
       "S3": 1
     }
   },
@@ -28,12 +28,12 @@
     {
       "id": "f002",
       "category": "E-1",
-      "category_label": "リズム: 文長の標準偏差が低い",
+      "category_label": "リズム: 文長の均一性（短文の欠如）",
       "severity": "S3",
       "text_span": "（文書全体）",
       "start": 0,
       "end": 649,
-      "reason": "全10文が長文に集中（平均64.2字, 標準偏差23.9, 短文10〜20字が皆無）。均一なリズム。E-2と重なりAI印象を強める。",
+      "reason": "全10文が中〜長文域に集中（平均64.2字, 標準偏差23.9, 最短40字/最長122字）。標準偏差自体は中程度だが、10〜20字級の短文が皆無で息継ぎがなく単調。E-2と重なりAI印象を強めるためS3。",
       "suggested_fix": "（短文を段落ごとに1〜2挿入）"
     },
     {
@@ -71,6 +71,17 @@
     },
     {
       "id": "f006",
+      "category": "B-1",
+      "category_label": "英語引用: 括弧併記の習慣",
+      "severity": "S2",
+      "text_span": "（Cloud）",
+      "start": 82,
+      "end": 89,
+      "reason": "一般語 Cloud にまで英語併記。英語括弧併記が計4回と機械的で過剰。",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f007",
       "category": "A-5",
       "category_label": "翻訳調: 〜することができる 濫用",
       "severity": "S1",
@@ -81,7 +92,7 @@
       "suggested_fix": "実行できる"
     },
     {
-      "id": "f007",
+      "id": "f008",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -92,7 +103,7 @@
       "suggested_fix": "遅延"
     },
     {
-      "id": "f008",
+      "id": "f009",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -103,7 +114,7 @@
       "suggested_fix": "利点"
     },
     {
-      "id": "f009",
+      "id": "f010",
       "category": "A-10",
       "category_label": "翻訳調: 抽象主語+万能動詞（提供する/もたらす）",
       "severity": "S1",
@@ -114,7 +125,7 @@
       "suggested_fix": "（主語を行為者へ／直接叙述）"
     },
     {
-      "id": "f010",
+      "id": "f011",
       "category": "C-1",
       "category_label": "構造: 機械的並列『まず・次に・最後に』",
       "severity": "S1",
@@ -125,7 +136,7 @@
       "suggested_fix": "（1〜2つを叙述に溶かす）"
     },
     {
-      "id": "f011",
+      "id": "f012",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -136,7 +147,7 @@
       "suggested_fix": "構成"
     },
     {
-      "id": "f012",
+      "id": "f013",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -147,7 +158,7 @@
       "suggested_fix": "資源"
     },
     {
-      "id": "f013",
+      "id": "f014",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -158,7 +169,7 @@
       "suggested_fix": "配置"
     },
     {
-      "id": "f014",
+      "id": "f015",
       "category": "A-10",
       "category_label": "翻訳調: 抽象主語+可能化動詞",
       "severity": "S1",
@@ -169,7 +180,7 @@
       "suggested_fix": "（配置できる／配置する）"
     },
     {
-      "id": "f015",
+      "id": "f016",
       "category": "B-1",
       "category_label": "英語引用: 括弧併記の習慣",
       "severity": "S2",
@@ -180,7 +191,7 @@
       "suggested_fix": "（削除可）"
     },
     {
-      "id": "f016",
+      "id": "f017",
       "category": "B-1",
       "category_label": "英語引用: 括弧併記の習慣",
       "severity": "S2",
@@ -191,7 +202,7 @@
       "suggested_fix": "（削除可）"
     },
     {
-      "id": "f017",
+      "id": "f018",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -202,7 +213,7 @@
       "suggested_fix": "手法"
     },
     {
-      "id": "f018",
+      "id": "f019",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -213,7 +224,7 @@
       "suggested_fix": "性能"
     },
     {
-      "id": "f019",
+      "id": "f020",
       "category": "A-5",
       "category_label": "翻訳調: 〜することができる 濫用",
       "severity": "S1",
@@ -224,7 +235,7 @@
       "suggested_fix": "大幅に向上する"
     },
     {
-      "id": "f020",
+      "id": "f021",
       "category": "A-1",
       "category_label": "翻訳調: 〜における/においては 濫用",
       "severity": "S1",
@@ -235,7 +246,7 @@
       "suggested_fix": "実装では"
     },
     {
-      "id": "f021",
+      "id": "f022",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -246,7 +257,7 @@
       "suggested_fix": "枠組み"
     },
     {
-      "id": "f022",
+      "id": "f023",
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
@@ -257,7 +268,7 @@
       "suggested_fix": "重要な鍵だ"
     },
     {
-      "id": "f023",
+      "id": "f024",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -268,7 +279,7 @@
       "suggested_fix": "滑らか"
     },
     {
-      "id": "f024",
+      "id": "f025",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -279,7 +290,7 @@
       "suggested_fix": "対応"
     },
     {
-      "id": "f025",
+      "id": "f026",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -290,7 +301,7 @@
       "suggested_fix": "活用"
     },
     {
-      "id": "f026",
+      "id": "f027",
       "category": "A-5",
       "category_label": "翻訳調: 〜することができる 濫用",
       "severity": "S1",
@@ -301,7 +312,7 @@
       "suggested_fix": "構築できる"
     },
     {
-      "id": "f027",
+      "id": "f028",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -312,7 +323,7 @@
       "suggested_fix": "拡張性"
     },
     {
-      "id": "f028",
+      "id": "f029",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -323,7 +334,7 @@
       "suggested_fix": "堅牢性"
     },
     {
-      "id": "f029",
+      "id": "f030",
       "category": "D-4",
       "category_label": "AI慣用句: ハイプ語彙（可能性を秘めて）",
       "severity": "S1",
@@ -334,7 +345,7 @@
       "suggested_fix": "（具体的な用途で叙述）"
     },
     {
-      "id": "f030",
+      "id": "f031",
       "category": "I-4",
       "category_label": "形式的表現: 〜が求められる（行為者曖昧の要請）",
       "severity": "S2",
@@ -345,7 +356,7 @@
       "suggested_fix": "即応性が要るアプリ"
     },
     {
-      "id": "f031",
+      "id": "f032",
       "category": "A-10",
       "category_label": "翻訳調: 抽象主語+万能動詞（もたらす）",
       "severity": "S1",
@@ -356,7 +367,7 @@
       "suggested_fix": "（行為者主語へ／直接叙述）"
     },
     {
-      "id": "f032",
+      "id": "f033",
       "category": "D-1",
       "category_label": "AI慣用句: 結び『〜と言えるでしょう』",
       "severity": "S1",
@@ -367,7 +378,7 @@
       "suggested_fix": "（削除／断定）"
     },
     {
-      "id": "f033",
+      "id": "f034",
       "category": "A-10",
       "category_label": "翻訳調: 抽象主語+万能動詞（もたらす）",
       "severity": "S1",
@@ -378,7 +389,7 @@
       "suggested_fix": "（エッジAIが与える影響）"
     },
     {
-      "id": "f034",
+      "id": "f035",
       "category": "B-2",
       "category_label": "カタカナ語の濫用",
       "severity": "S2",
@@ -389,7 +400,7 @@
       "suggested_fix": "影響"
     },
     {
-      "id": "f035",
+      "id": "f036",
       "category": "G-1",
       "category_label": "ヘッジング: 推測・観測型文末『予想されます』",
       "severity": "S2",
@@ -402,7 +413,7 @@
   ],
   "category_summary": {
     "A": 10,
-    "B": 17,
+    "B": 18,
     "C": 1,
     "D": 2,
     "E": 2,
