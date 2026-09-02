@@ -55,7 +55,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
 5. **スコア算出**（taxonomy v1.1 準拠）:
    * `raw` = S1×5 + S2×2 + S3×0.5 を `meta.score_raw_weighted` に記録。
    * `severity_weighted_score` = **`100 * (1 - exp(-raw / 40))`**（飽和しにくい正規化。`raw/60*100 cap` 等の独自式は使わない）。
-   * `ai_tell_density` = 検出 span の**和集合文字数** / 全体文字数（重複・近接 span を二重計上しない。`scope: "document"` は除外）。
+   * `ai_tell_density` = 検出 span の**和集合文字数** / 全体文字数（重複・近接 span を二重計上しない。`scattered` は包絡 `[start,end]` でなく各 `text_spans` を union に供出。`scope: "document"` は除外）。
 6. **scope 付与**: 各 finding に `scope` を付ける。単一連続=`span`（既定）／同一 tell が離散=`scattered`（`text_spans: [[s,e],…]` を併記）／文書全体の性質（E-1/E-2/構造反復）=`document`（`start=0,end=length` は locator）。
 
 ## 重要な原則

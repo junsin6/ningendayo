@@ -384,6 +384,7 @@ J. 視覚装飾の濫用
     "detected_count": 37,
     "ai_tell_density": 0.203,
     "severity_weighted_score": 71.5,
+    "score_raw_weighted": 50.2,
     "style": "desu_masu"
   },
   "findings": [
@@ -433,7 +434,7 @@ J. 視覚装飾の濫用
 ```
 
 * `severity_weighted_score`: S1=5, S2=2, S3=0.5 の raw 加重和 `raw` を、飽和しにくい式 **`score = 100 * (1 - exp(-raw / 40))`** で 0〜100 に正規化（v1.1 で確定）。旧来の未定義な `raw/60*100 cap` はエージェント依存かつ短文高密度で 100 に飽和するため廃止。`meta` に `score_raw_weighted`（raw）も併記して逆算可能にする。
-* `ai_tell_density`: **検出 span の和集合（union）文字数 / 全体文字数**。重複・近接 span の二重計上を避けるため union を取る。`scope: "document"` の finding は密度計算から除外する。
+* `ai_tell_density`: **検出 span の和集合（union）文字数 / 全体文字数**。重複・近接 span の二重計上を避けるため union を取る。union に供出するのは `span` は `[start,end]`、`scattered` は各 `text_spans`（包絡 `[start,end]` ではなく実 span のみ。C-1 例は包絡 62 字でなく union 10 字を計上）。`scope: "document"` の finding は密度計算から除外する。
 * `scope`: finding の広がり。`span`（単一連続・既定）/ `scattered`（同一 tell が離散。`text_spans: [[s,e],…]` を併記し推敲役は全 span を触る）/ `document`（文書全体の性質・E-1/E-2/構造。`start=0,end=length` は locator であり density 対象外）。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
