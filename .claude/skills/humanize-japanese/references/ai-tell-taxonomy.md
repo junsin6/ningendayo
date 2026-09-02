@@ -1,4 +1,4 @@
-# AI 日本語クセ分類体系 v1.0 (Japanese AI-Tell Taxonomy)
+# AI 日本語クセ分類体系 v1.1 (Japanese AI-Tell Taxonomy)
 
 LLM（ChatGPT・Claude・Gemini など）が生成した日本語の文章に繰り返し現れる「AIっぽさ（AIクセ）」を、10 大分類 × サブパターンに整理する。検出器・推敲役・レビュアーが共有する唯一の信頼源（SSOT）。各パターンに (1) 定義、(2) シグネチャ例文、(3) 深刻度（S1 決定的 / S2 強い / S3 弱い）、(4) 推敲処方を付す。
 
@@ -392,11 +392,37 @@ J. 視覚装飾の濫用
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "span",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
       "suggested_fix": "課題だ"
+    },
+    {
+      "id": "f014",
+      "category": "C-1",
+      "category_label": "構造: 機械的な並列列挙 まず・次に・最後に",
+      "severity": "S1",
+      "scope": "scattered",
+      "text_span": "まず、…次に、…最後に、",
+      "text_spans": [[527, 530], [549, 552], [585, 589]],
+      "start": 527,
+      "end": 589,
+      "reason": "一つの列挙 tell が3つの離散 span に散在。推敲役は3 span 全てを触る",
+      "suggested_fix": "順序語を撤去し順接で溶解"
+    },
+    {
+      "id": "f025",
+      "category": "E-2",
+      "category_label": "リズム: です・ます単調反復",
+      "severity": "S2",
+      "scope": "document",
+      "text_span": "(文書全体: 14文中12文が です/ます 終止)",
+      "start": 0,
+      "end": 821,
+      "reason": "文末形が一本調子。文書レベルの性質",
+      "suggested_fix": "同一文体内で文末を変奏"
     }
   ],
   "category_summary": {
@@ -406,14 +432,18 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の raw 加重和 `raw` を、飽和しにくい式 **`score = 100 * (1 - exp(-raw / 40))`** で 0〜100 に正規化（v1.1 で確定）。旧来の未定義な `raw/60*100 cap` はエージェント依存かつ短文高密度で 100 に飽和するため廃止。`meta` に `score_raw_weighted`（raw）も併記して逆算可能にする。
+* `ai_tell_density`: **検出 span の和集合（union）文字数 / 全体文字数**。重複・近接 span の二重計上を避けるため union を取る。`scope: "document"` の finding は密度計算から除外する。
+* `scope`: finding の広がり。`span`（単一連続・既定）/ `scattered`（同一 tell が離散。`text_spans: [[s,e],…]` を併記し推敲役は全 span を触る）/ `document`（文書全体の性質・E-1/E-2/構造。`start=0,end=length` は locator であり density 対象外）。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
 
 * **v1.0** (2026-05): 日本語 AIクセ分類体系の初版。10 大分類（A〜J）× 40+ サブパターンを定義。
   + 日本語固有として重点配置: `A-6`（〜となっている）, `B-2`（カタカナ語濫用）, `E-2`（です・ます単調）, `I-4`（〜が求められる）, `J-3`（ダッシュ濫用）, D-1 の「いかがでしたでしょうか」。
+* **v1.1** (2026-09-02): 検出出力スキーマの二欠陥を確定修正（day1 run 001/002 で再現）。
+  + IMP-002: `severity_weighted_score` の正規化式を `100*(1-exp(-raw/40))` に確定（旧 `raw/60*100 cap` は未定義・飽和のため廃止）。`score_raw_weighted` 併記。
+  + IMP-004: finding に `scope: "span"|"scattered"|"document"` と scattered 用 `text_spans` を追加。`ai_tell_density` は span 和集合文字数ベース・document scope 除外と定義。
 * 拡張原則: 実戦入力で再現 2 回以上 + 日本語の人間の書き手がほぼ使わないパターンのみサブ項目として追加。新パターンは末尾の候補欄に実例 2 件以上を添えて提案する。
 
 ## 拡張候補欄（taxonomist が審査して昇格）
