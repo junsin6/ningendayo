@@ -1,0 +1,307 @@
+{
+  "meta": {
+    "input_length": 821,
+    "detected_count": 25,
+    "total_findings": 25,
+    "ai_tell_density": 0.227,
+    "severity_weighted_score": 100.0,
+    "style": "desu_masu",
+    "severity_breakdown": {
+      "S1": 13,
+      "S2": 9,
+      "S3": 3
+    },
+    "score_raw_weighted": 84.5,
+    "score_normalization": "raw/60*100 capped at 100",
+    "density_note": "文書レベル(E-2)のspanは密度計算から除外"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "解決することができます",
+      "start": 205,
+      "end": 216,
+      "reason": "可能の冗長形。本文で『することができる／ことが可能です』が3回反復（205,391,745）し最頻出シグネチャ",
+      "suggested_fix": "解決できます"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "取得することができるようになります",
+      "start": 391,
+      "end": 408,
+      "reason": "可能形の冗長化に加え『ようになります』で二重冗長。3回反復の2件目",
+      "suggested_fix": "取得できるようになります→取得できます"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することが可能です 濫用",
+      "severity": "S1",
+      "text_span": "実現することが可能です",
+      "start": 745,
+      "end": 756,
+      "reason": "『ことが可能です』はA-5の変異形。3回反復の3件目で密度決定的",
+      "suggested_fix": "実現できます"
+    },
+    {
+      "id": "f004",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞",
+      "severity": "S1",
+      "text_span": "本技術は",
+      "start": 51,
+      "end": 55,
+      "reason": "『本技術は…可能にするソリューションです』= The X enables Y の直訳。主語が技術・述語が万能動詞『可能にする』",
+      "suggested_fix": "（主語を落とし）ベクトルデータベースは〜を高速に検索できます"
+    },
+    {
+      "id": "f005",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞/擬人化",
+      "severity": "S1",
+      "text_span": "重要な役割を担っています",
+      "start": 441,
+      "end": 453,
+      "reason": "抽象主語『仕組みは』+ 万能動詞『重要な役割を担う』(D-5擬人化)。The mechanism plays an important role の直訳",
+      "suggested_fix": "（RAGで）欠かせません／中心にあります"
+    },
+    {
+      "id": "f006",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞",
+      "severity": "S1",
+      "text_span": "ベクトルデータベースは、",
+      "start": 757,
+      "end": 769,
+      "reason": "抽象主語『ベクトルデータベースは…になっていくと考えられます』。主語が技術+ヘッジ結び",
+      "suggested_fix": "（実際の開発者を主語に、または直接叙述）"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となる/ことになる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "となるのは",
+      "start": 232,
+      "end": 237,
+      "reason": "『中核となるのは』は『中核は』で足りる状態化。A-6系(となる/ことになる/になっていく)が本文で4回反復",
+      "suggested_fix": "中核は"
+    },
+    {
+      "id": "f008",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜ことになる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "配置されることになり",
+      "start": 351,
+      "end": 361,
+      "reason": "『配置されることになり』= it comes to be placed。受動+ことになるの二重翻訳調。4回反復の2件目",
+      "suggested_fix": "配置され"
+    },
+    {
+      "id": "f009",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜ことになる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "渡されることになります",
+      "start": 617,
+      "end": 628,
+      "reason": "『渡されることになります』受動+ことになる。単に『渡されます』で足りる。4回反復の3件目",
+      "suggested_fix": "渡されます"
+    },
+    {
+      "id": "f010",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜になっていく 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "になっていく",
+      "start": 806,
+      "end": 812,
+      "reason": "『コンポーネントになっていく』become 的状態化。4回反復の4件目で密度決定的",
+      "suggested_fix": "（不可欠な）部品だ／基盤になる"
+    },
+    {
+      "id": "f011",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において 濫用",
+      "severity": "S1",
+      "text_span": "において",
+      "start": 437,
+      "end": 441,
+      "reason": "抽象的枠づけ (in / regarding)。『において』が本文で2回(437,786)。硬く見せる基本動作",
+      "suggested_fix": "（RAGと呼ばれるアーキテクチャ）で"
+    },
+    {
+      "id": "f012",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において 濫用",
+      "severity": "S1",
+      "text_span": "において",
+      "start": 786,
+      "end": 790,
+      "reason": "『AI アプリケーション開発において』2件目。『で』で直結可",
+      "suggested_fix": "開発で"
+    },
+    {
+      "id": "f013",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 114,
+      "end": 121,
+      "reason": "『ソリューション』は日本語で書ける典型的AI語彙。技術標準語ではない",
+      "suggested_fix": "解決策／仕組み"
+    },
+    {
+      "id": "f014",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "シームレス",
+      "start": 199,
+      "end": 204,
+      "reason": "『シームレスに解決』はleverage/seamless系のAI知的偽装語彙。技術用語でない",
+      "suggested_fix": "そのまま／滑らかに"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "このアプローチにより",
+      "start": 320,
+      "end": 330,
+      "reason": "『このアプローチにより』approach=手法。指示連結(H)も兼ねる",
+      "suggested_fix": "この手法で"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "フレームワーク",
+      "start": 517,
+      "end": 524,
+      "reason": "『フレームワーク』framework=枠組み。RAG文脈でも日本語化可",
+      "suggested_fix": "枠組み"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ナレッジベース",
+      "start": 472,
+      "end": 479,
+      "reason": "『ナレッジベース』knowledge base=知識ベース",
+      "suggested_fix": "知識ベース"
+    },
+    {
+      "id": "f018",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる（行為者曖昧）",
+      "severity": "S2",
+      "text_span": "求められます",
+      "start": 669,
+      "end": 675,
+      "reason": "行為者を曖昧にした要請 (日本語ビジネスAI最頻出)。誰が最適化するのか不明",
+      "suggested_fix": "（開発者は）最適化しなければなりません／最適化します"
+    },
+    {
+      "id": "f019",
+      "category": "C-1",
+      "category_label": "構造: 機械的並列『まず・次に・最後に』",
+      "severity": "S1",
+      "text_span": "まず、",
+      "start": 527,
+      "end": 530,
+      "reason": "段落全体が『まず、(527)…次に、(549)…最後に、(585)』の定型三段。RAG手順説明の典型AI構造。3連結は本来1つのtell（scattered span）",
+      "suggested_fix": "3つのうち1〜2つを叙述文に溶かす（『まず』を削り連続叙述に）"
+    },
+    {
+      "id": "f020",
+      "category": "G-1",
+      "category_label": "ヘッジング: 〜と考えられます",
+      "severity": "S2",
+      "text_span": "考えられます",
+      "start": 813,
+      "end": 819,
+      "reason": "推測型の結び。本文の断定的技術説明と不整合で、AI的な予防線",
+      "suggested_fix": "（不可欠な）基盤になるでしょう／断定形へ"
+    },
+    {
+      "id": "f021",
+      "category": "D-4",
+      "category_label": "ハイプ語彙: ますます不可欠",
+      "severity": "S2",
+      "text_span": "ますます不可欠な",
+      "start": 791,
+      "end": 799,
+      "reason": "『ますます不可欠』はD-4『〜は欠かせない』系の誇張結び。具体性を欠く",
+      "suggested_fix": "広く使われる／中心的な部品になる"
+    },
+    {
+      "id": "f022",
+      "category": "A-4",
+      "category_label": "翻訳調: 〜に基づいて",
+      "severity": "S3",
+      "text_span": "類似度に基づいて",
+      "start": 91,
+      "end": 99,
+      "reason": "based on の直訳マーカー。単発のため低密度だが翻訳調の兆候",
+      "suggested_fix": "類似度から／類似度をもとに"
+    },
+    {
+      "id": "f023",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S3",
+      "text_span": "という",
+      "start": 32,
+      "end": 35,
+      "reason": "『ベクトルデータベースという技術』= so-called。『という』は削除可。単発寄りで低密度",
+      "suggested_fix": "（削除して）ベクトルデータベースが"
+    },
+    {
+      "id": "f024",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜ためには 目的節",
+      "severity": "S3",
+      "text_span": "両立させるためには",
+      "start": 648,
+      "end": 657,
+      "reason": "in order to の直訳。『両立させるには』で足りる。単発のため低",
+      "suggested_fix": "両立させるには"
+    },
+    {
+      "id": "f025",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": null,
+      "start": 0,
+      "end": 821,
+      "reason": "敬体14文すべてが です/ます 終止（います・です・ます・なります…）。文末に体言止め・のだ・でしょう等の変奏が皆無で一本調子。文書レベルのため単一spanで表現不可",
+      "suggested_fix": "文末を体言止め・『〜でしょう』『〜のです』等で変奏（文体=敬体は維持）"
+    }
+  ],
+  "category_summary": {
+    "A": 15,
+    "B": 5,
+    "C": 1,
+    "D": 1,
+    "E": 1,
+    "F": 0,
+    "G": 1,
+    "H": 0,
+    "I": 1,
+    "J": 0
+  }
+}
