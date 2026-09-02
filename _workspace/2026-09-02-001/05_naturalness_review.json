@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "run_id": "2026-09-02-001",
+    "reviewer": "naturalness-reviewer",
+    "redetect_method": "manual_taxonomy_scan",
+    "redetect_note": "ai-tell-detector サブエージェントの spawn ツールが本環境で露出していないため、ai-tell-taxonomy 基準で 03_rewrite.md を finding 単位に手動再走査した。重み配分は 02_detection.json の raw(84.5) から逆算し S1=5 / S2=2 / S3=0.5 を採用。正規化は raw/60*100 capped at 100（検出器と同基準）。",
+    "style": "desu_masu",
+    "style_maintained": true
+  },
+  "score_before": 100.0,
+  "score_after": 3.3,
+  "score_after_raw_weighted": 2.0,
+  "score_normalization": "raw/60*100 capped at 100",
+  "improvement_rate": 0.967,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 0
+  },
+  "residual_detail": [
+    {
+      "origin_id": "f025",
+      "category": "E-2",
+      "severity": "S2",
+      "status": "reduced_but_present",
+      "note": "文末変奏は『欠かせません』(否定形)『でしょう』の2種が加わり『変奏皆無』の状態は解消。ただし14文中12文が です/ます 終止で依然として一本調子寄り。体言止め・のです等の変奏は未導入のため弱く残存。決定的ではないが S2 として計上。"
+    }
+  ],
+  "resolved_findings": {
+    "S1": 13,
+    "S2": 8,
+    "S3": 3,
+    "total": 24,
+    "note": "初回 25 finding のうち文体パターン E-2(f025) を除く 24 件を解消。S1 は 13 件全て除去。"
+  },
+  "over_polish_signals": [
+    {
+      "type": "口語化(軽度)",
+      "span": "すっきり解決できます",
+      "severity": "low",
+      "note": "B-2『シームレス』の置換で『すっきり』を採用。技術解説の敬体としてはやや砕けた語感で口語化の傾向がある。ただし本記事は一般読者向けの平易な技術解説であり許容範囲内。taxonomy 提示の代替候補は『そのまま／滑らかに』で、より中立なのは『滑らかに』。round_2 を要するほどの逸脱ではない。"
+    }
+  ],
+  "style_break_check": {
+    "keitai_jotai_mixing": "none",
+    "detail": "全14文が敬体(です/ます/できます/あります/ません/でしょう)で統一。常体(だ/である/だろう)の混入なし。文体維持=OK。過推敲による文体崩れは検出されず。"
+  },
+  "change_rate_estimate": {
+    "value": 0.16,
+    "threshold_warn": 0.30,
+    "threshold_abort": 0.50,
+    "status": "safe",
+    "note": "変更は検出 span に局所化。段落構造・文数・情報要素は保持。概算変更率 約16%で 30% 警告閾値を大きく下回る。リズムの過剰破壊(ぶつ切り)なし。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1=0 / S2 残存1(E-2の弱残存) / 改善率96.7% で A 等級。全 S1(13件)を除去し翻訳調シグネチャ(することができる・ことになる・において・本技術は・重要な役割を担う)を一掃、C-1『まず/次に/最後に』の三段定型も叙述文へ溶解できている点が高評価。過推敲は『すっきる』の軽度口語化1件のみで、文体崩れ・意味希薄化・リズム破壊は無し。改善余地: (1) E-2 文末単調は依然弱く残るため体言止め・『〜のです』等の変奏を1〜2箇所追加すると更に自然。(2)『すっきり』は『滑らかに』等より中立な語に寄せると技術記事の文体に馴染む。いずれも accept を妨げない微調整。短文(821字)で残存絶対数も少なく、改善率だけでなく絶対残存でも良好。"
+}

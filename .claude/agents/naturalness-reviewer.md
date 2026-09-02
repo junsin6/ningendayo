@@ -15,7 +15,13 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
+1. **検出器の再走査**: `03_rewrite.md` の残存 finding を同基準で数える。
+   * **(A) 実呼び出し（優先）**: `ai-tell-detector` をサブエージェントとして呼べる環境なら実行し、その出力を使う。
+   * **(B) サンクションされた手動再走査（spawn 不能な環境の既定フォールバック）**: `ai-tell-detector` を Agent/Task で呼ぶ手段が露出していない場合は手動で再走査してよい。ただし次を必須とする。
+     - `02_detection.json` と**同一のスコア式**（taxonomy v1.1: `raw=S1×5+S2×2+S3×0.5`、`score=100*(1-exp(-raw/40))`）を使う。独自式で推定しない。
+     - 初回 finding の各 span が推敲文から消失したかを**プログラムで全数照合**（substring 探索）し、`resolved_findings` に列挙する。
+     - `meta.rescan_method`（`agent_spawn` / `manual_taxonomy_rescan`）と `rescan_note` を必ず記録する。
+   * `score_before` = `02_detection.json` の `meta.severity_weighted_score`（IMP-003）。
 2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
@@ -30,10 +36,15 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ```json
 {
+  "meta": {
+    "rescan_method": "agent_spawn | manual_taxonomy_rescan",
+    "rescan_note": "手動時はスコア式と全数照合の根拠を明記"
+  },
   "score_before": 71.5,
   "score_after": 18.0,
   "improvement_rate": 0.748,
   "residual_findings": { "S1": 0, "S2": 2, "S3": 3 },
+  "resolved_findings": {},
   "over_polish_signals": [],
   "grade": "A",
   "recommendation": "accept | rewrite_round_2 | hold_and_report",
