@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "input_length": 787,
+    "detected_count": 18,
+    "ai_tell_density": 0.219,
+    "severity_weighted_score": 72.4,
+    "style": "desu_masu",
+    "score_formula": "min(100, round((S1*5 + S2*2 + S3*0.5) / input_length * 1000, 1)); raw_weighted=57 (S1x7 + S2x11 + S3x0)",
+    "sentence_stats": {
+      "sentence_count": 14,
+      "mean_length": 55.6,
+      "stdev_length": 20.4,
+      "katakana_ratio": 0.452
+    }
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用（日本語固有）",
+      "severity": "S2",
+      "text_span": "インフラのプロビジョニング",
+      "start": 20,
+      "end": 33,
+      "reason": "文書全体のカタカナ比率が45.2%（778字中352字）と極端に高い。プロビジョニング・フォーカス・レジリエント・ハンドリング・コミット等、日本語で書ける語をカタカナ・英語で処理しており知的偽装のシグネチャ。本findingは密度の代表span。",
+      "suggested_fix": "インフラの準備"
+    },
+    {
+      "id": "f002",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用（日本語固有）",
+      "severity": "S2",
+      "text_span": "フォーカスできる",
+      "start": 57,
+      "end": 65,
+      "reason": "focus を不要にカタカナ化。日本語で「集中できる」と書ける箇所。B-2密度の一部。",
+      "suggested_fix": "集中できる"
+    },
+    {
+      "id": "f003",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における／においては 濫用",
+      "severity": "S1",
+      "text_span": "システム開発において",
+      "start": 93,
+      "end": 103,
+      "reason": "英語 in/regarding の直訳的な抽象枠づけ。「〜で」に直結できる箇所を硬く見せるための AI の基本動作。",
+      "suggested_fix": "システム開発で"
+    },
+    {
+      "id": "f004",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために 目的節の濫用",
+      "severity": "S2",
+      "text_span": "対応するために",
+      "start": 194,
+      "end": 201,
+      "reason": "英語 in order to の直訳。目的節を機械的に「〜するために」で処理。",
+      "suggested_fix": "対応しようと"
+    },
+    {
+      "id": "f005",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となる／になる 状態叙述の濫用（日本語固有）",
+      "severity": "S1",
+      "text_span": "可能となります",
+      "start": 273,
+      "end": 280,
+      "reason": "「〜することが可能となる」は可能の冗長形（A-5）＋状態叙述「となる」（A-6）の二重AIクセ。文書内で『可能となる／可能になる』が2回、『することができる』が3回反復し、可能・状態叙述が機械的。",
+      "suggested_fix": "スケールアウトできます"
+    },
+    {
+      "id": "f006",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "これにより",
+      "start": 281,
+      "end": 286,
+      "reason": "文頭接続・指示が過多。「これにより」「そして」に加え段落冒頭の「また／さらに／一方で」を合わせ、14文中に文頭接続詞が6箇所。論理は文内容で示せる。",
+      "suggested_fix": "（削除し前文に接続）"
+    },
+    {
+      "id": "f007",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "削減することができます",
+      "start": 306,
+      "end": 317,
+      "reason": "英語 be able to の冗長形。文書内で『〜することができる』が3回（削減・起動・コミット）反復し、加えて『可能となる/になる』2回。AI最頻出シグネチャ。",
+      "suggested_fix": "削減できます"
+    },
+    {
+      "id": "f008",
+      "category": "C-7",
+      "category_label": "構造: 段落冒頭「また／さらに／一方」公式の連発",
+      "severity": "S2",
+      "text_span": "また、",
+      "start": 320,
+      "end": 323,
+      "reason": "第3段落『また、』第4段落『さらに、』第5段落『一方で、』と段落冒頭が接続詞で3連続固定。英語作文教本式の分節で AI 特有。文書レベル検出。",
+      "suggested_fix": "冒頭接続詞を1〜2個削除し叙述に溶かす"
+    },
+    {
+      "id": "f009",
+      "category": "I-1",
+      "category_label": "形式名詞: 〜こと／ということ 濫用",
+      "severity": "S2",
+      "text_span": "親和性が高いことが挙げられます",
+      "start": 347,
+      "end": 362,
+      "reason": "「〜ことが挙げられる」の形式名詞＋婉曲述語。文書内に『〜すること』の名詞化が多数（両立できる点・対応するため・削減すること・起動すること・構築すること・選定すること）。",
+      "suggested_fix": "親和性が高い点にあります"
+    },
+    {
+      "id": "f010",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "起動することができます",
+      "start": 443,
+      "end": 454,
+      "reason": "『〜することができる』反復（3回）の2件目。可能の冗長形。",
+      "suggested_fix": "起動できます"
+    },
+    {
+      "id": "f011",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用（日本語固有）",
+      "severity": "S2",
+      "text_span": "レジリエント",
+      "start": 480,
+      "end": 486,
+      "reason": "resilient を訳さずカタカナ化。「回復力のある」等で日本語化できる。B-2密度の一部。",
+      "suggested_fix": "回復力のある"
+    },
+    {
+      "id": "f012",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となる／になる 状態叙述の濫用（日本語固有）",
+      "severity": "S1",
+      "text_span": "構築することが可能になります",
+      "start": 492,
+      "end": 506,
+      "reason": "「〜することが可能になる」は状態叙述「になる」＋可能の冗長形。f005と合わせ『可能＋なる』構文が2回反復。",
+      "suggested_fix": "構築できます"
+    },
+    {
+      "id": "f013",
+      "category": "D-2",
+      "category_label": "AI慣用句: 意義・重要性の誇張（見逃せない）",
+      "severity": "S1",
+      "text_span": "見逃せないポイント",
+      "start": 538,
+      "end": 547,
+      "reason": "「見逃せない」はD-2の誇張常套句。人間の書き手はほぼ使わない AI シグネチャ。カタカナ『ポイント』とも重複。",
+      "suggested_fix": "大きな利点です"
+    },
+    {
+      "id": "f014",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用（日本語固有）",
+      "severity": "S2",
+      "text_span": "ハンドリングされる",
+      "start": 590,
+      "end": 599,
+      "reason": "handle を訳さずカタカナ化した受動表現。「処理される」で日本語化できる。B-2密度の一部。",
+      "suggested_fix": "処理される"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用（日本語固有）",
+      "severity": "S2",
+      "text_span": "ビジネスバリューの創出にコミット",
+      "start": 608,
+      "end": 624,
+      "reason": "business value→事業価値、commit→注力（taxonomy明記）を訳さずカタカナ化した最も露骨なB-2箇所。",
+      "suggested_fix": "事業価値の創出に注力"
+    },
+    {
+      "id": "f016",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "コミットすることができる",
+      "start": 620,
+      "end": 632,
+      "reason": "『〜することができる』反復（3回）の3件目。直後に『ようになります』（A-6状態叙述）も連結し二重冗長。",
+      "suggested_fix": "注力できる"
+    },
+    {
+      "id": "f017",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復（日本語固有）",
+      "severity": "S2",
+      "text_span": "加速しています",
+      "start": 109,
+      "end": 116,
+      "reason": "全14文の文末がすべて です／ます／ています で終わり一本調子（…です／あります／なります／できます／られます／します）。体言止め・でしょう・のだ等の変奏が皆無。文書レベル検出。文体は敬体を維持したまま文末のみ変奏すべき。",
+      "suggested_fix": "文末に体言止め・でしょう等を混ぜる（文体は維持）"
+    },
+    {
+      "id": "f018",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる 行為者曖昧の要請（日本語固有）",
+      "severity": "S2",
+      "text_span": "選定することが求められます",
+      "start": 772,
+      "end": 785,
+      "reason": "文末を行為者曖昧の「〜が求められます」で締める日本語ビジネスAI文の最頻出常套。誰が選定するのかを主語・動詞で具体化すべき。",
+      "suggested_fix": "選ばなければなりません"
+    }
+  ],
+  "category_summary": {
+    "A": 7,
+    "B": 5,
+    "C": 1,
+    "D": 1,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 1,
+    "I": 2,
+    "J": 0
+  }
+}
