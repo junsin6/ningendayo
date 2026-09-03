@@ -1,0 +1,63 @@
+{
+  "run_id": "2026-09-03-002",
+  "genre": "public_notice",
+  "style": "desu_masu",
+  "score_before": 59.25,
+  "score_after": 0.8,
+  "improvement_rate": 0.986,
+  "raw_weighted_before": 36.5,
+  "raw_weighted_after": 0.5,
+  "normalization_note": "score = raw_weighted (S1x5 + S2x2 + S3x0.5) を推敲前の正規化係数 59.25/36.5=1.6233 で換算。推敲前後で同一係数を使用し比較可能性を担保。",
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 1
+  },
+  "residual_findings_detail": [
+    {
+      "category": "E-2",
+      "severity": "S3",
+      "text_span": "ご了承ください / お願いいたします / お願い申し上げます",
+      "reason": "文書レベル。末尾3段落の結びが要請型クロージング（〜ください／〜いたします／〜申し上げます）で連続し、締めの定型がなお軽く群れる。ただし推敲前の全文末集中(S2)からは大幅に分散し、文末変奏は良好（ました/ください/います/できません/します/です/ございます/あります/いたします/申し上げます）。単独では問題化しない弱シグナルとして計上。",
+      "acceptable": true
+    }
+  ],
+  "acceptable_residual_passive_uncounted": [
+    {
+      "category": "A-8",
+      "text_span": "義務付けられています",
+      "note": "計量法の義務規定を述べる自然な受動で、検出器の suggested_fix と一致。過検出禁止原則により finding として計上せず。残存受動はこの1箇所のみで、他の受動約9箇所は全て能動化済み。"
+    }
+  ],
+  "over_polish_signals": [],
+  "over_polish_watch_points": [
+    {
+      "type": "assertion_strength_shift",
+      "text_span": "交換が行われる必要があります → 期限内に交換します",
+      "severity": "minor",
+      "reason": "要請的叙述（交換が行われる必要がある）を市の能動的宣言（交換します）へ転換。自然度・レジスターは適切で公的文書として違和感なし。ただし『要請→断定宣言』の含意差は意味等価性の論点のため content-fidelity-auditor の判定に委ねる。過推敲シグナルには計上しない。"
+    }
+  ],
+  "register_check": {
+    "over_colloquialization": false,
+    "keigo_level_breakdown": false,
+    "style_consistency_desu_masu": true,
+    "keitai_jotai_mixing": false,
+    "note": "全文末が敬体（ます/です/ございます/ください/いたします/申し上げます）で統一。常体の混入なし。謙譲（お送りします）・尊敬（ご確認ください）の水準も適切。公的お知らせのレジスターを維持。過度な口語化なし。"
+  },
+  "change_rate_estimate": 0.18,
+  "change_rate_note": "変更は検出 span 単位の局所修正に限定（L3・L15 は無改変）。推定変更率 約18%で 30% 閾値内。過推敲なし。",
+  "targeted_checks": {
+    "A8_passive_to_active": {
+      "result": "pass",
+      "detail": "f003/f008/f009/f010/f012/f015 の受動を全て自然に能動化（お送りします・事業者が実施します・立ち会いは不要です・宅内にある・見込みですが・費用を請求することは）。残存は義務付けられています(自然)の1箇所のみ。"
+    },
+    "I3_repetition_resolved": {
+      "result": "pass",
+      "detail": "「〜いただく必要がございます／必要があります」型の4回反復(f004/f007/f011 ほか)を全消。ご確認ください・期限内に交換します・日程の調整をお願いします に分散し、『必要がございます／必要があります』は推敲文に一切残存せず。"
+    }
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "16 findings 中 15 件を完全解消、E-2 のみ弱い末尾クロージング群れが残存(S3)。残存受動は自然な義務規定1箇所のみで能動化率が高く、I-3 反復も全消。文体崩れ・過度な口語化・謙譲尊敬の崩れなし、変更率も約18%で過推敲域外。S1 0件・S2 0件・改善率98.6%で A 級。検出器再走査について: 本ハーネス環境にはサブエージェント spawn 用の Task ツールが存在せず（利用可能なのはクロスセッション SendMessage のみで、稼働中の ai-tell-detector セッションも未登録）、ai-tell-detector.md の検出手順および同一スコア式(S1x5+S2x2+S3x0.5→同一正規化係数)を推敲文に対し忠実に再適用して計測した。手動照合ではなく検出器手順の実走を代替実行した点を明記する。"
+}

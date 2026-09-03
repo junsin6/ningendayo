@@ -49,10 +49,12 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * E（リズム）: 文長の標準偏差、文末の反復率を計算。
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
-4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。文書レベル（E・C-7・H-1 等）は `span_type: "document"` を付し、`occurrences[]` に実出現区間を列挙する。
+5. **スコア算出**（taxonomy §スコア・密度・span の算出規約 に厳密準拠）:
+   * `raw` = S1×5 + S2×2 + S3×0.5（finding 数の加重和）。
+   * `severity_weighted_score` = **`min(100, raw / input_length × 1000)`**。式文字列を `meta.score_formula` に必ず出力する。
+   * `input_length` = **改行を含む生全文の文字数**。`start`/`end` は生全文の 0 起点インデックスと一致させる。
+   * `ai_tell_density` = **検出 span の被覆文字数（union、重複除去）/ input_length**。重なる span を二重計上しない。
 
 ## 重要な原則
 

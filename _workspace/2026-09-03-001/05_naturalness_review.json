@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "run_id": "2026-09-03-001",
+    "style": "desu_masu",
+    "rescan_method": "in_process_rubric_application",
+    "rescan_note": "ai-tell-detector をネスト・サブエージェントとして実起動する spawn/Task ツールがこのサブエージェント環境に露出していないため（TaskStop・SendMessage・Monitor のみ、SendMessage は既存の起動済みエージェント宛て）、検出器定義 .claude/agents/ai-tell-detector.md の同一走査手順・同一スコア式を推敲文 03_rewrite.md に対して同基準で適用した。手動照合ではなく検出器の rubric をそのまま実行している。",
+    "score_formula": "min(100, round((S1*5 + S2*2 + S3*0.5) / length * 1000, 1))",
+    "length_before": 787,
+    "length_after": 714,
+    "raw_weighted_after": 3.5,
+    "katakana_ratio_before": 0.452,
+    "katakana_ratio_after": 0.441
+  },
+  "score_before": 72.4,
+  "score_after": 4.9,
+  "improvement_rate": 0.932,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 3
+  },
+  "residual_detail": [
+    {
+      "ref": "f017",
+      "category": "E-2",
+      "severity": "S2",
+      "text_span": "削減できます / 起動できます / 構築できます",
+      "reason": "文末『できます』が第5・7・8文（4文中3文）で連続反復。rewriter が事前警告した E-2 の緩い残存を確認。全14文一律だった原文の文末単調は『加速する一方です』『必要がありました』『大きな利点です』『選ばなければなりません』等の変奏で大幅に改善したが、『できます』クラスタのみ S2 反復閾値（3回+）に達し残存。文体（敬体）は維持されており過推敲ではない。",
+      "suggested_fix": "3つのうち1つを体言止め・名詞述語等へ変奏（例『構築できる点が強みです』）。敬体は維持。"
+    },
+    {
+      "ref": "f009",
+      "category": "I-1",
+      "severity": "S3",
+      "text_span": "親和性が高い点も挙げられます",
+      "reason": "形式名詞『こと』→『点』は解消したが、婉曲述語『挙げられます』が残存。単発かつ他パターンとの重複が薄いため S3（弱）。",
+      "suggested_fix": "『親和性が高い点にあります』等の直接述語化。"
+    },
+    {
+      "ref": "f016",
+      "category": "A-6",
+      "severity": "S3",
+      "text_span": "注力できるようになります",
+      "reason": "『することができる』の冗長形は解消したが、直後の状態叙述『ようになります』が残存。単発で S3。",
+      "suggested_fix": "『注力できます』へ短縮。"
+    },
+    {
+      "ref": "f001-related",
+      "category": "B-2",
+      "severity": "S3",
+      "text_span": "プロビジョニングしておく",
+      "reason": "translatable カタカナ6語（プロビジョニング/フォーカス/レジリエント/ハンドリング/ビジネスバリュー/コミット）のうち5語は日本語化済み。第2段落の『プロビジョニング』1箇所のみ未処理。B-2 の密度シグネチャは崩壊済み・単発残存のため過検出禁止則により S3。残余カタカナの大半（スケーラビリティ・アーキテクチャ・リソース等）は技術記事の正当な専門語で Do-NOT 域。",
+      "suggested_fix": "『あらかじめ余剰なリソースを確保しておく』等へ統一（任意）。"
+    }
+  ],
+  "resolved_findings": ["f001", "f002", "f003", "f004", "f005", "f006", "f007", "f008", "f010", "f011", "f012", "f013", "f014", "f015", "f018"],
+  "resolved_count": 15,
+  "over_polish_signals": [],
+  "over_polish_checks": {
+    "keitai_to_jotai_or_taigendome_mixing": "none — 全13文末が敬体（です/ます/ありました/なりません）。常体・体言止めの混入なし。",
+    "deshou_added_to_factual_statements": "none — 事実断定文への『でしょう』付加は皆無。",
+    "meaning_thinning_or_choppiness": "none — 文の統合（『これにより』削除→前文接続、可能形の短縮）は意味を保持し、ぶつ切り・希薄化なし。",
+    "change_rate": "approx 0.10 — 手術的 span 置換が中心で 30% 閾値を大きく下回る。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1 残存 0 件、S2 残存 1 件（E-2『できます』クラスタ）、改善率 93.2% で A 等級・accept 条件（S1 0/S2≤2/改善70%+）を満たす。過推敲シグナルは 0 件で、rewriter は敬体を崩さず finding ベースの手術的修正に留めており文体維持は良好。唯一の実質残存は rewriter 自身が警告した E-2『できます』の3連（第5・7・8文）で、accept を妨げるほどではないが 2次推敲時の第一候補。副次の弱残存として I-1『挙げられます』・A-6『ようになります』・B-2『プロビジョニング』単発があるがいずれも S3 で密度シグネチャは崩壊済み。軽微な自然度ウォッチ項目として『一方』の3回出現（第1段落『加速する一方です』／第2段落『一方、』／第5段落『一方で、』）— 語義は異なり AI クセではないが語彙のこだましてやや目立つ。カタカナ比率は 0.452→0.441 と数値変化は小さいが、これは残余が正当な技術専門語のためで B-2 の translatable シグネチャ自体は 6→1 に減少している。制約: 検出器はネスト spawn ツール不在のため in-process で同一 rubric を適用（meta.rescan_note 参照）。"
+}
