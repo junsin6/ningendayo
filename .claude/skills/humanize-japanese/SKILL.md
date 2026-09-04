@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（IMP-001 適用）: 総変更率でなく **語句改変率**で判定する。`03_rewrite_diff.json` の `meta.change_rate_breakdown` に `語句改変率 / 構造削除率 / 挿入率` を分離記録。語句改変率 15% 超で警告、**語句改変率 30% 超**で中断し `hold_and_report`。総変更率が 30〜50% でも削除・圧縮主体（低語句改変率）なら中断しない。
 
 ### 4. 並列検証
 
@@ -73,9 +73,12 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 条件 | 判定 | アクション |
 | --- | --- | --- |
 | 等級 A/B かつ fidelity 毀損なし | `accept` | `final.md` + `summary.md` 出力 |
+| 総変更率 30% 超だが fidelity=pass かつ等級 A/B かつ語句改変率が基準内 | `override accept` | `accept` と同じ。**summary に override 理由を明記**（IMP-001 の既知欠陥：総変更率が削除・圧縮で膨張するケース） |
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
+
+> 過推敲シグナルのカウント（IMP-001 補足）: change_rate 超過は「警告性シグナル」であり、fidelity=pass なら等級 C 発火の 2 個には数えない。等級 C の「過推敲シグナル 2 個」は真性シグナル（意味希薄化・ぶつ切り・文体崩れ・敬語レジスター不足・E-2 再単調）のみで数える。
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
