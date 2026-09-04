@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "run_id": "2026-09-04-001",
+    "style_preserved": "desu_masu",
+    "input_length": 897,
+    "rewrite_length": 712,
+    "edit_count": 32,
+    "finding_count_covered": 36,
+    "change_rate": 0.3356,
+    "change_rate_breakdown": {
+      "method": "LCS 基準の (挿入+削除)/原文字数。全文一致=654、挿入58、削除243。",
+      "lexical_rewrite_rate": 0.2664,
+      "structural_deletion_rate": 0.068,
+      "note": "削除243に対し挿入は58のみ。改変の大半は冗長形の圧縮であり、情報付加はほぼ無い（意味不変性に有利）。"
+    },
+    "warnings": [
+      "change_rate=0.336 が閾値30%を超過（50%未満のため続行）。超過分の主因はA-5『することができる』5例・A-6『となる』系3例・C-6導入定型の圧縮で、いずれも情報を落とさない語形短縮。過推敲ではなく必要な手術と判断。",
+      "f007b は検出JSONに独立findingが無いが、f007のreasonが『ことによって』3例目として明示していた span。span-grounding厳守なら未修整だが、2例だけ直すと同一文中に1例残り不自然になるため、f007の反復パターンの一部として橋渡し修正した（下記 improvement 参照）。"
+    ]
+  },
+  "edits": [
+    { "finding_id": "f001", "category": "A-2", "change_type": "structural_deletion", "before": "最適化について", "after": "最適化", "rationale": "表題の主題提示『について』を削除し体言止めに。表題は体言止めが自然" },
+    { "finding_id": "f002", "category": "A-1", "change_type": "lexical_rewrite", "before": "開発において", "after": "開発では", "rationale": "抽象枠づけ『において』を『では』へ。における3例は では/でも/で に分散" },
+    { "finding_id": "f003", "category": "D-2", "change_type": "lexical_rewrite", "before": "重要性がますます高まってきています", "after": "重要性が増しています", "rationale": "『ますます＋高まる＋てきています』の誇張＋冗長進行を圧縮。敬体維持" },
+    { "finding_id": "f004+f005", "category": "C-6/B-2", "change_type": "structural_deletion", "before": "本記事では、コンテナオーケストレーションの基本的なコンセプトから、そのメリットまでをわかりやすく解説していきます", "after": "基本的な概念からメリットまでを、順を追って見ていきます", "rationale": "ブログAI定番の導入案内文（本記事では〜わかりやすく解説していきます）を圧縮し本論寄りに。範囲情報（概念→メリット）は保持。同span内のf004『コンセプト→概念』を同時解決" },
+    { "finding_id": "f006", "category": "C-1", "change_type": "structural_deletion", "before": "まず、コンテナオーケストレーションとは", "after": "コンテナオーケストレーションとは", "rationale": "列挙骨格の順序語『まず』を削除し定義文へ直入。後続段落の さらに/また も削除して列挙感を解消" },
+    { "finding_id": "f007", "category": "A-8", "change_type": "lexical_rewrite", "before": "活用することによって", "after": "活用すると", "rationale": "手段の『ことによって』を条件『と』へ。3例は と/と/ば に分散" },
+    { "finding_id": "f008+f036", "category": "A-5/I-1", "change_type": "lexical_rewrite", "before": "集中することができるようになります", "after": "集中できます", "rationale": "可能の冗長形＋形式名詞『こと』を断定叙述へ。A-5最頻シグネチャ（5例）の1例目。同spanのI-1も解決" },
+    { "finding_id": "f009", "category": "A-10", "change_type": "lexical_rewrite", "before": "このアーキテクチャがもたらす最大のメリットは", "after": "このアーキテクチャの最大のメリットは", "rationale": "無生物主語＋万能動詞『もたらす』を『の』で置換し直訳臭を除去。未検出語（アーキテクチャ/メリット）は温存し最小修整" },
+    { "finding_id": "f011", "category": "B-2", "change_type": "lexical_rewrite", "before": "レジリエンス", "after": "耐障害性", "rationale": "resilience を開く。直後の障害復旧の文脈に整合" },
+    { "finding_id": "f010", "category": "D-1", "change_type": "lexical_rewrite", "before": "にあると言えるでしょう", "after": "にあります", "rationale": "断定できる箇所の『と言えるでしょう』ヘッジを断定へ。敬体維持（あります）" },
+    { "finding_id": "f012+f034", "category": "A-5/E-1", "change_type": "lexical_rewrite", "before": "調整することができるため", "after": "調整できるため", "rationale": "A-5反復2例目を圧縮。短文化によりE-1（文長単調）にも寄与" },
+    { "finding_id": "f013", "category": "A-10", "change_type": "lexical_rewrite", "before": "リソースの最適化を実現することができます", "after": "リソースを最適化できます", "rationale": "万能動詞『実現する』＋『することができる』の二重標識を動詞＋可能形へ" },
+    { "finding_id": "f014", "category": "H-1", "change_type": "structural_deletion", "before": "また、あるコンテナ", "after": "あるコンテナ", "rationale": "文頭接続詞『また』を削除。論理は内容で伝わる" },
+    { "finding_id": "f015", "category": "A-1", "change_type": "lexical_rewrite", "before": "場合においても", "after": "場合でも", "rationale": "における2例目。『でも』で足りる" },
+    { "finding_id": "f016+f035", "category": "A-6/E-2", "change_type": "lexical_rewrite", "before": "担保することが可能となっています", "after": "担保できます", "rationale": "状態化『可能となっています』を断定可能形へ（となる系1例目）。文末変奏でE-2にも寄与" },
+    { "finding_id": "f017", "category": "H-1", "change_type": "structural_deletion", "before": "さらに、宣言的な", "after": "宣言的な", "rationale": "文頭接続詞『さらに』を削除。まず→また→さらにの列挙連鎖を断つ" },
+    { "finding_id": "f018+f019", "category": "B-2/A-13", "change_type": "lexical_rewrite", "before": "宣言的なコンフィギュレーションというアプローチにより", "after": "宣言的な設定により", "rationale": "configuration を『設定』へ開き、過剰連結『というアプローチ』を削除。『宣言的な設定』でdeclarative configurationを保持" },
+    { "finding_id": "f020", "category": "A-5", "change_type": "lexical_rewrite", "before": "記述することができます", "after": "記述できます", "rationale": "A-5反復3例目を圧縮" },
+    { "finding_id": "f021", "category": "H-3", "change_type": "lexical_rewrite", "before": "これにより、", "after": "この方式なら、", "rationale": "指示接続『これにより』を具体指示『この方式なら』へ。前文の宣言的設定を受ける" },
+    { "finding_id": "f022", "category": "F-5", "change_type": "lexical_rewrite", "before": "一貫性のあるデプロイメント", "after": "一貫したデプロイメント", "rationale": "『〜性』抽象名詞を形容動詞へ開く（性名詞連鎖の緩和）" },
+    { "finding_id": "f023", "category": "A-6", "change_type": "lexical_rewrite", "before": "実現することが可能となります", "after": "実現できます", "rationale": "状態化『可能となります』を可能形へ（となる系2例目）" },
+    { "finding_id": "f024", "category": "F-1", "change_type": "lexical_rewrite", "before": "非常に重要な役割", "after": "欠かせない役割", "rationale": "程度副詞『非常に』＋『重要』の誇張修飾を具体形容へ" },
+    { "finding_id": "f025", "category": "A-6", "change_type": "lexical_rewrite", "before": "役割を果たすものとなっています", "after": "役割を果たしています", "rationale": "形式名詞『もの』＋状態化『となっています』を削り本動詞へ直結（となる系3例目）。動詞『果たす』は温存" },
+    { "finding_id": "f026", "category": "A-8", "change_type": "lexical_rewrite", "before": "導入することによって", "after": "導入すると", "rationale": "『ことによって』2例目を条件『と』へ" },
+    { "finding_id": "f027", "category": "F-5", "change_type": "lexical_rewrite", "before": "俊敏性を獲得し", "after": "機敏になり", "rationale": "『〜性』名詞化＋have系動詞『獲得』を形容へ開く。直後の『すばやく』との重複を避け『機敏』を選択" },
+    { "finding_id": "f028", "category": "B-2", "change_type": "lexical_rewrite", "before": "スピーディーに", "after": "すばやく", "rationale": "speedy を開く" },
+    { "finding_id": "f029", "category": "A-5", "change_type": "lexical_rewrite", "before": "対応していくことができるようになります", "after": "対応できるようになります", "rationale": "A-5反復4例目（二重冗長）。『していくこと』を削り可能形へ" },
+    { "finding_id": "f007b", "category": "A-8", "change_type": "lexical_rewrite", "before": "活用していくことによって", "after": "活用すれば", "rationale": "f007のreasonが明示する『ことによって』3例目。独立findingは無いが、2例のみ修整では同一文中に1例残り不自然なため橋渡し修正。3例目は条件『ば』で形を分散" },
+    { "finding_id": "f030", "category": "H-2", "change_type": "lexical_rewrite", "before": "しかしながら、", "after": "ただ、", "rationale": "硬い逆接『しかしながら』を口語寄りの『ただ』へ。コラム格は維持" },
+    { "finding_id": "f031", "category": "A-5", "change_type": "lexical_rewrite", "before": "構築することができるでしょう", "after": "構築できるでしょう", "rationale": "A-5反復5例目を圧縮。『でしょう』は妥当な推量として温存しE-2の文末変奏に寄与" },
+    { "finding_id": "f032", "category": "A-1", "change_type": "lexical_rewrite", "before": "自社の環境において", "after": "自社の環境で", "rationale": "における3例目。『で』で足りる" },
+    { "finding_id": "f033", "category": "D-1", "change_type": "lexical_rewrite", "before": "検討してみてはいかがでしょうか", "after": "検討してみてください", "rationale": "ブログAI決定的結び『〜してみてはいかがでしょうか』を直接的な勧めへ。敬体維持（ください）" }
+  ],
+  "findings_resolution_map": {
+    "note": "E/I系のリズム・形式名詞findingは語彙findingと同一spanに同居し、当該editで同時解決される。",
+    "f034_E1": "f012+f034 の短文化に統合（文長単調）",
+    "f035_E2": "f016+f035 ほか文末変奏（ています/できます/あります/でしょう/ください）で解決",
+    "f036_I1": "f008+f036 の『こと』削除に統合"
+  }
+}
