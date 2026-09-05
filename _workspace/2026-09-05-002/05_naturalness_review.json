@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "run_id": "2026-09-05-002",
+    "genre": "公的文書/お知らせ（図書館システム更新）",
+    "style": "desu_masu",
+    "score_normalization": "score_after = min(100, round((Σ residual severity_weights) / input_length × 1000, 1)); S1=5, S2=2, S3=0.5。改行除外コードポイント。残存加重和=0 のため denominator に依らず 0.0。improvement_rate=(score_before−score_after)/score_before。",
+    "rescan_method": "03_rewrite.md を 02_detection.json と同基準・同 taxonomy(v1.0) で span 単位に再走査。detector 独立サブエージェントは呼ばず、元 11 finding の各 span を追跡し解消/残存を判定、加えて全文を A〜J 全カテゴリで新規走査。meta.keigo_note の定型除外基準（『ご利用いただき誠にありがとうございます』『下記のとおり』『何卒〜賜りますようお願い申し上げます』等）を after にも同一適用。"
+  },
+  "score_before": 45.0,
+  "score_after": 0.0,
+  "improvement_rate": 1.0,
+  "residual": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 0,
+    "findings": [],
+    "resolution_trace": [
+      { "id": "f001", "category": "A-6", "severity": "S1", "before": "実施されることとなりました", "after": "実施しますので", "status": "resolved", "note": "受動＋『こととなる』状態叙述を能動『実施します』へ。実施主体が明確化。" },
+      { "id": "f002", "category": "A-9", "severity": "S2", "before": "目的として行われるものでございます", "after": "提供するために行います", "status": "resolved", "note": "目的節＋受動＋『ものでございます』三重膨張を能動一語へ。" },
+      { "id": "f003", "category": "A-8", "severity": "S2", "before": "システム事業者によって", "after": "システム事業者が", "status": "resolved", "note": "by-passive を能動主語化。★依頼の焦点：受動→能動の中核。" },
+      { "id": "f004", "category": "A-8", "severity": "S2", "before": "停止されます", "after": "停止します", "status": "resolved", "note": "行為者省略受動を能動化。" },
+      { "id": "f005", "category": "I-3", "severity": "S2", "before": "ご了承いただく必要がございます", "after": "あらかじめご了承ください", "status": "resolved", "note": "need-to 直訳＋回りくどさを依頼形へ。★依頼型結び反復の1つ目を解消。" },
+      { "id": "f006", "category": "A-6", "severity": "S1", "before": "制限が設けられることとなります", "after": "一部を制限します", "status": "resolved", "note": "受動＋状態叙述の二重化を能動化。『こととなる』系反復(f001と2回)を消去。" },
+      { "id": "f007", "category": "I-3", "severity": "S2", "before": "ご利用いただく必要がございます", "after": "返却ポストをご利用ください", "status": "resolved", "note": "『いただく必要がございます』反復2回目を依頼形へ。" },
+      { "id": "f008", "category": "A-8", "severity": "S2", "before": "延長される措置が講じられます", "after": "返却期限を自動的に延長します", "status": "resolved", "note": "二重受動を能動一句へ。行為者(図書館)が回復。" },
+      { "id": "f009", "category": "A-8", "severity": "S2", "before": "向上が図られる", "after": "検索機能が向上し", "status": "resolved", "note": "受動＋抽象名詞化を自動詞能動へ。" },
+      { "id": "f010", "category": "A-8", "severity": "S2", "before": "簡素化が実現される", "after": "予約の手続きも簡単になる", "status": "resolved", "note": "受動＋名詞化を平易な自動詞へ。利用者向け案内として妥当。" },
+      { "id": "f011", "category": "E-2", "severity": "S2", "before": "予定でございます／全文末ます統一", "after": "予定です／ます・ください・です・お願い申し上げますの混成", "status": "resolved", "note": "『でございます』を『です』へ。文末が能動化に伴い ます系/ください/です に自然分散、一本調子を解消。体言止め等の不適な変奏は導入せず敬体を維持。" }
+    ]
+  },
+  "receptive_to_active_check": {
+    "A8_passive_resolved": true,
+    "detail": "元受動述語9箇所(実施される×2・停止される・設けられる・講じられる・延長される・図られる・実現される・行われる)のうち finding 化された全てが能動化。残存する受動は『館内に設置された返却ポスト』の連体修飾のみ＝自然な日本語で by-passive ではなく、原文でも非検出のため残存扱いとしない。",
+    "request_ending_repetition_resolved": true,
+    "request_ending_detail": "依頼型結びは before で『お願い申し上げます』×2＋『お願いいたします』×1＝3回。after は『お願いいたします』1件を『お問い合わせください』へ変換し、定型『お願い申し上げます』×2(=S2許容域内、meta で定型除外)のみ残置。反復は緩和済み。"
+  },
+  "over_polish_signals": [],
+  "over_polish_evaluation": {
+    "kougo_ka": "なし。『簡単になる』は『簡素化が実現される』の平易化で、利用者向けお知らせの語彙として適正。俗語・くだけ過ぎなし。",
+    "buntai_kuzure": "なし。全10文が敬体で一貫。常体(だ・である)の混入ゼロ。『簡単になる予定です』も連体形＋ですで敬体維持。",
+    "imi_ki_haku_bunsetsu": "なし。ぶつ切り・意味希薄化なし。情報量は原文保存。",
+    "koubun_kaku_teika": "問題なし。能動化後も『いたします/賜りますようお願い申し上げます/ございましたら』等の公文格を保持。『ください』は3回(ご了承ください・ご利用ください・お問い合わせください)だが、いずれも公的お知らせの標準的丁寧依頼形で連発によるくだけ過ぎには当たらない。体言止め等の格を崩す変奏は不採用で、E-2 変奏をリスクの低い文末混成で達成した点はむしろ適切。",
+    "change_rate": "推定 約18%。localized な span 単位置換で 30% 未満。IMP-001 に従い change_rate を理由とした減点はなし。"
+  },
+  "grade": "A",
+  "verdict": "accept",
+  "recommendation": "accept。S1=0・S2=0・改善率100%(45.0→0.0)、過推敲シグナル0。全11 finding が finding ベースで手術的に解消され、A-8 受動は能動主語化、依頼型結びの反復も緩和。公文の格を保ったまま E-2 の一本調子を文末混成で崩しており、体言止め等の不適変奏や敬体崩れ・くだけ過ぎもなし。2次推敲不要、そのまま final.md へ。",
+  "notes": "残置する定型敬語『〜ようお願い申し上げます』×2 は meta.keigo_note の除外基準内で finding 化しないが、次回同ジャンルではこの結びが唯一の反復ホットスポットになりやすいため監視候補。score_after=0.0 は残存加重和0による定義上の帰結で、denominator(推敲後長)に依存しない。"
+}
