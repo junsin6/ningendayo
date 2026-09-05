@@ -373,13 +373,14 @@ J. 視覚装飾の濫用
 
 ---
 
-## 検出出力スキーマ（Detector → Rewriter の共有契約）
+## 検出出力スキーマ v1.1（Detector → Rewriter の共有契約）
 
 検出器は次の JSON を生産する:
 
 ```json
 {
   "meta": {
+    "schema_version": "1.1",
     "input_length": 1820,
     "detected_count": 37,
     "ai_tell_density": 0.203,
@@ -391,12 +392,31 @@ J. 視覚装飾の濫用
       "id": "f001",
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "secondary_categories": [],
       "severity": "S1",
+      "span_type": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
+      "occurrences": null,
+      "metrics": null,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
       "suggested_fix": "課題だ"
+    },
+    {
+      "id": "f0xx",
+      "category": "E-2",
+      "category_label": "リズム: です・ます単調",
+      "secondary_categories": [],
+      "severity": "S2",
+      "span_type": "document",
+      "text_span": "(文書全体)",
+      "start": 0,
+      "end": 0,
+      "occurrences": null,
+      "metrics": { "desu_masu_ratio": 1.0, "sentence_len_sd": 9.3 },
+      "reason": "文末15文が100%です・ます",
+      "suggested_fix": "文末を変奏"
     }
   ],
   "category_summary": {
@@ -406,14 +426,31 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+### フィールド契約
+
+* `meta.input_length`: 本文のコードポイント数。**改行文字（\n）は input_length に含めない**（IMP-002: 改行込みだと density / score が母数だけ膨らんで希薄化するため）。
+* `severity_weighted_score`: 深刻度加重和 `raw = S1×5 + S2×2 + S3×0.5` を、**飽和型で 0〜100 に正規化**する（IMP-002）:
+
+  `score = round( 100 × (1 − exp( −raw / K )), 1 )`、既定 **K = 40**。
+
+  raw が小さい領域では線形に近く、高密度短文でも 100 に張り付かず解像度が残る。**分母を input_length に依存させない**（長文ほどスコアが薄まる旧来の母数依存式を廃止）。全検出器・自然度レビュアーはこの単一式を共有し、`score_before` / `score_after` を同一式で算出する。
+* `ai_tell_density`: **`span_type: "contiguous"` の start/end 区間の和集合**の文字数 / input_length。**span 重複は二重計上せず和集合で数える**。`document` / `scattered` の locator は density に含めない（IMP-004/005）。`detected_count`（finding 数、重複カテゴリ可）と density（和集合）は数え方が異なる点に注意。
+* `span_type`（IMP-004）: `"contiguous"`（単一連続 span・省略時の既定）/ `"scattered"`（分散反復。各位置を `occurrences: [[s,e], …]` に列挙）/ `"document"`（文長分散・文末反復など文書レベル所見。start/end は代表値でよく、実体は `metrics` に構造化）。
+* `metrics`（IMP-004）: `document` 所見の統計値（`desu_masu_ratio`・`sentence_len_sd`・反復回数 等）。reason 文字列に数値を埋め込まず構造化フィールドに置く。
+* `secondary_categories`（IMP-005）: 1 span が複数分類に該当するときの従分類配列（例 `["B-2","I-1"]`）。**1 span = 主分類 1 finding** を基本とし、従属する分類はここへ。`category_summary` は各 finding の主 `category` の先頭文字で集計する。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
+
+> `schema_version` / `secondary_categories` / `span_type` / `occurrences` / `metrics` は **v1.1 の追加フィールド**であり、いずれも省略時は「単一連続 span・従分類なし」と解釈できる（v1.0 出力と後方互換）。
 
 ## バージョン管理
 
 * **v1.0** (2026-05): 日本語 AIクセ分類体系の初版。10 大分類（A〜J）× 40+ サブパターンを定義。
   + 日本語固有として重点配置: `A-6`（〜となっている）, `B-2`（カタカナ語濫用）, `E-2`（です・ます単調）, `I-4`（〜が求められる）, `J-3`（ダッシュ濫用）, D-1 の「いかがでしたでしょうか」。
+* **スキーマ v1.1** (2026-09-05): 検出出力スキーマを硬化（分類 A〜J 本体は v1.0 のまま）。適用 run: `2026-09-05-001` / `2026-09-05-002`。
+  + IMP-002: `severity_weighted_score` を飽和型 `100×(1−exp(−raw/K))`（K=40）に固定し、母数依存を廃止。`input_length` は改行除外と明記。
+  + IMP-004: `span_type`（contiguous/scattered/document）・`occurrences`・`metrics` を追加し、文書レベル所見を構造化。
+  + IMP-005: `secondary_categories` を追加し「1 span = 主分類 1 finding」と density=和集合を明文化。
+  + いずれも追加フィールドで v1.0 出力と後方互換。
 * 拡張原則: 実戦入力で再現 2 回以上 + 日本語の人間の書き手がほぼ使わないパターンのみサブ項目として追加。新パターンは末尾の候補欄に実例 2 件以上を添えて提案する。
 
 ## 拡張候補欄（taxonomist が審査して昇格）

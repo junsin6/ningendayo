@@ -18,6 +18,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
 ```json
 {
   "meta": {
+    "schema_version": "1.1",
     "input_length": 0,
     "detected_count": 0,
     "ai_tell_density": 0.0,
@@ -29,10 +30,14 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "id": "f001",
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "secondary_categories": [],
       "severity": "S1",
+      "span_type": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
+      "occurrences": null,
+      "metrics": null,
       "reason": "理由（密度・反復回数など根拠を明記）",
       "suggested_fix": "課題だ"
     }
@@ -40,6 +45,8 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
   "category_summary": { "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0 }
 }
 ```
+
+> `span_type` / `occurrences` / `metrics` / `secondary_categories` の意味は SSOT「検出出力スキーマ v1.1 §フィールド契約」を参照（省略時は単一連続 span・従分類なし）。
 
 ## 検出手順
 
@@ -50,9 +57,15 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（スキーマ v1.1・SSOT の「フィールド契約」に厳密準拠）:
+   * `raw = S1×5 + S2×2 + S3×0.5`。
+   * `severity_weighted_score = round( 100 × (1 − exp( −raw / K )), 1 )`、**K = 40 固定**。母数（input_length）に依存させない。検出器ごとに式を変えない（IMP-002）。
+   * `input_length` は本文コードポイント数から**改行を除外**して数える。
+   * `ai_tell_density` = `span_type: "contiguous"` の start/end **区間の和集合**の文字数 / input_length（重複は二重計上しない。document/scattered の locator は含めない）。
+6. **文書レベル / 分散 finding の表現**（IMP-004/005）:
+   * E・C・J 等の文書レベル所見は `span_type: "document"`、統計値を `metrics{}` に構造化（reason に数値を埋め込まない）。
+   * 分散反復は `span_type: "scattered"` ＋ `occurrences: [[s,e], …]`。
+   * 1 span が複数分類に該当する場合は主分類のみ `category`、残りは `secondary_categories: []`（1 span = 主分類 1 finding）。
 
 ## 重要な原則
 
