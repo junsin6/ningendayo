@@ -440,7 +440,9 @@ J. 視覚装飾の濫用
 * `secondary_categories`（IMP-005）: 1 span が複数分類に該当するときの従分類配列（例 `["B-2","I-1"]`）。**1 span = 主分類 1 finding** を基本とし、従属する分類はここへ。`category_summary` は各 finding の主 `category` の先頭文字で集計する。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
-> `schema_version` / `secondary_categories` / `span_type` / `occurrences` / `metrics` は **v1.1 の追加フィールド**であり、いずれも省略時は「単一連続 span・従分類なし」と解釈できる（v1.0 出力と後方互換）。
+> `schema_version` / `secondary_categories` / `span_type` / `occurrences` / `metrics` は **v1.1 の追加フィールド**であり、いずれも省略時は「単一連続 span・従分類なし」と解釈できる（v1.0 出力と後方互換）。**`schema_version` が無い出力は `1.0` とみなす**（コンシューマは欠落時に旧解釈へ分岐）。
+>
+> **版数は二系統**: 分類本体（A〜J パターン）＝ **v1.0**、検出出力スキーマ＝ **v1.1**。別系統なので混同しないこと（次の分類本体の増分は v1.1、次のスキーマ増分は v1.2）。
 
 ## バージョン管理
 

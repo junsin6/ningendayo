@@ -34,8 +34,8 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 ```json
 {
   "score_before": 71.5,
-  "score_after": 18.0,
-  "improvement_rate": 0.748,
+  "score_after": 12.8,
+  "improvement_rate": 0.821,
   "residual_findings": { "S1": 0, "S2": 2, "S3": 3 },
   "over_polish_signals": [],
   "grade": "A",
