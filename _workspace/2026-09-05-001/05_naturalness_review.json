@@ -1,0 +1,56 @@
+{
+  "score_before": 50.1,
+  "score_after": 1.28,
+  "improvement_rate": 0.974,
+  "score_basis": {
+    "formula": "raw = S1*5 + S2*2 + S3*0.5; score = min(100, raw/(0.25*input_length)*100)",
+    "raw_after": 2.0,
+    "input_length_used": 624,
+    "note": "推敲文本体624字を分母に再走査（真の再検出基準）。原文分母775字で計算すると score_after=1.03 / 改善0.979。どちらでも約97〜98%改善で等級判定は不変。"
+  },
+  "residual": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 0,
+    "findings": [
+      {
+        "id": "r001",
+        "origin_finding": "f029",
+        "category": "B-2",
+        "category_label": "カタカナ語濫用",
+        "severity": "S2",
+        "text_span": "このテクノロジーは",
+        "paragraph": 3,
+        "reason": "f029(テクノロジー3回反復)のうち中間1件が未置換で残存。冒頭『というテクノロジー』は削除、結び『〜テクノロジー』は『技術』へ置換済みだが、第3段落『このテクノロジーは、これまで実現が困難であった〜』の1件のみ取り残し。",
+        "suggested_fix": "この技術は"
+      }
+    ]
+  },
+  "residual_scan_notes": {
+    "resolved": "32件中31件が完全解消。A-5(ことができる)4件・A-6(となっている)・A-7(持っている)2件・A-10(万能動詞)3件・A-1(における)2件・D-1(と言えるでしょう)・I-4(求められる)・G-1(期待されます)・H-1(文頭接続詞また)・A-13(という連結)・E-2文末単調・B-2カタカナ12/13件を全て置換確認。",
+    "not_counted_by_detector_basis": "レイテンシ・アーキテクチャ・コンポーネントは残存するが、元検出器が32件のfindingで一度も flag していない確立技術語のため、同基準の再走査では残存に計上しない（エンベディング/RAG/ベクトルと同じ扱い）。厳密taxonomyでB-2候補ではあるが検出器の包含判断をミラーした。"
+  },
+  "over_polish_signals": [
+    {
+      "type": "ぶつ切り短文(軽微)",
+      "location": "第3段落『意味的な近さをとらえられます。これが特徴です。』",
+      "detail": "原文『とらえることができるという特徴を持っています』を2文に分割。『これが特徴です。』が5字前後の唐突な短文となり、やや稚拙な間。ただしE-1(文長均一)/E-2(文末単調)の是正としてリズム変奏に寄与しており、意味劣化・トーン逸脱はない。",
+      "severity": "minor"
+    }
+  ],
+  "over_polish_count": 1,
+  "style_consistency": {
+    "taikei_jotai_mixing": false,
+    "sentence_end_binary_count": {"desu_masu_polite": 16, "jotai_plain": 0},
+    "detail": "全16文末が敬体（です/ます/ません/でしょう）。常体混入ゼロ。『でしょう』『欠かせません』で単調反復も緩和され、文体崩れなし。"
+  },
+  "meaning_degradation": false,
+  "tone_deviation": false,
+  "over_colloquialization": false,
+  "change_rate": 0.32,
+  "change_rate_note": "変更率32%だが fidelity 別担当・IMP-001既知欠陥のため自然度側では減点しない。内容欠落・過削除は目視上なし（正式判定は04_fidelity_audit）。",
+  "grade": "A",
+  "verdict": "accept",
+  "recommendation": "accept。S1=0・S2=1(≤2)・改善97.4%で等級Aの全条件を満たす。残存はカタカナ語1件(『このテクノロジーは』→『この技術は』)のみで、round_2を回すほどではないが、accept時に1-word修正として反映すれば残存ゼロにできる。過推敲シグナルは軽微1件（閾値2未満）で降格に至らず。文体崩れ・意味劣化・口語化しすぎなし。",
+  "notes": "検出器サブエージェントの実起動は行わず、taxonomyと元32findingに厳密照合する手動span走査で再検出を代替した（同深刻度基準を適用）。改善率は分母の取り方(624/775)で0.974〜0.979と幅があるが等級判定は不変。"
+}
