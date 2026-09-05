@@ -1,0 +1,43 @@
+{
+  "edits": [
+    { "finding_id": "f001", "category": "A-13", "before": "ベクトル検索というテクノロジーが", "after": "ベクトル検索が", "rationale": "「という」概念連結を削除し主語を直結。f029のテクノロジー除去と統合" },
+    { "finding_id": "f029", "category": "B-2", "before": "テクノロジー（初出）", "after": "（削除）", "rationale": "3回反復のうち初出はf001で消去、Para6は「技術」へ開き、Para2「このテクノロジー」は自然な1回として残置（連鎖調整・過推敲回避）" },
+    { "finding_id": "f031", "category": "E-2", "before": "解説していきます", "after": "解説します", "rationale": "「ていく」冗長を削り整理。文末単調はでしょう・特徴です等で全体変奏" },
+    { "finding_id": "f017", "category": "B-2", "before": "アプローチ", "after": "手法", "rationale": "日本語で書けるカタカナ語を開く" },
+    { "finding_id": "f004", "category": "A-5", "before": "とらえることができる", "after": "とらえられます", "rationale": "可能の冗長形を簡潔な可能形へ。敬体維持" },
+    { "finding_id": "f002", "category": "A-7", "before": "という特徴を持っています", "after": "。これが特徴です", "rationale": "have直訳の特性叙述を解体し独立文へ。特徴の情報は保存" },
+    { "finding_id": "f032", "category": "E-1", "before": "…意味的な近さをとらえることができるという特徴を持っています。", "after": "…意味的な近さをとらえられます。これが特徴です。", "rationale": "均一な長文を長短2文に分割し短文を挿入" },
+    { "finding_id": "f003", "category": "A-6", "before": "可能にするものとなっています", "after": "可能にします", "rationale": "状態化を直接叙述へ（敬体断定）。もの＋となっているの二重を解消" },
+    { "finding_id": "f018", "category": "B-2", "before": "セマンティックな", "after": "意味的な", "rationale": "日本語で足りるカタカナ語を開く" },
+    { "finding_id": "f019", "category": "B-2", "before": "マッピングする", "after": "対応づけます", "rationale": "対応づけで足りる。f008と統合し役割を担うを解消" },
+    { "finding_id": "f008", "category": "A-10", "before": "マッピングする役割を担っています", "after": "対応づけます", "rationale": "無生物主語＋万能動詞『担う』の擬人化を直接動詞へ" },
+    { "finding_id": "f005", "category": "A-5", "before": "算出することができます", "after": "算出できます", "rationale": "可能の冗長形を簡潔化。4回反復の分散の一環" },
+    { "finding_id": "f030", "category": "H-1", "before": "また、（段落冒頭）", "after": "（削除）", "rationale": "3段落連続の文頭接続詞のうちまた・さらにを削除、このようには結び機能で残置（H-1約70%削減）" },
+    { "finding_id": "f020", "category": "B-2", "before": "スケーラブルで", "after": "拡張しやすく", "rationale": "日本語で書けるカタカナ語を開く" },
+    { "finding_id": "f021", "category": "B-2", "before": "ロバストな", "after": "堅牢な", "rationale": "taxonomy頻出例。堅牢で足りる" },
+    { "finding_id": "f022", "category": "B-2", "before": "インフラストラクチャ", "after": "基盤", "rationale": "基盤で足りる" },
+    { "finding_id": "f015", "category": "I-4", "before": "が求められます", "after": "が欠かせません", "rationale": "行為者不在の観測型要請を、断定的で自然な言い回しへ（架空の主語を足さず脱受動化）" },
+    { "finding_id": "f009", "category": "A-10", "before": "低レイテンシでの検索を提供するソリューションです", "after": "低レイテンシで検索できる仕組みです", "rationale": "無生物主語＋『提供する』直訳を直接叙述へ。f023と統合" },
+    { "finding_id": "f023", "category": "B-2", "before": "ソリューション", "after": "仕組み", "rationale": "仕組みで足りる" },
+    { "finding_id": "f024", "category": "B-2", "before": "シームレスな", "after": "滑らかな", "rationale": "taxonomy頻出例。滑らかで足りる" },
+    { "finding_id": "f006", "category": "A-5", "before": "得ることができるようになります", "after": "得られます", "rationale": "可能の冗長形＋ようになる複合を簡潔化。4回反復の分散" },
+    { "finding_id": "f011", "category": "A-1", "before": "のパイプラインにおいても", "after": "のパイプラインでも", "rationale": "抽象枠づけ『において』を平易な助詞へ" },
+    { "finding_id": "f007", "category": "A-5", "before": "果たすことができます", "after": "果たします", "rationale": "可能の冗長形を断定へ。4回反復の分散（られる／できる／断定に分散）" },
+    { "finding_id": "f010", "category": "A-10", "before": "より正確なアウトプットをもたらすことが可能です", "after": "出力の精度を高められます", "rationale": "無生物主語＋もたらす＋可能の冗長形を直接叙述へ。より正確＝精度を高めるで等価保存" },
+    { "finding_id": "f025", "category": "B-2", "before": "アウトプット", "after": "出力", "rationale": "出力で足りる（f010の再構成に含む）" },
+    { "finding_id": "f026", "category": "B-2", "before": "パラダイム", "after": "枠組み", "rationale": "枠組みで足りる" },
+    { "finding_id": "f013", "category": "A-7", "before": "ポテンシャルを持った", "after": "可能性を秘めた", "rationale": "have直訳の特性叙述を自然な連体修飾へ。f027を統合" },
+    { "finding_id": "f027", "category": "B-2", "before": "ポテンシャル", "after": "可能性", "rationale": "可能性で足りる（f013に統合）" },
+    { "finding_id": "f014", "category": "D-1", "before": "テクノロジーであると言えるでしょう", "after": "技術です", "rationale": "AI結び常套句を断定へ。テクノロジー→技術も同時に開く。敬体維持のため断定はですで受ける" },
+    { "finding_id": "f028", "category": "B-2", "before": "さまざまなユースケースにおいて", "after": "さまざまな場面で", "rationale": "活用場面へ開くが、後続『その活用』との活用重複を避け『場面』に短縮" },
+    { "finding_id": "f012", "category": "A-1", "before": "において", "after": "で", "rationale": "抽象枠づけを平易な助詞へ（f028と同一箇所で統合）" },
+    { "finding_id": "f016", "category": "G-1", "before": "拡大していくことが期待されます", "after": "広がっていくでしょう", "rationale": "行為者不在の観測型受動＋ハイプ結びを、敬体の推量『でしょう』へ。文末変奏も兼ねる" }
+  ],
+  "change_rate": 0.32,
+  "style_preserved": "desu_masu",
+  "warnings": [
+    "change_rate 0.32 が 30% 閾値を超過。B-2カタカナ語13件の置換が支配的で、意味不変・敬体維持は保たれているため中断せず続行。50%は未超過のため hold_and_report は不要。",
+    "f030（H-1）は『また、』のみ finding だが、reason が『また/さらに/このように の3段落連続』を指摘。連鎖調整として『さらに、』（未 flag span）も削除、結びの『このように』は残置。未検出 span への介入のため監査注記。",
+    "f029（B-2 テクノロジー）は3回反復。初出はf001削除に統合、Para6は技術へ、Para2『このテクノロジー』は過推敲回避のため1回のみ自然に残置。カタカナ全滅を避ける方針。"
+  ]
+}
