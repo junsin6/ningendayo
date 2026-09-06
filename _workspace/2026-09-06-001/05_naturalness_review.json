@@ -1,0 +1,29 @@
+{
+  "score_before": 80.5,
+  "score_after": 0.5,
+  "improvement_rate": 0.994,
+  "change_rate": 0.37,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 1
+  },
+  "residual_detail": [
+    {
+      "category": "G-1",
+      "severity": "S3",
+      "text_span": "深く溶け込んでいくことでしょう",
+      "reason": "終盤の推量文末『ことでしょう』が1回残存。単独で軽微、かつ E-2 の文末変奏にも寄与しており除去必須ではない。"
+    }
+  ],
+  "over_polish_signals": [],
+  "over_polish_checks": {
+    "keitai_jotai_mix": "none — 全文敬体維持。『大きな利点。』は体言止めであり常体leakではない",
+    "meaning_thinning": "none — 数値・主張・固有名詞・技術内容すべて保存",
+    "katakana_over_domestication": "none — 和語化はいずれも自然（さばける/なめらかな使い心地/大規模で拡張しやすい設備）",
+    "tech_term_over_simplification": "none — アーキテクチャ・IoT・クラウド・デバイス等の業界標準語は保持"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1 全8件・S2 全20件を除去し残存はG-1 S3が1件のみ。改善率99.4%。change_rate 37%（30%超）だが過推敲シグナル実数0であり、膨張の主因は B-2 カタカナ濫用15件の正当な和語化（例: スケーラブルインフラストラクチャ→大規模で拡張しやすい設備）。finding紐付けのない区間は不変で、絶対残存数（S1=0, S2=0）も基準を満たすため A/accept。参考: 未flagのままの業界標準カタカナ（オペレーション/システム/サーバー/アップロード/ユースケース）は原検出と同一基準で非tell扱い、H-1『一方』は1回残存で許容範囲。"
+}
