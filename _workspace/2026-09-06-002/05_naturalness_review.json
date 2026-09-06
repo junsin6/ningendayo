@@ -1,0 +1,39 @@
+{
+  "score_before": 60.5,
+  "score_before_source": "02_detection.json:meta.severity_weighted_score (IMP-003 契約準拠。ai_tell_density やfinding件数からの再算出ではなく既定フィールドを継承)",
+  "score_after": 4.0,
+  "score_after_calc": "residual raw = S1*5 + S2*2 + S3*0.5 = 0 + 2 + 0.5 = 2.5; normalized = 2.5 / 628 * 1000 = 4.0（score_before と同一の input_length=628・同一正規化式で算出し比較可能性を担保）",
+  "improvement_rate": 0.934,
+  "detection_rerun": {
+    "method": "IMP-006: finding チェックリスト照合ではなく推敲文へ検出器を同基準で独立再走査。原検出 f001-f016 の消し込み確認に加え、新規/見落とし残存も走査",
+    "original_findings_resolved": "16/16（f001-f014 の span 級 A-6/A-8/I-3/I-4 は全消去、f015 E-2 文末単調・f016 D-6 結び反復も基準内へ低減）",
+    "newly_surfaced_residual": "「断水が実施される時間帯におきましては」の連体修飾パッシブ（原検出では未フラグ）。チェックリスト照合では捕捉不能で、再走査経路（IMP-006）でのみ表面化"
+  },
+  "residual_findings": { "S1": 0, "S2": 1, "S3": 1 },
+  "residual_detail": [
+    {
+      "category": "A-8",
+      "severity": "S2",
+      "text_span": "実施される",
+      "context": "断水が実施される時間帯におきましては",
+      "note": "行為者不在受動の連体修飾。公的文書の定型としては許容域だが、検出器同基準では残存パッシブとして計上。原検出未フラグのため IMP-006 再走査で新規表面化"
+    },
+    {
+      "category": "D-6",
+      "severity": "S3",
+      "text_span": "お願い申し上げます",
+      "context": "結びの定型敬語",
+      "note": "『お願い申し上げます』×2・『何卒』×2・『賜り』×2 へ低減（各原3回）。公的文書の許容範囲内の弱残存。二重積み上げ（ご了承いただく必要がございます等）は解消済み"
+    }
+  ],
+  "over_polish_signals": [],
+  "over_polish_quantification": {
+    "register_break_keitai_jotai": "0件／全11文の文末が です・ます・ございます・ください で統一。常体（だ・である）混入ゼロ。公的文書レジスターを完全維持",
+    "unnatural_colloquialization": "0件。『求められております』→『欠かせません』は敬体・硬度を保持したまま無主語要請のみ解消（『必要です』等の平板化・口語化に流れていない）",
+    "meaning_dilution": "0件。要請・状態叙述の非人称化のみ除去し、事実/対象区域/日時/主張は不変",
+    "change_rate": "手術的置換のみで30%閾値を大きく下回る（本文488字中の変更は語尾・態の局所修正に限定）"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1=0・S2=1（≤2）・改善93.4%（≥70%）でA等級。文末は『ました/です/申し上げます/ください/ございます/いたします/ません』へ変奏されE-2単調を解消。過推敲シグナル0（敬体100%維持・意味希薄化なし）。残存の連体パッシブ『実施される』は公的文書の定型域で2次推敲不要と判断。IMP-003（score_beforeは既定severity_weighted_score継承）・IMP-006（検出器再走査で未フラグ残存を捕捉）が本ランで実効。"
+}

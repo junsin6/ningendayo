@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "input_length": 706,
+    "detected_count": 29,
+    "ai_tell_density": 0.324,
+    "severity_weighted_score": 80.5,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "ソリューションを構築することができます",
+      "start": 139,
+      "end": 158,
+      "reason": "可能の冗長形『することができる』系が本文で4回反復（149,240,275,530 付近）し A-5 の最頻出シグネチャが機械的に連発。ここは可能性を主張する必要がなく断定で足りる",
+      "suggested_fix": "リアルタイム性の高い仕組みを組める / 〜を構築できる"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "完結させることができるため",
+      "start": 240,
+      "end": 253,
+      "reason": "『することができる』4回反復の一つ。can の直訳的冗長形",
+      "suggested_fix": "完結できるため / デバイス上で処理を完結させられるため"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる（可能形の変奏）濫用",
+      "severity": "S1",
+      "text_span": "実現することが可能になります",
+      "start": 273,
+      "end": 287,
+      "reason": "『することが可能になります』は A-5 の二重冗長変奏（できる+可能になる）。前文の『することができる』と連鎖し可能表現が飽和",
+      "suggested_fix": "実現できます / なめらかな使い心地を実現します"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "向上させることができます",
+      "start": 530,
+      "end": 542,
+      "reason": "『することができる』系4回目。同一動作の可能形が段落を跨いで反復",
+      "suggested_fix": "向上させられます / 効率を高められます"
+    },
+    {
+      "id": "f005",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞（The X has/provides Y）",
+      "severity": "S1",
+      "text_span": "本技術は",
+      "start": 331,
+      "end": 335,
+      "reason": "『本技術は…アドバンテージを持っています』は The technology has an advantage の直訳型。主語が概念・述語が所有/提供の A-10 パターン。『本〜は』の指示的抽象主語が f006 と反復",
+      "suggested_fix": "エッジAIなら〜/ 主語を削り『大規模な基盤設備がいらず、プライバシー面でも優れる』と直接叙述"
+    },
+    {
+      "id": "f006",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞",
+      "severity": "S1",
+      "text_span": "本ソリューションは",
+      "start": 586,
+      "end": 595,
+      "reason": "『本ソリューションは…イノベーションをドライブする存在となる』。事象・技術を主語に据える A-10。f005 の『本技術は』と対で抽象主語公式が反復",
+      "suggested_fix": "主語を実際の行為者（企業・現場）へ戻すか削除。『製造・医療・モビリティなど幅広い分野で使われていく』"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "ファクターとなります",
+      "start": 480,
+      "end": 490,
+      "reason": "単に『だ』で足りる箇所を it becomes 的に状態化。文末に『重要なファクターとなります』。同型の『存在となる』(f008)と反復",
+      "suggested_fix": "重要な要素です / セキュリティ重視の場面ではとくに効きます"
+    },
+    {
+      "id": "f008",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となる 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "存在となることが期待されます",
+      "start": 635,
+      "end": 649,
+      "reason": "『ドライブする存在となることが期待されます』は状態化＋擬人化＋受動ヘッジの三重。A-6 状態叙述が f007 と反復",
+      "suggested_fix": "〜を推し進めていくでしょう / 幅広い分野で使われていくはずです"
+    },
+    {
+      "id": "f009",
+      "category": "A-7",
+      "category_label": "翻訳調: 〜を持っている / 有する",
+      "severity": "S2",
+      "text_span": "持っています",
+      "start": 386,
+      "end": 392,
+      "reason": "『アドバンテージを持っています』は have/possess の直訳。形容詞述語で足りる",
+      "suggested_fix": "プライバシーの面でも優れています"
+    },
+    {
+      "id": "f010",
+      "category": "D-5",
+      "category_label": "AI慣用句: 擬人化された抽象主語",
+      "severity": "S2",
+      "text_span": "イノベーションをドライブする存在となることが期待されます",
+      "start": 621,
+      "end": 649,
+      "reason": "技術（ソリューション）を主語に『イノベーションをドライブする存在となる』と人間の行為のように叙述。擬人化＋ハイプ。f008(A-6)・下記B-2と span が重なる複合クセ",
+      "suggested_fix": "革新を後押しする役割を担っていく / 各分野の刷新を支える"
+    },
+    {
+      "id": "f011",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "テクノロジー",
+      "start": 23,
+      "end": 29,
+      "reason": "『技術』で書けるカタカナ語。本文で2回（23,42）。文書全体でカタカナ語が20語超と極端に高密度で、B-2 が本入力の主クセ",
+      "suggested_fix": "技術"
+    },
+    {
+      "id": "f012",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "アプローチ",
+      "start": 115,
+      "end": 120,
+      "reason": "『やり方・方法』で足りるカタカナ語。カタカナ高密度クラスタの一つ",
+      "suggested_fix": "この方法を使えば / このやり方なら"
+    },
+    {
+      "id": "f013",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 139,
+      "end": 146,
+      "reason": "『仕組み・解決策』で書ける。本文で2回（139,587）。知的偽装のカタカナ",
+      "suggested_fix": "仕組み / 解決策"
+    },
+    {
+      "id": "f014",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "レイテンシ",
+      "start": 207,
+      "end": 212,
+      "reason": "『遅延』で書ける。技術文脈でも一般解説では日本語が自然",
+      "suggested_fix": "遅延"
+    },
+    {
+      "id": "f015",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "シームレスなユーザーエクスペリエンス",
+      "start": 254,
+      "end": 272,
+      "reason": "seamless user experience の丸ごとカタカナ化。1句に3語連結の最重度クラスタ。taxonomy B-2 例示そのもの",
+      "suggested_fix": "なめらかな使い心地 / 途切れのない操作感"
+    },
+    {
+      "id": "f016",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "メリット",
+      "start": 315,
+      "end": 319,
+      "reason": "『利点』で書ける。下記アドバンテージと同義カタカナが近接反復",
+      "suggested_fix": "利点"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "スケーラブルインフラストラクチャ",
+      "start": 340,
+      "end": 356,
+      "reason": "scalable infrastructure の丸ごとカタカナ化（16字連続）。日本語で完全に書ける最重度クラスタ",
+      "suggested_fix": "大規模で拡張しやすい設備 / 拡張できる基盤"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "アドバンテージ",
+      "start": 378,
+      "end": 385,
+      "reason": "advantage。直前の『メリット』と同義語のカタカナが二重に出る過剰さ",
+      "suggested_fix": "強み / 利点"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "センシティブなデータ",
+      "start": 393,
+      "end": 403,
+      "reason": "sensitive data。『機微なデータ』で書ける",
+      "suggested_fix": "機微なデータ / 扱いに注意のいるデータ"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "ハンドリング",
+      "start": 432,
+      "end": 438,
+      "reason": "handle の名詞カタカナ化。直後に『処理を』とあり重複気味。『処理できる』で足りる",
+      "suggested_fix": "処理 / さばく"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "ドメイン",
+      "start": 568,
+      "end": 572,
+      "reason": "domain。ここでは『分野・領域』の意味。直後に『さまざまな領域』と重複",
+      "suggested_fix": "分野"
+    },
+    {
+      "id": "f022",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "イノベーションをドライブする",
+      "start": 621,
+      "end": 635,
+      "reason": "innovation を drive する、の二語同時カタカナ化。『革新を推し進める』で書ける。f010(D-5)と span 重複する複合クセ",
+      "suggested_fix": "革新を推し進める / 刷新を後押しする"
+    },
+    {
+      "id": "f023",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "スケール",
+      "start": 663,
+      "end": 667,
+      "reason": "scale の動詞カタカナ化。『拡大する・広がる』で書ける",
+      "suggested_fix": "広がり / 普及し"
+    },
+    {
+      "id": "f024",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "ライフスタイル",
+      "start": 673,
+      "end": 680,
+      "reason": "lifestyle。『暮らし・生活』で書ける",
+      "suggested_fix": "暮らし / 生活"
+    },
+    {
+      "id": "f025",
+      "category": "B-2",
+      "category_label": "カタカナ語濫用",
+      "severity": "S2",
+      "text_span": "ディープにインテグレート",
+      "start": 681,
+      "end": 693,
+      "reason": "deeply integrate の副詞＋動詞まるごとカタカナ化。日本語話者はまず使わない最重度の露見箇所",
+      "suggested_fix": "深く組み込まれて / 生活に溶け込んで"
+    },
+    {
+      "id": "f026",
+      "category": "J-3",
+      "category_label": "視覚装飾: ダッシュ（——）の濫用",
+      "severity": "S2",
+      "text_span": "——",
+      "start": 10,
+      "end": 12,
+      "reason": "見出しの英語em-dash風付加説明。日本語ではほぼ使わず露見しやすい",
+      "suggested_fix": "全角読点『、』または『：』へ。『エッジAIとは何か、いま知っておきたい最新技術』"
+    },
+    {
+      "id": "f027",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "また、",
+      "start": 288,
+      "end": 291,
+      "reason": "段落・文頭接続詞が散在（一方222・また288・さらに543）。追加列挙を接続詞で機械的に連結。scattered な文書レベル所見のため代表 span を提示",
+      "suggested_fix": "70%程度を削除。『帯域の消費も抑えられます』のように内容で流れを示す"
+    },
+    {
+      "id": "f028",
+      "category": "G-1",
+      "category_label": "ヘッジング: 観測・受動型の文末",
+      "severity": "S3",
+      "text_span": "応用が期待されています",
+      "start": 574,
+      "end": 585,
+      "reason": "『期待されています／期待されます／ことでしょう』と受動＋推量の弱い文末が終盤に集中。単独では軽微だが他クセと重なり AI 印象を補強",
+      "suggested_fix": "応用が進んでいます / さまざまな分野で使われ始めています"
+    },
+    {
+      "id": "f029",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "指します。…実行するアーキテクチャのことを指します。",
+      "start": 0,
+      "end": 706,
+      "reason": "文書レベル所見。全11文の文末がほぼ『〜ます／〜です／〜ました』で一本調子（ています/指します/なります/できます/挙げられます/なります/できます/されています/されます/でしょう）。体言止め・『〜だ』的変奏がゼロ。start/end は文書全体を指す（単一 span では表現不可）",
+      "suggested_fix": "敬体を保ったまま体言止め・『〜でしょう』『〜のです』等で文末を変奏。文体そのものは変えない"
+    }
+  ],
+  "category_summary": { "A": 9, "B": 15, "C": 0, "D": 1, "E": 1, "F": 0, "G": 1, "H": 1, "I": 0, "J": 1 }
+}

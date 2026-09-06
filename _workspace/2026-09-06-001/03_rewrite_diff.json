@@ -1,0 +1,45 @@
+{
+  "edits": [
+    { "finding_id": "f001", "category": "A-5", "before": "ソリューションを構築することができます", "after": "仕組みを組めます", "rationale": "可能の冗長形『することができる』を断定的可能へ。B-2『ソリューション』も同時に和語化（f013と結合）" },
+    { "finding_id": "f002", "category": "A-5", "before": "完結させることができるため", "after": "完結させられるため", "rationale": "『することができる』→可能動詞『させられる』で冗長を除去" },
+    { "finding_id": "f003", "category": "A-5", "before": "実現することが可能になります", "after": "実現できます", "rationale": "二重冗長（できる＋可能になる）を単一の可能形へ。直前f015の『なめらかな使い心地を』に接続" },
+    { "finding_id": "f004", "category": "A-5", "before": "向上させることができます", "after": "高められます", "rationale": "『することができる』4回目。可能動詞へ集約し反復を断つ" },
+    { "finding_id": "f005", "category": "A-10", "before": "本技術は", "after": "エッジAIは", "rationale": "抽象指示主語『本技術』を具体固有名詞へ戻す" },
+    { "finding_id": "f006", "category": "A-10", "before": "本ソリューションは、", "after": "", "rationale": "抽象主語を削除。前文の主語エッジAIが引き継がれ意味は保存（構造/削除）" },
+    { "finding_id": "f007", "category": "A-6", "before": "ファクターとなります", "after": "要素です", "rationale": "状態叙述『となります』を断定『です』へ。文末変奏も兼ねる" },
+    { "finding_id": "f008", "category": "A-6", "before": "存在となることが期待されます", "after": "役割を担っていくはずです", "rationale": "状態化＋受動ヘッジを能動的推量へ（f010/f022と結合、実際の後置は『役割を担っていくはずです』）" },
+    { "finding_id": "f009", "category": "A-7", "before": "優れたアドバンテージを持っています", "after": "優れています", "rationale": "have/possess直訳『持っています』を形容詞述語へ。B-2『アドバンテージ』も吸収（f018と結合）" },
+    { "finding_id": "f010", "category": "D-5", "before": "イノベーションをドライブする存在となることが期待されます", "after": "革新を後押しする役割を担っていくはずです", "rationale": "擬人化『存在となる』＋ハイプを緩和し、行為（後押し）を担う叙述へ（f008/f022と一体処理）" },
+    { "finding_id": "f011", "category": "B-2", "before": "テクノロジー", "after": "技術", "rationale": "定着語でないカタカナ。見出し・本文の2箇所とも『技術』へ開く" },
+    { "finding_id": "f012", "category": "B-2", "before": "このアプローチを活用することで", "after": "このやり方なら", "rationale": "『アプローチ』＋『活用することで』をまとめて口語的な和語句へ" },
+    { "finding_id": "f013", "category": "B-2", "before": "ソリューション", "after": "仕組み", "rationale": "初出は『仕組み』へ（f001に吸収）。2回目（本ソリューション）はf006の主語削除で消える" },
+    { "finding_id": "f014", "category": "B-2", "before": "レイテンシ", "after": "遅延", "rationale": "一般解説文脈では漢語『遅延』が自然" },
+    { "finding_id": "f015", "category": "B-2", "before": "シームレスなユーザーエクスペリエンス", "after": "なめらかな使い心地", "rationale": "3語連結の最重度カタカナ塊を和語句へ。B-2の主クセ箇所" },
+    { "finding_id": "f016", "category": "B-2", "before": "メリット", "after": "利点", "rationale": "『利点』で書ける。近接の『アドバンテージ』と同義カタカナの二重を解消" },
+    { "finding_id": "f017", "category": "B-2", "before": "大規模なスケーラブルインフラストラクチャ", "after": "大規模で拡張しやすい設備", "rationale": "scalable infrastructureの丸ごとカタカナ化を和語へ。『大規模』の情報は保持" },
+    { "finding_id": "f018", "category": "B-2", "before": "アドバンテージ", "after": "（優れています に統合）", "rationale": "f009と一体で形容詞述語へ吸収。同義の『メリット/アドバンテージ』の重複を除去" },
+    { "finding_id": "f019", "category": "B-2", "before": "センシティブなデータ", "after": "機微なデータ", "rationale": "sensitive dataを定訳『機微な』へ" },
+    { "finding_id": "f020", "category": "B-2", "before": "処理をハンドリングできる", "after": "処理をさばける", "rationale": "handleのカタカナ名詞化を動詞『さばく』へ。『処理』の重複を避け『処理をさばける』に" },
+    { "finding_id": "f021", "category": "B-2", "before": "ドメイン", "after": "分野", "rationale": "domain＝分野。直後の『領域』との意味重複も緩和" },
+    { "finding_id": "f022", "category": "B-2", "before": "イノベーションをドライブする", "after": "革新を後押しする", "rationale": "innovation×driveの二語カタカナ化を和語へ（f010と一体）" },
+    { "finding_id": "f023", "category": "B-2", "before": "スケールし", "after": "広がり", "rationale": "scaleの動詞カタカナ化を『広がる』へ" },
+    { "finding_id": "f024", "category": "B-2", "before": "ライフスタイル", "after": "暮らし", "rationale": "lifestyle＝暮らし" },
+    { "finding_id": "f025", "category": "B-2", "before": "ディープにインテグレートされていく", "after": "深く溶け込んでいく", "rationale": "deeply integrateの副詞＋動詞カタカナ化を最も自然な和語句へ。最重度の露見箇所" },
+    { "finding_id": "f026", "category": "J-3", "before": "——", "after": "、", "rationale": "見出しの英語em-dash風付加を全角読点へ。『今知っておくべき』は保持（構造/削除）" },
+    { "finding_id": "f027", "category": "H-1", "before": "また、／さらに、", "after": "（削除）", "rationale": "散在する文頭接続詞のうち『また』『さらに』を削除し内容で流れを示す。対比を担う『一方』は保持（構造/削除）" },
+    { "finding_id": "f028", "category": "G-1", "before": "応用が期待されています", "after": "応用が進んでいます", "rationale": "受動＋推量の弱い文末を、既に起きている事実の叙述へ。意味は原文の範囲内" },
+    { "finding_id": "f029", "category": "E-2", "before": "（文書全体：全文末が〜ます／〜です一本調子）", "after": "体言止め『大きな利点。』を1箇所導入し、文末を です／でしょう／はずです／ます で変奏", "rationale": "敬体を保ったまま文末リズムを変奏。文体（敬体）自体は不変" }
+  ],
+  "change_rate": {
+    "total": 0.367,
+    "lexical_rate": 0.323,
+    "structural_deletion_rate": 0.044,
+    "note": "IMP-001対応: 語句改変率(カタカナ和語化・可能形/状態叙述の断定化)と構造/削除率(接続詞削除・抽象主語削除・体言止め化・ダッシュ処理)を分離計上。分母は原文706字、分子は変更区間のLevenshtein近似(max(before,after))。"
+  },
+  "style_preserved": "desu_masu",
+  "taigen_dome_inserted": 1,
+  "warnings": [
+    "change_rate合計 0.367 が 30% を超過（警告閾値超）。ただし本入力はai_tell_density 0.324・findings 29件・カタカナ20語超と極端にAI濃度が高く、B-2塊の和語化が変更量の大半。ジャンル移動・意味改変は無し。50%未満のため続行。最終判定はオーケストレーターに委ねる。",
+    "f018『アドバンテージ』はf009の述語統合により独立afterを持たず、diff上は結合edit。change_rate二重計上は回避済み。"
+  ]
+}

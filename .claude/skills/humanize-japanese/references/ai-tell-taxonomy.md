@@ -1,4 +1,4 @@
-# AI 日本語クセ分類体系 v1.0 (Japanese AI-Tell Taxonomy)
+# AI 日本語クセ分類体系 v1.1 (Japanese AI-Tell Taxonomy)
 
 LLM（ChatGPT・Claude・Gemini など）が生成した日本語の文章に繰り返し現れる「AIっぽさ（AIクセ）」を、10 大分類 × サブパターンに整理する。検出器・推敲役・レビュアーが共有する唯一の信頼源（SSOT）。各パターンに (1) 定義、(2) シグネチャ例文、(3) 深刻度（S1 決定的 / S2 強い / S3 弱い）、(4) 推敲処方を付す。
 
@@ -407,11 +407,16 @@ J. 視覚装飾の濫用
 ```
 
 * `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+  + **score_before/after の契約 [IMP-003]**: `severity_weighted_score` は naturalness-reviewer の `score_before` の唯一の基準とする（`score_before = meta.severity_weighted_score`）。`score_after` は推敲文を **同一の正規化式・同一の `input_length`** で採点し、両者を **同一のスコア関数上で** 比較する。検出器とレビュアーで採点関数が食い違えば改善率は無意味になるため、比較は同一関数上でのみ成立する。
+  + 補足: この正規化式は現時点で SSOT に確定記載がない（既知課題 IMP-002）。式が確定するまでは、検出器・naturalness-reviewer の双方で **同一式** を用いることを必須とする。
+* `ai_tell_density`: 検出 span の **union（重複排除後）文字数** / 全体文字数。同一箇所に複数 finding が重なる場合、重複区間は一度だけ数える（総文字数の単純和ではない） [IMP-005]。document-level / scattered な finding（リズム・構造・分布など特定 span に紐づかないもの）は density の計上から除外する。複合クセを可視化したい場合、finding は任意で `overlaps: [id, ...]` を持ち、重なる他 finding の id を列挙してよい。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
 
+* **v1.1** (2026-09-06): 分類定義・深刻度は変更せず、検出出力スキーマの契約 2 件を明文化（新カテゴリの追加なし）。実 run 2026-09-06-001 / 2026-09-06-002 の 2 回で再現・昇格。
+  + **IMP-003**（score_before/after のフィールド契約, hits:2runs）: `severity_weighted_score` を naturalness-reviewer の `score_before` の唯一基準と規定（`score_before = meta.severity_weighted_score`）。`score_after` は同一正規化式・同一 `input_length` で採点し、同一スコア関数上で比較することを必須化。正規化式が SSOT 未確定（IMP-002）である旨と、確定まで検出器・レビュアーで同一式を用いる必須要件を注記。
+  + **IMP-005**（span 重複時の density 定義, hits:2runs）: `ai_tell_density` を「検出 span の総文字数 / 全体文字数」から「検出 span の union（重複排除後）文字数 / 全体文字数」へ改訂。document-level / scattered finding を density 計上から除外。finding に任意フィールド `overlaps: [id]` を許可し複合クセを可視化可能とした。
 * **v1.0** (2026-05): 日本語 AIクセ分類体系の初版。10 大分類（A〜J）× 40+ サブパターンを定義。
   + 日本語固有として重点配置: `A-6`（〜となっている）, `B-2`（カタカナ語濫用）, `E-2`（です・ます単調）, `I-4`（〜が求められる）, `J-3`（ダッシュ濫用）, D-1 の「いかがでしたでしょうか」。
 * 拡張原則: 実戦入力で再現 2 回以上 + 日本語の人間の書き手がほぼ使わないパターンのみサブ項目として追加。新パターンは末尾の候補欄に実例 2 件以上を添えて提案する。
