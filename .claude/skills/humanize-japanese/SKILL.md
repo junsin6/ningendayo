@@ -73,11 +73,14 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 条件 | 判定 | アクション |
 | --- | --- | --- |
 | 等級 A/B かつ fidelity 毀損なし | `accept` | `final.md` + `summary.md` 出力 |
+| 変更率超過だが fidelity=pass・自然度 A/B・過推敲シグナル 0（超過主因が B-2 和語化 or 純削除） | `override accept` | `final.md` + `summary.md`。summary に override 理由と change_rate の 2 軸内訳を明記（IMP-001 既知欠陥） |
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
+
+> **override accept（IMP-001）**: 合計 change_rate が 30%/50% を超えても、超過の主因が (a) B-2 カタカナの正当な和語化、(b) 敬語・常套句・装飾の純削除（del≫ins の純減型）であり、`fidelity=pass` かつ自然度 A/B かつ過推敲シグナル 0 なら受理する。change_rate は「語句改変率／構造・削除率」を分離計上し（`references/rewriting-playbook.md §変更率の数え方`）、語句改変率を過推敲の主指標とする。
 
 ## 深刻度と品質等級
 
