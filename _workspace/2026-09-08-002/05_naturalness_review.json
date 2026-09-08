@@ -1,0 +1,46 @@
+{
+  "run_id": "2026-09-08-002",
+  "genre": "public_notice",
+  "style_measured": "desu_masu",
+  "detector_rerun": {
+    "method": "manual_fallback",
+    "reason": "ai-tell-detector サブエージェントを起動する Agent/Task ツールが本セッションに露出しておらず（ListAgents は既存の並走サブエージェントのみ・SendMessage は新規 detector を spawn 不可）、IMP-006 の自動再走査を実行できなかった。よって検出器の判定基準（references/ai-tell-taxonomy.md）とスコア式に厳密準拠した手動再計測へ切替。",
+    "scoring_formula": "severity_weighted_score = (S1*5 + S2*2 + S3*0.5) * 1000 / input_length",
+    "score_before_verification": "raw=19 (S2*9=18 + S3*2=1) *1000/597 = 31.83 ≈ 31.8 (02_detection.json meta と一致・式を検証済)",
+    "rewrite_length": 559
+  },
+  "score_before": 31.8,
+  "score_after": 0.9,
+  "improvement_rate": 0.972,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 1
+  },
+  "residual_detail": [
+    {
+      "category": "A-9",
+      "severity": "S3",
+      "span": "向上を図るため",
+      "status": "intentionally_preserved",
+      "note": "官庁定型の officialese として推敲役が意図的に保持。文書内 ため は2回（向上を図るため／停止されるため）で反復除去閾値(3回)未満。再走査上は latent S3 として計上するが、公的文書のトーン維持を優先した正当な非編集。raw への寄与 0.5。"
+    }
+  ],
+  "resolved_findings": {
+    "count": 10,
+    "ids": ["f001", "f002", "f003", "f004", "f005", "f006", "f007", "f008", "f010", "f011"],
+    "note": "推敲前 S2 9件（A-1×1 / A-6×3 / I-4×2 / A-8×2 / E-2×1）＋ H-1 S3×1 をすべて解消。E-2 は f003→です／f004・f005→ください／f006→いたします 等の分散編集で文末ございますを 5回→(文末)1回へ低減し一本調子を解消。される受動は 7→5 に低下し、残る5件はいずれも公的文書で自然な受動（一時停止される／停止される／変更される／希望される／登録された）で推敲前も未flag。"
+  },
+  "over_polish_signals": [],
+  "over_polish_checks": {
+    "unnatural_colloquialization": false,
+    "style_break_keitai_jotai_mix": false,
+    "meaning_thinning_or_choppy": false,
+    "change_rate_over_30pct": false,
+    "tone_over_lightening_officialese_collapse": false,
+    "tone_note": "当該期間中／賜りますよう／何卒／お願い申し上げます／いたしました 等の硬い敬体骨格を保持。ご留意ください・お進めください・ご注意ください の直接依頼は公的お知らせの標準レジスターであり官報調を崩していない。トーン過剰軽量化なし。変更率 0.20（<0.30）。"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1 0件・S2 0件・改善率 97.2%（>70%）で A 等級。残存は意図保持の A-9 S3 1件のみで実害なし。過推敲シグナル 0。文体（硬い敬体）維持・意味不変・変更率 0.20 で鉄則すべて充足。2次推敲不要。軽微な観察点として文末『お願い申し上げます』が結び2文連続（推敲前から存在・未編集）で残るが E-2 閾値外・減点対象外。"
+}
