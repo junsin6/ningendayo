@@ -1,0 +1,114 @@
+{
+  "run_id": "2026-09-08-002",
+  "genre": "public_notice",
+  "style_preserved": "desu_masu",
+  "tone": "formal_keigo",
+  "edits": [
+    {
+      "finding_id": "f001",
+      "category": "A-1",
+      "change_type": "phrase_replace",
+      "before": "下記の期間においてシステムが",
+      "after": "下記の期間中にシステムが",
+      "rationale": "英語 in/at 的な抽象枠づけ「において」を「中に」へ。公的文書でも自然な範囲で翻訳調の硬さのみ除去。受動「一時停止されます」は未flag・自然のため保持。"
+    },
+    {
+      "finding_id": "f002",
+      "category": "A-6",
+      "change_type": "phrase_replace",
+      "before": "電子申請システムの更新が実施されることとなりました",
+      "after": "電子申請システムの更新を実施することといたしました",
+      "rationale": "受動+となる二重過形式化を解消。となる系3回反復クラスタの1件目。能動化し「いたしました」で公的敬体の格を維持しつつ状態叙述を意思決定叙述へ。連鎖分散のため f003/f004 とは別形に。"
+    },
+    {
+      "finding_id": "f003",
+      "category": "A-6",
+      "change_type": "phrase_replace",
+      "before": "実施される予定となっております",
+      "after": "実施する予定です",
+      "rationale": "となる系反復の中核。状態化「となっております」を単純断定「です」へ。受動「実施される」も能動化し される密度を低減。日付・時刻は不変。"
+    },
+    {
+      "finding_id": "f004",
+      "category": "A-6",
+      "change_type": "phrase_replace",
+      "before": "手続きを進めていただくことが必要となります",
+      "after": "手続きをお進めください",
+      "rationale": "となる系反復＋I-4必要系の重畳。行為要請を状態叙述に迂回した形を、直接の依頼「お進めください」へ。E-2 文末変奏（ください）にも寄与。連鎖分散で f002/f003 と別形。"
+    },
+    {
+      "finding_id": "f005",
+      "category": "I-4",
+      "change_type": "phrase_replace",
+      "before": "あらかじめご留意いただく必要がございます",
+      "after": "あらかじめご留意ください",
+      "rationale": "行為者を状態化して回避する要請常套「必要がございます」を直接依頼へ。必要系3回反復の1件目を解消。文末変奏にも寄与。"
+    },
+    {
+      "finding_id": "f006",
+      "category": "I-4",
+      "change_type": "phrase_replace",
+      "before": "新たなパスワードの再設定を行っていただく必要がございます",
+      "after": "新たなパスワードの再設定をお願いいたします",
+      "rationale": "必要系反復の2件目を解消。冗長な「再設定を行う」→「再設定」も同時に整理し依頼形「お願いいたします」へ。文末変奏に寄与。"
+    },
+    {
+      "finding_id": "f007",
+      "category": "A-8",
+      "change_type": "phrase_replace",
+      "before": "送信される案内に従って",
+      "after": "お送りする案内に従って",
+      "rationale": "受動修飾「送信される案内」を能動謙譲「お送りする案内」へ。される密度を低減。先行の「登録されたメールアドレス」は日本語として自然な受動連体で未flag相当のため保持し、過推敲を回避。"
+    },
+    {
+      "finding_id": "f008",
+      "category": "A-8",
+      "change_type": "phrase_replace",
+      "before": "手続きが完了されない場合",
+      "after": "手続きが完了しない場合",
+      "rationale": "「完了」への不自然な尊敬受動を通常の能動へ。文法的違和感が強いAI露見点を除去。"
+    },
+    {
+      "finding_id": "f011",
+      "category": "H-1",
+      "change_type": "deletion",
+      "before": "。なお、作業の進捗状況によっては",
+      "after": "。作業の進捗状況によっては",
+      "rationale": "つきましては→なお→また の段落頭接続3連を半減。追加が自明な箇所の「なお」を削除し機械的均等配置を緩和。つきましては・また は文書骨格として保持。"
+    }
+  ],
+  "intentional_non_edits": [
+    {
+      "finding_id": "f009",
+      "category": "A-9",
+      "severity": "S3",
+      "span": "利便性の向上を図るため",
+      "decision": "preserve",
+      "rationale": "官庁定型として正当な officialese。文書内 ため は2回でA-9の反復除去閾値（3回）未満。S3の弱シグナルであり、公的文書のトーン維持を優先。過推敲回避のため未編集。"
+    },
+    {
+      "finding_id": "f010",
+      "category": "E-2",
+      "severity": "S2",
+      "span": "文末ございます反復（文書レベル）",
+      "decision": "resolved_by_distribution",
+      "rationale": "単一spanの置換ではなく、f003→です／f004→ください／f005→ください／f006→いたします／f008→しない場合 の分散編集で文末を変奏。ございますは5回→3回（ありがとうございます・場合がございます・ことがございますのみ）に減少し一本調子を解消。挨拶の『ありがとうございます』は定型のため保持。"
+    }
+  ],
+  "preserved_invariants": [
+    "令和8年9月20日午前0時",
+    "同月22日午前6時",
+    "電子申請システム",
+    "市",
+    "オンライン申請"
+  ],
+  "metrics": {
+    "original_length": 597,
+    "edited_spans": 9,
+    "char_churn_estimate": 122,
+    "change_rate": 0.20
+  },
+  "change_rate": 0.20,
+  "style_preserved": "desu_masu",
+  "warnings": []
+}

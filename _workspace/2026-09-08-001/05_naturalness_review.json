@@ -1,0 +1,68 @@
+{
+  "run_id": "2026-09-08-001",
+  "genre": "技術解説記事",
+  "style": "desu_masu",
+  "score_before": 84.6,
+  "score_after": 9.1,
+  "improvement_rate": 0.892,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 3
+  },
+  "residual_detail": [
+    {
+      "category": "B-2",
+      "severity": "S3",
+      "note": "openable カタカナ語が一部残存（アプローチ×2, ポイント×2）。いずれも 3 回反復の S2 閾値未満。ナレッジ／ナレッジベースは検出時に対象外（タイトル語）として扱われた基準を踏襲し残置。他のカタカナ（リトリーバー・ジェネレーター・ベクトル・エンベディング・クエリ・コンテキスト・ハルシネーション等）は B-2 例外の業界標準語のためカウント外。"
+    },
+    {
+      "category": "E-1",
+      "severity": "S3",
+      "note": "体言止め短文『適切なアーキテクチャの設計とチューニング。』が 1 つ挿入され文長リズムは改善。ただし短文は依然 1 個のみで、他文は 30〜80 字帯に集中。均一性は緩和だが完全解消ではない。"
+    },
+    {
+      "category": "E-2",
+      "severity": "S3",
+      "note": "文末は『でした』『体言止め』『はずです』『連用中止(され/し)』で変奏され E-2 の S2 閾値（全文一本調子）は解消。ただし『です』が 3 回（仕組みです／ジェネレーターです／アプローチです）残り、なお敬体寄り。弱い残響として S3。"
+    }
+  ],
+  "residual_verification": {
+    "method": "manual_rescan",
+    "detector_subagent_invoked": false,
+    "detector_invocation_note": "IMP-006 は ai-tell-detector サブエージェントの実呼び出しを要求するが、本レビュアーの実行環境に subagent 起動ツール（Task/Agent 相当）が存在せず（利用可能なのは TaskStop・SendMessage・worktree 系のみ）、かつ稼働中の ai-tell-detector インスタンスも無かったため呼び出し不能。タスク定義のフォールバック条項『呼び出せない場合はその旨を明記し手動計測に切替』に従い、ai-tell-taxonomy.md v1.0 と ai-tell-detector.md の同一基準・同一スコア式（S1×5+S2×2+S3×0.5、100*raw/(raw+L*0.024)）で手動再走査した。",
+    "s1_findings_before": 13,
+    "s1_findings_resolved": 13,
+    "s2_findings_before": 20,
+    "s2_findings_resolved": 20,
+    "resolution_rate": 1.0,
+    "input_length_after": 624
+  },
+  "over_polish_signals": [
+    {
+      "type": "change_rate_over_30pct",
+      "value": 0.331,
+      "threshold": 0.30,
+      "verdict": "warning_only_not_damaging",
+      "note": "変更率 33.1% は 30% 警告閾値を超過（50% 強制中断閾値は未満）。ただし削除 219 字・挿入 45 字と削除主導であり、AI 冗長表現（〜することができる／によって／という／ソリューションを提供 等）の除去が実体。ジャンル移動・敬体崩れ・意味毀損は無く、成果文は自然。不自然化を伴う『過推敲』ではないため減点対象の damaging シグナルには数えない（報告義務のため記録）。"
+    },
+    {
+      "type": "meaning_narrowing",
+      "finding_id": "f012",
+      "verdict": "minor_refer_to_fidelity_auditor",
+      "note": "『ソリューションを提供します』→『解決します』は『解決策を提供する』≒『解決する』の含意差が僅少。自然度上の欠陥ではなく意味等価性の判断事項。content-fidelity-auditor の確認に委譲。naturalness の減点はしない。"
+    }
+  ],
+  "over_polish_signal_count_damaging": 0,
+  "style_integrity": {
+    "keitai_jotai_mixing": false,
+    "taigendome_overuse": false,
+    "taigendome_count": 1,
+    "choppiness": "軽微（『RAGは、この課題を、』の連続読点は許容範囲）",
+    "note": "全文が敬体を維持。体言止め 1 箇所は E-2 処方が明示的に許容する同一文体内変奏で、文体崩れではない。"
+  },
+  "grade": "A",
+  "grade_rationale": "S1 残存 0 件、S2 残存 0 件（≤2）、改善率 89.2%（≥70%）。damaging な過推敲シグナル 0。全条件で A を満たす。change_rate 警告は削除主導で自然度毀損を伴わないため C 降格要因にしない。",
+  "recommendation": "accept",
+  "notes": "【重要な運用上の注意】(1) 本タスク prompt は score_before を『現状 46.0』と記載したが、02_detection.json の meta.severity_weighted_score は 84.6 であり不一致。検出器スキーマ準拠の実ファイル値 84.6 を採用した（S1=13,S2=20,S3=0 → raw=105, L=799, 100*105/(105+799*0.024)=84.6 と _scoring_note と整合）。なお score_before に 46.0 を用いても改善率 80.2% で grade A は不変。(2) ai-tell-detector の実呼び出しは環境制約で不能。手動再走査で代替（residual_verification 参照）。この検出器再実行の不履行は IMP-006 逸脱として要追認。"
+}

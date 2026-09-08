@@ -1,0 +1,277 @@
+{
+  "run_id": "2026-09-08-001",
+  "style_preserved": "desu_masu",
+  "change_rate": 0.331,
+  "change_rate_basis": "difflib char-level (ins+del)/orig; orig=798, inserted=45, deleted=219",
+  "edits": [
+    {
+      "finding_id": "f001",
+      "category": "B-1",
+      "change_type": "delete",
+      "before": "RAG（Retrieval-Augmented Generation）というアプローチ",
+      "after": "RAGというアプローチ",
+      "rationale": "タイトルで既に「検索拡張生成」と定義済み。英語綴りの併記は二重定義のため削除（初出定義は保持）"
+    },
+    {
+      "finding_id": "f002",
+      "category": "A-2",
+      "change_type": "replace",
+      "before": "実装のポイントについて",
+      "after": "実装のポイントを",
+      "rationale": "主題提示の「について」を直接目的語「を」へ"
+    },
+    {
+      "finding_id": "f003",
+      "category": "B-2",
+      "change_type": "replace",
+      "before": "アウトプット",
+      "after": "出力",
+      "rationale": "日本語で書けるカタカナ語を開く"
+    },
+    {
+      "finding_id": "f004",
+      "category": "A-5",
+      "change_type": "replace",
+      "before": "生成することができる",
+      "after": "生成できる",
+      "rationale": "可能の冗長形を短縮"
+    },
+    {
+      "finding_id": "f005",
+      "category": "B-2",
+      "change_type": "replace",
+      "before": "インフォメーション",
+      "after": "情報",
+      "rationale": "不要なカタカナ化を開く"
+    },
+    {
+      "finding_id": "f006",
+      "category": "B-2",
+      "change_type": "replace",
+      "before": "固有のナレッジ",
+      "after": "固有の知識",
+      "rationale": "knowledge の不要カタカナ化を開く（後続の『企業が保有するナレッジ』は finding 対象外のため保持）"
+    },
+    {
+      "finding_id": "f007",
+      "category": "A-13",
+      "change_type": "replace",
+      "before": "対応することが難しいという課題",
+      "after": "対応しづらいのが課題",
+      "rationale": "「という」過剰連結を除去し叙述へ。もう一方のA-13(f010)は削除で処理し、均一化を回避（連鎖分散）"
+    },
+    {
+      "finding_id": "f008",
+      "category": "A-7",
+      "change_type": "replace",
+      "before": "課題を持っていました",
+      "after": "課題でした",
+      "rationale": "have 直訳の所有叙述を断定へ（f007と同一文で協調修正）"
+    },
+    {
+      "finding_id": "f009",
+      "category": "A-2",
+      "change_type": "replace",
+      "before": "この課題に対して",
+      "after": "この課題を",
+      "rationale": "「に対して」の主題提示を直接目的語へ"
+    },
+    {
+      "finding_id": "f010",
+      "category": "A-13",
+      "change_type": "replace",
+      "before": "リトリーブというプロセス",
+      "after": "検索",
+      "rationale": "「という」連結を除去、リトリーブ/プロセスを開いて『検索』へ統合（f011/f012と同一文で協調）"
+    },
+    {
+      "finding_id": "f011",
+      "category": "A-3",
+      "change_type": "replace",
+      "before": "を通じて",
+      "after": "で",
+      "rationale": "through 直訳の手段表現を格助詞『で』へ。『によって』への置換は A-8 反復を増やすため回避"
+    },
+    {
+      "finding_id": "f012",
+      "category": "A-10",
+      "change_type": "replace",
+      "before": "ソリューションを提供します",
+      "after": "解決します",
+      "rationale": "抽象主語RAG+万能動詞『提供』とカタカナ『ソリューション』を、具体動詞『解決』へ。※意味等価性は要監査（『解決策を提供』≒『解決する』）"
+    },
+    {
+      "finding_id": "f013",
+      "category": "D-3",
+      "change_type": "replace",
+      "before": "大きく二つのコンポーネントに分けられます",
+      "after": "二つのコンポーネントからなります",
+      "rationale": "列挙導入の定型『大きく〜に分けられる』を除去。名称提示は後続文に残すため最小修正（検出提案の全面前倒しは後続文の重複を招くため不採用）"
+    },
+    {
+      "finding_id": "f014",
+      "category": "A-4",
+      "change_type": "replace",
+      "before": "コンテキストをもとに",
+      "after": "コンテキストから",
+      "rationale": "based on 直訳を格助詞へ"
+    },
+    {
+      "finding_id": "f015",
+      "category": "B-2",
+      "change_type": "replace",
+      "before": "シームレスに",
+      "after": "滑らかに",
+      "rationale": "seamless を日本語へ開く"
+    },
+    {
+      "finding_id": "f016",
+      "category": "A-8",
+      "change_type": "replace",
+      "before": "連携することによって",
+      "after": "連携し",
+      "rationale": "『ことによって』を連用中止へ。文中の『によって』反復を1つ削減"
+    },
+    {
+      "finding_id": "f017",
+      "category": "A-5",
+      "change_type": "replace",
+      "before": "抑制することができます",
+      "after": "抑制できます",
+      "rationale": "可能の冗長形を短縮"
+    },
+    {
+      "finding_id": "f018",
+      "category": "A-1",
+      "change_type": "replace",
+      "before": "実装においては",
+      "after": "実装では",
+      "rationale": "『においては』の抽象枠づけを『では』へ"
+    },
+    {
+      "finding_id": "f019",
+      "category": "A-8",
+      "change_type": "replace",
+      "before": "エンベディングモデルによって",
+      "after": "エンベディングモデルで",
+      "rationale": "受動態直訳の『によって』を手段の『で』へ"
+    },
+    {
+      "finding_id": "f020",
+      "category": "I-3",
+      "change_type": "replace",
+      "before": "ベクトル化する必要があります",
+      "after": "ベクトル化します",
+      "rationale": "need to 直訳の『する必要がある』を手順叙述の断定へ"
+    },
+    {
+      "finding_id": "f021",
+      "category": "C-1",
+      "change_type": "delete",
+      "before": "次に、（…）そして、",
+      "after": "（削除・叙述へ融解）",
+      "rationale": "機械的並列『まず・次に・そして』のうち『次に』『そして』を削除し文を融合。『まず』は1つのみ残し順序感を保持"
+    },
+    {
+      "finding_id": "f022",
+      "category": "E-2",
+      "change_type": "replace",
+      "before": "格納されます。そして、",
+      "after": "格納され、",
+      "rationale": "文末ます連続を連用中止で変奏し、次文と融合（E-2）。段落全体の文末を『します/格納され/取得されます』に分散"
+    },
+    {
+      "finding_id": "f023",
+      "category": "A-8",
+      "change_type": "replace",
+      "before": "類似度検索によって",
+      "after": "類似度検索で",
+      "rationale": "受動態直訳の『によって』を『で』へ"
+    },
+    {
+      "finding_id": "f024",
+      "category": "A-6",
+      "change_type": "replace",
+      "before": "取得されることになります",
+      "after": "取得されます",
+      "rationale": "『〜ことになります』の状態化を素直な受動へ。形式名詞『こと』も除去"
+    },
+    {
+      "finding_id": "f025",
+      "category": "B-2",
+      "change_type": "replace",
+      "before": "レバレッジ",
+      "after": "活か（す）",
+      "rationale": "leverage を『活かす』へ（f026と統合し『活かせる』）"
+    },
+    {
+      "finding_id": "f026",
+      "category": "A-5",
+      "change_type": "replace",
+      "before": "することを可能にする",
+      "after": "せる",
+      "rationale": "可能・使役の冗長形を潜在形へ短縮。f025と統合し『レバレッジすることを可能にする』→『活かせる』"
+    },
+    {
+      "finding_id": "f027",
+      "category": "F-1",
+      "change_type": "delete",
+      "before": "非常に",
+      "after": "",
+      "rationale": "程度副詞を削除（誇張の除去）"
+    },
+    {
+      "finding_id": "f028",
+      "category": "B-2",
+      "change_type": "replace",
+      "before": "パワフルな",
+      "after": "強力な",
+      "rationale": "powerful を日本語へ開く"
+    },
+    {
+      "finding_id": "f029",
+      "category": "D-1",
+      "change_type": "replace",
+      "before": "であると言えるでしょう",
+      "after": "です",
+      "rationale": "結びの常套句を断定へ。敬体を維持（『だ』ではなく『です』）"
+    },
+    {
+      "finding_id": "f030",
+      "category": "E-1",
+      "change_type": "insert",
+      "before": "適切なアーキテクチャの設計とチューニングを行うことによって、",
+      "after": "適切なアーキテクチャの設計とチューニング。これを行えば、",
+      "rationale": "体言止めの短文を挿入して文長リズムを変奏（新情報は追加せず既存要素を分割）。f031と協調"
+    },
+    {
+      "finding_id": "f031",
+      "category": "A-8",
+      "change_type": "replace",
+      "before": "行うことによって",
+      "after": "行えば",
+      "rationale": "『ことによって』を条件節『行えば』へ（f030の分割内で実施）"
+    },
+    {
+      "finding_id": "f032",
+      "category": "A-10",
+      "change_type": "replace",
+      "before": "価値をもたらす",
+      "after": "価値を生む",
+      "rationale": "抽象主語+万能動詞『もたらす』を具体動詞『生む』へ（f033と統合し『生める』）"
+    },
+    {
+      "finding_id": "f033",
+      "category": "A-5",
+      "change_type": "replace",
+      "before": "もたらすことができるはずです",
+      "after": "生めるはずです",
+      "rationale": "可能の冗長形を潜在形へ短縮。f032と同一spanを協調修正（『もたらすことができる』→『生める』）"
+    }
+  ],
+  "warnings": [
+    "change_rate 0.331 が 30% 警告閾値を超過（50% 未満のため続行）。ただし削除219字・挿入45字と削除主導であり、IMP-001（削除主導での機械的膨張は許容）に該当。ジャンル移動・意味毀損なし。",
+    "f012『ソリューションを提供します』→『解決します』は A-10+B-2 の統合修正だが『解決策を提供する』≒『解決する』の含意差がわずかにある。content-fidelity-auditor による等価性確認を推奨。",
+    "f013 は検出提案（リトリーバー/ジェネレーターを前倒し命名）を採らず最小修正に留めた。後続文の名称提示との重複回避が理由。"
+  ]
+}
