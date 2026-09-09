@@ -45,14 +45,16 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
 
 1. **文体判定**: 文末を見て敬体／常体／混在を `meta.style` に記録。
 2. **文単位スキャン**: A・B・D・F・G・H・I の各サブパターンを正規表現＋文脈で検出。`start`/`end` は文字インデックス。
-3. **文書レベルスキャン**:
+3. **文書レベルスキャン**（`span_type:"document"` + `scope:"document"`、`start=0/end=0` を locator にし density から除外。IMP-004）:
    * E（リズム）: 文長の標準偏差、文末の反復率を計算。
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
+   * 分散反復（絵文字・文末単調など単一区間で表せないもの）は `span_type:"scattered"` とし `occurrences:[[s,e],...]` に各位置を列挙する。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（SSOT `ai-tell-taxonomy.md §検出出力スキーマ` に準拠。式は検出器間で必ず一致させる）:
+   * `weighted_sum` = S1×5 + S2×2 + S3×0.5（文書レベル finding も算入）。
+   * `severity_weighted_score` = `min(100, round(weighted_sum / input_length × 1000, 1))` = 1000 文字あたりの加重 AIクセ量。raw 加重和をそのまま入れない（長さ正規化必須。IMP-002）。
+   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。`scope:"document"` の finding は分子から除外（IMP-004）。
 
 ## 重要な原則
 

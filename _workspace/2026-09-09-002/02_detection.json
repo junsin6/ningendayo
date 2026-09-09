@@ -1,0 +1,166 @@
+{
+  "meta": {
+    "input_length": 559,
+    "detected_count": 13,
+    "ai_tell_density": 0.231,
+    "severity_weighted_score": 33.1,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における 濫用",
+      "severity": "S3",
+      "text_span": "における",
+      "start": 60,
+      "end": 64,
+      "reason": "「における」1回。公的文書では慣用的に許容されるが、翻訳調の枠づけ表現。単発のため過検出せず S3。",
+      "suggested_fix": "市議会の審議で"
+    },
+    {
+      "id": "f002",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "審議によって",
+      "start": 64,
+      "end": 70,
+      "reason": "行為者を『によって』で後置する by-passive。本文で『によって』が2回（審議によって/所定の様式によって）。",
+      "suggested_fix": "市議会の審議を経て"
+    },
+    {
+      "id": "f003",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となる 状態叙述の濫用",
+      "severity": "S2",
+      "text_span": "こととなりました",
+      "start": 93,
+      "end": 101,
+      "reason": "決定を『されることとなりました』と受動+状態化。公用文の慣用でもあるため S1→S2 に緩和。『となる』系は本文で2回。",
+      "suggested_fix": "改定されます"
+    },
+    {
+      "id": "f004",
+      "category": "A-8",
+      "category_label": "翻訳調: 受動+硬い断定『ものであります』",
+      "severity": "S3",
+      "text_span": "実施されるものであります",
+      "start": 147,
+      "end": 159,
+      "reason": "受動『実施される』+古風な断定『ものであります』。公用文体として一部許容だが硬さが過剰。",
+      "suggested_fix": "実施します"
+    },
+    {
+      "id": "f005",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S2",
+      "text_span": "行われる予定となっております",
+      "start": 208,
+      "end": 222,
+      "reason": "受動『行われる』+『予定となっております』の二重状態叙述。『となる』系2回目。公用文慣用のため S2。",
+      "suggested_fix": "段階的に引き上げます"
+    },
+    {
+      "id": "f006",
+      "category": "I-3",
+      "category_label": "形式表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご確認いただく必要がございます",
+      "start": 259,
+      "end": 274,
+      "reason": "『必要がある/ございます』が本文で2回。要請表現の密度が高い。",
+      "suggested_fix": "料金表をご確認ください"
+    },
+    {
+      "id": "f007",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "所定の様式によって",
+      "start": 333,
+      "end": 342,
+      "reason": "手段を『によって』で処理する2回目の by-passive。『によって』計2回。",
+      "suggested_fix": "所定の様式で"
+    },
+    {
+      "id": "f008",
+      "category": "I-3",
+      "category_label": "形式表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "申請を行っていただく必要があります",
+      "start": 342,
+      "end": 359,
+      "reason": "『必要がある』2回目。かつ『申請を行う』は動詞の名詞化。要請表現が連続。",
+      "suggested_fix": "所定の様式で申請してください"
+    },
+    {
+      "id": "f009",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために 目的節",
+      "severity": "S3",
+      "text_span": "対応するために",
+      "start": 140,
+      "end": 147,
+      "reason": "『ために』目的節。本文に『ため』系が複数（対応するために/軽減のための/受けるためには）。単独では軽微で S3。",
+      "suggested_fix": "対応するため"
+    },
+    {
+      "id": "f010",
+      "category": "I-4",
+      "category_label": "形式表現: 〜が求められる(行為者曖昧)★日本語固有",
+      "severity": "S2",
+      "text_span": "申請していただくことが求められます",
+      "start": 473,
+      "end": 490,
+      "reason": "行為者を曖昧にした要請『求められます』。日本語ビジネス/公文 AI 文の最頻出常套。直前で受け手は明示されているが受動的要請形が冗長。",
+      "suggested_fix": "必要書類を添えて申請してください"
+    },
+    {
+      "id": "f011",
+      "category": "A-6",
+      "category_label": "翻訳調: 受動+状態叙述『設けられております』",
+      "severity": "S3",
+      "text_span": "設けられております",
+      "start": 441,
+      "end": 450,
+      "reason": "受動『設けられる』+状態『ております』。公用文で慣用的だが『〜ておる』系状態叙述が全体で反復。",
+      "suggested_fix": "設けています"
+    },
+    {
+      "id": "f012",
+      "category": "I-1",
+      "category_label": "形式表現: 〜こと 濫用",
+      "severity": "S3",
+      "text_span": "増加することのないよう",
+      "start": 187,
+      "end": 198,
+      "reason": "形式名詞『こと』が本文で3回以上（改定されること/増加すること/申請していただくこと）。密度で S3。",
+      "suggested_fix": "急激に増えないよう"
+    },
+    {
+      "id": "f013",
+      "category": "E-1",
+      "category_label": "リズム: 文長の均一性",
+      "severity": "S2",
+      "text_span": "(文書全体)",
+      "start": 0,
+      "end": 0,
+      "reason": "全11文が概ね30〜100字の長文で構成され短文がゼロ。文長の標準偏差が低く一本調子。段落も全て1〜2文で均一(E-3傾向)。",
+      "suggested_fix": "『料金が上がります。』のような短文を段落ごとに1つ挟み緩急をつける"
+    }
+  ],
+  "category_summary": {
+    "A": 8,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 4,
+    "J": 0
+  }
+}

@@ -1,4 +1,4 @@
-# AI 日本語クセ分類体系 v1.0 (Japanese AI-Tell Taxonomy)
+# AI 日本語クセ分類体系 v1.1 (Japanese AI-Tell Taxonomy)
 
 LLM（ChatGPT・Claude・Gemini など）が生成した日本語の文章に繰り返し現れる「AIっぽさ（AIクセ）」を、10 大分類 × サブパターンに整理する。検出器・推敲役・レビュアーが共有する唯一の信頼源（SSOT）。各パターンに (1) 定義、(2) シグネチャ例文、(3) 深刻度（S1 決定的 / S2 強い / S3 弱い）、(4) 推敲処方を付す。
 
@@ -392,11 +392,27 @@ J. 視覚装飾の濫用
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "span_type": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
-      "suggested_fix": "課題だ"
+      "suggested_fix": "課題だ",
+      "merged_findings": []
+    },
+    {
+      "id": "f012",
+      "category": "E-1",
+      "category_label": "リズム: 文長の均一",
+      "severity": "S2",
+      "span_type": "document",
+      "scope": "document",
+      "text_span": "(文書全体: 全11文が長文中心で短文ゼロ)",
+      "start": 0,
+      "end": 0,
+      "occurrences": [],
+      "reason": "文長標準偏差が小さく短文が挿入されていない",
+      "suggested_fix": "既存文の分割で短文を作りレンジを広げる"
     }
   ],
   "category_summary": {
@@ -406,14 +422,31 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+**span 重複時のカウント規約（IMP-005 / applied 2026-09-09）**: 1 つの span が複数分類に該当するとき（例「申請していただくことが求められます」= I-4 + I-1、「行われる予定となっております」= A-8 + A-6）は、**1 span = 主分類 1 finding** を基本とし、追加該当分類を `merged_findings: ["I-1", ...]` に列挙する。
+* `category_summary` は **主分類のみ**を集計する（`merged_findings` は二重計上しない）。ただし実クセ数を過小評価しないよう、`merged_findings` は下流（推敲役・監査官）が重複クセを追えるよう必ず保持する。
+* `weighted_sum` の severity 加重は主分類 finding の severity で 1 回だけ数える（merged 分は再加算しない）。
+
+* `severity_weighted_score`: **長さ正規化した AIクセ密度スコア（0〜100）**。以下の式で確定（IMP-002 / applied 2026-09-09-001,002）:
+  * `weighted_sum = S1×5 + S2×2 + S3×0.5`（**文書レベル finding〔`scope:"document"`〕も加重和には算入する**）。
+  * `severity_weighted_score = min(100, round(weighted_sum / input_length × 1000, 1))` = 「1000 文字あたりの加重 AIクセ量」。`input_length` は改行を含む入力全文の文字数（`meta.input_length`）。
+  * 長さ正規化により、長文が raw 件数で飽和したり短文が過大評価される問題（IMP-002）を解消する。100% AIクセの文書は長短に関わらず 100 付近に張り付くのが正しい挙動。
+  * **改善率の契約**: `improvement_rate = (score_before − score_after) / score_before`。`score_before` = 推敲前 `02_detection.json` の `meta.severity_weighted_score`、`score_after` = 推敲文への再走査を**同一式**で算出した値（IMP-003/006）。before/after は必ず同じ式で計算し、スケール不一致を作らない。
+* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。**`scope:"document"` の文書レベル finding は locator であり実 span を持たないため density の分子から除外する**（IMP-004）。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
+* `span_type`（IMP-004 / applied 2026-09-09）: finding の位置表現の型。
+  * `"contiguous"`: 連続した 1 区間。`start`/`end` に実位置。**既定値**（省略時は contiguous とみなす）。
+  * `"scattered"`: 分散反復（絵文字多用・文末単調・「まず…最後に」等）。`occurrences: [[s,e],...]` に各出現位置を列挙し、`start`/`end` は代表位置。density は `occurrences` の実文字数のみ算入し、locator で水増ししない。
+  * `"document"`: 文書レベル（E リズム・C 構造など）。併せて `scope:"document"` を付す。`start=0/end=0`（または全域）を locator とし、**`ai_tell_density` の分子から除外**。加重和には算入する。
+* インデックス基準: `start`/`end` は入力ファイルの**改行を含む生文字列全体**のオフセット（バイト列ではない）。推敲役も同一基準で解釈する。
 
 ## バージョン管理
 
 * **v1.0** (2026-05): 日本語 AIクセ分類体系の初版。10 大分類（A〜J）× 40+ サブパターンを定義。
   + 日本語固有として重点配置: `A-6`（〜となっている）, `B-2`（カタカナ語濫用）, `E-2`（です・ます単調）, `I-4`（〜が求められる）, `J-3`（ダッシュ濫用）, D-1 の「いかがでしたでしょうか」。
+* **v1.1** (2026-09-09): スキーマ・スコア契約の改訂（分類パターンの追加はなし）。適用元 run 2026-09-09-001,002。
+  + IMP-002: `severity_weighted_score` を長さ正規化式 `min(100, weighted_sum/input_length×1000)` に確定。改善率契約（before/after 同一式）を明記。
+  + IMP-004: `span_type`（contiguous/scattered/document）・`scope`・`occurrences[]` を追加。文書レベル finding を density から除外。index 基準を明記。
+  + IMP-005: span 重複時の `merged_findings[]` 規約を追加。category_summary は主分類のみ集計。
 * 拡張原則: 実戦入力で再現 2 回以上 + 日本語の人間の書き手がほぼ使わないパターンのみサブ項目として追加。新パターンは末尾の候補欄に実例 2 件以上を添えて提案する。
 
 ## 拡張候補欄（taxonomist が審査して昇格）
