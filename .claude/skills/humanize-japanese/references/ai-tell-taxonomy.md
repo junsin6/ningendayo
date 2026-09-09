@@ -392,11 +392,26 @@ J. 視覚装飾の濫用
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "span_type": "contiguous",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
       "reason": "「となっている」が本文で6回反復し状態叙述が機械的",
       "suggested_fix": "課題だ"
+    },
+    {
+      "id": "f012",
+      "category": "E-1",
+      "category_label": "リズム: 文長の均一",
+      "severity": "S2",
+      "span_type": "document",
+      "scope": "document",
+      "text_span": "(文書全体: 全11文が長文中心で短文ゼロ)",
+      "start": 0,
+      "end": 0,
+      "occurrences": [],
+      "reason": "文長標準偏差が小さく短文が挿入されていない",
+      "suggested_fix": "既存文の分割で短文を作りレンジを広げる"
     }
   ],
   "category_summary": {
@@ -413,6 +428,11 @@ J. 視覚装飾の濫用
   * **改善率の契約**: `improvement_rate = (score_before − score_after) / score_before`。`score_before` = 推敲前 `02_detection.json` の `meta.severity_weighted_score`、`score_after` = 推敲文への再走査を**同一式**で算出した値（IMP-003/006）。before/after は必ず同じ式で計算し、スケール不一致を作らない。
 * `ai_tell_density`: 検出 span の総文字数 / 全体文字数。**`scope:"document"` の文書レベル finding は locator であり実 span を持たないため density の分子から除外する**（IMP-004）。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
+* `span_type`（IMP-004 / applied 2026-09-09）: finding の位置表現の型。
+  * `"contiguous"`: 連続した 1 区間。`start`/`end` に実位置。**既定値**（省略時は contiguous とみなす）。
+  * `"scattered"`: 分散反復（絵文字多用・文末単調・「まず…最後に」等）。`occurrences: [[s,e],...]` に各出現位置を列挙し、`start`/`end` は代表位置。density は `occurrences` の実文字数のみ算入し、locator で水増ししない。
+  * `"document"`: 文書レベル（E リズム・C 構造など）。併せて `scope:"document"` を付す。`start=0/end=0`（または全域）を locator とし、**`ai_tell_density` の分子から除外**。加重和には算入する。
+* インデックス基準: `start`/`end` は入力ファイルの**改行を含む生文字列全体**のオフセット（バイト列ではない）。推敲役も同一基準で解釈する。
 
 ## バージョン管理
 
