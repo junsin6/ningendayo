@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "input_length": 741,
+    "detected_count": 28,
+    "ai_tell_density": 0.263,
+    "severity_weighted_score": 90.5,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 可能形の冗長化",
+      "severity": "S1",
+      "text_span": "集中することができる",
+      "start": 100,
+      "end": 110,
+      "reason": "「することができる／できます」が本文で5回反復（100/174/434/518/686）し、can の直訳が機械的。A-5 は単発でもS1シグネチャ",
+      "suggested_fix": "集中できる"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 可能形の冗長化",
+      "severity": "S1",
+      "text_span": "解決することができます",
+      "start": 174,
+      "end": 185,
+      "reason": "「することができる」系5回反復の2件目。可能を主張する必然性が低く断定でよい",
+      "suggested_fix": "解決できます"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 可能形の冗長化",
+      "severity": "S1",
+      "text_span": "図ることができる",
+      "start": 434,
+      "end": 442,
+      "reason": "「することができる」系5回反復の3件目",
+      "suggested_fix": "図れる"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 可能形の冗長化",
+      "severity": "S1",
+      "text_span": "接続することができます",
+      "start": 518,
+      "end": 529,
+      "reason": "「することができる」系5回反復の4件目",
+      "suggested_fix": "接続できます"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 可能形の冗長化",
+      "severity": "S1",
+      "text_span": "対処することができます",
+      "start": 686,
+      "end": 697,
+      "reason": "「することができる」系5回反復の5件目。文書全体を支配する最頻出シグネチャ",
+      "suggested_fix": "対処できます"
+    },
+    {
+      "id": "f006",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "可能となっています",
+      "start": 299,
+      "end": 308,
+      "reason": "「となっています／となっているのです」が状態叙述として反復（299/447/727）。単なる断定で足りる",
+      "suggested_fix": "可能です"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "メリットとなっています",
+      "start": 447,
+      "end": 458,
+      "reason": "状態叙述の反復2件目。「大きなメリットです」で足りる",
+      "suggested_fix": "大きなメリットです"
+    },
+    {
+      "id": "f008",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "選択肢となっているのです",
+      "start": 727,
+      "end": 739,
+      "reason": "状態叙述の反復3件目。文末を「のです」で締める AI 的強調も重なる",
+      "suggested_fix": "有力な選択肢です"
+    },
+    {
+      "id": "f009",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜になります 状態化（変化叙述との境界）",
+      "severity": "S2",
+      "text_span": "可能になります",
+      "start": 575,
+      "end": 582,
+      "reason": "変化を言う「になります」との境界事例。ここでは可能を状態化しており冗長。断定寄りを提案（S1のとなっている系よりは弱いためS2）",
+      "suggested_fix": "実装に集中できます"
+    },
+    {
+      "id": "f010",
+      "category": "A-6",
+      "category_label": "翻訳調: 状態叙述（〜が存在しています）",
+      "severity": "S2",
+      "text_span": "課題も存在しています",
+      "start": 621,
+      "end": 631,
+      "reason": "「ある」で足りる箇所を存在動詞＋ています体で状態化。A-6 の状態叙述クセに連なるが「となっている」形ではないためS2",
+      "suggested_fix": "課題もあります"
+    },
+    {
+      "id": "f011",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における／において 濫用",
+      "severity": "S1",
+      "text_span": "開発において",
+      "start": 21,
+      "end": 27,
+      "reason": "「において／における」が本文で2回（21/718）。抽象的な枠づけで硬さを演出するA-1シグネチャ",
+      "suggested_fix": "開発で"
+    },
+    {
+      "id": "f012",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における／において 濫用",
+      "severity": "S1",
+      "text_span": "開発における",
+      "start": 718,
+      "end": 724,
+      "reason": "「において／における」2件目。結び文でも枠づけ表現が反復",
+      "suggested_fix": "開発の"
+    },
+    {
+      "id": "f013",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜に対して 濫用",
+      "severity": "S1",
+      "text_span": "に対しては",
+      "start": 645,
+      "end": 650,
+      "reason": "主題提示を to/toward 直訳の「に対して」で処理。主題助詞「には」で自然になる",
+      "suggested_fix": "課題には"
+    },
+    {
+      "id": "f014",
+      "category": "A-8",
+      "category_label": "翻訳調: 行為者を曖昧にした受動文",
+      "severity": "S2",
+      "text_span": "提案されており",
+      "start": 675,
+      "end": 682,
+      "reason": "誰が提案したのか行為者を伏せた受動。英語受動態の直訳。I-4（行為者曖昧の要請）とも隣接",
+      "suggested_fix": "提案されていて"
+    },
+    {
+      "id": "f015",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために／するために 目的節の直訳",
+      "severity": "S2",
+      "text_span": "対応するために",
+      "start": 207,
+      "end": 214,
+      "reason": "in order to の直訳的な目的節。「対応しようと」等に分散可能",
+      "suggested_fix": "対応しようと"
+    },
+    {
+      "id": "f016",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞 もたらす",
+      "severity": "S1",
+      "text_span": "活用をもたらします",
+      "start": 396,
+      "end": 405,
+      "reason": "「この仕組みは…もたらします」は The X brings Y の直訳。抽象主語＋もたらすはA-10のS1パターン",
+      "suggested_fix": "リソースを効率よく使えます"
+    },
+    {
+      "id": "f017",
+      "category": "I-3",
+      "category_label": "形式表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "しておく必要がありました",
+      "start": 233,
+      "end": 245,
+      "reason": "need to の直訳的要請。ここは事実叙述なので「しておく必要があった」→断定叙述へ寄せられる",
+      "suggested_fix": "プロビジョニングしておかねばなりませんでした"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "シームレス",
+      "start": 512,
+      "end": 517,
+      "reason": "taxonomy の代表例。日本語で「滑らかに／継ぎ目なく」と書ける。文書全体でカタカナ密度が高い（ソリューション/メリット/レイテンシ/ミティゲーション/コア/フォーカス/モダン 等）",
+      "suggested_fix": "滑らかに"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ミティゲーション",
+      "start": 664,
+      "end": 672,
+      "reason": "mitigation の生カタカナ化。日本語話者はまず使わない。「緩和策」で足りる",
+      "suggested_fix": "緩和"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "コアな",
+      "start": 550,
+      "end": 553,
+      "reason": "core→中核。形容動詞化した和製英語で不要なカタカナ",
+      "suggested_fix": "中核となる"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "フォーカス",
+      "start": 565,
+      "end": 570,
+      "reason": "focus→注力／集中。前段の「集中」と語彙が衝突しており言い換え可",
+      "suggested_fix": "注力"
+    },
+    {
+      "id": "f022",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "モダンな",
+      "start": 706,
+      "end": 710,
+      "reason": "modern→現代的な。結び文の飾りカタカナ",
+      "suggested_fix": "現代的な"
+    },
+    {
+      "id": "f023",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 352,
+      "end": 359,
+      "reason": "solution→解決策／手段。「代表するソリューション」は「代表例」でも足りる",
+      "suggested_fix": "手段"
+    },
+    {
+      "id": "f024",
+      "category": "F-4",
+      "category_label": "過度な修飾: 〜的 の使用",
+      "severity": "S3",
+      "text_span": "効率的な",
+      "start": 392,
+      "end": 396,
+      "reason": "「〜的」は本文で単発（密度低）。他パターンと重なるときのみ問題になるS3。単独では過検出しない",
+      "suggested_fix": "効率よい"
+    },
+    {
+      "id": "f025",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "また、",
+      "start": 406,
+      "end": 409,
+      "reason": "文書レベル。文・段落冒頭の接続詞が多い（また406/さらに461/一方246/これにより530/もちろん585）。代表spanで報告、7割程度削除を提案",
+      "suggested_fix": "（削除して読点でつなぐ）"
+    },
+    {
+      "id": "f026",
+      "category": "H-2",
+      "category_label": "接続詞の多用: しかし／だが 逆接の濫用（硬い書面体）",
+      "severity": "S2",
+      "text_span": "しかしながら、",
+      "start": 632,
+      "end": 639,
+      "reason": "「しかしながら」は AI 文に頻出の硬い逆接。対比は自明なので「ただ」「とはいえ」等へ軽くするか削除",
+      "suggested_fix": "とはいえ、"
+    },
+    {
+      "id": "f027",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "(文書全体・文末)",
+      "start": 0,
+      "end": 741,
+      "reason": "文書レベル。全12文中ほぼ全てが「〜ます／です」で終止し文末が一本調子。体言止め・「〜でしょう」等の変奏を推奨（文体＝敬体は維持）。単一spanで表現不可のため文書全体を範囲とした",
+      "suggested_fix": "文末を変奏（体言止め・でしょう・のだ調は避け敬体内で変化）"
+    },
+    {
+      "id": "f028",
+      "category": "E-1",
+      "category_label": "リズム: 文長の均一性",
+      "severity": "S2",
+      "text_span": "(文書全体・文長分布)",
+      "start": 0,
+      "end": 741,
+      "reason": "文書レベル。全文が概ね40〜90字の長文に集中し短文がない。標準偏差が低く均一。段落ごとに短文（10〜20字）を挿入して緩急を作ることを推奨",
+      "suggested_fix": "短文を1〜2文挿入して緩急をつける"
+    }
+  ],
+  "category_summary": {
+    "A": 16,
+    "B": 6,
+    "C": 0,
+    "D": 0,
+    "E": 2,
+    "F": 1,
+    "G": 0,
+    "H": 2,
+    "I": 1,
+    "J": 0
+  }
+}
