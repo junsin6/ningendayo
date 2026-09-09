@@ -406,8 +406,12 @@ J. 視覚装飾の濫用
 }
 ```
 
-* `severity_weighted_score`: S1=5, S2=2, S3=0.5 の加重和。0〜100 スケールに正規化。
-* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。
+* `severity_weighted_score`: **長さ正規化した AIクセ密度スコア（0〜100）**。以下の式で確定（IMP-002 / applied 2026-09-09-001,002）:
+  * `weighted_sum = S1×5 + S2×2 + S3×0.5`（**文書レベル finding〔`scope:"document"`〕も加重和には算入する**）。
+  * `severity_weighted_score = min(100, round(weighted_sum / input_length × 1000, 1))` = 「1000 文字あたりの加重 AIクセ量」。`input_length` は改行を含む入力全文の文字数（`meta.input_length`）。
+  * 長さ正規化により、長文が raw 件数で飽和したり短文が過大評価される問題（IMP-002）を解消する。100% AIクセの文書は長短に関わらず 100 付近に張り付くのが正しい挙動。
+  * **改善率の契約**: `improvement_rate = (score_before − score_after) / score_before`。`score_before` = 推敲前 `02_detection.json` の `meta.severity_weighted_score`、`score_after` = 推敲文への再走査を**同一式**で算出した値（IMP-003/006）。before/after は必ず同じ式で計算し、スケール不一致を作らない。
+* `ai_tell_density`: 検出 span の総文字数 / 全体文字数。**`scope:"document"` の文書レベル finding は locator であり実 span を持たないため density の分子から除外する**（IMP-004）。
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
 ## バージョン管理
