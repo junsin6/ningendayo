@@ -15,8 +15,10 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査し、残存 finding を数える。
+   * **score_before / score_after の契約（IMP-003）**: `score_before` は必ず `02_detection.json` の `meta.severity_weighted_score` をそのまま使う。`score_after` は残存 finding から **IMP-002 と同一の正規化関数** `round(100·(1−exp(−raw/41)),1)`（`raw = 5·S1+2·S2+0.5·S3`）で算出する。素和と正規化値を混在させない。
+   * **実行環境フォールバック（IMP-006）**: 本 SDK 環境では naturalness サブエージェントから `ai-tell-detector` を spawn できない場合がある。その場合は同一 SSOT・同一正規化で**手動再走査**して確定し、`notes` に「検出器サブエージェント実走査不可のため手動再走査値」と必ず明記する。
+2. **改善率の算出**: `(score_before − score_after) / score_before`。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
    * 文体崩れ（敬体／常体の混入）
