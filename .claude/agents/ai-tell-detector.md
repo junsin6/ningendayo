@@ -50,9 +50,16 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（taxonomy v1.2 SSOT 準拠）:
+   * `raw` = S1×5 + S2×2 + S3×0.5。`meta.severity_weighted_raw` に併記してよい（検算用）。
+   * `severity_weighted_score` = `min(100, round(raw / input_length * 500, 1))`。分母 `input_length` は改行込みの原文全文字数。必ずこの式を使い、`meta.score_formula` に式文字列を書く。
+   * ⚠ 係数 500 は暫定（IMP-002b OPEN）。score の絶対値ではなく、同一係数内の相対比較（推敲前後の改善率）に用いる。
+   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。**span は非重複**で数え、複合表現は分割して各カテゴリへ割り当てる。
+6. **スキーマ規約**（v1.1）:
+   * finding に `scope`（`"span"` 既定 / `"document"`）を付す。文書横断（E/C/リズム系）は `scope:"document"` とし、代表 `start/end` に加え `occurrences:[[s,e],...]` を列挙してよい。
+   * 「1 span = 主分類 1 finding」。複数カテゴリ該当は従属分類を `merged_findings:[...]` へ。`category_summary` は主分類のみ集計。
+   * `suggested_fix` は `meta.style`（敬体/常体）に合わせた文体で生成する（敬体入力に常体の fix を出さない）。
+   * start/end 自己検証: regex マッチ位置と `text_span` が原文と一致することを assert し、不一致なら JSON を出さない。
 
 ## 重要な原則
 

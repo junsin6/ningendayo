@@ -1,0 +1,383 @@
+{
+  "meta": {
+    "input_length": 767,
+    "detected_count": 32,
+    "ai_tell_density": 0.46,
+    "severity_weighted_score": 71.1,
+    "style": "desu_masu",
+    "score_formula": "raw = S1*5 + S2*2 + S3*0.5; score = min(100, raw / input_length * 100 * 5.0)。k=5.0はS1飽和文が100手前に達する校正値。今回 raw=109.0 (S1=17,S2=11,S3=4), input_length=767",
+    "severity_breakdown": {
+      "S1": 17,
+      "S2": 11,
+      "S3": 4
+    },
+    "sentence_len_mean": 43.5,
+    "sentence_len_std": 10.3
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において/における 濫用",
+      "severity": "S1",
+      "text_span": "こうした状況において",
+      "start": 78,
+      "end": 88,
+      "reason": "抽象的な状況枠づけ。同型の「〜において」が本文で2回（状況において/時代において）出現し翻訳調(in/at)",
+      "suggested_fix": "こうしたなかで"
+    },
+    {
+      "id": "f002",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜において/における 濫用",
+      "severity": "S1",
+      "text_span": "クラウドネイティブな時代において",
+      "start": 700,
+      "end": 716,
+      "reason": "文末段落でも「〜において」で状況を枠づけ。A-1が計2回反復",
+      "suggested_fix": "クラウドネイティブの時代に"
+    },
+    {
+      "id": "f003",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に対して 濫用",
+      "severity": "S1",
+      "text_span": "システムに対する新しい向き合い方",
+      "start": 672,
+      "end": 688,
+      "reason": "主題を「に対する」で処理する翻訳調(toward/for)",
+      "suggested_fix": "システムとの新しい向き合い方"
+    },
+    {
+      "id": "f004",
+      "category": "A-4",
+      "category_label": "翻訳調: 〜に基づいて/をもとに 濫用",
+      "severity": "S2",
+      "text_span": "データをもとに推測する",
+      "start": 154,
+      "end": 165,
+      "reason": "根拠提示(based on)の直訳。「〜から」で足りる",
+      "suggested_fix": "データから推測する"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "活用することができます",
+      "start": 293,
+      "end": 304,
+      "reason": "可能の冗長形(be able to)。本文に「〜することができ(る/ます/るのです)」が計5回反復する最頻シグネチャ",
+      "suggested_fix": "活用できます"
+    },
+    {
+      "id": "f006",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "可視化することができます",
+      "start": 441,
+      "end": 453,
+      "reason": "「することができます」反復(5回中)。冗長な可能形",
+      "suggested_fix": "可視化できます"
+    },
+    {
+      "id": "f007",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "理解することができるのです",
+      "start": 494,
+      "end": 507,
+      "reason": "「することができるのです」。可能形+のです の二重冗長(5回中)",
+      "suggested_fix": "理解できるのです"
+    },
+    {
+      "id": "f008",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "検知することができます",
+      "start": 582,
+      "end": 593,
+      "reason": "「することができます」反復(5回中)",
+      "suggested_fix": "検知できます"
+    },
+    {
+      "id": "f009",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "支援することができる",
+      "start": 610,
+      "end": 620,
+      "reason": "「することができる」反復(5回中)",
+      "suggested_fix": "支援できる"
+    },
+    {
+      "id": "f010",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "可能となっています",
+      "start": 336,
+      "end": 345,
+      "reason": "断定「〜できます/可能です」で足りる箇所を状態化(has become)。本文で「となって(いる/いく)」が2回",
+      "suggested_fix": "特定できます"
+    },
+    {
+      "id": "f011",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "スキルとなっていくに違いありません",
+      "start": 748,
+      "end": 765,
+      "reason": "「となっていく」状態叙述+誇張断定。A-6が計2回反復",
+      "suggested_fix": "スキルになるはずです"
+    },
+    {
+      "id": "f012",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+提供する/もたらす",
+      "severity": "S1",
+      "text_span": "より広範なアプローチを提供します",
+      "start": 237,
+      "end": 253,
+      "reason": "抽象主語(オブザーバビリティ)+万能動詞「提供します」。本文に提供/もたらす型が3回",
+      "suggested_fix": "より広く捉えます"
+    },
+    {
+      "id": "f013",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+提供する/もたらす",
+      "severity": "S1",
+      "text_span": "ログはイベントの詳細なコンテキストを提供します",
+      "start": 379,
+      "end": 402,
+      "reason": "抽象主語(ログ)+「提供します」。The X provides Y の直訳(3回中)",
+      "suggested_fix": "ログにはイベントの詳しい文脈が残ります"
+    },
+    {
+      "id": "f014",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+提供する/もたらす",
+      "severity": "S1",
+      "text_span": "大きなメリットをもたらします",
+      "start": 530,
+      "end": 544,
+      "reason": "抽象主語(導入は)+「もたらします」。The X brings Y の直訳(3回中)",
+      "suggested_fix": "開発チームの負担を大きく減らします"
+    },
+    {
+      "id": "f015",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S3",
+      "text_span": "という概念が",
+      "start": 104,
+      "end": 110,
+      "reason": "概念を「という」で接続。本文で「という概念/という三つ」等2回。単独では弱いが他パターンと重なる",
+      "suggested_fix": "概念が"
+    },
+    {
+      "id": "f016",
+      "category": "B-1",
+      "category_label": "カタカナ/英語: 括弧併記の習慣",
+      "severity": "S2",
+      "text_span": "オブザーバビリティ（可観測性）",
+      "start": 89,
+      "end": 104,
+      "reason": "初出専門語への訳語括弧併記。AI文の定番。1回に留めるか本文化",
+      "suggested_fix": "可観測性（オブザーバビリティ）"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "スタンダード",
+      "start": 28,
+      "end": 34,
+      "reason": "日本語で書ける語(standard)をカタカナ化。「新たなスタンダード」はハイプ寄り",
+      "suggested_fix": "標準"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アプローチでした",
+      "start": 211,
+      "end": 219,
+      "reason": "approach を不要にカタカナ化。「アプローチ」は本文2回。手法/やり方で足りる",
+      "suggested_fix": "やり方でした"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "大きなメリットを",
+      "start": 530,
+      "end": 538,
+      "reason": "merit を不要にカタカナ化。利点で足りる",
+      "suggested_fix": "大きな利点を"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "データドリブンな意思決定",
+      "start": 597,
+      "end": 609,
+      "reason": "data-driven を生カタカナ化。データに基づく/データを見て で足りる",
+      "suggested_fix": "データに基づく意思決定"
+    },
+    {
+      "id": "f021",
+      "category": "C-1",
+      "category_label": "構造: まず・次に・最後に の機械的並列",
+      "severity": "S1",
+      "text_span": "まず、メトリクスは",
+      "start": 348,
+      "end": 357,
+      "reason": "第3段落が「まず/次に/最後に」で完全支配される英語作文式の三点列挙",
+      "suggested_fix": "メトリクスは"
+    },
+    {
+      "id": "f022",
+      "category": "C-1",
+      "category_label": "構造: まず・次に・最後に の機械的並列",
+      "severity": "S1",
+      "text_span": "次に、ログは",
+      "start": 376,
+      "end": 382,
+      "reason": "「まず/次に/最後に」公式の2点目。叙述文に溶かすべき",
+      "suggested_fix": "ログは"
+    },
+    {
+      "id": "f023",
+      "category": "C-1",
+      "category_label": "構造: まず・次に・最後に の機械的並列",
+      "severity": "S1",
+      "text_span": "最後に、分散トレーシングは",
+      "start": 403,
+      "end": 416,
+      "reason": "「まず/次に/最後に」公式の3点目",
+      "suggested_fix": "そして分散トレーシングは"
+    },
+    {
+      "id": "f024",
+      "category": "D-1",
+      "category_label": "AI慣用句: 〜と言えるでしょう 結び",
+      "severity": "S1",
+      "text_span": "向き合い方であると言えるでしょう",
+      "start": 683,
+      "end": 699,
+      "reason": "コラム結びの常套「〜と言えるでしょう」。断定を避けるAI定番の締め",
+      "suggested_fix": "向き合い方でもある"
+    },
+    {
+      "id": "f025",
+      "category": "D-4",
+      "category_label": "AI慣用句: ハイプ語彙(不可欠 等)",
+      "severity": "S2",
+      "text_span": "不可欠なスキルとなっていく",
+      "start": 744,
+      "end": 757,
+      "reason": "「不可欠」+状態化+「に違いありません」の誇張締め。D-6完結公式にも接近",
+      "suggested_fix": "欠かせない技術になる"
+    },
+    {
+      "id": "f026",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "増大しています",
+      "start": 70,
+      "end": 77,
+      "reason": "文末がほぼ全文「〜ます/ています/できます/です」で一本調子。体言止め・〜だろう等の変奏皆無(★日本語固有)",
+      "suggested_fix": "増している"
+    },
+    {
+      "id": "f027",
+      "category": "E-1",
+      "category_label": "リズム: 文長の均一性",
+      "severity": "S3",
+      "text_span": "統合的に活用することができます",
+      "start": 289,
+      "end": 304,
+      "reason": "文長std=10.3字(mean=43.5)。40〜60字級に集中し短文・長文の変奏が乏しい",
+      "suggested_fix": "（短文を挟むなど文長を崩す）"
+    },
+    {
+      "id": "f028",
+      "category": "F-4",
+      "category_label": "修飾: 〜的 の濫用",
+      "severity": "S2",
+      "text_span": "統合的に",
+      "start": 289,
+      "end": 293,
+      "reason": "「〜的」抽象接尾辞が本文3回(統合的/具体的/継続的)。動詞句・具体名詞へ解体を",
+      "suggested_fix": "まとめて"
+    },
+    {
+      "id": "f029",
+      "category": "H-2",
+      "category_label": "接続詞: しかしながら 等 逆接の濫用",
+      "severity": "S2",
+      "text_span": "しかしながら",
+      "start": 220,
+      "end": 226,
+      "reason": "硬い文頭逆接「しかしながら」。対比が自明で「でも/だが」や無接続で通る",
+      "suggested_fix": "ただ"
+    },
+    {
+      "id": "f030",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "これにより",
+      "start": 305,
+      "end": 310,
+      "reason": "「これにより/また/具体的には/このように」等の文頭接続詞が段落頭に頻出。7割は削除可",
+      "suggested_fix": "この統合で"
+    },
+    {
+      "id": "f031",
+      "category": "I-5",
+      "category_label": "形式表現: 能力/力 抽象名詞の連鎖",
+      "severity": "S3",
+      "text_span": "推測する能力",
+      "start": 161,
+      "end": 167,
+      "reason": "「能力」が本文2回(推測する能力/この能力)。3回未満だが名詞化傾向。動詞へ開ける",
+      "suggested_fix": "推測すること"
+    },
+    {
+      "id": "f032",
+      "category": "J-3",
+      "category_label": "視覚装飾: ダッシュ(—)の濫用",
+      "severity": "S3",
+      "text_span": "とは何か — 現代",
+      "start": 9,
+      "end": 18,
+      "reason": "タイトルにem-dash。単発で本来S2だが1回のため弱め。読点/改行/コロンで代替可(★日本語固有)",
+      "suggested_fix": "とは何か：現代"
+    }
+  ],
+  "category_summary": {
+    "A": 15,
+    "B": 5,
+    "C": 3,
+    "D": 2,
+    "E": 2,
+    "F": 1,
+    "G": 0,
+    "H": 2,
+    "I": 1,
+    "J": 1
+  }
+}

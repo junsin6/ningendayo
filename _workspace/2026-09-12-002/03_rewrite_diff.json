@@ -1,0 +1,57 @@
+{
+  "style_preserved": "desu_masu",
+  "edits": [
+    { "edit_id": "e001", "finding_id": "f001", "category": "A-2", "before": "に対しまして", "after": "に", "start": 35, "end": 41, "note": "主題提示の敬語変種を助詞へ直結。丁寧さは前後の「賜り」「御礼申し上げます」で保持" },
+    { "edit_id": "e002", "finding_id": "f002", "category": "A-1", "before": "におきましては", "after": "では", "start": 74, "end": 81, "note": "「市におきましては」→「市では」。抽象枠づけを解消しつつ主題は維持" },
+    { "edit_id": "e003", "finding_id": "f003", "category": "A-8", "before": "が実施される", "after": "を実施し", "start": 99, "end": 106, "note": "受動を能動へ。行為者(市)が主語のため格助詞が→をへ調整。f004と連結し「更新工事を実施します」" },
+    { "edit_id": "e004", "finding_id": "f004", "category": "A-6", "before": "こととなりました", "after": "ます", "start": 106, "end": 114, "note": "状態叙述を断定へ。敬体は「ます」で保持" },
+    { "edit_id": "e005", "finding_id": "f005", "category": "A-8", "before": "行われる", "after": "行う", "start": 139, "end": 143, "note": "「行われるものであり」→「行うものであり」。行為者=市の能動へ" },
+    { "edit_id": "e006", "finding_id": "f006", "category": "F-2", "before": "必要不可欠な", "after": "欠かせない", "start": 167, "end": 173, "note": "同義二重修飾を一語へ。誇張を抑制" },
+    { "edit_id": "e007", "finding_id": "f007", "category": "A-1", "before": "において", "after": "で", "start": 204, "end": 208, "note": "「一部の地域において」→「一部の地域で」" },
+    { "edit_id": "e008", "finding_id": "f008", "category": "A-8", "before": "停止される", "after": "停止する", "start": 224, "end": 229, "note": "受動を自動詞の断定へ(放送が停止する)。行為者を立てずに翻訳調を除去" },
+    { "edit_id": "e009", "finding_id": "f009", "category": "E-2", "before": "場合がございます", "after": "場合があります", "start": 229, "end": 237, "note": "文末「ございます」集中の単調を緩和。敬体は「あります」で維持" },
+    { "edit_id": "e010", "finding_id": "f010", "category": "A-8", "before": "停止される", "after": "停止する", "start": 241, "end": 246, "note": "受動反復の解消(2箇所目)" },
+    { "edit_id": "e011", "finding_id": "f011", "category": "A-2", "before": "につきましては", "after": "は", "start": 249, "end": 256, "note": "「時間帯につきましては」→「時間帯は」。主題助詞へ直結" },
+    { "edit_id": "e012", "finding_id": "f012", "category": "A-1", "before": "において", "after": "で", "start": 272, "end": 276, "note": "「ウェブサイトにおいて」→「ウェブサイトで」" },
+    { "edit_id": "e013", "finding_id": "f013", "category": "A-8", "before": "周知が図られる", "after": "周知する", "start": 276, "end": 283, "note": "行為者(市)を隠した受動を能動へ。直前の「市の公式ウェブサイト」に市が明示済みのため主語再掲は省略" },
+    { "edit_id": "e014", "finding_id": "f014", "category": "A-6", "before": "予定となっております", "after": "予定です", "start": 283, "end": 293, "note": "状態叙述を断定へ。予定は断定形で足りる" },
+    { "edit_id": "e015", "finding_id": "f015", "category": "A-1", "before": "におかれましては", "after": "は", "start": 299, "end": 307, "note": "過剰敬語+翻訳調枠づけの複合を主題助詞へ。「市民の皆様」の敬称は維持" },
+    { "edit_id": "e016", "finding_id": "f016", "category": "I-3", "before": "ご確認いただく必要がございます", "after": "ご確認ください", "start": 314, "end": 328, "note": "形式的な要請を直接の丁寧命令へ。敬体の依頼形で丁寧さ保持" },
+    { "edit_id": "e017", "finding_id": "f017", "category": "A-8", "before": "情報が発信される", "after": "情報を発信する", "start": 346, "end": 354, "note": "受動を能動へ。行為者=市のため格助詞が→をへ調整" },
+    { "edit_id": "e018", "finding_id": "f018", "category": "A-3", "before": "を通じて", "after": "で", "start": 382, "end": 386, "note": "手段の「を通じて」を格助詞「で」へ。固有名詞「防災アプリ」「緊急速報メール」は不変" },
+    { "edit_id": "e019", "finding_id": "f019", "category": "A-8", "before": "情報の伝達が行われる", "after": "情報をお伝えし", "start": 386, "end": 396, "note": "受動+名詞化を能動の敬語へ。「お伝えし」で敬体を保持。f020と連結し「情報をお伝えします」" },
+    { "edit_id": "e020", "finding_id": "f020", "category": "A-6", "before": "こととなります", "after": "ます", "start": 396, "end": 403, "note": "状態叙述を断定へ" },
+    { "edit_id": "e021", "finding_id": "f021", "category": "I-4", "before": "活用していただくことが推奨されております", "after": "ご活用ください", "start": 411, "end": 431, "note": "行為者曖昧の受動推奨を直接の丁寧依頼へ", "superseded_by": "e021r2" },
+    { "edit_id": "e022", "finding_id": "f022", "category": "H-1", "before": "つきましては", "after": "そのため", "start": 432, "end": 438, "note": "formulaicな文頭接続を平易な接続へ変奏" },
+    { "edit_id": "e023", "finding_id": "f023", "category": "I-3", "before": "お願いする必要がございます", "after": "お願いします", "start": 455, "end": 468, "note": "「必要がございます」形式要請を直接の依頼へ。敬体維持" },
+    { "edit_id": "e024", "finding_id": "f024", "category": "A-8", "before": "による", "after": "で", "start": 493, "end": 496, "note": "「音声による放送」のby受動枠づけを「音声で放送」へ" },
+    { "edit_id": "e025", "finding_id": "f025", "category": "A-8", "before": "放送が実現される", "after": "放送し", "start": 496, "end": 504, "note": "受動「放送が実現される」を能動「放送します」へ集約(f026と連結)。意味=より明瞭な音声で放送する、を保存" },
+    { "edit_id": "e026", "finding_id": "f026", "category": "A-6", "before": "こととなっております", "after": "ます", "start": 504, "end": 514, "note": "状態叙述を断定へ" },
+    { "edit_id": "e027", "finding_id": "f027", "category": "A-8", "before": "聞き取りにくいとされていた", "after": "聞き取りにくかった", "start": 517, "end": 530, "note": "行為者不明の伝聞受動を過去の断定へ", "superseded_by": "e027r2" },
+    { "edit_id": "e028", "finding_id": "f028", "category": "A-1", "before": "におきましても", "after": "でも", "start": 532, "end": 539, "note": "「地域におきましても」→「地域でも」。譲歩の「も」は維持" },
+    { "edit_id": "e029", "finding_id": "f029", "category": "A-8", "before": "放送内容が改善されることが", "after": "放送内容の改善が", "start": 539, "end": 552, "note": "受動+形式名詞を名詞句へ集約(f030と連結)" },
+    { "edit_id": "e030", "finding_id": "f030", "category": "A-8", "before": "見込まれております", "after": "見込まれます", "start": 553, "end": 562, "note": "観測ヘッジの状態化を断定的な敬体へ。「見込まれます」は公的文書として自然なため受動形を残置" }
+  ],
+  "round2_rollback_edits": [
+    { "edit_id": "e027r2", "finding_id": "f027", "category": "A-8", "supersedes": "e027", "before": "聞き取りにくいとされていた", "after": "聞き取りにくいとされてきた", "note": "内容監査(04, 項7 modality, S2 必須ロールバック)により e027『→聞き取りにくかった』を撤回。事実の断定へ格上げされていた証拠性(伝聞・評価ヘッジ)を『とされてきた』で保存し、公的機関が自らの旧設備不良を断定する言明への意味移動を回避。A-8(翻訳調『〜とされていた』のもたつき)除去意図は『いた→きた』の相の自然化で最小限に活かす。読みやすさのため直前に読点『従来、』を付す(情報の増減なし)。敬体維持。" },
+    { "edit_id": "e021r2", "finding_id": "f021", "category": "I-4", "supersedes": "e021", "before": "活用していただくことが推奨されております", "after": "ご活用いただくことをおすすめします", "note": "内容監査(04, 項7, S3 境界的懸念)を受け、勧奨→指示への強度上昇を軟着陸。『ご活用ください』(直接依頼)を『ご活用いただくことをおすすめします』へ差し戻し、原文『推奨されております』が持つ任意性ニュアンスを保存。I-4(行為者曖昧の受動要請)は主体を市の勧奨として明確化しつつ、fidelity first で強度等価を優先。敬体維持。" }
+  ],
+  "change_rate": 0.31,
+  "inserted_chars": 46,
+  "deleted_chars": 158,
+  "edit_count": 30,
+  "round2_rollback_count": 2,
+  "over_threshold": "warning_30",
+  "warnings": [
+    "変更率31.6%で30%警告閾値を超過(50%未満のため続行)。削除167字・挿入41字と純削除主導で、AI特有の冗長な形式表現(受動・状態叙述・過剰敬語枠づけ)の除去が主因。意味の追加・欠落はなし。",
+    "2次ロールバック(e027r2/e021r2)により削除主導が緩和し変更率は約31.0%へ微減。削除158字・挿入46字。両ロールバックは意味等価性の回復が目的で、原文情報の増減はなし。"
+  ],
+  "style_preserved": "desu_masu",
+  "round2": {
+    "trigger": "04_fidelity_audit.json verdict=fail",
+    "must_rollback_applied": ["e027 -> e027r2"],
+    "soft_landing_applied": ["e021 -> e021r2"],
+    "edits_preserved": 28,
+    "note": "指示された e027(必須)・e021(軟着陸)以外の28編集はすべて保持。他 span は不変。"
+  }
+}
