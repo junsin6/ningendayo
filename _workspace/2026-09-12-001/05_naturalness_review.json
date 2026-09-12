@@ -1,0 +1,66 @@
+{
+  "score_before": 71.1,
+  "score_after": 4.1,
+  "improvement_rate": 0.942,
+  "rescan_method": "self_scan_estimate",
+  "rescan_note": "ai-tell-detector サブエージェントは本セッションから起動できなかったため、推敲文を 02_detection.json と同一の taxonomy 基準・同一スコア式(raw=S1*5+S2*2+S3*0.5; score=min(100, raw/input_length*100*5.0), k=5.0)で自力再走査した推定値。input_length は推敲文の全長 667 を使用。",
+  "residual": {
+    "S1": 0,
+    "S2": 2,
+    "S3": 3,
+    "findings": [
+      {
+        "id": "r001",
+        "ref": "f004",
+        "category": "A-4",
+        "severity": "S2",
+        "text_span": "データをもとに推測すること",
+        "reason": "「〜をもとに」(based on) の翻訳調が未修正のまま残存。suggested_fix『データから』が適用されていない。名詞化(能力→こと)は直したが根拠提示の直訳は残る。",
+        "suggested_fix": "外部から出力されるデータから推測すること"
+      },
+      {
+        "id": "r002",
+        "ref": "f016",
+        "category": "B-1",
+        "severity": "S2",
+        "text_span": "オブザーバビリティ（可観測性）",
+        "reason": "初出専門語への訳語括弧併記が未修正。AI 文の定番シグネチャ。出現は1回のため深刻度は弱いが、suggested_fix(語順入替 or 本文化)は未適用。",
+        "suggested_fix": "可観測性（オブザーバビリティ）または本文中に溶かす"
+      },
+      {
+        "id": "r003",
+        "category": "F-4",
+        "severity": "S3",
+        "text_span": "具体的には / 継続的な改善",
+        "reason": "「〜的」抽象接尾辞が2回残存(統合的は『まとめて』へ解体済)。単独では弱いが他パターンと重なると加点対象。",
+        "suggested_fix": "具体的には→たとえば / 継続的な改善→改善を続けること"
+      },
+      {
+        "id": "r004",
+        "category": "H-1",
+        "severity": "S3",
+        "text_span": "具体的には / また / このように",
+        "reason": "文頭接続詞が段落頭に残存。『これにより』『まず/次に/最後に』は除去済で大幅改善したが、なお削減余地あり(原文由来で自然な範囲でもある)。",
+        "suggested_fix": "文頭接続詞をさらに1〜2箇所削除"
+      },
+      {
+        "id": "r005",
+        "category": "E-1",
+        "severity": "S3",
+        "text_span": "(文書全体)",
+        "reason": "短文の挿入(『ただ、〜より広く捉えます。』等)と体言化で文長の変奏は改善したが、依然として中長文が主体。文長std は残る弱シグナル。",
+        "suggested_fix": "任意。体言止め等の変奏を1箇所追加すると自然度が上がる"
+      }
+    ]
+  },
+  "overpolish_signals": [],
+  "overpolish_check": {
+    "change_rate_estimate": "約13% (推敲文667字/原文767字、編集は局所的な語句置換が中心)。30%閾値を大きく下回る。",
+    "style_break": "なし。全文が敬体(です・ます)で統一され常体の混入なし。",
+    "colloquial_drift": "なし。技術コラムの語調を維持。",
+    "meaning_thinning": "なし。ぶつ切り・意味希薄化は検出されず、事実・数値・固有名詞は保存。"
+  },
+  "grade": "A",
+  "verdict": "accept",
+  "note": "S1 全17件を完全除去(残存S1=0)、S2 は残存2件(A-4『をもとに』, B-1 括弧併記)、改善率 約94%。過推敲シグナルなし・文体崩れなしで A 等級・accept。ただし内容監査(content-fidelity-auditor)の結果と統合して最終判定すること。残存2件のS2は accept 圏内だが、2次推敲を行うなら A-4/B-1 の2点のみ手当てすれば十分。"
+}
