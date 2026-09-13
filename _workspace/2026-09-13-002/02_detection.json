@@ -1,0 +1,265 @@
+{
+  "meta": {
+    "input_length": 624,
+    "detected_count": 22,
+    "ai_tell_density": 0.319,
+    "severity_weighted_score": 77.7,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "市によって",
+      "start": 72,
+      "end": 77,
+      "reason": "「によって」の行為者後置受動が本文で6回反復（72/160/251/264/377/419）。ここは「市が策定した」で能動化できる",
+      "suggested_fix": "市が策定した"
+    },
+    {
+      "id": "f002",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "によって",
+      "start": 160,
+      "end": 164,
+      "reason": "「電話によってのみ対応されてまいりました」。受動+手段のによって。by-passive 全6回の2例目",
+      "suggested_fix": "電話でのみ受け付けてまいりました"
+    },
+    {
+      "id": "f003",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "によって",
+      "start": 251,
+      "end": 255,
+      "reason": "「市によって選定された委託業者」。by-passive 全6回の3例目。直後の f004 と二重に連鎖",
+      "suggested_fix": "市が選定した委託業者"
+    },
+    {
+      "id": "f004",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "によって",
+      "start": 264,
+      "end": 268,
+      "reason": "「委託業者によって運営されております」。一文中に「によって」が二重（251と264）で露見度が高い",
+      "suggested_fix": "委託業者が運営しています"
+    },
+    {
+      "id": "f005",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "によって",
+      "start": 377,
+      "end": 381,
+      "reason": "「市によって指定された金融機関」。by-passive 全6回の5例目",
+      "suggested_fix": "市が指定する金融機関"
+    },
+    {
+      "id": "f006",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "によって",
+      "start": 419,
+      "end": 423,
+      "reason": "「本制度の変更によって」。原因のによって。by-passive 全6回の6例目で密度が決定的",
+      "suggested_fix": "本制度の変更で"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "変更されることとなりました",
+      "start": 109,
+      "end": 122,
+      "reason": "受動+「こととなる」の状態化。本文で「こととなり」が3回反復（109/229/438）。単なる変更事実を機械的に状態叙述化",
+      "suggested_fix": "変更いたします"
+    },
+    {
+      "id": "f008",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "導入されることとなりました",
+      "start": 229,
+      "end": 242,
+      "reason": "「こととなり」反復の2例目。受動+状態化で行為主体（市）が消えている",
+      "suggested_fix": "新たに導入します"
+    },
+    {
+      "id": "f009",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "おかけすることとなりますが",
+      "start": 438,
+      "end": 451,
+      "reason": "「こととなり」反復の3例目。「おかけしますが」で足りる箇所を状態化",
+      "suggested_fix": "おかけしますが"
+    },
+    {
+      "id": "f010",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "効率化を図る必要があること",
+      "start": 190,
+      "end": 203,
+      "reason": "「必要がある／ございます」が本文で5回反復（190/301/338/394/510）。要請・義務叙述が一本調子",
+      "suggested_fix": "効率化を図るため"
+    },
+    {
+      "id": "f011",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "行っていただく必要がございます",
+      "start": 301,
+      "end": 316,
+      "reason": "「必要がございます」反復の2例目。「登録をお願いします」等の依頼形に開ける",
+      "suggested_fix": "行っていただきます"
+    },
+    {
+      "id": "f012",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご入力いただく必要がございます",
+      "start": 338,
+      "end": 353,
+      "reason": "「必要がございます」反復の3例目。直前文（f011）と連続し機械的",
+      "suggested_fix": "ご入力ください"
+    },
+    {
+      "id": "f013",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "納付していただく必要がございます",
+      "start": 394,
+      "end": 410,
+      "reason": "「必要がございます」反復の4例目",
+      "suggested_fix": "納付していただきます"
+    },
+    {
+      "id": "f014",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "確認していただく必要がございます",
+      "start": 510,
+      "end": 526,
+      "reason": "「必要がございます」反復の5例目。閉め近くでも同型が続き単調",
+      "suggested_fix": "ご確認ください"
+    },
+    {
+      "id": "f015",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 主題提示の濫用",
+      "severity": "S2",
+      "text_span": "につきましては",
+      "start": 150,
+      "end": 157,
+      "reason": "主題提示「につきましては」が3回反復（150/362/488）。主題助詞「は」で直結できる箇所を毎回枠づけ",
+      "suggested_fix": "受付は"
+    },
+    {
+      "id": "f016",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 主題提示の濫用",
+      "severity": "S2",
+      "text_span": "につきましては",
+      "start": 362,
+      "end": 369,
+      "reason": "「につきましては」反復の2例目（収集手数料につきましては）",
+      "suggested_fix": "手数料は"
+    },
+    {
+      "id": "f017",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 主題提示の濫用",
+      "severity": "S2",
+      "text_span": "につきましては",
+      "start": 488,
+      "end": 495,
+      "reason": "「につきましては」反復の3例目（制度の詳細につきましては）",
+      "suggested_fix": "詳細は"
+    },
+    {
+      "id": "f018",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において 濫用",
+      "severity": "S3",
+      "text_span": "金融機関において",
+      "start": 386,
+      "end": 394,
+      "reason": "「において」が2回（386/500）。単体では許容閾値だが翻訳調クラスタ内で露見。格助詞「で」に直結可",
+      "suggested_fix": "金融機関で"
+    },
+    {
+      "id": "f019",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において 濫用",
+      "severity": "S3",
+      "text_span": "ホームページにおいて",
+      "start": 500,
+      "end": 510,
+      "reason": "「において」2例目。クラスタ内で反復。「ホームページで」に直結可",
+      "suggested_fix": "ホームページで"
+    },
+    {
+      "id": "f020",
+      "category": "A-4",
+      "category_label": "翻訳調: 〜に基づいて/をもとに",
+      "severity": "S3",
+      "text_span": "計画に基づき",
+      "start": 90,
+      "end": 96,
+      "reason": "単発だが、受動・状態叙述が密集する冒頭文のため翻訳調印象を強める。「計画により」「計画を受けて」に分散可",
+      "suggested_fix": "計画を受けて"
+    },
+    {
+      "id": "f021",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞/受動+婉曲",
+      "severity": "S2",
+      "text_span": "実現されるものと考えております",
+      "start": 467,
+      "end": 482,
+      "reason": "抽象主語「提供が」+受動「実現される」+婉曲「考えております」の三重構造。行為主体（市）を主語に戻して断定に開ける",
+      "suggested_fix": "提供できるようになります"
+    },
+    {
+      "id": "f022",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "ございます",
+      "start": 311,
+      "end": 316,
+      "reason": "文書レベル。全13文の文末が敬体一本調子（申し上げます3回・ございます4回・ました/おります連続）。特に第3段落は「ございます。」が3連続。体言止め・断定・依頼形の変奏が皆無",
+      "suggested_fix": "ございます（3連続の中間文を依頼形・断定へ変奏）"
+    }
+  ],
+  "category_summary": {
+    "A": 16,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 5,
+    "J": 0
+  }
+}
