@@ -1,4 +1,4 @@
-# 推敲プレイブック (Japanese Rewriting Playbook) v1.0
+# 推敲プレイブック (Japanese Rewriting Playbook) v1.1
 
 `ai-tell-taxonomy.md` で検出された各カテゴリを、**意味を一字も変えずに**文体・リズム・表現だけ自然な日本語へ戻すための置換レシピ集。推敲役（`japanese-style-rewriter`）の作業マニュアル。
 
@@ -138,11 +138,21 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（v1.1 改定 — IMP-001 対応）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+difflib（SequenceMatcher）の文字単位 change_rate は「正当な削除」と「過推敲」を区別できず、構造編集・冗長形の縮約・長カタカナ語の短和語化で機械的に膨張する（実 run 2026-06-12-002=54.6%, 2026-09-14-001=32.8% はいずれも delete 主導で fidelity=pass・自然度 A だった）。よって次の**分離指標**で数え、判定は置換・構造改変ベースに置く。
+
+* **3 指標を分離計上し diff に記録する**:
+  * `insertion_rate` = 挿入文字数 / 原文文字数
+  * `deletion_rate` = 削除文字数 / 原文文字数
+  * `substitution_rate` ≈ min(insertion_rate, deletion_rate) を「語句の置換（言い換え）量」の近似とする。純削除（装飾・常套句・冗長形の除去）は substitution に含めない。
+  * 参考値として従来の `change_rate = insertion_rate + deletion_rate` も残す（後方互換）。
+* **判定基準（change_rate 単独では中断しない）**:
+  * `substitution_rate` が 30% 超 → 語句改変が過大の疑い。`summary.md` に警告を記録し、fidelity と自然度で意味希薄化・ジャンル移動を精査。
+  * `substitution_rate` が 50% 超 → 強制中断し `hold_and_report`。
+  * `change_rate` が 30〜50% でも、超過分の主因が `deletion_rate`（del ≫ ins の削除主導）で、fidelity=pass かつ自然度 A/B なら **override accept**。理由（削除主導・情報欠落なし）を `summary.md` に明記する。
+  * `change_rate` 50% 超も、削除主導かつ fidelity=pass・自然度 A/B なら中断せず override accept 可（同上を明記）。真に中断すべきは substitution 主導の膨張。
+* **注記**: この override はオーケストレーター（SKILL.md §総合判定）と揃える。純削除主導の膨張を過推敲と誤警告しないための既知欠陥対応。
 
 ## 文体変換例（before → after 一括サンプル）
 
