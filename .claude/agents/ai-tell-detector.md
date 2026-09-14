@@ -21,7 +21,9 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "input_length": 0,
     "detected_count": 0,
     "ai_tell_density": 0.0,
+    "raw_score": 0.0,
     "severity_weighted_score": 0.0,
+    "score_formula": "raw = S1*5 + S2*2 + S3*0.5 = 0.0; normalized = round(100*(1 - exp(-raw/40)), 1) = 0.0",
     "style": "desu_masu | da_dearu | mixed"
   },
   "findings": [
@@ -34,12 +36,15 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "start": 142,
       "end": 150,
       "reason": "理由（密度・反復回数など根拠を明記）",
-      "suggested_fix": "課題だ"
+      "suggested_fix": "課題だ",
+      "merged_findings": []
     }
   ],
   "category_summary": { "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0 }
 }
 ```
+
+* `merged_findings` は任意フィールド。1 span が複数カテゴリに該当するとき、主分類を `category` に置き、従属カテゴリのコード配列をここへ記録する（省略可）。
 
 ## 検出手順
 
@@ -50,9 +55,12 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（v1.1・taxonomy §スコア正規化に厳密準拠）:
+   * `raw_score` = S1×5 + S2×2 + S3×0.5（素点）。
+   * `severity_weighted_score` = `round(100*(1 - exp(-raw/40)), 1)`（**k=40 固定**、文書長非依存）。飽和しにくく短文・長文を同一尺度で比較できる。旧 `min(100, raw)` 等のクランプ式は使わない。
+   * `score_formula` に「raw=…; normalized=…」の計算過程を必ず併記する。
+   * `ai_tell_density` = 検出 span の**和集合被覆文字数** / 全体文字数（重複区間は一度だけ計上。document/scattered の広域 locator は含めない）。
+6. **重複 span の計上**（IMP-005）: 1 span が複数カテゴリに該当する場合は「1 span = 主分類 1 finding」とし、従属カテゴリは `merged_findings` 配列に記録する。`category_summary` は各 finding の主 `category` の先頭文字のみを集計する（`merged_findings` は数えない）。
 
 ## 重要な原則
 
