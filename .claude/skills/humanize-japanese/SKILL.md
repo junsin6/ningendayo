@@ -79,6 +79,14 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
+### 変更率 override（v1.1・IMP-001 対応）
+
+`change_rate`（difflib 文字単位）は「正当な削除」と「過推敲」を区別できず、構造編集・冗長形の縮約・長カタカナ語の短和語化で膨張する。判定は分離指標（`insertion_rate`/`deletion_rate`/`substitution_rate`）で行う:
+
+* 中断（`hold_and_report`）は **`substitution_rate` 50% 超**を基準とする（語句改変主導の過推敲）。
+* `change_rate` が 30〜50%（さらに 50% 超）でも、超過分の主因が `deletion_rate`（del ≫ ins の削除主導）で、**fidelity=pass かつ自然度 A/B** なら **override accept**。`summary.md` に override 理由（削除主導・情報欠落なし・substitution_rate 値）を必ず明記する。
+* この基準は `rewriting-playbook.md §変更率の数え方` と揃える。
+
 ## 深刻度と品質等級
 
 **深刻度**
