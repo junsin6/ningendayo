@@ -79,6 +79,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
+**変更率超過の override accept（IMP-001）**: change_rate が 30〜50% 超でも、`meta.delete_driven`（delete_rate ≫ insert_rate の削除主導）かつ fidelity=pass かつ自然度 A/B なら `accept` する。装飾・常套句・冗長構文の純削除で difflib が膨張しただけで過推敲ではないため。override した場合は `summary.md` に理由（delete_rate/insert_rate と delete_driven）を明記する。
+
 ## 深刻度と品質等級
 
 **深刻度**
