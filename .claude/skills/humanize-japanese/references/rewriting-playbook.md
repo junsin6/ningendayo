@@ -141,8 +141,10 @@
 ## 変更率の数え方
 
 * 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
+* **挿入率と削除率を分離計上する**（IMP-001）。change_rate 単独では「正当な削除（装飾・常套句・冗長構文の除去）」と「過推敲（意味を曲げる置換）」を区別できない。diff の `meta` に `insert_rate` / `delete_rate` / `delete_driven` を必ず併記する。
 * 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+* 50% 超でも **delete_driven（delete_rate ≫ insert_rate）かつ意味改変 edit ゼロ**なら中断しない。純削除で difflib 上は膨張するが過推敲ではないため、fidelity=pass かつ自然度 A/B を条件にオーケストレーターが **override accept** する（`summary.md` に override 理由を明記）。
+* 強制中断（`hold_and_report`）は「意味を改変する挿入・置換の比率」が高いときに限る。原文を尊重しすぎていないか、ジャンルを移していないかは delete_driven でない高変更率のときに再点検。
 
 ## 文体変換例（before → after 一括サンプル）
 

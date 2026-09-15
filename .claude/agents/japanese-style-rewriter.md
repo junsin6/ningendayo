@@ -20,13 +20,23 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
 ```json
 {
   "edits": [
-    { "finding_id": "f001", "category": "A-6", "before": "課題となっている", "after": "課題だ", "rationale": "状態叙述を断定へ" }
+    { "finding_id": "f001", "category": "A-6", "before": "課題となっている", "after": "課題だ", "rationale": "状態叙述を断定へ", "rollback": false }
   ],
-  "change_rate": 0.18,
-  "style_preserved": "desu_masu",
-  "warnings": []
+  "meta": {
+    "change_rate": 0.18,
+    "insert_rate": 0.05,
+    "delete_rate": 0.13,
+    "delete_driven": true,
+    "style_preserved": "desu_masu",
+    "warning": false
+  }
 }
 ```
+
+* `change_rate` = (挿入＋削除文字数)/原文長（difflib 文字単位）。
+* `insert_rate` / `delete_rate` を**必ず単独併記**する（IMP-001: change_rate 単独では正当削除と過推敲を区別できない）。
+* `delete_driven` = delete_rate ≫ insert_rate（削除主導）のとき true。装飾・常套句・冗長構文の純削除で change_rate が膨張したケースを示す。
+* ロールバック再推敲の edit は `rollback: true` を立てる。
 
 ## 推敲手順
 
@@ -34,9 +44,10 @@ description: 検出 finding に基づき、日本語テキストを手術的に�
 2. **finding 順処理**: 各 finding の span を playbook レシピで修正。検出のない区間は一切触らない。
 3. **連鎖調整**: 同カテゴリの反復（例 A-1「における」5 回）は、全部を同じ形に直さず複数の自然形に分散させる（機械的均一を避ける）。
 4. **リズム（E）**: 文末の単調反復を、同一文体内で変奏。短文・長文を意図的に混ぜる。
-5. **変更率監視**: 挿入＋削除文字数 / 原文文字数を計算。
-   * 30% 超 → `warnings` に記録して続行。
-   * 50% 超 → 中断し、オーケストレーターへ `hold_and_report` を返す。
+5. **変更率監視**: 挿入＋削除文字数 / 原文文字数を計算し、`insert_rate` と `delete_rate` を分離計上する。
+   * 30% 超 → `meta.warning=true` に記録して続行。
+   * 50% 超でも **delete_driven（delete_rate ≫ insert_rate）かつ意味改変 edit がゼロ**なら中断しない。装飾・常套句・冗長構文の純削除は「正当な削除」であり過推敲ではない（IMP-001）。オーケストレーターが fidelity=pass・自然度 A/B を確認して override accept する。
+   * 中断（`hold_and_report`）は「意味改変を伴う挿入・置換の比率」が高いときに限る。
 
 ## 厳守事項
 

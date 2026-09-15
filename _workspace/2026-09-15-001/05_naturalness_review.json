@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "reviewer": "naturalness-reviewer",
+    "run_id": "2026-09-15-001",
+    "rescan_method": "manual_taxonomy_rescan",
+    "rescan_note": "IMP-006 requires re-invoking ai-tell-detector as a subagent. No task-spawn tool is exposed in this session (only SendMessage to already-running agents, none of which is the detector), so a strict same-basis manual re-scan against ai-tell-taxonomy v1.0 was performed as the sanctioned fallback. score_after is therefore an estimate, not a detector-emitted value.",
+    "normalization": "severity_weighted_score = 100*(1-exp(-raw/k)); raw = 5*S1 + 2*S2 + 0.5*S3; k=44.98 back-solved from baseline (raw95 -> 87.9), cross-checked vs taxonomy example (raw56 -> 71.2 ~ 71.5)",
+    "style_before": "desu_masu",
+    "style_after": "desu_masu"
+  },
+  "score_before": 87.9,
+  "score_after": 8.51,
+  "improvement_rate": 0.9032,
+  "raw_before": 95,
+  "raw_after": 4.0,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 2,
+    "S3": 0,
+    "total": 2
+  },
+  "residual_detail": [
+    {
+      "ref": "f023",
+      "category": "B-1",
+      "severity": "S2",
+      "text_span": "（LLM）…（ANN）",
+      "status": "retained_by_design",
+      "reason": "初出専門語への英語併記が2箇所（LLM/ANN）残存し、同基準の再走査では B-1 が再検出される。ただし各語1回のみの初出併記で、除去すると読者が略語を復元できず情報欠落となるため rewriter が意図的に非適用（playbook B-1『初出1回は残す』準拠）。actionable ではない残存。"
+    },
+    {
+      "ref": "E-2",
+      "category": "E-2",
+      "severity": "S2",
+      "text_span": "文末: 実現します×3 + ます系優勢",
+      "status": "improved_not_eliminated",
+      "reason": "体言止め『呼ばれる処理。』1箇所と『でしょう』『です』を導入し変奏ゼロは解消。ただし『実現します』が3回反復し、11文末の多数が依然 ます系。IMP『体言止め1箇所以上で合格』の緩和ラインには到達するが、v1.0 厳格基準では語彙反復由来の単調が残るため保守的に S2 計上。"
+    }
+  ],
+  "s1_resolution": "S1 11件すべて解消（A-5可能冗長×5→可能動詞/断定、A-1×2→で/では、A-10×2→備える/条件+可能、A-6→です、D-4→重要な）。絶対残存ガード（S1が1件でもC以下）は S1=0 で通過。",
+  "overpolish_signals": [
+    {
+      "type": "unnatural_colloquialization",
+      "severity": "low",
+      "locus": "f030置換『これにより→おかげで』",
+      "text": "おかげでモデルは、最新の情報から回答を生成できます。",
+      "note": "『おかげで』は技術コラムの地の文にはやや口語・恩恵ニュアンス寄り。『この仕組みで』等の中立形が無難。軽微だがトーン逸脱シグナルとして1件計上。"
+    }
+  ],
+  "overpolish_signals_discounted": [
+    {
+      "type": "change_rate_over_30pct",
+      "observed": 0.3944,
+      "verdict": "not_counted",
+      "note": "名目上 change_rate 39.4% は30%閾値を超過するが、del 28.5% ≫ ins 10.9% の削除主導。増分の大半は『ことができる』5連・過剰連結・不要カタカナ・文頭接続詞の正当な純削除で、意味改変を伴う挿入は小さい。IMP-001（変更率指標が正当削除と過推敲を区別できない）の再現ケースにつき、真の過推敲シグナルとしては計上しない。"
+    },
+    {
+      "type": "style_mixing_keitai_jotai",
+      "count": 0,
+      "verdict": "clean",
+      "note": "文末形態の二値カウント: 敬体(ます/です/でしょう)=11、常体(だ/である)=0、体言止め=1（style中立・敬体許容device）。敬体/常体の混入なし。style_preserved=desu_masu。"
+    },
+    {
+      "type": "meaning_thinning / choppiness",
+      "count": 0,
+      "verdict": "clean",
+      "note": "体言止めは1箇所のみでぶつ切り感なし。『真価を発揮→大きな効果が得られます』もやや一般化だが意味希薄化には至らず。"
+    }
+  ],
+  "overpolish_signal_count_genuine": 1,
+  "grade": "A",
+  "grade_rationale": "S1=0, S2=2(≤2), 改善率90.3%(≥70%) で A の全条件を満たす。真の過推敲シグナルは『おかげで』1件のみ(閾値2未満)で降格せず。残存2件のうち B-1 は情報保持のための意図的非適用、E-2 は緩和ライン到達済みで、いずれも actionable な追加推敲を要しない。",
+  "recommendation": "accept",
+  "notes": "文体維持(desu_masu)良好、S1完全除去、意味希薄化・文体混入なし。唯一の実質シグナルは『おかげで』の軽微な口語化で、accept を妨げない水準。次回改善: (1) f030 は中立接続へ、(2) 『実現します』の語彙変奏で E-2 残差を詰めると score_after をさらに下げられる。score_after は IMP-006 未充足のため手動再走査の推定値。"
+}
