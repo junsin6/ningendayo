@@ -32,13 +32,21 @@
     { "finding_id": "f030", "category": "H-3", "before": "これにより、モデルは", "after": "おかげでモデルは", "rationale": "指示反復「これにより」を回避。f021で生じる『仕組み』重複を避けるため「この仕組みで」ではなく「おかげで」で変奏" },
     { "finding_id": "f031", "category": "E-2", "before": "全11文末が ます/です/ています/ことができます 中心で変奏ゼロ", "after": "『ことができる』5連を除去、体言止め1箇所(『〜処理。』)と予測『でしょう』を導入、ています/です/できますを自然分散", "rationale": "文書レベル文末変奏。敬体を維持したまま単調反復を解消（体言止めはplaybook E-2の敬体許容device）" }
   ],
+  "round2_rollbacks": [
+    { "finding_id": "f024", "category": "D-4", "rollback": true, "round1_after": "重要な", "before": "重要な", "after": "欠かせない", "rationale": "content-fidelity-auditor 指摘: 原文『欠かせない』の不可欠性(modality)を『重要な』が重要性へ弱めた(強度ダウングレード)。原語『欠かせない』を復元。A-6『となっています→です』の状態叙述解消(f014)は維持し、形容部のみロールバック。" },
+    { "finding_id": "f030", "category": "H-3", "rollback": true, "round1_after": "おかげでモデルは", "before": "おかげで", "after": "こうして", "rationale": "content-fidelity-auditor 指摘(追補#14): 中立の因果連結に『おかげで』が受益(valence)を新規付与。価値中立の『こうして』へ差し替え。指示反復『これにより』の解消(H-3)は維持しつつ恩恵色を除去。" }
+  ],
   "change_rate": 0.3944,
   "insert_rate": 0.1093,
   "delete_rate": 0.2851,
+  "round2_change_rate": 0.3792,
+  "round2_insert_rate": 0.104,
+  "round2_delete_rate": 0.2753,
   "warning": true,
   "style_preserved": "desu_masu",
   "warnings": [
     "change_rate 39.4%が30%警告閾値を超過（50%未満のため続行）。ただし削除主導(del28.5%≫ins10.9%)で、増分の大半は『ことができる』5連・過剰連結・カタカナ・接続詞の正当な純削除。意味改変を伴う挿入は小さい。IMP-001の再現。",
-    "f023(B-1)は本文初出1回のみのため併記を維持し実質no-op。findingとしてはS2計上だが除去は情報欠落を招くため非適用。"
+    "f023(B-1)は本文初出1回のみのため併記を維持し実質no-op。findingとしてはS2計上だが除去は情報欠落を招くため非適用。",
+    "round2: fidelity監査による f024・f030 の2件をロールバック。change_rate は 39.44%→37.92% へ微減（f024が原語復元で原文一致となり編集距離減）。50%未満で続行可、文体(敬体)・数値・固有名詞・技術標準語は不変。"
   ]
 }
