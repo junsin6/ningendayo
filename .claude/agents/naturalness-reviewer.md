@@ -15,8 +15,12 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。手動照合ではなく検出器の再走査値を用いる（IMP-006）。
+2. **スコア契約（IMP-002 / IMP-003）**:
+   * `score_before` = 当該 run の `02_detection.json` の `meta.severity_weighted_score`（この値をそのまま使う。再計算しない）。
+   * `score_after` = 再走査で得た `severity_weighted_score`。算式は taxonomy §検出出力スキーマの固定式 `round(100*(1-exp(-raw/42)),1)`（`raw = 5*S1 + 2*S2 + 0.5*S3`）を検出器と共有する。
+   * `score_after_method` に `"detector_rerun"`（再走査値）か `"estimated"`（推定値）を必ず記録。
+3. **改善率の算出**: `(score_before − score_after) / score_before`。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
    * 文体崩れ（敬体／常体の混入）
@@ -32,6 +36,7 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 {
   "score_before": 71.5,
   "score_after": 18.0,
+  "score_after_method": "detector_rerun",
   "improvement_rate": 0.748,
   "residual_findings": { "S1": 0, "S2": 2, "S3": 3 },
   "over_polish_signals": [],
