@@ -32,8 +32,10 @@
       "finding_id": "f005",
       "category": "A-5",
       "before": "柔軟に原因を特定することができる",
-      "after": "柔軟に原因を特定できる",
-      "rationale": "可能の冗長形「ことができる」を短縮。鉤括弧内は外部引用でなく著者による対比的言い換えのため編集対象（原文の情報は不変、鉤括弧そのものは維持）"
+      "after": "柔軟に原因を特定することができる",
+      "status": "rolled_back",
+      "round": 2,
+      "rationale": "round_2 ロールバック。round1 で鉤括弧「」内を『特定することができる』→『特定できる』へ短縮したが、content-fidelity-auditor #3（直接引用）で fail 判定。CLAUDE.md 禁忌『鉤括弧内引用文の変更禁止』のブライトラインに従い、括弧内を原文へ完全復元。A-5 冗長短縮は括弧外（f006〜f010 で処理済み）に限定し、括弧内には今後一切適用しない。命題の意味は元より等価（ことができる＝できる）のため情報の増減なし"
     },
     {
       "finding_id": "f006",
@@ -167,22 +169,42 @@
       "before": "…蓄積することができます。…記録することができます。…可視化することができます。…把握することが可能となります。",
       "after": "…蓄積します。…記録されます。…可視化します。…把握できます。",
       "rationale": "第3段落末尾の同型4連続（できます×3＋可能となります）を、敬体を保ったまま「します／されます／します／できます」に変奏。文書全体の一本調子を緩和。文体（敬体）は変更せず"
+    },
+    {
+      "finding_id": "f020",
+      "category": "D-4",
+      "round": 2,
+      "before": "運用に欠かせないオブザーバビリティの基礎",
+      "after": "運用で押さえておきたいオブザーバビリティの基礎",
+      "rationale": "round_2 追加修正（D-4 ハイプ語彙クラスタ除去）。naturalness-reviewer で line3 のハイプ語『欠かせない』が原文のまま残存し S1 判定。誇張語のみを『押さえておきたい』へ差し替え、重要性の含意（学ぶべき基礎である点）は保持。数値・固有名詞・敬体は不変"
+    },
+    {
+      "finding_id": "f020",
+      "category": "D-4",
+      "round": 2,
+      "before": "もはや不可欠な取り組みです",
+      "after": "もはや避けて通れない取り組みです",
+      "rationale": "round_2 追加修正（D-4 ハイプ語彙クラスタ除去）。line9 のハイプ語『不可欠』が原文のまま残存し S1 判定（line3 と共起する意義誇張の反復）。誇張語のみを『避けて通れない』へ差し替え、必要不可欠さの含意は保持。原文の副詞『もはや』は情報として保存し削除しない。敬体維持"
     }
   ],
-  "change_rate": 0.2027,
+  "change_rate": 0.2201,
   "style_preserved": "desu_masu",
   "meta": {
     "run_id": "2026-09-16-001",
+    "round": 2,
     "findings_total": 24,
     "findings_addressed": 24,
-    "findings_rolled_back": 0,
+    "findings_rolled_back": 1,
+    "rolled_back_ids": ["f005"],
+    "round_2_edits": ["f005 (rollback)", "f020 line3", "f020 line9"],
     "orig_chars": 745,
-    "rewrite_chars": 658,
-    "inserted_chars": 32,
-    "deleted_chars": 119,
+    "rewrite_chars": 669,
+    "inserted_chars": 44,
+    "deleted_chars": 120,
     "change_rate_method": "difflib.SequenceMatcher(insert+delete)/orig_chars, 空白・改行を正規化除去して算出",
     "change_rate_threshold_warn": 0.30,
-    "change_rate_threshold_halt": 0.50
+    "change_rate_threshold_halt": 0.50,
+    "bracketed_quote_check": "pass — 鉤括弧2箇所とも原文と完全一致（機械確認済み）"
   },
   "warnings": []
 }
