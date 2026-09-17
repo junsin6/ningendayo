@@ -1,0 +1,320 @@
+{
+  "meta": {
+    "input_length": 722,
+    "detected_count": 27,
+    "ai_tell_density": 0.277,
+    "severity_weighted_score": 68.6,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "構築することができる",
+      "start": 118,
+      "end": 128,
+      "reason": "可能の冗長形「することができる」が本文で5回反復（118,238,290,323,442）。AI文の最頻出シグネチャ。「構築することができる」は断定「構築できる」で足りる",
+      "suggested_fix": "構築できる"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "デプロイすることができる",
+      "start": 238,
+      "end": 250,
+      "reason": "「することができる」5回反復の2例目。「デプロイすることができる」→「デプロイできる」",
+      "suggested_fix": "デプロイできる"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実現することが可能です",
+      "start": 290,
+      "end": 301,
+      "reason": "5回反復の3例目（変種「ことが可能です」）。「実現することが可能です」は冗長な可能表現。「実現できます」へ短縮",
+      "suggested_fix": "実現できます"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "開発・運用することができるようになります",
+      "start": 323,
+      "end": 343,
+      "reason": "5回反復の4例目。さらに「ようになります」と二重化。「開発・運用することができるようになります」→「個別に開発・運用できます」",
+      "suggested_fix": "個別に開発・運用できます"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "行うことができます",
+      "start": 442,
+      "end": 451,
+      "reason": "5回反復の5例目。「行うことができます」→「行えます」",
+      "suggested_fix": "行えます"
+    },
+    {
+      "id": "f006",
+      "category": "A-3",
+      "category_label": "翻訳調: 〜を通じて 濫用",
+      "severity": "S2",
+      "text_span": "を通じて",
+      "start": 275,
+      "end": 279,
+      "reason": "手段表現の翻訳調マーカー（英語 through/via の直訳）。単発だが「APIを通じて連携」は「APIで連携」で足りる",
+      "suggested_fix": "で"
+    },
+    {
+      "id": "f007",
+      "category": "A-7",
+      "category_label": "翻訳調: 〜を持っている/〜を有する",
+      "severity": "S2",
+      "text_span": "を持つ",
+      "start": 647,
+      "end": 650,
+      "reason": "所有・特性叙述の翻訳調（英語 have）。「メリットを持つ」→「メリットがある」",
+      "suggested_fix": "がある"
+    },
+    {
+      "id": "f008",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "という",
+      "start": 59,
+      "end": 62,
+      "reason": "「という/といった」で概念・例示を接続する過剰連結が2回（59,405）。「マイクロサービスアーキテクチャというアプローチ」は「という」を削除して直結可",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f009",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "といった",
+      "start": 405,
+      "end": 409,
+      "reason": "「という/といった」2回反復の2例目。「DockerやKubernetesといったツール」→「DockerやKubernetesなどのツール」",
+      "suggested_fix": "などの"
+    },
+    {
+      "id": "f010",
+      "category": "I-2",
+      "category_label": "形式的表現: 〜という点 反復",
+      "severity": "S2",
+      "text_span": "という点が",
+      "start": 128,
+      "end": 133,
+      "reason": "「という点」が2回反復（128,551）。「構築できるという点が、大きなメリット」→「構築でき、それが大きな利点」。形式名詞で叙述を膨らませている",
+      "suggested_fix": "（削除・具体化）"
+    },
+    {
+      "id": "f011",
+      "category": "I-2",
+      "category_label": "形式的表現: 〜という点 反復",
+      "severity": "S2",
+      "text_span": "という点には",
+      "start": 551,
+      "end": 557,
+      "reason": "「という点」2回反復の2例目。「難易度が上がるという点には」→「難易度が上がる点には」／削除",
+      "suggested_fix": "点には"
+    },
+    {
+      "id": "f012",
+      "category": "I-1",
+      "category_label": "形式的表現: 〜こと 濫用",
+      "severity": "S3",
+      "text_span": "のことを指します",
+      "start": 257,
+      "end": 265,
+      "reason": "形式名詞「こと」で定義文を冗長化（他パターンと重なりAI印象を強めるS3）。「アーキテクチャのことを指します」→「アーキテクチャを指します」",
+      "suggested_fix": "を指します"
+    },
+    {
+      "id": "f013",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる/〜が必要だ 行為者を曖昧にした要請",
+      "severity": "S2",
+      "text_span": "注意が必要です",
+      "start": 558,
+      "end": 565,
+      "reason": "行為者を曖昧にした要請「が必要だ」（日本語ビジネスAI文の常套）。同型が本文で2回（558,601）。「注意が必要です」→誰が注意すべきかを具体化",
+      "suggested_fix": "注意しましょう"
+    },
+    {
+      "id": "f014",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる/〜が必要だ 行為者を曖昧にした要請",
+      "severity": "S2",
+      "text_span": "整備することが求められます",
+      "start": 601,
+      "end": 614,
+      "reason": "「が求められる/が必要だ」2回反復の2例目。「整備することが求められます」は行為者不在＋形式名詞「こと」。「〜を整備しなければなりません」へ主語・動詞を具体化",
+      "suggested_fix": "整備しなければなりません"
+    },
+    {
+      "id": "f015",
+      "category": "D-1",
+      "category_label": "AI慣用句: 結び・断定回避（〜と言えるでしょう/いかがでしょうか）",
+      "severity": "S1",
+      "text_span": "と言えるでしょう",
+      "start": 486,
+      "end": 494,
+      "reason": "婉曲断定の結句「と言えるでしょう/であると言えます/いかがでしょうか」型が本文で3回（486,670,705）。LLM結句の決定的シグネチャ。「後押ししていると言えるでしょう」→「後押ししています」",
+      "suggested_fix": "後押ししています"
+    },
+    {
+      "id": "f016",
+      "category": "D-1",
+      "category_label": "AI慣用句: 結び・断定回避（〜と言えるでしょう/いかがでしょうか）",
+      "severity": "S1",
+      "text_span": "であると言えます",
+      "start": 670,
+      "end": 678,
+      "reason": "婉曲断定3回の2例目。「アプローチであると言えます」→「手法です」",
+      "suggested_fix": "手法です"
+    },
+    {
+      "id": "f017",
+      "category": "D-1",
+      "category_label": "AI慣用句: 結び・断定回避（〜と言えるでしょう/いかがでしょうか）",
+      "severity": "S1",
+      "text_span": "検討してみてはいかがでしょうか",
+      "start": 705,
+      "end": 720,
+      "reason": "婉曲断定3回の3例目かつブログAIの決定的な結び（拡張候補D-7「〜してみてはいかがでしょうか」）。「導入を検討してみてはいかがでしょうか」→「導入を検討してみてください」等の具体的着地文へ",
+      "suggested_fix": "導入を検討してみてください"
+    },
+    {
+      "id": "f018",
+      "category": "D-2",
+      "category_label": "AI慣用句: 意義・注目の誇張",
+      "severity": "S3",
+      "text_span": "注目を集めています",
+      "start": 68,
+      "end": 77,
+      "reason": "導入部の定型的ハイプ「注目を集めています」（単独では許容だが他AIパターンと重なりS3）。具体的な普及状況の叙述に置換可",
+      "suggested_fix": "広がっています"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アプローチ",
+      "start": 62,
+      "end": 67,
+      "reason": "日本語で書けるカタカナ語（アプローチ2回・メリット2回・テクノロジー等）が密集し知的偽装。「アプローチ」→「手法/方法」。※マイクロサービス・API・Docker・デプロイ等の業界標準語は免責",
+      "suggested_fix": "手法"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "メリット",
+      "start": 137,
+      "end": 141,
+      "reason": "カタカナ語密集の2例目。「メリット」2回（137,643）→「利点/長所」で足りる",
+      "suggested_fix": "利点"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "テクノロジー",
+      "start": 364,
+      "end": 370,
+      "reason": "カタカナ語密集の3例目。「テクノロジー」は同段落「コンテナ技術」と表記が不整合。「技術」に統一すべき",
+      "suggested_fix": "技術"
+    },
+    {
+      "id": "f022",
+      "category": "C-1",
+      "category_label": "構造: 機械的並列「まず・次に」",
+      "severity": "S1",
+      "text_span": "まず、",
+      "start": 191,
+      "end": 194,
+      "reason": "段落冒頭が「まず、（191）→次に、（346）」の機械的列挙で支配（後続段落も一方で／このように で開く）。LLM構造シグネチャ。1要素を叙述に溶かすべき",
+      "suggested_fix": "（叙述文へ溶かす）"
+    },
+    {
+      "id": "f023",
+      "category": "C-1",
+      "category_label": "構造: 機械的並列「まず・次に」",
+      "severity": "S1",
+      "text_span": "次に、",
+      "start": 346,
+      "end": 349,
+      "reason": "「まず・次に」機械的並列の2要素目（f内一連）。列挙の型を崩すか叙述に溶かす",
+      "suggested_fix": "（叙述文へ溶かす）"
+    },
+    {
+      "id": "f024",
+      "category": "C-7",
+      "category_label": "構造: 段落冒頭「一方/しかし/このように」公式の連発",
+      "severity": "S2",
+      "text_span": "一方で、",
+      "start": 497,
+      "end": 501,
+      "reason": "全ての本文段落が接続表現で開く（まず191/次に346/一方で497/このように617）。段落冒頭公式が図式的。接続詞なしで始まる段落を混ぜるべき",
+      "suggested_fix": "（接続詞なしで開始）"
+    },
+    {
+      "id": "f025",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "これにより、",
+      "start": 302,
+      "end": 308,
+      "reason": "文頭接続詞「これにより」（302）等が多い。論理の流れは文内容で示せる。「これにより、開発チームは〜」→接続詞を削り前文と直結",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f026",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "このように、",
+      "start": 617,
+      "end": 623,
+      "reason": "文末まとめの文頭接続詞「このように」。結論を図式化するLLM定型。削除しても文意は通る",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f027",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "課題も存在します",
+      "start": 511,
+      "end": 519,
+      "reason": "文末が全14文とも「〜ます/です/でしょう(か)」で終止し一本調子（文書レベル：体言止め・「〜だ」変奏が皆無）。text_span は代表位置。敬体を維持したまま体言止めや「〜でしょう」で変奏すべき",
+      "suggested_fix": "（体言止め・文末変奏を混ぜる）"
+    }
+  ],
+  "category_summary": {
+    "A": 9,
+    "B": 3,
+    "C": 3,
+    "D": 4,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 2,
+    "I": 5,
+    "J": 0
+  }
+}
