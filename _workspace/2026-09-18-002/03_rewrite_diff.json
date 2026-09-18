@@ -13,7 +13,15 @@
     "verdict": "accept",
     "warnings": [
       "change_rate 0.35 が 30% を超過。挿入54字に対し削除205字と削除主導。要因は D-6 硬い懇請定型5件の圧縮（お願い申し上げます／次第です等）と A系・I-3 の冗長形除去であり、装飾・定型の純削除が中心。原文の事実・要請・条件は全保持。50% 未満のため中断せず続行。"
-    ]
+    ],
+    "rollbacks": [
+      {
+        "finding_id": "f023",
+        "reason": "fidelity rollback: F-2集約で「迅速」が脱落し目的記述が縮減（迅速≠的確）。原文の二属性を復元",
+        "after_rollback": "迅速かつ的確な対応能力"
+      }
+    ],
+    "post_rollback_note": "content-fidelity-auditor 指示によりf023のみロールバック。他edit据置。"
   },
   "chain_adjustments": {
     "A-1_において系": "4件を機械的均一化せず『では／の／で／で』へ分散（f001-f004）。",
@@ -25,38 +33,269 @@
     "H-1_文頭なお過多": "『なお』3回を1回へ削減（段落2・段落4の『なお』を削除、段落5の逆接的補足の『なお』のみ保持）。『また』『つきましては』は語調維持のため残置（f033）。"
   },
   "edits": [
-    { "finding_id": "f005", "category": "A-2", "before": "総合防災訓練の実施について（お知らせ）", "after": "総合防災訓練の実施（お知らせ）", "type": "delete", "rationale": "標題の主題提示『について』を削除。標題は名詞句のままで自然。" },
-    { "finding_id": "f001", "category": "A-1", "before": "○○市におきましては", "after": "○○市では", "type": "substitute", "rationale": "『における』系敬語形を助詞『では』へ。固有名○○市は不変。" },
-    { "finding_id": "f009+f013", "category": "A-6/A-8", "before": "総合防災訓練が実施されることとなりました", "after": "総合防災訓練を実施します", "type": "substitute", "rationale": "受動+状態化の二重クセを能動断定へ。主体は市で自明。日付・訓練名は不変。決定告知の含意は本文全体で保持。" },
-    { "finding_id": "f022", "category": "A-11", "before": "市民の皆様の防災意識の向上を図る", "after": "市民の皆様の防災意識を高める", "type": "substitute", "rationale": "『の』連鎖と名詞化『向上を図る』を動詞句へ解体。意味不変。" },
-    { "finding_id": "f002", "category": "A-1", "before": "災害発生時における", "after": "災害発生時の", "type": "substitute", "rationale": "『における』を助詞『の』へ。" },
-    { "finding_id": "f023", "category": "F-2", "before": "迅速かつ的確な対応能力", "after": "的確な対応能力", "type": "delete", "rationale": "官庁定型の二重修飾を一方へ集約。※迅速性の情報が僅かに減る点は監査要確認（改善点参照）。" },
-    { "finding_id": "f021+f014", "category": "A-9/A-8", "before": "強化を目的として行われるものです", "after": "強化するために行うものです", "type": "substitute", "rationale": "目的節『を目的として』を『ために』へ、受動『行われる』を能動『行う』へ。前文の『備えるため』と語形をずらし反復感を回避。" },
-    { "finding_id": "f020", "category": "A-8", "before": "防災行政無線によるサイレンの吹鳴が行われます", "after": "防災行政無線でサイレンを鳴らします", "type": "substitute", "rationale": "by-passive『による』を『で』へ。固有語『防災行政無線』は不変。" },
-    { "finding_id": "f015", "category": "A-8", "before": "サイレンの吹鳴が行われます", "after": "サイレンを鳴らします", "type": "substitute", "rationale": "受動『吹鳴が行われます』を能動『鳴らします』へ。主体は市で自明。午前9時は不変。" },
-    { "finding_id": "f008", "category": "A-2", "before": "参加される市民の皆様におかれましては", "after": "参加される市民の皆様は", "type": "substitute", "rationale": "人の主題化『におかれましては』を助詞『は』へ。尊敬語『参加される』は保持。" },
-    { "finding_id": "f034", "category": "A-8", "before": "指定された一時避難場所", "after": "指定の一時避難場所", "type": "substitute", "rationale": "受動連体『指定された』を『指定の』へ。避難場所指定という条件は保持。" },
-    { "finding_id": "f024", "category": "I-3", "before": "避難していただく必要がございます", "after": "避難してください", "type": "substitute", "rationale": "『必要がございます』を勧告形へ。避難の要請（必要）は命令的丁寧形で等価保持。" },
-    { "finding_id": "f033-a", "category": "H-1", "before": "なお、避難の際には", "after": "避難の際には", "type": "delete", "rationale": "文頭『なお』3回のうち1回目を削除。" },
-    { "finding_id": "f027", "category": "D-6", "before": "行っていただきますようお願い申し上げます", "after": "行ってください", "type": "substitute", "rationale": "懇請定型を勧告形へ（変奏1: ください）。火の元確認の要請は保持。" },
-    { "finding_id": "f003", "category": "A-1", "before": "各地域の避難所において", "after": "各地域の避難所で", "type": "substitute", "rationale": "場所の『において』を助詞『で』へ。" },
-    { "finding_id": "f016+f010", "category": "A-8/A-6", "before": "訓練等が実施される予定となっております", "after": "訓練等を実施する予定です", "type": "substitute", "rationale": "受動+状態化『実施される予定となっております』を『実施する予定です』へ。訓練名は不変。" },
-    { "finding_id": "f019", "category": "A-8", "before": "これらの訓練に参加されることによって", "after": "これらの訓練にご参加いただくと", "type": "substitute", "rationale": "by-passive『によって』を条件句へ。尊敬・謙譲の敬意は『ご参加いただく』で維持。" },
-    { "finding_id": "f011", "category": "A-6", "before": "災害時に必要となる知識", "after": "災害時に必要な知識", "type": "substitute", "rationale": "状態化『必要となる』を『必要な』へ。『および技能』は対象外につき保持。" },
-    { "finding_id": "f012", "category": "A-5", "before": "身につけていただくことが可能です", "after": "身につけられます", "type": "substitute", "rationale": "可能の冗長形を可能動詞へ。習得できるという意味は等価。" },
-    { "finding_id": "f006", "category": "A-2", "before": "訓練への参加を希望される方につきましては", "after": "訓練への参加を希望される方は", "type": "substitute", "rationale": "主題提示『につきましては』を助詞『は』へ。尊敬語『希望される』は保持。" },
-    { "finding_id": "f025", "category": "I-3", "before": "お申し込みいただく必要があります", "after": "お申し込みください", "type": "substitute", "rationale": "『必要があります』を勧告形へ。事前申込が必要という条件は等価保持。『各地区の自治会を通じて』は不変。" },
-    { "finding_id": "f033-b", "category": "H-1", "before": "なお、当日は会場周辺", "after": "当日は会場周辺", "type": "delete", "rationale": "文頭『なお』2回目を削除。" },
-    { "finding_id": "f004", "category": "A-1", "before": "会場周辺において交通規制", "after": "会場周辺で交通規制", "type": "substitute", "rationale": "『において』を助詞『で』へ。" },
-    { "finding_id": "f017", "category": "A-8", "before": "交通規制が実施されますので", "after": "交通規制を行いますので", "type": "substitute", "rationale": "受動『実施されます』を能動『行います』へ。主体は市で自明。" },
-    { "finding_id": "f026", "category": "I-3", "before": "公共交通機関をご利用いただく必要がございます", "after": "公共交通機関をご利用ください", "type": "substitute", "rationale": "『必要がございます』を勧告形へ（変奏）。『できる限り公共交通機関を』の依頼は等価保持。" },
-    { "finding_id": "f028", "category": "D-6", "before": "ご協力をお願いする次第です", "after": "ご協力をお願いします", "type": "substitute", "rationale": "懇請定型『次第です』を平明な依頼へ（変奏2: お願いします）。駐車場に限りがある旨は保持。" },
-    { "finding_id": "f029", "category": "D-6", "before": "積極的にご参加くださいますよう、よろしくお願い申し上げます", "after": "積極的にご参加くださいますようお願い申し上げます", "type": "delete", "rationale": "文中の中心的な結びとして『お願い申し上げます』を保持（変奏3: 敬意を残す1件）。冗語『、よろしく』のみ削減。" },
-    { "finding_id": "f018", "category": "A-8", "before": "訓練が中止されることがございます", "after": "訓練を中止することがございます", "type": "substitute", "rationale": "受動『中止される』を能動『中止する』へ。荒天中止の条件は保持。『ございます』の丁寧度は維持。" },
-    { "finding_id": "f030", "category": "D-6", "before": "あらかじめご了承いただきますようお願いいたします", "after": "あらかじめご了承ください", "type": "substitute", "rationale": "懇請定型を勧告形へ（変奏4: ください）。" },
-    { "finding_id": "f007", "category": "A-2", "before": "詳細につきましては", "after": "詳細は", "type": "substitute", "rationale": "主題提示『につきましては』を助詞『は』へ。" },
-    { "finding_id": "f031", "category": "D-6", "before": "ご確認いただきますようお願い申し上げます", "after": "ご確認ください", "type": "substitute", "rationale": "懇請定型を勧告形へ（変奏5: ください）。公式ホームページ確認の案内は保持。" },
-    { "finding_id": "f032", "category": "E-2", "before": "（文書レベル: 文末が ます/ございます/申し上げます/です に集中）", "after": "（文末を ます／です／ください／お願いします／申し上げます の5型へ分散）", "type": "rhythm", "rationale": "同一敬体内で文末を変奏。行政告知の格を保つため体言止めは不採用。" },
-    { "finding_id": "f033", "category": "H-1", "before": "（文書レベル: 文頭『なお』3回）", "after": "（『なお』を1回へ削減、段落5の補足のみ保持）", "type": "connective_reduction", "rationale": "接続詞過多を解消。『また』『つきましては』は語調維持のため残置。" }
+    {
+      "finding_id": "f005",
+      "category": "A-2",
+      "before": "総合防災訓練の実施について（お知らせ）",
+      "after": "総合防災訓練の実施（お知らせ）",
+      "type": "delete",
+      "rationale": "標題の主題提示『について』を削除。標題は名詞句のままで自然。"
+    },
+    {
+      "finding_id": "f001",
+      "category": "A-1",
+      "before": "○○市におきましては",
+      "after": "○○市では",
+      "type": "substitute",
+      "rationale": "『における』系敬語形を助詞『では』へ。固有名○○市は不変。"
+    },
+    {
+      "finding_id": "f009+f013",
+      "category": "A-6/A-8",
+      "before": "総合防災訓練が実施されることとなりました",
+      "after": "総合防災訓練を実施します",
+      "type": "substitute",
+      "rationale": "受動+状態化の二重クセを能動断定へ。主体は市で自明。日付・訓練名は不変。決定告知の含意は本文全体で保持。"
+    },
+    {
+      "finding_id": "f022",
+      "category": "A-11",
+      "before": "市民の皆様の防災意識の向上を図る",
+      "after": "市民の皆様の防災意識を高める",
+      "type": "substitute",
+      "rationale": "『の』連鎖と名詞化『向上を図る』を動詞句へ解体。意味不変。"
+    },
+    {
+      "finding_id": "f002",
+      "category": "A-1",
+      "before": "災害発生時における",
+      "after": "災害発生時の",
+      "type": "substitute",
+      "rationale": "『における』を助詞『の』へ。"
+    },
+    {
+      "finding_id": "f023",
+      "category": "F-2",
+      "before": "迅速かつ的確な対応能力",
+      "after": "的確な対応能力",
+      "type": "delete",
+      "rationale": "官庁定型の二重修飾を一方へ集約。※迅速性の情報が僅かに減る点は監査要確認（改善点参照）。"
+    },
+    {
+      "finding_id": "f021+f014",
+      "category": "A-9/A-8",
+      "before": "強化を目的として行われるものです",
+      "after": "強化するために行うものです",
+      "type": "substitute",
+      "rationale": "目的節『を目的として』を『ために』へ、受動『行われる』を能動『行う』へ。前文の『備えるため』と語形をずらし反復感を回避。"
+    },
+    {
+      "finding_id": "f020",
+      "category": "A-8",
+      "before": "防災行政無線によるサイレンの吹鳴が行われます",
+      "after": "防災行政無線でサイレンを鳴らします",
+      "type": "substitute",
+      "rationale": "by-passive『による』を『で』へ。固有語『防災行政無線』は不変。"
+    },
+    {
+      "finding_id": "f015",
+      "category": "A-8",
+      "before": "サイレンの吹鳴が行われます",
+      "after": "サイレンを鳴らします",
+      "type": "substitute",
+      "rationale": "受動『吹鳴が行われます』を能動『鳴らします』へ。主体は市で自明。午前9時は不変。"
+    },
+    {
+      "finding_id": "f008",
+      "category": "A-2",
+      "before": "参加される市民の皆様におかれましては",
+      "after": "参加される市民の皆様は",
+      "type": "substitute",
+      "rationale": "人の主題化『におかれましては』を助詞『は』へ。尊敬語『参加される』は保持。"
+    },
+    {
+      "finding_id": "f034",
+      "category": "A-8",
+      "before": "指定された一時避難場所",
+      "after": "指定の一時避難場所",
+      "type": "substitute",
+      "rationale": "受動連体『指定された』を『指定の』へ。避難場所指定という条件は保持。"
+    },
+    {
+      "finding_id": "f024",
+      "category": "I-3",
+      "before": "避難していただく必要がございます",
+      "after": "避難してください",
+      "type": "substitute",
+      "rationale": "『必要がございます』を勧告形へ。避難の要請（必要）は命令的丁寧形で等価保持。"
+    },
+    {
+      "finding_id": "f033-a",
+      "category": "H-1",
+      "before": "なお、避難の際には",
+      "after": "避難の際には",
+      "type": "delete",
+      "rationale": "文頭『なお』3回のうち1回目を削除。"
+    },
+    {
+      "finding_id": "f027",
+      "category": "D-6",
+      "before": "行っていただきますようお願い申し上げます",
+      "after": "行ってください",
+      "type": "substitute",
+      "rationale": "懇請定型を勧告形へ（変奏1: ください）。火の元確認の要請は保持。"
+    },
+    {
+      "finding_id": "f003",
+      "category": "A-1",
+      "before": "各地域の避難所において",
+      "after": "各地域の避難所で",
+      "type": "substitute",
+      "rationale": "場所の『において』を助詞『で』へ。"
+    },
+    {
+      "finding_id": "f016+f010",
+      "category": "A-8/A-6",
+      "before": "訓練等が実施される予定となっております",
+      "after": "訓練等を実施する予定です",
+      "type": "substitute",
+      "rationale": "受動+状態化『実施される予定となっております』を『実施する予定です』へ。訓練名は不変。"
+    },
+    {
+      "finding_id": "f019",
+      "category": "A-8",
+      "before": "これらの訓練に参加されることによって",
+      "after": "これらの訓練にご参加いただくと",
+      "type": "substitute",
+      "rationale": "by-passive『によって』を条件句へ。尊敬・謙譲の敬意は『ご参加いただく』で維持。"
+    },
+    {
+      "finding_id": "f011",
+      "category": "A-6",
+      "before": "災害時に必要となる知識",
+      "after": "災害時に必要な知識",
+      "type": "substitute",
+      "rationale": "状態化『必要となる』を『必要な』へ。『および技能』は対象外につき保持。"
+    },
+    {
+      "finding_id": "f012",
+      "category": "A-5",
+      "before": "身につけていただくことが可能です",
+      "after": "身につけられます",
+      "type": "substitute",
+      "rationale": "可能の冗長形を可能動詞へ。習得できるという意味は等価。"
+    },
+    {
+      "finding_id": "f006",
+      "category": "A-2",
+      "before": "訓練への参加を希望される方につきましては",
+      "after": "訓練への参加を希望される方は",
+      "type": "substitute",
+      "rationale": "主題提示『につきましては』を助詞『は』へ。尊敬語『希望される』は保持。"
+    },
+    {
+      "finding_id": "f025",
+      "category": "I-3",
+      "before": "お申し込みいただく必要があります",
+      "after": "お申し込みください",
+      "type": "substitute",
+      "rationale": "『必要があります』を勧告形へ。事前申込が必要という条件は等価保持。『各地区の自治会を通じて』は不変。"
+    },
+    {
+      "finding_id": "f033-b",
+      "category": "H-1",
+      "before": "なお、当日は会場周辺",
+      "after": "当日は会場周辺",
+      "type": "delete",
+      "rationale": "文頭『なお』2回目を削除。"
+    },
+    {
+      "finding_id": "f004",
+      "category": "A-1",
+      "before": "会場周辺において交通規制",
+      "after": "会場周辺で交通規制",
+      "type": "substitute",
+      "rationale": "『において』を助詞『で』へ。"
+    },
+    {
+      "finding_id": "f017",
+      "category": "A-8",
+      "before": "交通規制が実施されますので",
+      "after": "交通規制を行いますので",
+      "type": "substitute",
+      "rationale": "受動『実施されます』を能動『行います』へ。主体は市で自明。"
+    },
+    {
+      "finding_id": "f026",
+      "category": "I-3",
+      "before": "公共交通機関をご利用いただく必要がございます",
+      "after": "公共交通機関をご利用ください",
+      "type": "substitute",
+      "rationale": "『必要がございます』を勧告形へ（変奏）。『できる限り公共交通機関を』の依頼は等価保持。"
+    },
+    {
+      "finding_id": "f028",
+      "category": "D-6",
+      "before": "ご協力をお願いする次第です",
+      "after": "ご協力をお願いします",
+      "type": "substitute",
+      "rationale": "懇請定型『次第です』を平明な依頼へ（変奏2: お願いします）。駐車場に限りがある旨は保持。"
+    },
+    {
+      "finding_id": "f029",
+      "category": "D-6",
+      "before": "積極的にご参加くださいますよう、よろしくお願い申し上げます",
+      "after": "積極的にご参加くださいますようお願い申し上げます",
+      "type": "delete",
+      "rationale": "文中の中心的な結びとして『お願い申し上げます』を保持（変奏3: 敬意を残す1件）。冗語『、よろしく』のみ削減。"
+    },
+    {
+      "finding_id": "f018",
+      "category": "A-8",
+      "before": "訓練が中止されることがございます",
+      "after": "訓練を中止することがございます",
+      "type": "substitute",
+      "rationale": "受動『中止される』を能動『中止する』へ。荒天中止の条件は保持。『ございます』の丁寧度は維持。"
+    },
+    {
+      "finding_id": "f030",
+      "category": "D-6",
+      "before": "あらかじめご了承いただきますようお願いいたします",
+      "after": "あらかじめご了承ください",
+      "type": "substitute",
+      "rationale": "懇請定型を勧告形へ（変奏4: ください）。"
+    },
+    {
+      "finding_id": "f007",
+      "category": "A-2",
+      "before": "詳細につきましては",
+      "after": "詳細は",
+      "type": "substitute",
+      "rationale": "主題提示『につきましては』を助詞『は』へ。"
+    },
+    {
+      "finding_id": "f031",
+      "category": "D-6",
+      "before": "ご確認いただきますようお願い申し上げます",
+      "after": "ご確認ください",
+      "type": "substitute",
+      "rationale": "懇請定型を勧告形へ（変奏5: ください）。公式ホームページ確認の案内は保持。"
+    },
+    {
+      "finding_id": "f032",
+      "category": "E-2",
+      "before": "（文書レベル: 文末が ます/ございます/申し上げます/です に集中）",
+      "after": "（文末を ます／です／ください／お願いします／申し上げます の5型へ分散）",
+      "type": "rhythm",
+      "rationale": "同一敬体内で文末を変奏。行政告知の格を保つため体言止めは不採用。"
+    },
+    {
+      "finding_id": "f033",
+      "category": "H-1",
+      "before": "（文書レベル: 文頭『なお』3回）",
+      "after": "（『なお』を1回へ削減、段落5の補足のみ保持）",
+      "type": "connective_reduction",
+      "rationale": "接続詞過多を解消。『また』『つきましては』は語調維持のため残置。"
+    }
   ]
 }
