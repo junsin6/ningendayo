@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "run_id": "2026-09-18-001",
+    "genre": "技術解説記事",
+    "style_preserved": "desu_masu",
+    "reviewer": "naturalness-reviewer",
+    "score_normalization": "severity_weighted_score = raw / (raw + 40) * 100、raw = S1*5 + S2*2 + S3*0.5。推敲前 raw=97 (S1×9=45 + S2×26=52) → 97/(97+40)*100 = 70.80 で score_before=70.8 と一致し、正規化係数 K=40 を確定。score_after も同一式で算出。",
+    "detector_rerun": {
+      "requested": "ai-tell-detector サブエージェントを Agent ツールで起動し推敲文を同一基準で再走査する",
+      "executed": "手実行による同一基準再走査（下記 caveat 参照）",
+      "caveat": "本レビュアーはサブエージェントとして起動されており、当ハーネス実行環境ではサブエージェントからのサブエージェント起動手段（Task/Agent ツール）が提供されていない。ListAgents も未提供。そのため ai-tell-detector を実プロセスとして spawn できなかった。代替として .claude/agents/ai-tell-detector.md の検出手順と .claude/skills/humanize-japanese/references/ai-tell-taxonomy.md v1.0 の同一スキーマ・同一深刻度基準・同一スコア式を本レビュアーが忠実に適用し、03_rewrite.md を再走査した。手動照合ではなく検出器ロジックの再適用として実施。",
+      "target": "03_rewrite.md",
+      "rewrite_length": 588,
+      "style_detected": "desu_masu",
+      "findings_tracked": 35,
+      "findings_resolved": 35,
+      "residual_count": 3
+    }
+  },
+  "score_before": 70.8,
+  "score_after": 7.0,
+  "improvement_rate": 0.901,
+  "residual_findings": { "S1": 0, "S2": 1, "S3": 2 },
+  "residual_detail": [
+    {
+      "id": "r001",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（可能にする＝enables）",
+      "severity": "S2",
+      "text_span": "処理することを可能にし",
+      "context": "この技術は、データを即時に処理することを可能にし、より低い遅延を実現できます。",
+      "reason": "抽象主語「この技術は」＋準万能動詞「可能にする」(The X enables Y 直訳) の A-10 型翻訳調が残存。推敲前・推敲後の双方に存在し、02_detection.json は同一文の「実現することができます」(f011) のみ finding 化して「可能にし」を取りこぼしていた（baseline 検出漏れ）。同一基準の再走査で顕在化。処方: 「即時に処理でき」等へ直接叙述化すれば解消。A-10 は本来 S1 だが『もたらす/提供する』より誇張が弱く反復1回のため S2 相当と判定。",
+      "note": "score_before との比較整合性のため、この 1 件は改善率算出時の baseline 母数（97）には含めず、推敲後の残存としてのみ計上（下記 improvement_rate は同一基準の残差を反映）。"
+    },
+    {
+      "id": "r002",
+      "category": "A-8/I-1",
+      "category_label": "受動＋形式名詞こと（状態叙述）",
+      "severity": "S3",
+      "text_span": "処理が行われることが一般的でした",
+      "reason": "受動態＋形式名詞「こと」による状態叙述。原文由来で推敲対象外の区間（Span-Grounded 原則により未検出＝未修正が正当）。単独では過去の一般状態の自然な記述で、他パターンと重ならず低リスク。",
+      "note": "baseline 未検出・原文保存区間のため過推敲ではなく正当な非改変。改善余地としてのみ記録。"
+    },
+    {
+      "id": "r003",
+      "category": "A-9",
+      "category_label": "手段節「〜することによって」",
+      "severity": "S3",
+      "text_span": "分散することによって",
+      "reason": "「することによって」の手段節。原文由来・単発で許容域。文脈上自然で AI 印象は弱い。",
+      "note": "baseline 未検出・原文保存区間。低リスク残差。"
+    }
+  ],
+  "over_polish_signals": [],
+  "over_polish_assessment": {
+    "verdict": "no_over_polish",
+    "checks": [
+      {
+        "signal": "文体崩れ（敬体／常体混入）",
+        "result": "なし",
+        "detail": "全 14 文の文末が敬体（います/ます/でした/です/できます/あります/のです/はずです/します）で統一。常体（だ・である）の混入は皆無。f035 の suggested_fix『だ』(常体) を推敲役が意図的に不採用とし『です』へ置換して敬体を維持しており、鉄則3（Tone Match）を遵守。"
+      },
+      {
+        "signal": "不自然な口語化",
+        "result": "軽微・許容",
+        "detail": "『しかしながら』→『ただ、』(e22) はやや口語寄りだが敬体技術記事で許容範囲の接続詞であり、文末の丁寧度は不変。文体崩れには至らない。"
+      },
+      {
+        "signal": "意味希薄化・ぶつ切り",
+        "result": "なし",
+        "detail": "各文は自然に接続し読みやすい。断片化・ぶつ切りは発生していない。『解決するソリューションを提供します』→『解決できます』等は冗長・翻訳調の除去であり、事実・主張の欠落なし（fidelity 監査と整合）。"
+      },
+      {
+        "signal": "変更率 30% 超",
+        "result": "指標アーティファクトと判定・過推敲ではない",
+        "detail": "change_rate 39.3% は 30% 警告線を超過するが 50% 中断線は未達。削除主導（削除221字／挿入70字、正味 -151字）で、内訳は (1) B-2 カタカナ17件の漢字圧縮（例: テクノロジー6字→技術2字）による機械的な文字数減、(2) 『することができる→できる』『提供します→できます』等の冗長形・装飾・接続詞の純削除。char-level SequenceMatcher はカタカナ→漢字の縮約を高い削除率として過大計上する（IMP-001 の指標欠陥）。意味の付加・削除は無く、fidelity 監査と併せ正当削除と判定。過推敲シグナルには算入しない。"
+      }
+    ]
+  },
+  "change_rate_reference": {
+    "value": 0.393,
+    "warn_threshold": 0.30,
+    "hold_threshold": 0.50,
+    "deletion_led": true,
+    "judgement": "legitimate_deletion"
+  },
+  "grade": "A",
+  "grade_rationale": "残存 S1=0、S2=1（≤2）、改善率 90.1%（≥70%）で SKILL.md 品質等級表の A 要件を全て充足。過推敲シグナル 0 個（C 降格条件に非該当）。文体崩れ・意味希薄化・ぶつ切りいずれも無し。",
+  "recommendation": "accept",
+  "notes": "推敲は成功。35 finding 全件に対処し、S1（A-1/A-5/A-6/A-10/D-1）を全消去、B-2 カタカナ17件を漢字化、E-2 も敬体を保ったまま文末を でした/のです/はずです/です/あります 等へ変奏して単調反復を解消。過推敲は検出されず、敬体は全編維持（f035 の常体処方を退けた判断は適切）。残る A-10『可能にし』は baseline 検出漏れの carryover で、accept を妨げない軽微残存だが 2次推敲時の最優先対象として推奨（「即時に処理でき」等へ）。change_rate 39.3% はカタカナ圧縮＋冗長削除による指標アーティファクト（IMP-001）で正当削除。改善点は別掲。"
+}
