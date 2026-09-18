@@ -59,14 +59,14 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（IMP-001）: `change_rate`・`insertion_rate`・`deletion_rate` を分離計上。`change_rate` 30% 超は警告のみ。中断（`hold_and_report`）は `insertion_rate` 30% 超など**意味改変基準**で判定し、純削除主導（`deletion_rate` ≫ `insertion_rate`）で fidelity=pass なら `change_rate` 50% 超でも中断しない。
 
 ### 4. 並列検証
 
 二つを並行実行:
 
 * `content-fidelity-auditor`: 原文と推敲文を 13 項チェックリストで突き合わせ、意味の毀損があれば該当 edit のロールバックを指示。
-* `naturalness-reviewer`: 推敲文に検出器を再実行し、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。
+* `naturalness-reviewer`: 推敲文に検出器を再実行し、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。検出器の再実行はサブエージェント起動が可能なら `ai-tell-detector` を呼び、不可能な環境ではレビュアーが同一基準・同一正規化式でインプロセス再走査する（`detector_run_mode` に記録／IMP-006）。オーケストレーターが detector を再走査モードで直接呼び、その JSON をレビュアーに渡す 2 段構成も可。
 
 ### 5. 総合判定
 
@@ -78,6 +78,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
+
+**変更率と判定の関係（IMP-001）**: `change_rate` 30〜50% は単独では中断理由にならない。純削除主導（`deletion_rate` ≫ `insertion_rate`）かつ fidelity=pass・自然度 A/B なら `change_rate` が 50% を超えても `accept`（override）とし、`summary.md` に内訳と理由を明記する。中断は `insertion_rate` 30% 超など意味改変が主因のときに限る。
 
 ## 深刻度と品質等級
 

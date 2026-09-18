@@ -15,7 +15,10 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
+1. **検出器の再実行**（IMP-006）: `03_rewrite.md` を推敲前と**同一基準**で再走査し、残存 finding を数える。経路は 2 通りあり、可能な方を使って `detector_run_mode` に必ず記録する:
+   * `"subagent"`: `ai-tell-detector` をサブエージェントとして起動できる環境では、それを呼んで再計測 JSON を得る（第一候補）。
+   * `"in_process"`: サブエージェント起動手段が無い環境（レビュアーがサブエージェントで、そこから更にサブエージェントを起こせない等）では、`ai-tell-detector.md` の検出手順＋ `references/ai-tell-taxonomy.md` の同一スキーマ・**同一正規化式（score = 100×raw/(raw+40)）**をレビュアー自身がインプロセスで厳密適用して再走査する。手動の印象照合は禁止（必ず span を数える）。
+   * どちらの経路でも score_after は上記確定式で算出し、score_before（= `02_detection.json` の `meta.severity_weighted_score`）と可換にする。
 2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
@@ -33,6 +36,7 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
   "score_before": 71.5,
   "score_after": 18.0,
   "improvement_rate": 0.748,
+  "detector_run_mode": "subagent | in_process",
   "residual_findings": { "S1": 0, "S2": 2, "S3": 3 },
   "over_polish_signals": [],
   "grade": "A",
