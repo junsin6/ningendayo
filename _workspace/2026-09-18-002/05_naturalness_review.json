@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "run_id": "2026-09-18-002",
+    "genre": "public_notice",
+    "style_preserved": "desu_masu",
+    "reviewer": "naturalness-reviewer",
+    "detector_run_mode": "in_process_rescan",
+    "detector_run_note": "この環境に Task / サブエージェント起動ツールが存在しないため、ai-tell-detector を別プロセスとして文字通り起動できなかった。ai-tell-detector.md の検出手順と ai-tell-taxonomy.md v1.0 を同一基準として 03_rewrite.md をインプロセスで再走査し、その残存件数を score_after 算出に用いた。手動照合ではなく検出器と同じ密度ベース基準（『単発を過検出しない』『S2 は 3 回以上の反復で除去』）を厳密適用。",
+    "score_normalization": "score_after は原文と同一スケールで比較するため、検出器の加重和 (S1×5 + S2×2 + S3×0.5) を推敲前と同じ正規化係数で換算した。推敲前: raw=12×5+22×2=104 → 正規化 69.8（係数 ≈ 0.6712）。推敲後 raw=3.5 → 2.35。"
+  },
+  "score_before": 69.8,
+  "score_after": 2.3,
+  "improvement_rate": 0.967,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 2
+  },
+  "residual_detail": [
+    {
+      "severity": "S2",
+      "category": "A-2/D-6 複合（定型オフィシャリーズの密集）",
+      "text_span": "つきましては、市民の皆様におかれましては……お願い申し上げます",
+      "location": "段落6・第1文",
+      "reason": "『つきましては』＋『におかれましては』＋『お願い申し上げます』が 1 文に密集。各々は単発で自然域（S2 の『1〜2 回は自然』・D-6 の『一文書に一度』）に収まり、公的文書の常套として人間も書く範囲だが、3 定型が同一文に重なると告示 AI 文の指紋がなお残る。推敲役が genre 敬意保持のため意図的に温存した span であり、除去は不要だが残存として計上。",
+      "verdict": "retain_acceptable"
+    },
+    {
+      "severity": "S3",
+      "category": "H-1 文頭接続詞",
+      "text_span": "また / つきましては / なお（各1回・文頭）",
+      "location": "段落4・6",
+      "reason": "『なお』3→1 に削減済みで S2 反復基準は解消。ただし文頭接続詞が語を変えつつ計3種残り、弱い密度として残存（他パターンと重なる時のみ問題の S3 域）。公的文書の語調維持として許容範囲。",
+      "verdict": "retain_acceptable"
+    },
+    {
+      "severity": "S3",
+      "category": "A-9 目的節『ため/ために』隣接 + A-3『を通じて』単発",
+      "text_span": "備えるため / 強化するために（段落2隣接）、各地区の自治会を通じて（段落4）",
+      "location": "段落2・4",
+      "reason": "『ため/ために』が段落2に近接2回（推敲役が語形をずらし反復感を回避済み）、『を通じて』は原文由来の単発経路表現で検出器未指摘。いずれも閾値内で除去不要だが弱残存として計上。",
+      "verdict": "retain_acceptable"
+    }
+  ],
+  "over_polish_signals": [
+    {
+      "signal": "change_rate_over_30pct",
+      "value": 0.35,
+      "severity": "warning_only",
+      "downgrades_grade": false,
+      "reason": "変更率 35% は鉄則の 30% 警告域を超過（IMP-001 留意事項）。ただし削除205字／挿入54字の削除主導で、D-6 硬い懇請定型5件・A系冗長形・I-3『必要がございます』等の“定型パディング純削除”が中心。50% の強制中断域には未達で、事実・要請・条件・固有名・数値は全保持。過推敲『シグナル』としては記録するが、文体崩れ・意味の空洞化・ぶつ切りを伴わないため等級を降格させない。"
+    }
+  ],
+  "over_polish_checks_passed": {
+    "style_consistency_desu_masu": true,
+    "no_unnatural_colloquialism": true,
+    "politeness_floor_maintained": true,
+    "not_choppy": true,
+    "meaning_not_hollowed": true
+  },
+  "fidelity_cross_flags": [
+    {
+      "finding_id": "f023",
+      "issue": "『迅速かつ的確な対応能力』→『的確な対応能力』で修飾語『迅速』が削除された。F-2 二重修飾として処理されたが、『迅速（=速さ）』と『的確（=正確さ）』は同義でなく別次元の情報であり、防災対応能力の“速さ”という意味が僅かに欠落する。自然度上は本文は不自然でも空洞でもないため naturalness の減点対象外とするが、content-fidelity-auditor に意味毀損の可否確認を要請（推敲役自身も diff で監査要確認と自己申告済み）。",
+      "routed_to": "content-fidelity-auditor",
+      "naturalness_impact": "none"
+    }
+  ],
+  "grade": "A",
+  "grade_basis": "S1=0 件、S2=1 件（≤2）、改善率 96.7%（≥70%）。過推敲シグナルは change_rate 警告の 1 個のみ（降格トリガーの『2 個』未満）で、文体崩れ・不自然な口語化・意味希薄化なし。SKILL.md 等級表の A 条件を満たす。",
+  "recommendation": "accept",
+  "notes": "公的文書（防災訓練告知・硬い敬体）として自然度は良好。敬体は全文で一貫し常体混入なし。行政の丁寧さの下限も、依頼の中心的な結び『お願い申し上げます』×1・『ございます』・『におかれましては』×1・『ご＋動詞＋ください』を温存することで維持され、失礼・不自然な砕けすぎは検出されない（避難・火の元確認等の安全指示に『〜してください』を用いるのは告知の標準敬体で妥当）。ただし丁寧度は原文の“最上位デファレンス”から“標準的丁寧”へ下がっており、genre 敬語下限のギリギリ許容域である点は留意。accept 推奨は自然度軸の判定であり、f023『迅速』削除の意味毀損可否は content-fidelity-auditor の判定に従属する（auditor が毀損認定した場合はオーケストレーターが rollback/rewrite を選択しうる）。"
+}

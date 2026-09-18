@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "run_id": "2026-09-18-001",
+    "genre": "技術解説記事",
+    "style_preserved": "desu_masu",
+    "original_length": 740,
+    "rewrite_length": 588,
+    "inserted_chars": 70,
+    "deleted_chars": 221,
+    "change_rate": 0.393,
+    "change_rate_threshold_warn": 0.30,
+    "change_rate_threshold_hold": 0.50,
+    "diff_method": "difflib.SequenceMatcher char-level (replace=insert+delete), 段落空行を除いた本文比較",
+    "findings_total": 35,
+    "findings_addressed": 35,
+    "self_verdict": "accept",
+    "warnings": [
+      "change_rate 0.393 が 30% 警告線を超過（50% 中断線は未達）。ただし削除主導（削除221字 / 挿入70字、正味 -151字）で、17件の B-2 カタカナ圧縮（テクノロジー6字→技術2字 等）と装飾・冗長表現の純削除（〜することができる→できる、ソリューションを提供します→できます、さらに/加えて/と言えるでしょう の除去）が主因。意味付加・削除は無し。",
+      "f035 の suggested_fix『だ』は常体であり、本文書の敬体（desu_masu）を破壊するため不採用。敬体断定『です』へ置換して文体を維持した（playbook/detection の処方矛盾）。",
+      "反復カタカナ（テクノロジー×3・デバイス×3・レイテンシ×2）は detection が初出1スパンのみ finding 化していたが、片方だけ残すと文書内で不整合になるため全出現を同一形へ正規化した。追加分は元 finding id に紐づけている。"
+    ]
+  },
+  "edits": [
+    { "edit_id": "e01", "finding_ids": ["f002"], "category": "B-2", "instance": "テクノロジー 1/3", "before": "エッジコンピューティングというテクノロジー", "after": "エッジコンピューティングという技術", "change_type": "katakana_open", "rationale": "technology は『技術』で書ける。固有概念語エッジコンピューティングは維持" },
+    { "edit_id": "e02", "finding_ids": ["f003"], "category": "B-2", "instance": "デバイス 1/3", "before": "データを生成するデバイスの近く", "after": "データを生成する端末の近く", "change_type": "katakana_open", "rationale": "device→端末。データは定着語のため維持" },
+    { "edit_id": "e03", "finding_ids": ["f004"], "category": "B-2", "before": "コンピューティングのアーキテクチャ", "after": "コンピューティングの構成", "change_type": "katakana_open", "rationale": "architecture→構成" },
+    { "edit_id": "e04", "finding_ids": ["f005"], "category": "A-1", "instance": "においては 1/2", "before": "従来のクラウドコンピューティングにおいては", "after": "従来のクラウドコンピューティングでは", "change_type": "translationese_dissolve", "rationale": "における/においては 濫用。『では』へ。クラウドコンピューティングは概念語で維持" },
+    { "edit_id": "e05", "finding_ids": ["f006"], "category": "B-2", "instance": "レイテンシ 1/2", "before": "ネットワークのレイテンシ", "after": "ネットワークの遅延", "change_type": "katakana_open", "rationale": "latency→遅延" },
+    { "edit_id": "e06", "finding_ids": ["f007"], "category": "A-13", "before": "レイテンシという課題を抱えています", "after": "遅延が課題です", "change_type": "toiu_remove_restructure", "rationale": "『という』過剰連結を除去し、断定短文へ。E-2 の文末変奏も兼ねる（短文『〜です』）" },
+    { "edit_id": "e07", "finding_ids": ["f009", "f008"], "category": "A-10", "before": "こうした課題を解決するソリューションを提供します", "after": "こうした課題を解決できます", "change_type": "abstract_subject_verb_direct", "rationale": "抽象主語+万能動詞『提供します』(The X provides Y 直訳)を直接叙述へ。ソリューション(B-2)も同時に解消（解決策の意味は『解決できます』に内包）" },
+    { "edit_id": "e08", "finding_ids": ["f010"], "category": "B-2", "before": "データをリアルタイムに処理する", "after": "データを即時に処理する", "change_type": "katakana_open", "rationale": "real-time→即時。後続の概念語『リアルタイム性』は維持" },
+    { "edit_id": "e09", "finding_ids": ["f006"], "category": "B-2", "instance": "レイテンシ 2/2", "before": "より低いレイテンシ", "after": "より低い遅延", "change_type": "katakana_open", "rationale": "latency→遅延（反復整合）" },
+    { "edit_id": "e10", "finding_ids": ["f011"], "category": "A-5", "instance": "することができる 1/3", "before": "実現することができます", "after": "実現できます", "change_type": "kanou_redundant_trim", "rationale": "『することができる』冗長形→『できる』" },
+    { "edit_id": "e11", "finding_ids": ["f012", "f013"], "category": "A-1", "instance": "においては 2/2", "before": "ユースケースにおいては", "after": "場面では", "change_type": "katakana_open+translationese_dissolve", "rationale": "use case→場面（活用例/事例と同義域）。においては→では。f005 と別形へ分散して機械的均一を回避" },
+    { "edit_id": "e12", "finding_ids": ["f014", "f015"], "category": "I-4", "before": "レスポンスが求められます", "after": "応答が必要です", "change_type": "katakana_open+vague_request_fix", "rationale": "response→応答。行為者曖昧な『求められます』を『必要です』へ" },
+    { "edit_id": "e13", "finding_ids": ["f016"], "category": "A-5", "instance": "することができる 3/3", "before": "担保することができるのです", "after": "担保できるのです", "change_type": "kanou_redundant_trim", "rationale": "冗長形除去。『のです』は残し文末変奏（E-2）に寄与" },
+    { "edit_id": "e14", "finding_ids": ["f017"], "category": "H-1", "before": "さらに、エッジコンピューティングは", "after": "エッジコンピューティングは", "change_type": "connective_delete", "rationale": "段落冒頭の追加接続詞を削除。論理は内容で伝わる" },
+    { "edit_id": "e15", "finding_ids": ["f018", "f019", "f020", "f021"], "category": "A-10", "before": "スケーラビリティという面でもメリットをもたらします", "after": "拡張性の面でも利点があります", "change_type": "katakana_open+keishiki_meishi_open+abstract_subject_verb_direct", "rationale": "scalability→拡張性、merit→利点。『という面』を『の面』へ開き、万能動詞『もたらす』(brings 直訳)を『あります』へ" },
+    { "edit_id": "e16", "finding_ids": ["f003"], "category": "B-2", "instance": "デバイス 2/3", "before": "デバイス側で処理を分散", "after": "端末側で処理を分散", "change_type": "katakana_open", "rationale": "device→端末（反復整合）" },
+    { "edit_id": "e17", "finding_ids": ["f022", "f023"], "category": "A-5", "instance": "することができる 2/3", "before": "トラフィックを削減することができ", "after": "通信量を削減でき", "change_type": "katakana_open+kanou_redundant_trim", "rationale": "traffic→通信量。冗長形除去" },
+    { "edit_id": "e18", "finding_ids": ["f024", "f025"], "category": "A-6", "before": "パフォーマンスを最適化することが可能となります", "after": "性能を最適化できます", "change_type": "katakana_open+jotai_jojutsu_fix", "rationale": "performance→性能。状態叙述『可能となります』(it becomes possible 直訳)を断定『できます』へ" },
+    { "edit_id": "e19", "finding_ids": ["f026"], "category": "H-1", "before": "加えて、セキュリティやプライバシー", "after": "セキュリティやプライバシー", "change_type": "connective_delete", "rationale": "同段落で『さらに』と重複する追加接続詞を削除。セキュリティ/プライバシーは概念語で維持" },
+    { "edit_id": "e20", "finding_ids": ["f027", "f028", "f029"], "category": "A-7", "before": "データをローカルで処理できるというアドバンテージを持っています", "after": "データを手元で処理できる強みがあります", "change_type": "katakana_open+have_possess_fix", "rationale": "local→手元、advantage→強み。所有叙述『を持っています』(have 直訳)を『があります』へ、余剰な『という』も解消" },
+    { "edit_id": "e21", "finding_ids": ["f003", "f030", "f031"], "category": "B-2", "instance": "デバイス 3/3", "before": "デバイスの管理やアップデートといった運用上のチャレンジ", "after": "端末の管理や更新といった運用上の課題", "change_type": "katakana_open", "rationale": "device→端末、update→更新、challenge→課題（taxonomy 頻出例）" },
+    { "edit_id": "e22", "finding_ids": ["f032"], "category": "H-2", "before": "しかしながら、", "after": "ただ、", "change_type": "connective_soften", "rationale": "硬い書き言葉の逆接を口語寄りの『ただ、』へ。本文の『しかし』(P1・未検出)と別形に分散" },
+    { "edit_id": "e23", "finding_ids": ["f002", "f033"], "category": "B-2", "instance": "テクノロジー 2/3", "before": "5G や AI といったテクノロジーとのシナジー", "after": "5G や AI といった技術との相乗効果", "change_type": "katakana_open", "rationale": "technology→技術、synergy→相乗効果。固有名詞 5G・AI は不変" },
+    { "edit_id": "e24", "finding_ids": ["f034"], "category": "G-1", "before": "拡大していくと考えられます", "after": "拡大していくはずです", "change_type": "hedge_to_assertion", "rationale": "推測型ヘッジ『と考えられます』を『はずです』へ。数値・主張は不変、『拡大していく』も保存" },
+    { "edit_id": "e25", "finding_ids": ["f002", "f035"], "category": "D-1", "instance": "テクノロジー 3/3", "before": "重要なテクノロジーであると言えるでしょう", "after": "重要な技術です", "change_type": "katakana_open+ai_cliche_remove", "rationale": "technology→技術。AI 署名句『〜と言えるでしょう』を除去し敬体断定へ。suggested_fix『だ』は常体のため不採用、敬体維持のため『です』を採用" },
+    { "edit_id": "e26", "finding_ids": ["f001"], "category": "E-2", "before": "（文末がます一辺倒）", "after": "（です/でした/のです/はずです/ます を分散）", "change_type": "rhythm_variation_document_level", "rationale": "文書レベル。個別 span を持たず、上記 edit 群の結果として文末を『課題です』『一般的でした』『担保できるのです』『拡大していくはずです』等へ変奏。敬体は全編維持" }
+  ]
+}
