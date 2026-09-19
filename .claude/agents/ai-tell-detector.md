@@ -22,6 +22,7 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "detected_count": 0,
     "ai_tell_density": 0.0,
     "severity_weighted_score": 0.0,
+    "normalization": "sat_exp_k80",
     "style": "desu_masu | da_dearu | mixed"
   },
   "findings": [
@@ -33,8 +34,22 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
+      "span_type": "contiguous",
       "reason": "理由（密度・反復回数など根拠を明記）",
       "suggested_fix": "課題だ"
+    },
+    {
+      "id": "f002",
+      "category": "E-2",
+      "category_label": "リズム: です・ます単調",
+      "severity": "S2",
+      "text_span": "です。",
+      "start": 30,
+      "end": 33,
+      "span_type": "document",
+      "occurrences": [[30, 33], [72, 75], [120, 123]],
+      "reason": "文書レベルパターン。start/end は代表位置。occurrences に全該当位置。density には算入しない",
+      "suggested_fix": "文末を変奏（体言止め・でしょう 等）"
     }
   ],
   "category_summary": { "A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F": 0, "G": 0, "H": 0, "I": 0, "J": 0 }
@@ -50,9 +65,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（IMP-002 / IMP-004 で確定。taxonomy §検出出力スキーマが SSOT）:
+   * `raw` = S1×5 + S2×2 + S3×0.5。
+   * `severity_weighted_score` = `round(100 * (1 - exp(-raw/80)), 1)` の**飽和正規化**（K=80 固定、入力長非依存）。単純加重和は高密度短文で 100 を超え飽和するため。
+   * `meta.normalization` に `"sat_exp_k80"` を記録（必須）。
+   * `ai_tell_density` = **重複を除いた実 AI クセ文字数** / 全体文字数。scattered/document 型の代表 span（locator）は density に二重計上しない。
 
 ## 重要な原則
 

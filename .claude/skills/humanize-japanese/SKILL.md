@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視（IMP-001 改訂）: 素の change_rate 30% 超で警告するが、中断判定は**意味改変率**で行う（意味改変率 20% 超 or fidelity=fail で `hold_and_report`）。等価置換（B-2 和語化等）・純削除主導で素値が高いだけなら中断しない。diff の `change_rate_note`／`polish_type` を参照。
 
 ### 4. 並列検証
 
@@ -73,6 +73,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 条件 | 判定 | アクション |
 | --- | --- | --- |
 | 等級 A/B かつ fidelity 毀損なし | `accept` | `final.md` + `summary.md` 出力 |
+| 素の change_rate 30〜50% だが意味改変率が低く（等価置換/純削除主導）fidelity=pass かつ A/B | `override accept` | 理由を `summary.md` に明記して accept（IMP-001 既知欠陥のため素値では中断しない） |
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
