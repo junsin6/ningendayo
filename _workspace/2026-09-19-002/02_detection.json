@@ -4,6 +4,7 @@
     "detected_count": 18,
     "ai_tell_density": 0.341,
     "severity_weighted_score": 76.4,
+    "normalization": "sentence_count_pre_v1.1",
     "style": "desu_masu"
   },
   "findings": [
