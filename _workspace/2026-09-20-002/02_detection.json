@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "input_length": 705,
+    "detected_count": 20,
+    "ai_tell_density": 0.289,
+    "severity_weighted_score": 67,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "窓口においてのみ",
+      "start": 132,
+      "end": 140,
+      "reason": "「において」が本文で3回反復（窓口・ポータルサイト・マイページ）。場所を英語 in/at 式に抽象枠づけ。",
+      "suggested_fix": "窓口だけで"
+    },
+    {
+      "id": "f002",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "ポータルサイトにおいて",
+      "start": 281,
+      "end": 292,
+      "reason": "「において」反復の2例目。単純な場所指示を硬い枠づけにしている。",
+      "suggested_fix": "ポータルサイトで"
+    },
+    {
+      "id": "f003",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "マイページにおいて",
+      "start": 537,
+      "end": 546,
+      "reason": "「において」反復の3例目。「で」で足りる。",
+      "suggested_fix": "マイページで"
+    },
+    {
+      "id": "f004",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用",
+      "severity": "S1",
+      "text_span": "内容につきましては",
+      "start": 382,
+      "end": 391,
+      "reason": "主題提示を「につきましては（=について）」で処理。本文で2回反復（内容・状況）。",
+      "suggested_fix": "内容は"
+    },
+    {
+      "id": "f005",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用",
+      "severity": "S1",
+      "text_span": "状況につきましては",
+      "start": 518,
+      "end": 527,
+      "reason": "「につきましては」反復の2例目。主題助詞「は」で直結できる。",
+      "suggested_fix": "状況は"
+    },
+    {
+      "id": "f006",
+      "category": "A-3",
+      "category_label": "翻訳調: 〜を通じて/を通して 濫用",
+      "severity": "S2",
+      "text_span": "インターネットを通じて",
+      "start": 156,
+      "end": 167,
+      "reason": "手段を「を通じて（=through/via）」で処理。翻訳調が密集する文脈で「で」に開ける。",
+      "suggested_fix": "インターネットで"
+    },
+    {
+      "id": "f007",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/ことが可能 濫用",
+      "severity": "S1",
+      "text_span": "行うことが可能です",
+      "start": 292,
+      "end": 301,
+      "reason": "可能の冗長形（=be able to）。「ことができる/ことが可能」が本文で2回。",
+      "suggested_fix": "行えます"
+    },
+    {
+      "id": "f008",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる/ことが可能 濫用",
+      "severity": "S1",
+      "text_span": "確認することができます",
+      "start": 546,
+      "end": 557,
+      "reason": "「することができる」典型シグネチャ。2例目。",
+      "suggested_fix": "確認できます"
+    },
+    {
+      "id": "f009",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "運びとなりました",
+      "start": 106,
+      "end": 114,
+      "reason": "「となる」状態叙述が本文で2回（運びとなりました・こととなります）。だ/になるで足りる。",
+      "suggested_fix": "運びになりました"
+    },
+    {
+      "id": "f010",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなります",
+      "start": 448,
+      "end": 455,
+      "reason": "「こととなります」状態叙述の2例目。能動断定に開ける。",
+      "suggested_fix": "通知します"
+    },
+    {
+      "id": "f011",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "本サービスの導入によって",
+      "start": 115,
+      "end": 127,
+      "reason": "英語 by の直訳的「によって」。手段主体を後置。本文で2回（導入・職員）。",
+      "suggested_fix": "本サービスの導入で"
+    },
+    {
+      "id": "f012",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "担当課の職員によって審査が行われ",
+      "start": 392,
+      "end": 408,
+      "reason": "行為者（職員）を「によって」で後置した典型 by-passive。行為者を主語へ戻し能動化すべき。",
+      "suggested_fix": "担当課の職員が審査し"
+    },
+    {
+      "id": "f013",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために 目的節の濫用",
+      "severity": "S2",
+      "text_span": "利便性向上を図るため",
+      "start": 70,
+      "end": 80,
+      "reason": "目的節「ため（=in order to）」が本文で3回反復（利便性向上・本人確認・円滑な運用）。",
+      "suggested_fix": "利便性を高めるため"
+    },
+    {
+      "id": "f014",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために 目的節の濫用",
+      "severity": "S2",
+      "text_span": "本人確認のため",
+      "start": 312,
+      "end": 319,
+      "reason": "「のため」反復の2例目。",
+      "suggested_fix": "本人を確認するため"
+    },
+    {
+      "id": "f015",
+      "category": "A-9",
+      "category_label": "翻訳調: 〜のために 目的節の濫用",
+      "severity": "S2",
+      "text_span": "円滑な運用のためには",
+      "start": 566,
+      "end": 576,
+      "reason": "「のためには」反復の3例目。動詞句に開ける。",
+      "suggested_fix": "円滑に運用するには"
+    },
+    {
+      "id": "f016",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "登録する必要があります",
+      "start": 255,
+      "end": 266,
+      "reason": "英語 need to の直訳「する必要がある」が本文で3回反復（登録・電子署名・再申請）。勧告形へ。",
+      "suggested_fix": "登録してください"
+    },
+    {
+      "id": "f017",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "電子署名を行う必要があります",
+      "start": 333,
+      "end": 347,
+      "reason": "「する必要がある」反復の2例目。",
+      "suggested_fix": "電子署名を行ってください"
+    },
+    {
+      "id": "f018",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "再申請を行う必要があります",
+      "start": 475,
+      "end": 488,
+      "reason": "「する必要がある」反復の3例目。",
+      "suggested_fix": "すぐに再申請してください"
+    },
+    {
+      "id": "f019",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる/が必要だ",
+      "severity": "S2",
+      "text_span": "ご協力が求められます",
+      "start": 594,
+      "end": 604,
+      "reason": "★日本語固有寄り。行為者を曖昧にした要請。誰に何を求めるかを主語・動詞で具体化すべき。",
+      "suggested_fix": "ご協力をお願いします"
+    },
+    {
+      "id": "f020",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復（過剰敬語の定型結び）",
+      "severity": "S2",
+      "text_span": "お願い申し上げます",
+      "start": 211,
+      "end": 220,
+      "reason": "敬体一本調子。文末が「〜ようお願い（申し上げ／いたし）ます」で5回反復（各段落の結び）。加えて「賜り」「厚く御礼申し上げます」「所存でございます」など過剰敬語が積層。文末変奏・敬語簡素化が必要。",
+      "suggested_fix": "文末の「お願い申し上げます」連発を減らし、体言止め・「お願いします」等に分散"
+    }
+  ],
+  "category_summary": {
+    "A": 15,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 4,
+    "J": 0
+  }
+}
