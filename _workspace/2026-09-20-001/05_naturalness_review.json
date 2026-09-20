@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "run_id": "2026-09-20-001",
+    "reviewer": "naturalness-reviewer",
+    "redetect_method": "manual_rescan",
+    "redetect_note": "ai-tell-detector サブエージェントの再走査を意図したが、本エージェント（naturalness-reviewer サブエージェント）から新規サブエージェントを spawn する Agent/Task ツールが環境に露出していないため実行不可。同一 taxonomy (v1.0) 基準で手動再走査した。IMP-006（手動照合のみを避ける）は本環境では完全充足できない=改善点として報告。",
+    "style_before": "desu_masu",
+    "style_after": "desu_masu",
+    "sentence_stats_after": { "count": 14, "min_len": 23, "max_len": 94, "mean_len": 45.1, "stdev_len": 16.8, "short_le20_count": 0 }
+  },
+  "score_before": 70.0,
+  "score_after": 0.6,
+  "improvement_rate": 0.991,
+  "score_after_note": "残存加重和 raw = S1*5 + S2*2 + S3*0.5 = 1.0。score_before の正規化係数 70.0/112(=元raw) = 0.625 を同一適用し 0.6 と算出。※正規化式が SSOT に明文化されておらず再現困難＝改善点。",
+  "residual_findings": { "S1": 0, "S2": 0, "S3": 2 },
+  "residual_findings_detail": [
+    {
+      "category": "E-1",
+      "category_label": "リズム: 文長の標準偏差が低い（短文の欠如）",
+      "severity_original": "S2",
+      "severity_residual": "S3",
+      "status": "improved_partial",
+      "reason": "一様性は解消（min23〜max94字, stdev16.8）。ただし suggested_fix の『10〜20字の短文』は未投入（≤20字文は依然0件）。緩急は生まれたが決定的な短文の切れ味は欠く。弱残存。"
+    },
+    {
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity_original": "S2",
+      "severity_residual": "S3",
+      "status": "improved_partial",
+      "reason": "動詞末尾の変奏は大きく改善（指します/解決します/組めます/あります/抑えられます 等）。ただし体言止め・『でしょう』『のだ』は0件で、文末は『です』3回・『できます』3回が残り、完全な一本調子解消には至らず。弱残存。敬体は全14文維持で文体崩れなし。"
+    }
+  ],
+  "resolved_count": 30,
+  "resolved_note": "span 単位 finding f001〜f030（S1×16, S2×14）は全て除去を確認。B-2 の知的偽装カタカナ（ソリューション/スケーラブル/ロバスト/アドバンテージ/シームレス）5語も全て日本語化。A-5『することができる』×5、A-6『となっている』×3、A-10 万能動詞×3、A-1『において』×2、D-1/D-4 慣用句、H 系文頭接続詞×4、A-11 中黒3項並列、J-3 見出しダッシュ、いずれも消失。",
+  "overpolish_signals": [],
+  "overpolish_note": "(1)敬体/常体の混入=なし（全14文 desu_masu 維持、文末形態の二値カウントで常体0）。(2)意味の痩せ=なし（『シームレスな価値』等の空語のみ除去、事実・数値・固有名詞・段落構成は原文と1:1対応で保存）。(3)リズム破壊=なし（ぶつ切りなし、自然な流れ）。(4)削除しすぎ=なし（段落数・文数・情報要素が原文構造を維持、変更率は明らかに30%未満と推定）。※ただし 03_rewrite_diff.json が入力に渡されず変更率を実測できない＝改善点。",
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1=0・S2=0（残存は弱 S3×2 の文書レベルリズムのみ）・改善率99.1%・過推敲シグナル0。絶対残存ガード（S1≥1でC以下）にも抵触せず。品質等級A、accept 相当。手術的推敲として非常にクリーン。改善点（出所=naturalness-001）は本JSONの各 *_note およびハンドバック本文に記載。"
+}

@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "run_id": "2026-09-20-002",
+    "genre": "public_document",
+    "style_before": "desu_masu",
+    "style_after": "desu_masu",
+    "style_preserved": true,
+    "rescan_method": "rule_based_manual",
+    "rescan_note": "ai-tell-detector サブエージェントの spawn 手段（Task/Agent ツール）が本レビュアー環境で提供されず、稼働中の detector も無かったため、detector 定義の検出手順に厳密準拠した規則ベース再走査で代替した（IMP-006 完全充足せず）。"
+  },
+  "score_before": 67.0,
+  "score_after": 1.0,
+  "improvement_rate": 0.985,
+  "residual_findings": [
+    {
+      "id": "r001",
+      "category": "I-3/I-4境界",
+      "severity": "S3",
+      "text_span": "電子署名が必要ですので",
+      "reason": "原文 f017「電子署名を行う必要があります」(I-3, need to 直訳) は除去済み。置換後の「が必要です」は具体主語(電子署名)を伴う自然な叙述で単発。過検出禁止原則により減点対象ぎりぎり。参考残存として S3 計上。",
+      "blocking": false
+    },
+    {
+      "id": "r002",
+      "category": "E-2残余(定型敬語密度)",
+      "severity": "S3",
+      "text_span": "厚く御礼申し上げます / 所存でございます / 何卒〜賜りますようお願い申し上げます",
+      "reason": "E-2 の中核だった『お願い申し上げます×5 の単調反復』は 2 回まで削減され解消。残る定型過剰敬語は公的文書の register floor（格の下限）であり、除去はむしろ過推敲。減点ではなく『適正保持』として参考 S3 計上。",
+      "blocking": false
+    }
+  ],
+  "residual_counts": {
+    "S1": 0,
+    "S2": 0,
+    "S3": 2
+  },
+  "resolved_findings_count": 20,
+  "resolved_findings_total": 20,
+  "overpolish_signals": [],
+  "overpolish_watchpoints": [
+    {
+      "type": "依頼強度の低下(境界)",
+      "text_span": "ご理解いただけますと幸いです",
+      "note": "原文『ご理解いただきますよう、お願い申し上げます』(依頼) → 『幸いです』(希望) へ軟化。文末変奏として自然だが、公的文書では依頼の拘束力が僅かに弱まる。過推敲ではないが fidelity 監査領域の境界。"
+    },
+    {
+      "type": "注意喚起句の脱落(境界)",
+      "text_span": "速やかに再申請してください",
+      "note": "原文『再申請を行う必要がありますので、ご注意くださいますようお願い申し上げます』の『ご注意ください』相当が命令形へ吸収され明示注意義務が薄化。自然さは向上したが content-fidelity-auditor 側で情報欠落の要確認。"
+    }
+  ],
+  "change_rate_estimate": 0.18,
+  "change_rate_flag": "under_30_percent_ok",
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1 0件・S2 0件・改善率 98.5%(絶対残存も極小) で A 等級。全 20 finding が finding ベースで手術的に解消され、新規 AI クセの混入なし。敬体は全文末で維持され文体崩れなし。カタカナ語(インターネット/アカウント/ポータルサイト/マイナンバーカード等)は全て業界標準語・固有名詞で B-2 非該当。ダッシュ・太字・絵文字なし。公的文書の格を規定する定型敬語(平素より〜賜り厚く御礼申し上げます／所存でございます／何卒〜賜りますようお願い申し上げます)は register floor として適切に保持され、減らしすぎ(格の喪失)は起きていない。過推敲シグナルは 0。2 件の境界事項(依頼軟化・注意句吸収)は fidelity 監査へ申し送り。総合判定は accept。"
+}

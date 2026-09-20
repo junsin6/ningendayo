@@ -59,7 +59,7 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 * `japanese-style-rewriter` に `01_input.txt` と `02_detection.json` を渡す。
 * 推敲役は finding のある span のみ修正し、文体を維持。`03_rewrite.md` と変更ログ `03_rewrite_diff.json` を出力。
-* 変更率を監視: 30% 超で警告、50% 超で中断し `hold_and_report`。
+* 変更率を監視: `insert_rate` と `delete_rate` を分離計上（`difflib` は `autojunk=False`）。挿入率主導で判定し、削除主導（`insert_rate ≤ 0.15`）は理由を明記して続行。強制中断は「意味改変 edit 比率 50% 超」基準（詳細は `rewriting-playbook.md §変更率の数え方`、IMP-001）。
 
 ### 4. 並列検証
 

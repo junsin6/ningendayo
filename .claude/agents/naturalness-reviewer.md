@@ -15,8 +15,11 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 
 ## 処理
 
-1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。
-2. **改善率の算出**: `(推敲前 score − 推敲後 score) / 推敲前 score`。
+1. **検出器の再実行**: `03_rewrite.md` に `ai-tell-detector` を同基準で再走査。残存 finding を数える。手動照合のみは禁止（IMP-006）。`ai-tell-detector` をサブエージェントとして呼べる環境ではそれを使い、呼べない環境では detection と同一の taxonomy 基準で規則ベース再走査したうえで `notes` にその旨を明記する。
+2. **score の契約（IMP-003 / run 2026-09-20）**:
+   * `score_before` = `02_detection.json` の `meta.severity_weighted_score`（レビュアーが独自に測り直さない）。
+   * `score_after` = 再走査結果を `02_detection.json` と**同一の正規化式**（`ai-tell-taxonomy.md §検出出力スキーマ`）で算出。
+3. **改善率の算出**: `(score_before − score_after) / score_before`。
 3. **過推敲シグナルの検出**:
    * 不自然な口語化（文体に合わないくだけ過ぎ）
    * 文体崩れ（敬体／常体の混入）
@@ -48,8 +51,11 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 * **C**: S1 1〜2 件 or 過推敲シグナル 2 個 → `rewrite_round_2`
 * **D**: S1 3 件+ or 深刻な過推敲 → `hold_and_report`
 
+**絶対残存ガード（IMP-003 / run 2026-09-20）**: 改善率がどれだけ高くても、**残存 S1 が 1 件でもあれば C 以下**に固定する。短文は raw score が小さく改善率が不安定になるため、この絶対件数ガードを等級判定の前段に必ず適用する。
+
 ## 原則
 
 * 残存と過推敲の**両方**を見る。AI クセを消しすぎて不自然になっても減点。
 * 改善率だけでなく絶対残存数も見る（短文で改善率が出にくいケースに注意）。
-* 文体崩れは過推敲シグナルとして必ず報告。
+* 文体崩れは過推敲シグナルとして必ず報告。文体崩れは「文末形態の敬体／常体を二値カウント」で機械検出する。
+* `residual_findings` は `{ "S1": n, "S2": n, "S3": n }`（深刻度別カウント）を正とする。span 明細が要る場合は `residual_findings_detail: [...]` を併記する。
