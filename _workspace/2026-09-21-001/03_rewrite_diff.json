@@ -1,0 +1,41 @@
+{
+  "edits": [
+    { "finding_id": "f018", "category": "B-2", "before": "クラウドシフト", "after": "クラウド移行", "rationale": "「シフト」は和語「移行」で足りる。ゼロトラスト等の固有・技術語は保持" },
+    { "finding_id": "f021", "category": "A-13", "before": "ゼロトラストというアプローチです", "after": "ゼロトラストです", "rationale": "過剰連結「という」を削除。命名の枠づけ（アプローチ＝手法）は文脈上冗長で、後続段落が同概念を『考え方』と明示するため意味は保存（f019と統合処理）" },
+    { "finding_id": "f019", "category": "B-2", "before": "というアプローチ / 最適なアプローチ", "after": "（初出は削除）/ 最適な方法", "rationale": "アプローチ2回。初出はf021のという削除に伴い解消、文末は和語「方法」へ" },
+    { "finding_id": "f001", "category": "A-1", "before": "ゼロトラストにおいて", "after": "ゼロトラストで", "rationale": "抽象枠づけ「において」を「で」へ" },
+    { "finding_id": "f023", "category": "A-10", "before": "重要になるのは", "after": "重要なのは", "rationale": "形式主語分裂文＋「になる」状態化を解消し断定へ" },
+    { "finding_id": "f011", "category": "B-2", "before": "ペリメーターベースのモデル", "after": "境界型モデル", "rationale": "直前既出の和語「境界型」と同義の英語カタカナを開く" },
+    { "finding_id": "f010", "category": "I-4", "before": "徹底することが求められます", "after": "徹底しなければなりません", "rationale": "行為者曖昧な要請を義務叙述へ。敬体維持" },
+    { "finding_id": "f012", "category": "B-2", "before": "アイデンティティ", "after": "本人確認", "rationale": "カタカナ語2回を和語へ。『アイデンティティの検証』→『本人確認』、『アイデンティティを確認する』→『本人確認を行う』で重複回避" },
+    { "finding_id": "f007", "category": "C-1", "before": "まず", "after": "（削除）", "rationale": "機械的三段並列の順序語を叙述へ溶かす" },
+    { "finding_id": "f003", "category": "A-5", "before": "防ぐことができます", "after": "防げます", "rationale": "可能の冗長形を可能動詞へ" },
+    { "finding_id": "f008", "category": "C-1", "before": "次に、", "after": "（削除）", "rationale": "三段並列の第2項順序語を削除し叙述へ" },
+    { "finding_id": "f013", "category": "B-2", "before": "セキュリティステータス", "after": "セキュリティの状態", "rationale": "「ステータス」を和語「状態」へ" },
+    { "finding_id": "f020", "category": "B-2", "before": "チェックする", "after": "確認", "rationale": "「チェック」を和語「確認」へ（『確認することが重要です』→『確認も大切です』でI-1のことも削減）" },
+    { "finding_id": "f004", "category": "A-5", "before": "低減することができます", "after": "減らせます", "rationale": "可能の冗長形を可能動詞へ" },
+    { "finding_id": "f028", "category": "A-8", "before": "マイクロセグメンテーションによって", "after": "マイクロセグメンテーションで", "rationale": "手段の「によって」を「で」へ。技術語は保持" },
+    { "finding_id": "f009", "category": "C-1", "before": "最後に", "after": "さらに", "rationale": "三段並列の順序語を1つだけ自然な接続へ変奏（全削除せず均一化を回避）" },
+    { "finding_id": "f005", "category": "A-5", "before": "分割することができます", "after": "分割できます", "rationale": "可能の冗長形を可能動詞へ" },
+    { "finding_id": "f014", "category": "B-2", "before": "ソリューション", "after": "対策", "rationale": "和語「対策」で足りる" },
+    { "finding_id": "f015", "category": "B-2", "before": "セキュリティレイヤー", "after": "セキュリティの層", "rationale": "「レイヤー」を和語「層」へ" },
+    { "finding_id": "f006", "category": "A-5", "before": "構築することができるようになります", "after": "築けます", "rationale": "可能形＋「ようになります」の二重冗長を可能動詞へ" },
+    { "finding_id": "f024", "category": "A-10", "before": "ポイントとなるのは", "after": "大切なのは", "rationale": "形式主語分裂文＋「となる」状態化＋カタカナ「ポイント」の複合を解消" },
+    { "finding_id": "f016", "category": "B-2", "before": "複数のレイヤー", "after": "複数の層", "rationale": "「レイヤー」反復を和語「層」へ" },
+    { "finding_id": "f022", "category": "I-2", "before": "組み合わせるという点です", "after": "組み合わせることです", "rationale": "形式名詞「という点」を除去。敬体維持" },
+    { "finding_id": "f002", "category": "A-1", "before": "セキュリティにおいて", "after": "セキュリティで", "rationale": "文末の抽象枠づけ「において」を「で」へ" },
+    { "finding_id": "f026", "category": "D-4", "before": "欠かせないコンセプト", "after": "重要な考え方", "rationale": "ハイプ語「欠かせない」を「重要な」へ（f017と統合）" },
+    { "finding_id": "f017", "category": "B-2", "before": "コンセプト", "after": "考え方", "rationale": "和語「考え方」で足りる" },
+    { "finding_id": "f025", "category": "D-1", "before": "であると言えるでしょう", "after": "です", "rationale": "断定回避の結び常套句を断定へ" },
+    { "finding_id": "f027", "category": "D-1", "before": "検討してみてはいかがでしょうか", "after": "検討してみてください", "rationale": "ブログAI決定的シグネチャを勧告へ" },
+    { "finding_id": "f030", "category": "I-1", "before": "確認することで／導入することで／可視化することで 等", "after": "行えば／導入すれば／可視化すれば 等", "rationale": "形式名詞「こと」の反復を条件形・断定へ直結して削減" },
+    { "finding_id": "f029", "category": "E-2", "before": "全文が『です／ます』一本調子", "after": "ません・防げます・大切です・築けます・見なされていました・ください 等に変奏", "rationale": "敬体を維持したまま文末を分散。文体そのものは不変" }
+  ],
+  "change_rate": 0.46,
+  "change_rate_note": "difflib計測: 原文639字(空白除く)に対し削除212字・挿入85字＝(212+85)/639=0.465。30%警告閾値超・50%中断閾値未満。原文はAI密度0.323／30 findingsと極めて高密度で、A-5『することができる』4連・I-4・I-1・A-10等の冗長構文除去が字数比を押し上げた。全edit がfinding紐付きで過推敲ではない。最終採否はオーケストレーター判断。",
+  "style_preserved": "desu_masu",
+  "warnings": [
+    "change_rate 0.46 が30%警告閾値を超過（50%中断閾値は未満のため続行）",
+    "f021/f019: L3『というアプローチ』を語ごと削除。『手法/アプローチ』という枠づけ情報を落としたが、後続段落が同概念を『考え方』と明示するため意味等価と判断。content-fidelity-auditor の重点確認を推奨"
+  ]
+}
