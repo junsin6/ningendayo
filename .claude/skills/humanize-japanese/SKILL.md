@@ -63,10 +63,10 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ### 4. 並列検証
 
-二つを並行実行:
+まず**オーケストレーターが `ai-tell-detector` を `03_rewrite.md` に対して実走査**し、推敲後の再検出結果を `05_redetect.json` として保存する（IMP-006 対応。naturalness-reviewer はサブエージェント内では検出器を spawn できないため、再検出は必ずオーケストレーター側で行い結果を渡す）。次に二つを並行実行:
 
 * `content-fidelity-auditor`: 原文と推敲文を 13 項チェックリストで突き合わせ、意味の毀損があれば該当 edit のロールバックを指示。
-* `naturalness-reviewer`: 推敲文に検出器を再実行し、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。
+* `naturalness-reviewer`: `05_redetect.json`（推敲後の再検出結果）を読み、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。改善率は raw ベースで算出（IMP-002 準拠）。
 
 ### 5. 総合判定
 
@@ -76,6 +76,8 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 | 等級 C（S1 残り 1〜2 or 過推敲シグナル 2） | `rewrite_round_2` | 推敲役を再呼び出し（最大 3 回） |
 | fidelity 毀損あり | `rollback_and_rewrite` | 問題 edit をロールバックし再推敲 |
 | 等級 D（S1 3 件+ or 深刻な過推敲） | `hold_and_report` | 人間レビューを推奨し停止 |
+
+**変更率超過の override（IMP-001 対応・明文化）**: 総変更率が 30%/50% を超えても、**fidelity=pass かつ 自然度 A/B かつ削除主導（del ≫ ins）**なら、変更率超過**のみ**を理由に減格・`hold_and_report` しない。この場合は `accept` とし、`summary.md` に override 理由（削除主導・意味改変 edit 比率が低い旨）を明記する。強制中断は「意味改変 edit の文字数比が高い」または「挿入で原文にない内容が膨張した」場合に限る（詳細は `references/rewriting-playbook.md §変更率の数え方`）。
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
