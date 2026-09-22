@@ -1,0 +1,52 @@
+{
+  "run_id": "2026-09-22-001",
+  "reviewer": "naturalness-reviewer",
+  "detector_rerun": {
+    "method": "taxonomy_v1.0_manual_rescan",
+    "note": "IMP-006: ai-tell-detector サブエージェントを起動する Agent/Task ツールが本レビュアー実行環境で未提供のため、検出器定義（ai-tell-detector.md）と ai-tell-taxonomy.md v1.0・同一深刻度基準・同一正規化式を適用して 03_rewrite.md を手動で同基準再走査した。理想は同一検出器の再実行だが、成果は同一 SSOT に準拠。",
+    "input_scanned": "03_rewrite.md",
+    "input_length_after": 480
+  },
+  "score_before": 100.0,
+  "score_after": 2.0,
+  "score_detail": {
+    "before": { "S1": 11, "S2": 25, "S3": 0, "raw": 105.0, "normalized_capped": 100.0 },
+    "after":  { "S1": 0,  "S2": 1,  "S3": 0, "raw": 2.0,   "normalized_capped": 2.0 },
+    "formula": "raw = 5*S1 + 2*S2 + 0.5*S3; score = min(100, raw)"
+  },
+  "improvement_rate": 0.98,
+  "improvement_rate_note": "capped 値ベース (100-2)/100=0.98。uncapped raw ベースでも (105-2)/105=0.981 でほぼ同値。ただし推敲前 raw=105 が 100 にキャップされていたため、改善率はわずかに過小評価される（真の除去量は raw 差 103 相当）。",
+  "residual_findings": {
+    "by_severity": { "S1": 0, "S2": 1, "S3": 0 },
+    "detail": [
+      {
+        "id": "r001",
+        "category": "F-5",
+        "category_label": "過度な修飾: 〜性 抽象名詞の連鎖",
+        "severity": "S2",
+        "text_span": "拡張性 / 機動性 / 柔軟性 / 整合性",
+        "reason": "「〜性」抽象名詞が文書内で4回反復（3回以上で S2）。推敲前 F-5(f022) は 柔軟性・特性・複雑性・整合性 の4回だったが、推敲で 特性→『優れています』・複雑性→『複雑さ』へ解体した一方、B-2 修正で スケーラビリティ→拡張性・アジリティ→機動性 の『性』を2件 新規導入し、正味 4回のまま。B-2(カタカナ濫用) と F-5(性の連鎖) が処方衝突し、片方を潰してもう片方を作った形。"
+      }
+    ]
+  },
+  "over_polish_signals": [
+    {
+      "signal": "述語省略のぶつ切り（register 逸脱）",
+      "severity": "mild",
+      "text_span": "考慮すべき点がいくつか。",
+      "reason": "原文『いくつかの考慮すべきポイントが存在します。』の述語（存在します/あります）を省いて文を『いくつか。』で終止。副詞句止めのため厳密な体言止め(E-2 変奏)にもならず、他が全て敬体(です/ます/ません/べきです)の技術解説の register に対しやや口語的で唐突。意味は保持されるが自然さは僅かに低下。1件のみで深刻でない。"
+    }
+  ],
+  "over_polish_signals_count": 1,
+  "style_consistency": {
+    "before_style": "desu_masu",
+    "after_style": "desu_masu",
+    "keitai_jotai_mixing": false,
+    "note": "敬体/常体の混入なし。文末は です/ます/ました/のです/ません/べきです と変奏され E-2(単調反復) は実質解消。『いくつか。』の1箇所のみ register がやや浮くが常体化ではない。"
+  },
+  "change_rate_note": "change_rate 36.5% は IMP-001 既知欠陥（縮約主導・insert 0.6%）につき過推敲の直接証拠として扱わない。実測でも文体崩れ・原意脱落・深刻なリズム破壊は確認されず、縮約は冗長 AI 表現の除去に整合的。",
+  "grade": "A",
+  "grade_rationale": "S1 0件・S2 1件(≤2)・改善 98%(≥70%) で A 基準を満たす。過推敲シグナルは mild 1件で C の閾値(2件)未満。",
+  "recommendation": "accept",
+  "notes": "残存は F-5(性の連鎖) 1件のみ。任意で 拡張性→『拡張しやすさ』/『よく拡張できる』、機動性→『素早く動ける』等へ1〜2件を動詞・形容詞へ開けば F-5 も解消でき完全な A になるが、S2 1件は accept 基準内のため round_2 は不要。"
+}
