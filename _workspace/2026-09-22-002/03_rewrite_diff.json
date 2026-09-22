@@ -1,0 +1,222 @@
+{
+  "meta": {
+    "run_id": "2026-09-22-002",
+    "genre": "public_notice",
+    "style_preserved": "desu_masu",
+    "input_length": 662,
+    "output_length": 597,
+    "total_edits": 24,
+    "findings_total": 25,
+    "findings_applied": 23,
+    "findings_retained": 1,
+    "findings_documentlevel": 1,
+    "change_rate": 0.153,
+    "phrase_change_rate": 0.054,
+    "deletion_rate": 0.098,
+    "insert_rate": 0.0,
+    "change_rate_note": "Levenshtein 距離 / 原文本文字数(662)。語句改変率=置換文字/原文、削除率=純削除文字/原文、insert率=純挿入文字/原文。挿入0は能動化で新規主語名詞を足さず既存語の縮約・削除で処理したため。",
+    "warnings": []
+  },
+  "edits": [
+    {
+      "finding_id": "f001",
+      "category": "A-8",
+      "before": "システムが導入される運びとなりました",
+      "after": "システムを導入する運びとなりました",
+      "edit_type": "voice_active",
+      "rationale": "行為者（市）を主体とする能動へ。定型「運びとなりました」は公的お知らせの格として保持し、受動のみ解消。新規主語名詞は補わず助詞が→を＋動詞縮約で処理。"
+    },
+    {
+      "finding_id": "f002",
+      "category": "A-1",
+      "before": "窓口において",
+      "after": "窓口で",
+      "edit_type": "substitution",
+      "rationale": "場所枠づけ「において」を素直な格助詞「で」へ（A-1 S1・無条件除去）。"
+    },
+    {
+      "finding_id": "f003",
+      "category": "A-8",
+      "before": "行われていた",
+      "after": "行っていた",
+      "edit_type": "voice_active",
+      "rationale": "窓口業務の行為者（市・窓口）は文脈上自明。新規主語を足さず受動→能動化のみ。"
+    },
+    {
+      "finding_id": "f004",
+      "category": "A-6",
+      "before": "可能となります",
+      "after": "可能になります",
+      "edit_type": "substitution",
+      "rationale": "状態叙述の硬直「となります」を、制度導入による変化を表す「になります」へ。変化の含意は保持。"
+    },
+    {
+      "finding_id": "f005",
+      "category": "A-8",
+      "before": "必要とされていた",
+      "after": "必要だった",
+      "edit_type": "voice_active",
+      "rationale": "要請主体を曖昧化した受動＋I-4的要請を断定へ。「来庁が必要だった」で意味等価。"
+    },
+    {
+      "finding_id": "f006",
+      "category": "A-2",
+      "before": "手続きについても",
+      "after": "手続きも",
+      "edit_type": "substitution",
+      "rationale": "主題提示「について」を係助詞「も」で直結（A-2 S1）。"
+    },
+    {
+      "finding_id": "f007",
+      "category": "A-5",
+      "before": "完結させることができるようになります",
+      "after": "完結できるようになります",
+      "edit_type": "substitution",
+      "rationale": "可能の冗長形「させることができる」を「できる」へ。オンライン完結という意味は保持。文末「ようになります」は f008 の変化叙述として保持（下記参照）。"
+    },
+    {
+      "finding_id": "f008",
+      "category": "E-2",
+      "before": "（全13文の文末が ます／ございます／ください／申し上げます に単調集中）",
+      "after": "（文末に です止め「仕組みです」「予定です」、勧告「行ってください」、完了「なりました」等を分散導入し変奏）",
+      "edit_type": "rhythm_variation_documentlevel",
+      "rationale": "文書レベル finding。単独 span の口語化ではなく、他 finding の修正結果として です止め2箇所・ください1箇所・なりました1箇所を分散させ、敬体を保ったまま単調反復を解消。硬い公的敬体の格は維持。"
+    },
+    {
+      "finding_id": "f009",
+      "category": "A-8",
+      "before": "マイナンバーカードによる",
+      "after": "マイナンバーカードで",
+      "edit_type": "substitution",
+      "rationale": "手段の「による」名詞修飾を格助詞「で」へ。固有語「マイナンバーカード」は不変。"
+    },
+    {
+      "finding_id": "f010",
+      "category": "I-3",
+      "before": "行う必要があります",
+      "after": "行ってください",
+      "edit_type": "recommendation",
+      "rationale": "need to 直訳「必要があります」を具体勧告へ。手続き上「本人確認をしてください」と等価。文末に勧告形を混ぜ E-2 にも寄与。"
+    },
+    {
+      "finding_id": "f011",
+      "category": "A-8",
+      "before": "アクセスすることによって",
+      "after": "アクセスして",
+      "edit_type": "substitution",
+      "rationale": "手段の「によって」を連用接続へ。行為（アクセス→受付）の順序は保持。"
+    },
+    {
+      "finding_id": "f012",
+      "category": "A-8",
+      "before": "各種申請が受け付けられる",
+      "after": "各種申請を受け付ける",
+      "edit_type": "voice_active",
+      "rationale": "行為者（システム・市）を消した受動を能動へ。が→を のみで新規主語は補わず、直後の「仕組み」が主体を含意。"
+    },
+    {
+      "finding_id": "f013",
+      "category": "A-6",
+      "before": "仕組みとなっております",
+      "after": "仕組みです",
+      "edit_type": "substitution",
+      "rationale": "状態叙述「となっております」を「です」へ。概念語「仕組み」は保持。です止めで E-2 変奏。"
+    },
+    {
+      "finding_id": "f014",
+      "category": "H-1",
+      "before": "なお、システムのご利用には",
+      "after": "システムのご利用には",
+      "edit_type": "deletion",
+      "rationale": "文頭接続詞「なお」を削除。文書内3回中2回を削り（f014・f016）、論理は内容で示す。連鎖調整として1回（f020）は保持。"
+    },
+    {
+      "finding_id": "f015",
+      "category": "I-4",
+      "before": "アプリのインストールが求められる",
+      "after": "アプリをインストールしていただく",
+      "edit_type": "agent_restore",
+      "rationale": "行為者を曖昧にした「求められる」を、利用者を主体とする依頼形「していただく」へ。市→利用者の関係を敬体で具体化。名詞「インストール」を動詞化しただけで情報は不変。"
+    },
+    {
+      "finding_id": "f016",
+      "category": "H-1",
+      "before": "また、申請内容に不備が",
+      "after": "申請内容に不備が",
+      "edit_type": "deletion",
+      "rationale": "段落冒頭の文頭接続詞「また」を削除。話題転換は段落と内容で示せる。"
+    },
+    {
+      "finding_id": "f017",
+      "category": "A-8",
+      "before": "不備が認められた",
+      "after": "不備があった",
+      "edit_type": "voice_active",
+      "rationale": "行為者（担当部署）を消した受動「認められた」を、事実叙述「あった」へ。判定主体は次節「担当部署より」で自明。"
+    },
+    {
+      "finding_id": "f018",
+      "category": "A-8",
+      "before": "連絡がなされる",
+      "after": "連絡をする",
+      "edit_type": "voice_active",
+      "rationale": "サ変＋受動の硬直「なされる」を能動へ。主体「担当部署」は既に原文にあり、新規追加なし。「ことがあります」は保持。"
+    },
+    {
+      "finding_id": "f019",
+      "category": "I-3",
+      "before": "ご対応いただく必要がございます",
+      "after": "ご対応いただくことになります",
+      "edit_type": "substitution",
+      "rationale": "need to 敬体直訳「必要がございます」を解消。後続の「ので、あらかじめご了承ください」の構文と接続を保つため文を分断せず「ことになります」へ。「ご対応ください」で切ると ので＋ご了承ください の情報が落ちるため回避。"
+    },
+    {
+      "finding_id": "f020",
+      "category": "H-1",
+      "before": "なお、従来通り窓口での申請も",
+      "after": "なお、従来通り窓口での申請も",
+      "edit_type": "retained",
+      "rationale": "連鎖調整。文頭接続詞3回のうち本1回のみ保持。窓口継続という補足情報の導入語として「なお」が機能的で、機械的全削除を避けるため意図的に残置。"
+    },
+    {
+      "finding_id": "f021",
+      "category": "A-8",
+      "before": "受け付けられております",
+      "after": "受け付けております",
+      "edit_type": "voice_active",
+      "rationale": "行為者を消した受動を能動謙譲へ。公的文書の格を保つため「ています」ではなく「ております」を採用。"
+    },
+    {
+      "finding_id": "f022",
+      "category": "A-2",
+      "before": "詳細につきましては",
+      "after": "詳細は",
+      "edit_type": "substitution",
+      "rationale": "主題提示「につきまして」を「は」で直結（A-2 S1）。公的文書でも自然な敬体。"
+    },
+    {
+      "finding_id": "f023",
+      "category": "A-1",
+      "before": "ウェブサイトにおいて",
+      "after": "ウェブサイトで",
+      "edit_type": "substitution",
+      "rationale": "場所枠づけ「において」を「で」へ（A-1 S1、文書内2回目）。"
+    },
+    {
+      "finding_id": "f024",
+      "category": "A-8",
+      "before": "ご案内される",
+      "after": "ご案内する",
+      "edit_type": "voice_active",
+      "rationale": "行為者（市）を消した受動敬語を能動謙譲「ご案内する」へ。主体は文脈上自明で新規追加なし。"
+    },
+    {
+      "finding_id": "f025",
+      "category": "A-6",
+      "before": "予定となっております",
+      "after": "予定です",
+      "edit_type": "substitution",
+      "rationale": "状態叙述「となっております」を「です」へ。です止めで E-2 変奏、意味不変。"
+    }
+  ]
+}
