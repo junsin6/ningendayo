@@ -107,6 +107,12 @@
 - ルーティン・モチベーション・データドリブン 等の定訳が冗長になる語は B-2 から半免責し残差 S3 固定。出所 naturalness-B, fidelity-A, naturalness-A
 - **技術ドメイン語のホワイトリスト（維持語）とグレー語の判断基準** `status: ready` `hits: 1run`。実例(001): 維持=マイクロサービス/デプロイ/レイテンシ/オブザーバビリティ、開く=レジリエンス/ケイパビリティ/アジリティ/メリット。フォールトアイソレーションは専門度次第でグレー。読者層タグ（専門/一般）で挙動を切り替える指示が playbook B-2 変換表に無い。出所 detector-001, rewriter-001
 
+### スキーマ検算・実装の頑健化（taxonomist v1.1 審査由来） `status: ready` `hits: 1`
+- **scattered / span の切り分け規則が未明文**: 反復パターンを「N 個の span finding」にするか「1 個の scattered」にするかの基準がなく、検出器ごとに割れると IMP-002 型（スコア比較不能）が再発しうる。推定ルール（一律削除系＝scattered、位置ごとに個別 suggested_fix が要る＝各 span）の明文化を推奨。出所 taxonomist
+- **score 自己整合バリデーション**: 検出器出力に `|100·raw/(raw+30) − severity_weighted_score| ≤ 0.05` の assert を入れれば、今回の 71.5→71.4 型のずれを機械的に弾ける。出所 taxonomist
+- **density union の共通ユーティリティ化**: 重複区間マージは実装が非自明。各検出器が独自実装すると union 面積が割れて density が再び比較不能になる。共通化を推奨。出所 taxonomist
+- 丸め規則の全体明文化（score 以外の meta 値の桁統一）。出所 taxonomist
+
 ### ジャンル適合性のスキーマ化 `status: ready` `hits: 1run`
 - finding に `genre_tolerance`/`do_not_touch` フラグ、meta に `genre` フィールドを追加し「許容/要修正」を構造化して rewriter に渡す。現状はジャンル判断が reason の散文にしか残らず、rewriter が機械的に全 finding を潰すと過推敲（挨拶定型破壊）を招く。出所 detector-002
 - 検出手順: タイトル/見出しのハイプ語は本文と別閾値（過検出回避）。実例(001): タイトル「その本質を徹底解説」。出所 detector-001

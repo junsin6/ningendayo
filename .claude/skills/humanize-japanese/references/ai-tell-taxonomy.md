@@ -384,7 +384,7 @@ J. 視覚装飾の濫用
     "detected_count": 37,
     "ai_tell_density": 0.203,
     "score_raw": 75.0,
-    "severity_weighted_score": 71.5,
+    "severity_weighted_score": 71.4,
     "score_formula": "100*raw/(raw+30)",
     "style": "desu_masu"
   },
@@ -443,7 +443,7 @@ J. 視覚装飾の濫用
 * `raw` = S1×5 + S2×2 + S3×0.5（加重和。上限なし）
 * `severity_weighted_score` = `100 × raw / (raw + 30)`（0〜100。飽和せず高密度でも解像度を保つ。k=30 固定）
 * `meta.score_raw`（正規化前 raw）を**必ず併記**する。改善率（naturalness-reviewer）は **uncapped raw ベース**で算出: `(raw_before − raw_after) / raw_before`。
-* 検証: raw≈75 → 71.4、raw=105 → 77.8、raw=74 → 71.2（本式は taxonomy 例 71.5 と整合）。
+* 検証: raw=75.0 → 71.4、raw=105 → 77.8、raw=74 → 71.2（本式は taxonomy 例 score_raw 75.0 / score 71.4 と整合。小数第1位で丸める）。
 
 ### span 表現（SSOT 確定 — v1.1 / IMP-004）
 
@@ -456,11 +456,16 @@ J. 視覚装飾の濫用
 
 * `style`: 入力文体。`desu_masu`（敬体）/ `da_dearu`（常体）/ `mixed`。推敲役は原文の文体を必ず維持する。
 
+### 後方互換（v1.0 → v1.1）
+
+* `scope` を持たない v1.0 finding は `scope: "span"`（start/end 必須の連続区間）とみなす。v1.0 は span 型のみを表現していたため既存 finding の意味は変わらない。
+* `meta.score_raw` を欠く v1.0 レポートは、`raw` を復元できる場合のみ本式で再スコアする。復元できない（旧 `min(100,raw)` 飽和値しかない）場合は絶対値を跨バージョン比較に用いず、改善率算出も同一バージョン内の raw 同士に限る。
+
 ## バージョン管理
 
 * **v1.0** (2026-05): 日本語 AIクセ分類体系の初版。10 大分類（A〜J）× 40+ サブパターンを定義。
   + 日本語固有として重点配置: `A-6`（〜となっている）, `B-2`（カタカナ語濫用）, `E-2`（です・ます単調）, `I-4`（〜が求められる）, `J-3`（ダッシュ濫用）, D-1 の「いかがでしたでしょうか」。
-* **v1.1** (2026-09-22): 検出出力スキーマの穴を 2 件確定（分類 A〜J・深刻度は不変）。taxonomist 審査済み。
+* **v1.1** (2026-09-22): 検出出力スキーマの穴を 2 件確定（分類 A〜J・深刻度は不変）。taxonomist 審査済み。審査時に (a) スキーマ例の `severity_weighted_score` を 71.5→71.4 に訂正（`score_raw` 75.0 の本式解は 71.4285…、小数第1位で 71.4）、(b) 検証行の整合記述を訂正、(c) v1.0→v1.1 の後方互換規則を追記。
   + **IMP-002**: `severity_weighted_score` の正規化式を `100×raw/(raw+30)`（k=30 固定・飽和なし）に SSOT 確定。`meta.score_raw` 併記を必須化。旧 `min(100,raw)` 飽和を禁止（day-1 で検出器2機が別式を採用しスコア比較不能になった実害を受けた）。
   + **IMP-004**: finding に `scope: "span"|"scattered"|"document"` を追加。document/scattered は `start`/`end`/`text_span` を null 許容、scattered は `occurrences` を持つ。density は union 面積・document/scattered は分子から除外と定義。
 * 拡張原則: 実戦入力で再現 2 回以上 + 日本語の人間の書き手がほぼ使わないパターンのみサブ項目として追加。新パターンは末尾の候補欄に実例 2 件以上を添えて提案する。
