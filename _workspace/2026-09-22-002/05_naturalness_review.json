@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "run_id": "2026-09-22-002",
+    "genre": "public_notice",
+    "style_before": "desu_masu",
+    "style_after": "desu_masu",
+    "detector_rerun": "self_rescan_same_taxonomy",
+    "score_formula": "score = 100 * raw / (raw + 30), raw = S1*5 + S2*2 + S3*0.5"
+  },
+  "score_before": 71.2,
+  "score_after": 6.3,
+  "improvement_rate": 0.912,
+  "residual_findings": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 0
+  },
+  "residual_detail": [
+    {
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "なお、",
+      "location": "第5段落冒頭（従来通り窓口での申請〜）",
+      "note": "元 f014・f016・f020 の3件中2件は削除済み。この1件のみ残存。文頭接続詞の密度は3→1に低下しており、検出器の『単発を過検出しない』原則では閾値未満。厳密には非 finding だが、元 finding の残存として保守的に S2×1 計上。公的お知らせの補足導入としては許容範囲。"
+    }
+  ],
+  "resolved_summary": {
+    "A-8_by_passive": "10件すべて能動化（導入する/行っていた/必要だった/マイナンバーカードで/アクセスして/受け付ける/不備があった/連絡をする/受け付けております/ご案内する）",
+    "A-1_niokeru": "2件解消（窓口で・ウェブサイトで）",
+    "A-2_nitsuite": "2件解消（手続きも・詳細は）",
+    "A-5_surukotogadekiru": "解消（完結できる）",
+    "A-6_tonatteiru": "3件解消（可能になります・仕組みです・予定です）。『運びとなりました』は原文検出でも公的定型として許容",
+    "I-3_hitsuyogaaru": "2件解消（行ってください・ご対応いただくことになります）",
+    "I-4_motomerareru": "解消（インストールしていただく）",
+    "H-1_setsuzokushi": "3件中2件削除、1件残存",
+    "E-2_rhythm": "文末が『〜ます』一本調子から『です』『てください』を含む変奏へ改善。敬体は維持（ジャンル適正）"
+  },
+  "over_polish_signals": [],
+  "over_polish_checks": {
+    "unnatural_colloquialization": "なし。敬語・格式を全編維持",
+    "style_collapse_keitai_jotai_mix": "なし。全文が敬体で統一され常体の混入なし",
+    "meaning_thinning_or_choppy": "なし。手術的置換のみで文意・情報量は保存、ぶつ切りなし",
+    "change_rate_over_30pct": "なし。編集はトークン単位の局所置換が中心で推定変更率は10%未満",
+    "genre_register_degradation": "なし。冒頭『平素より〜厚く御礼申し上げます』・結び『お願い申し上げます』等の定型挨拶を保持し公的文書の格を維持。定型挨拶の保持は過推敲ではなく適正"
+  },
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1=0・S2≤2・改善率91%>70% により A 判定。原文の主クセ（A-8 受動過密10件・A-6 状態叙述・I-3/I-4 の曖昧要請）は取りこぼしなく解消。A-8/I-3 の残存はゼロ。過推敲シグナルもゼロで、敬体・格式・定型挨拶を保持したままクセのみ除去できている。唯一の残存は第5段落の『なお、』1件だが、文頭接続詞密度が3→1に下がったため厳密には閾値未満で、公的お知らせの補足としては自然。『ご対応いただくことになります』は原文提案の『ご対応ください』より一段間接的だが、格式・敬体維持の観点では許容範囲（要 note）。round_2 不要、accept。"
+}

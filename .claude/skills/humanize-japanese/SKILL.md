@@ -63,10 +63,12 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ### 4. 並列検証
 
-二つを並行実行:
+まず**オーケストレーターが `ai-tell-detector` を `03_rewrite.md` に対して直接呼び**、推敲後の残存検出を `05_detection_after.json` に生成する（IMP-006: naturalness-reviewer は subagent 環境で検出器を spawn できないため、再走査はオーケストレーターの責務とし結果を渡す）。同一 taxonomy・同一正規化式 `100×raw/(raw+30)` を使う。
+
+その後、二つを並行実行:
 
 * `content-fidelity-auditor`: 原文と推敲文を 13 項チェックリストで突き合わせ、意味の毀損があれば該当 edit のロールバックを指示。
-* `naturalness-reviewer`: 推敲文に検出器を再実行し、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。
+* `naturalness-reviewer`: `05_detection_after.json`（上で生成した推敲後検出）を受け取り、残存 AI クセと過推敲シグナルを計測。改善率は uncapped raw ベース（IMP-002/003）。品質等級 A〜D を判定。
 
 ### 5. 総合判定
 

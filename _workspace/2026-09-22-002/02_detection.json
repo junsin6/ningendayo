@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "input_length": 675,
+    "detected_count": 25,
+    "ai_tell_density": 0.311,
+    "severity_weighted_score": 71.2,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "導入される",
+      "start": 97,
+      "end": 102,
+      "reason": "行為者（市）を隠した受動。文書全体で受動表現が10箇所超と過密（本サンプルの主クセ）。「運びとなりました」は公的お知らせの定型で許容範囲だが受動化自体は不要。",
+      "suggested_fix": "導入することになりました"
+    },
+    {
+      "id": "f002",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において 濫用",
+      "severity": "S1",
+      "text_span": "窓口において",
+      "start": 129,
+      "end": 135,
+      "reason": "場所を抽象枠づけする「において」。同一文書に2回出現し公的文書でも過剰（A-1はS1で無条件除去対象）。",
+      "suggested_fix": "窓口で"
+    },
+    {
+      "id": "f003",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "行われていた",
+      "start": 135,
+      "end": 141,
+      "reason": "「窓口において行われていた」は行為者（市・職員）を消した受動。能動化で自然。文書全体の受動過密の一部。",
+      "suggested_fix": "窓口で行っていた"
+    },
+    {
+      "id": "f004",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "可能となります",
+      "start": 174,
+      "end": 181,
+      "reason": "「できます」で足りる箇所を状態化。「〜となる/となっております」系が文書内で計4回反復し機械的（A-6は日本語固有の強クセ）。",
+      "suggested_fix": "可能になります"
+    },
+    {
+      "id": "f005",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "必要とされていた",
+      "start": 188,
+      "end": 196,
+      "reason": "「来庁が必要とされていた」は要請主体を曖昧化した受動＋I-4的要請。行為者不在。文書全体の受動過密の一部。",
+      "suggested_fix": "来庁が必要だった"
+    },
+    {
+      "id": "f006",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用",
+      "severity": "S1",
+      "text_span": "手続きについても",
+      "start": 196,
+      "end": 204,
+      "reason": "主題提示を「について」で処理。文書内で「につきまして」を含め2回。公的文書でも「も」で直結できる（A-2はS1）。",
+      "suggested_fix": "手続きも"
+    },
+    {
+      "id": "f007",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "完結させることができるようになります",
+      "start": 212,
+      "end": 230,
+      "reason": "可能の冗長形「することができる」＋A-6「なります」の二重クセ。AI文の最頻出シグネチャの一つ。",
+      "suggested_fix": "完結できるようになります"
+    },
+    {
+      "id": "f008",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復 ★日本語固有",
+      "severity": "S2",
+      "text_span": "ようになります",
+      "start": 223,
+      "end": 230,
+      "reason": "【文書レベル】全13文の文末が「〜ます/ございます/ください/申し上げます」の敬体一本調子。公的文書でも体言止め・「〜です」等で変奏可。代表spanを提示。",
+      "suggested_fix": "（文末に変奏を混ぜる）"
+    },
+    {
+      "id": "f009",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "マイナンバーカードによる",
+      "start": 246,
+      "end": 258,
+      "reason": "手段の「による」による名詞修飾。マイナンバーカードは固有語で保持、構文のみ能動化候補。文書全体の「による/によって」反復の一部。",
+      "suggested_fix": "マイナンバーカードで"
+    },
+    {
+      "id": "f010",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "行う必要があります",
+      "start": 263,
+      "end": 272,
+      "reason": "英語 need to の直訳「必要がある」。文書内で「必要があります/必要がございます」が2回反復（本サンプルの主クセの一つ）。",
+      "suggested_fix": "行ってください"
+    },
+    {
+      "id": "f011",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "アクセスすることによって",
+      "start": 295,
+      "end": 307,
+      "reason": "手段の「によって」。「アクセスして」で足りる。文書全体の「によって/による」反復の一部で過密。",
+      "suggested_fix": "アクセスして"
+    },
+    {
+      "id": "f012",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "受け付けられる",
+      "start": 313,
+      "end": 320,
+      "reason": "行為者（システム・市）を消した受動。「受け付けます」で能動化可。文書全体の受動過密の一部。",
+      "suggested_fix": "受け付ける"
+    },
+    {
+      "id": "f013",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "仕組みとなっております",
+      "start": 320,
+      "end": 331,
+      "reason": "「仕組みです」で足りる箇所を状態化。「となっております」は文書内で2回反復し機械的（A-6日本語固有）。",
+      "suggested_fix": "仕組みです"
+    },
+    {
+      "id": "f014",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "なお、",
+      "start": 332,
+      "end": 335,
+      "reason": "文頭接続詞「なお」。文書内で文頭接続詞（また/なお）が計3回。70%以上削除が処方（密度超過で検出）。",
+      "suggested_fix": "（削除し文を続ける）"
+    },
+    {
+      "id": "f015",
+      "category": "I-4",
+      "category_label": "形式的表現: 〜が求められる/が必要だ ★日本語固有",
+      "severity": "S2",
+      "text_span": "インストールが求められる",
+      "start": 361,
+      "end": 373,
+      "reason": "行為者（利用者）を曖昧にしたままの要請。日本語ビジネス/公的AI文の常套。誰が何をするか主語で具体化すべき。",
+      "suggested_fix": "インストールしていただく"
+    },
+    {
+      "id": "f016",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "また、",
+      "start": 384,
+      "end": 387,
+      "reason": "段落冒頭の「また」。文書内で文頭接続詞が計3回で過多。論理は内容で示せる。",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f017",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "認められた",
+      "start": 395,
+      "end": 400,
+      "reason": "「不備が認められた」は行為者（担当部署）を消した受動。能動化可。文書全体の受動過密の一部。",
+      "suggested_fix": "不備があった"
+    },
+    {
+      "id": "f018",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "連絡がなされる",
+      "start": 414,
+      "end": 421,
+      "reason": "「なされる」はサ変＋受動の硬直表現。「連絡します」で能動化可。文書全体の受動過密の一部。",
+      "suggested_fix": "連絡します"
+    },
+    {
+      "id": "f019",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある",
+      "severity": "S2",
+      "text_span": "ご対応いただく必要がございます",
+      "start": 439,
+      "end": 454,
+      "reason": "「必要がございます」は need to の敬体直訳。文書内で「必要がある」系2回反復。「ご対応ください」で足りる。",
+      "suggested_fix": "ご対応ください"
+    },
+    {
+      "id": "f020",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "なお、",
+      "start": 472,
+      "end": 475,
+      "reason": "段落冒頭「なお」。文書内で文頭接続詞が計3回で過多（S2密度超過）。",
+      "suggested_fix": "（削除し文を続ける）"
+    },
+    {
+      "id": "f021",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "受け付けられております",
+      "start": 490,
+      "end": 501,
+      "reason": "行為者を消した受動＋硬い敬体「ております」。「受け付けています」で能動化可。文書全体の受動過密の一部。",
+      "suggested_fix": "受け付けています"
+    },
+    {
+      "id": "f022",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用",
+      "severity": "S1",
+      "text_span": "詳細につきましては",
+      "start": 565,
+      "end": 574,
+      "reason": "主題提示「につきまして」（について敬体）。文書内で「について」系2回。「詳細は」で直結できる（A-2はS1）。",
+      "suggested_fix": "詳細は"
+    },
+    {
+      "id": "f023",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/において 濫用",
+      "severity": "S1",
+      "text_span": "ウェブサイトにおいて",
+      "start": 579,
+      "end": 589,
+      "reason": "場所枠づけ「において」。文書内で2回目。「ウェブサイトで」で直結（A-1はS1で無条件除去）。",
+      "suggested_fix": "ウェブサイトで"
+    },
+    {
+      "id": "f024",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/による 受動文(by-passive)",
+      "severity": "S2",
+      "text_span": "ご案内される",
+      "start": 591,
+      "end": 597,
+      "reason": "行為者（市）を消した受動敬語。「ご案内します」で能動化可。文書全体の受動過密の一部。",
+      "suggested_fix": "ご案内します"
+    },
+    {
+      "id": "f025",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "予定となっております",
+      "start": 597,
+      "end": 607,
+      "reason": "「予定です」で足りる箇所を状態化。「となっております」が文書内2回目で機械的（A-6日本語固有の最強クセ）。",
+      "suggested_fix": "予定です"
+    }
+  ],
+  "category_summary": {
+    "A": 18,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 3,
+    "I": 3,
+    "J": 0
+  }
+}

@@ -21,7 +21,9 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
     "input_length": 0,
     "detected_count": 0,
     "ai_tell_density": 0.0,
+    "score_raw": 0.0,
     "severity_weighted_score": 0.0,
+    "score_formula": "100*raw/(raw+30)",
     "style": "desu_masu | da_dearu | mixed"
   },
   "findings": [
@@ -30,9 +32,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
       "category": "A-6",
       "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
       "severity": "S1",
+      "scope": "span",
       "text_span": "課題となっている",
       "start": 142,
       "end": 150,
+      "occurrences": null,
       "reason": "理由（密度・反復回数など根拠を明記）",
       "suggested_fix": "課題だ"
     }
@@ -41,18 +45,21 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
 }
 ```
 
+`scope` は taxonomy §span 表現 に従う: `span`（連続区間・start/end 必須）/ `scattered`（分散・`occurrences:[[s,e],...]`、start/end/text_span は null）/ `document`（文書全体・start/end/text_span は null、reason 冒頭に `【文書レベル】`）。文書レベルパターン（E リズム・文末単調 等）を代表位置に無理アンカーしない。
+
 ## 検出手順
 
 1. **文体判定**: 文末を見て敬体／常体／混在を `meta.style` に記録。
-2. **文単位スキャン**: A・B・D・F・G・H・I の各サブパターンを正規表現＋文脈で検出。`start`/`end` は文字インデックス。
-3. **文書レベルスキャン**:
-   * E（リズム）: 文長の標準偏差、文末の反復率を計算。
-   * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
+2. **文単位スキャン**: A・B・D・F・G・H・I の各サブパターンを正規表現＋文脈で検出。`scope:"span"`、`start`/`end` は文字インデックス、`text_span` は当該区間の実文字列と一致することを自己検証（不一致なら JSON を出さない）。
+3. **文書レベルスキャン**（`scope:"document"` または `"scattered"` で表現。代表位置への無理アンカー禁止）:
+   * E（リズム）: 文長の標準偏差、文末の反復率を計算 → `scope:"document"`。
+   * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。絵文字・文頭接続詞の分散は `scope:"scattered"` ＋ `occurrences`。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出（taxonomy §スコア正規化 SSOT に厳密準拠。独自式禁止）**:
+   * `score_raw` = S1×5 + S2×2 + S3×0.5（加重和・上限なし）。
+   * `severity_weighted_score` = `100 × score_raw / (score_raw + 30)`（飽和なし。`min(100,raw)` 等の切詰は不可）。`meta.score_raw` を必ず併記。
+   * `ai_tell_density` = 検出 span の**和集合(union)面積** / 全体文字数（内包・重複は二重計上しない。document/scattered scope は分子に含めない）。
 
 ## 重要な原則
 
