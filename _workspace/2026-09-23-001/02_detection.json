@@ -1,0 +1,322 @@
+{
+  "meta": {
+    "input_length": 820,
+    "detected_count": 27,
+    "ai_tell_density": 0.276,
+    "severity_weighted_score": 87.1,
+    "style": "desu_masu",
+    "_normalization_note": "raw加重和 = S1*5 + S2*2 + S3*0.5 = 10*5+17*2+0*0.5 = 84.0。飽和正規化 score = 100*(1 - exp(-raw / (input_length*0.05)))、scale=input_length*0.05=41.0。= 100*(1-exp(-84.0/41.0)) = 87.1。（clean文書は raw が小さく低スコア、AIクセ飽和で100に漸近。0〜100保証）",
+    "_span_chars": 226
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "提供することができます",
+      "start": 168,
+      "end": 179,
+      "reason": "可能の冗長形。「〜することができる／可能」系が本文で6回反復（S1最頻シグネチャ）",
+      "suggested_fix": "メリットがある"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実行することができるため",
+      "start": 343,
+      "end": 355,
+      "reason": "可能の冗長形。同系表現6回反復の一つ",
+      "suggested_fix": "実行できるため"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実現することが可能",
+      "start": 368,
+      "end": 377,
+      "reason": "「〜することが可能」も can の冗長直訳。同系6回反復",
+      "suggested_fix": "実現でき"
+    },
+    {
+      "id": "f004",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実行することができる状態",
+      "start": 495,
+      "end": 507,
+      "reason": "可能の冗長形＋状態化。同系6回反復",
+      "suggested_fix": "実行できる"
+    },
+    {
+      "id": "f005",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "処理することができ",
+      "start": 661,
+      "end": 670,
+      "reason": "可能の冗長形。同系6回反復",
+      "suggested_fix": "処理でき"
+    },
+    {
+      "id": "f006",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "向上させることができる",
+      "start": 733,
+      "end": 744,
+      "reason": "可能の冗長形。同系6回反復",
+      "suggested_fix": "向上させられる／向上する"
+    },
+    {
+      "id": "f007",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "となっています",
+      "start": 377,
+      "end": 384,
+      "reason": "「である／だ」で足りる箇所を状態化。となる系が本文で2回（可能となっています／存在となっていく）",
+      "suggested_fix": "だ／である"
+    },
+    {
+      "id": "f008",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "存在となっていくでしょう",
+      "start": 806,
+      "end": 818,
+      "reason": "状態化＋誇張予測の結び。となる系2回反復の一つ",
+      "suggested_fix": "存在になるだろう／重みを増すだろう"
+    },
+    {
+      "id": "f009",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における 濫用",
+      "severity": "S1",
+      "text_span": "におけるAI体験",
+      "start": 721,
+      "end": 729,
+      "reason": "英語 in の抽象枠づけ直訳。S1（一度で露見）",
+      "suggested_fix": "IoT機器のAI体験"
+    },
+    {
+      "id": "f010",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語＋万能動詞（提供する）",
+      "severity": "S1",
+      "text_span": "スループットを提供します",
+      "start": 683,
+      "end": 695,
+      "reason": "「チップは〜を提供します」は The X provides Y の直訳。万能動詞 提供",
+      "suggested_fix": "スループットが高い／高いスループットを出す"
+    },
+    {
+      "id": "f011",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "という技術",
+      "start": 36,
+      "end": 41,
+      "reason": "名詞を「という」で接続する英語 that/so-called の直訳。という系が本文で3回（という技術／保護という／といった）",
+      "suggested_fix": "エッジAI（Edge AI）は"
+    },
+    {
+      "id": "f012",
+      "category": "A-13",
+      "category_label": "翻訳調: 〜という 過剰連結",
+      "severity": "S2",
+      "text_span": "といったテクニック",
+      "start": 456,
+      "end": 465,
+      "reason": "「という」系3回反復の一つ",
+      "suggested_fix": "などの手法"
+    },
+    {
+      "id": "f013",
+      "category": "B-1",
+      "category_label": "英語括弧併記の習慣",
+      "severity": "S2",
+      "text_span": "（Cloud）",
+      "start": 67,
+      "end": 74,
+      "reason": "英語併記が本文で6回（Edge AI/Cloud/Device/Quantization/Pruning/Neural Processing Unit）。クラウドに英語併記は不要",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f014",
+      "category": "B-1",
+      "category_label": "英語括弧併記の習慣",
+      "severity": "S2",
+      "text_span": "（Device）",
+      "start": 92,
+      "end": 100,
+      "reason": "英語併記6回のうちの一つ。デバイスに英語併記は不要",
+      "suggested_fix": "（削除）"
+    },
+    {
+      "id": "f015",
+      "category": "B-1",
+      "category_label": "英語括弧併記の習慣",
+      "severity": "S2",
+      "text_span": "（Quantization）",
+      "start": 426,
+      "end": 440,
+      "reason": "英語併記6回。初出専門語への機械的併記",
+      "suggested_fix": "初出1回に限定するか削除"
+    },
+    {
+      "id": "f016",
+      "category": "B-1",
+      "category_label": "英語括弧併記の習慣",
+      "severity": "S2",
+      "text_span": "（Pruning）",
+      "start": 447,
+      "end": 456,
+      "reason": "英語併記6回。初出専門語への機械的併記",
+      "suggested_fix": "初出1回に限定するか削除"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 193,
+      "end": 200,
+      "reason": "日本語で書けるカタカナ語。不要カタカナが多数（ソリューション/コアテクノロジー/アプローチ/コントロール/パラダイム/リソース 等）",
+      "suggested_fix": "仕組み／方式"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "コアテクノロジー",
+      "start": 396,
+      "end": 404,
+      "reason": "不要カタカナ語の濫用",
+      "suggested_fix": "中核技術"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アプローチ",
+      "start": 260,
+      "end": 265,
+      "reason": "不要カタカナ語の濫用",
+      "suggested_fix": "方法"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "コントロール",
+      "start": 544,
+      "end": 550,
+      "reason": "不要カタカナ語の濫用",
+      "suggested_fix": "制御"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "パラダイム",
+      "start": 788,
+      "end": 793,
+      "reason": "不要カタカナ語の濫用（知的偽装）",
+      "suggested_fix": "枠組み"
+    },
+    {
+      "id": "f022",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "リソース",
+      "start": 486,
+      "end": 490,
+      "reason": "不要カタカナ語の濫用",
+      "suggested_fix": "資源／計算資源"
+    },
+    {
+      "id": "f023",
+      "category": "D-5",
+      "category_label": "AI慣用句: 擬人化された抽象主語",
+      "severity": "S2",
+      "text_span": "役割を果たしています",
+      "start": 557,
+      "end": 567,
+      "reason": "抽象主語（最適化手法）＋擬人化動詞「役割を果たす」の常套",
+      "suggested_fix": "精度と性能のバランスを左右する"
+    },
+    {
+      "id": "f024",
+      "category": "D-5",
+      "category_label": "AI慣用句: 擬人化された抽象主語",
+      "severity": "S2",
+      "text_span": "後押ししています",
+      "start": 598,
+      "end": 606,
+      "reason": "抽象主語（アクセラレータの登場）＋擬人化「後押しする」",
+      "suggested_fix": "普及を早めている"
+    },
+    {
+      "id": "f025",
+      "category": "G-1",
+      "category_label": "ヘッジング: 推測型文末",
+      "severity": "S2",
+      "text_span": "と考えられています",
+      "start": 744,
+      "end": 753,
+      "reason": "「できると考えられています」の二重婉曲気味の推測文末。断定可能",
+      "suggested_fix": "向上させる／向上するはずだ"
+    },
+    {
+      "id": "f026",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "集めています",
+      "start": 48,
+      "end": 54,
+      "reason": "文書レベル：全13文の文末がます・ています・ました・でしたにほぼ収束し変奏ゼロ（一本調子）",
+      "suggested_fix": "体言止め・〜だろう等で文末を変奏（敬体は維持）"
+    },
+    {
+      "id": "f027",
+      "category": "E-1",
+      "category_label": "リズム: 文長の均一性",
+      "severity": "S2",
+      "text_span": "近年、",
+      "start": 19,
+      "end": 22,
+      "reason": "文書レベル：本文の文がおおむね40〜90字の中〜長文に集中し、10〜20字の短文が一つもない",
+      "suggested_fix": "段落ごとに短文を1〜2文挟む"
+    }
+  ],
+  "category_summary": {
+    "A": 12,
+    "B": 10,
+    "C": 0,
+    "D": 2,
+    "E": 2,
+    "F": 0,
+    "G": 1,
+    "H": 0,
+    "I": 0,
+    "J": 0
+  }
+}
