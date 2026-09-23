@@ -141,8 +141,11 @@
 ## 変更率の数え方
 
 * 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
+* **計測方法（v1.1 — IMP-005）**: change_rate は **per-edit の insert/delete を単純合算せず、推敲文全体に対する difflib のグローバル diff で算出する**。同一文に複数 finding が重なる（A-5+E-2+E-1 等）と per-edit 合算は重複二重計上になり過大化するため。分母「原文文字数」は改行を含む全文字数で固定（空白・改行の扱いを run 間で揺らさない）。
+* 複数 finding を 1 回の書き換えに統合した場合、diff の該当 edit に `merged_finding_ids: [...]` を記す（fidelity の重点監査対象になる）。
 * 30% 超 → `summary.md` に警告を記録し続行。
 * 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+* 参考（IMP-001・未適用）: 削除主体の健全な推敲でも change_rate が閾値へ近づくため、将来的に挿入率／削除率を分離し削除率へ緩い閾値を設ける案がある。当面は fidelity=pass かつ自然度 A/B なら override accept（SKILL §総合判定）。
 
 ## 文体変換例（before → after 一括サンプル）
 
