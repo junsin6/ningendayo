@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "run_id": "2026-09-23-001",
+    "genre": "technical_explainer",
+    "style": "desu_masu",
+    "score_before": 87.1,
+    "score_after": 18.5,
+    "improvement_rate": 0.788,
+    "grade": "B",
+    "residual_S1": 0,
+    "residual_S2": 3,
+    "residual_S3": 2,
+    "overpolish_signals": 0,
+    "_scoring_note": "推敲文へ検出器と同一手順を再適用。input_length=686（改行除去後の推敲文文字数）、scale=686*0.05=34.3。raw加重和 = S1*5 + S2*2 + S3*0.5 = 0*5+3*2+2*0.5 = 7.0。score_after = 100*(1-exp(-7.0/34.3)) = 18.5。改善率 = (87.1-18.5)/87.1 = 0.788。score_before は 02_detection.json の meta.severity_weighted_score=87.1 を固定基準とした。",
+    "_grade_note": "S1=0 かつ S2=3(>2) のため A 不可、S2≤4 かつ改善50%+ を満たすため B。残存 S2 3件はいずれも検出器が原文で見落とした B-2 カタカナ語（下記）で、推敲役は finding ベース運用のため未着手＝推敲役の責ではなく検出器のカバレッジ不足に起因。"
+  },
+  "residual_findings": [
+    {
+      "id": "r001",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ユースケース",
+      "context": "リアルタイム性が求められるユースケースには不向きでした",
+      "reason": "『用途／場面』で書ける不要カタカナ。検出器が原文で見落とし（f017-f022 と同基準なら開放対象）、推敲文にそのまま残存。",
+      "suggested_fix": "用途／場面",
+      "detector_missed_in_original": true
+    },
+    {
+      "id": "r002",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "パフォーマンス",
+      "context": "精度とパフォーマンスのトレードオフを制御する上で",
+      "reason": "『性能』で書ける不要カタカナ。検出器が原文で見落とし。f018 コアテクノロジー→中核技術 等と同基準なら開放対象。",
+      "suggested_fix": "性能",
+      "detector_missed_in_original": true
+    },
+    {
+      "id": "r003",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "スケーラビリティ",
+      "context": "スケーラビリティとセキュリティを両立させる次世代の枠組み",
+      "reason": "『拡張性』で書ける知的偽装型カタカナ。検出器が原文で見落とし。f021 パラダイム→枠組み と同型。",
+      "suggested_fix": "拡張性",
+      "detector_missed_in_original": true
+    },
+    {
+      "id": "r004",
+      "category": "A-10",
+      "category_label": "抽象主語＋万能動詞（弱）",
+      "severity": "S3",
+      "text_span": "この技術トレンドは、スマートフォンやIoTデバイスのAI体験を大きく向上させるはずです",
+      "reason": "抽象主語『技術トレンド』＋他動詞『向上させる』の英語構文的叙述が残る。単独では軽微だが AI 印象を弱く残す。",
+      "suggested_fix": "この技術によりスマートフォンやIoT機器のAI体験は大きく向上するはずです（自動詞化・主語を事象から外す）"
+    },
+    {
+      "id": "r005",
+      "category": "D-4",
+      "category_label": "ハイプ語彙／曖昧な予測結び（弱）",
+      "severity": "S3",
+      "text_span": "今後ますます重要な存在になっていくでしょう",
+      "reason": "『今後ますます重要な存在になっていく』は具体を欠いた AI 常套の予測結び。A-6 の状態化は『になる』化で解消済みだが誇張予測のトーンは残存。単独では軽微。",
+      "suggested_fix": "今後さらに用途を広げていくだろう 等、具体動詞で結ぶ（敬体維持なら『広げていくでしょう』）"
+    }
+  ],
+  "overpolish": [],
+  "overpolish_detail": {
+    "style_mixing": {
+      "signal": false,
+      "note": "文末形態を二値カウント: 敬体(です/ます/でした/ません/でしょう/はずです)=全終止文、常体(だ/である)=0。体言止め『大きく二つ。』は文体中立で敬体を崩さない。混入なし。"
+    },
+    "meaning_distortion": {
+      "signal": false,
+      "note": "f001『二つの大きなメリット』→『メリットは大きく二つ』で『大きい』の係り先が微変（メリット→数量）だが情報欠落なし。厳密判定は content-fidelity-auditor 管轄。自然度観点では変質なし。"
+    },
+    "tone_deviation": {
+      "signal": false,
+      "note": "技術解説・敬体を維持。口語化・エッセイ化なし。"
+    },
+    "over_deletion": {
+      "signal": false,
+      "note": "change_rate=0.288（28.8%）で 30% 警告閾値未満。delete_chars=178 / insert_chars=55 と純減だが、削除の大半は英語併記4件・冗長可能形の圧縮で意味担体は保存。ただし閾値まで残り約1.2ポイントと近接（要監視）。"
+    }
+  },
+  "verdict": "accept"
+}

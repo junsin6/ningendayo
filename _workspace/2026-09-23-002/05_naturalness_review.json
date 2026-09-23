@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "score_before": 65.3,
+    "score_after": 4.4,
+    "improvement_rate": 0.933,
+    "grade": "A",
+    "residual_S1": 0,
+    "residual_S2": 1,
+    "overpolish_signals": 0,
+    "style": "desu_masu",
+    "style_maintained": true,
+    "change_rate": 0.238
+  },
+  "rescan": {
+    "method": "taxonomy A-J / S1-S3 を検出器と同一基準で再適用。加重式 S1=5・S2=2・S3=0.5 の加重和を before 実測（raw45→65.3）から導いた係数1.451で正規化。",
+    "resolved_findings": 15,
+    "resolved_S1": 5,
+    "resolved_S2": 10,
+    "residual_raw_weighted": 3.0
+  },
+  "residual_findings": [
+    {
+      "category": "A-8",
+      "severity": "S2",
+      "text_span": "実施される／図られる（実施される×2・図られる×2）",
+      "count": 4,
+      "reason": "行為者を伏せた受動の傾向が家族として部分残存。検出器がS2で括った受動群のうち代表1件（作業員による）は能動化されたが、実施される・図られるは未処理。ただし公的文書として『実施される』『周知が図られる』は正当な register であり、各動詞は3反復閾値未満。過推敲回避のためこれ以上の能動化は非推奨。",
+      "register_excused": true,
+      "recommend_action": "no_touch"
+    },
+    {
+      "category": "E-2",
+      "severity": "S3",
+      "text_span": "場合がございます（×2）",
+      "count": 2,
+      "reason": "文末定型の軽微な残反復。1件は『場合があります』へ分割済みで一本調子は解消済み。残る2件は公文書定型であり単独では問題化しない。",
+      "register_excused": true,
+      "recommend_action": "no_touch"
+    },
+    {
+      "category": "H-1",
+      "severity": "S3",
+      "text_span": "また（文頭・×1）",
+      "count": 1,
+      "reason": "文頭接続詞は『なお』2件を削除済みで、残る『また』は単発。H-1の許容域（一部残置可）内。",
+      "register_excused": true,
+      "recommend_action": "no_touch"
+    }
+  ],
+  "overpolish": [],
+  "overpolish_checks": {
+    "keitai_jotai_mixing": "none — 全文末が敬体（ます／です／ください／ございます）。ご確保ください等の依頼形も敬体維持。常体混入なし。",
+    "girei_over_deletion": "none — 儀礼句を完全保存（厚く御礼申し上げます／何卒ご理解を賜りますようお願い申し上げます／おかれましては／重ねてお願い申し上げます）。カジュアル化なし。",
+    "casualization": "none — 依頼形は謙譲・尊敬（ご＋動詞＋ください）で格式維持。命令調への転落なし。",
+    "meaning_drift": "none — 意味変質なし（fidelity は監査官所管だが自然度側でも語調の踏み込み過剰は未検出。考えられております→です の断定化は発信者が正当に断定可能な範囲）。",
+    "over_cutting": "none — change_rate 0.238（30%未満）、削除128字/挿入36字。文の分割も自然でぶつ切りなし。"
+  },
+  "verdict": "accept",
+  "notes": "全15 finding（S1×5・S2×10）を手術的に解消し、公的文書の格式（儀礼句・敬体・おかれましては等）を維持したまま AI クセを除去。過推敲シグナル0。残存は register 許容の受動傾向と定型句の軽微反復のみで絶対残存数も低い。短文（689字）ゆえ S3 の重みが相対的に出やすい点に留意しつつも grade A・accept。"
+}

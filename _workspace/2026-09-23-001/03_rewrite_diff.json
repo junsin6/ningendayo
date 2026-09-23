@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "run_id": "2026-09-23-001",
+    "genre": "technical_explainer",
+    "change_rate": 0.288,
+    "insert_chars": 55,
+    "delete_chars": 178,
+    "edits_count": 27,
+    "style_maintained": true,
+    "style_preserved": "desu_masu",
+    "change_rate_method": "difflib.SequenceMatcher over newline-stripped text (809 chars); global diff avoids double-counting overlapping token/document-level findings",
+    "warning": null
+  },
+  "edits": [
+    { "finding_id": "f001", "category": "A-5", "before": "レイテンシの削減とプライバシーの保護という二つの大きなメリットを提供することができます。", "after": "この技術のメリットは大きく二つ。レイテンシの削減と、プライバシーの保護です。", "start": 168, "end": 179, "rationale": "冗長な可能形『提供することができます』を断定へ。f026(体言止め)・f027(短文)と統合し一文を二文へ再構成（保護という=A-13も自然に除去）。意味（二つの大きなメリット＝レイテンシ削減とプライバシー保護）は保存。" },
+    { "finding_id": "f002", "category": "A-5", "before": "実行することができるため", "after": "実行できるため", "start": 343, "end": 355, "rationale": "可能の冗長形を簡潔化。" },
+    { "finding_id": "f003", "category": "A-5", "before": "実現することが可能となっています", "after": "実現できます", "start": 368, "end": 377, "rationale": "『することが可能』の冗長直訳を断定へ。f007(となっています)と統合。" },
+    { "finding_id": "f004", "category": "A-5", "before": "実行することができる状態", "after": "実行できる状態", "start": 495, "end": 507, "rationale": "可能の冗長形を簡潔化。『状態を作り出す』は原意保持のため残置。" },
+    { "finding_id": "f005", "category": "A-5", "before": "処理することができ", "after": "処理でき", "start": 661, "end": 670, "rationale": "可能の冗長形を簡潔化。" },
+    { "finding_id": "f006", "category": "A-5", "before": "向上させることができると考えられています", "after": "向上させるはずです", "start": 733, "end": 744, "rationale": "冗長可能形を断定へ。f025(と考えられています=G-1ヘッジ)と統合し敬体の推量『はずです』に。" },
+    { "finding_id": "f007", "category": "A-6", "before": "となっています", "after": "（f003へ統合。『実現できます』に断定化）", "start": 377, "end": 384, "rationale": "状態叙述『となっています』を断定へ。f003と同一文のため統合処理。" },
+    { "finding_id": "f008", "category": "A-6", "before": "存在となっていくでしょう", "after": "存在になっていくでしょう", "start": 806, "end": 818, "rationale": "『存在となる』の状態化を変化の『になる』へ（時間的変化なのでA-6許容形）。敬体の『でしょう』は文末変奏として維持。" },
+    { "finding_id": "f009", "category": "A-1", "before": "におけるAI体験", "after": "のAI体験", "start": 721, "end": 729, "rationale": "英語 in の抽象枠づけ『における』を助詞『の』へ。固有名詞IoTデバイスは維持。" },
+    { "finding_id": "f010", "category": "A-10", "before": "スループットを提供します", "after": "スループットを発揮します", "start": 683, "end": 695, "rationale": "万能動詞『提供する』を、チップの性能に自然な『発揮する』へ。主語(チップ)・意味は保存。" },
+    { "finding_id": "f011", "category": "A-13", "before": "という技術", "after": "（削除）", "start": 36, "end": 41, "rationale": "名詞を『という』で連結する直訳を削除。『エッジAI（Edge AI）が』で通じる。" },
+    { "finding_id": "f012", "category": "A-13", "before": "といったテクニック", "after": "などの手法", "start": 456, "end": 465, "rationale": "『という』系連結を『など』へ、カタカナ『テクニック』を『手法』へ同時開放。" },
+    { "finding_id": "f013", "category": "B-1", "before": "（Cloud）", "after": "（削除）", "start": 67, "end": 74, "rationale": "日常カタカナ語クラウドへの英語併記は不要。" },
+    { "finding_id": "f014", "category": "B-1", "before": "（Device）", "after": "（削除）", "start": 92, "end": 100, "rationale": "日常カタカナ語デバイスへの英語併記は不要。" },
+    { "finding_id": "f015", "category": "B-1", "before": "（Quantization）", "after": "（削除）", "start": 426, "end": 440, "rationale": "量子化は定着訳語のため英語併記を削除。主概念エッジAI（Edge AI）とNPU（Neural Processing Unit）は初出併記として維持。" },
+    { "finding_id": "f016", "category": "B-1", "before": "（Pruning）", "after": "（削除）", "start": 447, "end": 456, "rationale": "プルーニングは定着カタカナのため英語併記を削除。" },
+    { "finding_id": "f017", "category": "B-2", "before": "ソリューション", "after": "仕組み", "start": 193, "end": 200, "rationale": "不要カタカナ語を開く。『クラウドベース』は技術文脈語として維持。" },
+    { "finding_id": "f018", "category": "B-2", "before": "コアテクノロジー", "after": "中核技術", "start": 396, "end": 404, "rationale": "不要カタカナ語を開く。" },
+    { "finding_id": "f019", "category": "B-2", "before": "アプローチ", "after": "方法", "start": 260, "end": 265, "rationale": "不要カタカナ語を開く。" },
+    { "finding_id": "f020", "category": "B-2", "before": "コントロール", "after": "制御", "start": 544, "end": 550, "rationale": "不要カタカナ語を開く。『トレードオフ』は技術定着語として維持。" },
+    { "finding_id": "f021", "category": "B-2", "before": "パラダイム", "after": "枠組み", "start": 788, "end": 793, "rationale": "知的偽装のカタカナ語を開く。" },
+    { "finding_id": "f022", "category": "B-2", "before": "リソース", "after": "計算資源", "start": 486, "end": 490, "rationale": "文脈（推論の計算資源）に沿って具体化しつつ開く。" },
+    { "finding_id": "f023", "category": "D-5", "before": "重要な役割を果たしています", "after": "欠かせません", "start": 557, "end": 567, "rationale": "抽象主語＋擬人化『役割を果たす』を非擬人化の『欠かせません』へ。主語(最適化手法)・意味は保存。" },
+    { "finding_id": "f024", "category": "D-5", "before": "後押ししています", "after": "加速させています", "start": 598, "end": 606, "rationale": "擬人化『後押しする』を中立の因果『加速させる』へ。" },
+    { "finding_id": "f025", "category": "G-1", "before": "と考えられています", "after": "（f006へ統合。『向上させるはずです』に）", "start": 744, "end": 753, "rationale": "推測型文末を敬体の断定的推量へ。f006と同一句のため統合処理。" },
+    { "finding_id": "f026", "category": "E-2", "before": "文末が『ます／ています／ました／でした』にほぼ収束（変奏ゼロ）", "after": "敬体を維持したまま文末を変奏：体言止め『大きく二つ。』、『あります／指します／できます／欠かせません／発揮します／はずです／です／でしょう』に分散", "start": 48, "end": 54, "rationale": "文書レベル。他findingの断定化と段落末の分割で敬体内の文末を多様化。常体へは移行していない。" },
+    { "finding_id": "f027", "category": "E-1", "before": "本文に10〜20字級の短文が皆無（中〜長文に集中）", "after": "『この技術のメリットは大きく二つ。』(体言止め短文)を挿入、最終段落の一文を『…次世代の枠組みです。／今後ますます重要な存在になっていくでしょう。』へ分割し短文を追加", "start": 19, "end": 22, "rationale": "文書レベル。既存情報の分割・言い換えのみで短文を生成（新情報の追加なし）。" }
+  ]
+}

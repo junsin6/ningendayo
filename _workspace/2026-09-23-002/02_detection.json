@@ -1,0 +1,188 @@
+{
+  "meta": {
+    "input_length": 689,
+    "detected_count": 15,
+    "ai_tell_density": 0.151,
+    "severity_weighted_score": 65.3,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となりました 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなりました",
+      "start": 109,
+      "end": 117,
+      "reason": "「である／だ」で足りる断定を英語 has become 的に状態化。本文で状態叙述系が3回反復（こととなりました・予定となっております・こととなっております）。",
+      "suggested_fix": "断水を行います"
+    },
+    {
+      "id": "f002",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となりました 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "予定となっております",
+      "start": 343,
+      "end": 353,
+      "reason": "状態叙述の3回反復のうちの一つ。単なる「行う予定です」を機械的に状態化している。",
+      "suggested_fix": "行う予定です"
+    },
+    {
+      "id": "f003",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となりました 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "こととなっております",
+      "start": 589,
+      "end": 599,
+      "reason": "状態叙述の3回反復のうちの一つ。「更新します／更新されます」で足りる。",
+      "suggested_fix": "更新します"
+    },
+    {
+      "id": "f004",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "において",
+      "start": 94,
+      "end": 98,
+      "reason": "場所・状況を抽象的に枠づける英語 in/at の直訳。本文で「において」が2回。硬い知的偽装のシグネチャ。",
+      "suggested_fix": "下記の日程で"
+    },
+    {
+      "id": "f005",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "において",
+      "start": 573,
+      "end": 577,
+      "reason": "「において」2回目。「市のホームページで」と助詞で直結できる。",
+      "suggested_fix": "市のホームページで"
+    },
+    {
+      "id": "f006",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（必要がございます）",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 279,
+      "end": 287,
+      "reason": "英語 need to の直訳。「〜いただく必要がございます」が本文で4回反復し、要請が機械的・一本調子になっている。",
+      "suggested_fix": "ご確保ください"
+    },
+    {
+      "id": "f007",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（必要がございます）",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 404,
+      "end": 412,
+      "reason": "「必要がございます」4回反復のうちの一つ。依頼形へ変えられる。",
+      "suggested_fix": "ご了承ください"
+    },
+    {
+      "id": "f008",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（必要がございます）",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 495,
+      "end": 503,
+      "reason": "「必要がございます」4回反復のうちの一つ。具体的な依頼形が自然。",
+      "suggested_fix": "放水してください"
+    },
+    {
+      "id": "f009",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある（必要がございます）",
+      "severity": "S2",
+      "text_span": "必要がございます",
+      "start": 679,
+      "end": 687,
+      "reason": "「必要がございます」4回反復のうちの一つ。文末の反復も強めている。",
+      "suggested_fix": "ご注意ください"
+    },
+    {
+      "id": "f010",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜による 受動文（by-passive）",
+      "severity": "S2",
+      "text_span": "作業員による",
+      "start": 636,
+      "end": 642,
+      "reason": "行為者を「による」で後置した受動表現。行為者を主語に戻して能動化できる。本文全体が行為者を伏せた受動（実施される・図られる・行われる）で占められ、その典型例。",
+      "suggested_fix": "作業員が交通整理を行う"
+    },
+    {
+      "id": "f011",
+      "category": "G-1",
+      "category_label": "過度なヘッジング: 推測・観測型の文末",
+      "severity": "S2",
+      "text_span": "考えられております",
+      "start": 221,
+      "end": 230,
+      "reason": "発信者自身が断定できる事実を「〜と考えられております」と観測型で婉曲化。要請文書では断定が自然。",
+      "suggested_fix": "必要不可欠な作業です"
+    },
+    {
+      "id": "f012",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復（文末一本調子）",
+      "severity": "S2",
+      "text_span": "場合がございますので",
+      "start": 381,
+      "end": 391,
+      "reason": "文書レベル。文末が「ございます／ございますので／なっております／申し上げます」に集中し一本調子。特に「場合がございます」3回・「必要がございます」4回で反復率が高い。代表 span を掲示。",
+      "suggested_fix": "体言止めや「〜します」「〜ください」で文末を変奏（例: 延長される場合があります）"
+    },
+    {
+      "id": "f013",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "なお",
+      "start": 354,
+      "end": 356,
+      "reason": "文頭接続詞。「なお」が2回、「また」が1回、文・段落の冒頭に出る。公的文書でも密度が高く、内容で接続すれば省ける。",
+      "suggested_fix": "削除（文の内容で接続）"
+    },
+    {
+      "id": "f014",
+      "category": "H-1",
+      "category_label": "接続詞の多用: 文頭接続詞の過多",
+      "severity": "S2",
+      "text_span": "なお",
+      "start": 630,
+      "end": 632,
+      "reason": "「なお」2回目。段落冒頭の接続詞反復。半分以上は削除できる。",
+      "suggested_fix": "削除（文の内容で接続）"
+    },
+    {
+      "id": "f015",
+      "category": "F-2",
+      "category_label": "過度な修飾: 同義語の二重修飾",
+      "severity": "S2",
+      "text_span": "安全で安定した",
+      "start": 177,
+      "end": 184,
+      "reason": "「安全」と「安定」は近義の二重修飾。一方に絞れる。",
+      "suggested_fix": "安定した"
+    }
+  ],
+  "category_summary": {
+    "A": 6,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 1,
+    "G": 1,
+    "H": 2,
+    "I": 4,
+    "J": 0
+  }
+}
