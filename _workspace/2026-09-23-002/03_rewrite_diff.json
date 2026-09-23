@@ -1,9 +1,11 @@
 {
   "meta": {
-    "change_rate": 0.238,
+    "change_rate": 0.234,
     "insert_chars": 36,
-    "delete_chars": 128,
+    "delete_chars": 125,
     "edits_count": 15,
+    "applied_edits": 14,
+    "rolled_back": ["f015"],
     "style_maintained": true,
     "warning": null
   },
@@ -30,10 +32,11 @@
       "finding_id": "f015",
       "category": "F-2",
       "before": "安全で安定した水道水の供給",
-      "after": "安定した水道水の供給",
+      "after": "安全で安定した水道水の供給",
       "start": 177,
       "end": 184,
-      "rationale": "近義の二重修飾を一方に集約。"
+      "rationale": "ロールバック（オーケストレーター判定 rollback_and_rewrite）。当初「安全で安定した」→「安定した」と二重修飾を集約したが、content-fidelity-auditor が『安全（水質・無害性）と安定（供給の継続性）は別次元の概念であり、安全の削除は情報欠落』と判定。原文どおり復元し、この span は無編集とする。",
+      "status": "rolled_back"
     },
     {
       "finding_id": "f011",
