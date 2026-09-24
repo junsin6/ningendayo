@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "input_length": 684,
+    "detected_count": 25,
+    "ai_tell_density": 0.251,
+    "severity_weighted_score": 82.6,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "管理することができます",
+      "start": 421,
+      "end": 432,
+      "reason": "可能の冗長形「することができる」が本文で3回反復（421,479,583）。AI文最頻出シグネチャ。「一元的に管理できます」で足りる",
+      "suggested_fix": "一元的に管理できます"
+    },
+    {
+      "id": "f002",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "防ぐことができます",
+      "start": 479,
+      "end": 488,
+      "reason": "「することができる」3回反復の2例目。「横展開を防げます」に短縮可",
+      "suggested_fix": "横展開を防げます"
+    },
+    {
+      "id": "f003",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することができる 濫用",
+      "severity": "S1",
+      "text_span": "実現することができるようになります",
+      "start": 583,
+      "end": 600,
+      "reason": "「することができる」3回反復の3例目。さらに「ようになります」と二重の冗長化。「実現できます」まで短縮可",
+      "suggested_fix": "実現できます"
+    },
+    {
+      "id": "f004",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（求める/可能にする）",
+      "severity": "S1",
+      "text_span": "検証することを求めます",
+      "start": 291,
+      "end": 302,
+      "reason": "抽象主語「このモデル」＋要請の万能動詞「求める」（英語 the model requires の直訳）。第4段は『管理は/セグメンテーションは/セキュリティは』と無生物主語が万能動詞を取る構文が連続し露見",
+      "suggested_fix": "検証する仕組みだ"
+    },
+    {
+      "id": "f005",
+      "category": "A-10",
+      "category_label": "翻訳調: 抽象主語+万能動詞（求める/可能にする）",
+      "severity": "S1",
+      "text_span": "することを可能にします",
+      "start": 527,
+      "end": 538,
+      "reason": "抽象主語「エンドポイントセキュリティ」＋万能動詞「可能にする」（英語 enable の直訳）。A-5『できる』とも重なる二重の翻訳調",
+      "suggested_fix": "継続的に監視します"
+    },
+    {
+      "id": "f006",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "テーマとなっている",
+      "start": 659,
+      "end": 668,
+      "reason": "状態叙述「となっている」。単に「テーマだ／課題だ」で足りる箇所を英語 has become 的に状態化。日本語LLM最強クセの一つ。末尾でD-1婉曲断定と連鎖",
+      "suggested_fix": "テーマだ"
+    },
+    {
+      "id": "f007",
+      "category": "D-1",
+      "category_label": "AI慣用句: 〜と言えるでしょう/のではないでしょうか 断定回避",
+      "severity": "S1",
+      "text_span": "と言えるでしょう",
+      "start": 168,
+      "end": 176,
+      "reason": "「と言える」型の婉曲断定が本文で2回（168,668）。LLM結句の決定的シグネチャ。「通用しなくなっています」と断定できる",
+      "suggested_fix": "通用しなくなっています"
+    },
+    {
+      "id": "f008",
+      "category": "D-1",
+      "category_label": "AI慣用句: 〜と言えるでしょう/のではないでしょうか 断定回避",
+      "severity": "S1",
+      "text_span": "と言えるのではないでしょうか",
+      "start": 668,
+      "end": 682,
+      "reason": "「と言える」型2例目かつ末尾で「のではないでしょうか」と三重に婉曲化（となっている＋と言える＋ではないか）。LLM結句の最典型",
+      "suggested_fix": "重要なテーマだ"
+    },
+    {
+      "id": "f009",
+      "category": "C-1",
+      "category_label": "構造: 機械的並列「まず・次に・さらに」",
+      "severity": "S1",
+      "text_span": "まず、",
+      "start": 395,
+      "end": 398,
+      "reason": "第3段が「まず、（395）→次に、（433）→さらに、（489）」の3段公式で支配される機械的列挙。LLM構造シグネチャ。1〜2要素を叙述に溶かすべき",
+      "suggested_fix": "（叙述文へ溶かす／削除）"
+    },
+    {
+      "id": "f010",
+      "category": "C-1",
+      "category_label": "構造: 機械的並列「まず・次に・さらに」",
+      "severity": "S1",
+      "text_span": "次に、",
+      "start": 433,
+      "end": 436,
+      "reason": "「まず・次に・さらに」3段公式の2要素目（f008と一連）",
+      "suggested_fix": "（叙述文へ溶かす／削除）"
+    },
+    {
+      "id": "f011",
+      "category": "C-1",
+      "category_label": "構造: 機械的並列「まず・次に・さらに」",
+      "severity": "S1",
+      "text_span": "さらに、",
+      "start": 489,
+      "end": 493,
+      "reason": "「まず・次に・さらに」3段公式の3要素目（f008と一連）。各文が同一構文（抽象主語は〜できます）で並ぶ点も冗長",
+      "suggested_fix": "（叙述文へ溶かす／削除）"
+    },
+    {
+      "id": "f012",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/〜に対して 濫用",
+      "severity": "S1",
+      "text_span": "について",
+      "start": 199,
+      "end": 203,
+      "reason": "主題提示の翻訳調。「コンセプトについて解説」は「コンセプトを解説」で直結できる。同族の「に対して」（280）と併存",
+      "suggested_fix": "を"
+    },
+    {
+      "id": "f013",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/〜に対して 濫用",
+      "severity": "S1",
+      "text_span": "に対して",
+      "start": 280,
+      "end": 284,
+      "reason": "対象提示（英語 toward/for の直訳）。「アクセスリクエストに対して検証」は「〜を検証」で足りる。「について」（199）と2例併存",
+      "suggested_fix": "を"
+    },
+    {
+      "id": "f014",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって（by-passive/手段）",
+      "severity": "S2",
+      "text_span": "によって",
+      "start": 382,
+      "end": 386,
+      "reason": "「によって」が本文で3回反復（382,467,561）。ここは受動態直訳「コンポーネントによって構成されている」→能動「〜で構成される」",
+      "suggested_fix": "で構成されています"
+    },
+    {
+      "id": "f015",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって（by-passive/手段）",
+      "severity": "S2",
+      "text_span": "によって",
+      "start": 467,
+      "end": 471,
+      "reason": "「によって」3回反復の2例目。手段「分割することによって」は「分割して」に開ける",
+      "suggested_fix": "分割して"
+    },
+    {
+      "id": "f016",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって（by-passive/手段）",
+      "severity": "S2",
+      "text_span": "によって",
+      "start": 561,
+      "end": 565,
+      "reason": "「によって」3回反復の3例目。「組み合わせることによって」は「組み合わせて」に開ける",
+      "suggested_fix": "組み合わせて"
+    },
+    {
+      "id": "f017",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "コンセプト",
+      "start": 194,
+      "end": 199,
+      "reason": "日本語で書ける不要なカタカナ語が高密度（コンセプト/アプローチ/プロセス/コアコンポーネント/モニタリング/ソリューション/セキュリティポスチャの7語）。「基本的なコンセプト」は「基本的な考え方」",
+      "suggested_fix": "考え方"
+    },
+    {
+      "id": "f018",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "アプローチ",
+      "start": 249,
+      "end": 254,
+      "reason": "カタカナ語濫用の2例目。「〜というアプローチ」は「〜という考え方／手法」で足りる知的偽装",
+      "suggested_fix": "考え方"
+    },
+    {
+      "id": "f019",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "プロセス",
+      "start": 339,
+      "end": 343,
+      "reason": "カタカナ語濫用の3例目。「確認するプロセスが実行される」は「確認する手順が動く／確認が行われる」",
+      "suggested_fix": "手順"
+    },
+    {
+      "id": "f020",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "コアコンポーネント",
+      "start": 373,
+      "end": 382,
+      "reason": "カタカナ語濫用の4例目。コア＋コンポーネントの二重外来語。「いくつかの中核要素」に開ける",
+      "suggested_fix": "中核要素"
+    },
+    {
+      "id": "f021",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "モニタリング",
+      "start": 521,
+      "end": 527,
+      "reason": "カタカナ語濫用の5例目。「継続的にモニタリング」は「継続的に監視」で足りる",
+      "suggested_fix": "監視"
+    },
+    {
+      "id": "f022",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "ソリューション",
+      "start": 545,
+      "end": 552,
+      "reason": "カタカナ語濫用の6例目。「こうしたソリューション」は「こうした仕組み／解決策」",
+      "suggested_fix": "仕組み"
+    },
+    {
+      "id": "f023",
+      "category": "B-2",
+      "category_label": "カタカナ語の濫用",
+      "severity": "S2",
+      "text_span": "セキュリティポスチャ",
+      "start": 572,
+      "end": 582,
+      "reason": "カタカナ語濫用の7例目。ポスチャは定訳の乏しい業界ジャーゴン。「堅牢なセキュリティ体制／態勢」に開ける",
+      "suggested_fix": "セキュリティ体制"
+    },
+    {
+      "id": "f024",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復（文書レベル）",
+      "severity": "S2",
+      "text_span": "指します",
+      "start": 255,
+      "end": 259,
+      "reason": "文書レベルパターン。全14文の文末がほぼ全て「〜ます／〜ました／〜ません」の丁寧終止で一本調子（集めています/立っていました/指します/求めます/実行されます/構成されています/できます/できます/可能にします/できるようになります/ありません 等）。体言止め・「〜だ」「〜でしょう」等の変奏がゼロ。文体は敬体のまま文末形態のみ変奏すべき（anchorは代表位置、実体は分散＝IMP-004）",
+      "suggested_fix": "文末に体言止め・「〜ます」以外の丁寧変奏を1〜2箇所挟む"
+    },
+    {
+      "id": "f025",
+      "category": "J-3",
+      "category_label": "視覚装飾: ダッシュ（——）の濫用",
+      "severity": "S3",
+      "text_span": "——",
+      "start": 16,
+      "end": 18,
+      "reason": "タイトルの英語em-dash（——）。日本語では稀で露見しやすいが本文書では単発のため密度基準で降格しS3扱い（他パターンと重なるときのみ問題）。読点・別文・全角コロンへ分解可",
+      "suggested_fix": "、"
+    }
+  ],
+  "category_summary": {
+    "A": 11,
+    "B": 7,
+    "C": 3,
+    "D": 2,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 0,
+    "I": 0,
+    "J": 1
+  }
+}
