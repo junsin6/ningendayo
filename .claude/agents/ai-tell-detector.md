@@ -50,9 +50,11 @@ description: 日本語テキストを走査し、AI クセを span 単位の JSO
    * C（構造）: 箇条書き比率、見出し公式、絵文字、「まず・次に」連発、対句反復。
    * J（視覚装飾）: 太字・ダッシュ・括弧補足の頻度。
 4. **密度判定**: S2/S3 は**反復回数**を `reason` に明記（例「『における』が 5 回」）。単発を過検出しない。
-5. **スコア算出**:
-   * `severity_weighted_score` = (S1×5 + S2×2 + S3×0.5) を 0〜100 に正規化。
-   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。
+5. **スコア算出**（IMP-002/003, taxonomy v1.1）:
+   * `raw` = S1×5 + S2×2 + S3×0.5（加重和）。
+   * `severity_weighted_score` = **100 × raw / (raw + K)**, K=52。飽和しにくく文書長に依存しない正規化（taxonomy 例 raw≈130→71.5 を再現）。素朴な `raw/文長×係数` は短文で即 100 に張り付くため不可。
+   * `ai_tell_density` = 検出 span 総文字数 / 全体文字数。**重複区間は union 除去**して数える（1.0 超を防ぐ）。
+   * `meta.scoring_formula` に式を明示出力する（例 `"100*raw/(raw+52); raw=5*S1+2*S2+0.5*S3"`）。naturalness-reviewer が同一式で score_after を再計算し、score_before と commensurable にするため。
 
 ## 重要な原則
 
