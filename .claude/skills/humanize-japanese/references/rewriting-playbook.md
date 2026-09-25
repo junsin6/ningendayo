@@ -138,11 +138,22 @@
 * 学術概念語（不可避な場合）
 * コードブロック・URL・数式
 
-## 変更率の数え方
+## 変更率の数え方（IMP-001 v1.1）
 
-* 変更率 = （挿入 + 削除された文字数）/ 原文文字数。
-* 30% 超 → `summary.md` に警告を記録し続行。
-* 50% 超 → 強制中断し `hold_and_report`。原文を尊重しすぎていないか、ジャンルを移していないか再点検。
+素朴な「(挿入 + 削除文字数)/原文文字数」は、difflib の replace を delete+insert で二重計上するため、**カタカナ語→漢語の同義縮約や装飾・常套句の純削除でも機械的に膨張する**（カタカナ濃度の高い良質原文ほど過推敲と誤判定されやすい）。そこで変更を 2 系統に分離計上する:
+
+* **語句改変率（lexical_substitution）**: 同義語の 1:1 置換・冗長表現の縮約（例「インフラストラクチャ」→「基盤」、「いただく必要がございます」→「ください」）。意味は保存され、文字数だけが縮む。
+* **構造改変率（structural_rewrite）**: 語順の入れ替え・文の分割/統合・節の移動など、文の構造に触れる変更。
+
+diff の `meta` に `change_rate` と `change_rate_breakdown: {lexical, structural, insert_chars, delete_chars}` を記録する。
+
+**閾値は構造改変率にのみ課す:**
+
+* 総 change_rate 30% 超 → `summary.md` に警告を記録し続行（過推敲ではなく縮約主導なら正常）。
+* **構造改変率が単独で 50% 超**、または fidelity 監査で意味毀損（semantic_edit_ratio が高い）→ 強制中断し `hold_and_report`。ジャンルを移していないか再点検。
+* `delete ≫ insert`（縮約主導）は健全な兆候。総 change_rate が高くても、語句改変中心かつ fidelity=pass なら override accept の対象（詳細は `SKILL.md §総合判定`）。
+
+> 将来課題: replace 二重計上を完全排除する Levenshtein 距離ベースへの切替、reviewer 側 breakdown 受取契約フィールド。
 
 ## 文体変換例（before → after 一括サンプル）
 

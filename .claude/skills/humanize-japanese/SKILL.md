@@ -79,6 +79,20 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ラウンドは最大 3 回。3 回で A/B に届かなければ最良版を `final.md` とし、`summary.md` に残課題を明記。
 
+### override accept（IMP-001 既知欠陥への対処）
+
+`change_rate` が 30%（警告）〜50%（中断）を超えても、次をすべて満たせば **override accept** とする（`hold_and_report` にしない）:
+
+1. fidelity 監査 = pass（意味毀損なし。あれば該当 edit を局所ロールバックし再監査）。
+2. 自然度 = 等級 A/B。
+3. 変更の実体が**語句改変中心**（`change_rate_breakdown.lexical ≫ structural`、`delete ≫ insert` の縮約主導）で、fidelity 監査官が算出する `semantic_edit_ratio`（意味に触れた edit 数 / 全 edit 数）が低い。
+
+override accept したときは `summary.md` に理由（breakdown と semantic_edit_ratio）を必ず明記する。カタカナ語→漢語の縮約や装飾・常套句の純削除が主因の高 change_rate は過推敲ではない。
+
+### 単発残存の micro-fix（IMP-008）
+
+反復系 S1（A-1/A-6 等）が推敲で解消され、単発の定型だけが検出漏れ等で残った場合、2 次推敲を回さず**変更率余地内の 1 トークン micro-fix** で解消してよい（例: 「必要となります」→「必要です」）。実施したら `summary.md` に記録し、検出漏れは IMPROVEMENTS.md へ。
+
 ## 深刻度と品質等級
 
 **深刻度**
