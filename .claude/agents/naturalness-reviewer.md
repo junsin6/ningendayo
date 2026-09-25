@@ -41,6 +41,13 @@ description: 推敲文に検出器を再実行し、残存 AI クセと過推敲
 }
 ```
 
+## スコア契約（IMP-002/003）
+
+* `score_before` = **02_detection.json の `meta.severity_weighted_score`**（検出器の値をそのまま採用。独自再計算しない）。
+* `score_after` = 推敲後テキストを検出器と同一基準で再走査し、`meta.scoring_formula`（= `100×raw/(raw+52)`, raw=5·S1+2·S2+0.5·S3）で算出。前後で同一式のため improvement_rate が commensurable。
+* `improvement_rate` = (score_before − score_after) / score_before。
+* 再走査は手動照合ではなく検出器基準で行う（IMP-006。detector 再実行経路が使えない場合は同一 taxonomy/正規表現で機械照合し、その旨を notes に明記）。
+
 ## 品質等級
 
 * **A**: S1 0 件, S2 ≤2 件, 改善 70%+ → `accept`
