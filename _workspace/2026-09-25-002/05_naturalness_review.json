@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "run_id": "2026-09-25-002",
+    "genre": "public_notice",
+    "style": "desu_masu",
+    "reviewer": "naturalness-reviewer",
+    "score_method": "severity_weighted_raw_sum (S1x5 + S2x2 + S3x0.5); score_before=66.5 reproduced exactly from 02_detection.json findings (10*5 + 8*2 + 1*0.5 = 66.5), so score_after uses the identical weighting on residuals",
+    "detector_rerun_path": "self_rescan_same_criteria (ai-tell-detector agent not invoked as a subprocess; taxonomy v1.0 + detector spec applied manually with regex-assisted verification). See IMP-006."
+  },
+  "score_before": 66.5,
+  "score_after": 3.0,
+  "improvement_rate": 0.955,
+  "change_rate": 0.294,
+  "residual_findings": { "S1": 0, "S2": 1, "S3": 2 },
+  "residual_detail": [
+    {
+      "category": "A-6",
+      "span": "必要となりますので",
+      "line": 5,
+      "severity_assigned": "S2",
+      "severity_taxonomy_nominal": "S1",
+      "detector_flagged_originally": false,
+      "reason": "「カードリーダーが必要となります」は A-6 状態叙述（重要となります型）。02_detection.json では検出漏れ、03_rewrite でも根拠外として残置（diff warnings に明記）。同基準の再走査で残存として計上。",
+      "severity_note": "taxonomy 上 A-6 は名目 S1 だが、原文の S1 判定は『となる系3回反復』という密度が根拠（f001-f003 の reason 参照）。反復は解消済みで残るのは単発かつ公的文書で常用の定型表現。検出器原則『単発を過検出しない／過検出禁止』に従い S2 相当へ格下げ。ただし strict な字義通り読み（A-6=無条件S1）では S1=1 となり grade は C に落ちる（notes 参照）。",
+      "suggested_micro_fix": "必要となりますので → 必要ですので / 必要になりますので"
+    },
+    {
+      "category": "A-8",
+      "span": "変更されます / 予想される / 実施される / 受け付けられていた(f013) / 受け付けられております",
+      "line": "3,7,5,9",
+      "severity_assigned": "S3",
+      "reason": "される系受動は原文9件→推敲後5件へ半減。二重受動（f011/f012）は能動化で解消済み。残存5件はすべて行為者自明の単純受動で、公的文書の格式上むしろ自然（予想される/実施される/受け付けられております は標準的な行政文体）。f013 はジャンル方針で意図的温存。",
+      "severity_note": "単独では過検出。密度残余として S3。格式維持の観点ではこの温存は妥当。"
+    },
+    {
+      "category": "H-1",
+      "span": "なお、/ また、",
+      "line": 7,
+      "severity_assigned": "S3",
+      "reason": "文頭接続詞は原文 なお/また/また の3件→2件（段落頭の また を1件削除、f019）。残る なお/また は段落中で根拠外のため保持。閾値内（H-1 は過多で問題化、2件は許容域）。",
+      "severity_note": "実質解消。S3 で計上するが accept を妨げない。"
+    }
+  ],
+  "over_polish_signals": [
+    {
+      "type": "register_softening / emergent_repetition",
+      "severity": "mild",
+      "detail": "I-3 の4件（〜必要があります/がございます）をすべて『〜ください』に一律圧縮した結果、(a) 依頼の丁重な緩衝（必要がございます）が指示的トーンへわずかに傾き、(b) 文末『ください』が4回反復し E-2 的な新規単調が発生。敬体・儀礼定型（お願い申し上げます×2・賜りますよう）は保持され格式は崩れていないため許容範囲だが、公的文書としては留意点。",
+      "examples": [
+        "ご確認いただく必要があります → ご確認ください（line3）",
+        "ご確認いただく必要がございます → ご確認ください（line7）",
+        "ご連絡いただく必要がございます → ご連絡ください（line9）",
+        "ください×4: line3/5/7/9"
+      ]
+    },
+    {
+      "type": "register_softening",
+      "severity": "trivial",
+      "detail": "『窓口においてのみ』→『窓口だけで』で のみ→だけ の語感がやや口語寄りに。公的文書では のみ の方が格式高いが、意味等価で不自然ではない。深刻でない。",
+      "examples": ["窓口においてのみ受け付けられていた → 窓口だけで受け付けられていた（line5）"]
+    }
+  ],
+  "over_polish_summary": "深刻な過推敲なし。文体崩れ（敬体/常体混入）なし、口語化暴走なし、意味希薄化なし、儀礼定型の過剰削除なし。過推敲シグナルは mild×1 + trivial×1 で、grade C を発火させる『過推敲シグナル2個（=有意なもの2個）』には達しない。change_rate 0.294 は 30% 未満で中断対象外。",
+  "grade": "A",
+  "recommendation": "accept",
+  "notes": "S1=0・S2=1・改善率95.5% で grade A、accept。ただし2点の穴を明記する：(1) 残存 A-6『必要となります』は taxonomy 字義では S1 で、その場合 S1=1 → grade C（rewrite_round_2）に落ちる。本レビューは検出器の密度原則（原文S1判定は反復根拠／単発は過検出しない）に基づき S2 と判定した。判断が分かれる境界事例のため、accept と同時に1トークンの micro-fix（必要となります→必要です）を推奨。change_rate 0.294 の余地内で round 2 を回さず修正可能。(2) 検出器を独立サブプロセスとして再実行できず自力再走査で代替（IMP-006）。E-2 は文末多様化で概ね解消したが、ください×4 の新規反復が副作用として発生。"
+}
