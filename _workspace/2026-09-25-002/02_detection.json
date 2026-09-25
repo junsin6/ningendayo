@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "input_length": 674,
+    "detected_count": 19,
+    "ai_tell_density": 0.319,
+    "severity_weighted_score": 66.5,
+    "style": "desu_masu"
+  },
+  "findings": [
+    {
+      "id": "f001",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "導入される運びとなりました",
+      "start": 52,
+      "end": 65,
+      "reason": "「となりました/となります/となっております」がA-6として本文3回反復。単なる叙述を英語 has become 的に状態化",
+      "suggested_fix": "新たに導入いたします"
+    },
+    {
+      "id": "f002",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "行われることとなります",
+      "start": 200,
+      "end": 211,
+      "reason": "「となります」がA-6反復（本文で となりました/となります/となっております 計3回）",
+      "suggested_fix": "行えるようになります"
+    },
+    {
+      "id": "f003",
+      "category": "A-6",
+      "category_label": "翻訳調: 〜となっている/となります 状態叙述の濫用",
+      "severity": "S1",
+      "text_span": "行われることとなっております",
+      "start": 418,
+      "end": 432,
+      "reason": "「となっております」がA-6の最も冗長な状態叙述。告知の事実叙述に不要",
+      "suggested_fix": "お知らせいたします"
+    },
+    {
+      "id": "f004",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "本システムにおいては",
+      "start": 126,
+      "end": 136,
+      "reason": "「において/における」が本文5回（本システムにおいては/窓口においてのみ/導入初期においては/ウェブサイトにおいて/窓口における）。S1かつ高密度",
+      "suggested_fix": "本システムでは"
+    },
+    {
+      "id": "f005",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "窓口においてのみ",
+      "start": 141,
+      "end": 149,
+      "reason": "「窓口においてのみ」の において。場所を硬く枠づける英語 at 直訳（における/において計5回）",
+      "suggested_fix": "窓口だけで"
+    },
+    {
+      "id": "f006",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "システムの導入初期においては",
+      "start": 280,
+      "end": 294,
+      "reason": "「導入初期においては」の においては（における/において計5回）",
+      "suggested_fix": "導入初期は"
+    },
+    {
+      "id": "f007",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "ウェブサイトにおいて",
+      "start": 405,
+      "end": 415,
+      "reason": "「ウェブサイトにおいて」の において。「で」で足りる（における/において計5回）",
+      "suggested_fix": "市の公式ウェブサイトで"
+    },
+    {
+      "id": "f008",
+      "category": "A-1",
+      "category_label": "翻訳調: 〜における/においては 濫用",
+      "severity": "S1",
+      "text_span": "従来の窓口における申請",
+      "start": 462,
+      "end": 473,
+      "reason": "「窓口における申請」の における（における/において計5回）",
+      "suggested_fix": "従来の窓口での申請"
+    },
+    {
+      "id": "f009",
+      "category": "A-2",
+      "category_label": "翻訳調: 〜について/に関して 濫用",
+      "severity": "S1",
+      "text_span": "以下の内容について",
+      "start": 100,
+      "end": 109,
+      "reason": "「以下の内容について」の について。単発だが目的格「を」で直結できる英語 about 直訳",
+      "suggested_fix": "以下の内容を"
+    },
+    {
+      "id": "f010",
+      "category": "A-5",
+      "category_label": "翻訳調: 〜することが可能/できる 濫用",
+      "severity": "S1",
+      "text_span": "いただくことが可能です",
+      "start": 527,
+      "end": 538,
+      "reason": "「いただくことが可能です」は可能の冗長形（A-5）。敬語×可能の二重冗長",
+      "suggested_fix": "ご安心いただけます"
+    },
+    {
+      "id": "f011",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/される 受動文の過多",
+      "severity": "S2",
+      "text_span": "本システムの導入によって",
+      "start": 583,
+      "end": 595,
+      "reason": "「導入によって…軽減されることが期待されております」は by-passive+二重受動。文書全体で される系受動が多数（導入される/変更されます/受け付けられていた/予想される/実施される/告知が行われる/受け付けられております/軽減される/期待されております）",
+      "suggested_fix": "本システムの導入で"
+    },
+    {
+      "id": "f012",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/される 受動文の過多",
+      "severity": "S2",
+      "text_span": "軽減されることが期待されております",
+      "start": 605,
+      "end": 622,
+      "reason": "「軽減されることが期待されております」は受動+受動の二重受動で行為者が消える。受動過多の代表例",
+      "suggested_fix": "負担の軽減につながると考えております"
+    },
+    {
+      "id": "f013",
+      "category": "A-8",
+      "category_label": "翻訳調: 〜によって/される 受動文の過多",
+      "severity": "S2",
+      "text_span": "受け付けられていた",
+      "start": 149,
+      "end": 158,
+      "reason": "「受け付けられていた」の受動。行為者（市/窓口）を主語に戻して能動化できる。文書全体で される系受動が多数の一例",
+      "suggested_fix": "受け付けていた"
+    },
+    {
+      "id": "f014",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある 濫用",
+      "severity": "S2",
+      "text_span": "ご確認いただく必要があります",
+      "start": 109,
+      "end": 123,
+      "reason": "「ご確認いただく必要があります」がI-3として本文4回反復（必要があります/がございます 計4回）。依頼を必要文で硬く表現",
+      "suggested_fix": "ご確認ください"
+    },
+    {
+      "id": "f015",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある 濫用",
+      "severity": "S2",
+      "text_span": "ご準備いただく必要があります",
+      "start": 260,
+      "end": 274,
+      "reason": "「ご準備いただく必要があります」（必要がある系 計4回反復）",
+      "suggested_fix": "あらかじめご準備ください"
+    },
+    {
+      "id": "f016",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある 濫用",
+      "severity": "S2",
+      "text_span": "ご確認いただく必要がございます",
+      "start": 441,
+      "end": 456,
+      "reason": "「ご確認いただく必要がございます」（必要がある系 計4回反復）",
+      "suggested_fix": "ご利用の前にご確認ください"
+    },
+    {
+      "id": "f017",
+      "category": "I-3",
+      "category_label": "形式的表現: 〜する必要がある 濫用",
+      "severity": "S2",
+      "text_span": "ご連絡いただく必要がございます",
+      "start": 565,
+      "end": 580,
+      "reason": "「ご連絡いただく必要がございます」（必要がある系 計4回反復）。案内なので勧誘形が自然",
+      "suggested_fix": "下記の問い合わせ窓口までご連絡ください"
+    },
+    {
+      "id": "f018",
+      "category": "E-2",
+      "category_label": "リズム: です・ます体の単調反復",
+      "severity": "S2",
+      "text_span": "ございます",
+      "start": 329,
+      "end": 334,
+      "reason": "文書レベル：全11文の文末が ます/ございます/申し上げます にほぼ集中し一本調子（ございます単独で3回、お願い申し上げます2回）。体言止め・「〜ます」変奏がなくAI的均一リズム。代表位置を示す",
+      "suggested_fix": "時間を要する場合があります（文末に変奏を入れる）"
+    },
+    {
+      "id": "f019",
+      "category": "H-1",
+      "category_label": "接続詞: 文頭接続詞の過多",
+      "severity": "S3",
+      "text_span": "また、",
+      "start": 459,
+      "end": 462,
+      "reason": "段落/文頭接続詞 なお・また が3回（なお277/また374/また459）。他パターンと重なりAI印象を強める",
+      "suggested_fix": "（削除、または前文に接続）"
+    }
+  ],
+  "category_summary": {
+    "A": 13,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "E": 1,
+    "F": 0,
+    "G": 0,
+    "H": 1,
+    "I": 4,
+    "J": 0
+  }
+}
