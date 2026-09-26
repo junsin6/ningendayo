@@ -63,10 +63,12 @@ run_id 生成 → _workspace/{YYYY-MM-DD-NNN}/ に 01_input.txt 保存
 
 ### 4. 並列検証
 
-二つを並行実行:
+まずオーケストレーターが**推敲文（`03_rewrite.md`）に `ai-tell-detector` を実走査**（パイプライン 6 回目の検出）し、残存クセを同一基準・同一正規化式 `100×(1−e^(−raw/40))` で再計測して結果を保存する（← IMP-006）。サブエージェントは別サブエージェントを起動できないため、この再検出はオーケストレーター層で行い、その結果を `naturalness-reviewer` に渡すこと。再検出結果を渡せた場合、reviewer は `score_after_method: "detector_measured"` を記録する。
+
+続いて二つを並行実行:
 
 * `content-fidelity-auditor`: 原文と推敲文を 13 項チェックリストで突き合わせ、意味の毀損があれば該当 edit のロールバックを指示。
-* `naturalness-reviewer`: 推敲文に検出器を再実行し、残存 AI クセと過推敲シグナルを計測。品質等級 A〜D を判定。
+* `naturalness-reviewer`: 供給された再検出結果（無ければ同一基準の自前走査＝`score_after_method: "estimated"`）で残存 AI クセと過推敲シグナルを計測。`score_before` は `02_detection.json` の `meta.severity_weighted_score` を採用。品質等級 A〜D を判定。
 
 ### 5. 総合判定
 
